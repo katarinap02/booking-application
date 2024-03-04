@@ -11,7 +11,7 @@ namespace BookingApp.Model
         public string Username { get; set; }
         public string Password { get; set; }
 
-        public UserType UserType { get; set; }
+        public UserType Type { get; set; }
 
         public User() { }
 
@@ -19,12 +19,12 @@ namespace BookingApp.Model
         {
             Username = username;
             Password = password;
-            UserType = type;
+            Type = type;
         }
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), Username, Password, UserType.ToString() };
+            string[] csvValues = { Id.ToString(), Username, Password, Type.ToString() };
             return csvValues;
         }
 
@@ -35,16 +35,16 @@ namespace BookingApp.Model
             Password = values[2];
             if (values[3].Equals("host"))
             { 
-                UserType = UserType.host;
+                Type = UserType.host;
             }
             else if (values[3].Equals("tourist")){
-                UserType = UserType.tourist;
+                Type = UserType.tourist;
             }
             else if (values[3].Equals("guest")){
-                UserType = UserType.guest;
+                Type = UserType.guest;
             }
             else if (values[3].Equals("guide")){
-                UserType = UserType.guide;
+                Type = UserType.guide;
             }
         }
     }

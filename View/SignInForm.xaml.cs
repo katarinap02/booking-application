@@ -50,7 +50,7 @@ namespace BookingApp.View
                 if(user.Password == txtPassword.Password)
                 {
                     CommentsOverview commentsOverview = new CommentsOverview(user);
-                    //MessageBox.Show(user.UserType.ToString()); //spram ovog napraviti pozivanje novih prozora
+                    //MessageBox.Show(user.Type.ToString()); //spram ovog napraviti pozivanje novih prozora
                     commentsOverview.Show();
                     Close();
 
