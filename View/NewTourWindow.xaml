@@ -24,8 +24,8 @@
         <Label Grid.Row="0" Content="Tour Name:" VerticalAlignment="Center"/>
         <TextBox Grid.Row="0" Margin="113,10,10,10" Name="txtTourName" Text="{Binding Path = Tour.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="1" Content="Location:" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1" Margin="113,10,10,10" Name="txtLocation" Text="{Binding Path = Tour.Location, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="1" Content="City:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Margin="113,10,10,10" Name="txtCity" Text="{Binding Path = Tour.City, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Row="2" Content="Description:" VerticalAlignment="Center"/>
         <TextBox Grid.Row="2" Margin="113,10,10,10" Name="txtDescription" Text="{Binding Path = Tour.Description, UpdateSourceTrigger=PropertyChanged}"/>
