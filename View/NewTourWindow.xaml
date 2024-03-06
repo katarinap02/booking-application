@@ -1,0 +1,53 @@
+<Window x:Class="BookingApp.View.NewTourWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.View"
+        mc:Ignorable="d"
+        Title="New Tour" Height="740" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0" Content="Tour Name:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="0" Margin="113,10,10,10" Name="txtTourName" Text="{Binding Path = , UpdateSourceTrigger=PropertyChanged}"/>
+
+        <Label Grid.Row="1" Content="Location:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Margin="113,10,10,10" Name="txtLocation"/>
+
+        <Label Grid.Row="2" Content="Description:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="2" Margin="113,10,10,10" Name="txtDescription"/>
+
+        <Label Grid.Row="3" Content="Language:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="3" Margin="113,10,10,10" Name="txtLanguage"/>
+
+        <Label Grid.Row="4" Content="Max Tourists:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="4" Margin="113,10,10,10" Name="txtMaxTourists"/>
+
+        <Label Grid.Row="5" Content="Duration (hours):" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="5" Margin="113,10,10,10" Name="txtDuration"/>
+
+        <Label Grid.Row="6" Content="Select Dates for Tour to Begin:" VerticalAlignment="Center"/>
+        <Calendar Grid.Row="6" Margin="10" Name="calendar" SelectionMode="MultipleRange"/>
+
+        <Label Grid.Row="7" Content="Checkpoints:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="7" Margin="95,14,10,14" Name="txtCheckpoints" Height="105"/>
+
+        <Label Grid.Row="8" Content="Picture URLs:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="8" Margin="95,10,10,10" Name="txtPictureUrls" Height="105"/>
+
+        <Button Grid.Row="9" Width="100" Height="30" Margin="10" Content="Add Tour" Click="AddTour_Click"/>
+    </Grid>
+</Window>
