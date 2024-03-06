@@ -150,7 +150,7 @@ namespace BookingApp.DTO
             name = accommodation.Name;
             city = accommodation.City;
             country = accommodation.Country;
-            type = (AccommodationType)accommodation.Type;
+            type = accommodation.Type;
             MaxGuestNumber = accommodation.MaxGuestNumber;
             MinReservationNumber = accommodation.MinReservationNumber;
             ReservationDaysLimit = accommodation.ReservationDaysLimit;
@@ -159,8 +159,15 @@ namespace BookingApp.DTO
 
         }
 
+        public Accommodation ToAccommodation()
+        {
+            Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationNumber, reservationDaysLimit);
+            a.Id = id;
+            a.Images = images;
+            return a;
 
+        }
     }
 
-    public enum AccommodationType { APARTMENT, HOUSE, COTTAGE }
+   // public enum AccommodationType { APARTMENT, HOUSE, COTTAGE }
 }

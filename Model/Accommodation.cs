@@ -22,7 +22,7 @@ namespace BookingApp.Model
         public Accommodation() { }
 
 
-        public Accommodation(string name, string address, AccommodationType type, int maxGuestNumber, int minReservationNumber, int reservationDaysLimit) 
+        public Accommodation(string name, string country, string city, AccommodationType type, int maxGuestNumber, int minReservationNumber, int reservationDaysLimit) 
         {
             Name = name;
             Country = country;
