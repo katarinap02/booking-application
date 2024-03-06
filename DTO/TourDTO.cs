@@ -35,16 +35,31 @@ namespace BookingApp.DTO
             }
         }
 
-        private string location;
-        public string Location
+        private string city;
+        public string City
         {
-            get { return location; }
+            get { return city; }
             set
             {
-                if (location != value)
+                if (City != value)
                 {
-                    location = value;
-                    OnPropertyChanged("Location");
+                    city = value;
+                    OnPropertyChanged("City");
+                }
+            }
+        }
+
+        private string country;
+
+        public string Country
+        {
+            get { return country; }
+            set
+            {
+                if(Country != value)
+                {
+                    country = value;
+                    OnPropertyChanged("Country");
                 }
             }
         }
@@ -202,26 +217,19 @@ namespace BookingApp.DTO
         {
             name = tour.Name;
             id = tour.Id;
-            location = tour.Location;
+            City = tour.City;
             duration = tour.Duration;
             language = tour.Language;
             description  = tour.Description;
-            status = (TourStatus)tour.Status;
+            status = tour.Status;
             maxTourists = tour.MaxTourists;
             date = tour.Date;
             checkpoints = tour.Checkpoints;
             pictures = tour.Pictures;
+            country = tour.Country;
 
         }
 
-    }
-
-    public enum TourStatus
-    {
-        Planned,
-        InProgress,
-        Completed,
-        Canceled
     }
 
 
