@@ -61,7 +61,8 @@ namespace BookingApp.Model
                 pictureString = string.Join(",", Pictures);
             }
 
-            string[] CSVvalues = { Id.ToString(), Status.ToString(), Name, Location, Description, Language, MaxTourists.ToString(), Duration.ToString(), Date.ToString(), GroupId.ToString(), currentCheckpoint.ToString(), checkpointsString, pictureString};
+            string[] CSVvalues = { Id.ToString(), Status.ToString(), Name, Location, Description, Language, MaxTourists.ToString(), Duration.ToString(), Date.ToString(),
+                GroupId.ToString(), currentCheckpoint.ToString(), checkpointsString, pictureString};
 
             return CSVvalues;
         }
@@ -93,6 +94,7 @@ namespace BookingApp.Model
             Language = values[5];
             MaxTourists = int.Parse(values[6]);
             Duration = float.Parse(values[7]);
+
             string dateFormat = "MM/dd/yyyy hh:mm:ss tt";
             if (DateTime.TryParseExact(values[8], dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
             {
@@ -101,6 +103,7 @@ namespace BookingApp.Model
 
             GroupId = int.Parse(values[9]);
             currentCheckpoint = int.Parse(values[10]);
+
 
             if (!string.IsNullOrEmpty(values[11]))
             {
