@@ -196,6 +196,8 @@ namespace BookingApp.DTO
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public TourDTO() { }
+
         public TourDTO (Tour tour)
         {
             name = tour.Name;
