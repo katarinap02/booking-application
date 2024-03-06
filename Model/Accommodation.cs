@@ -5,29 +5,33 @@ using System.Windows.Documents;
 
 namespace BookingApp.Model
 {
-    public enum AccommodationType { APARTMENT = 0, HOUSE, COTTAGE}
+    public enum AccommodationType { APARTMENT, HOUSE, COTTAGE}
     public class Accommodation : ISerializable
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public string Address {  get; set; } // grad i drzava, ako zatreba napravicemo klasu Address
+        public string Country {  get; set; } // grad i drzava, ako zatreba napravicemo klasu Address
+        public string City { get; set; }
         public AccommodationType Type { get; set; }
         public int MaxGuestNumber { get; set; }
         public int MinReservationNumber { get; set; }
-        public List<DateTime> AvailableDates { get; set; } // videcemo da li cemo ovo bas ovako
         public List<String> Images { get; set; } //za cuvanje URL-ova slika
+
+        public int ReservationDaysLimit { get; set; }
 
         public Accommodation() { }
 
-        public Accommodation(string name, string address, AccommodationType type, int maxGuestNumber, int minReservationNumber) 
+
+        public Accommodation(string name, string address, AccommodationType type, int maxGuestNumber, int minReservationNumber, int reservationDaysLimit) 
         {
             Name = name;
-            Address = address;
+            Country = country;
+            City = city;
             Type = type;
             MaxGuestNumber = maxGuestNumber;
             MinReservationNumber = minReservationNumber;
-            AvailableDates = new List<DateTime>();
             Images = new List<String>();
+            ReservationDaysLimit = reservationDaysLimit;
         }
 
         public string[] ToCSV()
@@ -36,10 +40,12 @@ namespace BookingApp.Model
             {
                 Id.ToString(),
                 Name,
-                Address,
+                City,
+                Country,
                 Type.ToString(),
                 MaxGuestNumber.ToString(),
-                MinReservationNumber.ToString()
+                MinReservationNumber.ToString(),
+                ReservationDaysLimit.ToString()
             };
 
             return csvValues;
@@ -49,8 +55,9 @@ namespace BookingApp.Model
         {
             Id = Convert.ToInt32(values[0]);
             Name = values[1];
-            Address = values[2];
-            switch(values[3])
+            City = values[2];
+            Country = values[3];
+            switch(values[4])
             {
                 case "APARTMENT":
                     Type = AccommodationType.APARTMENT;
@@ -67,6 +74,8 @@ namespace BookingApp.Model
             }
             MaxGuestNumber = Convert.ToInt32(values[4]);
             MinReservationNumber = Convert.ToInt32(values[5]);
+            ReservationDaysLimit = Convert.ToInt32(values[6]);
+
         }
 
         
