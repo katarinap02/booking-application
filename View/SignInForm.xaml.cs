@@ -55,6 +55,11 @@ namespace BookingApp.View
                         TouristWindow touristWindow = new TouristWindow();
                         touristWindow.Show();
                     }
+                    else if (user.Type.ToString().Equals("host"))
+                    {
+                        HostWindow hostWindow = new HostWindow();
+                        hostWindow.Show();
+                    }
                     //commentsOverview.Show();
                     Close();
 
