@@ -1,5 +1,4 @@
-﻿using BookingApp.View.HostWindows;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,22 +12,22 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace BookingApp.View
+namespace BookingApp.View.HostWindows
 {
     /// <summary>
-    /// Interaction logic for HostWindow.xaml
+    /// Interaction logic for RegisterAccommodationWindow.xaml
     /// </summary>
-    public partial class HostWindow : Window
+    public partial class RegisterAccommodationWindow : Window
     {
-        public HostWindow()
+        public RegisterAccommodationWindow()
         {
             InitializeComponent();
         }
 
-        private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
+        private void Exit_Click(object sender, RoutedEventArgs e)
         {
-            RegisterAccommodationWindow registerWindow = new RegisterAccommodationWindow();
-            registerWindow.ShowDialog();
+            Close();
+            MessageBox.Show("Accommodation not added!");
         }
     }
 }

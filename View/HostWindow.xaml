@@ -36,5 +36,21 @@
             </DataGrid>
         </StackPanel>
 
+        <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
+            <Button Click="RegisterAccommodation_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Resources/Images/add.png" Width="20" Height="25"/>
+                    <TextBlock Text="Register accommodation" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
+                </StackPanel>
+            </Button>
+            <Separator/>
+            <Button>
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Resources/Images/delete.png" Width="20" Height="25"/>
+                    <TextBlock Name="RateTxtBlock" Text="Rate guest" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
+                </StackPanel>
+            </Button>
+        </ToolBar>
+
     </Grid>
 </Window>
