@@ -60,7 +60,7 @@ namespace BookingApp.View
                         HostWindow hostWindow = new HostWindow();
                         hostWindow.Show();
                     }
-                    //commentsOverview.Show();
+
                     Close();
 
                 } 
