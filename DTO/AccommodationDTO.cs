@@ -106,6 +106,21 @@ namespace BookingApp.DTO
             }
         }
 
+        private int reservationDaysLimit;
+        public int ReservationDaysLimit
+        {
+            get { return reservationDaysLimit; }
+            set
+            {
+                if (reservationDaysLimit != value)
+                {
+                    reservationDaysLimit = value;
+                    OnPropertyChanged("ReservationDaysLimit");
+                }
+            }
+        }
+
+
         private List<string> images;
         public List<string> Images
         {
@@ -138,6 +153,7 @@ namespace BookingApp.DTO
             type = (AccommodationType)accommodation.Type;
             MaxGuestNumber = accommodation.MaxGuestNumber;
             MinReservationNumber = accommodation.MinReservationNumber;
+            ReservationDaysLimit = accommodation.ReservationDaysLimit;
 
 
 
