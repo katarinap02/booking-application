@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BookingApp.Model;
 using BookingApp.DTO;
+using System.Windows;
 
 namespace BookingApp.View
 {
@@ -23,7 +24,9 @@ namespace BookingApp.View
             Tour = new TourDTO();
         }
 
-
+        public void AddTour_Click(object sender, EventArgs e) {
+            MessageBox.Show(Dates.Count().ToString());
+        }
 
     }
 }

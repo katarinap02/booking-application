@@ -60,6 +60,11 @@ namespace BookingApp.View
                         HostWindow hostWindow = new HostWindow();
                         hostWindow.Show();
                     }
+                    else if (user.Type.ToString().Equals("guide"))
+                    {
+                        NewTourWindow ntw = new NewTourWindow();
+                        ntw.Show();
+                    }
                     //commentsOverview.Show();
                     Close();
 
