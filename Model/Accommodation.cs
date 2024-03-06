@@ -17,9 +17,12 @@ namespace BookingApp.Model
         public int MinReservationNumber { get; set; }
         public List<String> Images { get; set; } //za cuvanje URL-ova slika
 
+        public int ReservationDaysLimit { get; set; }
+
         public Accommodation() { }
 
-        public Accommodation(string name, string country, string city, AccommodationType type, int maxGuestNumber, int minReservationNumber) 
+
+        public Accommodation(string name, string address, AccommodationType type, int maxGuestNumber, int minReservationNumber, int reservationDaysLimit) 
         {
             Name = name;
             Country = country;
@@ -28,6 +31,7 @@ namespace BookingApp.Model
             MaxGuestNumber = maxGuestNumber;
             MinReservationNumber = minReservationNumber;
             Images = new List<String>();
+            ReservationDaysLimit = reservationDaysLimit;
         }
 
         public string[] ToCSV()
@@ -40,7 +44,8 @@ namespace BookingApp.Model
                 Country,
                 Type.ToString(),
                 MaxGuestNumber.ToString(),
-                MinReservationNumber.ToString()
+                MinReservationNumber.ToString(),
+                ReservationDaysLimit.ToString()
             };
 
             return csvValues;
@@ -67,8 +72,10 @@ namespace BookingApp.Model
 
 
             }
-            MaxGuestNumber = Convert.ToInt32(values[5]);
-            MinReservationNumber = Convert.ToInt32(values[6]);
+            MaxGuestNumber = Convert.ToInt32(values[4]);
+            MinReservationNumber = Convert.ToInt32(values[5]);
+            ReservationDaysLimit = Convert.ToInt32(values[6]);
+
         }
 
         
