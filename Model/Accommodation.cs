@@ -1,6 +1,7 @@
 ﻿using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Documents;
 
 namespace BookingApp.Model
@@ -72,9 +73,10 @@ namespace BookingApp.Model
 
 
             }
-            MaxGuestNumber = Convert.ToInt32(values[4]);
-            MinReservationNumber = Convert.ToInt32(values[5]);
-            ReservationDaysLimit = Convert.ToInt32(values[6]);
+            MaxGuestNumber = Convert.ToInt32(values[5]);
+            MinReservationNumber = Convert.ToInt32(values[6]);
+            ReservationDaysLimit = Convert.ToInt32(values[7]);
+           
 
         }
 

@@ -1,4 +1,5 @@
-﻿using BookingApp.View.HostWindows;
+﻿using BookingApp.Repository;
+using BookingApp.View.HostWindows;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,14 +21,16 @@ namespace BookingApp.View
     /// </summary>
     public partial class HostWindow : Window
     {
+        public AccommodationRepository accommodationRepository { get; set; }
         public HostWindow()
         {
             InitializeComponent();
+            accommodationRepository = new AccommodationRepository();
         }
 
         private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            RegisterAccommodationWindow registerWindow = new RegisterAccommodationWindow();
+            RegisterAccommodationWindow registerWindow = new RegisterAccommodationWindow(accommodationRepository);
             registerWindow.ShowDialog();
         }
     }

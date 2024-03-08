@@ -137,12 +137,17 @@ namespace BookingApp.DTO
 
 
 
+
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public AccommodationDTO()
+        {}
 
         public AccommodationDTO(Accommodation accommodation)
         {
