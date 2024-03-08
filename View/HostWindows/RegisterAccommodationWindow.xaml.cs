@@ -40,7 +40,7 @@ namespace BookingApp.View.HostWindows
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            accommodationRepository.Save(accommodationDTO.ToAccommodation());
+            accommodationRepository.Add(accommodationDTO.ToAccommodation());
             MessageBox.Show("Accommodation added.");
             Close();
         }
