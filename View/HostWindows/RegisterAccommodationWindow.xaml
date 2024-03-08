@@ -23,8 +23,9 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            
 
 
 
@@ -32,8 +33,9 @@
 
         <Label Grid.Row="0" Grid.Column="1" Margin="10,9,108,5" Content="Name"/>
         <TextBox x:Name ="textBoxName" Grid.Row="0" Grid.Column="2" Text="{Binding Path= accomodationDTO.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
-        <Label Grid.Row="1" Grid.Column="1" Margin="10,9,108,5" Content="Address"/>
-        <TextBox x:Name ="textBoxAdress" Grid.Row="1" Grid.Column="2" Text="{Binding Path= accomodationDTO.Adress, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
+        <Label Grid.Row="1" Grid.Column="1" Margin="10,9,108,5" Content="City and country"/>
+        <TextBox x:Name ="textBoxCity" Grid.Row="1" Grid.Column="2" Text="{Binding Path= accomodationDTO.Adress, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="151,8,37,0"/>
+        <TextBox x:Name ="textBoxCountry" Grid.Row="1" Grid.Column="2" Text="{Binding Path= accomodationDTO.Adress, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="33,8,168,0"/>
         <Label Grid.Row="2" Grid.Column="1" Margin="10,9,108,5" Content="Type"/>
         <TextBox x:Name ="textBoxType" Grid.Row="2" Grid.Column="2" Text="{Binding Path= accomodationDTO.Type, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
         <Label Grid.Row="3" Grid.Column="1" Margin="10,9,108,5" Content="Max guest number"/>
@@ -42,8 +44,8 @@
         <TextBox x:Name ="textBoxMinReservationNumber" Grid.Row="4" Grid.Column="2" Text="{Binding Path= accomodationDTO.MinReservationNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
         <Label Grid.Row="5" Grid.Column="1" Margin="10,9,81,5" Content="Days for canceling reservations"/>
         <TextBox x:Name ="textBoxCancelDateDays" Grid.Row="5" Grid.Column="2" Text="{Binding Path= accomodationDTO.CancelDateDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
-        <Label Grid.Row="6" Grid.Column="1" Margin="10,12,62,10" Content="Images URL (split with comma)"/>
-        <TextBox x:Name ="textBoxImages" Grid.Row="6" Grid.Column="2" Text="{Binding Path= accomodationDTO.Images, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="61,8,59,16"/>
+        <Label Grid.Row="6" Grid.Column="1" Margin="10,33,62,24" Content="Images URL (split with comma)" Grid.RowSpan="2"/>
+        <TextBox x:Name ="textBoxImages" Grid.Row="6" Grid.Column="2" Text="{Binding Path= accomodationDTO.Images, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="61,8,59,10"/>
         <Button Grid.Row="10" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="94,0,0,0" Grid.Column="1" RenderTransformOrigin="-5.177,2.01" Height="24" Width="63"  Content=" Save"></Button>
         <Button Grid.Row="10" Click="Exit_Click" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="99,0,0,0" Grid.Column="2" RenderTransformOrigin="-5.177,2.01" Height="24" Width="67"  Content=" Exit"></Button>
     </Grid>
