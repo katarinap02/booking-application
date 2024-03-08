@@ -60,6 +60,11 @@ namespace BookingApp.View
                         HostWindow hostWindow = new HostWindow();
                         hostWindow.Show();
                     }
+                    else if (user.Type.ToString().Equals("guest"))
+                    {
+                        GuestWindow guestWindow = new GuestWindow();
+                        guestWindow.ShowDialog();
+                    }
                     //commentsOverview.Show();
                     Close();
 
