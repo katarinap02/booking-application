@@ -22,6 +22,10 @@ namespace BookingApp.Repository
             _tours = _serializer.FromCSV(FilePath);
         }
 
+        public List<Tour> GetAll()
+        {
+            return _serializer.FromCSV(FilePath);
+        }
         //add za sada
 
         public void Add(Tour tour) 
@@ -41,5 +45,34 @@ namespace BookingApp.Repository
             return groupIds.Max()+1;
         }
 
+        public List<Tour>? FindToursBy(string country, string city, float duration, string language, int numberOfPeople)
+        {
+            List<Tour> allTours = GetAll();
+            string lowercaseCountry = country.ToLower();
+            string lowecaseCity = city.ToLower();
+            string lowercaseLanguage = language.ToLower();
+
+            if (country != "")
+            {
+                allTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(lowercaseCountry));
+            }
+            if(city != "")
+            {
+                allTours = allTours.Where(tour => tour.City.ToLower().Contains(lowecaseCity)).ToList();
+            }
+            if(duration != 0)
+            {
+                allTours = allTours.Where(tour => tour.Duration == duration).ToList();
+            }
+            if(language != "")
+            {
+                allTours = allTours.Where(tour => tour.Language.ToLower() == lowercaseLanguage).ToList();
+            }
+            if(numberOfPeople != 0)
+            {
+                allTours = allTours.Where(tour => tour.MaxTourists >= numberOfPeople).ToList();
+            }
+            return allTours;
+        }
     }
 }
