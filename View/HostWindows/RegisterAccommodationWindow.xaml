@@ -46,7 +46,7 @@
         <Label Grid.Row="3" Grid.Column="1" Margin="10,9,108,5" Content="Max guest number"/>
         <TextBox x:Name ="textBoxMaxGuestNumber" Grid.Row="3" Grid.Column="2" Text="{Binding Path= accommodationDTO.MaxGuestNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
         <Label Grid.Row="4" Grid.Column="1" Margin="10,9,108,5" Content="Min reservation number"/>
-        <TextBox x:Name ="textBoxMinReservationNumber" Grid.Row="4" Grid.Column="2" Text="{Binding Path= accommodationDTO.MinReservationNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
+        <TextBox x:Name ="textBoxMinReservationNumber" Grid.Row="4" Grid.Column="2" Text="{Binding Path= accommodationDTO.MinReservationDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
         <Label Grid.Row="5" Grid.Column="1" Margin="10,9,81,5" Content="Reservation days limit"/>
         <TextBox x:Name ="textBoxCancelDateDays" Grid.Row="5" Grid.Column="2" Text="{Binding Path= accommodationDTO.ReservationDaysLimit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
         <Label Grid.Row="6" Grid.Column="1" Margin="10,33,62,24" Content="Images URL (split with comma)" Grid.RowSpan="2"/>

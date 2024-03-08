@@ -92,15 +92,15 @@ namespace BookingApp.DTO
             }
         }
 
-        private int minReservationNumber;
-        public int MinReservationNumber
+        private int minReservationDays;
+        public int MinReservationDays
         {
-            get { return minReservationNumber; }
+            get { return minReservationDays; }
             set
             {
-                if (minReservationNumber != value)
+                if (minReservationDays != value)
                 {
-                    minReservationNumber = value;
+                    minReservationDays = value;
                     OnPropertyChanged("MinReservationNumber");
                 }
             }
@@ -157,7 +157,7 @@ namespace BookingApp.DTO
             country = accommodation.Country;
             type = accommodation.Type;
             MaxGuestNumber = accommodation.MaxGuestNumber;
-            MinReservationNumber = accommodation.MinReservationNumber;
+            MinReservationDays = accommodation.MinReservationDays;
             ReservationDaysLimit = accommodation.ReservationDaysLimit;
 
 
@@ -166,7 +166,7 @@ namespace BookingApp.DTO
 
         public Accommodation ToAccommodation()
         {
-            Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationNumber, reservationDaysLimit);
+            Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit);
             a.Id = id;
             a.Images = images;
             return a;
