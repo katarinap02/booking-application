@@ -53,6 +53,55 @@ namespace BookingApp.View
                 //MessageBox.Show(Accommodations[0].Type.ToString());
             }
         }
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> queries = new List<string>();
+            queries.Add(txtSearchName.Text);
+            queries.Add(txtSearchCity.Text);
+            queries.Add(txtSearchCountry.Text);
+            queries.Add(txtSearchType.Text);
+            queries.Add(txtSearchGuestNumber.Text);
+            queries.Add(txtSearchReservationDays.Text);
+
+            AccommodationsDataGrid.ItemsSource = SearchAccommodations(queries);
+
+
+
+        }
+
+        private List<Accommodation> SearchAccommodations(List<string> queries)
+        {
+            string nameQuery = queries[0];
+            string cityQuery = queries[1];
+            string countryQuery = queries[2];
+            string typeQuery = queries[3];
+            string guestQuery = queries[4];
+            string reservationQuery = queries[5];
+
+            ObservableCollection<AccommodationDTO> totalAccommodations = new ObservableCollection<AccommodationDTO>();
+            foreach (Accommodation accommodation in accommodationRepository.GetAll())
+                totalAccommodations.Add(new AccommodationDTO(accommodation));
+
+            var searchResults = totalAccommodations.Where(accommodation => (string.IsNullOrEmpty(nameQuery) || accommodation.Name.ToUpper().Contains(nameQuery.ToUpper())) &&
+                                                                           (string.IsNullOrEmpty(cityQuery) || accommodation.City.ToUpper().Contains(cityQuery.ToUpper())) &&
+                                                                           (string.IsNullOrEmpty(countryQuery) || accommodation.Country.ToUpper().Contains(countryQuery.ToUpper())) &&
+                                                                           (string.IsNullOrEmpty(typeQuery) || accommodation.Type.ToString().ToUpper().Contains(typeQuery.ToUpper())) &&
+                                                                           (string.IsNullOrEmpty(guestQuery) || Convert.ToInt32(guestQuery) <= accommodation.MaxGuestNumber)&&
+                                                                           (string.IsNullOrEmpty(reservationQuery) || Convert.ToInt32(reservationQuery) >= accommodation.MinReservationDays)
+                                                                           ).ToList();
+
+
+            int totalItems = searchResults.Count;
+            List<Accommodation> results = new List<Accommodation>();
+            foreach (AccommodationDTO accommodation in searchResults)
+                results.Add(accommodation.ToAccommodation());
+
+            return results;
+
+
+
+
+        }
 
        
     }
