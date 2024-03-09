@@ -40,9 +40,18 @@ namespace BookingApp.View.HostWindows
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            accommodationRepository.Add(accommodationDTO.ToAccommodation());
-            MessageBox.Show("Accommodation added.");
-            Close();
+            if(accommodationDTO.IsValid) {
+                accommodationRepository.Add(accommodationDTO.ToAccommodation());
+                MessageBox.Show("Accommodation added.");
+                Close();
+            }
+            else
+            {
+                
+                 MessageBox.Show("Accommodation can not be created. Not all fields are valid.");
+                
+            }
+            
         }
     }
 }

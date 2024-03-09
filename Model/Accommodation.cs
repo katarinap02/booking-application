@@ -37,6 +37,11 @@ namespace BookingApp.Model
 
         public string[] ToCSV()
         {
+            string ImageString = "";
+            if (Images != null)
+            {
+                ImageString = string.Join(",", Images);
+            }
             string[] csvValues =
             {
                 Id.ToString(),
@@ -46,7 +51,8 @@ namespace BookingApp.Model
                 Type.ToString(),
                 MaxGuestNumber.ToString(),
                 MinReservationDays.ToString(),
-                ReservationDaysLimit.ToString()
+                ReservationDaysLimit.ToString(),
+                ImageString
             };
 
             return csvValues;
@@ -76,7 +82,13 @@ namespace BookingApp.Model
             MaxGuestNumber = Convert.ToInt32(values[5]);
             MinReservationDays = Convert.ToInt32(values[6]);
             ReservationDaysLimit = Convert.ToInt32(values[7]);
-           
+
+            if (!string.IsNullOrEmpty(values[8]))
+            {
+                string image = values[8];
+                Images = image.Split(",").ToList();
+            }
+
 
         }
 

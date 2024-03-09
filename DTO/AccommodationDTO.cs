@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 using BookingApp.Model;
 
 
@@ -30,6 +33,7 @@ namespace BookingApp.DTO
             {
                 if (name != value)
                 {
+                    
                     name = value;
                     OnPropertyChanged("Name");
                 }
@@ -44,6 +48,7 @@ namespace BookingApp.DTO
             {
                 if (city != value)
                 {
+                    
                     city = value;
                     OnPropertyChanged("City");
                 }
@@ -58,6 +63,7 @@ namespace BookingApp.DTO
             {
                 if (country != value)
                 {
+                    
                     country = value;
                     OnPropertyChanged("Country");
                 }
@@ -86,6 +92,7 @@ namespace BookingApp.DTO
             {
                 if (maxGuestNumber != value)
                 {
+                    
                     maxGuestNumber = value;
                     OnPropertyChanged("MaxGuestNumber");
                 }
@@ -100,6 +107,7 @@ namespace BookingApp.DTO
             {
                 if (minReservationDays != value)
                 {
+                    
                     minReservationDays = value;
                     OnPropertyChanged("MinReservationNumber");
                 }
@@ -114,14 +122,17 @@ namespace BookingApp.DTO
             {
                 if (reservationDaysLimit != value)
                 {
+                    
                     reservationDaysLimit = value;
                     OnPropertyChanged("ReservationDaysLimit");
                 }
             }
         }
 
+        
 
-        private List<string> images;
+
+        private List<string> images = new List<string>();
         public List<string> Images
         {
             get { return images; }
@@ -132,6 +143,92 @@ namespace BookingApp.DTO
                     images = value;
                     OnPropertyChanged("Images");
                 }
+            }
+        }
+
+        private string imagesWithComma;
+        public string ImagesWithComma
+        {
+            get { return imagesWithComma; }
+            set
+            {
+                if (imagesWithComma != value)
+                {
+                    imagesWithComma = value;
+                    OnPropertyChanged("ImagesWithComma");
+                }
+            }
+        }
+
+        public string Error => null;
+
+        
+        private Regex _NumberRegex = new Regex("^[0-9]+$");
+        public string this[string columnName]
+        {
+            get
+            {
+                if (columnName == "Name")
+                {
+                    if (string.IsNullOrEmpty(Name))
+                        return "Name is required";
+
+                }
+                else if (columnName == "City")
+                {
+                    if (string.IsNullOrEmpty(City))
+                        return "City is required";
+
+                }
+                
+                else if (columnName == "Country")
+                {
+                    if (string.IsNullOrEmpty(Country))
+                        return "Country is required";
+
+                }
+                else if (columnName == "MinReservationDays")
+                {
+                    Match match = _NumberRegex.Match(MinReservationDays.ToString());
+                    if (!match.Success)
+                        return "Min reservation days must be a number";
+                    if (MinReservationDays < 0)
+                        return "Min reservation days must be greater than 0";
+                }
+                else if (columnName == "MaxGuestNumber")
+                {
+                    Match match = _NumberRegex.Match(MaxGuestNumber.ToString());
+                    if (!match.Success)
+                        return "Max guest number must be a number";
+                    if (MaxGuestNumber < 0)
+                        return "Max guest number must be greater than 0";
+                }
+                else if (columnName == "ReservationDaysLimit")
+                {
+                    Match match = _NumberRegex.Match(ReservationDaysLimit.ToString());
+                    if (!match.Success)
+                        return "Reservation days limit must be a number";
+                    if (ReservationDaysLimit < 1)
+                        return "Reservation days limit must be greater than 1";
+                }
+
+                return null;
+            }
+        }
+
+        private readonly string[] _validatedProperties = { "City", "Name", "Country", "MinReservationDays", "MaxGuestNumbe", "ReservationDaysLimit" };
+
+        public bool IsValid
+        {
+            get
+            {
+                foreach (var property in _validatedProperties)
+                {
+                    if (this[property] != null)
+                        return false;
+                }
+
+                return true;
             }
         }
 
@@ -166,6 +263,12 @@ namespace BookingApp.DTO
 
         public Accommodation ToAccommodation()
         {
+            if (!string.IsNullOrEmpty(imagesWithComma))
+            {
+                string imagesWithCommaCopy = imagesWithComma.Replace(" ", "");
+                images = imagesWithCommaCopy.Split(",").ToList();
+            }
+            
             Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit);
             a.Id = id;
             a.Images = images;
