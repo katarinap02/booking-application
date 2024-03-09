@@ -52,7 +52,8 @@ namespace BookingApp.View
                 {
                     //CommentsOverview commentsOverview = new CommentsOverview(user);
                     //MessageBox.Show(user.Type.ToString()); //spram ovog napraviti pozivanje novih prozora
-                    if (user.Type.ToString().Equals("tourist")){
+                    if (user.Type.ToString().Equals("tourist"))
+                    {
                         TouristWindow touristWindow = new TouristWindow();
                         touristWindow.Show();
                     }
@@ -66,6 +67,7 @@ namespace BookingApp.View
                     {
                         NewTourWindow newTourWindow = new NewTourWindow();
                         newTourWindow.Show();
+                    }
 
                     else if (user.Type.ToString().Equals("guest"))
                     {
