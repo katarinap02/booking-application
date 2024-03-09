@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingApp.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,14 +18,16 @@ namespace BookingApp.View
    
     public partial class GuestWindow : Window
     {
+        public AccommodationRepository accommodationRepository;
         public GuestWindow()
         {
             InitializeComponent();
+            accommodationRepository = new AccommodationRepository();
         }
 
         public void ShowAccommodations_Click(object sender, RoutedEventArgs e)
         {
-            ShowAndSearchAccommodations showAndSearchAccommodations = new ShowAndSearchAccommodations();
+            ShowAndSearchAccommodations showAndSearchAccommodations = new ShowAndSearchAccommodations(accommodationRepository);
             showAndSearchAccommodations.ShowDialog();
 
         }
