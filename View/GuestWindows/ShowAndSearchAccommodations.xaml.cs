@@ -54,6 +54,32 @@ namespace BookingApp.View
             }
         }
 
-       
+        private void SearchButton_Click(object sender, RoutedEventArgs e)
+        {
+            List<string> queries = new List<string>();
+            queries.Add(txtSearchName.Text);
+            queries.Add(txtSearchCity.Text);
+            queries.Add(txtSearchCountry.Text);
+            queries.Add(comboSearchType.Text);
+            queries.Add(txtSearchGuestNumber.Text);
+            queries.Add(txtSearchReservationDays.Text);
+
+            AccommodationsDataGrid.ItemsSource = SearchAccommodations(queries);
+
+
+
+        }
+
+        private List<Accommodation> SearchAccommodations(List<string> queries)
+        {
+            string nameQuery = queries[0];
+            string Query = queries[0];
+            string nameQuery = queries[0];
+
+
+
+        }
+
+
     }
 }
