@@ -6,7 +6,7 @@ using BookingApp.Model;
 
 namespace BookingApp.DTO
 {
-    public class TourDTO : INotifyPropertyChanged, IDataErrorInfo
+    public class TourDTO : INotifyPropertyChanged
     {
         private int id;
         public int Id
@@ -202,42 +202,6 @@ namespace BookingApp.DTO
                     currentCheckpoint = value;
                     OnPropertyChanged("CurrentCheckpoint");
                 }
-            }
-        }
-
-        public string Error => null;
-           
-        private Regex _numberRegex = new Regex("^(?:\\d{1,3}|999)$");
-        public string this[string columnName]
-        {
-            get
-            {
-                if(columnName == "Duration")
-                {
-                    Match match = _numberRegex.Match(Duration.ToString());
-                    if (!match.Success)
-                        return "Duration must be a number. Try again.";
-                }
-                else if(columnName == "MaxTourists")
-                {
-                    Match match = _numberRegex.Match(MaxTourists.ToString());
-                    if (!match.Success)
-                        return "Number of people must be a number. Try again.";
-                }
-                return null;
-            }
-        }
-
-        private readonly string[] _validatedProperties = { "Duration", "MaxTourists" };
-        public bool isValid
-        {
-            get
-            {
-                foreach (var property in _validatedProperties)
-                {
-                    if (this[property] != null) return false;
-                }
-                return true;
             }
         }
 

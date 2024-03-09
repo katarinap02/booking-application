@@ -4,6 +4,7 @@ using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,22 +25,15 @@ namespace BookingApp.View.TouristWindows
     public partial class TouristWindow : Window
     {
         public static ObservableCollection<Tour> Tours { get; set; }
-        
-        public TourDTO TourDTO { get; set; }
-        public TourDTO SelectedTour {  get; set; }
+        public Tour SelectedTour {  get; set; }
         private readonly TourRepository _repository;
         public TouristWindow()
         {
             InitializeComponent();
             DataContext = this;
             _repository = new TourRepository();
-            TourDTO = new TourDTO();
             Tours = new ObservableCollection<Tour>(_repository.GetAll());
 
-            DurationSearch.TextChanged += TextBox_TextChanged;
-            PeopleSearch.TextChanged += TextBox_TextChanged;
-
-            ValidateTextBoxes();
         }
 
         private void SearchButton_Click(object sender, RoutedEventArgs e)
@@ -53,13 +47,58 @@ namespace BookingApp.View.TouristWindows
                     Tours.Add(t);
         }
 
-        private void ValidateTextBoxes()
+        private void DurationSearch_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            searchButton.IsEnabled = TourDTO.isValid;
+            TextBox textBox = (TextBox)sender;
+            if (!char.IsDigit(e.Text, e.Text.Length - 1) && e.Text != ".")
+            {
+                e.Handled = true;
+            }
+
+            if (e.Text == "." && textBox.Text.Contains("."))
+            {
+                e.Handled = true;
+            }
+            else if (e.Text == "." && textBox.Text.Length == 0)
+            {
+                e.Handled = true;
+            }
+
         }
-        private void TextBox_TextChanged(object sender, EventArgs e)
+
+        private void DurationSearch_LostFocus(object sender, RoutedEventArgs e)
         {
-            ValidateTextBoxes();
+            TextBox textBox = (TextBox)sender;
+
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = "0";
+                return;
+            }
+        }
+
+        private void PeopleSearch_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+            if (!char.IsDigit(e.Text, e.Text.Length - 1))
+                e.Handled = true;
+
+        }
+
+        private void PeopleSearch_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = (TextBox)sender;
+
+            if (string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = "0";
+                return;
+            }
+            if (!int.TryParse(((TextBox)sender).Text, out int _))
+            {
+                MessageBox.Show("Please enter a valid number for search by number of peoples.");
+                ((TextBox)sender).Focus();
+            }
         }
     }
 }
