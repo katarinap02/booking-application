@@ -25,7 +25,7 @@ namespace BookingApp.Repository
             return _serializer.FromCSV(FilePath);
         }
 
-        public Comment Save(Comment comment)
+        public Comment Add(Comment comment)
         {
             comment.Id = NextId();
             _comments = _serializer.FromCSV(FilePath);

@@ -1,5 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.View.TouristWindows;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -60,6 +61,12 @@ namespace BookingApp.View
                         HostWindow hostWindow = new HostWindow();
                         hostWindow.Show();
                     }
+
+                    else if (user.Type.ToString().Equals("guide"))
+                    {
+                        NewTourWindow newTourWindow = new NewTourWindow();
+                        newTourWindow.Show();
+
                     else if (user.Type.ToString().Equals("guest"))
                     {
                         GuestWindow guestWindow = new GuestWindow();
