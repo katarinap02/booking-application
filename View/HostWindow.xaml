@@ -31,8 +31,14 @@
             <Separator/>
             <Button>
                 <StackPanel Orientation="Horizontal">
-                    <Image Source="../Resources/Images/delete.png" Width="20" Height="25"/>
+                    <Image Source="../Resources/Images/edit.png" Width="20" Height="25"/>
                     <TextBlock Name="RateTxtBlock" Text="Rate guest" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
+                </StackPanel>
+            </Button>
+            <Button Click="Close_Click">
+                <StackPanel Orientation="Horizontal">
+                    <Image Source="../Resources/Images/delete.png" Width="20" Height="25"/>
+                    <TextBlock Name="CloseBlock" Text="Close" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
                 </StackPanel>
             </Button>
         </ToolBar>

@@ -33,5 +33,10 @@ namespace BookingApp.View
             RegisterAccommodationWindow registerWindow = new RegisterAccommodationWindow(accommodationRepository);
             registerWindow.ShowDialog();
         }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

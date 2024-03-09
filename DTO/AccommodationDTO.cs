@@ -164,6 +164,8 @@ namespace BookingApp.DTO
 
         
         private Regex _NumberRegex = new Regex("^[0-9]+$");
+        private Regex _ImageRegex = new Regex("^(?:https://(?:[^,]*,)?)*https://(?:[^,]+)?(?:,(?=https://)[^,]*)*$");
+
         public string this[string columnName]
         {
             get
@@ -189,34 +191,38 @@ namespace BookingApp.DTO
                 }
                 else if (columnName == "MinReservationDays")
                 {
-                    Match match = _NumberRegex.Match(MinReservationDays.ToString());
-                    if (!match.Success)
-                        return "Min reservation days must be a number";
                     if (MinReservationDays < 0)
                         return "Min reservation days must be greater than 0";
                 }
                 else if (columnName == "MaxGuestNumber")
                 {
-                    Match match = _NumberRegex.Match(MaxGuestNumber.ToString());
-                    if (!match.Success)
-                        return "Max guest number must be a number";
                     if (MaxGuestNumber < 0)
                         return "Max guest number must be greater than 0";
                 }
                 else if (columnName == "ReservationDaysLimit")
                 {
-                    Match match = _NumberRegex.Match(ReservationDaysLimit.ToString());
-                    if (!match.Success)
-                        return "Reservation days limit must be a number";
+                    
                     if (ReservationDaysLimit < 1)
                         return "Reservation days limit must be greater than 1";
+                }
+                else if (columnName == "ImagesWithComma")
+                {
+                    string ImagesWithCommmaCopy = "";
+                    if (!string.IsNullOrEmpty(imagesWithComma))
+                    {
+                        ImagesWithCommmaCopy = imagesWithComma.Replace(" ", "");
+                    }
+                    Match match = _ImageRegex.Match(ImagesWithCommmaCopy);
+                    if (!match.Success && !string.IsNullOrEmpty(imagesWithComma)) //sme da vrati prazan string
+                        return "Image must start with https://";
+                   
                 }
 
                 return null;
             }
         }
 
-        private readonly string[] _validatedProperties = { "City", "Name", "Country", "MinReservationDays", "MaxGuestNumbe", "ReservationDaysLimit" };
+        private readonly string[] _validatedProperties = { "City", "Name", "Country", "MinReservationDays", "MaxGuestNumbe", "ReservationDaysLimit", "ImagesWithComma" };
 
         public bool IsValid
         {
