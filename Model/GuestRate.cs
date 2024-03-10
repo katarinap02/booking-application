@@ -7,7 +7,7 @@ using BookingApp.Serializer;
 
 namespace BookingApp.Model
 {
-    public class RateGuest : ISerializable
+    public class GuestRate : ISerializable
     {
 
         public int UserId { get; set; } //dogovoriti se da li cuvamo id ili celog user-a
@@ -23,9 +23,9 @@ namespace BookingApp.Model
         public int DaysLeft { get; set; } //potrebno je nesto sto ce da meri vreme, videti jos
 
 
-        public RateGuest() { }
+        public GuestRate() { }
 
-        public RateGuest(int userId, int acommodationId, int cleanliness, int rulesFollowing, string additionalComment)
+        public GuestRate(int userId, int acommodationId, int cleanliness, int rulesFollowing, string additionalComment)
         {
             UserId = userId;
             AcommodationId = acommodationId;

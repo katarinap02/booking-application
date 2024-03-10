@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingApp.DTO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,15 @@ namespace BookingApp.View.GuestWindows
     /// </summary>
     public partial class RateGuestWindow : Window
     {
-        public RateGuestWindow()
+        
+        public RateGuestWindow(AccommodationReservationDTO ac)
         {
             InitializeComponent();
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

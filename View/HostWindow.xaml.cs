@@ -2,6 +2,7 @@
 using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
+using BookingApp.View.GuestWindows;
 using BookingApp.View.HostWindows;
 using System;
 using System.Collections.Generic;
@@ -74,13 +75,15 @@ namespace BookingApp.View
         {
             if (SelectedAccommodation != null)
             {
-            //    CommentForm viewCommentForm = new CommentForm(SelectedAccommodation);
-             //   viewCommentForm.Show();
+                RateGuestWindow rateGuestWindow = new RateGuestWindow(SelectedAccommodation);
+                rateGuestWindow.ShowDialog();
             }
             else
             {
                 MessageBox.Show("Select guest to rate.");
             }
+
+            Update();
         }
     }
 }

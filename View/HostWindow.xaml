@@ -40,7 +40,7 @@
                 </StackPanel>
             </Button>
             <Separator/>
-            <Button>
+            <Button Click="Rate_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="../Resources/Images/edit.png" Width="20" Height="25"/>
                     <TextBlock Name="RateTxtBlock" Text="Rate guest" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
