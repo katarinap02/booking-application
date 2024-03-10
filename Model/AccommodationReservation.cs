@@ -16,6 +16,8 @@ namespace BookingApp.Model
         public DateTime EndDate { get; set; }
         public string DateRange => StartDate.ToString() + "-" + EndDate.ToString();
 
+        public AccommodationReservation() { }
+     
         public string[] ToCSV()
         {
             string[] csvValues =
