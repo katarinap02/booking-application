@@ -5,7 +5,7 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using System.Windows.Controls;
 namespace BookingApp.Model
 {
     public class AccommodationReservation : ISerializable
@@ -17,10 +17,11 @@ namespace BookingApp.Model
         public DateTime EndDate { get; set; }
         public string DateRange => StartDate.ToString() + "-" + EndDate.ToString();
 
-        public Calendar Calendar { get; set; }
 
         public AccommodationReservation()
         {
+           
+
            
 
         }
