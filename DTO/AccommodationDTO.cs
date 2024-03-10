@@ -146,6 +146,21 @@ namespace BookingApp.DTO
             }
         }
 
+        private List<DateTime> unavailableDates = new List<DateTime>();
+        public List<DateTime> UnavailableDates
+        {
+            get { return unavailableDates; }
+            set
+            {
+                if (unavailableDates != value)
+                {
+                    unavailableDates = value;
+                    OnPropertyChanged("UnavailableDates");
+                }
+            }
+        }
+
+
         private string imagesWithComma;
         public string ImagesWithComma
         {

@@ -20,7 +20,12 @@ namespace BookingApp.Model
 
         public int ReservationDaysLimit { get; set; }
 
-        public Accommodation() { }
+        public List<DateTime> UnavailableDates { get; set; }
+        public Accommodation() { 
+        
+            UnavailableDates = new List<DateTime>();
+
+        }
 
 
         public Accommodation(string name, string country, string city, AccommodationType type, int maxGuestNumber, int minReservationNumber, int reservationDaysLimit) 
@@ -33,6 +38,7 @@ namespace BookingApp.Model
             MinReservationDays = minReservationNumber;
             Images = new List<String>();
             ReservationDaysLimit = reservationDaysLimit;
+            UnavailableDates = new List<DateTime>();
         }
 
         public string[] ToCSV()
