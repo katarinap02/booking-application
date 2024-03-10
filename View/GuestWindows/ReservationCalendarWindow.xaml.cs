@@ -23,11 +23,13 @@ namespace BookingApp.View
     {
         public AccommodationDTO SelectedAccommodation { get; set; }
         public AccommodationRepository AccommodationRepository { get; set; }
-        public ReservationCalendarWindow(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, int dayNumber)
+        public User User { get; set; }
+        public ReservationCalendarWindow(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, int dayNumber, User user)
         {
             InitializeComponent();
             this.SelectedAccommodation = selectedAccommodation;
             this.AccommodationRepository = accommodationRepository;
+            this.User = user;
             ConfigureCalendar(SelectedAccommodation, dayNumber);
            
 
@@ -39,13 +41,15 @@ namespace BookingApp.View
             CalendarDateRange datesBeforeToday = new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1));
             ReservationCalendar.BlackoutDates.Add(datesBeforeToday);
 
-            MessageBox.Show(selectedAccommodation.UnavailableDates.Count.ToString());
+           // MessageBox.Show(selectedAccommodation.UnavailableDates.Count.ToString());
             foreach(CalendarDateRange unavailableDateRange in selectedAccommodation.UnavailableDates)
             {
                 ReservationCalendar.BlackoutDates.Add(unavailableDateRange);
                 //MessageBox.Show("uslo");
 
             }
+
+           
                 
             
         }
@@ -54,10 +58,11 @@ namespace BookingApp.View
         {
             SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
             CalendarDateRange selectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count-1]);
-            
-            SelectedAccommodation.UnavailableDates.Add(selectedDateRange);
-            AccommodationRepository.Update(SelectedAccommodation.ToAccommodation());
-            MessageBox.Show(SelectedAccommodation.UnavailableDates.Count.ToString());
+           
+            //  MessageBox.Show(SelectedAccommodation.UnavailableDates.Count.ToString());
+
+            ReservationInfoWindow reservationInfo = new ReservationInfoWindow(AccommodationRepository, SelectedAccommodation, User, selectedDateRange);
+            reservationInfo.ShowDialog();
 
 
         }

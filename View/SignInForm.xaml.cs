@@ -71,7 +71,7 @@ namespace BookingApp.View
 
                     else if (user.Type.ToString().Equals("guest"))
                     {
-                        GuestWindow guestWindow = new GuestWindow();
+                        GuestWindow guestWindow = new GuestWindow(user);
                         guestWindow.ShowDialog();
                     }
                     //commentsOverview.Show();

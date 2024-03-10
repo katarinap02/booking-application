@@ -23,11 +23,13 @@ namespace BookingApp.View
     {
         public ObservableCollection<AccommodationDTO> Accommodations { get; set; }
 
+        public User User { get; set; }
         public AccommodationDTO SelectedAccommodation { get; set; }
 
         public AccommodationRepository AccommodationRepository { get; set; }    
 
-        public ShowAndSearchAccommodations(AccommodationRepository accommodationRepository)
+
+        public ShowAndSearchAccommodations(AccommodationRepository accommodationRepository, User user)
         {
             
 
@@ -36,6 +38,7 @@ namespace BookingApp.View
             Accommodations = new ObservableCollection<AccommodationDTO>();
             this.AccommodationRepository = accommodationRepository;
             accommodationRepository.AccommodationSubject.Subscribe(this);
+            this.User = user;
             //AccommodationsDataGrid.ItemsSource = Accommodations;
             DataContext = this;
             Update();
@@ -105,7 +108,7 @@ namespace BookingApp.View
 
         private void ReservationButton_Click(object sender, RoutedEventArgs e)
         {
-            DayNumberPopUp dayNumberPopup = new DayNumberPopUp(AccommodationRepository, SelectedAccommodation);
+            DayNumberPopUp dayNumberPopup = new DayNumberPopUp(AccommodationRepository, SelectedAccommodation, User);
             dayNumberPopup.ShowDialog();
 
 

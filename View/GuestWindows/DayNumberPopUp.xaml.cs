@@ -24,13 +24,15 @@ namespace BookingApp.View
     {
         public AccommodationDTO SelectedAccommodation { get; set; }
         public AccommodationRepository AccommodationRepository { get; set; }
+
+        public User User { get; set; }  
         public int DayNumber {  get; set; }
-        public DayNumberPopUp(AccommodationRepository accommodationRepository, AccommodationDTO SelectedAccommodation)
+        public DayNumberPopUp(AccommodationRepository accommodationRepository, AccommodationDTO SelectedAccommodation, User user)
         {
             InitializeComponent();
             this.SelectedAccommodation = SelectedAccommodation;
             this.AccommodationRepository = accommodationRepository;
-
+            this.User = user;
         }
 
         private void Continue_Click(object sender, RoutedEventArgs e)
@@ -40,7 +42,7 @@ namespace BookingApp.View
                 MessageBox.Show("Minimal number of reservation days is: " + SelectedAccommodation.MinReservationDays.ToString());
             else
             {
-                ReservationCalendarWindow calendarWindow = new ReservationCalendarWindow(AccommodationRepository, SelectedAccommodation, DayNumber);
+                ReservationCalendarWindow calendarWindow = new ReservationCalendarWindow(AccommodationRepository, SelectedAccommodation, DayNumber, User);
                 calendarWindow.ShowDialog();
 
             }

@@ -58,6 +58,7 @@ namespace BookingApp.Model
             {
                 string[] dateParts = value.Split("-");
                 DateTime start = Convert.ToDateTime(dateParts[0]);
+               
                 DateTime end = Convert.ToDateTime(dateParts[1]);
                 result.Add(new CalendarDateRange(start, end));
 
