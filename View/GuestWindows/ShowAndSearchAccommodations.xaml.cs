@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.Observer;
 using BookingApp.Model;
+using System.Security.Cryptography;
+
 namespace BookingApp.View
 {
 
@@ -108,8 +110,11 @@ namespace BookingApp.View
 
         private void ReservationButton_Click(object sender, RoutedEventArgs e)
         {
-            DayNumberPopUp dayNumberPopup = new DayNumberPopUp(AccommodationRepository, SelectedAccommodation, User);
-            dayNumberPopup.ShowDialog();
+            /* DayNumberPopUp dayNumberPopup = new DayNumberPopUp(AccommodationRepository, SelectedAccommodation, User);
+             dayNumberPopup.ShowDialog();*/
+            int DayNumberTmp = 0; // ovo je privremeno, da ne menjam konstruktor klase sad
+            ReservationCalendarWindow calendarWindow = new ReservationCalendarWindow(AccommodationRepository, SelectedAccommodation, DayNumberTmp, User);
+            calendarWindow.ShowDialog();
 
 
         }

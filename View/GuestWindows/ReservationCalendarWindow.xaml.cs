@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.Observer;
 using BookingApp.Model;
+using System.Security.Cryptography;
 
 namespace BookingApp.View
 {
@@ -30,6 +31,7 @@ namespace BookingApp.View
             this.SelectedAccommodation = selectedAccommodation;
             this.AccommodationRepository = accommodationRepository;
             this.User = user;
+
             ConfigureCalendar(SelectedAccommodation, dayNumber);
            
 
@@ -56,13 +58,23 @@ namespace BookingApp.View
 
         private void SelectDate_Click(object sender, RoutedEventArgs e)
         {
-            SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
-            CalendarDateRange selectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count-1]);
-           
-            //  MessageBox.Show(SelectedAccommodation.UnavailableDates.Count.ToString());
 
-            ReservationInfoWindow reservationInfo = new ReservationInfoWindow(AccommodationRepository, SelectedAccommodation, User, selectedDateRange);
-            reservationInfo.ShowDialog();
+          
+            if (ReservationCalendar.SelectedDates.Count < SelectedAccommodation.MinReservationDays)
+                MessageBox.Show("Minimal number of reservation days is: " + SelectedAccommodation.MinReservationDays.ToString());
+            else
+            {
+                SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
+                CalendarDateRange selectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
+
+                //  MessageBox.Show(SelectedAccommodation.UnavailableDates.Count.ToString());
+
+                ReservationInfoWindow reservationInfo = new ReservationInfoWindow(AccommodationRepository, SelectedAccommodation, User, selectedDateRange);
+                reservationInfo.ShowDialog();
+
+
+            }
+
 
 
         }
