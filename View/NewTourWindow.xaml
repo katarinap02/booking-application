@@ -24,8 +24,9 @@
         <Label Grid.Row="0" Content="Tour Name:" VerticalAlignment="Center"/>
         <TextBox Grid.Row="0" Margin="113,10,10,10" Name="txtTourName" Text="{Binding Path = Tour.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="1" Content="City:" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="1" Margin="113,10,10,10" Name="txtCity" Text="{Binding Path = Tour.City, UpdateSourceTrigger=PropertyChanged}"/>
+        <Label Grid.Row="1" Content="City and country:" VerticalAlignment="Center"/>
+        <TextBox Grid.Row="1" Margin="113,10,368,10" Name="txtCity" Text="{Binding Path = Tour.City, UpdateSourceTrigger=PropertyChanged}"/>
+        <TextBox Grid.Row="1" Margin="452,10,10,10" Name="txtCountry" Text="{Binding Path = Tour.Country, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Row="2" Content="Description:" VerticalAlignment="Center"/>
         <TextBox Grid.Row="2" Margin="113,10,10,10" Name="txtDescription" Text="{Binding Path = Tour.Description, UpdateSourceTrigger=PropertyChanged}"/>
@@ -40,15 +41,49 @@
         <TextBox Grid.Row="5" Margin="113,10,10,10" Name="txtDuration" Text="{Binding Path = Tour.Duration, UpdateSourceTrigger=PropertyChanged}"/>
 
         <Label Grid.Row="6" Content="Select Dates for Tour to Begin:" VerticalAlignment="Center"/>
-        <Calendar Grid.Row="6" Margin="10" Name="calendar" SelectionMode="MultipleRange" /> 
-		<!--Text="{Binding Path = Dates, UpdateSourceTrigger=PropertyChanged}"-->
+        <Calendar Grid.Row="6" Margin="10" Name="calendar" SelectionMode="MultipleRange" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+        <!--Text="{Binding Path = Dates, UpdateSourceTrigger=PropertyChanged}"-->
 
-        <Label Grid.Row="7" Content="Checkpoints:" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="7" Margin="95,14,10,14" Name="txtCheckpoints" Height="105"/>
+        <!-- Checkpoints section -->
+        <StackPanel Grid.Row="7" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Content="Checkpoints:" VerticalAlignment="Center" Width="110"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ListBox Grid.Column="0" Margin="5" Name="txtCheckpoints" Height="70" Width="400" ItemsSource="{Binding Path= Tour.Checkpoints, UpdateSourceTrigger=PropertyChanged}"/>
+                <StackPanel Grid.Column="1" Margin="5" Orientation="Vertical">
+                    <TextBox Margin="0,0,0,5" Name="txtCheckpointTextBox" Width="179" Height="34"/>
+                    <Button Margin="0" Content="Add checkpoint" Width="94" Height="20" Click="AddCheckpoint_Click"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
 
-        <Label Grid.Row="8" Content="Picture URLs:" VerticalAlignment="Center"/>
-        <TextBox Grid.Row="8" Margin="95,10,10,10" Name="txtPictureUrls" Height="105"/>
+        <!-- Picture URLs section -->
+        <StackPanel Grid.Row="8" Orientation="Horizontal" VerticalAlignment="Center">
+            <Label Content="Picture URLs:" VerticalAlignment="Center" Width="110"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="Auto" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <ListBox Grid.Column="0" Margin="5" Name="txtPictureUrls" Height="70" Width="400" ItemsSource="{Binding Path= Tour.Pictures, UpdateSourceTrigger=PropertyChanged}"/>
+                <StackPanel Grid.Column="1" Margin="5" Orientation="Vertical">
+                    <TextBox Margin="0,0,0,5" Name="txtPictureUrlTextBox"  Width="179" Height="34"/>
+                    <Button Margin="0" Content="Add picture url" Width="100" Height="20" Click="AddPicture_Click"/>
+                </StackPanel>
+            </Grid>
+        </StackPanel>
 
-        <Button Grid.Row="9" Width="100" Height="30" Margin="10" Content="Add Tour" Click="AddTour_Click"/>
+
+        <StackPanel Grid.Row="9" HorizontalAlignment="Center">
+            <Button Width="100" Height="30" Margin="10" Content="Add Tour" Click="AddTour_Click"/>
+            <Button Width="100" Height="30" Margin="10" Content="Exit" />
+        </StackPanel>
+
+
     </Grid>
 </Window>
