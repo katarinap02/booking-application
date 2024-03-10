@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Documents;
 
 namespace BookingApp.Model
@@ -20,10 +21,10 @@ namespace BookingApp.Model
 
         public int ReservationDaysLimit { get; set; }
 
-        public List<DateTime> UnavailableDates { get; set; }
+        public List<CalendarDateRange> UnavailableDates { get; set; }
         public Accommodation() { 
         
-            UnavailableDates = new List<DateTime>();
+            UnavailableDates = new List<CalendarDateRange>();
 
         }
 
@@ -38,7 +39,7 @@ namespace BookingApp.Model
             MinReservationDays = minReservationNumber;
             Images = new List<String>();
             ReservationDaysLimit = reservationDaysLimit;
-            UnavailableDates = new List<DateTime>();
+            UnavailableDates = new List<CalendarDateRange>();
         }
 
         public string[] ToCSV()

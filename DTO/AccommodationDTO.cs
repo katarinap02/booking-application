@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Controls;
 using BookingApp.Model;
 
 
@@ -146,8 +147,8 @@ namespace BookingApp.DTO
             }
         }
 
-        private List<DateTime> unavailableDates = new List<DateTime>();
-        public List<DateTime> UnavailableDates
+        private List<CalendarDateRange> unavailableDates = new List<CalendarDateRange>();
+        public List<CalendarDateRange> UnavailableDates
         {
             get { return unavailableDates; }
             set
