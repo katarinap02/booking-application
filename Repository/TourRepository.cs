@@ -34,6 +34,16 @@ namespace BookingApp.Repository
             _serializer.ToCSV(FilePath, _tours);
         }
 
+        public int NextPersonalId() {
+            List<int> groupIds = new List<int>();
+            foreach (Tour tour in _tours)
+            {
+                groupIds.Add(tour.Id);
+            }
+
+            return groupIds.Max() + 1;
+        }
+
         public int NextId() //generise ID za novu grupu tura
         {
             List<int> groupIds = new List<int>();

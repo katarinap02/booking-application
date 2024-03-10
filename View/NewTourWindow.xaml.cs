@@ -36,6 +36,7 @@ namespace BookingApp.View
                 {
                     Tour.GroupId = _tourRepository.NextId();
                     Tour.Date = date;
+                    Tour.Id = _tourRepository.NextPersonalId();
                     _tourRepository.Add(Tour.ToTour());
                 }
             
