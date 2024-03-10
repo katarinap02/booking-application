@@ -278,6 +278,7 @@ namespace BookingApp.DTO
             MaxGuestNumber = accommodation.MaxGuestNumber;
             MinReservationDays = accommodation.MinReservationDays;
             ReservationDaysLimit = accommodation.ReservationDaysLimit;
+            UnavailableDates = accommodation.UnavailableDates;
 
 
 
@@ -294,6 +295,7 @@ namespace BookingApp.DTO
             Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit);
             a.Id = id;
             a.Images = images;
+            a.UnavailableDates = unavailableDates;
             return a;
 
         }

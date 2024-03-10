@@ -42,6 +42,29 @@ namespace BookingApp.Model
             UnavailableDates = new List<CalendarDateRange>();
         }
 
+        public string ConvertToString(CalendarDateRange range)
+        {
+            DateTime startDate = range.Start;
+            DateTime endDate = range.End;
+            return startDate + "-" + endDate;
+
+        }
+
+        public List<CalendarDateRange> ConvertToDateRanges(List<string> values)
+        {
+            List<CalendarDateRange> result = new List<CalendarDateRange>();
+
+            foreach(string value in values)
+            {
+                string[] dateParts = value.Split("-");
+                DateTime start = Convert.ToDateTime(dateParts[0]);
+                DateTime end = Convert.ToDateTime(dateParts[1]);
+                result.Add(new CalendarDateRange(start, end));
+
+            }
+
+            return result;
+        }
         public string[] ToCSV()
         {
             string ImageString = "";
@@ -49,6 +72,14 @@ namespace BookingApp.Model
             {
                 ImageString = string.Join(",", Images);
             }
+
+            string unavailableDates = "";
+            if (UnavailableDates != null)
+                unavailableDates = string.Join(",", UnavailableDates.Select(dateRange => ConvertToString(dateRange)));
+          
+
+
+
             string[] csvValues =
             {
                 Id.ToString(),
@@ -59,7 +90,8 @@ namespace BookingApp.Model
                 MaxGuestNumber.ToString(),
                 MinReservationDays.ToString(),
                 ReservationDaysLimit.ToString(),
-                ImageString
+                ImageString,
+                unavailableDates
             };
 
             return csvValues;
@@ -94,6 +126,12 @@ namespace BookingApp.Model
             {
                 string image = values[8];
                 Images = image.Split(",").ToList();
+            }
+
+            if (values.Length > 9 && !string.IsNullOrEmpty(values[9]))
+            {
+                string unavailableDates = values[9];
+                UnavailableDates = ConvertToDateRanges(values[9].Split(",").ToList());
             }
 
 

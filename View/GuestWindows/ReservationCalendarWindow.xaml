@@ -22,7 +22,7 @@
         <StackPanel Grid.Row="2" Margin="177,60,326,194" Grid.Column="1">
             <Calendar x:Name="ReservationCalendar" Height="173" Width="203"/>
         </StackPanel>
-        <Button Content="Select dates" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="275,250,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Button Content="Select dates" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="272,312,0,0" Grid.Row="2" VerticalAlignment="Top" Click="SelectDate_Click"/>
 
     </Grid>
 </Window>

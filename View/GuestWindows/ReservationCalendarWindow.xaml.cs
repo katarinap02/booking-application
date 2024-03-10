@@ -27,9 +27,37 @@ namespace BookingApp.View
         {
             InitializeComponent();
             this.SelectedAccommodation = SelectedAccommodation;
+            ConfigureCalendar(SelectedAccommodation, dayNumber);
+           
+
+        }
+
+        private void ConfigureCalendar(AccommodationDTO selectedAccommodation, int dayNumber)
+        {
             ReservationCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
             CalendarDateRange datesBeforeToday = new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1));
             ReservationCalendar.BlackoutDates.Add(datesBeforeToday);
+
+            MessageBox.Show(selectedAccommodation.UnavailableDates.Count.ToString());
+            foreach(CalendarDateRange unavailableDateRange in selectedAccommodation.UnavailableDates)
+            {
+                ReservationCalendar.BlackoutDates.Add(unavailableDateRange);
+                //MessageBox.Show("uslo");
+
+            }
+                
+            
+        }
+
+        private void SelectDate_Click(object sender, RoutedEventArgs e)
+        {
+            SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
+            CalendarDateRange selectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count-1]);
+            
+            SelectedAccommodation.UnavailableDates.Add(selectedDateRange);
+            MessageBox.Show(SelectedAccommodation.UnavailableDates.Count.ToString());
+
+
         }
     }
 }
