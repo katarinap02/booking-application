@@ -156,7 +156,7 @@ namespace BookingApp.DTO
                 if (unavailableDates != value)
                 {
                     unavailableDates = value;
-                    OnPropertyChanged("UnavailableDates");
+                    OnPropertyChanged(nameof(UnavailableDates));
                 }
             }
         }

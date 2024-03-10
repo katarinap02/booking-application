@@ -25,7 +25,7 @@ namespace BookingApp.View
 
         public AccommodationDTO SelectedAccommodation { get; set; }
 
-        public AccommodationRepository accommodationRepository { get; set; }    
+        public AccommodationRepository AccommodationRepository { get; set; }    
 
         public ShowAndSearchAccommodations(AccommodationRepository accommodationRepository)
         {
@@ -34,7 +34,7 @@ namespace BookingApp.View
             InitializeComponent();
 
             Accommodations = new ObservableCollection<AccommodationDTO>();
-            this.accommodationRepository = accommodationRepository;
+            this.AccommodationRepository = accommodationRepository;
             accommodationRepository.AccommodationSubject.Subscribe(this);
             //AccommodationsDataGrid.ItemsSource = Accommodations;
             DataContext = this;
@@ -46,7 +46,7 @@ namespace BookingApp.View
         public void Update()
         {
             Accommodations.Clear();
-            foreach(Accommodation accommodation in accommodationRepository.GetAll())
+            foreach(Accommodation accommodation in AccommodationRepository.GetAll())
             {
                 
                 Accommodations.Add(new AccommodationDTO(accommodation));
@@ -79,7 +79,7 @@ namespace BookingApp.View
             string reservationQuery = queries[5];
 
             ObservableCollection<AccommodationDTO> totalAccommodations = new ObservableCollection<AccommodationDTO>();
-            foreach (Accommodation accommodation in accommodationRepository.GetAll())
+            foreach (Accommodation accommodation in AccommodationRepository.GetAll())
                 totalAccommodations.Add(new AccommodationDTO(accommodation));
 
             var searchResults = totalAccommodations.Where(accommodation => (string.IsNullOrEmpty(nameQuery) || accommodation.Name.ToUpper().Contains(nameQuery.ToUpper())) &&
@@ -105,7 +105,7 @@ namespace BookingApp.View
 
         private void ReservationButton_Click(object sender, RoutedEventArgs e)
         {
-            DayNumberPopUp dayNumberPopup = new DayNumberPopUp(SelectedAccommodation);
+            DayNumberPopUp dayNumberPopup = new DayNumberPopUp(AccommodationRepository, SelectedAccommodation);
             dayNumberPopup.ShowDialog();
 
 

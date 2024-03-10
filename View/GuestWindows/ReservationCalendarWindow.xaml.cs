@@ -22,11 +22,12 @@ namespace BookingApp.View
     public partial class ReservationCalendarWindow : Window
     {
         public AccommodationDTO SelectedAccommodation { get; set; }
-
-        public ReservationCalendarWindow(AccommodationDTO SelectedAccommodation, int dayNumber)
+        public AccommodationRepository AccommodationRepository { get; set; }
+        public ReservationCalendarWindow(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, int dayNumber)
         {
             InitializeComponent();
-            this.SelectedAccommodation = SelectedAccommodation;
+            this.SelectedAccommodation = selectedAccommodation;
+            this.AccommodationRepository = accommodationRepository;
             ConfigureCalendar(SelectedAccommodation, dayNumber);
            
 
@@ -55,6 +56,7 @@ namespace BookingApp.View
             CalendarDateRange selectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count-1]);
             
             SelectedAccommodation.UnavailableDates.Add(selectedDateRange);
+            AccommodationRepository.Update(SelectedAccommodation.ToAccommodation());
             MessageBox.Show(SelectedAccommodation.UnavailableDates.Count.ToString());
 
 
