@@ -217,7 +217,7 @@ namespace BookingApp.DTO
         {
             name = tour.Name;
             id = tour.Id;
-            City = tour.City;
+            city = tour.City;
             duration = tour.Duration;
             language = tour.Language;
             description  = tour.Description;
@@ -228,6 +228,15 @@ namespace BookingApp.DTO
             pictures = tour.Pictures;
             country = tour.Country;
 
+        }
+
+        public Tour ToTour()
+        {
+            Tour tour = new Tour(name, city, country, description, language, maxTourists, checkpoints, date, duration, pictures);
+            tour.Id = id;
+            tour.Status = status;
+            tour.GroupId = groupId;
+            return tour;
         }
 
     }
