@@ -31,7 +31,7 @@ namespace BookingApp.Model
         public Tour(string name, string city, string country, string description, string language, int maxTourists, List<string> checkpoints, DateTime date, float duration, List<string> pictures)
         {
             Name = name;
-            City = City;
+            City = city;
             Description = description;
             Language = language;
             MaxTourists = maxTourists;
