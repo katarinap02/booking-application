@@ -20,7 +20,7 @@ namespace BookingApp.Model
 
         public string AdditionalComment { get; set; } //mozda 
 
-        public int DaysLeft { get; set; } //potrebno je nesto sto ce da meri vreme, videti jos
+        
 
 
         public GuestRate() { }
@@ -32,7 +32,7 @@ namespace BookingApp.Model
             Cleanliness = cleanliness;
             RulesFollowing = rulesFollowing;
             AdditionalComment = additionalComment;
-            DaysLeft = 5; //videti jos
+           
         }
 
         public void FromCSV(string[] values)
@@ -42,14 +42,14 @@ namespace BookingApp.Model
             Cleanliness = Convert.ToInt32(values[2]);
             RulesFollowing = Convert.ToInt32(values[3]);
             AdditionalComment = values[4];
-            DaysLeft = Convert.ToInt32(values[5]);
+            
             
         }
 
         public string[] ToCSV()
         {
             string[] csvValues = { UserId.ToString(), AcommodationId.ToString(), Cleanliness.ToString(), RulesFollowing.ToString(),
-            AdditionalComment, DaysLeft.ToString()};
+            AdditionalComment};
             return csvValues;
         }
     }
