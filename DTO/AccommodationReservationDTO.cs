@@ -10,7 +10,7 @@ using System.Xml.Linq;
 
 namespace BookingApp.DTO
 {
-    internal class AccommodationReservationDTO : INotifyPropertyChanged
+    public class AccommodationReservationDTO : INotifyPropertyChanged
     {
 
         private int guestId;
@@ -72,7 +72,7 @@ namespace BookingApp.DTO
             }
         }
 
-        AccommodationReservationDTO() { }
+        public AccommodationReservationDTO() { }
 
         public AccommodationReservationDTO(AccommodationReservation ac)
         {
@@ -85,6 +85,14 @@ namespace BookingApp.DTO
 
 
         }
+
+      //  public Accommodation ToAccommodation()
+       // {
+
+         //   AccommodationReservation a = new AccommodationReservation(guestId, accommodationId, startDate, endDate);
+          //  return a;
+
+      //  }
 
 
         public event PropertyChangedEventHandler PropertyChanged;
