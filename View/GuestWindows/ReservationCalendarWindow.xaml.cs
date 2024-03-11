@@ -40,12 +40,12 @@ namespace BookingApp.View
             this.StartDate = start;
             this.EndDate = end;
             this.DayNumber = dayNumber;
-            ConfigureCalendar(SelectedAccommodation, StartDate, EndDate);
+            ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
            
 
         }
 
-        private void ConfigureCalendar(AccommodationDTO selectedAccommodation, DateTime start, DateTime end)
+        private void ConfigureCalendar(AccommodationDTO selectedAccommodation, DateTime start, DateTime end, int dayNumber)
         {
             ReservationCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
             ReservationCalendar.DisplayDateStart = start;
@@ -58,17 +58,43 @@ namespace BookingApp.View
            // ReservationCalendar.BlackoutDates.Add(pastDates);
 
            // MessageBox.Show(selectedAccommodation.UnavailableDates.Count.ToString());
+           List<CalendarDateRange> unavailableDateRanges = new List<CalendarDateRange>();
             foreach(CalendarDateRange unavailableDateRange in selectedAccommodation.UnavailableDates)
             {
                 if(unavailableDateRange.Start >= start || unavailableDateRange.End <= end)
+                {
                     ReservationCalendar.BlackoutDates.Add(unavailableDateRange);
+                    unavailableDateRanges.Add(unavailableDateRange);
+                    CheckDaysBetween(unavailableDateRanges, dayNumber);
+
+                }
+                    
                 //MessageBox.Show("uslo");
 
             }
 
+         
+
            
                 
             
+        }
+
+        private void CheckDaysBetween(List<CalendarDateRange> unavailableDateRanges, int dayNumber)
+        {
+            for(int i = 0; i <  unavailableDateRanges.Count-1; i++)
+            {
+                CalendarDateRange betweenRange = new CalendarDateRange(unavailableDateRanges[i].End.AddDays(1), unavailableDateRanges[i + 1].Start.AddDays(-1));
+                int betweenDaysCount = (betweenRange.End - betweenRange.Start).Days;
+
+                if(betweenDaysCount < dayNumber)
+                {
+                    ReservationCalendar.BlackoutDates.Add(betweenRange);
+
+
+                }
+
+            }
         }
 
         private void SelectDate_Click(object sender, RoutedEventArgs e)
