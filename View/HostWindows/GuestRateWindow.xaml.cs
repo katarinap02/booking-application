@@ -1,4 +1,6 @@
 ﻿using BookingApp.DTO;
+using BookingApp.Model;
+using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,15 +22,43 @@ namespace BookingApp.View.GuestWindows
     /// </summary>
     public partial class RateGuestWindow : Window
     {
+        public AccommodationReservationDTO accommodationReservationDTO {  get; set; }
+
+        public GuestRateDTO guestRateDTO { get; set; }
+
+        public GuestRateRepository guestRateRepository { get; set; }
         
         public RateGuestWindow(AccommodationReservationDTO ac)
         {
             InitializeComponent();
+            accommodationReservationDTO = ac;
+            guestRateDTO = new GuestRateDTO();
+            guestRateRepository = new GuestRateRepository();
+            DataContext = this;
+
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            if(guestRateDTO.IsValid)
+            {
+                guestRateDTO.GuestId = accommodationReservationDTO.GuestId;
+                guestRateDTO.AccommodationId = accommodationReservationDTO.AccommodationId;
+                guestRateRepository.Add(guestRateDTO.toGuestRate());
+                MessageBox.Show("Guest rate added.");
+                Close();
+            }
+            else
+            {
+
+                MessageBox.Show("Please enter rating from 1 - 5.");
+
+            }
         }
     }
 }
