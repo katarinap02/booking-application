@@ -38,11 +38,14 @@ namespace BookingApp.View
         private void Continue_Click(object sender, RoutedEventArgs e)
         {
             DayNumber = Convert.ToInt32(txtDayNumber.Text);
+            DateTime start = Convert.ToDateTime(txtStartDate.Text);
+            DateTime end = Convert.ToDateTime(txtEndDate.Text);
+
             if(DayNumber < SelectedAccommodation.MinReservationDays)
                 MessageBox.Show("Minimal number of reservation days is: " + SelectedAccommodation.MinReservationDays.ToString());
             else
             {
-                ReservationCalendarWindow calendarWindow = new ReservationCalendarWindow(AccommodationRepository, SelectedAccommodation, DayNumber, User);
+                ReservationCalendarWindow calendarWindow = new ReservationCalendarWindow(AccommodationRepository, SelectedAccommodation, DayNumber, User, start, end);
                 calendarWindow.ShowDialog();
 
             }

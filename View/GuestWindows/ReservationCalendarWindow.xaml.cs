@@ -25,23 +25,31 @@ namespace BookingApp.View
         public AccommodationDTO SelectedAccommodation { get; set; }
         public AccommodationRepository AccommodationRepository { get; set; }
         public User User { get; set; }
-        public ReservationCalendarWindow(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, int dayNumber, User user)
+
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }   
+
+        public ReservationCalendarWindow(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end)
         {
             InitializeComponent();
             this.SelectedAccommodation = selectedAccommodation;
             this.AccommodationRepository = accommodationRepository;
             this.User = user;
-
-            ConfigureCalendar(SelectedAccommodation, dayNumber);
+            this.StartDate = start;
+            this.EndDate = end;
+            ConfigureCalendar(SelectedAccommodation, dayNumber, StartDate, EndDate);
            
 
         }
 
-        private void ConfigureCalendar(AccommodationDTO selectedAccommodation, int dayNumber)
+        private void ConfigureCalendar(AccommodationDTO selectedAccommodation, int dayNumber, DateTime start, DateTime end)
         {
             ReservationCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
-            CalendarDateRange datesBeforeToday = new CalendarDateRange(DateTime.MinValue, DateTime.Today.AddDays(-1));
-            ReservationCalendar.BlackoutDates.Add(datesBeforeToday);
+            ReservationCalendar.DisplayDateStart = start;
+            ReservationCalendar.DisplayDateEnd = end;
+
+           // CalendarDateRange pastDates = new CalendarDateRange(DateTime.MinValue, start.AddDays(-1));
+           // ReservationCalendar.BlackoutDates.Add(pastDates);
 
            // MessageBox.Show(selectedAccommodation.UnavailableDates.Count.ToString());
             foreach(CalendarDateRange unavailableDateRange in selectedAccommodation.UnavailableDates)
