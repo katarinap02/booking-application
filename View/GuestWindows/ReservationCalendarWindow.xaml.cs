@@ -29,6 +29,8 @@ namespace BookingApp.View
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }   
 
+        public int DayNumber { get; set; }
+
         public ReservationCalendarWindow(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end)
         {
             InitializeComponent();
@@ -37,16 +39,20 @@ namespace BookingApp.View
             this.User = user;
             this.StartDate = start;
             this.EndDate = end;
-            ConfigureCalendar(SelectedAccommodation, dayNumber, StartDate, EndDate);
+            this.DayNumber = dayNumber;
+            ConfigureCalendar(SelectedAccommodation, StartDate, EndDate);
            
 
         }
 
-        private void ConfigureCalendar(AccommodationDTO selectedAccommodation, int dayNumber, DateTime start, DateTime end)
+        private void ConfigureCalendar(AccommodationDTO selectedAccommodation, DateTime start, DateTime end)
         {
             ReservationCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
             ReservationCalendar.DisplayDateStart = start;
             ReservationCalendar.DisplayDateEnd = end;
+            
+            CalendarDateRange chosenDateRange = new CalendarDateRange(start, end);
+
 
            // CalendarDateRange pastDates = new CalendarDateRange(DateTime.MinValue, start.AddDays(-1));
            // ReservationCalendar.BlackoutDates.Add(pastDates);
@@ -54,7 +60,8 @@ namespace BookingApp.View
            // MessageBox.Show(selectedAccommodation.UnavailableDates.Count.ToString());
             foreach(CalendarDateRange unavailableDateRange in selectedAccommodation.UnavailableDates)
             {
-                ReservationCalendar.BlackoutDates.Add(unavailableDateRange);
+                if(unavailableDateRange.Start >= start || unavailableDateRange.End <= end)
+                    ReservationCalendar.BlackoutDates.Add(unavailableDateRange);
                 //MessageBox.Show("uslo");
 
             }
@@ -68,8 +75,8 @@ namespace BookingApp.View
         {
 
           
-            if (ReservationCalendar.SelectedDates.Count < SelectedAccommodation.MinReservationDays)
-                MessageBox.Show("Minimal number of reservation days is: " + SelectedAccommodation.MinReservationDays.ToString());
+            if (ReservationCalendar.SelectedDates.Count != DayNumber)
+                MessageBox.Show("Please select " + DayNumber + " days.");
             else
             {
                 SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
