@@ -27,6 +27,8 @@ namespace BookingApp.View.GuestWindows
         public GuestRateDTO guestRateDTO { get; set; }
 
         public GuestRateRepository guestRateRepository { get; set; }
+
+        
         
         public RateGuestWindow(AccommodationReservationDTO ac)
         {

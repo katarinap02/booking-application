@@ -37,7 +37,8 @@ namespace BookingApp.Repository
             {
                 if (ar.EndDate.AddDays(5) >= today && ar.EndDate < today)
                 {
-                    returnGuest.Add(ar);
+                    if(!ar.Rated)
+                        returnGuest.Add(ar);
                 }
                 
             }
