@@ -52,9 +52,8 @@ namespace BookingApp.View
         public void Update()
         {
             Accommodations.Clear();
-            foreach (AccommodationReservation accommodation in accommodationReservationRepository.GetAll())
+            foreach (AccommodationReservation accommodation in accommodationReservationRepository.GetGuestForRate())
             {
-
                 Accommodations.Add(new AccommodationReservationDTO(accommodation));
                 
             }

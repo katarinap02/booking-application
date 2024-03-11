@@ -1,6 +1,7 @@
 ﻿using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Serializer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -25,6 +26,24 @@ namespace BookingApp.Repository
         public List<AccommodationReservation> GetAll()
         {
             return _serializer.FromCSV(FilePath);
+        }
+
+        public List<AccommodationReservation> GetGuestForRate()
+        {
+            DateTime today = DateTime.Now;
+            List < AccommodationReservation > returnGuest = new List<AccommodationReservation> ();
+            _reservations = _serializer.FromCSV(FilePath);
+            foreach (AccommodationReservation ar in _reservations)
+            {
+                if (ar.EndDate.AddDays(5) >= today && ar.EndDate < today)
+                {
+                    if(!ar.Rated)
+                        returnGuest.Add(ar);
+                }
+                
+            }
+            return returnGuest;
+
         }
 
         public AccommodationReservation Add(AccommodationReservation reservation)
