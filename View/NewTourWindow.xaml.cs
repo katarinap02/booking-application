@@ -1,4 +1,4 @@
-﻿using BookingApp.Repository;
+using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -32,9 +32,10 @@ namespace BookingApp.View
             }
             else
             {
-                foreach(DateTime date in selectedDates)
+                int groupId = _tourRepository.NextId();
+                foreach (DateTime date in selectedDates)
                 {
-                    Tour.GroupId = _tourRepository.NextId();
+                    Tour.GroupId = groupId;
                     Tour.Date = date;
                     Tour.Id = _tourRepository.NextPersonalId();
                     _tourRepository.Add(Tour.ToTour());
@@ -43,14 +44,14 @@ namespace BookingApp.View
             }
         }
 
-        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        private void AddDate_Click(object sender, RoutedEventArgs e)
         {
-            selectedDates.Clear();
+            //selectedDates.Clear();
+            DateTime newDate = dateTimePicker.Value ?? DateTime.MinValue;
+            selectedDates.Add(newDate);
+            txtDates.ItemsSource = null;
+            txtDates.ItemsSource = selectedDates;
 
-            foreach (var selectedDate in calendar.SelectedDates)
-            {
-                selectedDates.Add(selectedDate);
-            }
         }
 
         private void AddCheckpoint_Click(object sender, RoutedEventArgs e)
