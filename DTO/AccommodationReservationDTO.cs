@@ -72,6 +72,21 @@ namespace BookingApp.DTO
             }
         }
 
+        public bool rated;
+        public bool Rated
+        {
+            get { return rated; }
+            set
+            {
+                if (rated != value)
+                {
+
+                    rated = value;
+                    OnPropertyChanged("Rated");
+                }
+            }
+        }
+
         public AccommodationReservationDTO() { }
 
         public AccommodationReservationDTO(AccommodationReservation ac)
@@ -80,6 +95,7 @@ namespace BookingApp.DTO
             accommodationId = ac.AccommodationId;
             startDate = ac.StartDate;
             endDate = ac.EndDate;
+            rated = ac.Rated;
 
 
 

@@ -30,10 +30,10 @@ namespace BookingApp.Repository
 
     public GuestRate Add(GuestRate rate)
     {
-            _rates = _serializer.FromCSV(FilePath);
-            _rates.Add(rate);
+        _rates = _serializer.FromCSV(FilePath);
+        _rates.Add(rate);
         _serializer.ToCSV(FilePath, _rates);
-            RateSubject.NotifyObservers();
+        RateSubject.NotifyObservers();
         return rate;
     }
 
