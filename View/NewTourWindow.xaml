@@ -3,49 +3,54 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:BookingApp.View"
         mc:Ignorable="d"
-        Title="New Tour" Height="740" Width="800"
+        Title="New Tour" Height="740" Width="830"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" MinHeight="37.96"/>
+            <RowDefinition Height="Auto" MinHeight="37.96"/>
+            <RowDefinition Height="Auto" MinHeight="37.96"/>
+            <RowDefinition Height="Auto" MinHeight="37.96"/>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto" MinHeight="68"/>
+            <RowDefinition/>
+            <RowDefinition Height="Auto" MinHeight="80"/>
+            <RowDefinition Height="Auto" MinHeight="80"/>
+            <RowDefinition Height="Auto" MinHeight="130"/>
         </Grid.RowDefinitions>
 
-        <Label Grid.Row="0" Content="Tour Name:" VerticalAlignment="Center"/>
+        <Label Content="Tour Name:" VerticalAlignment="Center" Height="26"/>
         <TextBox Grid.Row="0" Margin="113,10,10,10" Name="txtTourName" Text="{Binding Path = Tour.Name, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="1" Content="City and country:" VerticalAlignment="Center"/>
+        <Label Grid.Row="1" Content="City and country:" VerticalAlignment="Center" Height="26"/>
         <TextBox Grid.Row="1" Margin="113,10,368,10" Name="txtCity" Text="{Binding Path = Tour.City, UpdateSourceTrigger=PropertyChanged}"/>
         <TextBox Grid.Row="1" Margin="452,10,10,10" Name="txtCountry" Text="{Binding Path = Tour.Country, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="2" Content="Description:" VerticalAlignment="Center"/>
+        <Label Grid.Row="2" Content="Description:" VerticalAlignment="Center" Height="26"/>
         <TextBox Grid.Row="2" Margin="113,10,10,10" Name="txtDescription" Text="{Binding Path = Tour.Description, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="3" Content="Language:" VerticalAlignment="Center"/>
+        <Label Grid.Row="3" Content="Language:" VerticalAlignment="Center" Height="26"/>
         <TextBox Grid.Row="3" Margin="113,10,10,10" Name="txtLanguage" Text="{Binding Path = Tour.Language, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="4" Content="Max Tourists:" VerticalAlignment="Center"/>
+        <Label Grid.Row="4" Content="Max Tourists:" VerticalAlignment="Center" Height="26"/>
         <TextBox Grid.Row="4" Margin="113,10,10,10" Name="txtMaxTourists" Text="{Binding Path = Tour.MaxTourists, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="5" Content="Duration (hours):" VerticalAlignment="Center"/>
+        <Label Grid.Row="5" Content="Duration (hours):" VerticalAlignment="Center" Height="26"/>
         <TextBox Grid.Row="5" Margin="113,10,10,10" Name="txtDuration" Text="{Binding Path = Tour.Duration, UpdateSourceTrigger=PropertyChanged}"/>
 
-        <Label Grid.Row="6" Content="Select Dates for Tour to Begin:" VerticalAlignment="Center"/>
-        <Calendar Grid.Row="6" Margin="10" Name="calendar" SelectionMode="MultipleRange" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
-        <!--Text="{Binding Path = Dates, UpdateSourceTrigger=PropertyChanged}"-->
+        <Label Grid.Row="6" Content="Date and time of the tour:" VerticalAlignment="Center" Height="26" Margin="0,0,619,0"/>
+        <xctk:DateTimePicker Grid.Row="6" Margin="157,10,100,10" Name="dateTimePicker" />
+        <Button Grid.Row="6" Margin="744,10,36,10" Content="Add" Click="AddDate_Click" />
+
+        <Label Grid.Row="7" Content="Current dates:" VerticalAlignment="Center" Height="26" Margin="0,0,619,0"/>
+        <ListBox Grid.Row="7"  Margin="113,34,100,4" Name="txtDates"/>
 
         <!-- Checkpoints section -->
-        <StackPanel Grid.Row="7" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Grid.Row="8" Orientation="Horizontal" VerticalAlignment="Center" Height="80">
             <Label Content="Checkpoints:" VerticalAlignment="Center" Width="110"/>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -62,7 +67,7 @@
         </StackPanel>
 
         <!-- Picture URLs section -->
-        <StackPanel Grid.Row="8" Orientation="Horizontal" VerticalAlignment="Center">
+        <StackPanel Grid.Row="9" Orientation="Horizontal" VerticalAlignment="Center" Height="80">
             <Label Content="Picture URLs:" VerticalAlignment="Center" Width="110"/>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -79,10 +84,11 @@
         </StackPanel>
 
 
-        <StackPanel Grid.Row="9" HorizontalAlignment="Center">
+        <StackPanel Grid.Row="10" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,80,0,0" Width="240">
             <Button Width="100" Height="30" Margin="10" Content="Add Tour" Click="AddTour_Click"/>
             <Button Width="100" Height="30" Margin="10" Content="Exit" />
         </StackPanel>
+
 
 
     </Grid>
