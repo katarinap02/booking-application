@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows" xmlns:dto="clr-namespace:BookingApp.DTO" d:DataContext="{d:DesignInstance Type=dto:TourDTO}"
         mc:Ignorable="d"
-        Title="TouristWindow" Height="720" Width="1280">
+        Title="TouristWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
     <DockPanel>
         <Menu DockPanel.Dock="Top">
             <MenuItem Header="File"/>
@@ -161,9 +161,16 @@
                           AutoGenerateColumns="False" Height="465" HeadersVisibility="Column" FontSize="13">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
-                        <DataGridTextColumn Header="City" Binding="{Binding City}" Width="200"/>
                         <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="200"/>
+                        <DataGridTextColumn Header="City" Binding="{Binding City}" Width="200"/>
                         <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="150"/>
+                        <DataGridTemplateColumn Header="Book">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Book a tour" Click="BookButton_Click" Width="100" Margin="1, 5, 1, 5" Height="22"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>

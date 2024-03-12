@@ -25,6 +25,7 @@ namespace BookingApp.Model
         public int GroupId { get; set; }
         public int currentCheckpoint { get; set; }
         public string Country { get; set; }
+        public int AvailablePlaces { get; set; }
 
         public Tour() { }
 
@@ -42,6 +43,7 @@ namespace BookingApp.Model
             Status = TourStatus.inPreparation; //kad se pravi noava tura, ona ne moze biti zavrsena ili u toku
             currentCheckpoint = 0;
             Country = country;
+            AvailablePlaces = maxTourists;
             // + u dao napraviti da dodeljuje jedinstven groupId
         }
 
@@ -64,7 +66,7 @@ namespace BookingApp.Model
             }
 
             string[] CSVvalues = { Id.ToString(), Status.ToString(), Name, City, Description, Language, MaxTourists.ToString(), Duration.ToString(), Date.ToString(),
-                GroupId.ToString(), currentCheckpoint.ToString(), Country, checkpointsString, pictureString};
+                GroupId.ToString(), currentCheckpoint.ToString(), Country, checkpointsString, pictureString, AvailablePlaces.ToString()};
 
             return CSVvalues;
         }
@@ -120,8 +122,7 @@ namespace BookingApp.Model
                 Pictures = picture.Split(",").ToList();
             }
 
-
-
+            AvailablePlaces = int.Parse(values[14]);
         }
     }
 }
