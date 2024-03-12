@@ -17,13 +17,12 @@ namespace BookingApp.Model
         public DateTime EndDate { get; set; }
         public string DateRange => StartDate.ToString() + "-" + EndDate.ToString();
 
+        public bool Rated { get; set; }
+
 
         public AccommodationReservation()
         {
-           
-
-           
-
+            Rated = false;
         }
         public string[] ToCSV()
         {

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BookingApp.Repository
 {
@@ -34,14 +35,20 @@ namespace BookingApp.Repository
             _serializer.ToCSV(FilePath, _tours);
         }
 
+
         public int NextPersonalId() {
-            List<int> groupIds = new List<int>();
+            List<int> personalIds = new List<int>();
             foreach (Tour tour in _tours)
             {
-                groupIds.Add(tour.Id);
+                personalIds.Add(tour.Id);
             }
 
-            return groupIds.Max() + 1;
+            int max = 0;
+            if(personalIds.Count == 0) {
+                max = -1;
+            }
+
+            return max + 1;
         }
 
         public int NextId() //generise ID za novu grupu tura
@@ -51,8 +58,12 @@ namespace BookingApp.Repository
             {
                 groupIds.Add(tour.GroupId);
             }
-
-            return groupIds.Max()+1;
+            int max = 0;
+            if (groupIds.Count == 0)
+            {
+                max = -1;
+            }
+            return max + 1 ;
         }
 
         public List<Tour>? FindToursBy(string country, string city, float duration, string language, int numberOfPeople)
@@ -79,6 +90,20 @@ namespace BookingApp.Repository
         public List<Tour> GetTourByCountryWithAvailablePlaces(string country)
         {
             return _tours.FindAll(tour => tour.Country.ToLower().Equals(country.ToLower())).Where(tour => tour.AvailablePlaces > 0).ToList();
+        }
+
+        public List<Tour>? findToursNeedingGuide() 
+        {
+            List<Tour> allTours = GetAll();
+            List<Tour> ret = new List<Tour>();
+            foreach(Tour tour in allTours)
+            {
+                if(tour.Date.Date == DateTime.Now.Date && tour.Status==TourStatus.inPreparation)
+                {
+                    ret.Add(tour);
+                }
+            }
+            return null;
         }
     }
 }
