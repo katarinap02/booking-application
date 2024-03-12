@@ -95,5 +95,19 @@ namespace BookingApp.Repository
             }
             return allTours;
         }
+
+        public List<Tour>? findToursNeedingGuide() 
+        {
+            List<Tour> allTours = GetAll();
+            List<Tour> ret = new List<Tour>();
+            foreach(Tour tour in allTours)
+            {
+                if(tour.Date.Date == DateTime.Now.Date && tour.Status==TourStatus.inPreparation)
+                {
+                    ret.Add(tour);
+                }
+            }
+            return null;
+        }
     }
 }

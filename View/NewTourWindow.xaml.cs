@@ -79,15 +79,12 @@ namespace BookingApp.View
                 {
                     BitmapImage bitmapImage = new BitmapImage(new Uri(selectedFileName));
 
-                    // Here you can use the selectedFileName variable to get the URL of the selected image
                     string imageUrl = selectedFileName;
-                    // Now you can use imageUrl as needed, such as saving it to a database or displaying it to the user
-                    MessageBox.Show(imageUrl);
 
-                    // BITNO dodati parser koji pretvara u relativni URL
-                    
-                    // Display the image in the Image control
-                    //imgPhoto.Source = bitmapImage;
+                    imageUrl = convertToRelativePath(imageUrl);
+                    AddPicture(imageUrl);
+
+                    //imgPhoto.Source = bitmapImage; //kasnije verzije gde se prikazuje
                 }
                 catch (Exception ex)
                 {
@@ -97,12 +94,23 @@ namespace BookingApp.View
         }
 
 
-
-
-
-        private void AddPicture_Click(object sender, RoutedEventArgs e)
+        public string convertToRelativePath(string input)
         {
-            string pictureUrl = txtPictureUrlTextBox.Text;
+            int index = input.IndexOf("Resources");
+            if (index != -1)
+            {
+                return input.Substring(index);
+            }
+            else
+            {
+                MessageBox.Show("Please select an image from the resources privided within this app!");
+                return input;
+            }
+        }
+
+
+        private void AddPicture(string pictureUrl)
+        {
             if (!string.IsNullOrEmpty(pictureUrl))
             {
                 Tour.Pictures.Add(pictureUrl);
