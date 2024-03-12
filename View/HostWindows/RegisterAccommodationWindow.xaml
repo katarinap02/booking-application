@@ -48,7 +48,7 @@
         <Label Grid.Row="4" Grid.Column="1" Margin="10,9,108,5" Content="Min reservation number"/>
         <TextBox x:Name ="textBoxMinReservationNumber" Grid.Row="4" Grid.Column="2" Text="{Binding Path= accommodationDTO.MinReservationDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
         <Label Grid.Row="5" Grid.Column="1" Margin="10,9,81,5" Content="Reservation days limit"/>
-        <TextBox x:Name ="textBoxCancelDateDays" Grid.Row="5" Grid.Column="2" Text="{Binding Path= accommodationDTO.ReservationDaysLimit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
+        <TextBox x:Name ="textBoxCancelDateDays" Grid.Row="5" Grid.Column="2" Text="{Binding Path= accommodationDTO.ReservationDaysLimit, UpdateSourceTrigger=PropertyChanged,  ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
         <Label Grid.Row="6" Grid.Column="1" Margin="10,50,62,20" Content="Pictures"/>
         <ListBox Grid.Row="6" Grid.Column="2" Margin="61,15,37,15" Name="txtPictureUrls" Height="70" ItemsSource="{Binding Path= Tour.Pictures, UpdateSourceTrigger=PropertyChanged}"/>
         <StackPanel  Grid.Row="6" Grid.Column="1" Margin="5" Orientation="Vertical">

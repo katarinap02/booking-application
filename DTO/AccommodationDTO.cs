@@ -188,8 +188,8 @@ namespace BookingApp.DTO
                 else if (columnName == "ReservationDaysLimit")
                 {
                     
-                    if (ReservationDaysLimit < 1)
-                        return "Reservation days limit must be greater than 1";
+                    if (ReservationDaysLimit < 0)
+                        return "Reservation days limit must be greater than 0";
                 }
                 
 
@@ -225,7 +225,9 @@ namespace BookingApp.DTO
         }
 
         public AccommodationDTO()
-        {}
+        {
+            reservationDaysLimit = 1;
+        }
 
         public AccommodationDTO(Accommodation accommodation)
         {
