@@ -27,7 +27,6 @@ namespace BookingApp.Repository
         {
             return _serializer.FromCSV(FilePath);
         }
-        //add za sada
 
         public void Add(Tour tour) 
         {
