@@ -39,31 +39,42 @@ namespace BookingApp.View.TouristWindows
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             Tours.Clear();
-            DurationSearch.Text = DurationSearch.Text == "" ? "0" : DurationSearch.Text;
-            PeopleSearch.Text = PeopleSearch.Text == "" ? "0" : PeopleSearch.Text;
+
+            DurationSearch.Text = EmptyStringToZero(DurationSearch.Text);
+            PeopleSearch.Text = EmptyStringToZero(PeopleSearch.Text);
+
             List<Tour>? foundTours = _repository.FindToursBy(CountrySearch.Text, CitySearch.Text, float.Parse(DurationSearch.Text), LanguageSearch.Text, int.Parse(PeopleSearch.Text));
+
             if (foundTours != null)
                 foreach (Tour t in foundTours)
                     Tours.Add(t);
         }
 
+        private string EmptyStringToZero(string text)
+        {
+            if(text == string.Empty)
+            {
+                return "0";
+            }
+
+            return text;
+        }
+
         private void DurationSearch_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             TextBox textBox = (TextBox)sender;
-            if (!char.IsDigit(e.Text, e.Text.Length - 1) && e.Text != ".")
-            {
-                e.Handled = true;
-            }
+            e.Handled = IsFloat(textBox, e);
+        }
 
-            if (e.Text == "." && textBox.Text.Contains("."))
+        private bool IsFloat(TextBox textBox, TextCompositionEventArgs e)
+        {
+            if((!char.IsDigit(e.Text, e.Text.Length - 1) && e.Text != ".")
+                || (e.Text == "." && textBox.Text.Contains("."))
+                || (e.Text == "." && textBox.Text.Length == 0))
             {
-                e.Handled = true;
+                return true;
             }
-            else if (e.Text == "." && textBox.Text.Length == 0)
-            {
-                e.Handled = true;
-            }
-
+            return false;
         }
 
         private void DurationSearch_LostFocus(object sender, RoutedEventArgs e)
@@ -79,10 +90,15 @@ namespace BookingApp.View.TouristWindows
 
         private void PeopleSearch_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            TextBox textBox = (TextBox)sender;
-            if (!char.IsDigit(e.Text, e.Text.Length - 1))
-                e.Handled = true;
+            e.Handled = IsDigit(e);
+        }
 
+        private bool IsDigit(TextCompositionEventArgs e)
+        {
+            if (!char.IsDigit(e.Text, e.Text.Length - 1))
+                return true;
+
+            return false;
         }
 
         private void PeopleSearch_LostFocus(object sender, RoutedEventArgs e)
@@ -98,6 +114,19 @@ namespace BookingApp.View.TouristWindows
             {
                 MessageBox.Show("Please enter a valid number for search by number of peoples.");
                 ((TextBox)sender).Focus();
+            }
+        }
+
+        private void BookButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(SelectedTour == null)
+            {
+                MessageBox.Show("Something wrong happened");
+            }
+            else
+            {
+                TourNumberOfParticipantsWindow tourNumberOfParticipantsWindow = new TourNumberOfParticipantsWindow(SelectedTour);
+                tourNumberOfParticipantsWindow.ShowDialog();
             }
         }
     }
