@@ -9,7 +9,6 @@ using BookingApp.Model;
 using BookingApp.DTO;
 using System.Windows;
 using System.Windows.Controls;
-
 namespace BookingApp.View
 {
     public partial class NewTourWindow
@@ -36,25 +35,33 @@ namespace BookingApp.View
             }
             else
             {
-                foreach(DateTime date in selectedDates)
+                int groupId = _tourRepository.NextId();
+                foreach (DateTime date in selectedDates)
                 {
+<<<<<<< Updated upstream
                      Tour.GroupId = _tourRepository.NextId();
                      Tour.Date = date;
                      _tourRepository.Add(Tour.ToTour());
+=======
+                    Tour.GroupId = groupId;
+                    Tour.Date = date;
+                    Tour.Id = _tourRepository.NextPersonalId();
+                    _tourRepository.Add(Tour.ToTour());
+>>>>>>> Stashed changes
                 }
                                 
             }
 >>>>>>> Stashed changes
         }
 
-        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        private void AddDate_Click(object sender, RoutedEventArgs e)
         {
-            selectedDates.Clear();
+            //selectedDates.Clear();
+            DateTime newDate = dateTimePicker.Value ?? DateTime.MinValue;
+            selectedDates.Add(newDate);
+            txtDates.ItemsSource = null;
+            txtDates.ItemsSource = selectedDates;
 
-            foreach (var selectedDate in calendar.SelectedDates)
-            {
-                selectedDates.Add(selectedDate);
-            }
         }
 
         private void AddCheckpoint_Click(object sender, RoutedEventArgs e)
