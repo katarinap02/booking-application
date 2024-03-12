@@ -49,10 +49,13 @@
         <TextBox x:Name ="textBoxMinReservationNumber" Grid.Row="4" Grid.Column="2" Text="{Binding Path= accommodationDTO.MinReservationDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
         <Label Grid.Row="5" Grid.Column="1" Margin="10,9,81,5" Content="Reservation days limit"/>
         <TextBox x:Name ="textBoxCancelDateDays" Grid.Row="5" Grid.Column="2" Text="{Binding Path= accommodationDTO.ReservationDaysLimit, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="32" VerticalAlignment="Top" Margin="61,8,59,0"/>
-        <Label Grid.Row="6" Grid.Column="1" Margin="10,15,62,55" Content="Images URL (split with comma)"/>
-        <Label Grid.Row="6" Grid.Column="1" Margin="10,45,62,15" Content="Every picture link must&#xD;&#xA;start with https://"/>
-        <TextBox x:Name ="textBoxImages" Grid.Row="6" Grid.Column="2" Text="{Binding Path= accommodationDTO.ImagesWithComma, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Margin="61,8,59,10"/>
-        <Button Grid.Row="10" Click="Save_Click" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="94,0,0,0" Grid.Column="1" RenderTransformOrigin="-5.177,2.01" Height="24" Width="63"  Content=" Save"></Button>
-        <Button Grid.Row="10" Click="Exit_Click" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="99,0,0,0" Grid.Column="2" RenderTransformOrigin="-5.177,2.01" Height="24" Width="67"  Content=" Exit"></Button>
+        <Label Grid.Row="6" Grid.Column="1" Margin="10,50,62,20" Content="Pictures"/>
+        <ListBox Grid.Row="6" Grid.Column="2" Margin="61,15,37,15" Name="txtPictureUrls" Height="70" ItemsSource="{Binding Path= Tour.Pictures, UpdateSourceTrigger=PropertyChanged}"/>
+        <StackPanel  Grid.Row="6" Grid.Column="1" Margin="5" Orientation="Vertical">
+            <TextBox Margin="0,0,0,5" Name="txtPictureUrlTextBox" Visibility="Hidden" Width="179" Height="34"/>
+        </StackPanel>
+        <Button Grid.Row="6" Click="Picture_Click" VerticalAlignment="Top" HorizontalAlignment="Left"  Margin="144,50,0,0" Grid.Column="1" RenderTransformOrigin="-5.177,2.01" Height="30" Width="91"  Content="Add picture"></Button>
+        <Button Grid.Row="7" Click="Save_Click" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="94,0,0,0" Grid.Column="1" RenderTransformOrigin="-5.177,2.01" Height="24" Width="63"  Content=" Save"></Button>
+        <Button Grid.Row="7" Click="Exit_Click" VerticalAlignment="Center" HorizontalAlignment="Left"  Margin="99,0,0,0" Grid.Column="2" RenderTransformOrigin="-5.177,2.01" Height="24" Width="67"  Content=" Exit"></Button>
     </Grid>
 </Window>
