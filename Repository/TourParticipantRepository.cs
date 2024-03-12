@@ -29,7 +29,6 @@ namespace BookingApp.Repository
 
         public void Add(TourParticipant tourParticipant)
         {
-            tourParticipant.Id = NextId();
             _tourParticipants.Add(tourParticipant);
             _serializer.ToCSV(FilePath, _tourParticipants);
         }

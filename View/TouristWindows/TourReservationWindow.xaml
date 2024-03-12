@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         mc:Ignorable="d"
-        Title="TourReservationWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="TourReservationWindow" Height="480" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -24,8 +24,9 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
-            <RowDefinition Height="150"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="130"/>
+            <RowDefinition Height="23"/>
+            <RowDefinition Height="30"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
 
@@ -78,7 +79,7 @@
                HorizontalContentAlignment="Left"
                />
 
-        <TextBox x:Name="Name"
+        <TextBox x:Name="name"
                  Grid.Column="3"
                  Grid.Row="5"
                  Grid.ColumnSpan="2"
@@ -86,33 +87,46 @@
                  Width="100"
                  Height="20"/>
 
-        <TextBox x:Name="LastName"
+        <TextBox x:Name="lastName"
                  Grid.Column="3"
                  Grid.Row="6"
                  Grid.ColumnSpan="2"
                  HorizontalAlignment="Left"
                  Width="100"
                  Height="20"/>
-        <TextBox x:Name="Years"
+        <TextBox x:Name="years"
                  Grid.Column="3"
                  Grid.Row="7"
                  Grid.ColumnSpan="2"
                  HorizontalAlignment="Left"
                  Width="100"
-                 Height="20"/>
+                 Height="20"
+                 PreviewTextInput="years_PreviewTextInput"/>
         <Button Content="Close"
                 Click="CloseButton_Click"
-                Grid.Row="9"
+                Grid.Row="10"
                 Grid.Column="4"
                 Width="50"
                 HorizontalAlignment="Left"/>
 
         <Label Content="Added Participants:"
+               FontWeight="Bold"
                Grid.Row="0"
                Grid.Column="5"/>
-        <TextBlock Grid.Row="1"
-                   Grid.Column="5"
-                   Grid.ColumnSpan="6"/>
+        <ListBox x:Name="ParticipantsListBox"
+               Grid.Row="1"
+               Grid.Column="5"
+               Grid.RowSpan="8"
+               Margin="0,0,0,10"/>
+        <Button Content="Remove Participant"
+                FontWeight="Bold"
+                x:Name="removeParticipant"
+                Background="IndianRed"
+                Grid.Row="9"
+                Grid.Column="5"
+                Width="130"
+                Height="21"
+                Click="removeParticipant_Click"/>
 
         <Button x:Name="AddButton"
                 FontSize="20"
@@ -120,12 +134,12 @@
                 Grid.Row="6"
                 Grid.Column="4"
                 Width="30"
-                Click="AddButton_Click">
+                Click="AddParticipantButton_Click">
             <Image Source="../../Resources/Images/add.png"/>
         </Button>
         <Button Content="Book"
                 Click="BookButton_Click"
-                Grid.Row="9"
+                Grid.Row="10"
                 Grid.Column="4"
                 Width="50"
                 HorizontalAlignment="Right"/>
