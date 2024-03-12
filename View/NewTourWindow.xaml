@@ -78,7 +78,8 @@
                 <ListBox Grid.Column="0" Margin="5" Name="txtPictureUrls" Height="70" Width="400" ItemsSource="{Binding Path= Tour.Pictures, UpdateSourceTrigger=PropertyChanged}"/>
                 <StackPanel Grid.Column="1" Margin="5" Orientation="Vertical">
                     <TextBox Margin="0,0,0,5" Name="txtPictureUrlTextBox"  Width="179" Height="34"/>
-                    <Button Margin="0" Content="Add picture url" Width="100" Height="20" Click="AddPicture_Click"/>
+                    <Button Margin="0" Content="Add picture url" Width="100" Height="20" Click="btnBrowse_Click"/>
+                    <!--AddPicture_Click-->
                 </StackPanel>
             </Grid>
         </StackPanel>

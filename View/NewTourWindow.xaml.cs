@@ -9,6 +9,8 @@ using BookingApp.Model;
 using BookingApp.DTO;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Win32;
+using System.Windows.Media.Imaging;
 
 namespace BookingApp.View
 {
@@ -65,6 +67,37 @@ namespace BookingApp.View
                 txtCheckpoints.ItemsSource = Tour.Checkpoints;
             }
         }
+
+        private void btnBrowse_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string selectedFileName = openFileDialog.FileName;
+                try
+                {
+                    BitmapImage bitmapImage = new BitmapImage(new Uri(selectedFileName));
+
+                    // Here you can use the selectedFileName variable to get the URL of the selected image
+                    string imageUrl = selectedFileName;
+                    // Now you can use imageUrl as needed, such as saving it to a database or displaying it to the user
+                    MessageBox.Show(imageUrl);
+
+                    // BITNO dodati parser koji pretvara u relativni URL
+                    
+                    // Display the image in the Image control
+                    //imgPhoto.Source = bitmapImage;
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading image: {ex.Message}");
+                }
+            }
+        }
+
+
+
 
 
         private void AddPicture_Click(object sender, RoutedEventArgs e)
