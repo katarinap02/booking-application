@@ -13,6 +13,11 @@ namespace BookingApp.Repository
         private readonly Serializer<AccommodationReservation> _serializer;
         private List<AccommodationReservation> _reservations;
 
+
+        private const string FilePathGuest = "../../../Resources/Data/guest_rate.csv";
+        private readonly Serializer<GuestRate> _serializerGuest;
+        private List<GuestRate> _rates;
+
         public Subject ReservationSubject { get;  set; }
 
         public AccommodationReservationRepository()
@@ -20,6 +25,9 @@ namespace BookingApp.Repository
             _serializer = new Serializer<AccommodationReservation>();
             _reservations = new List<AccommodationReservation>();
             ReservationSubject = new Subject();
+
+            _rates = new List<GuestRate>();
+            _serializerGuest = new Serializer<GuestRate>();
 
         }
 
@@ -37,13 +45,26 @@ namespace BookingApp.Repository
             {
                 if (ar.EndDate.AddDays(5) >= today && ar.EndDate < today)
                 {
-                    if(!ar.Rated)
+                    if(!Rated(ar))
                         returnGuest.Add(ar);
                 }
                 
             }
             return returnGuest;
 
+        }
+
+        public bool Rated(AccommodationReservation ar)
+        {
+            _rates = _serializerGuest.FromCSV(FilePathGuest);
+            foreach(GuestRate rt in _rates)
+            {
+                if(rt.UserId == ar.GuestId && rt.AcommodationId == ar.AccommodationId)
+                {
+                    return true;
+                }
+            }
+            return false;
         }
 
         public AccommodationReservation Add(AccommodationReservation reservation)
