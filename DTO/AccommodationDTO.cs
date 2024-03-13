@@ -132,30 +132,16 @@ namespace BookingApp.DTO
         
 
 
-        private List<string> images = new List<string>();
-        public List<string> Images
+        private List<string> picture = new List<string>();
+        public List<string> Picture
         {
-            get { return images; }
+            get { return picture; }
             set
             {
-                if (images != value)
+                if (picture != value)
                 {
-                    images = value;
+                    picture = value;
                     OnPropertyChanged("Images");
-                }
-            }
-        }
-
-        private string imagesWithComma;
-        public string ImagesWithComma
-        {
-            get { return imagesWithComma; }
-            set
-            {
-                if (imagesWithComma != value)
-                {
-                    imagesWithComma = value;
-                    OnPropertyChanged("ImagesWithComma");
                 }
             }
         }
@@ -202,27 +188,16 @@ namespace BookingApp.DTO
                 else if (columnName == "ReservationDaysLimit")
                 {
                     
-                    if (ReservationDaysLimit < 1)
-                        return "Reservation days limit must be greater than 1";
+                    if (ReservationDaysLimit < 0)
+                        return "Reservation days limit must be greater than 0";
                 }
-                else if (columnName == "ImagesWithComma")
-                {
-                    string ImagesWithCommmaCopy = "";
-                    if (!string.IsNullOrEmpty(imagesWithComma))
-                    {
-                        ImagesWithCommmaCopy = imagesWithComma.Replace(" ", "");
-                    }
-                    Match match = _ImageRegex.Match(ImagesWithCommmaCopy);
-                    if (!match.Success && !string.IsNullOrEmpty(imagesWithComma)) //sme da vrati prazan string
-                        return "Image must start with https://";
-                   
-                }
+                
 
                 return null;
             }
         }
 
-        private readonly string[] _validatedProperties = { "City", "Name", "Country", "MinReservationDays", "MaxGuestNumbe", "ReservationDaysLimit", "ImagesWithComma" };
+        private readonly string[] _validatedProperties = { "City", "Name", "Country", "MinReservationDays", "MaxGuestNumbe", "ReservationDaysLimit" };
 
         public bool IsValid
         {
@@ -250,7 +225,9 @@ namespace BookingApp.DTO
         }
 
         public AccommodationDTO()
-        {}
+        {
+            reservationDaysLimit = 1;
+        }
 
         public AccommodationDTO(Accommodation accommodation)
         {
@@ -269,19 +246,15 @@ namespace BookingApp.DTO
 
         public Accommodation ToAccommodation()
         {
-            if (!string.IsNullOrEmpty(imagesWithComma))
-            {
-                string imagesWithCommaCopy = imagesWithComma.Replace(" ", "");
-                images = imagesWithCommaCopy.Split(",").ToList();
-            }
+            
             
             Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit);
             a.Id = id;
-            a.Images = images;
+            a.Pictures = picture;
             return a;
 
         }
     }
 
-   // public enum AccommodationType { APARTMENT, HOUSE, COTTAGE }
+   
 }

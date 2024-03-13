@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace BookingApp.Repository
 {
     public class GuestRateRepository { 
-     private const string FilePath = "../../../Resources/Data/guest_rate.csv";
+    private const string FilePath = "../../../Resources/Data/guest_rate.csv";
     private readonly Serializer<GuestRate> _serializer;
     private List<GuestRate> _rates;
 

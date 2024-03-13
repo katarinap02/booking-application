@@ -10,3 +10,8 @@
 10|1|1|1|APARTMENT|1|1|1|https://example1.com,https://example2.com
 11|1|1|1|COTTAGE|1|1|1|https://example.com,https://example.net
 12|1|1|1|COTTAGE|1|1|1|
+13|1|1|1|HOUSE|1|1|1|Resources\Images\cottage.jpg,Resources\Images\cottage.jpg
+14|2|2|2|APARTMENT|2|2|2|Resources\Images\house.jpg
+15|3|3|3|APARTMENT|3|3|3|
+16|5|5|5|HOUSE|5|5|1|Resources\Images\paris1.jpg
+17|6|6|6|COTTAGE|6|6|16|

@@ -17,9 +17,12 @@ namespace BookingApp.Repository
 
         private List<Tour> _tours;
 
+        //private GuidedTourRepository GuidedTourRepository;
+
         public TourRepository()
         {
             _serializer = new Serializer<Tour>();
+            //GuidedTourRepository = new GuidedTourRepository();
             _tours = _serializer.FromCSV(FilePath);
         }
 
@@ -107,7 +110,7 @@ namespace BookingApp.Repository
             List<Tour> ret = new List<Tour>();
             foreach(Tour tour in allTours)
             {
-                if(tour.Date.Date == DateTime.Now.Date && tour.Status==TourStatus.inPreparation)
+                if(tour.Date.Date == DateTime.Now.Date && tour.Status==TourStatus.gotGuide)
                 {
                     ret.Add(tour);
                 }
@@ -150,5 +153,12 @@ namespace BookingApp.Repository
 
             return maxTourists;
         }
+
+        public void bindGuideAndTour(Tour tour, User guide)
+        {
+            tour.Status = TourStatus.gotGuide;
+            //GuidedTourRepository.Add(guide, tour);
+        }
+
     }
 }
