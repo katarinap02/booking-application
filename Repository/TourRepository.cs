@@ -76,27 +76,23 @@ namespace BookingApp.Repository
             string lowecaseCity = city.ToLower();
             string lowercaseLanguage = language.ToLower();
 
-            if (country != "")
-            {
-                allTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(lowercaseCountry));
-            }
-            if(city != "")
-            {
-                allTours = allTours.Where(tour => tour.City.ToLower().Contains(lowecaseCity)).ToList();
-            }
+            allTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(lowercaseCountry));
+            allTours = allTours.Where(tour => tour.City.ToLower().Contains(lowecaseCity)).ToList();
             if(duration != 0)
             {
                 allTours = allTours.Where(tour => tour.Duration == duration).ToList();
             }
-            if(language != "")
-            {
-                allTours = allTours.Where(tour => tour.Language.ToLower() == lowercaseLanguage).ToList();
-            }
+            allTours = allTours.Where(tour => tour.Language.ToLower() == lowercaseLanguage).ToList();
             if(numberOfPeople != 0)
             {
                 allTours = allTours.Where(tour => tour.MaxTourists >= numberOfPeople).ToList();
             }
             return allTours;
+        }
+
+        public List<Tour> GetTourByCountryWithAvailablePlaces(string country)
+        {
+            return _tours.FindAll(tour => tour.Country.ToLower().Equals(country.ToLower())).Where(tour => tour.AvailablePlaces > 0).ToList();
         }
 
         public List<Tour>? findToursNeedingGuide() 
