@@ -24,6 +24,20 @@ namespace BookingApp.DTO
             }
         }
 
+        private int reservationId;
+        public int ReservationId
+        {
+            get { return reservationId;}
+            set
+            {
+                if (reservationId != value)
+                {
+                    reservationId = value;
+                    OnPropertyChanged(nameof(ReservationId));
+                }
+            }
+        }
+
         private string name;
         public string Name
         {
@@ -83,8 +97,9 @@ namespace BookingApp.DTO
 
         public TourParticipant ToTourParticipant()
         {
-            TourParticipant tourParticipant = new TourParticipant(id, name, lastName, years);
+            TourParticipant tourParticipant = new TourParticipant(id, reservationId, name, lastName, years);
             tourParticipant.Id = id;
+            tourParticipant.ReservationId = reservationId;
             tourParticipant.Name = name;
             tourParticipant.LastName = lastName;
             tourParticipant.Years = years;
@@ -92,7 +107,7 @@ namespace BookingApp.DTO
         }
         public override string ToString()
         {
-            return $"Name:{name}\nLastName: {lastName}\nYears: {years}\n";
+            return $"Name:        {name}\nLastName:  {lastName}\nYears:          {years}\n";
         }
     }
 }

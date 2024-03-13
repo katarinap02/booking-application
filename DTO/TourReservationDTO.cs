@@ -83,5 +83,15 @@ namespace BookingApp.DTO
             tourId= tourReservation.TourId;
             startCheckpoint = tourReservation.StartCheckpoint;
         }
+
+        public TourReservation ToTourReservation()
+        {
+            TourReservation tourReservation = new TourReservation(Id, tourId, startCheckpoint);
+            tourReservation.Id = id;
+            tourReservation.TourId = tourId;
+            tourReservation.StartCheckpoint = startCheckpoint;
+            tourReservation.ParticipantIds = participantIds;
+            return tourReservation;
+        }
     }
 }
