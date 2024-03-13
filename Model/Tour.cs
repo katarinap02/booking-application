@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace BookingApp.Model
 {
-    public enum TourStatus { inPreparation, Active, Finnished, Canceled }
+    public enum TourStatus { inPreparation, Active, Finnished, Canceled, gotGuide }
     public class Tour : ISerializable
     {
         public int Id { get; set; }
@@ -88,6 +88,10 @@ namespace BookingApp.Model
             else if (values[1].Equals("Canceled"))
             {
                 Status = TourStatus.Canceled;
+            }
+            else if (values[1].Equals("gotGuide"))
+            {
+                Status = TourStatus.gotGuide;
             }
 
             Name = values[2];
