@@ -24,7 +24,6 @@ namespace BookingApp.View.TouristWindows
     public partial class AvailableToursWindow : Window
     {
         public static ObservableCollection<Tour> Tours { get; set; }
-        private Tour SelectedTour;
         public Tour NewSelectedTour { get; set; }
         private readonly TourRepository _repository;
         private int InsertedNumberOfParticipants;
@@ -32,17 +31,17 @@ namespace BookingApp.View.TouristWindows
         {
             InitializeComponent();
             DataContext = this;
-            SelectedTour = selectedTour;
+            NewSelectedTour = selectedTour;
             InsertedNumberOfParticipants = insertedNumberOfParticipans;
             _repository = new TourRepository();
-            Tours = new ObservableCollection<Tour>(_repository.GetTourByCountryWithAvailablePlaces(SelectedTour.Country));
+            Tours = new ObservableCollection<Tour>(_repository.GetTourByCountryWithAvailablePlaces(NewSelectedTour.Country));
         }
 
         private void BookButton_Click(object sender, RoutedEventArgs e)
         {
-            Close();
             TourReservationWindow tourReservationWindow = new TourReservationWindow(NewSelectedTour, InsertedNumberOfParticipants);
             tourReservationWindow.ShowDialog();
+            Close();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

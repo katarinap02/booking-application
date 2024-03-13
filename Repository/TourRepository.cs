@@ -75,14 +75,23 @@ namespace BookingApp.Repository
             string lowercaseCountry = country.ToLower();
             string lowecaseCity = city.ToLower();
             string lowercaseLanguage = language.ToLower();
-
-            allTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(lowercaseCountry));
-            allTours = allTours.Where(tour => tour.City.ToLower().Contains(lowecaseCity)).ToList();
+            
+            if(country != "")
+            {
+                allTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(lowercaseCountry));
+            }
+            if(city != "")
+            {
+                allTours = allTours.Where(tour => tour.City.ToLower().Contains(lowecaseCity)).ToList();
+            }
             if(duration != 0)
             {
                 allTours = allTours.Where(tour => tour.Duration == duration).ToList();
             }
+            if (language != "")
+            {
             allTours = allTours.Where(tour => tour.Language.ToLower() == lowercaseLanguage).ToList();
+            }
             if(numberOfPeople != 0)
             {
                 allTours = allTours.Where(tour => tour.MaxTourists >= numberOfPeople).ToList();
@@ -107,6 +116,42 @@ namespace BookingApp.Repository
                 }
             }
             return null;
+        }
+
+        public Tour? UpdateAvailablePlaces(Tour tour, int reducer)
+        {
+            Tour? oldTour = GetTourById(tour.Id);
+            if (oldTour == null)
+                return null;
+
+            oldTour.AvailablePlaces -= reducer;
+            _serializer.ToCSV(FilePath, _tours);
+            return oldTour;
+        }
+
+        public Tour? GetTourById(int id)
+        {
+            return _tours.Find(t => t.Id == id);
+        }
+
+        public int ToursCount()
+        {
+            return _tours.Count();
+        }
+
+        public int FindMaxNumberOfParticipants()
+        {
+            List<Tour> allTours = GetAll();
+            int maxTourists = allTours[0].MaxTourists;
+            foreach(Tour tour in allTours)
+            {
+                if(tour.MaxTourists > maxTourists)
+                {
+                    maxTourists = tour.MaxTourists;
+                }
+            }
+
+            return maxTourists;
         }
 
         public void bindGuideAndTour(Tour tour, User guide)
