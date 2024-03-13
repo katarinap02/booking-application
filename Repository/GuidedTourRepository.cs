@@ -12,16 +12,22 @@ namespace BookingApp.Repository
     {
         private const string FilePath = "../../../Resources/Data/tours.csv";
         private readonly Serializer<GuidedTour> _serializer;
-        private List<GuidedTour> _guidedTour;
+        private List<GuidedTour> _guidedTours;
 
         public GuidedTourRepository()
         {
             _serializer = new Serializer<GuidedTour>();
-            _guidedTour = _serializer.FromCSV(FilePath);
+            _guidedTours = _serializer.FromCSV(FilePath);
         }
 
         public List<GuidedTour> GetAll() {
             return _serializer.FromCSV(FilePath);
+        }
+
+        public void Add(User guide, Tour tour) {
+            GuidedTour guidedTour = new GuidedTour(guide, tour);
+            _guidedTours.Add(guidedTour);
+            _serializer.ToCSV(FilePath, _guidedTours);
         }
 
     }
