@@ -70,6 +70,13 @@
                         <RowDefinition Height="30"/>
                         <RowDefinition Height="30"/>
                     </Grid.RowDefinitions>
+                    <Button x:Name="ResetButton"
+                            Content="Reset"
+                            FontSize="28"
+                            FontWeight="Bold"
+                            Grid.Column="3"
+                            Grid.RowSpan="3" Margin="57,4,5,17" Grid.ColumnSpan="2"
+                            Click="ResetButton_Click"/>
                     <Label Grid.Column="1" 
                            HorizontalAlignment="Center" 
                            Content="Country:" 

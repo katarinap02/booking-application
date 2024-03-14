@@ -17,6 +17,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="10"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
@@ -39,11 +40,12 @@
                Grid.Row="2"
                Grid.Column="1" Grid.ColumnSpan="2" Margin="216,0,-50,0"/>
         <Button Content="Close" Click="CloseButton_Click"
-                Grid.Row="4" Grid.Column="1" Width="60"
-                HorizontalAlignment="Left"/>
+                x:Name="CloseButton"
+                Grid.Row="5" Grid.Column="1" Width="60"/>
         <Button Content="Confirm" Click="ConfirmButton_Click"
+                x:Name="ConfirmButton"
                 Grid.Column="1"
-                Grid.Row="4" Width="60"
+                Grid.Row="5" Width="60"
                 HorizontalAlignment="Right"/>
         <TabControl
             x:Name="OtherToursTabControl"

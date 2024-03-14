@@ -189,5 +189,14 @@ namespace BookingApp.View.TouristWindows
                 PeopleSearch.Text = (Convert.ToInt32(PeopleSearch.Text) - 1).ToString();
             }
         }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            CountrySearch.Text = "";
+            CitySearch.Text = "";
+            DurationSearch.Text = "0";
+            LanguageSearch.Text = "";
+            PeopleSearch.Text = "0";
+        }
     }
 }

@@ -44,6 +44,7 @@ namespace BookingApp.View.TouristWindows
 
             InitializeWindow();
 
+
             availablePlaces.Content = SelectedTour.AvailablePlaces;
         }
 
@@ -57,6 +58,8 @@ namespace BookingApp.View.TouristWindows
                     DataTabVisible(true);
                     SetWindowSize("big");
                 }
+                CloseButton.HorizontalAlignment = HorizontalAlignment.Center;
+                ConfirmButton.Visibility = Visibility.Collapsed;
             }
             else
             {
@@ -64,6 +67,8 @@ namespace BookingApp.View.TouristWindows
 
                 DataTabVisible(false);
                 SetWindowSize("small");
+                CloseButton.HorizontalAlignment = HorizontalAlignment.Left;
+                ConfirmButton.Visibility = Visibility.Visible;
             }
         }
 
@@ -97,15 +102,8 @@ namespace BookingApp.View.TouristWindows
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
             InsertedNumberOfParticipants = Convert.ToInt32(NumberOfParticipants.Text);
-            if(SelectedTour.AvailablePlaces < InsertedNumberOfParticipants)
-            {
-                MessageBox.Show("The selected tour has no more free places, please select another one", "Tour reservation error", MessageBoxButton.OK, MessageBoxImage.Information);
-            }
-            else
-            {
-                TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants);
-                tourReservationWindow.ShowDialog();
-            }
+            TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants);
+            tourReservationWindow.ShowDialog();
             Close();
         }
 

@@ -54,6 +54,7 @@
                  Grid.Column="4"
                  HorizontalAlignment="Left"
                  VerticalAlignment="Center"
+                 TextAlignment="Justify"
                  Width="30"
                  Height="30"/>
         <Button x:Name="ParticipantsPlus"
@@ -147,34 +148,32 @@
                 <TextBox x:Name="years"
                          Grid.Column="1"
                          Grid.Row="3"
-                         Grid.ColumnSpan="2"
                          HorizontalAlignment="Left"
-                         Width="100"
+                         TextAlignment="Justify"
+                         Width="31"
                          Height="25"
                          PreviewTextInput="years_PreviewTextInput"
-                         LostFocus="years_LostFocus"/>
+                         LostFocus="years_LostFocus" Margin="0,10,0,10"/>
                 <Button x:Name="YearsPlus"
-                        Grid.Column="2"
-                        Grid.Row="2"
-                        HorizontalAlignment="Left"
-                        Width="27"
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        HorizontalAlignment="Center"
+                        Width="26"
                         Height="27"
-                        Margin="13,38,0,25"
-                        Click="YearsPlus_Click" Grid.RowSpan="2">
+                        Click="YearsPlus_Click" Margin="0,9,-5,9">
                     <Image Source="/View/TouristWindows/plus.png"
-                           Width="25"
+                           Width="24"
                            Height="25"
                            HorizontalAlignment="Center"/>
                 </Button>
                 <Button x:Name="YearsMinus"
-                        Grid.Column="2"
+                        Grid.Column="1"
                         Grid.Row="3"
                         HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
                         Height="27"
-                        Width="27"
-                        Click="YearsMinus_Click"
-                        Margin="13,22,0,10"
-                        Grid.RowSpan="2">
+                        Width="26"
+                        Click="YearsMinus_Click" Margin="71,0,0,0">
                     <Image Source="/View/TouristWindows/minus.png"
                            Height="25"
                            Width="22"
