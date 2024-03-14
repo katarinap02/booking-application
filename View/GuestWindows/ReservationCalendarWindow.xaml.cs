@@ -106,20 +106,19 @@ namespace BookingApp.View
         {
 
           
-            if (ReservationCalendar.SelectedDates.Count != DayNumber)
+           /* if (ReservationCalendar.SelectedDates.Count != DayNumber)
                 MessageBox.Show("Please select " + DayNumber + " days.");
             else
-            {
+            {*/ // Implementirana provera na drugi nacin
+
                 SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
                 CalendarDateRange selectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
-
-                //  MessageBox.Show(SelectedAccommodation.UnavailableDates.Count.ToString());
 
                 ReservationInfoWindow reservationInfo = new ReservationInfoWindow(AccommodationRepository, SelectedAccommodation, User, selectedDateRange);
                 reservationInfo.ShowDialog();
 
 
-            }
+           // }
 
 
 
