@@ -1,7 +1,8 @@
-﻿using BookingApp.Serializer;
+using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Windows.Controls;
 using System.Windows.Documents;
 
 namespace BookingApp.Model
@@ -20,7 +21,12 @@ namespace BookingApp.Model
 
         public int ReservationDaysLimit { get; set; }
 
-        public Accommodation() { }
+        public List<CalendarDateRange> UnavailableDates { get; set; }
+        public Accommodation() { 
+        
+            UnavailableDates = new List<CalendarDateRange>();
+
+        }
 
 
         public Accommodation(string name, string country, string city, AccommodationType type, int maxGuestNumber, int minReservationNumber, int reservationDaysLimit) 
@@ -33,8 +39,33 @@ namespace BookingApp.Model
             MinReservationDays = minReservationNumber;
             Pictures = new List<String>();
             ReservationDaysLimit = reservationDaysLimit;
+            UnavailableDates = new List<CalendarDateRange>();
         }
 
+        public string ConvertToString(CalendarDateRange range)
+        {
+            DateTime startDate = range.Start;
+            DateTime endDate = range.End;
+            return startDate + "-" + endDate;
+
+        }
+
+        public List<CalendarDateRange> ConvertToDateRanges(List<string> values)
+        {
+            List<CalendarDateRange> result = new List<CalendarDateRange>();
+
+            foreach(string value in values)
+            {
+                string[] dateParts = value.Split("-");
+                DateTime start = Convert.ToDateTime(dateParts[0]);
+               
+                DateTime end = Convert.ToDateTime(dateParts[1]);
+                result.Add(new CalendarDateRange(start, end));
+
+            }
+
+            return result;
+        }
         public string[] ToCSV()
         {
             string PictureString = "";
@@ -42,6 +73,14 @@ namespace BookingApp.Model
             {
                 PictureString = string.Join(",", Pictures);
             }
+
+            string unavailableDates = "";
+            if (UnavailableDates != null)
+                unavailableDates = string.Join(",", UnavailableDates.Select(dateRange => ConvertToString(dateRange)));
+          
+
+
+
             string[] csvValues =
             {
                 Id.ToString(),
@@ -52,7 +91,9 @@ namespace BookingApp.Model
                 MaxGuestNumber.ToString(),
                 MinReservationDays.ToString(),
                 ReservationDaysLimit.ToString(),
-                PictureString
+                PictureString,
+                unavailableDates
+
             };
 
             return csvValues;
@@ -87,6 +128,12 @@ namespace BookingApp.Model
             {
                 string picture = values[8];
                 Pictures = picture.Split(",").ToList();
+            }
+
+            if (values.Length > 9 && !string.IsNullOrEmpty(values[9]))
+            {
+                string unavailableDates = values[9];
+                UnavailableDates = ConvertToDateRanges(values[9].Split(",").ToList());
             }
 
 
