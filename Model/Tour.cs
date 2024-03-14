@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace BookingApp.Model
 {
-    public enum TourStatus { inPreparation, Active, Finnished, Canceled }
+    public enum TourStatus { inPreparation, Active, Finnished, Canceled, gotGuide }
     public class Tour : ISerializable
     {
         public int Id { get; set; }
@@ -25,13 +25,14 @@ namespace BookingApp.Model
         public int GroupId { get; set; }
         public int currentCheckpoint { get; set; }
         public string Country { get; set; }
+        public int AvailablePlaces { get; set; }
 
         public Tour() { }
 
         public Tour(string name, string city, string country, string description, string language, int maxTourists, List<string> checkpoints, DateTime date, float duration, List<string> pictures)
         {
             Name = name;
-            City = City;
+            City = city;
             Description = description;
             Language = language;
             MaxTourists = maxTourists;
@@ -42,6 +43,7 @@ namespace BookingApp.Model
             Status = TourStatus.inPreparation; //kad se pravi noava tura, ona ne moze biti zavrsena ili u toku
             currentCheckpoint = 0;
             Country = country;
+            AvailablePlaces = maxTourists;
             // + u dao napraviti da dodeljuje jedinstven groupId
         }
 
@@ -64,7 +66,7 @@ namespace BookingApp.Model
             }
 
             string[] CSVvalues = { Id.ToString(), Status.ToString(), Name, City, Description, Language, MaxTourists.ToString(), Duration.ToString(), Date.ToString(),
-                GroupId.ToString(), currentCheckpoint.ToString(), Country, checkpointsString, pictureString};
+                GroupId.ToString(), currentCheckpoint.ToString(), Country, checkpointsString, pictureString, AvailablePlaces.ToString()};
 
             return CSVvalues;
         }
@@ -88,6 +90,10 @@ namespace BookingApp.Model
             else if (values[1].Equals("Canceled"))
             {
                 Status = TourStatus.Canceled;
+            }
+            else if (values[1].Equals("gotGuide"))
+            {
+                Status = TourStatus.gotGuide;
             }
 
             Name = values[2];
@@ -120,8 +126,7 @@ namespace BookingApp.Model
                 Pictures = picture.Split(",").ToList();
             }
 
-
-
+            AvailablePlaces = int.Parse(values[14]);
         }
     }
 }

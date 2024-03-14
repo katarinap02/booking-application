@@ -1,4 +1,4 @@
-﻿using BookingApp.Serializer;
+using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ namespace BookingApp.Model
         public AccommodationType Type { get; set; }
         public int MaxGuestNumber { get; set; }
         public int MinReservationDays { get; set; }
-        public List<String> Images { get; set; } //za cuvanje URL-ova slika
+        public List<String> Pictures { get; set; } //za cuvanje URL-ova slika
 
         public int ReservationDaysLimit { get; set; }
 
@@ -37,7 +37,7 @@ namespace BookingApp.Model
             Type = type;
             MaxGuestNumber = maxGuestNumber;
             MinReservationDays = minReservationNumber;
-            Images = new List<String>();
+            Pictures = new List<String>();
             ReservationDaysLimit = reservationDaysLimit;
             UnavailableDates = new List<CalendarDateRange>();
         }
@@ -68,10 +68,10 @@ namespace BookingApp.Model
         }
         public string[] ToCSV()
         {
-            string ImageString = "";
-            if (Images != null)
+            string PictureString = "";
+            if (Pictures != null)
             {
-                ImageString = string.Join(",", Images);
+                PictureString = string.Join(",", Pictures);
             }
 
             string unavailableDates = "";
@@ -91,8 +91,9 @@ namespace BookingApp.Model
                 MaxGuestNumber.ToString(),
                 MinReservationDays.ToString(),
                 ReservationDaysLimit.ToString(),
-                ImageString,
+                PictureString,
                 unavailableDates
+
             };
 
             return csvValues;
@@ -125,8 +126,8 @@ namespace BookingApp.Model
 
             if (!string.IsNullOrEmpty(values[8]))
             {
-                string image = values[8];
-                Images = image.Split(",").ToList();
+                string picture = values[8];
+                Pictures = picture.Split(",").ToList();
             }
 
             if (values.Length > 9 && !string.IsNullOrEmpty(values[9]))

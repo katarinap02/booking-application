@@ -19,7 +19,18 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="2" Grid.Column="1"/>
+        <StackPanel Grid.Row="2" Grid.Column="1">
+            <DataGrid x:Name="AccommodationsDataGrid" ItemsSource="{Binding Accommodations, UpdateSourceTrigger=PropertyChanged}"
+               SelectedItem="{Binding SelectedAccommodation,UpdateSourceTrigger=PropertyChanged}"
+              IsReadOnly="True" SelectionMode="Single" 
+          AutoGenerateColumns="False" Height="325" HeadersVisibility="Column" FontSize="13">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Id guest" Binding="{Binding GuestId}" Width="200"/>
+                    <DataGridTextColumn Header="Id Accommodation" Binding="{Binding AccommodationId}" Width="200"/>
+                    <DataGridTextColumn Header="End of the visit to the accommodation " Binding="{Binding EndDate}" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
 
         <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
             <Button Click="RegisterAccommodation_Click">
@@ -29,7 +40,7 @@
                 </StackPanel>
             </Button>
             <Separator/>
-            <Button>
+            <Button Click="Rate_Click">
                 <StackPanel Orientation="Horizontal">
                     <Image Source="../Resources/Images/edit.png" Width="20" Height="25"/>
                     <TextBlock Name="RateTxtBlock" Text="Rate guest" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
