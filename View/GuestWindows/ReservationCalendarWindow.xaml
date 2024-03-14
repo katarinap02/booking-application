@@ -19,10 +19,15 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="2" Margin="177,60,326,194" Grid.Column="1">
-            <Calendar x:Name="ReservationCalendar" Height="173" Width="203"/>
+        <StackPanel Grid.Row="2" Margin="193,60,337,211" Grid.Column="1">
+            <Calendar x:Name="ReservationCalendar" Height="186" Width="202" SelectedDatesChanged="Calendar_SelectedDatesChanged"/>
+
         </StackPanel>
-        <Button Content="Select dates" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="272,312,0,0" Grid.Row="2" VerticalAlignment="Top" Click="SelectDate_Click"/>
+        <Button x:Name="reserveButton" Content="Select dates" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="272,312,0,0" Grid.Row="2" VerticalAlignment="Top" Click="SelectDate_Click"/>
+        <Label x:Name="warningLabel" Content="Number of days to select: " Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="208,354,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.429,0.517"/>
+        <Label x:Name="dayNumberLabel" Content="{Binding DayNumber}" Grid.Column="1"  HorizontalAlignment="Left" Margin="370,354,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+        <Label x:Name="continueLabel" Content="You can continue" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="248,354,0,0" Grid.Row="2" VerticalAlignment="Top"/>
+
 
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View"
         mc:Ignorable="d"
-        Title="Number of days" Height="500" Width="500"
+        Title="Number of days" Height="550" Width="500"
         WindowStartupLocation="CenterScreen">
     <Grid Margin="-64,0,0,10">
         <Grid.ColumnDefinitions>
@@ -19,16 +19,16 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Margin="175,96,328,215" Grid.Column="1" Grid.Row="2">
+        <StackPanel Margin="175,96,328,196" Grid.Column="1" Grid.Row="2">
             <Label Content="How many days do you want to reserve?"/>
             <TextBox x:Name="txtDayNumber" TextWrapping="Wrap" Width="120"/>
             <Label Content="Start date: "/>
             <TextBox x:Name="txtStartDate" TextWrapping="Wrap" Width="120"/>
 
         </StackPanel>
-        <Button  Content="Continue" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="277,250,0,0" Grid.Row="2" VerticalAlignment="Top" Click="Continue_Click"/>
-        <Label Content="End date:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="185,191,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
-        <TextBox x:Name="txtEndDate" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="249,210,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Button  Content="Continue" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="277,294,0,0" Grid.Row="2" VerticalAlignment="Top" Click="Continue_Click"/>
+        <Label Content="End date:" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="185,197,0,0" Grid.Row="2" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
+        <TextBox x:Name="txtEndDate" Grid.ColumnSpan="2" HorizontalAlignment="Left" Margin="249,217,0,0" Grid.Row="2" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

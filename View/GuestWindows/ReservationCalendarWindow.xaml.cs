@@ -30,6 +30,7 @@ namespace BookingApp.View
         public DateTime EndDate { get; set; }   
 
         public int DayNumber { get; set; }
+        
 
         public ReservationCalendarWindow(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end)
         {
@@ -40,7 +41,11 @@ namespace BookingApp.View
             this.StartDate = start;
             this.EndDate = end;
             this.DayNumber = dayNumber;
+            DataContext = this;
+            reserveButton.IsEnabled = false;
+            continueLabel.Visibility = Visibility.Hidden;
             ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
+            
            
 
         }
@@ -119,5 +124,33 @@ namespace BookingApp.View
 
 
         }
+
+        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+           
+            Calendar calendar = (Calendar)sender;
+            int dayNumber = DayNumber;
+            int selectedDatesCount = calendar.SelectedDates.Count;
+            if (selectedDatesCount != DayNumber)
+            {
+                reserveButton.IsEnabled = false;
+                warningLabel.Visibility = Visibility.Visible;
+                dayNumberLabel.Visibility = Visibility.Visible;
+                continueLabel.Visibility = Visibility.Hidden;
+
+            }
+            else
+            {
+                reserveButton.IsEnabled = true;
+                warningLabel.Visibility = Visibility.Hidden;
+                dayNumberLabel.Visibility = Visibility.Hidden;
+                continueLabel.Visibility = Visibility.Visible;
+
+            }
+                
+            Mouse.Capture(null);
+        }
+
+
     }
 }
