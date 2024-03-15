@@ -60,6 +60,7 @@ namespace BookingApp.View.TouristWindows
                 }
                 CloseButton.HorizontalAlignment = HorizontalAlignment.Center;
                 ConfirmButton.Visibility = Visibility.Collapsed;
+                MessageBox.Show("No more places for the selected tour, please select another one!");
             }
             else
             {
