@@ -23,6 +23,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Compile Include="Resources\Data\guided_tour.csv" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Resources\Images\add.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
