@@ -46,6 +46,10 @@ namespace BookingApp.Repository
             if(personalIds.Count == 0) {
                 max = -1;
             }
+            else
+            {
+                max = personalIds.Max();
+            }
 
             return max + 1;
         }
@@ -61,6 +65,10 @@ namespace BookingApp.Repository
             if (groupIds.Count == 0)
             {
                 max = -1;
+            }
+            else
+            {
+                max = groupIds.Max();
             }
             return max + 1 ;
         }
@@ -101,12 +109,16 @@ namespace BookingApp.Repository
             List<Tour> ret = new List<Tour>();
             foreach(Tour tour in allTours)
             {
-                if(tour.Date.Date == DateTime.Now.Date && tour.Status==TourStatus.inPreparation)
+                /*
+                MessageBox.Show("tour.Date.Date: " + tour.Date.Date+"              "+ "DateTime.Now.Date: " + DateTime.Now.Date);
+                MessageBox.Show((tour.Date.Date == DateTime.Now.Date).ToString());
+                */
+                if (tour.Date.Date == DateTime.Now.Date && tour.Status==TourStatus.inPreparation)
                 {
                     ret.Add(tour);
                 }
             }
-            return null;
+            return ret;
         }
     }
 }
