@@ -16,15 +16,21 @@
         </Grid.RowDefinitions>
 
         <!-- Add Button -->
-        <Button Content="Add" Grid.Row="0" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="75" />
+        <Button Content="Add Tour" Grid.Row="0" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="75" Click="AddButton_Click"/>
         <!--Click="AddButton_Click"-->
 
         <!-- Data Grid -->
-        <DataGrid x:Name="ToursDataGrid" Grid.Row="1" AutoGenerateColumns="False" Margin="10" CanUserAddRows="False" SelectionMode="Single">
+        <DataGrid x:Name="ToursDataGrid" ItemsSource="{Binding TodayDTOs, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" AutoGenerateColumns="False" Margin="10" 
+                  SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" SelectionMode="Single">
             <!-- Define your columns here -->
             <DataGrid.Columns>
-                
+                <DataGridTextColumn Width="*" Header="Tour Name" Binding="{Binding Name}" />
+                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}" />
+                <DataGridTextColumn Width="*" Header="City" Binding="{Binding City}" />
+                <DataGridTextColumn Width="*" Header="Country" Binding="{Binding Country}" />
+                <DataGridTextColumn Width="*" Header="Duration" Binding="{Binding Duration}" />
             </DataGrid.Columns>
+
         </DataGrid>
 
         <!-- Select Tour Button -->
