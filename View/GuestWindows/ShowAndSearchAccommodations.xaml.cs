@@ -16,6 +16,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.Observer;
 using BookingApp.Model;
+using System.Security.Cryptography;
+
 namespace BookingApp.View
 {
 
@@ -23,19 +25,22 @@ namespace BookingApp.View
     {
         public ObservableCollection<AccommodationDTO> Accommodations { get; set; }
 
+        public User User { get; set; }
         public AccommodationDTO SelectedAccommodation { get; set; }
 
-        public AccommodationRepository accommodationRepository { get; set; }    
+        public AccommodationRepository AccommodationRepository { get; set; }    
 
-        public ShowAndSearchAccommodations(AccommodationRepository accommodationRepository)
+
+        public ShowAndSearchAccommodations(AccommodationRepository accommodationRepository, User user)
         {
             
 
             InitializeComponent();
 
             Accommodations = new ObservableCollection<AccommodationDTO>();
-            this.accommodationRepository = accommodationRepository;
+            this.AccommodationRepository = accommodationRepository;
             accommodationRepository.AccommodationSubject.Subscribe(this);
+            this.User = user;
             //AccommodationsDataGrid.ItemsSource = Accommodations;
             DataContext = this;
             Update();
@@ -46,7 +51,7 @@ namespace BookingApp.View
         public void Update()
         {
             Accommodations.Clear();
-            foreach(Accommodation accommodation in accommodationRepository.GetAll())
+            foreach(Accommodation accommodation in AccommodationRepository.GetAll())
             {
                 
                 Accommodations.Add(new AccommodationDTO(accommodation));
@@ -79,7 +84,7 @@ namespace BookingApp.View
             string reservationQuery = queries[5];
 
             ObservableCollection<AccommodationDTO> totalAccommodations = new ObservableCollection<AccommodationDTO>();
-            foreach (Accommodation accommodation in accommodationRepository.GetAll())
+            foreach (Accommodation accommodation in AccommodationRepository.GetAll())
                 totalAccommodations.Add(new AccommodationDTO(accommodation));
 
             var searchResults = totalAccommodations.Where(accommodation => (string.IsNullOrEmpty(nameQuery) || accommodation.Name.ToUpper().Contains(nameQuery.ToUpper())) &&
@@ -103,6 +108,11 @@ namespace BookingApp.View
 
         }
 
-       
+        private void ReservationButton_Click(object sender, RoutedEventArgs e)
+        {
+            DayNumberPopUp dayNumberPopup = new DayNumberPopUp(AccommodationRepository, SelectedAccommodation, User);
+            dayNumberPopup.ShowDialog();
+
+        }
     }
 }

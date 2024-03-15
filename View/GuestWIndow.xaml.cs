@@ -1,4 +1,5 @@
-﻿using BookingApp.Repository;
+﻿using BookingApp.Model;
+using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,16 +19,19 @@ namespace BookingApp.View
    
     public partial class GuestWindow : Window
     {
-        public AccommodationRepository accommodationRepository;
-        public GuestWindow()
+        public AccommodationRepository AccommodationRepository;
+
+        public User User {  get; set; }
+        public GuestWindow(User user)
         {
             InitializeComponent();
-            accommodationRepository = new AccommodationRepository();
+            AccommodationRepository = new AccommodationRepository();
+            this.User = user;
         }
 
         public void ShowAccommodations_Click(object sender, RoutedEventArgs e)
         {
-            ShowAndSearchAccommodations showAndSearchAccommodations = new ShowAndSearchAccommodations(accommodationRepository);
+            ShowAndSearchAccommodations showAndSearchAccommodations = new ShowAndSearchAccommodations(AccommodationRepository, User);
             showAndSearchAccommodations.ShowDialog();
 
         }

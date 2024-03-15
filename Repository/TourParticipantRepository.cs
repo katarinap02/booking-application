@@ -10,7 +10,7 @@ namespace BookingApp.Repository
 {
     public class TourParticipantRepository
     {
-        private const string FilePath = "../../../Resources/Data/tourparticipants.csv";
+        private const string FilePath = "../../../Resources/Data/tour_participants.csv";
 
         private readonly Serializer<TourParticipant> _serializer;
 
@@ -29,7 +29,6 @@ namespace BookingApp.Repository
 
         public void Add(TourParticipant tourParticipant)
         {
-            tourParticipant.Id = NextId();
             _tourParticipants.Add(tourParticipant);
             _serializer.ToCSV(FilePath, _tourParticipants);
         }
@@ -40,6 +39,17 @@ namespace BookingApp.Repository
             if (_tourParticipants.Count < 1)
                 return 1;
             return _tourParticipants.Max(t => t.Id) + 1;
+        }
+
+        public List<int> GetAllIdsByReservation(int reservationId)
+        {
+            List<TourParticipant> tourParticipantsByReservation = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
+            List<int> tourParticipantIds = new List<int>();
+
+            foreach (TourParticipant tp in  tourParticipantsByReservation)
+                tourParticipantIds.Add(tp.Id);
+
+            return tourParticipantIds;
         }
         
     }

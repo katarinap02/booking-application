@@ -13,6 +13,9 @@
     <None Remove="Resources\Images\delete.png" />
     <None Remove="Resources\Images\edit.png" />
     <None Remove="Resources\Images\view.png" />
+    <None Remove="View\TouristWindows\minus.png" />
+    <None Remove="View\TouristWindows\plus.png" />
+    <None Remove="View\TouristWindows\search.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -36,6 +39,12 @@
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="View\TouristWindows\minus.png" />
+    <Resource Include="View\TouristWindows\plus.png" />
+    <Resource Include="View\TouristWindows\search.png" />
   </ItemGroup>
 
 </Project>

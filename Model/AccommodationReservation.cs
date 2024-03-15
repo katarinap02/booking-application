@@ -1,4 +1,4 @@
-﻿using BookingApp.Serializer;
+using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -17,10 +17,8 @@ namespace BookingApp.Model
         public DateTime EndDate { get; set; }
         public string DateRange => StartDate.ToString() + "-" + EndDate.ToString();
 
-        public AccommodationReservation()
-        {
-           
-        }
+        public AccommodationReservation() { }
+    
         public string[] ToCSV()
         {
             string[] csvValues =

@@ -24,7 +24,7 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class TouristWindow : Window
     {
-        public static ObservableCollection<Tour> Tours { get; set; }
+        public ObservableCollection<Tour> Tours { get; set; }
         public Tour SelectedTour {  get; set; }
         private readonly TourRepository _repository;
         public TouristWindow()
@@ -39,15 +39,20 @@ namespace BookingApp.View.TouristWindows
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             Tours.Clear();
-
-            DurationSearch.Text = EmptyStringToZero(DurationSearch.Text);
-            PeopleSearch.Text = EmptyStringToZero(PeopleSearch.Text);
-
-            List<Tour>? foundTours = _repository.FindToursBy(CountrySearch.Text, CitySearch.Text, float.Parse(DurationSearch.Text), LanguageSearch.Text, int.Parse(PeopleSearch.Text));
+            List<Tour> foundTours = Search();
 
             if (foundTours != null)
                 foreach (Tour t in foundTours)
                     Tours.Add(t);
+        }
+
+        private List<Tour> Search()
+        {
+            DurationSearch.Text = EmptyStringToZero(DurationSearch.Text);
+            PeopleSearch.Text = EmptyStringToZero(PeopleSearch.Text);
+
+            List<Tour>? foundTours = _repository.FindToursBy(CountrySearch.Text, CitySearch.Text, float.Parse(DurationSearch.Text), LanguageSearch.Text, int.Parse(PeopleSearch.Text));
+            return foundTours;
         }
 
         private string EmptyStringToZero(string text)
@@ -110,11 +115,6 @@ namespace BookingApp.View.TouristWindows
                 textBox.Text = "0";
                 return;
             }
-            if (!int.TryParse(((TextBox)sender).Text, out int _))
-            {
-                MessageBox.Show("Please enter a valid number for search by number of peoples.");
-                ((TextBox)sender).Focus();
-            }
         }
 
         private void BookButton_Click(object sender, RoutedEventArgs e)
@@ -127,7 +127,76 @@ namespace BookingApp.View.TouristWindows
             {
                 TourNumberOfParticipantsWindow tourNumberOfParticipantsWindow = new TourNumberOfParticipantsWindow(SelectedTour);
                 tourNumberOfParticipantsWindow.ShowDialog();
+
+                if(Tours.Count != _repository.ToursCount())
+                {
+                    RefreshDataGrid(true);
+                }
+                else
+                    RefreshDataGrid(false);
             }
+        }
+
+        private void RefreshDataGrid(bool withSearch)
+        {
+            Tours.Clear();
+            if (withSearch)
+            {
+                List<Tour> foundTours = Search();
+
+                if (foundTours != null)
+                    foreach (Tour t in foundTours)
+                        Tours.Add(t);
+            }
+            else
+            {
+                List<Tour> allTours = _repository.GetAll();
+                foreach (Tour tour in allTours)
+                    Tours.Add(tour);
+            }
+
+        }
+
+        private void DurationPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if(DurationSearch.Text == "")
+                DurationSearch.Text = "0";
+
+            DurationSearch.Text = (Convert.ToDouble(DurationSearch.Text) + 0.5).ToString();
+        }
+
+        private void DurationMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if(Convert.ToDouble(DurationSearch.Text) > 0)
+            {
+                DurationSearch.Text = (Convert.ToDouble(DurationSearch.Text)  - 0.5).ToString();
+            }
+        }
+
+        private void ParticipantsPlus_Click(object sender, RoutedEventArgs e)
+        {
+            if (PeopleSearch.Text == "")
+                PeopleSearch.Text = "0";
+
+            if (Convert.ToInt32(PeopleSearch.Text) < _repository.FindMaxNumberOfParticipants())
+                PeopleSearch.Text = (Convert.ToInt32(PeopleSearch.Text) + 1).ToString();
+        }
+
+        private void ParticipantsMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if(Convert.ToInt32(PeopleSearch.Text) > 0)
+            {
+                PeopleSearch.Text = (Convert.ToInt32(PeopleSearch.Text) - 1).ToString();
+            }
+        }
+
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            CountrySearch.Text = "";
+            CitySearch.Text = "";
+            DurationSearch.Text = "0";
+            LanguageSearch.Text = "";
+            PeopleSearch.Text = "0";
         }
     }
 }

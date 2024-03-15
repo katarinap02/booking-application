@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Windows.Controls;
 using BookingApp.Model;
 
 
@@ -146,6 +147,23 @@ namespace BookingApp.DTO
             }
         }
 
+
+        private List<CalendarDateRange> unavailableDates = new List<CalendarDateRange>();
+        public List<CalendarDateRange> UnavailableDates
+        {
+            get { return unavailableDates; }
+            set
+            {
+                if (unavailableDates != value)
+                {
+                    unavailableDates = value;
+                    OnPropertyChanged(nameof(UnavailableDates));
+                }
+            }
+        }
+
+
+
         public string Error => null;
 
         
@@ -239,6 +257,7 @@ namespace BookingApp.DTO
             MaxGuestNumber = accommodation.MaxGuestNumber;
             MinReservationDays = accommodation.MinReservationDays;
             ReservationDaysLimit = accommodation.ReservationDaysLimit;
+            UnavailableDates = accommodation.UnavailableDates;
 
 
 
@@ -250,7 +269,10 @@ namespace BookingApp.DTO
             
             Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit);
             a.Id = id;
+            a.UnavailableDates = unavailableDates;
+
             a.Pictures = picture;
+
             return a;
 
         }

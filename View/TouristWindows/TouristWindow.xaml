@@ -22,8 +22,7 @@
                 <ColumnDefinition Width="90"/>
                 <ColumnDefinition Width="90"/>
                 <ColumnDefinition Width="180"/>
-                <ColumnDefinition Width="30"/>
-                <ColumnDefinition Width="41"/>
+                <ColumnDefinition Width="80"/>
                 <ColumnDefinition Width="10"/>
             </Grid.ColumnDefinitions>
 
@@ -34,8 +33,9 @@
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
                 <RowDefinition Height="30"/>
-                <RowDefinition Height="30"/>
+                <RowDefinition Height="50"/>
                 <RowDefinition Height="*"/>
+                <RowDefinition Height="10"/>
             </Grid.RowDefinitions>
 
             <Label Grid.Column="1" 
@@ -51,129 +51,195 @@
                       Grid.Column="4" 
                       Grid.ColumnSpan="4" 
                       Grid.RowSpan="7" 
-                      Margin="0,0,29,16">
-                <GroupBox.Header>
-                    <Label>Search</Label>
-                </GroupBox.Header>
+                      Margin="0,0,30,10"
+                      Header="Search">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="10"/>
+                        <ColumnDefinition Width="100"/>
+                        <ColumnDefinition Width="150"/>
+                        <ColumnDefinition Width="60"/>
+                        <ColumnDefinition Width="80"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                        <RowDefinition Height="30"/>
+                    </Grid.RowDefinitions>
+                    <Button x:Name="ResetButton"
+                            Content="Reset"
+                            FontSize="28"
+                            FontWeight="Bold"
+                            Grid.Column="3"
+                            Grid.RowSpan="3" Margin="57,4,5,17" Grid.ColumnSpan="2"
+                            Click="ResetButton_Click"/>
+                    <Label Grid.Column="1" 
+                           HorizontalAlignment="Center" 
+                           Content="Country:" 
+                           Width="102" 
+                           Grid.Row="1" 
+                           FontSize="14"/>
+                    <TextBox x:Name="CountrySearch" 
+                             Grid.Column="2" 
+                             Width="150" 
+                             Height="22" 
+                             Grid.Row="1"/>
+
+                    <Label Grid.Column="1" 
+                           HorizontalAlignment="Center" 
+                           Content="City:" 
+                           Width="102" 
+                           Grid.Row="2" 
+                           FontSize="14" />
+                    <TextBox x:Name="CitySearch"
+                             Grid.Column="2" 
+                             Grid.Row="2" 
+                             Width="150" 
+                             Height="22"/>
+
+                    <Label Grid.Column="1" 
+                           HorizontalAlignment="Center" 
+                           Content="Duration:" 
+                           Width="102" 
+                           Grid.Row="3" 
+                           FontSize="14" />
+                    <TextBox x:Name="DurationSearch"
+                             PreviewTextInput="DurationSearch_PreviewTextInput"
+                             LostFocus="DurationSearch_LostFocus"
+                             TextAlignment="Justify"
+                             Grid.Column="2" 
+                             Grid.Row="3" 
+                             Height="22"/>
+                    <Label Grid.Column="3" 
+                           HorizontalAlignment="Left" 
+                           Content="h" Width="30" 
+                           Grid.Row="3" 
+                           FontSize="14" 
+                           FontWeight="Bold" Grid.RowSpan="2" />
+
+                    <Label Grid.Column="1" 
+                           HorizontalAlignment="Center" 
+                           Content="Language:" 
+                           Width="102" 
+                           Grid.Row="4" 
+                           FontSize="14" />
+                    <TextBox x:Name="LanguageSearch" 
+                             Grid.Column="2" 
+                             Grid.Row="4"
+                             Height="22"
+                             HorizontalAlignment="Left"
+                             Width="80"/>
+
+                    <Label Grid.Column="1" 
+                           HorizontalAlignment="Center" 
+                           Content="Number of" 
+                           Width="102" Grid.Row="5" 
+                           FontSize="14"/>
+                    <TextBox x:Name="PeopleSearch" 
+                             PreviewTextInput="PeopleSearch_PreviewTextInput"
+                             LostFocus="PeopleSearch_LostFocus"
+                             TextAlignment="Justify"
+                             Grid.Column="2" 
+                             Grid.Row="5" 
+                             Height="25"
+                             Grid.RowSpan="2"
+                             HorizontalAlignment="Left"
+                             Width="40"/>
+                    <Label Grid.Column="1" 
+                           HorizontalAlignment="Center" 
+                           VerticalAlignment="Top" 
+                           Content="participants:" 
+                           Width="102" 
+                           Grid.Row="5" 
+                           FontSize="14"
+                           Grid.RowSpan="2" Margin="0,15,0,0"/>
+
+                    <Button x:Name="searchButton" 
+                            Grid.Column="3" 
+                            Grid.Row="5" 
+                            Grid.RowSpan="2" 
+                            Click="SearchButton_Click" 
+                            Width="60"
+                            Height="60" Grid.ColumnSpan="2" Margin="10,0,70,0">
+                        <Image Source="/View/TouristWindows/search.png"/>
+                    </Button>
+                    <Button x:Name="DurationPlus"
+                            Grid.Column="3"
+                            Grid.Row="3"
+                            HorizontalAlignment="Left"
+                            Width="27"
+                            Height="27"
+                            Click="DurationPlus_Click" Margin="26,1,0,1">
+                        <Image Source="/View/TouristWindows/plus.png"
+                               Width="25"
+                               Height="25"
+                               HorizontalAlignment="Center"/>
+                    </Button>
+                    <Button x:Name="DurationMinus"
+                            Grid.Column="4"
+                            Grid.Row="3"
+                            HorizontalAlignment="Left"
+                            Height="27"
+                            Width="27" 
+                            Click="DurationMinus_Click" Margin="2,1,0,1">
+                        <Image Source="/View/TouristWindows/minus.png"
+                               Width="22" Height="25"/>
+                    </Button>
+                    <Button x:Name="ParticipantsPlus"
+                            Grid.Column="2"
+                            Grid.Row="5"
+                            Grid.RowSpan="2"
+                            HorizontalAlignment="Left"
+                            Width="27"
+                            Height="27"
+                            Click="ParticipantsPlus_Click" Margin="48,13,0,13">
+                        <Image Source="/View/TouristWindows/plus.png"
+                               Width="25"
+                               Height="25"
+                               HorizontalAlignment="Center"/>
+                    </Button>
+                    <Button x:Name="ParticipantsMinus"
+                            Grid.Column="2"
+                            Grid.Row="5"
+                            Grid.RowSpan="2"
+                            HorizontalAlignment="Right"
+                            Height="27"
+                            Width="27" 
+                            Click="ParticipantsMinus_Click" Margin="0,13,40,13">
+                        <Image Source="/View/TouristWindows/minus.png"
+                               Width="22" Height="25"/>
+                    </Button>
+                </Grid>
 
             </GroupBox>
 
-            <Label Grid.Column="5" 
-                   HorizontalAlignment="Center" 
-                   Content="Country:" 
-                   Width="102" 
-                   Grid.Row="1" 
-                   FontSize="14"/>
-            <TextBox x:Name="CountrySearch" 
-                     Grid.Column="6" 
-                     Width="150" 
-                     Height="22" 
-                     Grid.Row="1" 
-                     Margin="15,4,15,4"/>
 
-            <Label Grid.Column="5" 
-                   HorizontalAlignment="Center" 
-                   Content="City:" 
-                   Width="102" 
-                   Grid.Row="2" 
-                   FontSize="14" />
-            <TextBox x:Name="CitySearch"
-                     Grid.Column="6" 
-                     Grid.Row="2" 
-                     Width="150" 
-                     Height="22" 
-                     Margin="15,4,15,4"/>
-
-            <Label Grid.Column="5" 
-                   HorizontalAlignment="Center" 
-                   Content="Duration:" 
-                   Width="102" 
-                   Grid.Row="3" 
-                   FontSize="14" />
-            <TextBox x:Name="DurationSearch"
-                     PreviewTextInput="DurationSearch_PreviewTextInput"
-                     LostFocus="DurationSearch_LostFocus"
-                     TextAlignment="Justify"
-                     Grid.Column="6" 
-                     Grid.Row="3" 
-                     Height="22" 
-                     Margin="15,4,131,4"/>
-            <Label Grid.Column="6" 
-                   HorizontalAlignment="Left" 
-                   Content="h" Width="30" 
-                   Grid.Row="2" 
-                   FontSize="14" 
-                   FontWeight="Bold" Margin="54,29,0,1" Grid.RowSpan="2" />
-
-            <Label Grid.Column="5" 
-                   HorizontalAlignment="Center" 
-                   Content="Language:" 
-                   Width="102" 
-                   Grid.Row="4" 
-                   FontSize="14" />
-            <TextBox x:Name="LanguageSearch" 
-                     Grid.Column="6" 
-                     Grid.Row="4"
-                     TextAlignment="Justify"
-                     Height="22" 
-                     Margin="15,4,131,4"/>
-
-            <Label Grid.Column="5" 
-                   HorizontalAlignment="Center" 
-                   Content="Number of" 
-                   Width="102" Grid.Row="5" 
-                   FontSize="14" 
-                   Grid.RowSpan="2" />
-            <TextBox x:Name="PeopleSearch" 
-                     PreviewTextInput="PeopleSearch_PreviewTextInput"
-                     LostFocus="PeopleSearch_LostFocus"
-                     TextAlignment="Justify"
-                     Grid.Column="6" 
-                     Grid.Row="5" 
-                     Height="22" 
-                     Margin="15,12,131,26" 
-                     Grid.RowSpan="2"/>
-            <Label Grid.Column="5" 
-                   HorizontalAlignment="Center" 
-                   VerticalAlignment="Center" 
-                   Content="people:" 
-                   Width="102" 
-                   Grid.Row="5" 
-                   FontSize="14" 
-                   Grid.RowSpan="2" />
-
-            <Button x:Name="searchButton" 
-                    Grid.Column="6" 
-                    Grid.Row="5" 
-                    Margin="120,3,15,27" 
-                    Grid.RowSpan="2" 
-                    Click="SearchButton_Click" 
-                    FontWeight="Bold">
-                <!--"<Image Source="../../Resources/Images/search.png"/>-->
-                Search
-            </Button>
-
-            <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="8">
-                <DataGrid ItemsSource="{Binding Tours}"
+            <DataGrid ItemsSource="{Binding Tours}"
                           SelectedItem="{Binding Path=SelectedTour}"
+                          Grid.Row="7"
+                          Grid.Column="1"
+                          Grid.ColumnSpan="7"
                           IsReadOnly="True"
                           SelectionMode="Single"
                           AutoGenerateColumns="False" Height="465" HeadersVisibility="Column" FontSize="13">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
-                        <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="200"/>
-                        <DataGridTextColumn Header="City" Binding="{Binding City}" Width="200"/>
-                        <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="150"/>
-                        <DataGridTemplateColumn Header="Book">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Book a tour" Click="BookButton_Click" Width="100" Margin="1, 5, 1, 5" Height="22"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
+                    <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="200"/>
+                    <DataGridTextColumn Header="City" Binding="{Binding City}" Width="200"/>
+                    <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="150"/>
+                    <DataGridTemplateColumn Header="Book">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Book a tour" Click="BookButton_Click" Width="100" Margin="1, 5, 1, 5" Height="22"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </DockPanel>
 </Window>
