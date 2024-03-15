@@ -35,15 +35,19 @@ namespace BookingApp.View
             else
             {
                 int groupId = _tourRepository.NextId();
+                MessageBox.Show(groupId.ToString());
                 foreach (DateTime date in selectedDates)
                 {
                     Tour.GroupId = groupId;
                     Tour.Date = date;
                     Tour.Id = _tourRepository.NextPersonalId();
+                    MessageBox.Show(Tour.Id.ToString());
                     _tourRepository.Add(Tour.ToTour());
                 }
             
             }
+            MessageBox.Show("Tour added");
+            Close();
         }
 
         private void AddDate_Click(object sender, RoutedEventArgs e)
@@ -120,5 +124,9 @@ namespace BookingApp.View
             }
         }
 
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }
