@@ -97,11 +97,12 @@ namespace BookingApp.Model
             MaxTourists = int.Parse(values[6]);
             Duration = float.Parse(values[7]);
 
-            string dateFormat = "MM/dd/yyyy hh:mm:ss tt";
+            string dateFormat = "M/d/yyyy h:mm:ss tt";
             if (DateTime.TryParseExact(values[8], dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
             {
                 Date = parsedDate.Date;
             }
+
 
             GroupId = int.Parse(values[9]);
             currentCheckpoint = int.Parse(values[10]);
