@@ -128,7 +128,6 @@ namespace BookingApp.View.TouristWindows
 
         private void ReduceNumberOfAvailablePlaces()
         {
-            SelectedTour.AvailablePlaces -= TourParticipantDTOs.Count;
             _tourRepository.UpdateAvailablePlaces(SelectedTour, TourParticipantDTOs.Count);
         }
         private void AddParticipantButton_Click(object sender, RoutedEventArgs e)
