@@ -6,7 +6,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:BookingApp.View"
         mc:Ignorable="d"
-        Title="Main Guide Window" Height="500" Width="830"
+        Title="Main Guide Window" Height="750" Width="1200"
         WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.RowDefinitions>
@@ -25,7 +25,7 @@
             <!-- Define your columns here -->
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Tour Name" Binding="{Binding Name}" />
-                <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}" />
+                <DataGridTextColumn  Header="Description" Binding="{Binding Description}" />
                 <DataGridTextColumn Width="*" Header="City" Binding="{Binding City}" />
                 <DataGridTextColumn Width="*" Header="Country" Binding="{Binding Country}" />
                 <DataGridTextColumn Width="*" Header="Duration" Binding="{Binding Duration}" />
@@ -34,7 +34,6 @@
         </DataGrid>
 
         <!-- Select Tour Button -->
-        <Button Content="Select Tour" Grid.Row="2" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="100" />
-        <!--Click="SelectTourButton_Click"-->
+        <Button Content="Select Tour" Grid.Row="2" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="100" Click="SelectTourButton_Click"/>
     </Grid>
 </Window>
