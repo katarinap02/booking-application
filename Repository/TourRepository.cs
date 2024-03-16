@@ -76,34 +76,34 @@ namespace BookingApp.Repository
             return max + 1 ;
         }
 
-        public List<Tour>? FindToursBy(string country, string city, float duration, string language, int numberOfPeople)
+        public List<Tour>? SearchTours(Tour Tour)
         {
-            List<Tour> allTours = GetAll();
-            string lowercaseCountry = country.ToLower();
-            string lowecaseCity = city.ToLower();
-            string lowercaseLanguage = language.ToLower();
+            List<Tour> filteredTours = GetAll();
+            string lowercaseCountry = Tour.Country.ToLower();
+            string lowecaseCity = Tour.City.ToLower();
+            string lowercaseLanguage = Tour.Language.ToLower();
             
-            if(country != "")
+            if(!string.IsNullOrEmpty(lowercaseCountry))
             {
-                allTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(lowercaseCountry));
+                filteredTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(lowercaseCountry));
             }
-            if(city != "")
+            if(!string.IsNullOrEmpty(lowecaseCity))
             {
-                allTours = allTours.Where(tour => tour.City.ToLower().Contains(lowecaseCity)).ToList();
+                filteredTours = filteredTours.Where(tour => tour.City.ToLower().Contains(lowecaseCity)).ToList();
             }
-            if(duration != 0)
+            if(Tour.Duration != 0)
             {
-                allTours = allTours.Where(tour => tour.Duration == duration).ToList();
+                filteredTours = filteredTours.Where(tour => tour.Duration == Tour.Duration).ToList();
             }
-            if (language != "")
+            if (!string.IsNullOrEmpty(lowercaseLanguage))
             {
-            allTours = allTours.Where(tour => tour.Language.ToLower() == lowercaseLanguage).ToList();
+            filteredTours = filteredTours.Where(tour => tour.Language.ToLower().Contains(lowercaseLanguage)).ToList();
             }
-            if(numberOfPeople != 0)
+            if(Tour.AvailablePlaces != 0)
             {
-                allTours = allTours.Where(tour => tour.MaxTourists >= numberOfPeople).ToList();
+                filteredTours = filteredTours.Where(tour => tour.MaxTourists >= Tour.AvailablePlaces).ToList();
             }
-            return allTours;
+            return filteredTours;
         }
 
         public List<Tour> GetTourByCountryWithAvailablePlaces(string country)

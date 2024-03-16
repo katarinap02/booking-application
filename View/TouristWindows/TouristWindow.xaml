@@ -7,11 +7,6 @@
         mc:Ignorable="d"
         Title="TouristWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
     <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="File"/>
-            <MenuItem Header="Edit"/>
-            <MenuItem Header="Help"/>
-        </Menu>
         <Grid>
 
             <Grid.ColumnDefinitions>
@@ -108,6 +103,7 @@
                            Grid.Row="3" 
                            FontSize="14" />
                     <TextBox x:Name="DurationSearch"
+                             IsEnabled="False"
                              PreviewTextInput="DurationSearch_PreviewTextInput"
                              LostFocus="DurationSearch_LostFocus"
                              TextAlignment="Justify"
@@ -139,7 +135,8 @@
                            Content="Number of" 
                            Width="102" Grid.Row="5" 
                            FontSize="14"/>
-                    <TextBox x:Name="PeopleSearch" 
+                    <TextBox x:Name="PeopleSearch"
+                             IsEnabled="False"
                              PreviewTextInput="PeopleSearch_PreviewTextInput"
                              LostFocus="PeopleSearch_LostFocus"
                              TextAlignment="Justify"

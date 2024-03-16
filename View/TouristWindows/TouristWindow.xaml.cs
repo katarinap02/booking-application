@@ -39,19 +39,21 @@ namespace BookingApp.View.TouristWindows
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             Tours.Clear();
-            List<Tour> foundTours = Search();
+            List<Tour>? foundTours = Search();
 
             if (foundTours != null)
                 foreach (Tour t in foundTours)
                     Tours.Add(t);
         }
 
-        private List<Tour> Search()
+        private List<Tour>? Search()
         {
             DurationSearch.Text = EmptyStringToZero(DurationSearch.Text);
             PeopleSearch.Text = EmptyStringToZero(PeopleSearch.Text);
 
-            List<Tour>? foundTours = _repository.FindToursBy(CountrySearch.Text, CitySearch.Text, float.Parse(DurationSearch.Text), LanguageSearch.Text, int.Parse(PeopleSearch.Text));
+            Tour tour = new Tour("", CitySearch.Text, CountrySearch.Text, "", LanguageSearch.Text, int.Parse(PeopleSearch.Text),
+                                new List<string>(), new DateTime(), float.Parse(DurationSearch.Text), new List<string>());
+            List<Tour>? foundTours = _repository.SearchTours(tour);
             return foundTours;
         }
 
@@ -142,7 +144,7 @@ namespace BookingApp.View.TouristWindows
             Tours.Clear();
             if (withSearch)
             {
-                List<Tour> foundTours = Search();
+                List<Tour>? foundTours = Search();
 
                 if (foundTours != null)
                     foreach (Tour t in foundTours)

@@ -20,7 +20,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="2" Grid.Column="1"/>
-        <Button Content="Show accommodations" Grid.Column="1" Margin="81,36,500,303" Grid.Row="2" Click="ShowAccommodations_Click"/>
+        <Button Content="Show, search and reserve accommodations" Grid.Column="1" Margin="81,36,388,303" Grid.Row="2" Click="ShowAccommodations_Click"/>
 
     </Grid>
 </Window>
