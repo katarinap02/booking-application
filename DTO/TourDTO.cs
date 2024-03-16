@@ -228,7 +228,7 @@ namespace BookingApp.DTO
             checkpoints = tour.Checkpoints;
             pictures = tour.Pictures;
             country = tour.Country;
-
+            currentCheckpoint = tour.currentCheckpoint;
         }
 
         public Tour ToTour()
