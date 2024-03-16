@@ -66,20 +66,13 @@ namespace BookingApp.Model
 
             return result;
         }
+
+        
+
+        
+
         public string[] ToCSV()
         {
-            string PictureString = "";
-            if (Pictures != null)
-            {
-                PictureString = string.Join(",", Pictures);
-            }
-
-            string unavailableDates = "";
-            if (UnavailableDates != null)
-                unavailableDates = string.Join(",", UnavailableDates.Select(dateRange => ConvertToString(dateRange)));
-          
-
-
 
             string[] csvValues =
             {
@@ -91,8 +84,8 @@ namespace BookingApp.Model
                 MaxGuestNumber.ToString(),
                 MinReservationDays.ToString(),
                 ReservationDaysLimit.ToString(),
-                PictureString,
-                unavailableDates
+                MakeStringFromPictures(Pictures),
+                FindUnavailableDates(UnavailableDates)
 
             };
 
@@ -105,40 +98,78 @@ namespace BookingApp.Model
             Name = values[1];
             City = values[2];
             Country = values[3];
-            switch(values[4])
-            {
-                case "APARTMENT":
-                    Type = AccommodationType.APARTMENT;
-                    break;
-                case "HOUSE":
-                    Type = AccommodationType.HOUSE;
-                    break;
-                case "COTTAGE":
-                    Type = AccommodationType.COTTAGE;
-                    break;
 
+            Type = TypeFromCsv(values[4]);
 
-
-            }
+            
             MaxGuestNumber = Convert.ToInt32(values[5]);
             MinReservationDays = Convert.ToInt32(values[6]);
             ReservationDaysLimit = Convert.ToInt32(values[7]);
 
-            if (!string.IsNullOrEmpty(values[8]))
-            {
-                string picture = values[8];
-                Pictures = picture.Split(",").ToList();
-            }
-
-            if (values.Length > 9 && !string.IsNullOrEmpty(values[9]))
-            {
-                string unavailableDates = values[9];
-                UnavailableDates = ConvertToDateRanges(values[9].Split(",").ToList());
+            Pictures = MakeListPictures(values[8]);
+            if(values.Length > 9) {
+                UnavailableDates = MakeListDates(values[9]);
             }
 
 
         }
 
-        
+        List<CalendarDateRange> MakeListDates(string value)
+        {
+            List<CalendarDateRange> list = new List<CalendarDateRange>();
+            if (!string.IsNullOrEmpty(value)) {
+                list = ConvertToDateRanges(value.Split(",").ToList());
+
+            }
+            return list;
+        }
+
+        private List<String> MakeListPictures(string value)
+        {
+            List<String> list = new List<String>(); 
+            if (!string.IsNullOrEmpty(value))
+            {
+                list = value.Split(",").ToList();
+            }
+
+            return list;
+        }
+
+        private AccommodationType TypeFromCsv(string value)
+        {
+            AccommodationType type = AccommodationType.APARTMENT;
+            switch (value)
+            {
+                case "HOUSE":
+                    type = AccommodationType.HOUSE;
+                    break;
+                case "COTTAGE":
+                    type = AccommodationType.COTTAGE;
+                    break;
+
+            }
+            return type;
+        }
+
+        private string MakeStringFromPictures(List<string> pictures)
+        {
+            string PictureString = "";
+            if (pictures != null)
+            {
+                PictureString = string.Join(",", Pictures);
+            }
+            return PictureString;
+        }
+
+        private string FindUnavailableDates(List<CalendarDateRange> dates)
+        {
+
+            string unavailableDates = "";
+            if (dates != null)
+                unavailableDates = string.Join(",", dates.Select(dateRange => ConvertToString(dateRange)));
+            return unavailableDates;
+        }
+
+
     }
 }
