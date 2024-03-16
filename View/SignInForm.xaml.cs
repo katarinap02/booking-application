@@ -15,7 +15,8 @@ namespace BookingApp.View
     {
 
         private readonly UserRepository _repository;
-
+        private readonly GuidedTourRepository _guidedTourRepository;
+        private readonly TourRepository _tourRepository;
         private string _username;
         public string Username
         {
@@ -42,6 +43,8 @@ namespace BookingApp.View
             InitializeComponent();
             DataContext = this;
             _repository = new UserRepository();
+            _guidedTourRepository = new GuidedTourRepository();
+            _tourRepository = new TourRepository();
         }
 
         private void SignIn(object sender, RoutedEventArgs e)
@@ -65,14 +68,17 @@ namespace BookingApp.View
                     }
                     else if (user.Type.ToString().Equals("guide"))
                     {
-                        /*
-                        GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow();
-                        guideWithTourWindow.Show();*/
-                        /*
-                        NewTourWindow newTourWindow = new NewTourWindow();
-                        newTourWindow.Show();      */
-                        GuideMainWindow guideMainWindow = new GuideMainWindow(user);
-                        guideMainWindow.Show();
+                        if(_guidedTourRepository.HasTourCurrently(user.Id)) {
+                            Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
+                            GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new DTO.TourDTO(tour), user);
+                            guideWithTourWindow.Show();
+                        }
+                        else
+                        {
+                            GuideMainWindow guideMainWindow = new GuideMainWindow(user);
+                            guideMainWindow.Show();
+                        }
+                        
                     }
 
                     else if (user.Type.ToString().Equals("guest"))
@@ -80,7 +86,6 @@ namespace BookingApp.View
                         GuestWindow guestWindow = new GuestWindow(user);
                         guestWindow.ShowDialog();
                     }
-                    //commentsOverview.Show();
                     Close();
 
                 } 
