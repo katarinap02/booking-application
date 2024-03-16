@@ -1,5 +1,9 @@
-﻿using System.Collections.ObjectModel;
+﻿using BookingApp.DTO;
+using BookingApp.Model;
+using BookingApp.Repository;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Windows;
 using System.Windows.Media;
 
@@ -9,15 +13,22 @@ namespace BookingApp.View.GuideWindows
     {
         private ObservableCollection<Checkpoint> checkpointsWithColors;
         private int currentCheckpointIndex;
+        private TourRepository tourRepository;
+        private GuidedTourRepository guidedTourRepository;
+        private User Guide;
+        public TourDTO Tour { get; set; }
 
-        public GuideWithTourWindow()
+        public GuideWithTourWindow(TourDTO tourDTO, User user)
         {
             InitializeComponent();
 
-            // Sample data for demonstration
-            var checkpoints = new[] { "Checkpoint A", "Checkpoint B", "Checkpoint C" };
+            Tour = tourDTO;
+            tourRepository = new TourRepository();
+            guidedTourRepository = new GuidedTourRepository();
+            Guide = user;
 
-            // Create Checkpoint objects with colors
+            var checkpoints = tourDTO.Checkpoints;
+
             checkpointsWithColors = new ObservableCollection<Checkpoint>();
             SolidColorBrush activeColor = Brushes.Green;
             SolidColorBrush inactiveColor = Brushes.Gray;
@@ -26,46 +37,84 @@ namespace BookingApp.View.GuideWindows
                 checkpointsWithColors.Add(new Checkpoint { Name = checkpoint, IndicatorColor = inactiveColor });
             }
 
-            // Set the sample data as the DataContext
+            Informations.Text = "You are currently on checkpoint number " + (currentCheckpointIndex + 1) + " out of " + (checkpoints.Count);
+
             DataContext = new
             {
-                CheckpointsWithColors = checkpointsWithColors,
-                SelectedCheckpointDescription = "Description of currently selected checkpoint"
+                CheckpointsWithColors = checkpointsWithColors
             };
 
-            // Initialize current checkpoint index
-            currentCheckpointIndex = 0;
-            UpdateCheckpointIndicators();
+            currentCheckpointIndex = Tour.CurrentCheckpoint;
+            MessageBox.Show(currentCheckpointIndex.ToString());
+            UpdateDesign();
+            Close_Button.Visibility = Visibility.Collapsed;
+
+
+            if(!guidedTourRepository.Exists(Guide.Id, Tour.Id))
+            {
+                guidedTourRepository.Add(Guide, tourDTO.ToTour());
+                tourRepository.activateTour(tourDTO.Id);
+            }
+
         } 
+
 
         private void NextCheckpointButton_Click(object sender, RoutedEventArgs e)
         {
-            // Increment current checkpoint index
             currentCheckpointIndex++;
+            tourRepository.nextCheckpoint(Tour.Id);
 
-            // Update visual indicators
-            UpdateCheckpointIndicators();
+            if(currentCheckpointIndex == Tour.Checkpoints.Count()-1)
+            {
+                UpdateDesign();
+                MessageBox.Show("You have reached the final checkpoint. The tour has been finnished.");
+                FinnishTour();
+            }
+            else if (currentCheckpointIndex < Tour.Checkpoints.Count() - 1)
+            {
+                UpdateDesign();
+            }
+                        
         }
 
-        private void UpdateCheckpointIndicators()
+        public void FinnishTour() {
+            tourRepository.finnishTour(Tour.Id);
+            FinnishTour_Button.Visibility = Visibility.Collapsed;
+            TouristJoined_Button.Visibility = Visibility.Collapsed;
+            Next_Button.Visibility = Visibility.Collapsed;
+            Close_Button.Visibility = Visibility.Visible;
+
+            guidedTourRepository.Remove(Guide.Id, Tour.Id);
+        }
+
+        private void UpdateDesign()
         {
+            Informations.Text = "You are currently on checkpoint number " + (currentCheckpointIndex + 1) + " out of " + (Tour.Checkpoints.Count);
             for (int i = 0; i < checkpointsWithColors.Count; i++)
             {
                 if (i == currentCheckpointIndex)
                 {
-                    checkpointsWithColors[i].IndicatorColor = Brushes.Green; // Set color for current checkpoint
+                    checkpointsWithColors[i].IndicatorColor = Brushes.Green; 
                 }
                 else
                 {
-                    checkpointsWithColors[i].IndicatorColor = Brushes.Gray; // Set color for other checkpoints
+                    checkpointsWithColors[i].IndicatorColor = Brushes.Gray; 
                 }
             }
         }
 
         private void FinishTourButton_Click(object sender, RoutedEventArgs e)
         {
-            // Implement logic to finish the tour
+            FinnishTour();
         }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            GuideMainWindow guideMainWindow = new GuideMainWindow(Guide);
+            guideMainWindow.Show();
+            Close();
+        }
+
     }
 
     public class Checkpoint : INotifyPropertyChanged
