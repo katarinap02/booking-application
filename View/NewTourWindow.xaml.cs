@@ -35,13 +35,11 @@ namespace BookingApp.View
             else
             {
                 int groupId = _tourRepository.NextId();
-                MessageBox.Show(groupId.ToString());
                 foreach (DateTime date in selectedDates)
                 {
                     Tour.GroupId = groupId;
                     Tour.Date = date;
                     Tour.Id = _tourRepository.NextPersonalId();
-                    MessageBox.Show(Tour.Id.ToString());
                     _tourRepository.Add(Tour.ToTour());
                 }
             
