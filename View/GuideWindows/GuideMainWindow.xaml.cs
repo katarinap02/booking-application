@@ -19,29 +19,52 @@ namespace BookingApp.View.GuideWindows
         // lista dostupnih tura
         public List<TourDTO> TodayDTOs;
         // tour repo -> TourDTO ???
-        private readonly TourRepository TourRepository;
+        private readonly TourRepository tourRepository;
         public TourDTO SelectedTour { get; set; }
 
         public GuideMainWindow(User user)
         {
-            TourRepository = new TourRepository();
+            tourRepository = new TourRepository();
             Guide = user;
-            TodaysTours = TourRepository.findToursNeedingGuide();
-            TodayDTOs = new List<TourDTO>();
-
-            foreach(Tour tour in TodaysTours)
-            {
-                TodayDTOs.Add(new TourDTO(tour));
-                MessageBox.Show((tour.Name));
-            }
+            
             DataContext = this;
             InitializeComponent();
+
+            GetGridData();
+
+        }
+
+        public void GetGridData() {
+            TodaysTours = tourRepository.findToursNeedingGuide();
+            TodayDTOs = new List<TourDTO>();
+
+            foreach (Tour tour in TodaysTours)
+            {
+                TodayDTOs.Add(new TourDTO(tour));
+            }
+            ToursDataGrid.ItemsSource = TodayDTOs;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
             NewTourWindow newTourWindow = new NewTourWindow();
             newTourWindow.ShowDialog();
+            GetGridData();
+        }
+
+        private void SelectTourButton_Click(object sender, RoutedEventArgs e)
+        {
+            if(SelectedTour != null) {
+                GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(SelectedTour, Guide);
+                guideWithTourWindow.Show();
+                Close();
+            }
+            else {
+                Tour t = tourRepository.GetTourById(10);
+                GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourDTO(t), Guide);
+                guideWithTourWindow.Show();
+                Close();
+            }
         }
     }
 }
