@@ -110,8 +110,18 @@ namespace BookingApp.View
 
         private void ReservationButton_Click(object sender, RoutedEventArgs e)
         {
-            DayNumberPopUp dayNumberPopup = new DayNumberPopUp(AccommodationRepository, SelectedAccommodation, User);
-            dayNumberPopup.ShowDialog();
+            if(SelectedAccommodation == null)
+            {
+                MessageBox.Show("Please select accommodation to reserve");
+
+            }
+            else
+            {
+                DayNumberPopUp dayNumberPopup = new DayNumberPopUp(AccommodationRepository, SelectedAccommodation, User);
+                dayNumberPopup.ShowDialog();
+
+            }
+            
 
         }
     }
