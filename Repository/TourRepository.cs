@@ -117,11 +117,6 @@ namespace BookingApp.Repository
             List<Tour> ret = new List<Tour>();
             foreach(Tour tour in allTours)
             {
-
-                /*
-                MessageBox.Show("tour.Date.Date: " + tour.Date.Date+"              "+ "DateTime.Now.Date: " + DateTime.Now.Date);
-                MessageBox.Show((tour.Date.Date == DateTime.Now.Date).ToString());
-                */
                 if (tour.Date.Date == DateTime.Now.Date && tour.Status==TourStatus.inPreparation)
                 {
                     ret.Add(tour);
@@ -170,6 +165,29 @@ namespace BookingApp.Repository
         {
             tour.Status = TourStatus.gotGuide;
             //GuidedTourRepository.Add(guide, tour);
+        }
+
+        public void finnishTour(int id)
+        {
+            Tour tour = GetTourById(id);
+            if(tour == null) return;
+            tour.Status = TourStatus.Finnished;
+            _serializer.ToCSV(FilePath, _tours);
+        }
+
+        public void activateTour(int id) {
+            Tour tour = GetTourById(id);
+            if (tour == null) return;
+            tour.Status = TourStatus.Active;
+            _serializer.ToCSV(FilePath, _tours);
+        }
+
+        public void nextCheckpoint(int id)
+        {
+            Tour tour = GetTourById(id);
+            if (tour == null) return;
+            tour.currentCheckpoint++;
+            _serializer.ToCSV(FilePath, _tours);
         }
 
     }
