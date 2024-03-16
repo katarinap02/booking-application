@@ -19,13 +19,14 @@
         </ItemsControl>
 
         <!-- Description of Current Checkpoint -->
-        <TextBlock Text="{Binding SelectedCheckpointDescription}" Margin="10" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBlock x:Name="Informations" Margin="10" TextWrapping="Wrap" HorizontalAlignment="Center" VerticalAlignment="Center"/>
 
         <!-- Buttons for navigating checkpoints -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom" Margin="0,20">
-            <Button Content="Next Checkpoint" Margin="5" Click="NextCheckpointButton_Click"/>
-            <Button Content="Finish Tour" Margin="5" Click="FinishTourButton_Click"/>
-            <Button Content="Tourist joined" Margin="5" />
+            <Button Content="Next Checkpoint" Margin="5" Click="NextCheckpointButton_Click" Name="Next_Button"/>
+            <Button Content="Finish Tour" Name="FinnishTour_Button" Margin="5" Click="FinishTourButton_Click"/>
+            <Button Content="Tourist joined" Margin="5" Name="TouristJoined_Button"/>
+            <Button Content="Close window" Margin="5" Name="Close_Button" Click="CloseButton_Click"/>
         </StackPanel>
     </Grid>
 </Window>
