@@ -103,6 +103,12 @@ namespace BookingApp.View.TouristWindows
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
             InsertedNumberOfParticipants = Convert.ToInt32(NumberOfParticipants.Text);
+
+            if(InsertedNumberOfParticipants > Convert.ToInt32(availablePlaces.Content))
+            {
+                MessageBox.Show("Not enough places for the reservation");
+                return;
+            }
             TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants);
             tourReservationWindow.ShowDialog();
             Close();
