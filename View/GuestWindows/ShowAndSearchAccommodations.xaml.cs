@@ -69,12 +69,13 @@ namespace BookingApp.View
             queries.Add(txtSearchReservationDays.Text);
 
             AccommodationsDataGrid.ItemsSource = SearchAccommodations(queries);
+           
 
 
 
         }
 
-        private List<Accommodation> SearchAccommodations(List<string> queries)
+        private List<AccommodationDTO> SearchAccommodations(List<string> queries)
         {
             string nameQuery = queries[0];
             string cityQuery = queries[1];
@@ -97,9 +98,9 @@ namespace BookingApp.View
 
 
             int totalItems = searchResults.Count;
-            List<Accommodation> results = new List<Accommodation>();
+            List<AccommodationDTO> results = new List<AccommodationDTO>();
             foreach (AccommodationDTO accommodation in searchResults)
-                results.Add(accommodation.ToAccommodation());
+                results.Add(accommodation);
 
             return results;
 
@@ -110,8 +111,18 @@ namespace BookingApp.View
 
         private void ReservationButton_Click(object sender, RoutedEventArgs e)
         {
-            DayNumberPopUp dayNumberPopup = new DayNumberPopUp(AccommodationRepository, SelectedAccommodation, User);
-            dayNumberPopup.ShowDialog();
+            if(SelectedAccommodation == null)
+            {
+                MessageBox.Show("Please select accommodation to reserve");
+
+            }
+            else
+            {
+                DayNumberPopUp dayNumberPopup = new DayNumberPopUp(AccommodationRepository, SelectedAccommodation, User);
+                dayNumberPopup.ShowDialog();
+
+            }
+            
 
         }
     }

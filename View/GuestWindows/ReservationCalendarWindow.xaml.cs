@@ -17,6 +17,9 @@ using System.Windows.Shapes;
 using BookingApp.Observer;
 using BookingApp.Model;
 using System.Security.Cryptography;
+using System.Collections;
+using System.Globalization;
+using Calendar = System.Windows.Controls.Calendar;
 
 namespace BookingApp.View
 {
@@ -52,40 +55,99 @@ namespace BookingApp.View
 
         private void ConfigureCalendar(AccommodationDTO selectedAccommodation, DateTime start, DateTime end, int dayNumber)
         {
+            CalendarDateRange chosenDateRange = new CalendarDateRange(start, end);
             ReservationCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
             ReservationCalendar.DisplayDateStart = start;
             ReservationCalendar.DisplayDateEnd = end;
             
-            CalendarDateRange chosenDateRange = new CalendarDateRange(start, end);
+            
 
 
            // CalendarDateRange pastDates = new CalendarDateRange(DateTime.MinValue, start.AddDays(-1));
            // ReservationCalendar.BlackoutDates.Add(pastDates);
 
            // MessageBox.Show(selectedAccommodation.UnavailableDates.Count.ToString());
-           List<CalendarDateRange> unavailableDateRanges = new List<CalendarDateRange>();
+
+           
+            List<CalendarDateRange> unavailableDateRanges = new List<CalendarDateRange>();
             foreach(CalendarDateRange unavailableDateRange in selectedAccommodation.UnavailableDates)
             {
                 if(unavailableDateRange.Start >= start || unavailableDateRange.End <= end)
                 {
-                    ReservationCalendar.BlackoutDates.Add(unavailableDateRange);
-                    unavailableDateRanges.Add(unavailableDateRange);
-                    CheckDaysBetween(unavailableDateRanges, dayNumber);
+                   
+                     ReservationCalendar.BlackoutDates.Add(unavailableDateRange);
+                     unavailableDateRanges.Add(unavailableDateRange);
+                     CheckDaysBetween(unavailableDateRanges, dayNumber, chosenDateRange);
+                    
+                    
 
                 }
-                    
-                //MessageBox.Show("uslo");
+              
 
             }
 
-         
+            if(IsDateRangeAvailable(ReservationCalendar) == false)
+            {
+                MessageBox.Show("All dates in the chosen date range are unavailable. All available dates will be shown now.");
+                ShowReccommendedDates(SelectedAccommodation, DayNumber);
+            }
 
-           
-                
             
+
+
+
+
+
+
         }
 
-        private void CheckDaysBetween(List<CalendarDateRange> unavailableDateRanges, int dayNumber)
+        private void ShowReccommendedDates(AccommodationDTO selectedAccommodation, int dayNumber)
+        {
+            ReservationCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
+            ReservationCalendar.DisplayDateStart = DateTime.Today;
+            ReservationCalendar.DisplayDateEnd = DateTime.MaxValue;
+            ReservationCalendar.BlackoutDates.Clear();
+            CalendarDateRange newDateRange = new CalendarDateRange(DateTime.Today, DateTime.MaxValue);
+
+            List<CalendarDateRange> unavailableDateRanges = new List<CalendarDateRange>();
+            foreach (CalendarDateRange unavailableDateRange in selectedAccommodation.UnavailableDates)
+            {
+                
+                    ReservationCalendar.BlackoutDates.Add(unavailableDateRange);
+                    unavailableDateRanges.Add(unavailableDateRange);
+                    CheckDaysBetween(unavailableDateRanges, dayNumber, newDateRange);
+                   
+
+            }
+        }
+
+        private bool IsDateRangeAvailable(Calendar calendar)
+        {
+
+            DateTime startDate = calendar.DisplayDateStart ?? DateTime.MinValue; 
+            DateTime endDate = calendar.DisplayDateEnd ?? DateTime.MaxValue; 
+            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+            {
+                if (IsDateSelectable(calendar, date) == true)
+                    return true;
+
+            }
+               
+            return false;
+        }
+
+        private bool IsDateSelectable(Calendar calendar, DateTime date)
+        {
+            foreach(var blackoutDateRange in calendar.BlackoutDates)
+            {
+                if (date >= blackoutDateRange.Start && date <= blackoutDateRange.End)
+                    return false;
+            }
+
+            return true;
+        }
+
+        private void CheckDaysBetween(List<CalendarDateRange> unavailableDateRanges, int dayNumber, CalendarDateRange chosenDateRange)
         {
             for(int i = 0; i <  unavailableDateRanges.Count-1; i++)
             {
@@ -99,6 +161,38 @@ namespace BookingApp.View
 
                 }
 
+               
+
+            }
+
+            CheckStartRange(unavailableDateRanges, dayNumber, chosenDateRange);
+            CheckEndRange(unavailableDateRanges, dayNumber, chosenDateRange);
+
+            
+
+
+           
+
+
+        }
+
+        private void CheckEndRange(List<CalendarDateRange> unavailableDateRanges, int dayNumber, CalendarDateRange chosenDateRange)
+        {
+            int startToUnavailableCount = (unavailableDateRanges[0].Start - chosenDateRange.Start).Days;
+            if (startToUnavailableCount < dayNumber)
+            {
+                CalendarDateRange startUnavailableRange = new CalendarDateRange(chosenDateRange.Start, unavailableDateRanges[0].Start);
+                ReservationCalendar.BlackoutDates.Add(startUnavailableRange);
+            }
+        }
+
+        private void CheckStartRange(List<CalendarDateRange> unavailableDateRanges, int dayNumber, CalendarDateRange chosenDateRange)
+        {
+            int unavailableToEndCount = (chosenDateRange.End - unavailableDateRanges[unavailableDateRanges.Count - 1].End).Days;
+            if (unavailableToEndCount < dayNumber)
+            {
+                CalendarDateRange unavailableEndRange = new CalendarDateRange(unavailableDateRanges[unavailableDateRanges.Count - 1].End, chosenDateRange.End);
+                ReservationCalendar.BlackoutDates.Add(unavailableEndRange);
             }
         }
 
