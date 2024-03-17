@@ -14,11 +14,8 @@ namespace BookingApp.View.GuideWindows
     public partial class GuideMainWindow : Window
     {
         public List<Tour> TodaysTours;
-        // Informacije o vodicu u konstruktoru
         public User Guide { get; set; }
-        // lista dostupnih tura
         public List<TourDTO> TodayDTOs;
-        // tour repo -> TourDTO ???
         private readonly TourRepository tourRepository;
         public TourDTO SelectedTour { get; set; }
 
