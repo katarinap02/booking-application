@@ -95,6 +95,9 @@ namespace BookingApp.View
 
 
             }
+          
+
+
         }
 
         private void ShowReccommendedDates(AccommodationDTO selectedAccommodation, int dayNumber)
@@ -112,9 +115,13 @@ namespace BookingApp.View
                     ReservationCalendar.BlackoutDates.Add(unavailableDateRange);
                     unavailableDateRanges.Add(unavailableDateRange);
                     CheckDaysBetween(unavailableDateRanges, dayNumber, newDateRange);
-                   
+
 
             }
+            
+
+
+
         }
 
         private bool IsDateRangeAvailable(Calendar calendar)
@@ -145,9 +152,11 @@ namespace BookingApp.View
 
         private void CheckDaysBetween(List<CalendarDateRange> unavailableDateRanges, int dayNumber, CalendarDateRange chosenDateRange)
         {
-            for(int i = 0; i <  unavailableDateRanges.Count-1; i++)
+            List<CalendarDateRange> sortedDateRanges = unavailableDateRanges.OrderBy(range => range.End).ToList();
+
+            for(int i = 0; i <  sortedDateRanges.Count-1; i++)
             {
-                CalendarDateRange betweenRange = new CalendarDateRange(unavailableDateRanges[i].End.AddDays(1), unavailableDateRanges[i + 1].Start.AddDays(-1));
+                CalendarDateRange betweenRange = new CalendarDateRange(sortedDateRanges[i].End.AddDays(1), sortedDateRanges[i + 1].Start.AddDays(-1));
                 int betweenDaysCount = (betweenRange.End - betweenRange.Start).Days;
 
                 if(betweenDaysCount < dayNumber)
@@ -174,10 +183,10 @@ namespace BookingApp.View
 
         private void CheckStartRange(List<CalendarDateRange> unavailableDateRanges, int dayNumber, CalendarDateRange chosenDateRange)
         {
-            int startToUnavailableCount = (unavailableDateRanges[0].Start.AddDays(-1) - chosenDateRange.Start).Days;
+            int startToUnavailableCount = (unavailableDateRanges[0].Start - chosenDateRange.Start).Days;
             if (startToUnavailableCount < dayNumber)
             {
-                CalendarDateRange startUnavailableRange = new CalendarDateRange(chosenDateRange.Start, unavailableDateRanges[0].Start.AddDays(-1));
+                CalendarDateRange startUnavailableRange = new CalendarDateRange(chosenDateRange.Start, unavailableDateRanges[0].Start);
                 ReservationCalendar.BlackoutDates.Add(startUnavailableRange);
             }
         }
@@ -187,7 +196,7 @@ namespace BookingApp.View
             int unavailableToEndCount = (chosenDateRange.End - unavailableDateRanges[unavailableDateRanges.Count - 1].End.AddDays(1)).Days;
             if (unavailableToEndCount < dayNumber)
             {
-                CalendarDateRange unavailableEndRange = new CalendarDateRange(unavailableDateRanges[unavailableDateRanges.Count - 1].End.AddDays(1), chosenDateRange.End);
+                CalendarDateRange unavailableEndRange = new CalendarDateRange(unavailableDateRanges[unavailableDateRanges.Count - 1].End, chosenDateRange.End);
                 ReservationCalendar.BlackoutDates.Add(unavailableEndRange);
             }
         }
