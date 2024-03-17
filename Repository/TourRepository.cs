@@ -76,32 +76,29 @@ namespace BookingApp.Repository
             return max + 1 ;
         }
 
-        public List<Tour>? SearchTours(Tour Tour)
+        public List<Tour>? SearchTours(Tour searchCriteria)
         {
             List<Tour> filteredTours = GetAll();
-            string lowercaseCountry = Tour.Country.ToLower();
-            string lowecaseCity = Tour.City.ToLower();
-            string lowercaseLanguage = Tour.Language.ToLower();
             
-            if(!string.IsNullOrEmpty(lowercaseCountry))
+            if(!string.IsNullOrEmpty(searchCriteria.Country.ToLower()))
             {
-                filteredTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(lowercaseCountry));
+                filteredTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(searchCriteria.Country));
             }
-            if(!string.IsNullOrEmpty(lowecaseCity))
+            if(!string.IsNullOrEmpty(searchCriteria.City.ToLower()))
             {
-                filteredTours = filteredTours.Where(tour => tour.City.ToLower().Contains(lowecaseCity)).ToList();
+                filteredTours = filteredTours.Where(tour => tour.City.ToLower().Contains(searchCriteria.City)).ToList();
             }
-            if(Tour.Duration != 0)
+            if(searchCriteria.Duration != 0)
             {
-                filteredTours = filteredTours.Where(tour => tour.Duration == Tour.Duration).ToList();
+                filteredTours = filteredTours.Where(tour => tour.Duration == searchCriteria.Duration).ToList();
             }
-            if (!string.IsNullOrEmpty(lowercaseLanguage))
+            if (!string.IsNullOrEmpty(searchCriteria.Language.ToLower()))
             {
-            filteredTours = filteredTours.Where(tour => tour.Language.ToLower().Contains(lowercaseLanguage)).ToList();
+                filteredTours = filteredTours.Where(tour => tour.Language.ToLower().Contains(searchCriteria.Language)).ToList();
             }
-            if(Tour.AvailablePlaces != 0)
+            if(searchCriteria.AvailablePlaces != 0)
             {
-                filteredTours = filteredTours.Where(tour => tour.MaxTourists >= Tour.AvailablePlaces).ToList();
+                filteredTours = filteredTours.Where(tour => tour.MaxTourists >= searchCriteria.AvailablePlaces).ToList();
             }
             return filteredTours;
         }
