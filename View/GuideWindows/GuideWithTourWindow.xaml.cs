@@ -45,19 +45,29 @@ namespace BookingApp.View.GuideWindows
             };
 
             currentCheckpointIndex = Tour.CurrentCheckpoint;
-            MessageBox.Show(currentCheckpointIndex.ToString());
             UpdateDesign();
             Close_Button.Visibility = Visibility.Collapsed;
 
 
-            if(!guidedTourRepository.Exists(Guide.Id, Tour.Id))
+            ActivateTourIfNotActive(tourDTO);
+
+        }
+
+        public void ActivateTourIfNotActive(TourDTO tourDTO)
+        {
+            if (!guidedTourRepository.Exists(Guide.Id, Tour.Id))
             {
                 guidedTourRepository.Add(Guide, tourDTO.ToTour());
                 tourRepository.activateTour(tourDTO.Id);
             }
+        }
 
-        } 
 
+        public void JoinTourist_Click(object sender, RoutedEventArgs e)
+        {
+            TouristListWindow touristListWindow = new TouristListWindow(Tour.Id, currentCheckpointIndex);
+            touristListWindow.ShowDialog();
+        }
 
         private void NextCheckpointButton_Click(object sender, RoutedEventArgs e)
         {
