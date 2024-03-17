@@ -186,7 +186,7 @@ namespace BookingApp.View
         private void CheckStartRange(List<CalendarDateRange> unavailableDateRanges, int dayNumber, CalendarDateRange chosenDateRange)
         {
             int startToUnavailableCount = (unavailableDateRanges[0].Start.AddDays(-1) - chosenDateRange.Start).Days;
-            MessageBox.Show(startToUnavailableCount.ToString() + " " + unavailableDateRanges[0].Start.AddDays(-1).ToString());
+           // MessageBox.Show(startToUnavailableCount.ToString() + " " + unavailableDateRanges[0].Start.AddDays(-1).ToString());
             if (startToUnavailableCount < dayNumber)
             {
                
