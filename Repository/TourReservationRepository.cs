@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BookingApp.Repository
 {
@@ -20,7 +21,7 @@ namespace BookingApp.Repository
         public TourReservationRepository()
         {
             _serializer = new Serializer<TourReservation>();
-            _tourReservations = new List<TourReservation>();
+            _tourReservations = GetAll();
             _participantRepository = new TourParticipantRepository();
         }
 
@@ -55,7 +56,8 @@ namespace BookingApp.Repository
         public List<TourReservation> GetNotJoinedReservations(int tour_id)
         {
             List<TourReservation> tourReservations = GetReservationsByTour(tour_id);
-            foreach(TourReservation reservation in tourReservations)
+            if (tourReservations.Count == 0) return null;
+            foreach(TourReservation reservation in tourReservations.ToList())
             {
                 if (reservation.HasJoinedTour)
                 {
@@ -81,10 +83,11 @@ namespace BookingApp.Repository
             return _tourReservations.Find(res => res.Id == reservation_id);
         }
 
-        public void JoinTour(int reservation_id)
+        public void JoinTour(int reservation_id, int current_checkpoint) 
         {
             TourReservation tourReservation = GetById(reservation_id);
             tourReservation.HasJoinedTour = true;
+            tourReservation.StartCheckpoint = current_checkpoint;
             _serializer.ToCSV(FilePath, _tourReservations);
         }
 
