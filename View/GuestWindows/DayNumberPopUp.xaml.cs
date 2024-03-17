@@ -47,7 +47,7 @@ namespace BookingApp.View
             if(dateIsValid && dayNumberIsValid) {
                 ReservationCalendarWindow calendarWindow = new ReservationCalendarWindow(AccommodationRepository, SelectedAccommodation, DayNumber, User, start, end);
                 calendarWindow.ShowDialog();
-                this.Close();
+                //this.Close();
 
 
 
