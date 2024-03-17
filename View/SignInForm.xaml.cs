@@ -68,10 +68,6 @@ namespace BookingApp.View
                     }
                     else if (user.Type.ToString().Equals("guide"))
                     {
-                        TouristListWindow touristListWindow = new TouristListWindow();
-                        touristListWindow.Show();
-
-                        /*
                         if(_guidedTourRepository.HasTourCurrently(user.Id)) {
                             Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
                             GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new DTO.TourDTO(tour), user);
@@ -81,7 +77,7 @@ namespace BookingApp.View
                         {
                             GuideMainWindow guideMainWindow = new GuideMainWindow(user);
                             guideMainWindow.Show();
-                        }*/
+                        }
 
                     }
 
