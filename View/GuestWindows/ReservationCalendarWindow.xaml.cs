@@ -211,6 +211,8 @@ namespace BookingApp.View
                 ReservationInfoWindow reservationInfo = new ReservationInfoWindow(AccommodationRepository, SelectedAccommodation, User, selectedDateRange);
                 reservationInfo.ShowDialog();
 
+                this.Close();
+
 
            // }
 

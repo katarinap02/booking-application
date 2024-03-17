@@ -41,16 +41,49 @@ namespace BookingApp.View
             DateTime start = Convert.ToDateTime(txtStartDate.Text);
             DateTime end = Convert.ToDateTime(txtEndDate.Text);
 
-            if(DayNumber < SelectedAccommodation.MinReservationDays)
-                MessageBox.Show("Minimal number of reservation days is: " + SelectedAccommodation.MinReservationDays.ToString());
-            else
-            {
+            bool dateIsValid = ValidateDateInputs(start, end);
+            bool dayNumberIsValid = ValidateDayNumber(DayNumber);
+
+            if(dateIsValid && dayNumberIsValid) {
                 ReservationCalendarWindow calendarWindow = new ReservationCalendarWindow(AccommodationRepository, SelectedAccommodation, DayNumber, User, start, end);
                 calendarWindow.ShowDialog();
+                this.Close();
+
+
 
             }
+
             
             
+        }
+
+        private bool ValidateDayNumber(int dayNumber)
+        {
+            if (DayNumber < SelectedAccommodation.MinReservationDays)
+            {
+                MessageBox.Show("Minimal number of reservation days is: " + SelectedAccommodation.MinReservationDays.ToString());
+                return false;
+            }
+            else
+            {
+                return true;
+            }
+        }
+
+        private bool ValidateDateInputs(DateTime start, DateTime end)
+        {
+            if(start >= end)
+            {
+                MessageBox.Show("Dates are not valid");
+                return false;
+            }
+            else
+            {
+                
+                return true;
+            }
+
+
         }
     }
 }
