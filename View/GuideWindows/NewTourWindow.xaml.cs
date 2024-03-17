@@ -64,7 +64,7 @@ namespace BookingApp.View
             if (!string.IsNullOrEmpty(checkpoint))
             {
                 Tour.Checkpoints.Add(checkpoint);
-                txtCheckpointTextBox.Text = ""; // Clear the input textbox after adding the checkpoint
+                txtCheckpointTextBox.Text = ""; 
                 txtCheckpoints.ItemsSource = null;
                 txtCheckpoints.ItemsSource = Tour.Checkpoints;
             }
