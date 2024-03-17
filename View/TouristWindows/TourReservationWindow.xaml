@@ -1,0 +1,251 @@
+﻿<Window x:Class="BookingApp.View.TouristWindows.TourReservationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
+        mc:Ignorable="d"
+        Title="TourReservationWindow" Height="625" Width="1000" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="100"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="90"/>
+            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="100"/>
+            <RowDefinition Height="23"/>
+            <RowDefinition Height="23"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="10"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Tour Booking"
+               Grid.Row="0"
+               Grid.Column="4"
+               FontSize="25"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"
+               />
+        <Label Content="Tour name:"
+               Grid.Column="2"
+               Grid.Row="1"
+               Grid.ColumnSpan="2"
+               FontSize="20"/>
+        <Label x:Name="tourName"
+               Content="AK"
+               VerticalAlignment="Center"
+               Grid.Column="3"
+               Grid.Row="1" Grid.ColumnSpan="2" Margin="15,0,0,0"
+               FontWeight="Bold"
+               FontSize="15"/>
+        <Label Content="Change number of participants:"
+               Grid.Row="2"
+               Grid.Column="1"
+               Grid.ColumnSpan="3"
+               FontSize="18"
+               HorizontalAlignment="Right"
+               VerticalAlignment="Center"/>
+        <TextBox x:Name="Participants"
+                 Text="{Binding Path=ParticipantCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                 IsEnabled="False"
+                 Grid.Row="2"
+                 Grid.Column="4"
+                 HorizontalAlignment="Left"
+                 VerticalAlignment="Center"
+                 TextAlignment="Justify"
+                 Width="30"
+                 Height="30"/>
+        <Button x:Name="ParticipantsPlus"
+                Grid.Column="4"
+                Grid.Row="2"
+                HorizontalAlignment="Left"
+                Width="30"
+                Height="30"
+                Margin="40, -10,0,25"
+                Click="ParticipantsPlus_Click">
+            <Image Source="/View/TouristWindows/plus.png"
+                   Width="25"
+                   Height="25"
+                   HorizontalAlignment="Center"/>
+        </Button>
+        <Button x:Name="ParticipantsMinus"
+                Grid.Column="4"
+                Grid.Row="2"
+                HorizontalAlignment="Left"
+                Height="30"
+                Width="30" 
+                Margin="40,34,0,0"
+                Click="ParticipantsMinus_Click">
+            <Image Source="/View/TouristWindows/minus.png"
+                   Width="22" Height="25"/>
+        </Button>
+        <Label Content="available places:"
+               Grid.Column="2"
+               Grid.Row="3"
+               FontSize="14"
+               Grid.ColumnSpan="2"
+               HorizontalAlignment="Right"/>
+        <Label x:Name="availablePlaces"
+               Grid.Column="4"
+               Grid.Row="3"
+               FontSize="15"
+               HorizontalContentAlignment="Left"
+               />
+
+        <GroupBox x:Name="ParticipantInformationGroupBox"
+                  Grid.Row="5" 
+                  Grid.Column="1" 
+                  Grid.RowSpan="5"
+                  Grid.ColumnSpan="4"
+                  Margin="83,0,115,88"
+                  Header="Participant Information">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="112"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="15"/>
+                </Grid.RowDefinitions>
+                <Label Content="Name:"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       HorizontalContentAlignment="Left"
+                       VerticalContentAlignment="Center"/>
+                <Label Content="Last name:"
+                       Grid.Column="0"
+                       Grid.Row="2"
+                       HorizontalContentAlignment="Left"
+                       VerticalContentAlignment="Center"/>
+                <Label Content="Years:"
+                       Grid.Column="0"
+                       Grid.Row="3"
+                       HorizontalContentAlignment="Left"
+                       VerticalContentAlignment="Center"/>
+
+                <TextBox x:Name="name"
+                         Grid.Column="1"
+                         Grid.Row="1"
+                         Grid.ColumnSpan="2"
+                         HorizontalAlignment="Left"
+                         Width="100"
+                         Height="25"/>
+
+                <TextBox x:Name="lastName"
+                         Grid.Column="1"
+                         Grid.Row="2"
+                         Grid.ColumnSpan="2"
+                         HorizontalAlignment="Left"
+                         Width="100"
+                         Height="25"/>
+                <TextBox x:Name="years"
+                         Grid.Column="1"
+                         Grid.Row="3"
+                         HorizontalAlignment="Left"
+                         TextAlignment="Justify"
+                         Width="31"
+                         Height="25"
+                         PreviewTextInput="years_PreviewTextInput"
+                         LostFocus="years_LostFocus" Margin="0,10,0,10"/>
+                <Button x:Name="YearsPlus"
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        HorizontalAlignment="Center"
+                        Width="26"
+                        Height="27"
+                        Click="YearsPlus_Click" Margin="0,9,-5,9">
+                    <Image Source="/View/TouristWindows/plus.png"
+                           Width="24"
+                           Height="25"
+                           HorizontalAlignment="Center"/>
+                </Button>
+                <Button x:Name="YearsMinus"
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        HorizontalAlignment="Left"
+                        VerticalAlignment="Center"
+                        Height="27"
+                        Width="26"
+                        Click="YearsMinus_Click" Margin="71,0,0,0">
+                    <Image Source="/View/TouristWindows/minus.png"
+                           Height="25"
+                           Width="22"
+                           HorizontalAlignment="Center"/>
+                </Button>
+                <Button x:Name="AddButton"
+                        Grid.Row="1"
+                        Grid.Column="4"
+                        Grid.RowSpan="3"
+                        Width="50"
+                        Height="50"
+                        Click="AddParticipantButton_Click" Margin="60, 0, 0, 0">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="25" Background="LightBlue" Padding="10">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="../../Resources/Images/add.png"
+                                           Height="auto"
+                                           Width="auto"
+                                           HorizontalAlignment="Center"/>
+                                </StackPanel>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </GroupBox>
+
+        <Button Content="Close"
+                Click="CloseButton_Click"
+                Grid.Row="12"
+                Grid.Column="4"
+                Width="60"
+                HorizontalAlignment="Left"/>
+
+        <Label Content="Added Participants:"
+               FontWeight="Bold"
+               Grid.Row="1"
+               Grid.Column="5"/>
+        <ListBox x:Name="ParticipantsListBox"
+               Grid.Row="2"
+               Grid.Column="5"
+               Grid.RowSpan="8"
+               Margin="0,0,0,10"/>
+        <Button Content="Remove Participant"
+                FontWeight="Bold"
+                x:Name="removeParticipant"
+                Background="IndianRed"
+                Grid.Row="10"
+                Grid.Column="5"
+                Width="130"
+                Height="21"
+                Click="removeParticipant_Click"/>
+
+        <Button Content="Book"
+                Click="BookButton_Click"
+                Grid.Row="12"
+                Grid.Column="4"
+                Width="60"
+                HorizontalAlignment="Right"/>
+
+    </Grid>
+</Window>

@@ -91,7 +91,7 @@ namespace BookingApp.View
             else
             {
                 Comment newComment = new Comment(DateTime.Now, Text, LoggedInUser);
-                Comment savedComment = _repository.Save(newComment);
+                Comment savedComment = _repository.Add(newComment);
                 CommentsOverview.Comments.Add(savedComment);
             }
             
