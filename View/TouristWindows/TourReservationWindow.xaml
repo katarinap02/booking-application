@@ -40,6 +40,18 @@
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
                />
+        <Label Content="Tour name:"
+               Grid.Column="2"
+               Grid.Row="1"
+               Grid.ColumnSpan="2"
+               FontSize="20"/>
+        <Label x:Name="tourName"
+               Content="AK"
+               VerticalAlignment="Center"
+               Grid.Column="3"
+               Grid.Row="1" Grid.ColumnSpan="2" Margin="15,0,0,0"
+               FontWeight="Bold"
+               FontSize="15"/>
         <Label Content="Change number of participants:"
                Grid.Row="2"
                Grid.Column="1"
