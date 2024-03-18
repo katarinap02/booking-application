@@ -95,7 +95,9 @@ namespace BookingApp.View
 
 
             }
-            CheckDaysBetween(unavailableDateRanges, dayNumber, chosenDateRange);
+
+            if(unavailableDateRanges.Count > 0) 
+               CheckDaysBetween(unavailableDateRanges, dayNumber, chosenDateRange);
 
 
 
@@ -119,7 +121,9 @@ namespace BookingApp.View
 
 
             }
-            CheckDaysBetween(unavailableDateRanges, dayNumber, newDateRange);
+
+            if(unavailableDateRanges.Count > 0)
+                CheckDaysBetween(unavailableDateRanges, dayNumber, newDateRange);
 
 
 

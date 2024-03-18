@@ -78,7 +78,7 @@ namespace BookingApp.View
                             GuideMainWindow guideMainWindow = new GuideMainWindow(user);
                             guideMainWindow.Show();
                         }
-                        
+
                     }
 
                     else if (user.Type.ToString().Equals("guest"))
