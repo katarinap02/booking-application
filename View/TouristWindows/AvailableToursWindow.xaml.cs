@@ -34,7 +34,7 @@ namespace BookingApp.View.TouristWindows
             NewSelectedTour = selectedTour;
             InsertedNumberOfParticipants = insertedNumberOfParticipans;
             _repository = new TourRepository();
-            Tours = new ObservableCollection<Tour>(_repository.GetTourByCountryWithAvailablePlaces(NewSelectedTour.Country));
+            Tours = new ObservableCollection<Tour>(_repository.GetTourByCityWithAvailablePlaces(NewSelectedTour.Country));
         }
 
         private void BookButton_Click(object sender, RoutedEventArgs e)

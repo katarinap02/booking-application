@@ -82,11 +82,11 @@ namespace BookingApp.Repository
             
             if(!string.IsNullOrEmpty(searchCriteria.Country.ToLower()))
             {
-                filteredTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(searchCriteria.Country));
+                filteredTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(searchCriteria.Country.ToLower())).ToList();
             }
             if(!string.IsNullOrEmpty(searchCriteria.City.ToLower()))
             {
-                filteredTours = filteredTours.Where(tour => tour.City.ToLower().Contains(searchCriteria.City)).ToList();
+                filteredTours = filteredTours.Where(tour => tour.City.ToLower().Contains(searchCriteria.City.ToLower())).ToList();
             }
             if(searchCriteria.Duration != 0)
             {
@@ -94,7 +94,7 @@ namespace BookingApp.Repository
             }
             if (!string.IsNullOrEmpty(searchCriteria.Language.ToLower()))
             {
-                filteredTours = filteredTours.Where(tour => tour.Language.ToLower().Contains(searchCriteria.Language)).ToList();
+                filteredTours = filteredTours.Where(tour => tour.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();
             }
             if(searchCriteria.AvailablePlaces != 0)
             {
@@ -103,9 +103,9 @@ namespace BookingApp.Repository
             return filteredTours;
         }
 
-        public List<Tour> GetTourByCountryWithAvailablePlaces(string country)
+        public List<Tour> GetTourByCityWithAvailablePlaces(string city)
         {
-            return _tours.FindAll(tour => tour.Country.ToLower().Equals(country.ToLower())).Where(tour => tour.AvailablePlaces > 0).ToList();
+            return _tours.FindAll(tour => tour.City.ToLower().Equals(city.ToLower())).Where(tour => tour.AvailablePlaces > 0).ToList();
         }
 
         public List<Tour>? findToursNeedingGuide() 

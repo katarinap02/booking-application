@@ -38,7 +38,7 @@ namespace BookingApp.View.TouristWindows
             SelectedTour = selectedTour;
 
             _repository = new TourRepository();
-            Tours = new ObservableCollection<Tour>(_repository.GetTourByCountryWithAvailablePlaces(SelectedTour.Country));
+            Tours = new ObservableCollection<Tour>(_repository.GetTourByCityWithAvailablePlaces(SelectedTour.City));
 
             NumberOfParticipants.Text = "1";
 
