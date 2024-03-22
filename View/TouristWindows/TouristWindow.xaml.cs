@@ -4,6 +4,7 @@ using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -27,12 +28,40 @@ namespace BookingApp.View.TouristWindows
         public ObservableCollection<Tour> Tours { get; set; }
         public Tour SelectedTour {  get; set; }
         private readonly TourRepository _repository;
-        public TouristWindow()
+
+        #region Property
+        private string _username;
+        public string Username
+        {
+            get => _username;
+            set
+            {
+                if (value != _username)
+                {
+                    _username = value;
+                    OnPropertyChanged(nameof(Username));
+                }
+            }
+        }
+        #endregion
+        #region PropertyChanged
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        #endregion
+
+        public TouristWindow(string username)
         {
             InitializeComponent();
             DataContext = this;
             _repository = new TourRepository();
             Tours = new ObservableCollection<Tour>(_repository.GetAll());
+            Username = username;
 
         }
 
@@ -199,6 +228,26 @@ namespace BookingApp.View.TouristWindows
             DurationSearch.Text = "0";
             LanguageSearch.Text = "";
             PeopleSearch.Text = "0";
+        }
+
+        private void NotificationButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MenuButton_Checked(object sender, RoutedEventArgs e)
+        {
+            NotifyLogoutPanel.Visibility = Visibility.Visible;
+        }
+
+        private void MenuButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            NotifyLogoutPanel.Visibility = Visibility.Collapsed;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace BookingApp.View.TouristWindows
     /// <summary>
     /// Interaction logic for TourReservationWindow.xaml
     /// </summary>
-    public partial class TourReservationWindow : Window, INotifyPropertyChanged
+    public partial class TourReservationWindow : Window
     {
         public Tour SelectedTour { get; set; }
         private readonly TourParticipantRepository _tourParticipantRepository;
