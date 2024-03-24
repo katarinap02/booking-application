@@ -87,7 +87,7 @@
 
         <StackPanel Grid.Row="10" HorizontalAlignment="Center" Orientation="Horizontal" Margin="0,80,0,0" Width="240">
             <Button Width="100" Height="30" Margin="10" Content="Add Tour" Click="AddTour_Click"/>
-            <Button Width="100" Height="30" Margin="10" Content="Exit" />
+            <Button Width="100" Height="30" Margin="10" Content="Exit" Click="Exit_Click"/>
         </StackPanel>
 
 

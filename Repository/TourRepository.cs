@@ -30,7 +30,6 @@ namespace BookingApp.Repository
         {
             return _serializer.FromCSV(FilePath);
         }
-        //add za sada
 
         public void Add(Tour tour) 
         {
@@ -50,6 +49,10 @@ namespace BookingApp.Repository
             if(personalIds.Count == 0) {
                 max = -1;
             }
+            else
+            {
+                max = personalIds.Max();
+            }
 
             return max + 1;
         }
@@ -66,42 +69,43 @@ namespace BookingApp.Repository
             {
                 max = -1;
             }
+            else
+            {
+                max = groupIds.Max();
+            }
             return max + 1 ;
         }
 
-        public List<Tour>? FindToursBy(string country, string city, float duration, string language, int numberOfPeople)
+        public List<Tour>? SearchTours(Tour searchCriteria)
         {
-            List<Tour> allTours = GetAll();
-            string lowercaseCountry = country.ToLower();
-            string lowecaseCity = city.ToLower();
-            string lowercaseLanguage = language.ToLower();
+            List<Tour> filteredTours = GetAll();
             
-            if(country != "")
+            if(!string.IsNullOrEmpty(searchCriteria.Country.ToLower()))
             {
-                allTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(lowercaseCountry));
+                filteredTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(searchCriteria.Country.ToLower())).ToList();
             }
-            if(city != "")
+            if(!string.IsNullOrEmpty(searchCriteria.City.ToLower()))
             {
-                allTours = allTours.Where(tour => tour.City.ToLower().Contains(lowecaseCity)).ToList();
+                filteredTours = filteredTours.Where(tour => tour.City.ToLower().Contains(searchCriteria.City.ToLower())).ToList();
             }
-            if(duration != 0)
+            if(searchCriteria.Duration != 0)
             {
-                allTours = allTours.Where(tour => tour.Duration == duration).ToList();
+                filteredTours = filteredTours.Where(tour => tour.Duration == searchCriteria.Duration).ToList();
             }
-            if (language != "")
+            if (!string.IsNullOrEmpty(searchCriteria.Language.ToLower()))
             {
-            allTours = allTours.Where(tour => tour.Language.ToLower() == lowercaseLanguage).ToList();
+                filteredTours = filteredTours.Where(tour => tour.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();
             }
-            if(numberOfPeople != 0)
+            if(searchCriteria.AvailablePlaces != 0)
             {
-                allTours = allTours.Where(tour => tour.MaxTourists >= numberOfPeople).ToList();
+                filteredTours = filteredTours.Where(tour => tour.MaxTourists >= searchCriteria.AvailablePlaces).ToList();
             }
-            return allTours;
+            return filteredTours;
         }
 
-        public List<Tour> GetTourByCountryWithAvailablePlaces(string country)
+        public List<Tour> GetTourByCityWithAvailablePlaces(string city)
         {
-            return _tours.FindAll(tour => tour.Country.ToLower().Equals(country.ToLower())).Where(tour => tour.AvailablePlaces > 0).ToList();
+            return _tours.FindAll(tour => tour.City.ToLower().Equals(city.ToLower())).Where(tour => tour.AvailablePlaces > 0).ToList();
         }
 
         public List<Tour>? findToursNeedingGuide() 
@@ -110,12 +114,12 @@ namespace BookingApp.Repository
             List<Tour> ret = new List<Tour>();
             foreach(Tour tour in allTours)
             {
-                if(tour.Date.Date == DateTime.Now.Date && tour.Status==TourStatus.gotGuide)
+                if (tour.Date.Date == DateTime.Now.Date && tour.Status==TourStatus.inPreparation)
                 {
                     ret.Add(tour);
                 }
             }
-            return null;
+            return ret;
         }
 
         public Tour? UpdateAvailablePlaces(Tour tour, int reducer)
@@ -158,6 +162,29 @@ namespace BookingApp.Repository
         {
             tour.Status = TourStatus.gotGuide;
             //GuidedTourRepository.Add(guide, tour);
+        }
+
+        public void finnishTour(int id)
+        {
+            Tour tour = GetTourById(id);
+            if(tour == null) return;
+            tour.Status = TourStatus.Finnished;
+            _serializer.ToCSV(FilePath, _tours);
+        }
+
+        public void activateTour(int id) {
+            Tour tour = GetTourById(id);
+            if (tour == null) return;
+            tour.Status = TourStatus.Active;
+            _serializer.ToCSV(FilePath, _tours);
+        }
+
+        public void nextCheckpoint(int id)
+        {
+            Tour tour = GetTourById(id);
+            if (tour == null) return;
+            tour.currentCheckpoint++;
+            _serializer.ToCSV(FilePath, _tours);
         }
 
     }

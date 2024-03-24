@@ -1,5 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -14,7 +15,8 @@ namespace BookingApp.View
     {
 
         private readonly UserRepository _repository;
-
+        private readonly GuidedTourRepository _guidedTourRepository;
+        private readonly TourRepository _tourRepository;
         private string _username;
         public string Username
         {
@@ -41,6 +43,8 @@ namespace BookingApp.View
             InitializeComponent();
             DataContext = this;
             _repository = new UserRepository();
+            _guidedTourRepository = new GuidedTourRepository();
+            _tourRepository = new TourRepository();
         }
 
         private void SignIn(object sender, RoutedEventArgs e)
@@ -64,8 +68,17 @@ namespace BookingApp.View
                     }
                     else if (user.Type.ToString().Equals("guide"))
                     {
-                        NewTourWindow newTourWindow = new NewTourWindow();
-                        newTourWindow.Show();
+                        if(_guidedTourRepository.HasTourCurrently(user.Id)) {
+                            Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
+                            GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new DTO.TourDTO(tour), user);
+                            guideWithTourWindow.Show();
+                        }
+                        else
+                        {
+                            GuideMainWindow guideMainWindow = new GuideMainWindow(user);
+                            guideMainWindow.Show();
+                        }
+
                     }
 
                     else if (user.Type.ToString().Equals("guest"))
@@ -73,7 +86,6 @@ namespace BookingApp.View
                         GuestWindow guestWindow = new GuestWindow(user);
                         guestWindow.ShowDialog();
                     }
-                    //commentsOverview.Show();
                     Close();
 
                 } 

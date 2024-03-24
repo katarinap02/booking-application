@@ -44,6 +44,8 @@ namespace BookingApp.View
                 }
             
             }
+            MessageBox.Show("Tour added");
+            Close();
         }
 
         private void AddDate_Click(object sender, RoutedEventArgs e)
@@ -62,7 +64,7 @@ namespace BookingApp.View
             if (!string.IsNullOrEmpty(checkpoint))
             {
                 Tour.Checkpoints.Add(checkpoint);
-                txtCheckpointTextBox.Text = ""; // Clear the input textbox after adding the checkpoint
+                txtCheckpointTextBox.Text = ""; 
                 txtCheckpoints.ItemsSource = null;
                 txtCheckpoints.ItemsSource = Tour.Checkpoints;
             }
@@ -120,5 +122,9 @@ namespace BookingApp.View
             }
         }
 
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -80,7 +80,7 @@ namespace BookingApp.View.TouristWindows
 
             TourParticipantDTOs = new List<TourParticipantDTO>();
             TourParticipantsListBox = new List<TourParticipantDTO>();
-            InitializeAvailablePlacesLabel();
+            InitializeTourDetailsLabels();
             InitializeParticipantInformationGroupBox();
 
         }
@@ -93,10 +93,11 @@ namespace BookingApp.View.TouristWindows
                 setGroupBoxVisibility(true);
         }
 
-        private void InitializeAvailablePlacesLabel()
+        private void InitializeTourDetailsLabels()
         {
             availablePlaces.Foreground = Brushes.Green;
             availablePlaces.Content = SelectedTour.AvailablePlaces;
+            tourName.Content = SelectedTour.Name;
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
@@ -128,7 +129,6 @@ namespace BookingApp.View.TouristWindows
 
         private void ReduceNumberOfAvailablePlaces()
         {
-            SelectedTour.AvailablePlaces -= TourParticipantDTOs.Count;
             _tourRepository.UpdateAvailablePlaces(SelectedTour, TourParticipantDTOs.Count);
         }
         private void AddParticipantButton_Click(object sender, RoutedEventArgs e)

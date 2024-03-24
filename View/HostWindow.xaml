@@ -20,14 +20,15 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="2" Grid.Column="1">
+            <Label Content="Please rate these guests:" FontWeight="Bold" Margin="0 0 0 5"/>
             <DataGrid x:Name="AccommodationsDataGrid" ItemsSource="{Binding Accommodations, UpdateSourceTrigger=PropertyChanged}"
-               SelectedItem="{Binding SelectedAccommodation,UpdateSourceTrigger=PropertyChanged}"
-              IsReadOnly="True" SelectionMode="Single" 
-          AutoGenerateColumns="False" Height="325" HeadersVisibility="Column" FontSize="13">
+       SelectedItem="{Binding SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}"
+       IsReadOnly="True" SelectionMode="Single" 
+       AutoGenerateColumns="False" Height="325" HeadersVisibility="Column" FontSize="13">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id guest" Binding="{Binding GuestId}" Width="200"/>
                     <DataGridTextColumn Header="Id Accommodation" Binding="{Binding AccommodationId}" Width="200"/>
-                    <DataGridTextColumn Header="End of the visit to the accommodation " Binding="{Binding EndDate}" Width="*"/>
+                    <DataGridTextColumn Header="End of the visit to the accommodation" Binding="{Binding EndDate}" Width="*"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>

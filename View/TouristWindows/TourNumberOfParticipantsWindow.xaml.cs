@@ -38,7 +38,7 @@ namespace BookingApp.View.TouristWindows
             SelectedTour = selectedTour;
 
             _repository = new TourRepository();
-            Tours = new ObservableCollection<Tour>(_repository.GetTourByCountryWithAvailablePlaces(SelectedTour.Country));
+            Tours = new ObservableCollection<Tour>(_repository.GetTourByCityWithAvailablePlaces(SelectedTour.City));
 
             NumberOfParticipants.Text = "1";
 
@@ -60,6 +60,7 @@ namespace BookingApp.View.TouristWindows
                 }
                 CloseButton.HorizontalAlignment = HorizontalAlignment.Center;
                 ConfirmButton.Visibility = Visibility.Collapsed;
+                MessageBox.Show("No more places for the selected tour, please select another one!");
             }
             else
             {
@@ -102,6 +103,12 @@ namespace BookingApp.View.TouristWindows
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
             InsertedNumberOfParticipants = Convert.ToInt32(NumberOfParticipants.Text);
+
+            if(InsertedNumberOfParticipants > Convert.ToInt32(availablePlaces.Content))
+            {
+                MessageBox.Show("Not enough places for the reservation");
+                return;
+            }
             TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants);
             tourReservationWindow.ShowDialog();
             Close();

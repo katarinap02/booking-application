@@ -7,11 +7,6 @@
         mc:Ignorable="d"
         Title="TouristWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
     <DockPanel>
-        <Menu DockPanel.Dock="Top">
-            <MenuItem Header="File"/>
-            <MenuItem Header="Edit"/>
-            <MenuItem Header="Help"/>
-        </Menu>
         <Grid>
 
             <Grid.ColumnDefinitions>
@@ -108,6 +103,7 @@
                            Grid.Row="3" 
                            FontSize="14" />
                     <TextBox x:Name="DurationSearch"
+                             IsEnabled="False"
                              PreviewTextInput="DurationSearch_PreviewTextInput"
                              LostFocus="DurationSearch_LostFocus"
                              TextAlignment="Justify"
@@ -139,7 +135,8 @@
                            Content="Number of" 
                            Width="102" Grid.Row="5" 
                            FontSize="14"/>
-                    <TextBox x:Name="PeopleSearch" 
+                    <TextBox x:Name="PeopleSearch"
+                             IsEnabled="False"
                              PreviewTextInput="PeopleSearch_PreviewTextInput"
                              LostFocus="PeopleSearch_LostFocus"
                              TextAlignment="Justify"
@@ -218,27 +215,28 @@
             </GroupBox>
 
 
-            <StackPanel Grid.Row="7" Grid.Column="1" Grid.ColumnSpan="8">
-                <DataGrid ItemsSource="{Binding Tours}"
+            <DataGrid ItemsSource="{Binding Tours}"
                           SelectedItem="{Binding Path=SelectedTour}"
+                          Grid.Row="7"
+                          Grid.Column="1"
+                          Grid.ColumnSpan="7"
                           IsReadOnly="True"
                           SelectionMode="Single"
                           AutoGenerateColumns="False" Height="465" HeadersVisibility="Column" FontSize="13">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
-                        <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="200"/>
-                        <DataGridTextColumn Header="City" Binding="{Binding City}" Width="200"/>
-                        <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="150"/>
-                        <DataGridTemplateColumn Header="Book">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Book a tour" Click="BookButton_Click" Width="100" Margin="1, 5, 1, 5" Height="22"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </StackPanel>
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
+                    <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="200"/>
+                    <DataGridTextColumn Header="City" Binding="{Binding City}" Width="200"/>
+                    <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="150"/>
+                    <DataGridTemplateColumn Header="Book">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Book a tour" Click="BookButton_Click" Width="100" Margin="1, 5, 1, 5" Height="22"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+            </DataGrid>
         </Grid>
     </DockPanel>
 </Window>
