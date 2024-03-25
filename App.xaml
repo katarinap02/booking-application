@@ -14,6 +14,7 @@
             <Setter Property="Background" Value="{StaticResource AccentColorN}"/>
             <Setter Property="BorderBrush" Value="{StaticResource AccentColorN}"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Arial"/>
             <Setter Property="FontSize" Value="30"/>
 
         </Style>
@@ -21,6 +22,7 @@
         <Style x:Key="HeaderStyleN" TargetType="Label">
             <Setter Property="Foreground" Value="{StaticResource TextColorN}"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Arial"/>
         </Style>
         <!-- *********************** -->
     </Application.Resources>

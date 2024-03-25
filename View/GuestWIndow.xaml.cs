@@ -29,6 +29,8 @@ namespace BookingApp.View
             AccommodationRepository = new AccommodationRepository();
             this.User = user;
             Main.Content = new HomePage(AccommodationRepository, User);
+            Main.DataContext = this;
+            
         }
 
        
