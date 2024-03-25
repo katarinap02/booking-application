@@ -11,10 +11,17 @@
     <Grid>
 
         <Rectangle HorizontalAlignment="Left" Height="450" Stroke="Black" VerticalAlignment="Center" Width="776" Fill="White"/>
-        <Border BorderBrush="Purple" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="101,23,412,53"/>
+        <Border BorderBrush="Purple" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="101,23,412,53">
+            <Grid>
+                <Label Content="Reservation" FontSize="23" Margin="76,44,58,287" Foreground="Purple" FontWeight="Bold"/>
+                <Label Content="Please choose days and number of" FontSize="16" Margin="10,83,-157,255"/>
+                <Label Content="people for your reservation." FontSize="16" Margin="36,102,34,237"/>
+            </Grid>
+        </Border>
         <Border BorderBrush="Purple" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="400,23,113,160">
             <Grid>
                 <Calendar x:Name="ReservationCalendar" Height="164" Width="170" SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="56,10,57,89"/>
+                <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,193,0,0" VerticalAlignment="Top" Click="SelectDate_Click" Width="90" Height="25" Foreground="AliceBlue" Background="Purple" FontWeight="Bold"/>
 
             </Grid>
         </Border>
@@ -22,12 +29,11 @@
             <Grid>
                 <Label Content="Number of people: " HorizontalAlignment="Left" Margin="31,23,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="txtGuestNumber" HorizontalAlignment="Left" Margin="144,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109"/>
-                <Button Content="Reserve" HorizontalAlignment="Center" Margin="0,54,0,0" VerticalAlignment="Top" Width="80" Click="Reserve_Click" Height="25" Foreground="AliceBlue" Background="Purple"/>
+                <Button Content="Reserve" HorizontalAlignment="Center" Margin="0,54,0,0" VerticalAlignment="Top" Width="80" Click="Reserve_Click" Height="25" Foreground="AliceBlue" Background="Purple" FontWeight="Bold"/>
 
             </Grid>
         </Border>
 
-        <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Left" Margin="498,0,0,0" VerticalAlignment="Center" Click="SelectDate_Click" Width="90" Height="25" Foreground="AliceBlue" Background="Purple"/>
 
     </Grid>
 </Page>
