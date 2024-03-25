@@ -4,12 +4,43 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
+      xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1080" d:DesignWidth="1920"
       Title="AccommodationsPage">
 
     <Grid>
-        <Rectangle HorizontalAlignment="Left" Height="450" Stroke="Black" VerticalAlignment="Center" Width="776" Fill="White"/>
+        <Rectangle HorizontalAlignment="Center" Height="1080" Stroke="Black" VerticalAlignment="Center" Width="1920" Fill="{StaticResource BackgroundColorN}"/>
+        <controls:AccommodationCard DataContext="{Binding Accommodations}" Margin="366,-99,-366,99"></controls:AccommodationCard>
+        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,221,1121,400">
+            <Grid x:Name="SearchSection">
+                <Label Content="Search accommodations" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="94,37,-94,-37"/>
+                <Label Content="Name:" HorizontalAlignment="Left" Margin="66,89,0,0" VerticalAlignment="Top" Width="74" FontSize="16" RenderTransformOrigin="0.439,1.63"/>
+                <Label Content="City:" HorizontalAlignment="Left" Margin="66,125,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="-8.542,2.786" FontSize="16"/>
+                <Label Content="Type:" HorizontalAlignment="Left" Margin="66,208,0,0" VerticalAlignment="Top" Width="74" FontSize="16"/>
+                <Label Content="Max. guest number:" HorizontalAlignment="Left" Margin="66,250,0,0" VerticalAlignment="Top" Width="160" FontSize="16"/>
+                <Label Content="Minimal number of reservation days:" HorizontalAlignment="Left" Margin="66,287,0,0" VerticalAlignment="Top" Width="266" FontSize="16"/>
+                <TextBox x:Name="txtSearchName" HorizontalAlignment="Left" Margin="382,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118" />
+                <TextBox x:Name="txtSearchCity" HorizontalAlignment="Left" Margin="382,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
+                <TextBox x:Name="txtSearchGuestNumber" HorizontalAlignment="Left" Margin="382,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
+                <TextBox x:Name="txtSearchReservationDays" HorizontalAlignment="Left" Margin="382,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
+                <Button Content="Search" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Width="142" Click="SearchButton_Click" RenderTransformOrigin="-2.474,0.401" Style="{StaticResource ButtonStyleN}" FontSize="20" Height="33"/>
+                <Label FontSize="16" Content="Country:" HorizontalAlignment="Left" Margin="66,165,0,0" VerticalAlignment="Top" Width="74"/>
+                <TextBox x:Name="txtSearchCountry" HorizontalAlignment="Left" Margin="382,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
+                <TextBox x:Name="txtSearchType" HorizontalAlignment="Left" Margin="382,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
+
+            </Grid>
+        </Border>
+
+        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,700,1121,112">
+            <Grid>
+                <Label Content="Anywhere / Anytime" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="132,26,-131,-26"/>
+                <TextBlock TextWrapping="Wrap" FontSize="20" Margin="81,78,93,-78" TextAlignment="Center">
+                    If you wish to see all available accommodations according to your requests, choose below option:
+                </TextBlock>
+                <Button x:Name="AnywhereAnytimeButton" Content="Anywhere/Anytime" Style="{StaticResource ButtonStyleN}" FontSize="20" Margin="170,187,170,44" Height="33"/>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

@@ -13,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookingApp.View.GuestPages
+namespace BookingApp.View.GuestControls
 {
     /// <summary>
-    /// Interaction logic for AccommodationsPage.xaml
+    /// Interaction logic for DataCard.xaml
     /// </summary>
-    public partial class AccommodationsPage : Page
+    public partial class AccommodationCard : UserControl
     {
-        public AccommodationsPage()
+        public AccommodationCard()
         {
             InitializeComponent();
-            DataContext = this;
         }
     }
 }

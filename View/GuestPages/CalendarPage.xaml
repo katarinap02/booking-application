@@ -25,14 +25,14 @@
                 </TransformGroup>
             </Rectangle.RenderTransform>
         </Rectangle>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="101,75,1030,53">
+        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="101,75,1030,53">
             <Grid>
                 <Label Content="Reservation" FontSize="55" Margin="207,102,-73,229" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
                 <Label Content="Please choose days and number of" FontSize="35" Margin="84,200,-231,138"/>
                 <Label Content="people for your reservation." FontSize="35" Margin="140,236,-69,104"/>
             </Grid>
         </Border>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="922,75,209,272">
+        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="922,75,209,272">
             <Grid x:Name="CalendarSection">
                 <Calendar x:Name="ReservationCalendar"  BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="196,118,196,231"  Background="White">
                     <Calendar.LayoutTransform>
@@ -44,7 +44,7 @@
 
             </Grid>
         </Border>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30, 30, 30, 30" Margin="922,815,209,53">
+        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="30, 30, 30, 30" Margin="922,815,209,53">
             <Grid x:Name="PeopleNumberSection">
                 <Label Content="Number of people: " HorizontalAlignment="Left" Margin="146,48,0,0" VerticalAlignment="Top" Height="52" Width="264" FontSize="30"/>
                 <TextBox x:Name="txtGuestNumber" HorizontalAlignment="Left" Margin="432,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" Height="40"/>

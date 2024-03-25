@@ -47,7 +47,7 @@ namespace BookingApp.View
 
         private void AccommodationsClick(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new AccommodationsPage();
         }
 
         private void ForumsClick(object sender, RoutedEventArgs e)
