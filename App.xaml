@@ -5,20 +5,21 @@
              StartupUri="View/SignInForm.xaml">
     <Application.Resources>
         <!-- Natasini stilovi-->
-        <SolidColorBrush x:Key="ButtonText" Color="#EEE5E9"/>
-        <SolidColorBrush x:Key="BackgroundColor" Color="#EEE5E9"/>
-        <SolidColorBrush x:Key="AccentColor" Color="#6665DD"/>
-        <SolidColorBrush x:Key="TextColor" Color="#3423A6"/>
-        <Style x:Key="ButtonStyle" TargetType="Button">
-            <Setter Property="Foreground" Value="{StaticResource ButtonText}"/>
-            <Setter Property="Background" Value="{StaticResource AccentColor}"/>
-            <Setter Property="BorderBrush" Value="{StaticResource AccentColor}"/>
+        <SolidColorBrush x:Key="ButtonTextN" Color="#F4F4ED"/>
+        <SolidColorBrush x:Key="BackgroundColorN" Color="#F4F4ED"/>
+        <SolidColorBrush x:Key="AccentColorN" Color="#6665DD"/>
+        <SolidColorBrush x:Key="TextColorN" Color="#3423A6"/>
+        <Style x:Key="ButtonStyleN" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource ButtonTextN}"/>
+            <Setter Property="Background" Value="{StaticResource AccentColorN}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentColorN}"/>
             <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontSize" Value="30"/>
 
         </Style>
 
-        <Style x:Key="HeaderStyle" TargetType="Label">
-            <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
+        <Style x:Key="HeaderStyleN" TargetType="Label">
+            <Setter Property="Foreground" Value="{StaticResource TextColorN}"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
         <!-- *********************** -->
