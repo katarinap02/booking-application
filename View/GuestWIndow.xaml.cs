@@ -1,5 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.View.GuestPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,12 +28,38 @@ namespace BookingApp.View
             InitializeComponent();
             AccommodationRepository = new AccommodationRepository();
             this.User = user;
+            Main.Content = new HomePage(AccommodationRepository, User);
         }
 
-        public void ShowAccommodations_Click(object sender, RoutedEventArgs e)
+       
+
+        private void HomeClick(object sender, RoutedEventArgs e)
         {
-            ShowAndSearchAccommodations showAndSearchAccommodations = new ShowAndSearchAccommodations(AccommodationRepository, User);
-            showAndSearchAccommodations.ShowDialog();
+            Main.Content = new HomePage(AccommodationRepository, User);
+        }
+
+        private void ProfileClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AccommodationsClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void ForumsClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void AboutClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void HelpClick(object sender, RoutedEventArgs e)
+        {
 
         }
     }

@@ -5,22 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View"
         mc:Ignorable="d"
-        Title="GuestWindow" Height="450" Width="800"
+        Title="GuestWindow" Height="1080" Width="1920"
         WindowStartupLocation="CenterScreen">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="760"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="15"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="2" Grid.Column="1"/>
-        <Button Content="Show, search and reserve accommodations" Grid.Column="1" Margin="81,36,388,303" Grid.Row="2" Click="ShowAccommodations_Click"/>
+        <Grid>
+            <Rectangle HorizontalAlignment="Center" Height="50" Stroke="Black" VerticalAlignment="Top" Width="1920" Fill="{StaticResource AccentColorN}"/>
+
+            <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
+                <Button x:Name="HomeButton" Content="Home" Width="150" Style="{StaticResource ButtonStyleN}" Click="HomeClick"/>
+                <Button Content="Profile" Width="150" Style="{StaticResource ButtonStyleN}" Click="ProfileClick"/>
+                <Button Content="Accommodations" Width="280" Style="{StaticResource ButtonStyleN}" Click="AccommodationsClick"/>
+                <Button Content="Forums" Width="150" Style="{StaticResource ButtonStyleN}" Click="ForumsClick"/>
+                <Button Content="About" Width="150" Style="{StaticResource ButtonStyleN}" Click="AboutClick"/>
+                <Button Content="Help" Width="150" Style="{StaticResource ButtonStyleN}" Click="HelpClick"/>
+            </StackPanel>
+            <Frame x:Name="Main" Margin="0,35,0,0"/>
+
+        </Grid>
 
     </Grid>
 </Window>
