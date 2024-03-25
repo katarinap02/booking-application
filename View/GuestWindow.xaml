@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.View"
         mc:Ignorable="d"
         Title="GuestWindow" Height="1080" Width="1920"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen" Background="{StaticResource BackgroundColorN}">
     <Grid>
 
         <Grid>

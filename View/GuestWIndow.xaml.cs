@@ -28,7 +28,7 @@ namespace BookingApp.View
             InitializeComponent();
             AccommodationRepository = new AccommodationRepository();
             this.User = user;
-            Main.Content = new HomePage(AccommodationRepository, User);
+            Main.Content = new HomePage(AccommodationRepository, User, Main);
             Main.DataContext = this;
             
         }
@@ -37,7 +37,7 @@ namespace BookingApp.View
 
         private void HomeClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new HomePage(AccommodationRepository, User);
+            Main.Content = new HomePage(AccommodationRepository, User, Main);
         }
 
         private void ProfileClick(object sender, RoutedEventArgs e)
@@ -47,7 +47,7 @@ namespace BookingApp.View
 
         private void AccommodationsClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new AccommodationsPage();
+            Main.Content = new AccommodationsPage(AccommodationRepository, User, Main);
         }
 
         private void ForumsClick(object sender, RoutedEventArgs e)

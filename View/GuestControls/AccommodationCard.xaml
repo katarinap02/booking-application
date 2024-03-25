@@ -4,10 +4,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookingApp.View.GuestControls"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="821">
+             mc:Ignorable="d" d:DesignWidth="821" Height="103">
+
     <Grid>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="1" CornerRadius="30" Margin="-8,0,0,347"  Background="white" Width="821" Height="103">
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="1" CornerRadius="30"  Background="white" Width="821" Height="103">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
@@ -16,10 +16,10 @@
                 <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="157,4,375,-5" Grid.Row="1"/>
                 <TextBlock x:Name="Location" FontSize="20" Text="{Binding City}" Margin="450,5,20,-5" Grid.Row="1"/>
                 <Button Content="Details" Style="{StaticResource ButtonStyleN}" Margin="676,7,10,11" Grid.RowSpan="2" RenderTransformOrigin="0.5,0.5" FontSize="20">
-                    
+
                 </Button>
                 <Button Content="Reserve" Style="{StaticResource ButtonStyleN}" Margin="676,34,10,-24" RenderTransformOrigin="0.5,0.5" FontSize="20" Grid.Row="1">
-                   
+
                 </Button>
                 <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{Binding Rate}" Margin="216,36,536,-36" Grid.Row="1"/>
                 <TextBlock x:Name="AccommodationDays" FontSize="20" Text="{Binding MinReservationDays}" Margin="376,35,376,-35" Grid.Row="1"/>
@@ -29,4 +29,5 @@
 
         </Border>
     </Grid>
+
 </UserControl>

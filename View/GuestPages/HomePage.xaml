@@ -5,10 +5,10 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1920"
+      d:DesignHeight="1030" d:DesignWidth="1920"
       Title="HomePage">
     <Page.Resources>
-        
+
         <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
             <DrawingGroup x:Key="Layer_1">
                 <DrawingGroup.ClipGeometry>
@@ -42,17 +42,18 @@
     </Page.Resources>
 
     <Grid>
-        
 
 
 
-        <Rectangle HorizontalAlignment="Left" Height="1080" Stroke="Black" VerticalAlignment="Center" Width="1925" Fill="White" Margin="-5,0,0,0"/>
-        <Label Content="Welcome, " HorizontalAlignment="Left" Margin="723,481,0,0" VerticalAlignment="Top" FontSize="50" Height="91"/>
-        <Label Content="{Binding User.Username}" HorizontalAlignment="Left" Margin="948,481,0,0" VerticalAlignment="Top" FontSize="50" RenderTransformOrigin="0.944,0.271" Height="85" Width="283"/>
-        <Label Content="You are logged in as a guest." HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Oblique" Height="81" Margin="720,572,0,0" Width="540" FontSize="30"/>
-        <Button Content="Reserve" HorizontalAlignment="Left" Margin="645,668,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{StaticResource ButtonStyleN}" Click="ReserveButton_Click"/>
-        <Button Content="About" HorizontalAlignment="Left" Margin="850,668,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{StaticResource ButtonStyleN}" Click="AboutButton_Click"/>
-        <Button Content="Help" HorizontalAlignment="Left" Margin="1052,668,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{StaticResource ButtonStyleN}" Click="HelpButton_Click"/>
-        <Image Source="{StaticResource di_Layer_1}" Margin="798,311,850,553" />
+
+        <Rectangle HorizontalAlignment="Left" Height="1030" Stroke="Black" VerticalAlignment="Center" Width="1925" Fill="{StaticResource BackgroundColorN}" Margin="-5,0,0,0"/>
+        <Label Content="Welcome, " HorizontalAlignment="Left" Margin="723,450,0,0" VerticalAlignment="Top" FontSize="50" Height="90"/>
+        <Label Content="{Binding User.Username}" HorizontalAlignment="Left" Margin="948,448,0,0" VerticalAlignment="Top" FontSize="50" RenderTransformOrigin="0.944,0.271" Height="86" Width="283"/>
+        <Label Content="You are logged in as a guest." HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Oblique" Height="81" Margin="720,538,0,0" Width="540" FontSize="30"/>
+        <Button Content="Reserve" HorizontalAlignment="Left" Margin="645,634,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{StaticResource ButtonStyleN}" Click="ReserveButton_Click"/>
+        <Button Content="About" HorizontalAlignment="Left" Margin="850,634,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{StaticResource ButtonStyleN}" Click="AboutButton_Click"/>
+        <Button Content="Help" HorizontalAlignment="Left" Margin="1052,634,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{StaticResource ButtonStyleN}" Click="HelpButton_Click"/>
+        <Image Source="{StaticResource di_Layer_1}" Margin="798,277,850,587" />
     </Grid>
+
 </Page>
