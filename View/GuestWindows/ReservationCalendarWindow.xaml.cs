@@ -51,6 +51,8 @@ namespace BookingApp.View
             ReservationCalendar.DisplayDateStart = start;
             ReservationCalendar.DisplayDateEnd = end;
             
+
+            
             CalendarDateRange chosenDateRange = new CalendarDateRange(start, end);
 
 
