@@ -8,28 +8,33 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="CalendarPage">
 
+    <Page.Resources>
+        
+      
+        
+    </Page.Resources>
     <Grid>
 
-        <Rectangle HorizontalAlignment="Left" Height="450" Stroke="Black" VerticalAlignment="Center" Width="776" Fill="White"/>
-        <Border BorderBrush="Purple" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="101,23,412,53">
+        <Rectangle HorizontalAlignment="Left" Height="450" Stroke="Black" VerticalAlignment="Center" Width="776" Fill="{StaticResource BackgroundColor}"/>
+        <Border BorderBrush="{StaticResource AccentColor}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="101,23,412,53">
             <Grid>
-                <Label Content="Reservation" FontSize="23" Margin="76,44,58,287" Foreground="Purple" FontWeight="Bold"/>
+                <Label Content="Reservation" FontSize="23" Margin="76,44,58,287" Style="{StaticResource ResourceKey=HeaderStyle}"/>
                 <Label Content="Please choose days and number of" FontSize="16" Margin="10,83,-157,255"/>
                 <Label Content="people for your reservation." FontSize="16" Margin="36,102,34,237"/>
             </Grid>
         </Border>
-        <Border BorderBrush="Purple" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="400,23,113,160">
-            <Grid>
-                <Calendar x:Name="ReservationCalendar" Height="164" Width="170" SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="56,10,57,89"/>
-                <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,193,0,0" VerticalAlignment="Top" Click="SelectDate_Click" Width="90" Height="25" Foreground="AliceBlue" Background="Purple" FontWeight="Bold"/>
+        <Border BorderBrush="{StaticResource AccentColor}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="400,23,113,160">
+            <Grid x:Name="CalendarSection">
+                <Calendar x:Name="ReservationCalendar" Width="170" SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="56,10,57,85" Foreground="{StaticResource TextColor}" Background="White"/>
+                <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,193,0,0" VerticalAlignment="Top" Click="SelectDate_Click" Width="90" Height="25" Style="{StaticResource ResourceKey=ButtonStyle}"/>
 
             </Grid>
         </Border>
-        <Border BorderBrush="Purple" BorderThickness="2" CornerRadius="30, 30, 30, 30" Margin="400,295,113,53">
-            <Grid>
+        <Border BorderBrush="{StaticResource AccentColor}" BorderThickness="2" CornerRadius="30, 30, 30, 30" Margin="400,295,113,53">
+            <Grid x:Name="PeopleNumberSection">
                 <Label Content="Number of people: " HorizontalAlignment="Left" Margin="31,23,0,0" VerticalAlignment="Top"/>
                 <TextBox x:Name="txtGuestNumber" HorizontalAlignment="Left" Margin="144,27,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="109"/>
-                <Button Content="Reserve" HorizontalAlignment="Center" Margin="0,54,0,0" VerticalAlignment="Top" Width="80" Click="Reserve_Click" Height="25" Foreground="AliceBlue" Background="Purple" FontWeight="Bold"/>
+                <Button x:Name="finishReservation" Content="Reserve" HorizontalAlignment="Center" Margin="0,54,0,0" VerticalAlignment="Top" Width="80" Click="Reserve_Click" Height="25" Style="{StaticResource ResourceKey=ButtonStyle}"/>
 
             </Grid>
         </Border>
