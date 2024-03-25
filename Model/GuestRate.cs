@@ -7,7 +7,7 @@ using BookingApp.Serializer;
 
 namespace BookingApp.Model
 {
-    public class RateGuest : ISerializable
+    public class GuestRate : ISerializable
     {
 
         public int UserId { get; set; } //dogovoriti se da li cuvamo id ili celog user-a
@@ -20,19 +20,19 @@ namespace BookingApp.Model
 
         public string AdditionalComment { get; set; } //mozda 
 
-        public int DaysLeft { get; set; } //potrebno je nesto sto ce da meri vreme, videti jos
+        
 
 
-        public RateGuest() { }
+        public GuestRate() { }
 
-        public RateGuest(int userId, int acommodationId, int cleanliness, int rulesFollowing, string additionalComment)
+        public GuestRate(int userId, int acommodationId, int cleanliness, int rulesFollowing, string additionalComment)
         {
             UserId = userId;
             AcommodationId = acommodationId;
             Cleanliness = cleanliness;
             RulesFollowing = rulesFollowing;
             AdditionalComment = additionalComment;
-            DaysLeft = 5; //videti jos
+           
         }
 
         public void FromCSV(string[] values)
@@ -42,14 +42,14 @@ namespace BookingApp.Model
             Cleanliness = Convert.ToInt32(values[2]);
             RulesFollowing = Convert.ToInt32(values[3]);
             AdditionalComment = values[4];
-            DaysLeft = Convert.ToInt32(values[5]);
+            
             
         }
 
         public string[] ToCSV()
         {
             string[] csvValues = { UserId.ToString(), AcommodationId.ToString(), Cleanliness.ToString(), RulesFollowing.ToString(),
-            AdditionalComment, DaysLeft.ToString()};
+            AdditionalComment};
             return csvValues;
         }
     }

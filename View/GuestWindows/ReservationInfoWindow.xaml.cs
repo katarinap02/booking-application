@@ -64,6 +64,8 @@ namespace BookingApp.View
 
                 MessageBox.Show("Reservation added");
 
+                this.Close();
+
 
             }
             

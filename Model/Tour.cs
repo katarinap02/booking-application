@@ -8,7 +8,7 @@ using System.Windows.Input;
 
 namespace BookingApp.Model
 {
-    public enum TourStatus { inPreparation, Active, Finnished, Canceled }
+    public enum TourStatus { inPreparation, Active, Finnished, Canceled, gotGuide }
     public class Tour : ISerializable
     {
         public int Id { get; set; }
@@ -25,13 +25,14 @@ namespace BookingApp.Model
         public int GroupId { get; set; }
         public int currentCheckpoint { get; set; }
         public string Country { get; set; }
+        public int AvailablePlaces { get; set; }
 
         public Tour() { }
 
         public Tour(string name, string city, string country, string description, string language, int maxTourists, List<string> checkpoints, DateTime date, float duration, List<string> pictures)
         {
             Name = name;
-            City = City;
+            City = city;
             Description = description;
             Language = language;
             MaxTourists = maxTourists;
@@ -42,6 +43,7 @@ namespace BookingApp.Model
             Status = TourStatus.inPreparation; //kad se pravi noava tura, ona ne moze biti zavrsena ili u toku
             currentCheckpoint = 0;
             Country = country;
+            AvailablePlaces = maxTourists;
             // + u dao napraviti da dodeljuje jedinstven groupId
         }
 
@@ -64,7 +66,7 @@ namespace BookingApp.Model
             }
 
             string[] CSVvalues = { Id.ToString(), Status.ToString(), Name, City, Description, Language, MaxTourists.ToString(), Duration.ToString(), Date.ToString(),
-                GroupId.ToString(), currentCheckpoint.ToString(), Country, checkpointsString, pictureString};
+                GroupId.ToString(), currentCheckpoint.ToString(), Country, checkpointsString, pictureString, AvailablePlaces.ToString()};
 
             return CSVvalues;
         }
@@ -73,22 +75,7 @@ namespace BookingApp.Model
         {
             Id = int.Parse(values[0]);
 
-            if (values[1].Equals("inPreparation"))
-            {
-                Status = TourStatus.inPreparation;
-            }
-            else if (values[1].Equals("Active"))
-            {
-                Status = TourStatus.Active;
-            }
-            else if (values[1].Equals("Finnished"))
-            {
-                Status = TourStatus.Finnished;
-            }
-            else if (values[1].Equals("Canceled"))
-            {
-                Status = TourStatus.Canceled;
-            }
+            ParseTourStatus(values[1]);
 
             Name = values[2];
             City = values[3];
@@ -97,11 +84,12 @@ namespace BookingApp.Model
             MaxTourists = int.Parse(values[6]);
             Duration = float.Parse(values[7]);
 
-            string dateFormat = "MM/dd/yyyy hh:mm:ss tt";
+            string dateFormat = "M/d/yyyy h:mm:ss tt";
             if (DateTime.TryParseExact(values[8], dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
             {
                 Date = parsedDate.Date;
             }
+
 
             GroupId = int.Parse(values[9]);
             currentCheckpoint = int.Parse(values[10]);
@@ -120,8 +108,31 @@ namespace BookingApp.Model
                 Pictures = picture.Split(",").ToList();
             }
 
+            AvailablePlaces = int.Parse(values[14]);
+        }
 
-
+        public void ParseTourStatus(string csv_values)
+        {
+            if (csv_values.Equals("inPreparation"))
+            {
+                Status = TourStatus.inPreparation;
+            }
+            else if (csv_values.Equals("Active"))
+            {
+                Status = TourStatus.Active;
+            }
+            else if (csv_values.Equals("Finnished"))
+            {
+                Status = TourStatus.Finnished;
+            }
+            else if (csv_values.Equals("Canceled"))
+            {
+                Status = TourStatus.Canceled;
+            }
+            else if (csv_values.Equals("gotGuide"))
+            {
+                Status = TourStatus.gotGuide;
+            }
         }
     }
 }
