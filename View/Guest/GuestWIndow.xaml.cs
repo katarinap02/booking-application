@@ -23,6 +23,8 @@ namespace BookingApp.View
         public AccommodationRepository AccommodationRepository;
 
         public User User {  get; set; }
+
+        
         public GuestWindow(User user)
         {
             InitializeComponent();
@@ -30,6 +32,7 @@ namespace BookingApp.View
             this.User = user;
             Main.Content = new HomePage(AccommodationRepository, User, Main);
             Main.DataContext = this;
+          
             
         }
 
@@ -62,6 +65,20 @@ namespace BookingApp.View
 
         private void HelpClick(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void DarkTheme_Click(object sender, RoutedEventArgs e)
+        {
+
+          
+
+        }
+
+        private void LightTheme_Click(object sender, RoutedEventArgs e)
+        {
+            
+
 
         }
     }

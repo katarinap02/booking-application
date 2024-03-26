@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="GuestWindow" Height="1080" Width="1920"
         WindowStartupLocation="CenterScreen" Background="{StaticResource BackgroundColorN}">
+    
     <Grid>
 
         <Grid>
@@ -21,8 +22,11 @@
                 <Button Content="Help" Width="150" Style="{StaticResource ButtonStyleN}" Click="HelpClick"/>
             </StackPanel>
             <Frame x:Name="Main" Height="990" Width="1920" Margin="0,55,0,-21"/>
+            <Button Content="Dark theme" HorizontalAlignment="Left" Margin="1215,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="DarkTheme_Click"/>
+            <Button Content="Light theme" HorizontalAlignment="Left" Margin="1362,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="LightTheme_Click"/>
 
         </Grid>
 
     </Grid>
+
 </Window>

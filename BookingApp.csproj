@@ -18,6 +18,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Page Remove="View\Guest\GuestThemes\DarkTheme.xaml" />
+    <Page Remove="View\Guest\GuestThemes\LightTheme.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="Resources\Images\add.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -37,6 +42,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="View\Guest\GuestThemes\DarkTheme.xaml" />
+    <Resource Include="View\Guest\GuestThemes\LightTheme.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="View\TouristWindows\minus.png" />
     <Resource Include="View\TouristWindows\plus.png" />
     <Resource Include="View\TouristWindows\search.png" />
