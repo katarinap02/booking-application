@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
+      xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       mc:Ignorable="d" 
       d:DesignHeight="1030" d:DesignWidth="1920"
       Title="CalendarPage">
@@ -30,6 +31,7 @@
                 <Label Content="Reservation" FontSize="55" Margin="207,102,-73,229" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
                 <Label Content="Please choose days and number of" FontSize="35" Margin="84,200,-231,138"/>
                 <Label Content="people for your reservation." FontSize="35" Margin="140,236,-69,104"/>
+                <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Margin="6,240,-6,-240"/>
             </Grid>
         </Border>
         <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="922,75,209,272">

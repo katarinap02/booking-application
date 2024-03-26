@@ -18,7 +18,7 @@
                 <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Height="323" Width="663" Margin="10,204,-6,204"><Run Text="Welcome to the reservation page."/><LineBreak/><Run Text="Please enter required information."/></TextBlock>
 
                 <Label Content="Accommodation" FontSize="40" Margin="168,406,-34,-75" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
-                <controls:AccommodationCard DataContext="{Binding SelectedAccommodation}" Margin="10,587,-10,42"/>
+                <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Margin="6,240,-6,-240"/>
 
             </Grid>
         </Border>
