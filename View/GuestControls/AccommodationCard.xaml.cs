@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookingApp.Model;
+using BookingApp.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,15 @@ namespace BookingApp.View.GuestControls
     /// </summary>
     public partial class AccommodationCard : UserControl
     {
+       
+       
         public AccommodationCard()
         {
             InitializeComponent();
+            
+
         }
+
+     
     }
 }
