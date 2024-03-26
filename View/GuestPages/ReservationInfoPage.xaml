@@ -4,14 +4,36 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
+      xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       mc:Ignorable="d" 
-      d:DesignHeight="450" d:DesignWidth="800"
+      d:DesignHeight="1030" d:DesignWidth="1920"
       Title="ReservationInfoPage">
 
     <Grid>
-        <Rectangle HorizontalAlignment="Left" Height="450" Stroke="Black" VerticalAlignment="Center" Width="776" Fill="White"/>
-        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="101,59,412,53"/>
-        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="400,58,113,54"/>
+        <Rectangle HorizontalAlignment="Left" Height="1030" Stroke="Black" VerticalAlignment="Center" Width="1920" Fill="White"/>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="247,147,1002,147" Width="671" Height="736">
+            <Grid>
+                <Label Content="Reservation" FontSize="55" Margin="158,122,-24,209" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+              
+                <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Height="323" Width="663" Margin="10,204,-6,204"><Run Text="Welcome to the reservation page."/><LineBreak/><Run Text="Please enter required information."/></TextBlock>
+
+                <Label Content="Accommodation" FontSize="40" Margin="168,406,-34,-75" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+                <controls:AccommodationCard DataContext="{Binding SelectedAccommodation}" Margin="10,587,-10,42"/>
+
+            </Grid>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="608,56,-95,56" Width="671" Height="736">
+            <Grid Margin="2,-58,-2,58">
+                <Label Content="Number of days" FontSize="30" Margin="105,238,-105,-238"/>
+                <TextBox x:Name="txtDayNumber" TextWrapping="Wrap" Margin="352,251,160,444"/>
+                <Label Content="Start date " Margin="136,319,-136,-319" FontSize="30"/>
+                <TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>
+                <Label Content="End date" FontSize="30" HorizontalAlignment="Left" Margin="136,417,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
+                <TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>
+                <Button x:Name="ContinueButton" Content="Continue" HorizontalAlignment="Center" Margin="0,545,0,0" VerticalAlignment="Top" Click="Continue_Click" Width="200" Height="50" Style="{StaticResource ButtonStyleN}"/>
+            </Grid>
+        </Border>
+     
 
     </Grid>
 </Page>
