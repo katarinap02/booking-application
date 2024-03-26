@@ -55,7 +55,13 @@
             
             <ListBox.ItemTemplate>
                 <DataTemplate>
+                    <Grid>
                     <controls:AccommodationCard Margin="30, 10, 30, 10" Width="821"/>
+                        <Button x:Name="DetailsButton" Content="Details" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Margin="600, 30, 0, 0" Click="DetailsButton_Click"/>
+                        <Button x:Name="ReserveButton" Content="Reserve" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Grid.Row="1" Margin="600, 30, 0, 70" Click="ReserveButton_Click"/>
+
+
+                    </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
 

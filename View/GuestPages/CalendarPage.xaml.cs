@@ -37,8 +37,9 @@ namespace BookingApp.View.GuestPages
         public AccommodationReservation Reservation { get; set; }
         public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
 
+        public Frame Frame { get; set; }
         public int DayNumber { get; set; }
-        public CalendarPage(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end)
+        public CalendarPage(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end, Frame frame)
         {
             InitializeComponent();
             this.SelectedAccommodation = selectedAccommodation;
@@ -47,15 +48,17 @@ namespace BookingApp.View.GuestPages
             this.StartDate = start;
             this.EndDate = end;
             this.DayNumber = dayNumber;
+            this.Frame = frame;
+
             DataContext = this;
             reserveButton.IsEnabled = false;
             PeopleNumberSection.IsEnabled = false;
             Reservation = new AccommodationReservation();
-            finishReservation.IsEnabled = false;
+           // finishReservation.IsEnabled = false;
             AccommodationReservationRepository = new AccommodationReservationRepository();
 
             // continueLabel.Visibility = Visibility.Hidden;
-            // ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
+             ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
         }
 
         private void ConfigureCalendar(AccommodationDTO selectedAccommodation, DateTime start, DateTime end, int dayNumber)
@@ -257,7 +260,7 @@ namespace BookingApp.View.GuestPages
             int inputGuestNumber = Convert.ToInt32(txtGuestNumber.Text);
             if (inputGuestNumber > SelectedAccommodation.MaxGuestNumber)
             {
-                finishReservation.IsEnabled = false;
+               // finishReservation.IsEnabled = false;
                 
             }
             else
@@ -272,6 +275,7 @@ namespace BookingApp.View.GuestPages
                 AccommodationRepository.Update(SelectedAccommodation.ToAccommodation());
 
                 AccommodationReservationRepository.Add(Reservation);
+                MessageBox.Show("jupi");
 
 
 

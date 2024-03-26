@@ -113,5 +113,24 @@ namespace BookingApp.View.GuestPages
             return filteredAccommodations;
         }
 
+        private void ReserveButton_Click(object sender, RoutedEventArgs e) {
+
+            
+            Button button = sender as Button;
+            SelectedAccommodation = button.DataContext as AccommodationDTO;
+            Frame.Content = new ReservationInfoPage(AccommodationRepository, SelectedAccommodation, User, Frame);
+
+
+
+
+        }
+
+        private void DetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+
+
+
+        }
+
     }
 }

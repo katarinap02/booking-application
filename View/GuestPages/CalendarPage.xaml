@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
       mc:Ignorable="d" 
-      d:DesignHeight="1080" d:DesignWidth="1920"
+      d:DesignHeight="1030" d:DesignWidth="1920"
       Title="CalendarPage">
 
     <Page.Resources>
@@ -15,7 +15,7 @@
     </Page.Resources>
     <Grid>
 
-        <Rectangle HorizontalAlignment="Left" Height="1078" Stroke="Black" VerticalAlignment="Center" Width="1870" Fill="{StaticResource BackgroundColorN}" RenderTransformOrigin="0.5,0.5" Margin="10,0,0,0">
+        <Rectangle HorizontalAlignment="Left" Height="1030" Stroke="Black" VerticalAlignment="Center" Width="1920" Fill="{StaticResource BackgroundColorN}" RenderTransformOrigin="0.5,0.5" Margin="10,0,0,0">
             <Rectangle.RenderTransform>
                 <TransformGroup>
                     <ScaleTransform/>
@@ -34,9 +34,9 @@
         </Border>
         <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="922,75,209,272">
             <Grid x:Name="CalendarSection">
-                <Calendar x:Name="ReservationCalendar"  BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="196,118,196,231"  Background="White">
+                <Calendar x:Name="ReservationCalendar"  BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged" Margin="196,25,196,204"  Background="White" SelectionMode="SingleRange" Height="450">
                     <Calendar.LayoutTransform>
-                        <ScaleTransform ScaleX="2" ScaleY="2.1"/>
+                        <ScaleTransform ScaleX="2" ScaleY="2"/>
                     </Calendar.LayoutTransform>
                    
                 </Calendar>
@@ -44,11 +44,11 @@
 
             </Grid>
         </Border>
-        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="30, 30, 30, 30" Margin="922,815,209,53">
+        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="30, 30, 30, 30" Margin="922,794,209,53">
             <Grid x:Name="PeopleNumberSection">
-                <Label Content="Number of people: " HorizontalAlignment="Left" Margin="146,48,0,0" VerticalAlignment="Top" Height="52" Width="264" FontSize="30"/>
-                <TextBox x:Name="txtGuestNumber" HorizontalAlignment="Left" Margin="432,54,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" Height="40"/>
-                <Button x:Name="finishReservation" Content="Reserve" HorizontalAlignment="Center" Margin="0,130,0,0" VerticalAlignment="Top" Width="140" Click="Reserve_Click" Height="50" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
+                <Label Content="Number of people: " HorizontalAlignment="Left" Margin="148,22,0,0" VerticalAlignment="Top" Height="52" Width="264" FontSize="30"/>
+                <TextBox x:Name="txtGuestNumber" HorizontalAlignment="Left" Margin="439,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" Height="40"/>
+                <Button x:Name="finishReservation" Content="Reserve" HorizontalAlignment="Center" Margin="0,79,0,0" VerticalAlignment="Top" Width="140" Click="Reserve_Click" Height="50" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
 
             </Grid>
         </Border>
