@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
       mc:Ignorable="d" 
-      d:DesignHeight="1030" d:DesignWidth="1920"
+      d:DesignHeight="990" d:DesignWidth="1920"
       Title="HomePage">
     <Page.Resources>
 
@@ -46,7 +46,7 @@
 
 
 
-        <Rectangle HorizontalAlignment="Left" Height="1030" Stroke="Black" VerticalAlignment="Center" Width="1925" Fill="{StaticResource BackgroundColorN}" Margin="-5,0,0,0"/>
+        
         <Label Content="Welcome, " HorizontalAlignment="Left" Margin="723,450,0,0" VerticalAlignment="Top" FontSize="50" Height="90"/>
         <Label Content="{Binding User.Username}" HorizontalAlignment="Left" Margin="948,448,0,0" VerticalAlignment="Top" FontSize="50" RenderTransformOrigin="0.944,0.271" Height="86" Width="283"/>
         <Label Content="You are logged in as a guest." HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Oblique" Height="81" Margin="720,538,0,0" Width="540" FontSize="30"/>

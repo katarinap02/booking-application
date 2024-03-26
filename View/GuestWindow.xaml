@@ -20,7 +20,7 @@
                 <Button Content="About" Width="150" Style="{StaticResource ButtonStyleN}" Click="AboutClick"/>
                 <Button Content="Help" Width="150" Style="{StaticResource ButtonStyleN}" Click="HelpClick"/>
             </StackPanel>
-            <Frame x:Name="Main" Margin="0,50,0,0"/>
+            <Frame x:Name="Main" Height="990" Width="1920" Margin="0,55,0,-21"/>
 
         </Grid>
 

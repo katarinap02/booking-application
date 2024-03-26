@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
       xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       mc:Ignorable="d" 
-      d:DesignHeight="1030" d:DesignWidth="1920"
+      d:DesignHeight="990" d:DesignWidth="1920"
       Title="CalendarPage">
 
     <Page.Resources>
@@ -16,16 +16,7 @@
     </Page.Resources>
     <Grid>
 
-        <Rectangle HorizontalAlignment="Left" Height="1030" Stroke="Black" VerticalAlignment="Center" Width="1920" Fill="{StaticResource BackgroundColorN}" RenderTransformOrigin="0.5,0.5" Margin="10,0,0,0">
-            <Rectangle.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="-0.258"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Rectangle.RenderTransform>
-        </Rectangle>
+        
         <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="101,75,1030,53">
             <Grid>
                 <Label Content="Reservation" FontSize="55" Margin="207,102,-73,229" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
@@ -46,7 +37,7 @@
 
             </Grid>
         </Border>
-        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="30, 30, 30, 30" Margin="922,794,209,53">
+        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="30, 30, 30, 30" Margin="922,718,209,53">
             <Grid x:Name="PeopleNumberSection">
                 <Label Content="Number of people: " HorizontalAlignment="Left" Margin="148,22,0,0" VerticalAlignment="Top" Height="52" Width="264" FontSize="30"/>
                 <TextBox x:Name="txtGuestNumber" HorizontalAlignment="Left" Margin="439,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" Height="40"/>

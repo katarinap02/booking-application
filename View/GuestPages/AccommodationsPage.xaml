@@ -6,19 +6,19 @@
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
       xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       mc:Ignorable="d" 
-      d:DesignHeight="1030" d:DesignWidth="1920"
+      d:DesignHeight="990" d:DesignWidth="1920"
       Title="AccommodationsPage">
 
     <Grid>
-        <Rectangle HorizontalAlignment="Center" Height="1030" Stroke="Black" VerticalAlignment="Center" Width="1920" Fill="{StaticResource BackgroundColorN}"/>
-
         
 
 
 
-        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,102,1082,438">
+
+
+        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,162,1082,393">
             <Grid x:Name="SearchSection">
-                <Label Content="Search accommodations" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="94,37,-94,-37"/>
+                <Label Content="Search accommodations" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="122,10,-122,-10"/>
                 <Label Content="Name:" HorizontalAlignment="Left" Margin="66,89,0,0" VerticalAlignment="Top" Width="74" FontSize="16" RenderTransformOrigin="0.439,1.63"/>
                 <Label Content="City:" HorizontalAlignment="Left" Margin="66,125,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="-8.542,2.786" FontSize="16"/>
                 <Label Content="Type:" HorizontalAlignment="Left" Margin="66,208,0,0" VerticalAlignment="Top" Width="74" FontSize="16"/>
@@ -37,9 +37,9 @@
             </Grid>
         </Border>
 
-        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,617,1082,89">
+        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,618,1082,92">
             <Grid Margin="0,-2,0,-26">
-                <Label Content="Anywhere / Anytime" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="132,26,129,219"/>
+                <Label Content="Anywhere / Anytime" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="130,10,130,235"/>
                 <TextBlock TextWrapping="Wrap" FontSize="20" Margin="81,85,93,-51" TextAlignment="Center">
                     If you wish to see all available accommodations according to your requests, choose below option:
                 </TextBlock>
@@ -48,15 +48,15 @@
         </Border>
 
 
-     
+
         <ListBox x:Name="AccommodationListBox"
          ScrollViewer.VerticalScrollBarVisibility="Auto"
-         ItemsSource="{Binding Accommodations}" Width="900" Height="900" Margin="904,65,116,65" Background="{StaticResource BackgroundColorN}">
-            
+         ItemsSource="{Binding Accommodations}" Margin="906,177,134,92" Background="{StaticResource BackgroundColorN}">
+
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
-                    <controls:AccommodationCard Margin="30, 10, 30, 10" Width="821"/>
+                        <controls:AccommodationCard Margin="30, 10, 30, 10" Width="821"/>
                         <Button x:Name="DetailsButton" Content="Details" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Margin="600, 30, 0, 0" Click="DetailsButton_Click"/>
                         <Button x:Name="ReserveButton" Content="Reserve" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Grid.Row="1" Margin="600, 30, 0, 70" Click="ReserveButton_Click"/>
 
@@ -65,7 +65,7 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
 
-           
+
 
 
         </ListBox>
