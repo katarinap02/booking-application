@@ -260,7 +260,7 @@ namespace BookingApp.View.GuestPages
         private void Reserve_Click(object sender, RoutedEventArgs e)
         {
             GuestNumber = Convert.ToInt32(txtGuestNumber.Text);
-            if (inputGuestNumber > SelectedAccommodation.MaxGuestNumber)
+            if (GuestNumber > SelectedAccommodation.MaxGuestNumber)
             {
                // finishReservation.IsEnabled = false;
                 

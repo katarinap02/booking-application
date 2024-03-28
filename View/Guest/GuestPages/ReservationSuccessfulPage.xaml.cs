@@ -32,7 +32,7 @@ namespace BookingApp.View.GuestPages
         public Frame Frame { get; set; }
 
         public int GuestNumber { get; set; }
-        public ReservationSuccessfulPage(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, CalendarDateRange selectedDateRange, int guestNumber, User user)
+        public ReservationSuccessfulPage(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, CalendarDateRange selectedDateRange, int guestNumber, User user, Frame frame)
         {
             InitializeComponent();
 
@@ -56,7 +56,7 @@ namespace BookingApp.View.GuestPages
 
         private void PrintDayNumber(CalendarDateRange selectedDateRange)
         {
-           reservationDetailsCard.lblNumberOfDays.Content = (selectedDateRange.Start - selectedDateRange.End).Days.ToString();
+           reservationDetailsCard.lblNumberOfDays.Content = ((selectedDateRange.End - selectedDateRange.Start).Days + 1).ToString();
         }
 
         private void PrintDateRange(CalendarDateRange selectedDateRange)

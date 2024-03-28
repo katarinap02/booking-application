@@ -16,9 +16,9 @@
                 <Label Content="Reservation details" HorizontalAlignment="Left" Margin="104,39,0,0" Grid.Row="1" VerticalAlignment="Top" Style="{StaticResource HeaderStyleN}" FontSize="30"/>
                 <TextBlock FontSize="20" TextWrapping="Wrap" Margin="50,147,263,-143" Grid.Row="1">Accommodation:<LineBreak/>Date:<LineBreak/>Number of people:<LineBreak/>Number of days:<LineBreak/></TextBlock>
                 <Label x:Name="lblAccommodationDetails" Margin="207,147,-207,-36" Grid.Row="1" FontSize="16" FontWeight="Bold"/>
-                <Label x:Name="lblDateRange" FontSize="16" FontWeight="Bold" Margin="104,183,-104,-51" Grid.Row="1"></Label>
-                <Label x:Name="lblNumberOfPeople" FontSize="16" FontWeight="Bold" Margin="226,211,-226,-79" Grid.Row="1"/>
-                <Label x:Name="lblNumberOfDays" FontSize="16" FontWeight="Bold" Margin="207,238,-207,-106" Grid.Row="1"/>
+                <Label x:Name="lblDateRange" FontSize="16" FontWeight="Bold" Margin="104,178,-104,-54" Grid.Row="1"></Label>
+                <Label x:Name="lblNumberOfPeople" FontSize="16" FontWeight="Bold" Margin="226,203,-226,-87" Grid.Row="1"/>
+                <Label x:Name="lblNumberOfDays" FontSize="16" FontWeight="Bold" Margin="207,229,-207,-113" Grid.Row="1"/>
             </Grid>
 
         </Border>
