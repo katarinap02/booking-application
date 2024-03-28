@@ -53,6 +53,40 @@ namespace BookingApp.Repository
             return reservations;
         }
 
+        public List<TourReservation> GetJoinedReservations(int tour_id) 
+        {
+            List<TourReservation> tourReservations = GetReservationsByTour(tour_id);
+            if (tourReservations.Count == 0) return null;
+            foreach (TourReservation reservation in tourReservations.ToList())
+            {
+                if (!reservation.HasJoinedTour)
+                {
+                    tourReservations.Remove(reservation);
+                }
+            }
+            return tourReservations;
+        }
+
+        public List<TourParticipant> GetJoinedParticipantsByTour(int tour_id)
+        {
+            List<TourReservation> tourReservations = GetJoinedReservations(tour_id);
+            List<TourParticipant> participants = new List<TourParticipant>();
+            foreach(TourReservation tourReservation in tourReservations.ToList())
+            {
+                foreach (TourParticipant participant in _participantRepository.GetAllParticipantsByReservation(tourReservation.Id))
+                {
+                    participants.Add(participant); //izmeniti logiku ovde ako ne moraju svi da se pridruze odjednom
+                }
+            }
+            return participants;
+        }
+
+        public int GetNumberOfJoinedParticipants(int tour_id)
+        {
+            List<TourParticipant> tourParticipants = GetJoinedParticipantsByTour(tour_id);
+            return tourParticipants.Count();
+        }
+
         public List<TourReservation> GetNotJoinedReservations(int tour_id)
         {
             List<TourReservation> tourReservations = GetReservationsByTour(tour_id);
@@ -90,6 +124,8 @@ namespace BookingApp.Repository
             tourReservation.StartCheckpoint = current_checkpoint;
             _serializer.ToCSV(FilePath, _tourReservations);
         }
+
+        
 
     }
 }

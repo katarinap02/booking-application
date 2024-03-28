@@ -63,7 +63,16 @@ namespace BookingApp.Repository
             return string.Join(", ", participantNames);
         }
 
-        
+        public List<TourParticipant> GetAllParticipantsByReservation(int reservationId)
+        {
+            List<TourParticipant> tourParticipantsByReservation = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
+            List<TourParticipant> tourParticipants = new List<TourParticipant>();
+
+            foreach (TourParticipant tp in tourParticipantsByReservation)
+                tourParticipants.Add(tp);
+
+            return tourParticipants;
+        }
         
     }
 }
