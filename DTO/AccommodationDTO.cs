@@ -85,6 +85,34 @@ namespace BookingApp.DTO
             }
         }
 
+        private bool isCheckedHouse;
+        public bool IsCheckedHouse
+        {
+            get { return isCheckedHouse; }
+            set
+            {
+                if (isCheckedHouse != value)
+                {
+                    isCheckedHouse = value;
+                    OnPropertyChanged("IsCheckedHouse");
+                }
+            }
+        }
+
+        private bool isCheckedCottage;
+        public bool IsCheckedCottage
+        {
+            get { return isCheckedCottage; }
+            set
+            {
+                if (isCheckedCottage != value)
+                {
+                    isCheckedCottage = value;
+                    OnPropertyChanged("IsCheckedCottage");
+                }
+            }
+        }
+
         private int maxGuestNumber;
         public int MaxGuestNumber
         {
@@ -265,16 +293,32 @@ namespace BookingApp.DTO
 
         public Accommodation ToAccommodation()
         {
-            
+            type = GetAccommodationType();
             
             Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit);
             a.Id = id;
             a.UnavailableDates = unavailableDates;
-
             a.Pictures = picture;
+
+            
+            
 
             return a;
 
+        }
+
+        public AccommodationType GetAccommodationType()
+        {
+            AccommodationType type = AccommodationType.APARTMENT;
+
+            if (isCheckedHouse)
+            { type = AccommodationType.HOUSE; }
+            else if (isCheckedCottage)
+            {
+                type = AccommodationType.COTTAGE;
+            }
+
+            return type;
         }
     }
 

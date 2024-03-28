@@ -61,8 +61,9 @@ namespace BookingApp.View
 
         private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            RegisterAccommodationWindow registerWindow = new RegisterAccommodationWindow(accommodationRepository);
-            registerWindow.ShowDialog();
+            NavigateToPage("RegisterAccommodationPage");
+           // RegisterAccommodationWindow registerWindow = new RegisterAccommodationWindow(accommodationRepository);
+            // registerWindow.ShowDialog();
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -84,5 +85,16 @@ namespace BookingApp.View
 
             Update();
         }
+
+        private void NavigateToPage(string pageName)
+        {
+            
+            String pageUri = "View/HostPages/" + pageName + ".xaml"; // ovo je nacin sa putanjama, a moze da se instancira i nova stranica prilikom navigacije, pa da ne moraju da se koriste putanje, ali ima neke razlike u ponasanju stranica prilikom navigacije (procitati na linku)
+            HostFrame.Navigate(new Uri(pageUri, UriKind.RelativeOrAbsolute)); // ovo je skraceni zapis za MainFrame.NavigationService.Navigate(...);
+        }
+
+
+
+
     }
 }

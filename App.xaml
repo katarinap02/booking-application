@@ -4,6 +4,10 @@
              xmlns:local="clr-namespace:BookingApp"
              StartupUri="View/SignInForm.xaml">
     <Application.Resources>
-         
+        <Style TargetType="Page">
+            <Setter Property="Background" Value="White" />
+            
+        </Style>
+
     </Application.Resources>
 </Application>
