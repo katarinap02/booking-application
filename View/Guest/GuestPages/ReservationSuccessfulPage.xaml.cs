@@ -73,7 +73,7 @@ namespace BookingApp.View.GuestPages
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
-            
+            Frame.Content = new HomePage(AccommodationRepository, User, Frame);
         }
     }
 }
