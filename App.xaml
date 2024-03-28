@@ -4,6 +4,34 @@
              xmlns:local="clr-namespace:BookingApp"
              StartupUri="View/SignInForm.xaml">
     <Application.Resources>
-         
+        <!-- Natasini stilovi-->
+
+
+        <SolidColorBrush x:Key="ButtonTextN" Color="#F4F4ED"/> 
+        <SolidColorBrush x:Key="BackgroundColorN" Color="#F4F4ED"/> 
+        <SolidColorBrush x:Key="AccentColorN" Color="#6665DD"/>
+        <SolidColorBrush x:Key="TextColorN" Color="#3423A6"/>
+
+        <Style x:Key="ButtonStyleN" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource ButtonTextN}"/>
+            <Setter Property="Background" Value="{StaticResource AccentColorN}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentColorN}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="30"/>
+
+        </Style>
+
+        <Style x:Key="HeaderStyleN" TargetType="Label">
+            <Setter Property="Foreground" Value="{StaticResource TextColorN}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+        </Style>
+
+
+
+
+
+        <!-- *********************** -->
     </Application.Resources>
 </Application>

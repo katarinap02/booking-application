@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookingApp.View.GuestPages
+namespace BookingApp.View.GuestControls
 {
     /// <summary>
-    /// Interaction logic for CalendarPage.xaml
+    /// Interaction logic for AccommodationCardSmall.xaml
     /// </summary>
-    public partial class CalendarPage : Page
+    public partial class AccommodationCardSmall : UserControl
     {
-        public CalendarPage()
+        public AccommodationCardSmall()
         {
             InitializeComponent();
         }

@@ -34,7 +34,7 @@ namespace BookingApp.DTO
             {
                 if (name != value)
                 {
-                    
+
                     name = value;
                     OnPropertyChanged("Name");
                 }
@@ -49,7 +49,7 @@ namespace BookingApp.DTO
             {
                 if (city != value)
                 {
-                    
+
                     city = value;
                     OnPropertyChanged("City");
                 }
@@ -64,12 +64,14 @@ namespace BookingApp.DTO
             {
                 if (country != value)
                 {
-                    
+
                     country = value;
                     OnPropertyChanged("Country");
                 }
             }
         }
+
+        
 
         private AccommodationType type;
         public AccommodationType Type

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookingApp.Model;
+using BookingApp.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +15,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookingApp.View.GuestPages
+namespace BookingApp.View.GuestControls
 {
     /// <summary>
-    /// Interaction logic for ReservationInfoPage.xaml
+    /// Interaction logic for DataCard.xaml
     /// </summary>
-    public partial class ReservationInfoPage : Page
+    public partial class AccommodationCard : UserControl
     {
-        public ReservationInfoPage()
+       
+       
+        public AccommodationCard()
         {
             InitializeComponent();
+            
+
         }
+
+     
     }
 }
