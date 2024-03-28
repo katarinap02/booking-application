@@ -19,12 +19,12 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="2" Grid.Column="1" Visibility="Hidden">
+        <StackPanel Grid.Row="2" Grid.Column="1" >
             <Label Content="Please rate these guests:" FontWeight="Bold" Margin="0 0 0 5"/>
             <DataGrid x:Name="AccommodationsDataGrid" ItemsSource="{Binding Accommodations, UpdateSourceTrigger=PropertyChanged}"
        SelectedItem="{Binding SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}"
        IsReadOnly="True" SelectionMode="Single" 
-       AutoGenerateColumns="False" Height="51" HeadersVisibility="Column" FontSize="13">
+       AutoGenerateColumns="False" Height="395" HeadersVisibility="Column" FontSize="13">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Id guest" Binding="{Binding GuestId}" Width="200"/>
                     <DataGridTextColumn Header="Id Accommodation" Binding="{Binding AccommodationId}" Width="200"/>
@@ -54,11 +54,14 @@
                 </StackPanel>
             </Button>
         </ToolBar>
-
+        <!--
         <Frame
-    x:Name="HostFrame"
-    NavigationUIVisibility="Hidden"
-    Source="../View/HostPages/RegisterAccommodationPage.xaml" Grid.ColumnSpan="2" Margin="0,0,0,162" Grid.RowSpan="3" />
+x:Name="HostFrame"
+NavigationUIVisibility="Hidden"
+Source="../View/HostPages/RegisterAccommodationPage.xaml" Grid.ColumnSpan="2" Margin="0,0,0,162" Grid.RowSpan="3" />
+    -->
+
+       
 
     </Grid>
 </Window>
