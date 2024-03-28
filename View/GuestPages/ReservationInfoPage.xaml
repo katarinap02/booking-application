@@ -11,7 +11,11 @@
     <Grid>
         <Rectangle HorizontalAlignment="Left" Height="450" Stroke="Black" VerticalAlignment="Center" Width="776" Fill="White"/>
         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="101,59,412,53"/>
-        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="400,58,113,54"/>
+        <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="400,58,113,54">
+            <StackPanel>
+                
+            </StackPanel>
+        </Border>
 
     </Grid>
 </Page>
