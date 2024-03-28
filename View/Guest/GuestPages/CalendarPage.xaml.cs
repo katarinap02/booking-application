@@ -39,6 +39,8 @@ namespace BookingApp.View.GuestPages
 
         public Frame Frame { get; set; }
         public int DayNumber { get; set; }
+
+        public int GuestNumber { get; set; }
         public CalendarPage(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end, Frame frame)
         {
             InitializeComponent();
@@ -257,7 +259,7 @@ namespace BookingApp.View.GuestPages
 
         private void Reserve_Click(object sender, RoutedEventArgs e)
         {
-            int inputGuestNumber = Convert.ToInt32(txtGuestNumber.Text);
+            GuestNumber = Convert.ToInt32(txtGuestNumber.Text);
             if (inputGuestNumber > SelectedAccommodation.MaxGuestNumber)
             {
                // finishReservation.IsEnabled = false;
@@ -275,7 +277,8 @@ namespace BookingApp.View.GuestPages
                 AccommodationRepository.Update(SelectedAccommodation.ToAccommodation());
 
                 AccommodationReservationRepository.Add(Reservation);
-                MessageBox.Show("jupi");
+
+                Frame.Content = new ReservationSuccessfulPage(AccommodationRepository, SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
 
 
 

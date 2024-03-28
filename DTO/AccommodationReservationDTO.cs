@@ -72,7 +72,23 @@ namespace BookingApp.DTO
             }
         }
 
-       
+        private int numberOfPeople;
+
+        public int NumberOfPeople
+        {
+            get { return numberOfPeople; }
+            set
+            {
+                if (numberOfPeople != value)
+                {
+
+                    numberOfPeople = value;
+                    OnPropertyChanged("NumberOfPeople");
+                }
+            }
+        }
+
+        
 
         public AccommodationReservationDTO() { }
 
@@ -82,6 +98,7 @@ namespace BookingApp.DTO
             accommodationId = ac.AccommodationId;
             startDate = ac.StartDate;
             endDate = ac.EndDate;
+            numberOfPeople = ac.NumberOfPeople;
             
 
 

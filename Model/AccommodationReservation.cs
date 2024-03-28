@@ -17,6 +17,8 @@ namespace BookingApp.Model
         public DateTime EndDate { get; set; }
         public string DateRange => StartDate.ToString() + "-" + EndDate.ToString();
 
+        public int NumberOfPeople { get; set; }
+        
         public AccommodationReservation() { }
     
         public string[] ToCSV()
@@ -26,7 +28,8 @@ namespace BookingApp.Model
 
                 GuestId.ToString(),
                 AccommodationId.ToString(),
-                DateRange
+                DateRange,
+                NumberOfPeople.ToString()
 
             };
             return csvValues;
@@ -40,6 +43,7 @@ namespace BookingApp.Model
             string[] dateParts = values[2].Split('-');
             StartDate = DateTime.Parse(dateParts[0]);
             EndDate = DateTime.Parse(dateParts[1]);
+            NumberOfPeople = Convert.ToInt32(values[3]);
 
         }
 
