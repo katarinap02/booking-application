@@ -187,5 +187,42 @@ namespace BookingApp.Repository
             _serializer.ToCSV(FilePath, _tours);
         }
 
+        private List<Tour> findToursByGuideId(int guideId)
+        {
+            List<Tour> tours = GetAll();
+            foreach(Tour tour in tours.ToList())
+            {
+                TimeSpan difference = DateTime.Now - tour.Date;
+                if (tour.GuideId != guideId)
+                {
+                    tours.Remove(tour);
+                }
+            }
+            return tours;
+        }
+
+        private List<Tour> findToursToCancel(int guideId)
+        {
+            List<Tour> tours = findToursByGuideId(guideId);
+            foreach (Tour tour in tours.ToList())
+            {
+                TimeSpan difference = DateTime.Now - tour.Date;
+                if (difference.TotalHours <= 48 || tour.Status != TourStatus.inPreparation)
+                {
+                    tours.Remove(tour);
+                }
+            }
+            return tours;
+        }
+
+        private void cancelTour(int id)
+        {
+            Tour tour = GetTourById(id);
+            if (tour == null) return;
+            tour.Status = TourStatus.Canceled;
+            //dodeli vaucer
+            _serializer.ToCSV(FilePath, _tours);
+        }
+
     }
 }
