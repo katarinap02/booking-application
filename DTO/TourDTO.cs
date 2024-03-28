@@ -205,6 +205,20 @@ namespace BookingApp.DTO
             }
         }
 
+        private int guideId;
+        public int GuideId
+        {
+            get { return guideId; }
+            set
+            {
+                if (guideId != value)
+                {
+                    guideId = value;
+                    OnPropertyChanged("GuideId");
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -229,6 +243,7 @@ namespace BookingApp.DTO
             pictures = tour.Pictures;
             country = tour.Country;
             currentCheckpoint = tour.currentCheckpoint;
+            guideId = tour.GuideId;
         }
 
         public Tour ToTour()
@@ -237,6 +252,7 @@ namespace BookingApp.DTO
             tour.Id = id;
             tour.Status = status;
             tour.GroupId = groupId;
+            tour.GuideId = guideId;
             return tour;
         }
 
