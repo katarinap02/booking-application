@@ -166,7 +166,6 @@ namespace BookingApp.Repository
         public void bindGuideAndTour(Tour tour, User guide)
         {
             tour.Status = TourStatus.gotGuide;
-            //GuidedTourRepository.Add(guide, tour);
         }
 
         public void finnishTour(int id)
@@ -197,7 +196,6 @@ namespace BookingApp.Repository
             List<Tour> tours = GetAll();
             foreach (Tour tour in tours.ToList())
             {
-                TimeSpan difference = DateTime.Now - tour.Date;
                 if (tour.GuideId != guideId)
                 {
                     tours.Remove(tour);

@@ -41,6 +41,11 @@ namespace BookingApp.Repository
             return _tourParticipants.Max(t => t.Id) + 1;
         }
 
+        public TourParticipant GetById(int id)
+        {
+            return _tourParticipants.Find(tp => tp.Id == id);
+        }
+
         public List<int> GetAllIdsByReservation(int reservationId)
         {
             List<TourParticipant> tourParticipantsByReservation = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
@@ -73,6 +78,42 @@ namespace BookingApp.Repository
 
             return tourParticipants;
         }
+
+        public List<TourParticipant> GetAllJoinedParticipantsByReservation(int reservationId)
+        {
+            List<TourParticipant> tourParticipants = GetAllParticipantsByReservation(reservationId);
+            foreach(TourParticipant tp in tourParticipants.ToList())
+            {
+                if (!tp.HasJoinedTour) //ako se nije prikljucio
+                {
+                    tourParticipants.Remove(tp);
+                }
+            }
+
+            return tourParticipants;
+        }
+
+        public List<TourParticipant> GetAllNotJoinedParticipantsByReservation(int reservationId)
+        {
+            List<TourParticipant> tourParticipants = GetAllParticipantsByReservation(reservationId);
+            foreach (TourParticipant tp in tourParticipants.ToList())
+            {
+                if (tp.HasJoinedTour)
+                {
+                    tourParticipants.Remove(tp);
+                }
+            }
+
+            return tourParticipants;
+        }
         
+        public void JoinTour(int participant_id, int current_checkpoint_index)
+        {
+            TourParticipant tourParticipant = GetById(participant_id);
+            tourParticipant.HasJoinedTour = true;
+            tourParticipant.JoinedCheckpointIndex = current_checkpoint_index;
+            _serializer.ToCSV(FilePath, _tourParticipants);
+        }
+
     }
 }

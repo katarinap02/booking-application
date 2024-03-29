@@ -53,29 +53,15 @@ namespace BookingApp.Repository
             return reservations;
         }
 
-        public List<TourReservation> GetJoinedReservations(int tour_id) 
-        {
-            List<TourReservation> tourReservations = GetReservationsByTour(tour_id);
-            if (tourReservations.Count == 0) return null;
-            foreach (TourReservation reservation in tourReservations.ToList())
-            {
-                if (!reservation.HasJoinedTour)
-                {
-                    tourReservations.Remove(reservation);
-                }
-            }
-            return tourReservations;
-        }
-
         public List<TourParticipant> GetJoinedParticipantsByTour(int tour_id)
         {
-            List<TourReservation> tourReservations = GetJoinedReservations(tour_id);
+            List<TourReservation> tourReservations = GetReservationsByTour(tour_id);
             List<TourParticipant> participants = new List<TourParticipant>();
             foreach(TourReservation tourReservation in tourReservations.ToList())
             {
-                foreach (TourParticipant participant in _participantRepository.GetAllParticipantsByReservation(tourReservation.Id))
+                foreach (TourParticipant participant in _participantRepository.GetAllJoinedParticipantsByReservation(tourReservation.Id))
                 {
-                    participants.Add(participant); //izmeniti logiku ovde ako ne moraju svi da se pridruze odjednom
+                    participants.Add(participant);
                 }
             }
             return participants;
@@ -87,45 +73,25 @@ namespace BookingApp.Repository
             return tourParticipants.Count();
         }
 
-        public List<TourReservation> GetNotJoinedReservations(int tour_id)
+
+        public List<TourParticipant> GetNotJoinedReservations(int tour_id) 
         {
             List<TourReservation> tourReservations = GetReservationsByTour(tour_id);
-            if (tourReservations.Count == 0) return null;
-            foreach(TourReservation reservation in tourReservations.ToList())
+            List<TourParticipant> participants = new List<TourParticipant>();
+            foreach (TourReservation tourReservation in tourReservations.ToList())
             {
-                if (reservation.HasJoinedTour)
+                foreach (TourParticipant participant in _participantRepository.GetAllNotJoinedParticipantsByReservation(tourReservation.Id))
                 {
-                    tourReservations.Remove(reservation);
+                    participants.Add(participant);
                 }
             }
-            return tourReservations;
-        }
-
-        public List<string> GetNotJoinedNamesByTour(int tour_id)
-        {
-            List<TourReservation> tourReservations = GetNotJoinedReservations(tour_id);
-            List<string> names = new List<string>();    
-            foreach (TourReservation tourReservation in tourReservations)
-            {
-                names.Add(_participantRepository.GetAllParticipantNames(tourReservation.Id));
-            }
-            return names;
+            return participants;
         }
 
         public TourReservation GetById(int reservation_id)
         {
             return _tourReservations.Find(res => res.Id == reservation_id);
-        }
-
-        public void JoinTour(int reservation_id, int current_checkpoint) 
-        {
-            TourReservation tourReservation = GetById(reservation_id);
-            tourReservation.HasJoinedTour = true;
-            tourReservation.StartCheckpoint = current_checkpoint;
-            _serializer.ToCSV(FilePath, _tourReservations);
-        }
-
-        
+        }        
 
     }
 }
