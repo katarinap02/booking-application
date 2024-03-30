@@ -24,5 +24,18 @@ namespace BookingApp.View.HostPages
         {
             InitializeComponent();
         }
+
+        private void Displacement_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+
+        }
+        private void Forums_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+
+        }
+        private void RateGuest_RequestNavigate(object sender, RequestNavigateEventArgs e)
+        {
+
+        }
     }
 }

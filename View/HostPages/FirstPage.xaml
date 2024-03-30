@@ -9,6 +9,80 @@
       Title="FirstPage">
 
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="610"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <Label
+        x:Name="TitleLabel"
+        Grid.Row="0"
+        VerticalAlignment="Center"
+        HorizontalAlignment="Center"
+        Content="Welcome"
+        FontSize="32"
+         />
+        <Label
+            x:Name="SuperHostLabel"
+            Grid.Row="0"
+            Grid.Column="1"
+            Margin="5,0,0,0"
+            VerticalAlignment="Center"
+            Content="Super host"
+            FontSize="15"
+             />
+        <Grid Grid.Column="1" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="40" />
+                <RowDefinition Height="60" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="15" />
+                <RowDefinition Height="25" />
+                <RowDefinition Height="15" />
+            </Grid.RowDefinitions>
+            <Label
+                x:Name="ToDoLabel"
+                Grid.Row="0"
+                Grid.Column="1"
+                Margin="5,0,0,0"
+                VerticalAlignment="Center"
+                Content="To do"
+                HorizontalAlignment="Center"
+                FontSize="24"
+                FontWeight="Bold"
+                 />
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5 0 0 0">
+                <Image Source="../../Resources/Images/urgent.png" Width="20" Height="25"/>
+                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">
+                    <Hyperlink Style="{StaticResource HyperlinkStyle}" RequestNavigate="Displacement_RequestNavigate" >
+                        Displacement request
+                    </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5 0 0 0">
+                <Image Source="../../Resources/Images/urgent.png" Width="20" Height="25"/>
+                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">
+        <Hyperlink Style="{StaticResource HyperlinkStyle}" RequestNavigate="Forums_RequestNavigate" >
+            View new forums
+        </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="5 0 0 0">
+                <Image Source="../../Resources/Images/notification.png" Width="20" Height="25"/>
+                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">
+        <Hyperlink Style="{StaticResource HyperlinkStyle}" RequestNavigate="RateGuest_RequestNavigate" >
+            Rate guest
+        </Hyperlink>
+                </TextBlock>
+            </StackPanel>
+
+        </Grid>
     </Grid>
 </Page>
