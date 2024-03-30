@@ -9,5 +9,17 @@
             
         </Style>
 
+        
+        <Style x:Key="HyperlinkStyle" TargetType="{x:Type Hyperlink}">
+                <Setter Property="Foreground" Value="Blue"/>
+                <Setter Property="TextDecorations" Value="Underline"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="AliceBlue"/>
+                    </Trigger>
+                </Style.Triggers>
+        </Style>
+        
+
     </Application.Resources>
 </Application>
