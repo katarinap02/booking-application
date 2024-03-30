@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using System.Windows.Input;
 using BookingApp.Model;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace BookingApp.DTO
@@ -175,6 +177,21 @@ namespace BookingApp.DTO
             }
         }
 
+        private string onePicture;
+        public string OnePicture
+        {
+            get { return onePicture; }
+            set
+            {
+                if (onePicture != value)
+                {
+
+                    onePicture = value;
+                    OnPropertyChanged("OnePicture");
+                }
+            }
+        }
+
 
         private List<CalendarDateRange> unavailableDates = new List<CalendarDateRange>();
         public List<CalendarDateRange> UnavailableDates
@@ -286,6 +303,14 @@ namespace BookingApp.DTO
             MinReservationDays = accommodation.MinReservationDays;
             ReservationDaysLimit = accommodation.ReservationDaysLimit;
             UnavailableDates = accommodation.UnavailableDates;
+            if(accommodation.Pictures.Count != 0) {
+                OnePicture = accommodation.Pictures[0];
+            }
+            else
+            {
+                OnePicture = "Resources\\Images\\house.jpg";
+            }
+            
 
 
 
