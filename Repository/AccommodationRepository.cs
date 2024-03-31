@@ -1,6 +1,7 @@
 ﻿using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Serializer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -66,5 +67,14 @@ namespace BookingApp.Repository
             return accommodation;
         }
 
+        public Accommodation GetById(int accommodationId)
+        {
+            foreach(Accommodation accommodation in _accommodations)
+            {
+                if(accommodationId == accommodation.Id) return accommodation;
+            }
+
+            return null;
+        }
     }
 }

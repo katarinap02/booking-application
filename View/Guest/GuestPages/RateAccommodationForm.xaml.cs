@@ -1,6 +1,7 @@
 ﻿using BookingApp.DTO;
 using BookingApp.Model;
 using BookingApp.Repository;
+using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,10 @@ namespace BookingApp.View.GuestPages
         public AccommodationRepository AccommodationRepository { get; set; }
 
         public Frame Frame { get; set; }
+
+        public AccommodationRateDTO AccommodationRate { get; set; }
+
+        public AccommodationRateRepository AccommodationRateRepository { get; set; }
         public RateAccommodationForm(User user, AccommodationReservationDTO selectedReservation, AccommodationRepository accommodationRepository, Frame frame)
         {
             InitializeComponent();
@@ -35,7 +40,70 @@ namespace BookingApp.View.GuestPages
             this.SelectedReservation = selectedReservation;
             this.AccommodationRepository = accommodationRepository;
             this.Frame = frame;
+            this.AccommodationRateRepository = new AccommodationRateRepository();
+            this.AccommodationRate = new AccommodationRateDTO();
 
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            AccommodationRate.ReservationId = SelectedReservation.Id;
+            AccommodationRate.GuestId = User.Id;
+            AccommodationRate.HostId = AccommodationRepository.GetById(SelectedReservation.AccommodationId).HostId;
+            AccommodationRateRepository.Add(AccommodationRate.ToAccommodationRate());
+            MessageBox.Show("jej");
+
+        }
+
+        private void AddPicture_Click(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All files (*.*)|*.*";
+            if (openFileDialog.ShowDialog() == true)
+            {
+                string selectedFileName = openFileDialog.FileName;
+                try
+                {
+                    BitmapImage bitmapImage = new BitmapImage(new Uri(selectedFileName));
+
+                    string imageUrl = selectedFileName;
+
+                    imageUrl = ConvertToRelativePath(imageUrl);
+                    AddPicture(imageUrl);
+
+
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error loading image: {ex.Message}");
+                }
+            }
+        }
+
+        public string ConvertToRelativePath(string input)
+        {
+            int index = input.IndexOf("Resources");
+            if (index != -1)
+            {
+                return input.Substring(index);
+            }
+            else
+            {
+                MessageBox.Show("Please select an image from the resources privided within this app!");
+                return input;
+            }
+        }
+
+        private void AddPicture(string pictureUrl)
+        {
+            if (!string.IsNullOrEmpty(pictureUrl))
+            {
+
+                AccommodationRate.Images.Add(pictureUrl);
+                
+                pictureListBox.ItemsSource = AccommodationRate.Images;
+                
+            }
         }
     }
 }
