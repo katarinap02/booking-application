@@ -1,4 +1,7 @@
-﻿using System;
+﻿using BookingApp.DTO;
+using BookingApp.Model;
+using BookingApp.Repository;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,16 +16,26 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookingApp.View.Guest.GuestPages
+namespace BookingApp.View.GuestPages
 {
     /// <summary>
     /// Interaction logic for RateAccommodationForm.xaml
     /// </summary>
     public partial class RateAccommodationForm : Page
     {
-        public RateAccommodationForm()
+        public AccommodationReservationDTO SelectedReservation { get; set; }
+        public User User { get; set; }
+        public AccommodationRepository AccommodationRepository { get; set; }
+
+        public Frame Frame { get; set; }
+        public RateAccommodationForm(User user, AccommodationReservationDTO selectedReservation, AccommodationRepository accommodationRepository, Frame frame)
         {
             InitializeComponent();
+            this.User = user;
+            this.SelectedReservation = selectedReservation;
+            this.AccommodationRepository = accommodationRepository;
+            this.Frame = frame;
+
         }
     }
 }

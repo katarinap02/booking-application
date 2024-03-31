@@ -80,7 +80,7 @@ namespace BookingApp.View.GuestPages
 
         private void ProfilePage_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new ProfilePage(User, AccommodationReservationRepository, Frame);
+            Frame.Content = new ProfilePage(User, AccommodationReservationRepository, AccommodationRepository, Frame);
         }
     }
 }
