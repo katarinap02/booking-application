@@ -10,58 +10,72 @@ namespace BookingApp.DTO
 {
     public class TourReservationDTO : INotifyPropertyChanged
     {
-        private int id;
+        private int _id;
         public int Id
         {
-            get { return id; }
+            get { return _id; }
             set
             {
-                if(id != value)
+                if(_id != value)
                 {
-                    id = value;
+                    _id = value;
                     OnPropertyChanged(nameof(Id));
                 }
             }
         }
 
-        private List<int> participantIds = new List<int>();
+        private List<int> _participantIds = new List<int>();
         public List<int> ParticipantIds
         {
-            get { return  participantIds; }
+            get { return  _participantIds; }
             set
             {
-                if(participantIds != value)
+                if(_participantIds != value)
                 {
-                    participantIds = value;
+                    _participantIds = value;
                     OnPropertyChanged(nameof(ParticipantIds));
                 }
             }
         }
 
-        private int tourId;
+        private int _tourId;
         public int TourId
         {
-            get { return tourId; }
+            get { return _tourId; }
             set
             {
-                if (tourId != value)
+                if (_tourId != value)
                 {
-                    tourId = value;
+                    _tourId = value;
                     OnPropertyChanged(nameof(TourId));
                 }
             }
         }
 
-        private int startCheckpoint;
+        private int _touristId;
+        public int TouristId
+        {
+            get { return _touristId; }
+            set
+            {
+                if (_touristId != value)
+                {
+                    _touristId = value;
+                    OnPropertyChanged(nameof(TouristId));
+                }
+            }
+        }
+
+        private int _startCheckpoint;
 
         public int StartCheckpoint
         {
-            get { return startCheckpoint; }
+            get { return _startCheckpoint; }
             set
             {
-                if (startCheckpoint != value)
+                if (_startCheckpoint != value)
                 {
-                    startCheckpoint = value;
+                    _startCheckpoint = value;
                     OnPropertyChanged(nameof(StartCheckpoint));
                 }
             }
@@ -78,19 +92,20 @@ namespace BookingApp.DTO
 
         public TourReservationDTO(TourReservation tourReservation)
         {
-            id = tourReservation.Id;
-            participantIds = tourReservation.ParticipantIds;
-            tourId= tourReservation.TourId;
-            startCheckpoint = tourReservation.StartCheckpoint;
+            _id = tourReservation.Id;
+            _participantIds = tourReservation.ParticipantIds;
+            _tourId= tourReservation.TourId;
+            _startCheckpoint = tourReservation.StartCheckpoint;
         }
 
         public TourReservation ToTourReservation()
         {
-            TourReservation tourReservation = new TourReservation(Id, tourId, startCheckpoint);
-            tourReservation.Id = id;
-            tourReservation.TourId = tourId;
-            tourReservation.StartCheckpoint = startCheckpoint;
-            tourReservation.ParticipantIds = participantIds;
+            TourReservation tourReservation = new TourReservation(Id, _tourId, _touristId, _startCheckpoint);
+            tourReservation.Id = _id;
+            tourReservation.TourId = _tourId;
+            tourReservation.TouristId = _touristId;
+            tourReservation.StartCheckpoint = _startCheckpoint;
+            tourReservation.ParticipantIds = _participantIds;
             return tourReservation;
         }
     }
