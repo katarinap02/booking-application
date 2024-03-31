@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookingApp.Model
 {
-    class AccommodationRate
+    public class AccommodationRate
     {
         public int ReservationId { get; set; }
         public int GuestId { get; set; } 

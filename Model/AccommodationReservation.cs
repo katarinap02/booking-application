@@ -25,7 +25,18 @@ namespace BookingApp.Model
 
 
         public AccommodationReservation() { }
-    
+        
+        public AccommodationReservation(int guestId, int accommodationId, DateTime startDate, DateTime endDate, int numberOfPeople, string name, string city, string country)
+        {
+            GuestId = guestId;
+            AccommodationId = accommodationId;
+            StartDate = startDate;
+            EndDate = endDate;
+            NumberOfPeople = numberOfPeople;
+            Name = name;
+            City = city;
+            Country = country;
+        }
         public string[] ToCSV()
         {
             string[] csvValues =
