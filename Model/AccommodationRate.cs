@@ -1,25 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using BookingApp.Serializer;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace BookingApp.Model
 {
-    public class AccommodationRate
+    public class AccommodationRate : ISerializable
     {
         public int ReservationId { get; set; }
-        public int GuestId { get; set; } 
+        public int GuestId { get; set; }
         public int HostId { get; set; }
         public int Cleanliness { get; set; }
 
-        public int Correctness { get; set; }    
+        public int Correctness { get; set; }
 
         public string AdditionalComment { get; set; }
 
         public List<string> Images { get; set; }
 
-        public AccommodationRate() { 
+        public AccommodationRate()
+        {
             Images = new List<string>();
         }
 
@@ -76,6 +78,6 @@ namespace BookingApp.Model
             return PictureString;
         }
 
-
+       
     }
 }
