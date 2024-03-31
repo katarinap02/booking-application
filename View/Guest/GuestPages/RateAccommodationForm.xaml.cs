@@ -14,51 +14,48 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookingApp.View.HostWindows
+namespace BookingApp.View.GuestPages
 {
     /// <summary>
-    /// Interaction logic for RegisterAccommodationWindow.xaml
+    /// Interaction logic for RateAccommodationForm.xaml
     /// </summary>
-    public partial class RegisterAccommodationWindow : Window
+    public partial class RateAccommodationForm : Page
     {
+        public AccommodationReservationDTO SelectedReservation { get; set; }
         public User User { get; set; }
-        public AccommodationDTO accommodationDTO { get; set; }
-        private AccommodationRepository accommodationRepository;
-        public RegisterAccommodationWindow(AccommodationRepository ar, User user)
+        public AccommodationRepository AccommodationRepository { get; set; }
+
+        public Frame Frame { get; set; }
+
+        public AccommodationRateDTO AccommodationRate { get; set; }
+
+        public AccommodationRateRepository AccommodationRateRepository { get; set; }
+        public RateAccommodationForm(User user, AccommodationReservationDTO selectedReservation, AccommodationRepository accommodationRepository, Frame frame)
         {
             InitializeComponent();
-            accommodationRepository = ar;
-            DataContext = this;
-            accommodationDTO = new AccommodationDTO();
-            User = user;
-        }
+            this.User = user;
+            this.SelectedReservation = selectedReservation;
+            this.AccommodationRepository = accommodationRepository;
+            this.Frame = frame;
+            this.AccommodationRateRepository = new AccommodationRateRepository();
+            this.AccommodationRate = new AccommodationRateDTO();
 
-        private void Exit_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-            MessageBox.Show("Accommodation not added!");
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if(accommodationDTO.IsValid) {
-                accommodationDTO.HostId = User.Id;
-                accommodationRepository.Add(accommodationDTO.ToAccommodation());
-                MessageBox.Show("Accommodation added.");
-                Close();
-            }
-            else
-            {
-                
-                 MessageBox.Show("Accommodation can not be created. Not all fields are valid.");
-                
-            }
-            
+            AccommodationRate.ReservationId = SelectedReservation.Id;
+            AccommodationRate.GuestId = User.Id;
+            AccommodationRate.HostId = AccommodationRepository.GetById(SelectedReservation.AccommodationId).HostId;
+            AccommodationRateRepository.Add(AccommodationRate.ToAccommodationRate());
+            MessageBox.Show("jej");
+
         }
 
-        private void Picture_Click(object sender, RoutedEventArgs e)
+        private void AddPicture_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All files (*.*)|*.*";
@@ -71,10 +68,10 @@ namespace BookingApp.View.HostWindows
 
                     string imageUrl = selectedFileName;
 
-                    imageUrl = convertToRelativePath(imageUrl);
+                    imageUrl = ConvertToRelativePath(imageUrl);
                     AddPicture(imageUrl);
 
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -83,7 +80,7 @@ namespace BookingApp.View.HostWindows
             }
         }
 
-        public string convertToRelativePath(string input)
+        public string ConvertToRelativePath(string input)
         {
             int index = input.IndexOf("Resources");
             if (index != -1)
@@ -101,11 +98,11 @@ namespace BookingApp.View.HostWindows
         {
             if (!string.IsNullOrEmpty(pictureUrl))
             {
+
+                AccommodationRate.Images.Add(pictureUrl);
                 
-                accommodationDTO.Picture.Add(pictureUrl);
-                txtPictureUrlTextBox.Text = "";
-                txtPictureUrls.ItemsSource = null;
-                txtPictureUrls.ItemsSource = accommodationDTO.Picture;
+                pictureListBox.ItemsSource = AccommodationRate.Images;
+                
             }
         }
     }

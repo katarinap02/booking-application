@@ -36,7 +36,7 @@ namespace BookingApp.DTO
             {
                 if (name != value)
                 {
-                    
+
                     name = value;
                     OnPropertyChanged("Name");
                 }
@@ -51,7 +51,7 @@ namespace BookingApp.DTO
             {
                 if (city != value)
                 {
-                    
+
                     city = value;
                     OnPropertyChanged("City");
                 }
@@ -66,12 +66,14 @@ namespace BookingApp.DTO
             {
                 if (country != value)
                 {
-                    
+
                     country = value;
                     OnPropertyChanged("Country");
                 }
             }
         }
+
+        
 
         private AccommodationType type;
         public AccommodationType Type
@@ -207,8 +209,21 @@ namespace BookingApp.DTO
             }
         }
 
+        private int hostId;
+        public int HostId
+        {
+            get { return hostId; }
+            set
+            {
+                if (hostId != value)
+                {
+                    hostId = value;
+                    OnPropertyChanged("HostId");
+                }
+            }
+        }
 
-
+        public string Location => City + ", " + Country;
         public string Error => null;
 
         
@@ -303,6 +318,9 @@ namespace BookingApp.DTO
             MinReservationDays = accommodation.MinReservationDays;
             ReservationDaysLimit = accommodation.ReservationDaysLimit;
             UnavailableDates = accommodation.UnavailableDates;
+
+            hostId = accommodation.HostId;
+
             if(accommodation.Pictures.Count != 0) {
                 OnePicture = accommodation.Pictures[0];
             }
@@ -314,16 +332,18 @@ namespace BookingApp.DTO
 
 
 
+
         }
 
         public Accommodation ToAccommodation()
         {
             type = GetAccommodationType();
             
-            Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit);
+            Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit, hostId);
             a.Id = id;
             a.UnavailableDates = unavailableDates;
             a.Pictures = picture;
+            
 
             
             

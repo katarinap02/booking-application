@@ -63,7 +63,7 @@ namespace BookingApp.View
                     }
                     else if (user.Type.ToString().Equals("host"))
                     {
-                        HostWindow hostWindow = new HostWindow();
+                        HostWindow hostWindow = new HostWindow(user);
                         hostWindow.Show();
                     }
                     else if (user.Type.ToString().Equals("guide"))

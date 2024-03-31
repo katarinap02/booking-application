@@ -13,7 +13,19 @@ namespace BookingApp.DTO
 {
     public class GuestRateDTO : INotifyPropertyChanged
     {
-
+        private int reservationId;
+        public int ReservationId
+        {
+            get { return reservationId; }
+            set
+            {
+                if (reservationId != value)
+                {
+                    reservationId = value;
+                    OnPropertyChanged("ReservationId");
+                }
+            }
+        }
 
         private int guestId;
         public int GuestId
@@ -135,6 +147,7 @@ namespace BookingApp.DTO
 
         public GuestRateDTO(GuestRate gr) {
 
+            reservationId = gr.ReservationId;
             guestId = gr.UserId;
             accommodationId = gr.AcommodationId;
             cleanliness = gr.Cleanliness;
@@ -145,7 +158,7 @@ namespace BookingApp.DTO
 
         public GuestRate toGuestRate()
         {
-            GuestRate guestRate = new GuestRate(guestId, accommodationId, cleanliness, rulesFollowing, additionalComment);
+            GuestRate guestRate = new GuestRate(reservationId, guestId, accommodationId, cleanliness, rulesFollowing, additionalComment);
             return guestRate;
         }
 

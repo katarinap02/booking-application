@@ -69,6 +69,7 @@ namespace BookingApp.Repository
 
         public AccommodationReservation Add(AccommodationReservation reservation)
         {
+            reservation.Id = NextId();
             _reservations = _serializer.FromCSV(FilePath);
             _reservations.Add(reservation);
             _serializer.ToCSV(FilePath, _reservations);
@@ -76,6 +77,14 @@ namespace BookingApp.Repository
             return reservation;
         }
 
+        public int NextId()
+        {
+            _reservations = _serializer.FromCSV(FilePath);
+            if (_reservations.Count < 1)
+                return 1;
+
+            return _reservations.Max(a => a.Id) + 1;
+        }
 
     }
 }
