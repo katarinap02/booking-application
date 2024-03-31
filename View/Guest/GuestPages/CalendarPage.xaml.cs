@@ -272,6 +272,9 @@ namespace BookingApp.View.GuestPages
                 Reservation.AccommodationId = SelectedAccommodation.Id;
                 Reservation.StartDate = SelectedDateRange.Start;
                 Reservation.EndDate = SelectedDateRange.End;
+                Reservation.Name = SelectedAccommodation.Name;
+                Reservation.City = SelectedAccommodation.City;
+                Reservation.Country = SelectedAccommodation.Country;
 
                 SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
                 AccommodationRepository.Update(SelectedAccommodation.ToAccommodation());

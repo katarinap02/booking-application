@@ -88,7 +88,53 @@ namespace BookingApp.DTO
             }
         }
 
-        
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                if (name != value)
+                {
+
+                    name = value;
+                    OnPropertyChanged("Name");
+                }
+            }
+        }
+
+        private string city;
+        public string City
+        {
+            get { return city; }
+            set
+            {
+                if (city != value)
+                {
+
+                    city = value;
+                    OnPropertyChanged("City");
+                }
+            }
+        }
+
+        private string country;
+        public string Country
+        {
+            get { return country; }
+            set
+            {
+                if (country != value)
+                {
+
+                    country = value;
+                    OnPropertyChanged("Country");
+                }
+            }
+        }
+
+        public string Location => City + ", " + Country;
+
 
         public AccommodationReservationDTO() { }
 
@@ -99,6 +145,9 @@ namespace BookingApp.DTO
             startDate = ac.StartDate;
             endDate = ac.EndDate;
             numberOfPeople = ac.NumberOfPeople;
+            name = ac.Name;
+            city = ac.City;
+            country = ac.Country;
             
 
 

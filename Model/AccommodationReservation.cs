@@ -19,6 +19,11 @@ namespace BookingApp.Model
 
         public int NumberOfPeople { get; set; }
         
+        public string Name { get; set; }    
+        public string City { get; set; }    
+        public string Country { get; set; }
+
+
         public AccommodationReservation() { }
     
         public string[] ToCSV()
@@ -29,7 +34,10 @@ namespace BookingApp.Model
                 GuestId.ToString(),
                 AccommodationId.ToString(),
                 DateRange,
-                NumberOfPeople.ToString()
+                NumberOfPeople.ToString(),
+                Name,
+                City,
+                Country
 
             };
             return csvValues;
@@ -44,6 +52,9 @@ namespace BookingApp.Model
             StartDate = DateTime.Parse(dateParts[0]);
             EndDate = DateTime.Parse(dateParts[1]);
             NumberOfPeople = Convert.ToInt32(values[3]);
+            Name = values[4];
+            City = values[5];
+            Country = values[6];
 
         }
 
