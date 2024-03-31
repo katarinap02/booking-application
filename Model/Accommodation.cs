@@ -27,6 +27,7 @@ namespace BookingApp.Model
         public Accommodation() { 
         
             UnavailableDates = new List<CalendarDateRange>();
+            Pictures = new List<String>();
 
         }
 
