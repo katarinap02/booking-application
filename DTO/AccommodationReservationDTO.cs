@@ -12,6 +12,19 @@ namespace BookingApp.DTO
 {
     public class AccommodationReservationDTO : INotifyPropertyChanged
     {
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                if (id != value)
+                {
+                    id = value;
+                    OnPropertyChanged("Id");
+                }
+            }
+        }
 
         private int guestId;
         public int GuestId
@@ -140,6 +153,7 @@ namespace BookingApp.DTO
 
         public AccommodationReservationDTO(AccommodationReservation ac)
         {
+            id = ac.Id;
             guestId = ac.GuestId;
             accommodationId = ac.AccommodationId;
             startDate = ac.StartDate;

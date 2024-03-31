@@ -10,7 +10,7 @@ namespace BookingApp.Model
 {
     public class AccommodationReservation : ISerializable
     {
-       // public int Id {  get; set; } mislim da ovo nece trebati
+        public int Id {  get; set; }
         public int GuestId { get; set; }
         public int AccommodationId { get; set; }
         public DateTime StartDate { get; set; }
@@ -30,7 +30,7 @@ namespace BookingApp.Model
         {
             string[] csvValues =
             {
-
+                Id.ToString(),
                 GuestId.ToString(),
                 AccommodationId.ToString(),
                 DateRange,
@@ -46,15 +46,16 @@ namespace BookingApp.Model
 
         public void FromCSV(string[] values)
         {
-            GuestId = Convert.ToInt32(values[0]);   
-            AccommodationId = Convert.ToInt32(values[1]);
-            string[] dateParts = values[2].Split('-');
+            Id = Convert.ToInt32(values[0]);
+            GuestId = Convert.ToInt32(values[1]);   
+            AccommodationId = Convert.ToInt32(values[2]);
+            string[] dateParts = values[3].Split('-');
             StartDate = DateTime.Parse(dateParts[0]);
             EndDate = DateTime.Parse(dateParts[1]);
-            NumberOfPeople = Convert.ToInt32(values[3]);
-            Name = values[4];
-            City = values[5];
-            Country = values[6];
+            NumberOfPeople = Convert.ToInt32(values[4]);
+            Name = values[5];
+            City = values[6];
+            Country = values[7];
 
         }
 
