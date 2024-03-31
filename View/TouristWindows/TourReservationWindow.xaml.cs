@@ -33,6 +33,8 @@ namespace BookingApp.View.TouristWindows
         public List<TourParticipantDTO> TourParticipantDTOs { get; set; }
         public List<TourParticipantDTO> TourParticipantsListBox { get; set; }
 
+        public int UserId;
+
         #region Property
         private int participantCount;
 
@@ -64,12 +66,13 @@ namespace BookingApp.View.TouristWindows
         }
         #endregion
 
-        public TourReservationWindow(Tour selectedTour, int insertedNumberOfParticipants)
+        public TourReservationWindow(Tour selectedTour, int insertedNumberOfParticipants, int userId)
         {
             InitializeComponent();
             this.DataContext = this;
             SelectedTour = selectedTour;
             ParticipantCount = insertedNumberOfParticipants.ToString();
+            UserId = userId;
 
             _tourParticipantRepository = new TourParticipantRepository();
             _tourReservationRepository = new TourReservationRepository();
@@ -169,6 +172,7 @@ namespace BookingApp.View.TouristWindows
         private void saveReservation()
         {
             TourReservation.TourId = SelectedTour.Id;
+            TourReservation.TouristId = UserId;
             TourReservation.ParticipantIds = _tourParticipantRepository.GetAllIdsByReservation(_tourReservationRepository.NextId());
             TourReservation.StartCheckpoint = SelectedTour.currentCheckpoint;
 
