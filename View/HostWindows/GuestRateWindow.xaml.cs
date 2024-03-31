@@ -49,6 +49,7 @@ namespace BookingApp.View.GuestWindows
         {
             if(guestRateDTO.IsValid)
             {
+                guestRateDTO.ReservationId = accommodationReservationDTO.Id;
                 guestRateDTO.GuestId = accommodationReservationDTO.GuestId;
                 guestRateDTO.AccommodationId = accommodationReservationDTO.AccommodationId;
                 guestRateRepository.Add(guestRateDTO.toGuestRate());

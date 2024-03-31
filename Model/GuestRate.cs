@@ -10,6 +10,7 @@ namespace BookingApp.Model
     public class GuestRate : ISerializable
     {
 
+        public int ReservationId { get; set; }
         public int UserId { get; set; } //dogovoriti se da li cuvamo id ili celog user-a
 
         public int AcommodationId { get; set; } //dogovoriti se da li cuvamo id ili celog user-a
@@ -25,8 +26,9 @@ namespace BookingApp.Model
 
         public GuestRate() { }
 
-        public GuestRate(int userId, int acommodationId, int cleanliness, int rulesFollowing, string additionalComment)
+        public GuestRate(int reservationId, int userId, int acommodationId, int cleanliness, int rulesFollowing, string additionalComment)
         {
+            ReservationId = reservationId;
             UserId = userId;
             AcommodationId = acommodationId;
             Cleanliness = cleanliness;
@@ -37,18 +39,19 @@ namespace BookingApp.Model
 
         public void FromCSV(string[] values)
         {
-            UserId = Convert.ToInt32(values[0]);
-            AcommodationId = Convert.ToInt32(values[1]);
-            Cleanliness = Convert.ToInt32(values[2]);
-            RulesFollowing = Convert.ToInt32(values[3]);
-            AdditionalComment = values[4];
+            ReservationId = Convert.ToInt32(values[0]);
+            UserId = Convert.ToInt32(values[1]);
+            AcommodationId = Convert.ToInt32(values[2]);
+            Cleanliness = Convert.ToInt32(values[3]);
+            RulesFollowing = Convert.ToInt32(values[4]);
+            AdditionalComment = values[5];
             
             
         }
 
         public string[] ToCSV()
         {
-            string[] csvValues = { UserId.ToString(), AcommodationId.ToString(), Cleanliness.ToString(), RulesFollowing.ToString(),
+            string[] csvValues = { ReservationId.ToString(), UserId.ToString(), AcommodationId.ToString(), Cleanliness.ToString(), RulesFollowing.ToString(),
             AdditionalComment};
             return csvValues;
         }
