@@ -36,25 +36,25 @@
                 <Grid>
                     <Label Content="Cleanliness:" FontSize="20" HorizontalAlignment="Left" Margin="88,51,0,0" VerticalAlignment="Top"/>
                     <Label Content="Correctness:" FontSize="20" HorizontalAlignment="Left" Margin="308,51,0,0" VerticalAlignment="Top"/>
-                    <ComboBox HorizontalAlignment="Left" Margin="88,88,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem>5</ComboBoxItem>
-                        <ComboBoxItem>4</ComboBoxItem>
-                        <ComboBoxItem>3</ComboBoxItem>
-                        <ComboBoxItem>2</ComboBoxItem>
-                        <ComboBoxItem>1</ComboBoxItem>
+                    <ComboBox HorizontalAlignment="Left" Margin="88,88,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding AccommodationRate.Cleanliness, Mode=TwoWay}">
+                        <ComboBoxItem Content="5" Tag="5"></ComboBoxItem>
+                        <ComboBoxItem Content="4" Tag="4"></ComboBoxItem>
+                        <ComboBoxItem Content="3" Tag="3"></ComboBoxItem>
+                        <ComboBoxItem Content="2" Tag="2"></ComboBoxItem>
+                        <ComboBoxItem Content="1" Tag="1"></ComboBoxItem>
                     </ComboBox>
-                    <ComboBox HorizontalAlignment="Left" Margin="306,88,0,0" VerticalAlignment="Top" Width="120">
-                        <ComboBoxItem>5</ComboBoxItem>
-                        <ComboBoxItem>4</ComboBoxItem>
-                        <ComboBoxItem>3</ComboBoxItem>
-                        <ComboBoxItem>2</ComboBoxItem>
-                        <ComboBoxItem>1</ComboBoxItem>
+                    <ComboBox HorizontalAlignment="Left" Margin="306,88,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding AccommodationRate.Correctness, Mode=TwoWay}">
+                        <ComboBoxItem Content="5" Tag="5"></ComboBoxItem>
+                        <ComboBoxItem Content="4" Tag="4"></ComboBoxItem>
+                        <ComboBoxItem Content="3" Tag="3"></ComboBoxItem>
+                        <ComboBoxItem Content="2" Tag="2"></ComboBoxItem>
+                        <ComboBoxItem Content="1" Tag="1"></ComboBoxItem>
                     </ComboBox>
                     <Label Content="Comment:" FontSize="20" HorizontalAlignment="Left" Margin="36,157,0,0" VerticalAlignment="Top"/>
 
                 </Grid>
             </Border>
-            <TextBox HorizontalAlignment="Left" Margin="1295,298,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="412" Height="100"/>
+            <TextBox HorizontalAlignment="Left" Margin="1295,298,0,0" TextWrapping="Wrap" Text="{Binding AccommodationRate.AdditionalComment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="100"/>
             <Button FontSize="15" Click="AddPicture_Click" Content="Add picture" HorizontalAlignment="Left" Margin="1295,422,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}"/>
             <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="1295,560,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="29"/>
             <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="1621,558,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}" Click="Save_Click"/>

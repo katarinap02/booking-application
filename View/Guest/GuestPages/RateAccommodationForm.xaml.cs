@@ -42,6 +42,7 @@ namespace BookingApp.View.GuestPages
             this.Frame = frame;
             this.AccommodationRateRepository = new AccommodationRateRepository();
             this.AccommodationRate = new AccommodationRateDTO();
+            DataContext = this;
 
         }
 
