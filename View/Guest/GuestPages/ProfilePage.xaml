@@ -1,0 +1,36 @@
+﻿<Page x:Class="BookingApp.View.Guest.GuestPages.ProfilePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.View.Guest.GuestPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="990" d:DesignWidth="1920"
+      Title="ProfilePage">
+
+    <Grid>
+        <Border Width="396" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="268,98,1256,98">
+            <Grid>
+                <TreeView Name="TreeMenu" Height="692" Margin="10,30,0,67">
+                    <LineBreak/>
+                    <TreeViewItem Header="Profile" FontSize="37"></TreeViewItem>
+                    <LineBreak/>
+                    <TreeViewItem Header="Rate accommodation" FontSize="37"></TreeViewItem>
+                    <LineBreak/>
+                    <TreeViewItem Header="Rates by guest" FontSize="37"></TreeViewItem>
+                    <LineBreak/>
+                    <TreeViewItem Header="Requests" FontSize="37"></TreeViewItem>
+                    <LineBreak/>
+                    <TreeViewItem Header="Forums" FontSize="37"></TreeViewItem>
+                    <LineBreak/>
+                    <TreeViewItem Header="Settings" FontSize="37"></TreeViewItem>
+
+                </TreeView>
+            </Grid>
+
+        </Border>
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="698,98,158,98"></Border>
+
+
+    </Grid>
+</Page>
