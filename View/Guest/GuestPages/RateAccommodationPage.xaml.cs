@@ -33,9 +33,11 @@ namespace BookingApp.View.GuestPages
         public AccommodationRepository AccommodationRepository { get; set; }
 
         public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
+        public AccommodationRateRepository AccommodationRateRepository { get; set; }
+        
         public Frame Frame {  get; set; }   
 
-        public RateAccommodationPage(User user, AccommodationReservationRepository accommodationReservationRepository, AccommodationRepository accommodationRepository, Frame frame)
+        public RateAccommodationPage(User user, AccommodationReservationRepository accommodationReservationRepository, AccommodationRepository accommodationRepository, AccommodationRateRepository accommodationRateRepository, Frame frame)
         {
             InitializeComponent();
             this.User = user;
@@ -44,6 +46,7 @@ namespace BookingApp.View.GuestPages
             Reservations = new ObservableCollection<AccommodationReservationDTO>();
             DataContext = this;
             this.AccommodationRepository = accommodationRepository;
+            this.AccommodationRateRepository = accommodationRateRepository;
             Update();
 
         }
@@ -71,7 +74,7 @@ namespace BookingApp.View.GuestPages
 
         private void Rate_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new RateAccommodationForm(User, SelectedReservation, AccommodationRepository, Frame);
+            Frame.Content = new RateAccommodationForm(User, SelectedReservation, AccommodationRepository, AccommodationRateRepository, Frame);
         }
     }
 }

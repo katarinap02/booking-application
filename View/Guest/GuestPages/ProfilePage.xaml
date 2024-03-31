@@ -18,7 +18,7 @@
                     <LineBreak/>
                     <TreeViewItem Header="Rate accommodation" FontSize="37" Selected="RateAccommodation_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Rates by guest" FontSize="37"></TreeViewItem>
+                    <TreeViewItem Header="Rates by host" FontSize="37" Selected="RatesByHost_Click"></TreeViewItem>
                     <LineBreak/>
                     <TreeViewItem Header="Requests" FontSize="37"></TreeViewItem>
                     <LineBreak/>
@@ -31,21 +31,7 @@
 
         </Border>
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="698,98,158,98">
-            <Grid>
-                <Label x:Name="UserName" Style="{StaticResource HeaderStyleN}" Content="{Binding User.Username}" FontSize="40" Margin="390,42,390,698"></Label>
-                <ListBox Name="ReservationListBox" Width="716" Height="377" Margin="66,332,278,80"  ScrollViewer.VerticalScrollBarVisibility="Auto"
- ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColorN}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <controls:ReservationCard></controls:ReservationCard>
-                               
-
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-            </Grid>
+            <Frame x:Name="Profile" Width="1085" Height="798" Margin="-12,-4,-12,-5"></Frame>
         </Border>
 
 

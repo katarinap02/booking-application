@@ -24,6 +24,7 @@ namespace BookingApp.View.GuestPages
     public partial class ReservationSuccessfulPage : Page
     {
         public AccommodationRepository AccommodationRepository { get; set; }
+        public AccommodationRateRepository AccommodationRateRepository { get; set; }
         public AccommodationDTO SelectedAccommodation { get; set; }
 
         public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
@@ -80,7 +81,7 @@ namespace BookingApp.View.GuestPages
 
         private void ProfilePage_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new ProfilePage(User, AccommodationReservationRepository, AccommodationRepository, Frame);
+            Frame.Content = new ProfilePage(User, AccommodationReservationRepository, AccommodationRepository, AccommodationRateRepository, Frame);
         }
     }
 }
