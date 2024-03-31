@@ -9,17 +9,19 @@ namespace BookingApp.Model
 {
     public class Voucher : ISerializable
     {
-        public int Id;
-        public int TouristId;
-        public bool HasBeenUsed;
-        public string Reason;
-        public DateOnly ExpireDate;
+        public int Id { get; set; }
+        public int TouristId { get; set; }
+        public int GuideId { get; set; }
+        public bool HasBeenUsed { get; set; }
+        public string Reason { get; set; }
+        public DateOnly ExpireDate { get; set; }
 
         public Voucher() { }
-        public Voucher(int id, int touristId, bool hasBeenUsed, string reason, DateOnly expireDate)
+        public Voucher(int id, int touristId, int guideId, bool hasBeenUsed, string reason, DateOnly expireDate)
         {
             Id = id;
             TouristId = touristId;
+            GuideId = guideId;
             HasBeenUsed = hasBeenUsed;
             Reason = reason;
             ExpireDate = expireDate;
@@ -29,9 +31,10 @@ namespace BookingApp.Model
         {
             Id = Convert.ToInt32(values[0]);
             TouristId = Convert.ToInt32(values[1]);
-            HasBeenUsed = Convert.ToBoolean(values[2]);
-            Reason = values[3];
-            if (DateOnly.TryParse(values[4], out DateOnly expireDate))
+            GuideId = Convert.ToInt32(values[2]);
+            HasBeenUsed = Convert.ToBoolean(values[3]);
+            Reason = values[4];
+            if (DateOnly.TryParse(values[5], out DateOnly expireDate))
             {
                 ExpireDate = expireDate;
             }
@@ -40,7 +43,7 @@ namespace BookingApp.Model
 
         public string[] ToCSV()
         {
-            string[] CSVvalues = { Id.ToString(), TouristId.ToString(), HasBeenUsed.ToString(), Reason, ExpireDate.ToString() };
+            string[] CSVvalues = { Id.ToString(), TouristId.ToString(), GuideId.ToString(), HasBeenUsed.ToString(), Reason, ExpireDate.ToString() };
             return CSVvalues;
         }
     }

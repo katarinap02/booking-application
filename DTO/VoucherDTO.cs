@@ -43,6 +43,23 @@ namespace BookingApp.DTO
                 }
             }
         }
+
+        private int _guideId;
+        public int GuideId
+        {
+            get
+            {
+                return _guideId;
+            }
+            set
+            {
+                if(_guideId != value)
+                {
+                    _guideId = value;
+                    OnPropertyChanged(nameof(GuideId));
+                }
+            }
+        }
         private bool _hasBeenUsed;
         public bool HasBeenUsed
         {
@@ -104,6 +121,7 @@ namespace BookingApp.DTO
         {
             _id = voucher.Id;
             _touristId = voucher.TouristId;
+            _guideId = voucher.GuideId;
             _hasBeenUsed = voucher.HasBeenUsed;
             _reason = voucher.Reason;
             _expireDate = voucher.ExpireDate;
@@ -111,9 +129,10 @@ namespace BookingApp.DTO
 
         public Voucher ToVoucher()
         {
-            Voucher voucher = new Voucher(_id, _touristId, _hasBeenUsed, _reason, _expireDate);
+            Voucher voucher = new Voucher(_id, _touristId, _guideId, _hasBeenUsed, _reason, _expireDate);
             voucher.Id = _id;
             voucher.TouristId = _touristId;
+            voucher.GuideId = _guideId;
             voucher.HasBeenUsed = _hasBeenUsed;
             voucher.Reason = _reason;
             voucher.ExpireDate = _expireDate;
