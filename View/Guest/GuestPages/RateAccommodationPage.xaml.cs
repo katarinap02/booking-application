@@ -25,10 +25,11 @@ namespace BookingApp.View.GuestPages
     /// </summary>
     public partial class RateAccommodationPage : Page, IObserver
     {
-        
+
         public ObservableCollection<AccommodationReservationDTO> Reservations { get; set; }
         public User User { get; set; }
 
+        public AccommodationReservationDTO SelectedReservation {  get; set; }
 
 
         public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
@@ -65,6 +66,11 @@ namespace BookingApp.View.GuestPages
                 return true;
             else
                 return false;
+        }
+
+        private void Rate_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new RateAccommodationForm(User, AccommodationReservationRepository, Frame);
         }
     }
 }
