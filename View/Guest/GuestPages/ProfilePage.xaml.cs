@@ -57,7 +57,7 @@ namespace BookingApp.View.GuestPages
 
         public void RatesByHost_Click(object sender, RoutedEventArgs e)
         {
-           // Frame.Content = new RatesByHostPage(User, AccommodationRateRepository, Frame);
+            Profile.Content = new RatesByHostPage(User, AccommodationRateRepository, Profile);
         }
 
       
