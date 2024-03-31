@@ -30,9 +30,9 @@
             </Grid>
 
         </Border>
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="698,98,158,98">
-            <Frame x:Name="Profile" Width="1085" Height="798" Margin="-12,-4,-12,-5"></Frame>
-        </Border>
+        
+            <Frame x:Name="Profile" Width="1090" Height="820" Margin="669,85,161,85"></Frame>
+      
 
 
     </Grid>
