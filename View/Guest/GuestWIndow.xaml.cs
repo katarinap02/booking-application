@@ -46,7 +46,7 @@ namespace BookingApp.View
 
         private void ProfileClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ProfilePage(User, AccommodationReservationRepository, Main);
+            Main.Content = new ProfilePage(User, AccommodationReservationRepository, AccommodationRepository, Main);
         }
 
         private void AccommodationsClick(object sender, RoutedEventArgs e)

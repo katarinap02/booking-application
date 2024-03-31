@@ -22,6 +22,8 @@ namespace BookingApp.Model
         public int ReservationDaysLimit { get; set; }
 
         public List<CalendarDateRange> UnavailableDates { get; set; }
+
+        public int HostId { get; set; } 
         public Accommodation() { 
         
             UnavailableDates = new List<CalendarDateRange>();
@@ -29,7 +31,7 @@ namespace BookingApp.Model
         }
 
 
-        public Accommodation(string name, string country, string city, AccommodationType type, int maxGuestNumber, int minReservationNumber, int reservationDaysLimit) 
+        public Accommodation(string name, string country, string city, AccommodationType type, int maxGuestNumber, int minReservationNumber, int reservationDaysLimit, int hostId) 
         {
             Name = name;
             Country = country;
@@ -40,6 +42,7 @@ namespace BookingApp.Model
             Pictures = new List<String>();
             ReservationDaysLimit = reservationDaysLimit;
             UnavailableDates = new List<CalendarDateRange>();
+            HostId = hostId;
         }
 
         public string ConvertToString(CalendarDateRange range)
@@ -85,7 +88,8 @@ namespace BookingApp.Model
                 MinReservationDays.ToString(),
                 ReservationDaysLimit.ToString(),
                 MakeStringFromPictures(Pictures),
-                FindUnavailableDates(UnavailableDates)
+                FindUnavailableDates(UnavailableDates),
+                HostId.ToString()
 
             };
 
@@ -111,6 +115,7 @@ namespace BookingApp.Model
                 UnavailableDates = MakeListDates(values[9]);
             }
 
+            HostId = Convert.ToInt32(values[10]);
 
         }
 

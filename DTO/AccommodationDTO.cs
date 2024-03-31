@@ -164,6 +164,19 @@ namespace BookingApp.DTO
             }
         }
 
+        private int hostId;
+        public int HostId
+        {
+            get { return hostId; }
+            set
+            {
+                if (hostId != value)
+                {
+                    hostId = value;
+                    OnPropertyChanged("HostId");
+                }
+            }
+        }
 
         public string Location => City + ", " + Country;
         public string Error => null;
@@ -260,6 +273,7 @@ namespace BookingApp.DTO
             MinReservationDays = accommodation.MinReservationDays;
             ReservationDaysLimit = accommodation.ReservationDaysLimit;
             UnavailableDates = accommodation.UnavailableDates;
+            hostId = accommodation.HostId;
 
 
 
@@ -269,11 +283,12 @@ namespace BookingApp.DTO
         {
             
             
-            Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit);
+            Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit, hostId);
             a.Id = id;
             a.UnavailableDates = unavailableDates;
 
             a.Pictures = picture;
+            
 
             return a;
 
