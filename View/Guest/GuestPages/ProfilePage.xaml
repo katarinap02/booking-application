@@ -1,9 +1,10 @@
-﻿<Page x:Class="BookingApp.View.Guest.GuestPages.ProfilePage"
+﻿<Page x:Class="BookingApp.View.GuestPages.ProfilePage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BookingApp.View.Guest.GuestPages"
+      xmlns:local="clr-namespace:BookingApp.View.GuestPages"
+      xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       mc:Ignorable="d" 
       d:DesignHeight="990" d:DesignWidth="1920"
       Title="ProfilePage">
@@ -13,9 +14,9 @@
             <Grid>
                 <TreeView Name="TreeMenu" Height="692" Margin="10,30,0,67">
                     <LineBreak/>
-                    <TreeViewItem Header="Profile" FontSize="37"></TreeViewItem>
+                    <TreeViewItem Header="Profile" FontSize="37" IsSelected="True"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Rate accommodation" FontSize="37"></TreeViewItem>
+                    <TreeViewItem Header="Rate accommodation" FontSize="37" Selected="RateAccommodation_Click"></TreeViewItem>
                     <LineBreak/>
                     <TreeViewItem Header="Rates by guest" FontSize="37"></TreeViewItem>
                     <LineBreak/>
@@ -29,7 +30,23 @@
             </Grid>
 
         </Border>
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="698,98,158,98"></Border>
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="698,98,158,98">
+            <Grid>
+                <Label x:Name="UserName" Style="{StaticResource HeaderStyleN}" Content="{Binding User.Username}" FontSize="40" Margin="390,42,390,698"></Label>
+                <ListBox Name="ReservationListBox" Width="716" Height="377" Margin="66,332,278,80"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColorN}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <controls:ReservationCard></controls:ReservationCard>
+                               
+
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </Grid>
+        </Border>
 
 
     </Grid>

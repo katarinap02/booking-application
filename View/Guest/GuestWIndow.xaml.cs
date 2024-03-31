@@ -21,7 +21,7 @@ namespace BookingApp.View
     public partial class GuestWindow : Window
     {
         public AccommodationRepository AccommodationRepository;
-
+        public AccommodationReservationRepository AccommodationReservationRepository;
         public User User {  get; set; }
 
         
@@ -29,8 +29,9 @@ namespace BookingApp.View
         {
             InitializeComponent();
             AccommodationRepository = new AccommodationRepository();
+            AccommodationReservationRepository = new AccommodationReservationRepository();
             this.User = user;
-            Main.Content = new HomePage(AccommodationRepository, User, Main);
+            Main.Content = new HomePage(AccommodationRepository, AccommodationReservationRepository, User, Main);
             Main.DataContext = this;
           
             
@@ -40,17 +41,17 @@ namespace BookingApp.View
 
         private void HomeClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new HomePage(AccommodationRepository, User, Main);
+            Main.Content = new HomePage(AccommodationRepository, AccommodationReservationRepository, User, Main);
         }
 
         private void ProfileClick(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new ProfilePage(User, AccommodationReservationRepository, Main);
         }
 
         private void AccommodationsClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new AccommodationsPage(AccommodationRepository, User, Main);
+            Main.Content = new AccommodationsPage(AccommodationRepository, AccommodationReservationRepository, User, Main);
         }
 
         private void ForumsClick(object sender, RoutedEventArgs e)

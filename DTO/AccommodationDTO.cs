@@ -165,7 +165,7 @@ namespace BookingApp.DTO
         }
 
 
-
+        public string Location => City + ", " + Country;
         public string Error => null;
 
         
