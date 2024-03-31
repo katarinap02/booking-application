@@ -1,4 +1,6 @@
 ﻿using BookingApp.DTO;
+using BookingApp.Model;
+using BookingApp.Observer;
 using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
@@ -13,55 +15,56 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BookingApp.Observer;
-using BookingApp.Model;
-using System.Security.Cryptography;
 
 namespace BookingApp.View.GuestPages
 {
     /// <summary>
-    /// Interaction logic for ProfilePage.xaml
+    /// Interaction logic for RateAccommodationPage.xaml
     /// </summary>
-    public partial class ProfilePage : Page, IObserver
+    public partial class RateAccommodationPage : Page, IObserver
     {
+        
         public ObservableCollection<AccommodationReservationDTO> Reservations { get; set; }
-        public User User { get; set; }  
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
-        public Frame Frame { get; set; }
+        public User User { get; set; }
 
-        public ProfilePage(User user, AccommodationReservationRepository accommodationReservationRepository, Frame frame)
+
+
+        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
+        public Frame Frame {  get; set; }   
+
+        public RateAccommodationPage(User user, AccommodationReservationRepository accommodationReservationRepository, Frame frame)
         {
             InitializeComponent();
-            Reservations = new ObservableCollection<AccommodationReservationDTO>();
             this.User = user;
-            this.Frame = frame;
             this.AccommodationReservationRepository = accommodationReservationRepository;
+            this.Frame = frame;
+            Reservations = new ObservableCollection<AccommodationReservationDTO>();
             DataContext = this;
             Update();
-           
 
-        }
-
-      
-
-        public void RateAccommodation_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Content = new RateAccommodationPage(User, AccommodationReservationRepository, Frame);
         }
 
         public void Update()
         {
             Reservations.Clear();
-
             foreach (AccommodationReservation reservation in AccommodationReservationRepository.GetAll())
             {
-                if (reservation.GuestId == User.Id)
+                if (reservation.GuestId == User.Id && IsBeforeFiveDays(reservation))
                 {
                     Reservations.Add(new AccommodationReservationDTO(reservation));
                 }
             }
         }
-       
+
+        private bool IsBeforeFiveDays(AccommodationReservation reservation)
+        {
+            int daysPassed = (DateTime.Now - reservation.EndDate).Days;
+            if (daysPassed <= 5)
+                return true;
+            else
+                return false;
+        }
     }
 }
