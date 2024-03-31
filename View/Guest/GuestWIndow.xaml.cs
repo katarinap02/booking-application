@@ -20,8 +20,9 @@ namespace BookingApp.View
    
     public partial class GuestWindow : Window
     {
-        public AccommodationRepository AccommodationRepository;
-        public AccommodationReservationRepository AccommodationReservationRepository;
+        public AccommodationRepository AccommodationRepository { get; set; }
+        public AccommodationRateRepository AccommodationRateRepository { get; set; }
+        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
         public User User {  get; set; }
 
         
@@ -46,7 +47,7 @@ namespace BookingApp.View
 
         private void ProfileClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ProfilePage(User, AccommodationReservationRepository, AccommodationRepository, Main);
+            Main.Content = new ProfilePage(User, AccommodationReservationRepository, AccommodationRepository, AccommodationRateRepository, Main);
         }
 
         private void AccommodationsClick(object sender, RoutedEventArgs e)

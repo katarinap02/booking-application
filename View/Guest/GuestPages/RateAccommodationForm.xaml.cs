@@ -33,14 +33,14 @@ namespace BookingApp.View.GuestPages
         public AccommodationRateDTO AccommodationRate { get; set; }
 
         public AccommodationRateRepository AccommodationRateRepository { get; set; }
-        public RateAccommodationForm(User user, AccommodationReservationDTO selectedReservation, AccommodationRepository accommodationRepository, Frame frame)
+        public RateAccommodationForm(User user, AccommodationReservationDTO selectedReservation, AccommodationRepository accommodationRepository, AccommodationRateRepository accommodationRateRepository, Frame frame)
         {
             InitializeComponent();
             this.User = user;
             this.SelectedReservation = selectedReservation;
             this.AccommodationRepository = accommodationRepository;
             this.Frame = frame;
-            this.AccommodationRateRepository = new AccommodationRateRepository();
+            this.AccommodationRateRepository = accommodationRateRepository;
             this.AccommodationRate = new AccommodationRateDTO();
             DataContext = this;
 

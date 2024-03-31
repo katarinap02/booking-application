@@ -23,24 +23,27 @@ namespace BookingApp.View.GuestPages
     /// <summary>
     /// Interaction logic for ProfilePage.xaml
     /// </summary>
-    public partial class ProfilePage : Page, IObserver
-    {
-        public ObservableCollection<AccommodationReservationDTO> Reservations { get; set; }
+    public partial class ProfilePage : Page { 
+        
         public User User { get; set; }  
         public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
         public AccommodationRepository AccommodationRepository { get; set; }
+
+        public AccommodationRateRepository AccommodationRateRepository { get; set; }
         public Frame Frame { get; set; }
 
-        public ProfilePage(User user, AccommodationReservationRepository accommodationReservationRepository, AccommodationRepository accommodationRepository, Frame frame)
+        public ProfilePage(User user, AccommodationReservationRepository accommodationReservationRepository, AccommodationRepository accommodationRepository, AccommodationRateRepository accommodationRateRepository, Frame frame)
         {
             InitializeComponent();
-            Reservations = new ObservableCollection<AccommodationReservationDTO>();
+           
             this.User = user;
             this.Frame = frame;
             this.AccommodationReservationRepository = accommodationReservationRepository;
             this.AccommodationRepository = accommodationRepository;
-            DataContext = this;
-            Update();
+            this.AccommodationRateRepository = accommodationRateRepository;
+           
+            Profile.Content = new ProfileInfo(AccommodationReservationRepository, User, Profile);
+           
            
 
         }
@@ -49,21 +52,15 @@ namespace BookingApp.View.GuestPages
 
         public void RateAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new RateAccommodationPage(User, AccommodationReservationRepository, AccommodationRepository, Frame);
+            Profile.Content = new RateAccommodationPage(User, AccommodationReservationRepository, AccommodationRepository, AccommodationRateRepository, Profile);
         }
 
-        public void Update()
+        public void RatesByHost_Click(object sender, RoutedEventArgs e)
         {
-            Reservations.Clear();
-
-            foreach (AccommodationReservation reservation in AccommodationReservationRepository.GetAll())
-            {
-                if (reservation.GuestId == User.Id)
-                {
-                    Reservations.Add(new AccommodationReservationDTO(reservation));
-                }
-            }
+           // Frame.Content = new RatesByHostPage(User, AccommodationRateRepository, Frame);
         }
+
+      
        
     }
 }

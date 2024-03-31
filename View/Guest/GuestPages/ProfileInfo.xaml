@@ -1,20 +1,19 @@
-﻿<Page x:Class="BookingApp.View.GuestPages.RateAccommodationPage"
+﻿<Page x:Class="BookingApp.View.GuestPages.ProfileInfo"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
-       xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
+      xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       mc:Ignorable="d" 
       d:DesignHeight="798" d:DesignWidth="1085"
-      Title="RateAccommodationPage">
+      Title="ProfileInfo">
 
     <Grid>
-        
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
             <Grid>
-                
-                <ListBox Name="ReservationListBox" Width="716" Height="377" Margin="172,63,172,349"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+               
+                <ListBox Name="ReservationListBox" Width="716" Height="377" Margin="26,380,318,33"  ScrollViewer.VerticalScrollBarVisibility="Auto"
 ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColorN}" SelectedItem="{Binding SelectedReservation}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -26,14 +25,8 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Button Style="{StaticResource ButtonStyleN}" Content="Rate" Width="100" Height="50" Margin="480,654,480,85" Click="Rate_Click"/>
-                
+                <Label Content="{Binding User.Username}" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="408,10,442,735"/>
             </Grid>
-            
-            
         </Border>
-        
-
     </Grid>
-    
 </Page>
