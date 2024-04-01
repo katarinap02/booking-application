@@ -1,33 +1,34 @@
 ﻿using BookingApp.Serializer;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace BookingApp.Model
 {
-    public enum UserType{ host, tourist, guest, guide }
-
-    public class User : ISerializable
+    public class Host : User, ISerializable
     {
-        public int Id { get; set; }
-        public string Username { get; set; }
-        public string Password { get; set; }
-        public UserType Type { get; set; }
-
-        public User() { }
-
-        public User(string username, string password, UserType type)
-        {
-            Username = username;
-            Password = password;
-            Type = type;
+        public bool IsSuperHost;
+        public Host() {
+            Type = UserType.host;
         }
 
-        public virtual string[] ToCSV()
+        public Host(string username, string password, bool SuperHost)
         {
-            string[] csvValues = { Id.ToString(), Username, Password, Type.ToString() };
+            IsSuperHost = SuperHost;
+            Username = username;
+            Password = password;
+            Type = UserType.host;
+        }
+
+        public override string[] ToCSV()
+        {
+            string[] csvValues = { Id.ToString(), Username, Password, Type.ToString(), IsSuperHost.ToString() };
             return csvValues;
         }
 
-        public virtual void FromCSV(string[] values)
+        public override void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
             Username = values[1];
@@ -45,6 +46,7 @@ namespace BookingApp.Model
             else if (values[3].Equals("guide")){
                 Type = UserType.guide;
             }
+            IsSuperHost = Convert.ToBoolean(values[4]);
         }
     }
 }
