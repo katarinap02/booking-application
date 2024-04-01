@@ -3,6 +3,7 @@ using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.View.GuestWindows;
+using BookingApp.View.HostPages;
 using BookingApp.View.HostWindows;
 using System;
 using System.Collections.Generic;
@@ -44,8 +45,11 @@ namespace BookingApp.View
             accommodationReservationRepository = new AccommodationReservationRepository();
             DataContext = this;
             User = user;
-            Update();
             
+            Update();
+
+            
+
 
 
         }
@@ -58,6 +62,8 @@ namespace BookingApp.View
                 Accommodations.Add(new AccommodationReservationDTO(accommodation));
                 
             }
+            FirstPage firstPage = new FirstPage(User);
+            HostFrame.Navigate(firstPage);
         }
 
         private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)

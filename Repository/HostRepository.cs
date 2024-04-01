@@ -1,4 +1,5 @@
 ﻿using BookingApp.Model;
+using BookingApp.Observer;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
@@ -20,6 +21,7 @@ namespace BookingApp.Repository
         {
             _serializer = new Serializer<Host>();
             _hosts = _serializer.FromCSV(FilePath);
+            
         }
 
         public List<Host> GetAll()
@@ -29,7 +31,7 @@ namespace BookingApp.Repository
 
         public Host GetByUsername(string username)
         {
-            _hosts = _serializer.FromCSV(FilePath);
+           
             return _hosts.FirstOrDefault(u => u.Username == username);
         }
 

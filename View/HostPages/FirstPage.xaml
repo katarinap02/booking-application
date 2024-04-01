@@ -26,14 +26,36 @@
         Content="Welcome"
         FontSize="32"
          />
-        <Label
-            x:Name="SuperHostLabel"
-            Grid.Column="1"
-            Margin="5,0,0,0"
-            VerticalAlignment="Center"
-            Content="Super host"
-            FontSize="15"
-             />
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal">
+            <Label
+                x:Name="SuperHostLabel"
+                Margin="5,0,0,0"
+                Content="Super host"
+                FontSize="15"
+                 />
+            <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Width="100">
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Text" Value="{Binding host.IsSuperHost}" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding host.IsSuperHost}" Value="True">
+                                <Setter Property="Foreground" Value="Black" />
+                                <Setter Property="Text" Value="Super Host">
+                                    
+                                </Setter>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding host.IsSuperHost}" Value="False">
+                                <Setter Property="Foreground" Value="Gray" />
+                                <Setter Property="Text" Value="Regular Host" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+
+            </TextBlock>
+        </StackPanel>
+        
+        
         <Grid Grid.Column="1" Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50" />

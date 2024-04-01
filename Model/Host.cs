@@ -24,7 +24,7 @@ namespace BookingApp.Model
 
         public override string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), Username, Password, Type.ToString(), IsSuperHost.ToString() };
+            string[] csvValues = { Id.ToString(), Username, Password, IsSuperHost.ToString() };
             return csvValues;
         }
 
@@ -33,20 +33,18 @@ namespace BookingApp.Model
             Id = Convert.ToInt32(values[0]);
             Username = values[1];
             Password = values[2];
-            if (values[3].Equals("host"))
-            { 
-                Type = UserType.host;
+            IsSuperHost = Convert.ToBoolean(values[3]);
+            /*
+            if (values[3].Equals("True"))
+            {
+                IsSuperHost = true;
             }
-            else if (values[3].Equals("tourist")){
-                Type = UserType.tourist;
+            else
+            {
+                IsSuperHost = false;
             }
-            else if (values[3].Equals("guest")){
-                Type = UserType.guest;
-            }
-            else if (values[3].Equals("guide")){
-                Type = UserType.guide;
-            }
-            IsSuperHost = Convert.ToBoolean(values[4]);
+            */
+            
         }
     }
 }

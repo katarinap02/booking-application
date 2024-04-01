@@ -26,15 +26,23 @@ namespace BookingApp.View.HostPages
     public partial class FirstPage : Page, IObserver
     {
         public ObservableCollection<AccommodationDTO> Accommodations { get; set; }
+
         public AccommodationRepository accommodationRepository { get; set; }
 
+        public HostRepository hostRepository { get; set; }
+
         public AccommodationReservationDTO SelectedAccommodation { get; set; }
-        public FirstPage()
+
+        public Host host {  get; set; }
+        public FirstPage(User user)
         {
             InitializeComponent();
             Accommodations = new ObservableCollection<AccommodationDTO>();
             accommodationRepository = new AccommodationRepository();
+            hostRepository = new HostRepository();
             DataContext = this;
+            host = hostRepository.GetByUsername(user.Username);
+            //host.IsSuperHost = true;
             Update();
         }
 
