@@ -30,6 +30,7 @@ namespace BookingApp.View
         {
             InitializeComponent();
             AccommodationRepository = new AccommodationRepository();
+            AccommodationRateRepository = new AccommodationRateRepository();
             AccommodationReservationRepository = new AccommodationReservationRepository();
             this.User = user;
             Main.Content = new HomePage(AccommodationRepository, AccommodationReservationRepository, User, Main);
