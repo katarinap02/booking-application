@@ -34,6 +34,8 @@ namespace BookingApp.View.HostPages
         public AccommodationReservationDTO SelectedAccommodation { get; set; }
 
         public Host host {  get; set; }
+
+        public HostDTO hostDTO { get; set; }
         public FirstPage(User user)
         {
             InitializeComponent();
@@ -43,6 +45,7 @@ namespace BookingApp.View.HostPages
             DataContext = this;
             host = hostRepository.GetByUsername(user.Username);
             hostRepository.BecomeSuperHost(host);
+            hostDTO = new HostDTO(host);
             Update();
         }
 

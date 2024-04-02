@@ -71,7 +71,7 @@ namespace BookingApp.Repository
                 }
             }
 
-            if(counter < 50)
+            if(counter < 10)
             {
                 host.IsSuperHost = false;
                 Update(host);

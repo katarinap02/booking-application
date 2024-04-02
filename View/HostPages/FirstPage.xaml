@@ -33,26 +33,22 @@
                 Content="Super host"
                 FontSize="15"
                  />
-            <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Width="100">
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock">
-                        <Setter Property="Text" Value="{Binding host.IsSuperHost}" />
+            <Image VerticalAlignment="Center" Margin="10 0 0 0" Width="30">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Source" Value="{x:Null}"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding host.IsSuperHost}" Value="True">
-                                <Setter Property="Foreground" Value="Black" />
-                                <Setter Property="Text" Value="Super Host">
-                                    
-                                </Setter>
+                            <DataTrigger Binding="{Binding hostDTO.IsSuperHost}" Value="True">
+                                <Setter Property="Source" Value="../../Resources/Images/add.png"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding host.IsSuperHost}" Value="False">
-                                <Setter Property="Foreground" Value="Gray" />
-                                <Setter Property="Text" Value="Regular Host" />
+                            <DataTrigger Binding="{Binding hostDTO.IsSUperHost}" Value="False">
+                                <Setter Property="Source" Value="{x:Null}"/>
                             </DataTrigger>
                         </Style.Triggers>
                     </Style>
-                </TextBlock.Style>
+                </Image.Style>
 
-            </TextBlock>
+            </Image>
         </StackPanel>
         
         
