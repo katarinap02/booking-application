@@ -54,12 +54,12 @@
                 </StackPanel>
             </Button>
         </ToolBar>
-        <!--  
+          
         <Frame
             x:Name="HostFrame"
             NavigationUIVisibility="Hidden"
             Source="../View/HostPages/FirstPage.xaml" Grid.ColumnSpan="2" Margin="0,0,0,10" Grid.RowSpan="3" />
-        -->
+        
 
        
 
