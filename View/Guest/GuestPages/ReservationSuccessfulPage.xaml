@@ -12,6 +12,6 @@
     <Grid>
         <controls:ReservationDetailsCard x:Name="reservationDetailsCard" Margin="0,291,799,291"></controls:ReservationDetailsCard>
         <Button Content="Home page" HorizontalAlignment="Left" Margin="1340,356,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="72" Width="203" Click="HomePage_Click"/>
-        <Button Content="Your profile" HorizontalAlignment="Left" Margin="1340,495,0,0" VerticalAlignment="Top" Style="{StaticResource ResourceKey=ButtonStyleN}" Height="72" Width="203"/>
+        <Button Content="Your profile" HorizontalAlignment="Left" Margin="1340,495,0,0" VerticalAlignment="Top" Style="{StaticResource ResourceKey=ButtonStyleN}" Height="72" Width="203" Click="ProfilePage_Click"/>
     </Grid>
 </Page>

@@ -27,19 +27,21 @@ namespace BookingApp.View.TouristWindows
         public Tour NewSelectedTour { get; set; }
         private readonly TourRepository _repository;
         private int InsertedNumberOfParticipants;
-        public AvailableToursWindow(Tour selectedTour, int insertedNumberOfParticipans)
+        public int UserId;
+        public AvailableToursWindow(Tour selectedTour, int insertedNumberOfParticipans, int userId)
         {
             InitializeComponent();
             DataContext = this;
             NewSelectedTour = selectedTour;
             InsertedNumberOfParticipants = insertedNumberOfParticipans;
+            UserId = userId;
             _repository = new TourRepository();
             Tours = new ObservableCollection<Tour>(_repository.GetTourByCityWithAvailablePlaces(NewSelectedTour.Country));
         }
 
         private void BookButton_Click(object sender, RoutedEventArgs e)
         {
-            TourReservationWindow tourReservationWindow = new TourReservationWindow(NewSelectedTour, InsertedNumberOfParticipants);
+            TourReservationWindow tourReservationWindow = new TourReservationWindow(NewSelectedTour, InsertedNumberOfParticipants, UserId);
             tourReservationWindow.ShowDialog();
             Close();
         }

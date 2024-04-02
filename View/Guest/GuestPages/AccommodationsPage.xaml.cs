@@ -31,10 +31,12 @@ namespace BookingApp.View.GuestPages
         public AccommodationDTO SelectedAccommodation { get; set; }
 
         public AccommodationRepository AccommodationRepository { get; set; }
+
+        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
         public Frame Frame { get; set; }    
       
 
-        public AccommodationsPage(AccommodationRepository accommodationRepository, User user, Frame frame)
+        public AccommodationsPage(AccommodationRepository accommodationRepository, AccommodationReservationRepository accommodationReservationRepository, User user, Frame frame)
         {
             InitializeComponent();
 
@@ -45,6 +47,7 @@ namespace BookingApp.View.GuestPages
             //AccommodationsDataGrid.ItemsSource = Accommodations;
             DataContext = this;
             this.Frame = frame;
+            this.AccommodationReservationRepository = accommodationReservationRepository;
            
             Update();
         }
@@ -118,7 +121,7 @@ namespace BookingApp.View.GuestPages
             
             Button button = sender as Button;
             SelectedAccommodation = button.DataContext as AccommodationDTO;
-            Frame.Content = new ReservationInfoPage(AccommodationRepository, SelectedAccommodation, User, Frame);
+            Frame.Content = new ReservationInfoPage(AccommodationRepository,  SelectedAccommodation, AccommodationReservationRepository, User, Frame);
 
 
 

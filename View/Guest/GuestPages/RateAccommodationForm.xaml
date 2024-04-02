@@ -1,0 +1,69 @@
+﻿<Page x:Class="BookingApp.View.GuestPages.RateAccommodationForm"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.View.GuestPages"
+      xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="990" d:DesignWidth="1920"
+      Title="RateAccommodationForm">
+
+    <Grid>
+        <Grid>
+            <Border Width="396" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="268,98,1256,98">
+                <Grid>
+                    <TreeView Name="TreeMenu" Height="692" Margin="10,30,0,67">
+                        <LineBreak/>
+                        <TreeViewItem Header="Profile" FontSize="37"></TreeViewItem>
+                        <LineBreak/>
+                        <TreeViewItem Header="Rate accommodation" IsSelected="True" FontSize="37"></TreeViewItem>
+                        <LineBreak/>
+                        <TreeViewItem Header="Rates by guest" FontSize="37"></TreeViewItem>
+                        <LineBreak/>
+                        <TreeViewItem Header="Requests" FontSize="37"></TreeViewItem>
+                        <LineBreak/>
+                        <TreeViewItem Header="Forums" FontSize="37"></TreeViewItem>
+                        <LineBreak/>
+                        <TreeViewItem Header="Settings" FontSize="37"></TreeViewItem>
+
+                    </TreeView>
+                </Grid>
+
+            </Border>
+            <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="697,98,697,98"/>
+            <Border Width="526" Height="517" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="1249,98,145,374">
+                <Grid>
+                    <Label Content="Cleanliness:" FontSize="20" HorizontalAlignment="Left" Margin="88,51,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Correctness:" FontSize="20" HorizontalAlignment="Left" Margin="308,51,0,0" VerticalAlignment="Top"/>
+
+                    <ComboBox HorizontalAlignment="Left" Margin="88,88,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding AccommodationRate.Cleanliness, Mode=TwoWay}">
+
+                        <ComboBoxItem Content="5" Tag="5"></ComboBoxItem>
+                        <ComboBoxItem Content="4" Tag="4"></ComboBoxItem>
+                        <ComboBoxItem Content="3" Tag="3"></ComboBoxItem>
+                        <ComboBoxItem Content="2" Tag="2"></ComboBoxItem>
+                        <ComboBoxItem Content="1" Tag="1"></ComboBoxItem>
+                    </ComboBox>
+
+                    <ComboBox HorizontalAlignment="Left" Margin="306,88,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding AccommodationRate.Correctness, Mode=TwoWay}">
+
+                        <ComboBoxItem Content="5" Tag="5"></ComboBoxItem>
+                        <ComboBoxItem Content="4" Tag="4"></ComboBoxItem>
+                        <ComboBoxItem Content="3" Tag="3"></ComboBoxItem>
+                        <ComboBoxItem Content="2" Tag="2"></ComboBoxItem>
+                        <ComboBoxItem Content="1" Tag="1"></ComboBoxItem>
+                    </ComboBox>
+                    <Label Content="Comment:" FontSize="20" HorizontalAlignment="Left" Margin="36,157,0,0" VerticalAlignment="Top"/>
+
+                </Grid>
+            </Border>
+            <TextBox HorizontalAlignment="Left" Margin="1295,298,0,0" TextWrapping="Wrap" Text="{Binding AccommodationRate.AdditionalComment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="100"/>
+            <Button FontSize="15" Click="AddPicture_Click" Content="Add picture" HorizontalAlignment="Left" Margin="1295,422,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}"/>
+            <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="1295,560,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="29"/>
+            <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="1621,558,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}" Click="Save_Click"/>
+            <ListBox x:Name="pictureListBox" Margin="1432,422,213,469"></ListBox>
+
+        </Grid>
+    </Grid>
+</Page>

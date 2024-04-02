@@ -12,6 +12,19 @@ namespace BookingApp.DTO
 {
     public class AccommodationReservationDTO : INotifyPropertyChanged
     {
+        private int id;
+        public int Id
+        {
+            get { return id; }
+            set
+            {
+                if (id != value)
+                {
+                    id = value;
+                    OnPropertyChanged("Id");
+                }
+            }
+        }
 
         private int guestId;
         public int GuestId
@@ -88,17 +101,67 @@ namespace BookingApp.DTO
             }
         }
 
-        
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set
+            {
+                if (name != value)
+                {
+
+                    name = value;
+                    OnPropertyChanged("Name");
+                }
+            }
+        }
+
+        private string city;
+        public string City
+        {
+            get { return city; }
+            set
+            {
+                if (city != value)
+                {
+
+                    city = value;
+                    OnPropertyChanged("City");
+                }
+            }
+        }
+
+        private string country;
+        public string Country
+        {
+            get { return country; }
+            set
+            {
+                if (country != value)
+                {
+
+                    country = value;
+                    OnPropertyChanged("Country");
+                }
+            }
+        }
+
+        public string Location => City + ", " + Country;
+        public string DateRangeString => StartDate.ToString() + "-" + EndDate.ToString();
 
         public AccommodationReservationDTO() { }
 
         public AccommodationReservationDTO(AccommodationReservation ac)
         {
+            id = ac.Id;
             guestId = ac.GuestId;
             accommodationId = ac.AccommodationId;
             startDate = ac.StartDate;
             endDate = ac.EndDate;
             numberOfPeople = ac.NumberOfPeople;
+            name = ac.Name;
+            city = ac.City;
+            country = ac.Country;
             
 
 
@@ -106,13 +169,15 @@ namespace BookingApp.DTO
 
         }
 
-      //  public Accommodation ToAccommodation()
-       // {
+       public AccommodationReservation ToAccommodationReservation()
+       {
 
-         //   AccommodationReservation a = new AccommodationReservation(guestId, accommodationId, startDate, endDate);
-          //  return a;
+            AccommodationReservation a = new AccommodationReservation(guestId, accommodationId, startDate, endDate, numberOfPeople, name, city, country);
+            a.Id = id;
 
-      //  }
+            return a;
+
+        }
 
 
         public event PropertyChangedEventHandler PropertyChanged;

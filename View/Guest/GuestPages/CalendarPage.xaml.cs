@@ -41,7 +41,7 @@ namespace BookingApp.View.GuestPages
         public int DayNumber { get; set; }
 
         public int GuestNumber { get; set; }
-        public CalendarPage(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end, Frame frame)
+        public CalendarPage(AccommodationRepository accommodationRepository, AccommodationReservationRepository accommodationReservationRepository, AccommodationDTO selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end, Frame frame)
         {
             InitializeComponent();
             this.SelectedAccommodation = selectedAccommodation;
@@ -57,7 +57,7 @@ namespace BookingApp.View.GuestPages
             PeopleNumberSection.IsEnabled = false;
             Reservation = new AccommodationReservation();
            // finishReservation.IsEnabled = false;
-            AccommodationReservationRepository = new AccommodationReservationRepository();
+            AccommodationReservationRepository = accommodationReservationRepository;
 
             // continueLabel.Visibility = Visibility.Hidden;
              ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
@@ -272,13 +272,16 @@ namespace BookingApp.View.GuestPages
                 Reservation.AccommodationId = SelectedAccommodation.Id;
                 Reservation.StartDate = SelectedDateRange.Start;
                 Reservation.EndDate = SelectedDateRange.End;
+                Reservation.Name = SelectedAccommodation.Name;
+                Reservation.City = SelectedAccommodation.City;
+                Reservation.Country = SelectedAccommodation.Country;
 
                 SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
                 AccommodationRepository.Update(SelectedAccommodation.ToAccommodation());
 
                 AccommodationReservationRepository.Add(Reservation);
 
-                Frame.Content = new ReservationSuccessfulPage(AccommodationRepository, SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
+                Frame.Content = new ReservationSuccessfulPage(AccommodationRepository, AccommodationReservationRepository, SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
 
 
 

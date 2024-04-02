@@ -5,7 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
+using System.Windows.Input;
 using BookingApp.Model;
+using static System.Net.Mime.MediaTypeNames;
 
 
 namespace BookingApp.DTO
@@ -87,6 +89,34 @@ namespace BookingApp.DTO
             }
         }
 
+        private bool isCheckedHouse;
+        public bool IsCheckedHouse
+        {
+            get { return isCheckedHouse; }
+            set
+            {
+                if (isCheckedHouse != value)
+                {
+                    isCheckedHouse = value;
+                    OnPropertyChanged("IsCheckedHouse");
+                }
+            }
+        }
+
+        private bool isCheckedCottage;
+        public bool IsCheckedCottage
+        {
+            get { return isCheckedCottage; }
+            set
+            {
+                if (isCheckedCottage != value)
+                {
+                    isCheckedCottage = value;
+                    OnPropertyChanged("IsCheckedCottage");
+                }
+            }
+        }
+
         private int maxGuestNumber;
         public int MaxGuestNumber
         {
@@ -149,6 +179,21 @@ namespace BookingApp.DTO
             }
         }
 
+        private string onePicture;
+        public string OnePicture
+        {
+            get { return onePicture; }
+            set
+            {
+                if (onePicture != value)
+                {
+
+                    onePicture = value;
+                    OnPropertyChanged("OnePicture");
+                }
+            }
+        }
+
 
         private List<CalendarDateRange> unavailableDates = new List<CalendarDateRange>();
         public List<CalendarDateRange> UnavailableDates
@@ -164,8 +209,21 @@ namespace BookingApp.DTO
             }
         }
 
+        private int hostId;
+        public int HostId
+        {
+            get { return hostId; }
+            set
+            {
+                if (hostId != value)
+                {
+                    hostId = value;
+                    OnPropertyChanged("HostId");
+                }
+            }
+        }
 
-
+        public string Location => City + ", " + Country;
         public string Error => null;
 
         
@@ -261,22 +319,51 @@ namespace BookingApp.DTO
             ReservationDaysLimit = accommodation.ReservationDaysLimit;
             UnavailableDates = accommodation.UnavailableDates;
 
+            hostId = accommodation.HostId;
+
+            if(accommodation.Pictures.Count != 0) {
+                OnePicture = accommodation.Pictures[0];
+            }
+            else
+            {
+                OnePicture = "Resources\\Images\\house.jpg";
+            }
+            
+
+
 
 
         }
 
         public Accommodation ToAccommodation()
         {
+            type = GetAccommodationType();
             
-            
-            Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit);
+            Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit, hostId);
             a.Id = id;
             a.UnavailableDates = unavailableDates;
-
             a.Pictures = picture;
+            
+
+            
+            
 
             return a;
 
+        }
+
+        public AccommodationType GetAccommodationType()
+        {
+            AccommodationType type = AccommodationType.APARTMENT;
+
+            if (isCheckedHouse)
+            { type = AccommodationType.HOUSE; }
+            else if (isCheckedCottage)
+            {
+                type = AccommodationType.COTTAGE;
+            }
+
+            return type;
         }
     }
 

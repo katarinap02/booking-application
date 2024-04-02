@@ -24,15 +24,17 @@ namespace BookingApp.View.GuestPages
     public partial class ReservationSuccessfulPage : Page
     {
         public AccommodationRepository AccommodationRepository { get; set; }
+        public AccommodationRateRepository AccommodationRateRepository { get; set; }
         public AccommodationDTO SelectedAccommodation { get; set; }
 
+        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
         public CalendarDateRange SelectedDateRange { get; set; }
         public User User { get; set; }
 
         public Frame Frame { get; set; }
 
         public int GuestNumber { get; set; }
-        public ReservationSuccessfulPage(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, CalendarDateRange selectedDateRange, int guestNumber, User user, Frame frame)
+        public ReservationSuccessfulPage(AccommodationRepository accommodationRepository, AccommodationReservationRepository accommodationReservationRepository, AccommodationDTO selectedAccommodation, CalendarDateRange selectedDateRange, int guestNumber, User user, Frame frame)
         {
             InitializeComponent();
 
@@ -41,7 +43,8 @@ namespace BookingApp.View.GuestPages
             this.SelectedDateRange = selectedDateRange;
             this.GuestNumber = guestNumber;
             this.User = user;
-            this.Frame = new Frame();
+            this.Frame = frame;
+            this.AccommodationReservationRepository = accommodationReservationRepository;
 
             PrintAccommodationLocation(SelectedAccommodation);
             PrintDateRange(SelectedDateRange);
@@ -73,7 +76,13 @@ namespace BookingApp.View.GuestPages
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new HomePage(AccommodationRepository, User, Frame);
+             Frame.Content = new HomePage(AccommodationRepository, AccommodationReservationRepository, User, Frame);
+        }
+
+        private void ProfilePage_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new ProfilePage(User, AccommodationReservationRepository, AccommodationRepository, AccommodationRateRepository, Frame);
+
         }
     }
 }

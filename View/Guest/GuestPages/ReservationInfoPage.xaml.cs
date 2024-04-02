@@ -27,18 +27,20 @@ namespace BookingApp.View.GuestPages
         public AccommodationDTO SelectedAccommodation { get; set; }
         public AccommodationRepository AccommodationRepository { get; set; }
 
+        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
         public User User { get; set; }
         public int DayNumber { get; set; }
         public Frame Frame { get; set; }
 
        
-        public ReservationInfoPage(AccommodationRepository accommodationRepository, AccommodationDTO SelectedAccommodation, User user, Frame frame)
+        public ReservationInfoPage(AccommodationRepository accommodationRepository, AccommodationDTO SelectedAccommodation, AccommodationReservationRepository accommodationReservationRepository, User user, Frame frame)
         {
             InitializeComponent();
             this.SelectedAccommodation = SelectedAccommodation;
             this.AccommodationRepository = accommodationRepository;
             this.User = user;
             this.Frame = frame;
+            this.AccommodationReservationRepository = accommodationReservationRepository;
             bool dateIsValid;
             bool dayNumberIsValid;
             DataContext = this;
@@ -62,7 +64,7 @@ namespace BookingApp.View.GuestPages
 
            
 
-            Frame.Content = new CalendarPage(AccommodationRepository, SelectedAccommodation, DayNumber, User, start, end, Frame);
+            Frame.Content = new CalendarPage(AccommodationRepository, AccommodationReservationRepository, SelectedAccommodation, DayNumber, User, start, end, Frame);
 
 
         }

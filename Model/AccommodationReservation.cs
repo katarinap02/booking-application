@@ -10,7 +10,7 @@ namespace BookingApp.Model
 {
     public class AccommodationReservation : ISerializable
     {
-       // public int Id {  get; set; } mislim da ovo nece trebati
+        public int Id {  get; set; }
         public int GuestId { get; set; }
         public int AccommodationId { get; set; }
         public DateTime StartDate { get; set; }
@@ -19,17 +19,36 @@ namespace BookingApp.Model
 
         public int NumberOfPeople { get; set; }
         
+        public string Name { get; set; }    
+        public string City { get; set; }    
+        public string Country { get; set; }
+
+
         public AccommodationReservation() { }
-    
+        
+        public AccommodationReservation(int guestId, int accommodationId, DateTime startDate, DateTime endDate, int numberOfPeople, string name, string city, string country)
+        {
+            GuestId = guestId;
+            AccommodationId = accommodationId;
+            StartDate = startDate;
+            EndDate = endDate;
+            NumberOfPeople = numberOfPeople;
+            Name = name;
+            City = city;
+            Country = country;
+        }
         public string[] ToCSV()
         {
             string[] csvValues =
             {
-
+                Id.ToString(),
                 GuestId.ToString(),
                 AccommodationId.ToString(),
                 DateRange,
-                NumberOfPeople.ToString()
+                NumberOfPeople.ToString(),
+                Name,
+                City,
+                Country
 
             };
             return csvValues;
@@ -38,12 +57,16 @@ namespace BookingApp.Model
 
         public void FromCSV(string[] values)
         {
-            GuestId = Convert.ToInt32(values[0]);   
-            AccommodationId = Convert.ToInt32(values[1]);
-            string[] dateParts = values[2].Split('-');
+            Id = Convert.ToInt32(values[0]);
+            GuestId = Convert.ToInt32(values[1]);   
+            AccommodationId = Convert.ToInt32(values[2]);
+            string[] dateParts = values[3].Split('-');
             StartDate = DateTime.Parse(dateParts[0]);
             EndDate = DateTime.Parse(dateParts[1]);
-            NumberOfPeople = Convert.ToInt32(values[3]);
+            NumberOfPeople = Convert.ToInt32(values[4]);
+            Name = values[5];
+            City = values[6];
+            Country = values[7];
 
         }
 
