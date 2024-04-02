@@ -4,6 +4,7 @@ using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -22,49 +23,67 @@ namespace BookingApp.View.TouristWindows
     /// <summary>
     /// Interaction logic for TouristWindow.xaml
     /// </summary>
-    public partial class TouristWindow : Window
+    public partial class TouristWindow : Window, INotifyPropertyChanged
     {
         public ObservableCollection<Tour> Tours { get; set; }
         public Tour SelectedTour {  get; set; }
-        private readonly TourRepository _repository;
-        public TouristWindow()
+        private readonly TourRepository _tourRepository;
+        private readonly UserRepository _userRepository;
+
+        #region Property
+        private string _username;
+        public string Username
+        {
+            get => _username;
+            set
+            {
+                if (value != _username)
+                {
+                    _username = value;
+                    OnPropertyChanged(nameof(Username));
+                }
+            }
+        }
+        private int _maximumValuePeoples;
+
+
+        public string MaximumValuePeoples
+        {
+            get
+            {
+                return _maximumValuePeoples.ToString();
+            }
+            set
+            {
+                if (value != _maximumValuePeoples.ToString())
+                {
+                    _maximumValuePeoples = Convert.ToInt32(value);
+                    OnPropertyChanged(nameof(_maximumValuePeoples));
+                }
+            }
+        }
+        #endregion
+        #region PropertyChanged
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged(string name)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        #endregion
+        public TouristWindow(string username)
         {
             InitializeComponent();
             DataContext = this;
-            _repository = new TourRepository();
-            Tours = new ObservableCollection<Tour>(_repository.GetAll());
+            _tourRepository = new TourRepository();
+            _userRepository = new UserRepository();
+            Tours = new ObservableCollection<Tour>(_tourRepository.GetAll());
+            Username = username;
 
-        }
-
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            Tours.Clear();
-            List<Tour>? foundTours = Search();
-
-            if (foundTours != null)
-                foreach (Tour t in foundTours)
-                    Tours.Add(t);
-        }
-
-        private List<Tour>? Search()
-        {
-            DurationSearch.Text = EmptyStringToZero(DurationSearch.Text);
-            PeopleSearch.Text = EmptyStringToZero(PeopleSearch.Text);
-
-            Tour tour = new Tour("", CitySearch.Text, CountrySearch.Text, "", LanguageSearch.Text, int.Parse(PeopleSearch.Text),
-                                new List<string>(), new DateTime(), float.Parse(DurationSearch.Text), new List<string>());
-            List<Tour>? foundTours = _repository.SearchTours(tour);
-            return foundTours;
-        }
-
-        private string EmptyStringToZero(string text)
-        {
-            if(text == string.Empty)
-            {
-                return "0";
-            }
-
-            return text;
+            MainFrame.Content = new AllToursPage(getUserId());
+            MaximumValuePeoples = _tourRepository.FindMaxNumberOfParticipants().ToString();
         }
 
         private void DurationSearch_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -119,86 +138,49 @@ namespace BookingApp.View.TouristWindows
             }
         }
 
-        private void BookButton_Click(object sender, RoutedEventArgs e)
+        private void NotificationButton_Click(object sender, RoutedEventArgs e)
         {
-            if(SelectedTour == null)
-            {
-                MessageBox.Show("Something wrong happened");
-            }
-            else
-            {
-                TourNumberOfParticipantsWindow tourNumberOfParticipantsWindow = new TourNumberOfParticipantsWindow(SelectedTour);
-                tourNumberOfParticipantsWindow.ShowDialog();
-
-                if(Tours.Count != _repository.ToursCount())
-                {
-                    RefreshDataGrid(true);
-                }
-                else
-                    RefreshDataGrid(false);
-            }
-        }
-
-        private void RefreshDataGrid(bool withSearch)
-        {
-            Tours.Clear();
-            if (withSearch)
-            {
-                List<Tour>? foundTours = Search();
-
-                if (foundTours != null)
-                    foreach (Tour t in foundTours)
-                        Tours.Add(t);
-            }
-            else
-            {
-                List<Tour> allTours = _repository.GetAll();
-                foreach (Tour tour in allTours)
-                    Tours.Add(tour);
-            }
 
         }
 
-        private void DurationPlus_Click(object sender, RoutedEventArgs e)
+        private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-            if(DurationSearch.Text == "")
-                DurationSearch.Text = "0";
 
-            DurationSearch.Text = (Convert.ToDouble(DurationSearch.Text) + 0.5).ToString();
         }
 
-        private void DurationMinus_Click(object sender, RoutedEventArgs e)
+        private void MenuButton_Checked(object sender, RoutedEventArgs e)
         {
-            if(Convert.ToDouble(DurationSearch.Text) > 0)
-            {
-                DurationSearch.Text = (Convert.ToDouble(DurationSearch.Text)  - 0.5).ToString();
-            }
+            NotifyLogoutPanel.Visibility = Visibility.Visible;
         }
 
-        private void ParticipantsPlus_Click(object sender, RoutedEventArgs e)
+        private void MenuButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            if (PeopleSearch.Text == "")
-                PeopleSearch.Text = "0";
-
-            if (Convert.ToInt32(PeopleSearch.Text) < _repository.FindMaxNumberOfParticipants())
-                PeopleSearch.Text = (Convert.ToInt32(PeopleSearch.Text) + 1).ToString();
+            NotifyLogoutPanel.Visibility = Visibility.Collapsed;
         }
 
-        private void ParticipantsMinus_Click(object sender, RoutedEventArgs e)
+        private void AllToursButton_Click(object sender, RoutedEventArgs e)
         {
-            if(Convert.ToInt32(PeopleSearch.Text) > 0)
-            {
-                PeopleSearch.Text = (Convert.ToInt32(PeopleSearch.Text) - 1).ToString();
-            }
+            MainFrame.Content = new AllToursPage(getUserId());
         }
 
-        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        private void MyToursButton_Click(object sender, RoutedEventArgs e)
         {
-            CountrySearch.Text = "";
-            CitySearch.Text = "";
-            DurationSearch.Text = "0";
-            LanguageSearch.Text = "";
-            PeopleSearch.Text = "0";
+            MainFrame.Content = new MyToursPage(getUserId());
         }
+
+        private void EndedToursButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new EndedToursPage(getUserId());
+        }
+        private void VouchersButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new VouchersPage(getUserId());
+        }
+
+        private int getUserId()
+        {
+            return _userRepository.GetByUsername(Username).Id;
+        }
+
     }
 }

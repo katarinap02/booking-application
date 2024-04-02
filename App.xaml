@@ -4,6 +4,109 @@
              xmlns:local="clr-namespace:BookingApp"
              StartupUri="View/SignInForm.xaml">
     <Application.Resources>
-         
+
+        <!-- Natasini stilovi-->
+
+
+        <SolidColorBrush x:Key="ButtonTextN" Color="#F4F4ED"/> 
+        <SolidColorBrush x:Key="BackgroundColorN" Color="#F4F4ED"/> 
+        <SolidColorBrush x:Key="AccentColorN" Color="#6665DD"/>
+        <SolidColorBrush x:Key="TextColorN" Color="#3423A6"/>
+
+        <Style x:Key="ButtonStyleN" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource ButtonTextN}"/>
+            <Setter Property="Background" Value="{StaticResource AccentColorN}"/>
+            <Setter Property="BorderBrush" Value="{StaticResource AccentColorN}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+            <Setter Property="FontSize" Value="30"/>
+
+        </Style>
+
+        <Style x:Key="HeaderStyleN" TargetType="Label">
+            <Setter Property="Foreground" Value="{StaticResource TextColorN}"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Arial"/>
+        </Style>
+
+
+
+
+
+        <!-- *********************** -->
+
+        <SolidColorBrush x:Key="TouristBackgroundColor1" Color="#A6CEDA"/>
+        <SolidColorBrush x:Key="TouristBackgroundColor2" Color="#4CB9DA"/>
+        <SolidColorBrush x:Key="TouristGroundColor1" Color="#58DBD0"/>
+        <SolidColorBrush x:Key="TouristGroundColor2" Color="#42BC87"/>
+        <SolidColorBrush x:Key="TouristTextColor1" Color="#4C5FD9"/>
+        <SolidColorBrush x:Key="TouristTextColor2" Color="#4C8BD9"/>
+        
+        <!-- Akos je napravio ovaj style -->
+        <Style x:Key="TooltipStyle" TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Border x:Name="SwitchBackground" Background="LightGray" CornerRadius="15"/>
+                            <Ellipse x:Name="SwitchThumb" Fill="White" Width="25" Height="25" HorizontalAlignment="Left">
+                                <Ellipse.RenderTransform>
+                                    <TranslateTransform X="0"/>
+                                </Ellipse.RenderTransform>
+                            </Ellipse>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="SwitchBackground" Property="Background" Value="Green"/>
+                                <Setter TargetName="SwitchThumb" Property="Margin" Value="17,0,0,0"/>
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="SwitchBackground" Property="Background" Value="LightGray"/>
+                                <Setter TargetName="SwitchThumb" Property="Margin" Value="3,0,0,0"/>
+                            </Trigger>
+                            <EventTrigger RoutedEvent="ToggleButton.Checked">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SwitchThumb" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)" To="15" Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CircleEase/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                            <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="SwitchThumb" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)" To="0" Duration="0:0:0.3">
+                                            <DoubleAnimation.EasingFunction>
+                                                <CircleEase/>
+                                            </DoubleAnimation.EasingFunction>
+                                        </DoubleAnimation>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </EventTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style TargetType="Page">
+            <Setter Property="Background" Value="White" />
+            
+        </Style>
+
+        
+        <Style x:Key="HyperlinkStyle" TargetType="{x:Type Hyperlink}">
+                <Setter Property="Foreground" Value="Blue"/>
+                <Setter Property="TextDecorations" Value="Underline"/>
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Foreground" Value="AliceBlue"/>
+                    </Trigger>
+                </Style.Triggers>
+        </Style>
+
     </Application.Resources>
 </Application>

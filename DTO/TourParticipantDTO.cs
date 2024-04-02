@@ -10,71 +10,71 @@ namespace BookingApp.DTO
 {
     public class TourParticipantDTO : INotifyPropertyChanged
     {
-        private int id;
+        private int _id;
         public int Id
         {
-            get { return id; }
+            get { return _id; }
             set
             {
-                if (id != value)
+                if (_id != value)
                 {
-                    id = value;
+                    _id = value;
                     OnPropertyChanged(nameof(Id));
                 }
             }
         }
 
-        private int reservationId;
+        private int _reservationId;
         public int ReservationId
         {
-            get { return reservationId;}
+            get { return _reservationId;}
             set
             {
-                if (reservationId != value)
+                if (_reservationId != value)
                 {
-                    reservationId = value;
+                    _reservationId = value;
                     OnPropertyChanged(nameof(ReservationId));
                 }
             }
         }
 
-        private string name;
+        private string _name;
         public string Name
         {
-            get { return name; }
+            get { return _name; }
             set
             {
-                if (name != value)
+                if (_name != value)
                 {
-                    name = value;
+                    _name = value;
                     OnPropertyChanged(nameof(Name));
                 }
             }
         }
 
-        private string lastName;
+        private string _lastName;
         public string LastName
         {
-            get { return lastName; }
+            get { return _lastName; }
             set
             {
-                if(lastName != value)
+                if(_lastName != value)
                 {
-                    lastName = value;
+                    _lastName = value;
                     OnPropertyChanged(nameof(LastName));
                 }
             }
         }
 
-        private int years;
+        private int _years;
         public int Years
         {
-            get { return years;}
+            get { return _years;}
             set
             {
-                if(years != value)
+                if(_years != value)
                 {
-                    years = value;
+                    _years = value;
                     OnPropertyChanged(nameof(Years));
                 }
             }
@@ -89,25 +89,25 @@ namespace BookingApp.DTO
         public TourParticipantDTO() { }
         public TourParticipantDTO(TourParticipant tourParticipant)
         {
-            name = tourParticipant.Name;
-            id = tourParticipant.Id;
-            lastName = tourParticipant.LastName;
-            years = tourParticipant.Years;
+            _name = tourParticipant.Name;
+            _id = tourParticipant.Id;
+            _lastName = tourParticipant.LastName;
+            _years = tourParticipant.Years;
         }
 
         public TourParticipant ToTourParticipant()
         {
-            TourParticipant tourParticipant = new TourParticipant(id, reservationId, name, lastName, years);
-            tourParticipant.Id = id;
-            tourParticipant.ReservationId = reservationId;
-            tourParticipant.Name = name;
-            tourParticipant.LastName = lastName;
-            tourParticipant.Years = years;
+            TourParticipant tourParticipant = new TourParticipant(_id, _reservationId, _name, _lastName, _years);
+            tourParticipant.Id = _id;
+            tourParticipant.ReservationId = _reservationId;
+            tourParticipant.Name = _name;
+            tourParticipant.LastName = _lastName;
+            tourParticipant.Years = _years;
             return tourParticipant;
         }
         public override string ToString()
         {
-            return $"Name:        {name}\nLastName:  {lastName}\nYears:          {years}\n";
+            return $"Name:        {_name}\nLastName:  {_lastName}\nYears:          {_years}\n";
         }
     }
 }

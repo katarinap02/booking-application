@@ -21,13 +21,13 @@ namespace BookingApp.Model
             Type = type;
         }
 
-        public string[] ToCSV()
+        public virtual string[] ToCSV()
         {
             string[] csvValues = { Id.ToString(), Username, Password, Type.ToString() };
             return csvValues;
         }
 
-        public void FromCSV(string[] values)
+        public virtual void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
             Username = values[1];

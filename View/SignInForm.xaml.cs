@@ -58,12 +58,12 @@ namespace BookingApp.View
                     //MessageBox.Show(user.Type.ToString()); //spram ovog napraviti pozivanje novih prozora
                     if (user.Type.ToString().Equals("tourist"))
                     {
-                        TouristWindow touristWindow = new TouristWindow();
+                        TouristWindow touristWindow = new TouristWindow(user.Username);
                         touristWindow.Show();
                     }
                     else if (user.Type.ToString().Equals("host"))
                     {
-                        HostWindow hostWindow = new HostWindow();
+                        HostWindow hostWindow = new HostWindow(user);
                         hostWindow.Show();
                     }
                     else if (user.Type.ToString().Equals("guide"))

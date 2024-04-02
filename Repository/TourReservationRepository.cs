@@ -17,12 +17,14 @@ namespace BookingApp.Repository
 
         private List<TourReservation> _tourReservations;
         private readonly TourParticipantRepository _participantRepository;
+        private readonly TourRepository _tourRepository;
 
         public TourReservationRepository()
         {
             _serializer = new Serializer<TourReservation>();
             _tourReservations = GetAll();
             _participantRepository = new TourParticipantRepository();
+            _tourRepository = new TourRepository();
         }
 
         public List<TourReservation> GetAll()
@@ -39,8 +41,8 @@ namespace BookingApp.Repository
 
         public int NextId()
         {
-            _tourReservations = _serializer.FromCSV(FilePath);
-            if(_tourReservations.Count < 1)
+            _tourReservations = GetAll();
+            if (_tourReservations.Count < 1)
                 return 1;
             return _tourReservations.Max(t => t.Id) + 1;
         }
@@ -89,6 +91,36 @@ namespace BookingApp.Repository
             tourReservation.HasJoinedTour = true;
             tourReservation.StartCheckpoint = current_checkpoint;
             _serializer.ToCSV(FilePath, _tourReservations);
+        }
+
+        public List<Tour> FindMyTours(int id)
+        {
+            return FindToursForUserByReservation(id).FindAll(t => t.Status != TourStatus.Finnished);
+        }
+
+        public List<Tour> FindToursForUserByReservation(int id)
+        {
+            List<TourReservation> tourReservations = _tourReservations.FindAll(res => res.TouristId == id);
+
+
+            List<Tour> tours = new List<Tour>();
+
+            foreach (TourReservation tourReservation in tourReservations)
+            {
+                // daj mi turu koja je sa tim tourId-jem, ali kod rezervacije mora atrivut HasJoinedTour biti true, jer mi treba samo one ture nakojoj smo zapravo (isli)
+                if (_tourRepository.GetTourById(tourReservation.TourId) != null && tourReservation.HasJoinedTour)
+                {
+                    tours.Add(_tourRepository.GetTourById(tourReservation.TourId));
+                }
+
+            }
+            return tours;
+        }
+
+
+        public List<Tour> FindMyEndedTours(int id)
+        {
+            return FindToursForUserByReservation(id).FindAll(t => t.Status == TourStatus.Finnished);
         }
 
     }

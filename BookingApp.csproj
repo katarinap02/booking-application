@@ -12,9 +12,18 @@
     <None Remove="Resources\Images\delete.png" />
     <None Remove="Resources\Images\edit.png" />
     <None Remove="Resources\Images\view.png" />
+    <None Remove="View\TouristWindows\hamburger.png" />
+    <None Remove="View\TouristWindows\logout.png" />
     <None Remove="View\TouristWindows\minus.png" />
+    <None Remove="View\TouristWindows\notification.png" />
     <None Remove="View\TouristWindows\plus.png" />
     <None Remove="View\TouristWindows\search.png" />
+    <None Remove="View\TouristWindows\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="View\Guest\GuestThemes\DarkTheme.xaml" />
+    <Page Remove="View\Guest\GuestThemes\LightTheme.xaml" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,12 +43,24 @@
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0" />
+    <PackageReference Include="LiveCharts.WinForms" Version="0.9.7.1" />
   </ItemGroup>
 
   <ItemGroup>
+
+    <Resource Include="View\Guest\GuestThemes\DarkTheme.xaml" />
+    <Resource Include="View\Guest\GuestThemes\LightTheme.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
+    <Resource Include="View\TouristWindows\hamburger.png" />
+    <Resource Include="View\TouristWindows\logout.png" />
+
     <Resource Include="View\TouristWindows\minus.png" />
+    <Resource Include="View\TouristWindows\notification.png" />
     <Resource Include="View\TouristWindows\plus.png" />
     <Resource Include="View\TouristWindows\search.png" />
+    <Resource Include="View\TouristWindows\user.png" />
   </ItemGroup>
 
 </Project>

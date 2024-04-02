@@ -23,15 +23,16 @@ namespace BookingApp.View.HostWindows
     /// </summary>
     public partial class RegisterAccommodationWindow : Window
     {
-
+        public User User { get; set; }
         public AccommodationDTO accommodationDTO { get; set; }
         private AccommodationRepository accommodationRepository;
-        public RegisterAccommodationWindow(AccommodationRepository ar)
+        public RegisterAccommodationWindow(AccommodationRepository ar, User user)
         {
             InitializeComponent();
             accommodationRepository = ar;
             DataContext = this;
             accommodationDTO = new AccommodationDTO();
+            User = user;
         }
 
         private void Exit_Click(object sender, RoutedEventArgs e)
@@ -43,6 +44,7 @@ namespace BookingApp.View.HostWindows
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             if(accommodationDTO.IsValid) {
+                accommodationDTO.HostId = User.Id;
                 accommodationRepository.Add(accommodationDTO.ToAccommodation());
                 MessageBox.Show("Accommodation added.");
                 Close();
