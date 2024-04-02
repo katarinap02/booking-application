@@ -42,7 +42,7 @@ namespace BookingApp.View.HostPages
             hostRepository = new HostRepository();
             DataContext = this;
             host = hostRepository.GetByUsername(user.Username);
-            //host.IsSuperHost = true;
+            hostRepository.BecomeSuperHost(host);
             Update();
         }
 

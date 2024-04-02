@@ -67,11 +67,11 @@ namespace BookingApp.Repository
                 if(rate.HostId == host.Id)
                 {
                     counter++;
-                    gradeSum += (rate.Correctness + rate.Cleanliness) / 2;
+                    gradeSum = gradeSum + (Convert.ToDouble(rate.Correctness + rate.Cleanliness) / 2);
                 }
             }
 
-            if(counter < 10)
+            if(counter < 50)
             {
                 host.IsSuperHost = false;
                 Update(host);
