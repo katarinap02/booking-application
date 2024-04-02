@@ -12,8 +12,10 @@
     <Grid>
         <Grid>
 
+
             <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,549,5"/>
             <Border Width="526" Height="517" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="549,1,10,280">
+
                 <Grid>
                     <Label Content="Cleanliness:" FontSize="20" HorizontalAlignment="Left" Margin="88,51,0,0" VerticalAlignment="Top"/>
                     <Label Content="Correctness:" FontSize="20" HorizontalAlignment="Left" Margin="308,51,0,0" VerticalAlignment="Top"/>
@@ -37,19 +39,35 @@
                     </ComboBox>
                     <Label Content="Comment:" FontSize="20" HorizontalAlignment="Left" Margin="36,157,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding AccommodationRate.AdditionalComment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="412" Height="100"/>
+
+                    <Button FontSize="15" Click="AddPicture_Click" Content="Add picture" HorizontalAlignment="Left" Margin="55,334,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}"/>
+                    <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="44,456,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="29" Width="208"/>
+                    <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="367,454,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}" Click="Save_Click"/>
+                    <ListBox x:Name="pictureListBox" Margin="198,326,56,98" RenderTransformOrigin="0.5,0.5">
+                        <ListBox.RenderTransform>
+                            <TransformGroup>
+                                <ScaleTransform ScaleX="-1"/>
+
                     <Button FontSize="15" Click="AddPicture_Click" Content="Add picture" HorizontalAlignment="Left" Margin="55,339,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}"/>
                     <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="11,471,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="32" RenderTransformOrigin="0.5,0.5" Width="197">
                         <Button.RenderTransform>
                             <TransformGroup>
                                 <ScaleTransform ScaleY="1"/>
+
                                 <SkewTransform/>
                                 <RotateTransform/>
                                 <TranslateTransform/>
                             </TransformGroup>
+
+                        </ListBox.RenderTransform>
+                    </ListBox>
+
+
                         </Button.RenderTransform>
                     </Button>
                     <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="367,466,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}" Click="Save_Click"/>
                     <ListBox x:Name="pictureListBox" Margin="181,334,34,84"></ListBox>
+
                 </Grid>
             </Border>
 
