@@ -166,48 +166,32 @@
                 CornerRadius="5">
                         <Grid Height="Auto">
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="Auto" />
-                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="220" />
                                 <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="70" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="Auto" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                            <!--     <Image
+                                 <Image
                                 Grid.Row="0"
-                                Grid.RowSpan="3"
+                                Grid.RowSpan="7"
                                 Grid.Column="0"
                                 Height="150"
                                 Margin="10"
                                 VerticalAlignment="Center">
                                         <Image.Style>
                                             <Style TargetType="Image">
-                                                <Setter Property="Source" Value="{Binding ProfileImagePath}" />
-                                                <Style.Triggers>
-                                                    <MultiDataTrigger>
-                                                        <MultiDataTrigger.Conditions>
-                                                            <Condition Binding="{Binding ProfileImagePath}" Value="{x:Null}" />
-                                                            <Condition Binding="{Binding Gender}" Value="Male" />
-                                                        </MultiDataTrigger.Conditions>
-                                                        <Setter Property="Source" Value="/Resources/Images/ProfileImagePlaceholderMale.jpg" />
-                                                    </MultiDataTrigger>
-                                                    <MultiDataTrigger>
-                                                        <MultiDataTrigger.Conditions>
-                                                            <Condition Binding="{Binding ProfileImagePath}" Value="{x:Null}" />
-                                                            <Condition Binding="{Binding Gender}" Value="Female" />
-                                                        </MultiDataTrigger.Conditions>
-                                                        <Setter Property="Source" Value="/Resources/Images/ProfileImagePlaceholderFemale.jpg" />
-                                                    </MultiDataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
+                                        <Setter Property="Source" Value="{Binding OnePicture}" />
+                                    </Style>
                                         </Image.Style>
-                                    </Image> -->
+                                    </Image> 
 
 
                             <TextBlock

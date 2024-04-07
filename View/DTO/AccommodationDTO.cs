@@ -293,9 +293,27 @@ namespace BookingApp.DTO
 
 
 
+        public string ConvertToRelativePath(string inputPath)
+    {
+        
+        string pattern = @"\\";
+
+        
+        string replacedPath = Regex.Replace(inputPath, pattern, "/");
+
+        
+        if (replacedPath.StartsWith("Resources/Images/"))
+        {
+            replacedPath = "../../" + replacedPath;
+        }
+
+        return replacedPath;
+    }
 
 
-        public event PropertyChangedEventHandler PropertyChanged;
+
+
+    public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -322,11 +340,11 @@ namespace BookingApp.DTO
             hostId = accommodation.HostId;
 
             if(accommodation.Pictures.Count != 0) {
-                OnePicture = accommodation.Pictures[0];
+                OnePicture = ConvertToRelativePath(accommodation.Pictures[0]);
             }
             else
             {
-                OnePicture = "Resources\\Images\\house.jpg";
+                OnePicture = "../../Resources/Images/no_image.jpg";
             }
             
 
