@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
       d:DesignHeight="798" d:DesignWidth="1085"
       Title="RateAccommodationForm">
-
+    <!--
     <Grid>
         <Grid>
 
@@ -74,4 +74,5 @@
 
         </Grid>
     </Grid>
+        -->
 </Page>

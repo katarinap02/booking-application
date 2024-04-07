@@ -1,6 +1,7 @@
 ﻿using BookingApp.DTO;
 using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -28,7 +29,7 @@ namespace BookingApp.View.GuestPages
         public User User { get; set; }
         public AccommodationRepository AccommodationRepository { get; set; }
 
-        public HostRepository HostRepository { get; set; }
+        public HostService HostService { get; set; }
 
         public Frame Frame { get; set; }
 
@@ -41,7 +42,7 @@ namespace BookingApp.View.GuestPages
             this.User = user;
             this.SelectedReservation = selectedReservation;
             this.AccommodationRepository = accommodationRepository;
-            this.HostRepository = new HostRepository();
+            this.HostService = new HostService();
             this.Frame = frame;
             this.AccommodationRateRepository = accommodationRateRepository;
             this.AccommodationRate = new AccommodationRateDTO();
@@ -56,8 +57,8 @@ namespace BookingApp.View.GuestPages
             AccommodationRate.HostId = AccommodationRepository.GetById(SelectedReservation.AccommodationId).HostId;
             AccommodationRateRepository.Add(AccommodationRate.ToAccommodationRate());
             AccommodationRate rate = AccommodationRate.ToAccommodationRate();
-            Host host = HostRepository.GetById(rate.HostId);
-            HostRepository.BecomeSuperHost(host);
+            Host host = HostService.GetById(rate.HostId);
+            HostService.BecomeSuperHost(host);
             MessageBox.Show("jej");
 
         }
@@ -108,7 +109,7 @@ namespace BookingApp.View.GuestPages
 
                 AccommodationRate.Images.Add(pictureUrl);
                 
-                pictureListBox.ItemsSource = AccommodationRate.Images;
+              //  pictureListBox.ItemsSource = AccommodationRate.Images;
                 
             }
         }
