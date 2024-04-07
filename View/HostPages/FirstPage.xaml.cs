@@ -2,6 +2,7 @@
 using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,22 +30,24 @@ namespace BookingApp.View.HostPages
 
         public AccommodationRepository accommodationRepository { get; set; }
 
-        public HostRepository hostRepository { get; set; }
+        public HostService hostService { get; set; }
 
         public AccommodationReservationDTO SelectedAccommodation { get; set; }
 
         public Host host {  get; set; }
 
         public HostDTO hostDTO { get; set; }
+
+        
         public FirstPage(User user)
         {
             InitializeComponent();
             Accommodations = new ObservableCollection<AccommodationDTO>();
             accommodationRepository = new AccommodationRepository();
-            hostRepository = new HostRepository();
+            hostService = new HostService();
             DataContext = this;
-            host = hostRepository.GetByUsername(user.Username);
-            hostRepository.BecomeSuperHost(host);
+            host = hostService.GetByUsername(user.Username);
+            hostService.BecomeSuperHost(host);
             hostDTO = new HostDTO(host);
             Update();
         }
