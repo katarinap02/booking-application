@@ -6,7 +6,7 @@ using BookingApp.Model;
 
 namespace BookingApp.DTO
 {
-    public class TourDTO : INotifyPropertyChanged
+    public class TourViewModel : INotifyPropertyChanged
     {
         private int id;
         public int Id
@@ -205,6 +205,23 @@ namespace BookingApp.DTO
             }
         }
 
+        private int availablePlaces;
+        public int AvailablePlaces
+        {
+            get
+            {
+                return availablePlaces;
+            }
+            set
+            {
+                if(availablePlaces != value)
+                {
+                    availablePlaces = value;
+                    OnPropertyChanged(nameof(AvailablePlaces));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -212,9 +229,9 @@ namespace BookingApp.DTO
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public TourDTO() { }
+        public TourViewModel() { }
 
-        public TourDTO (Tour tour)
+        public TourViewModel (Tour tour)
         {
             name = tour.Name;
             id = tour.Id;
@@ -229,6 +246,7 @@ namespace BookingApp.DTO
             pictures = tour.Pictures;
             country = tour.Country;
             currentCheckpoint = tour.currentCheckpoint;
+            availablePlaces = tour.AvailablePlaces;
         }
 
         public Tour ToTour()

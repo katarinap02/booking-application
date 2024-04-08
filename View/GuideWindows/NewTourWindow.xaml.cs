@@ -17,14 +17,14 @@ namespace BookingApp.View
     public partial class NewTourWindow
     {
         private readonly TourRepository _tourRepository;
-        public TourDTO Tour { get; set; }
+        public TourViewModel Tour { get; set; }
         private List<DateTime> selectedDates = new List<DateTime>();
 
         public NewTourWindow() {
             InitializeComponent();
             DataContext = this;
             _tourRepository = new TourRepository();
-            Tour = new TourDTO();
+            Tour = new TourViewModel();
         }
 
         private void AddTour_Click(object sender, RoutedEventArgs e)

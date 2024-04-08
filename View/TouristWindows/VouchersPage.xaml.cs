@@ -1,5 +1,7 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.DTO;
+using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,15 +25,18 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class VouchersPage : Page
     {
-        public ObservableCollection<Voucher> Vouchers { get; set; }
+        public ObservableCollection<VoucherViewModel> Vouchers { get; set; }
 
-        private readonly VoucherRepository _repository;
+        //private readonly VoucherRepository _repository;
+        private readonly TouristService _touristService;
         public VouchersPage(int userId)
         {
             InitializeComponent();
             DataContext = this;
-            _repository = new VoucherRepository();
-            Vouchers = new ObservableCollection<Voucher>(_repository.FindVouchersByUser(userId));
+            //_repository = new VoucherRepository();
+            //Vouchers = new ObservableCollection<Voucher>(_repository.FindVouchersByUser(userId));
+            _touristService = new TouristService();
+            Vouchers = new ObservableCollection<VoucherViewModel>(_touristService.FindVouchersByUser(userId));
         }
     }
 }

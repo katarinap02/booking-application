@@ -1,5 +1,7 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.DTO;
+using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -24,9 +26,12 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class AllToursPage : Page, INotifyPropertyChanged
     {
-        public ObservableCollection<Tour> Tours { get; set; }
-        public Tour SelectedTour { get; set; }
-        private readonly TourRepository _repository;
+        //public ObservableCollection<Tour> Tours { get; set; }
+        public ObservableCollection<TourViewModel> Tours { get; set; }
+        public TourViewModel SelectedTour { get; set; }
+
+        //private readonly TourRepository _repository;
+        private readonly TouristService _touristService;
         public int UserId;
 
         #region Property
@@ -62,12 +67,15 @@ namespace BookingApp.View.TouristWindows
         {
             InitializeComponent();
             DataContext = this;
-            _repository = new TourRepository();
-            Tours = new ObservableCollection<Tour>(_repository.GetAll());
+            _touristService = new TouristService();
+            Tours = new ObservableCollection<TourViewModel>();
 
             UserId = userId;
-            MaximumValuePeoples = _repository.FindMaxNumberOfParticipants().ToString();
+            MaximumValuePeoples = _touristService.FindMaxNumberOfParticipants().ToString();
+
+            RefreshDataGrid(false);
         }
+
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
             CountrySearch.Text = "";
@@ -79,21 +87,21 @@ namespace BookingApp.View.TouristWindows
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             Tours.Clear();
-            List<Tour>? foundTours = Search();
+            List<TourViewModel>? foundTours = Search();
 
             if (foundTours != null)
-                foreach (Tour t in foundTours)
+                foreach (TourViewModel t in foundTours)
                     Tours.Add(t);
         }
 
-        private List<Tour>? Search()
+        private List<TourViewModel>? Search()
         {
             DurationSearch.Text = EmptyStringToZero(DurationSearch.Text);
             PeopleSearch.Text = EmptyStringToZero(PeopleSearch.Text);
 
             Tour tour = new Tour("", CitySearch.Text, CountrySearch.Text, "", LanguageSearch.Text, int.Parse(PeopleSearch.Text),
                                 new List<string>(), new DateTime(), float.Parse(DurationSearch.Text), new List<string>());
-            List<Tour>? foundTours = _repository.SearchTours(tour);
+            List<TourViewModel>? foundTours = _touristService.SearchTours(tour);
             return foundTours;
         }
 
@@ -112,16 +120,16 @@ namespace BookingApp.View.TouristWindows
             Tours.Clear();
             if (withSearch)
             {
-                List<Tour>? foundTours = Search();
+                List<TourViewModel>? foundTours = Search();
 
                 if (foundTours != null)
-                    foreach (Tour t in foundTours)
+                    foreach (TourViewModel t in foundTours)
                         Tours.Add(t);
             }
             else
             {
-                List<Tour> allTours = _repository.GetAll();
-                foreach (Tour tour in allTours)
+                List<TourViewModel> allTours = _touristService.GetAll();
+                foreach (TourViewModel tour in allTours)
                     Tours.Add(tour);
             }
 
@@ -138,7 +146,7 @@ namespace BookingApp.View.TouristWindows
                 TourNumberOfParticipantsWindow tourNumberOfParticipantsWindow = new TourNumberOfParticipantsWindow(SelectedTour, UserId);
                 tourNumberOfParticipantsWindow.ShowDialog();
 
-                if(Tours.Count != _repository.ToursCount())
+                if(Tours.Count != _touristService.ToursCount())
                 {
                     RefreshDataGrid(true);
                 }

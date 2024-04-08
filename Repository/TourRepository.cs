@@ -1,4 +1,5 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.DTO;
+using BookingApp.Model;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,7 @@ namespace BookingApp.Repository
 
         public List<Tour> GetAll()
         {
-            return _serializer.FromCSV(FilePath);
+            return _serializer.FromCSV(FilePath).FindAll(t => t.Status != TourStatus.Finnished);
         }
 
         public void Add(Tour tour) 

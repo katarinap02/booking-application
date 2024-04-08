@@ -26,12 +26,12 @@ namespace BookingApp.View.TouristWindows
     public partial class TourNumberOfParticipantsWindow : Window
     {
         public static ObservableCollection<Tour> Tours { get; set; }
-        public Tour SelectedTour {  get; set; }
+        public TourViewModel SelectedTour {  get; set; }
         private int InsertedNumberOfParticipants;
         private readonly TourRepository _repository;
         public int UserId;
 
-        public TourNumberOfParticipantsWindow(Tour selectedTour, int userId)
+        public TourNumberOfParticipantsWindow(TourViewModel selectedTour, int userId)
         {
             InitializeComponent();
             this.DataContext = this;
