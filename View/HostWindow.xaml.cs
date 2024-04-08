@@ -62,8 +62,8 @@ namespace BookingApp.View
                 Accommodations.Add(new AccommodationReservationDTO(accommodation));
                 
             }
-            FirstPage firstPage = new FirstPage(User);
-            HostFrame.Navigate(firstPage);
+           // FirstPage firstPage = new FirstPage(User);
+            //HostFrame.Navigate(firstPage);
         }
 
         private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)

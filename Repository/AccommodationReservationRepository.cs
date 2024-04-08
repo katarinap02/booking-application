@@ -86,5 +86,16 @@ namespace BookingApp.Repository
             return _reservations.Max(a => a.Id) + 1;
         }
 
+        public AccommodationReservation GetById(int accommodationId)
+        {
+            _reservations = _serializer.FromCSV(FilePath);
+            foreach (AccommodationReservation accommodation in _reservations)
+            {
+                if (accommodationId == accommodation.Id) return accommodation;
+            }
+
+            return null;
+        }
+
     }
 }
