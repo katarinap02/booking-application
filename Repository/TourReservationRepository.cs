@@ -107,7 +107,7 @@ namespace BookingApp.Repository
 
             foreach (TourReservation tourReservation in tourReservations)
             {
-                // daj mi turu koja je sa tim tourId-jem, ali kod rezervacije mora atrivut HasJoinedTour biti true, jer mi treba samo one ture nakojoj smo zapravo (isli)
+                // daj mi turu koja je sa tim tourId-jem, ali kod rezervacije mora atribut HasJoinedTour biti true, jer mi treba samo one ture nakojoj smo zapravo (isli)
                 if (_tourRepository.GetTourById(tourReservation.TourId) != null && tourReservation.HasJoinedTour)
                 {
                     tours.Add(_tourRepository.GetTourById(tourReservation.TourId));

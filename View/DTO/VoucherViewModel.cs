@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookingApp.DTO
 {
-    public class VoucherDTO : INotifyPropertyChanged
+    public class VoucherViewModel : INotifyPropertyChanged
     {
         private int _id;
         public int Id
@@ -116,8 +116,8 @@ namespace BookingApp.DTO
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public VoucherDTO() { }
-        public VoucherDTO(Voucher voucher)
+        public VoucherViewModel() { }
+        public VoucherViewModel(Voucher voucher)
         {
             _id = voucher.Id;
             _touristId = voucher.TouristId;

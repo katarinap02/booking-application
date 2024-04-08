@@ -27,6 +27,20 @@ namespace BookingApp.DTO
             }
         }
 
+        private string accommodationName;
+        public string AccommodationName
+        {
+            get { return accommodationName; }
+            set
+            {
+                if (accommodationName != value)
+                {
+                    accommodationName = value;
+                    OnPropertyChanged("AccommodationName");
+                }
+            }
+        }
+
         private int guestId;
         public int GuestId
         {
@@ -37,6 +51,20 @@ namespace BookingApp.DTO
                 {
                     guestId = value;
                     OnPropertyChanged("GuestId");
+                }
+            }
+        }
+
+        private string guestUsername;
+        public string GuestUsername
+        {
+            get { return guestUsername; }
+            set
+            {
+                if (guestUsername != value)
+                {
+                    guestUsername = value;
+                    OnPropertyChanged("GuestUsername");
                 }
             }
         }
@@ -115,6 +143,21 @@ namespace BookingApp.DTO
             }
         }
 
+        private string onePicture;
+        public string OnePicture
+        {
+            get { return onePicture; }
+            set
+            {
+                if (onePicture != value)
+                {
+
+                    onePicture = value;
+                    OnPropertyChanged("OnePicture");
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -122,8 +165,44 @@ namespace BookingApp.DTO
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public AccommodationRateDTO()
+        public string ConvertToRelativePath(string inputPath)
         {
+
+            string pattern = @"\\";
+
+
+            string replacedPath = Regex.Replace(inputPath, pattern, "/");
+
+
+            if (replacedPath.StartsWith("Resources/Images/"))
+            {
+                replacedPath = "../../../" + replacedPath;
+            }
+
+            return replacedPath;
+        }
+
+        public AccommodationRateDTO() { }
+
+        public AccommodationRateDTO(AccommodationRate ar, AccommodationReservation ac, User us)
+        {
+            reservationId = ar.ReservationId;
+            guestId = ar.GuestId;
+            hostId = ar.HostId;
+            cleanliness = ar.Cleanliness;
+            correctness = ar.Correctness;
+            additionalComment = ar.AdditionalComment;
+            guestUsername = us.Username;
+            accommodationName = ac.Name;
+
+            if (ar.Images.Count != 0)
+            {
+                OnePicture = ConvertToRelativePath(ar.Images[0]);
+            }
+            else
+            {
+                OnePicture = "../../../Resources/Images/no_image.jpg";
+            }
 
         }
 
@@ -135,6 +214,7 @@ namespace BookingApp.DTO
             cleanliness = ar.Cleanliness;
             correctness = ar.Correctness;
             additionalComment = ar.AdditionalComment;
+            onePicture = ar.OnePicture;
         }
 
         public AccommodationRate ToAccommodationRate()

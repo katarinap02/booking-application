@@ -1,6 +1,7 @@
 ﻿using BookingApp.DTO;
 using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -25,9 +26,11 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class TouristWindow : Window, INotifyPropertyChanged
     {
-        public ObservableCollection<Tour> Tours { get; set; }
+        public List<TourViewModel> Tours { get; set; }
         public Tour SelectedTour {  get; set; }
-        private readonly TourRepository _tourRepository;
+        private readonly TouristService _touristService;
+
+        // trebace napraviti userService
         private readonly UserRepository _userRepository;
 
         #region Property
@@ -77,13 +80,25 @@ namespace BookingApp.View.TouristWindows
         {
             InitializeComponent();
             DataContext = this;
-            _tourRepository = new TourRepository();
+            _touristService = new TouristService();
             _userRepository = new UserRepository();
-            Tours = new ObservableCollection<Tour>(_tourRepository.GetAll());
+            Tours = new List<TourViewModel>();
             Username = username;
 
             MainFrame.Content = new AllToursPage(getUserId());
-            MaximumValuePeoples = _tourRepository.FindMaxNumberOfParticipants().ToString();
+            MaximumValuePeoples = _touristService.FindMaxNumberOfParticipants().ToString();
+
+            Update();
+        }
+
+        public void Update()
+        {
+            Tours.Clear();
+            List<TourViewModel> ToursViewModel = _touristService.GetAll();
+            foreach(TourViewModel tour in ToursViewModel)
+            {
+                Tours.Add(tour);
+            }
         }
 
         private void DurationSearch_PreviewTextInput(object sender, TextCompositionEventArgs e)

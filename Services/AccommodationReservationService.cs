@@ -40,9 +40,17 @@ namespace BookingApp.Services
             return AccommodationReservationRepository.Add(reservation);
         }
 
+
         public void Delete(AccommodationReservationDTO selectedReservation)
         {
             AccommodationReservationRepository.Delete(selectedReservation);
         }
+
+        public AccommodationReservation GetById(int id)
+        {
+            return AccommodationReservationRepository.GetById(id);
+        }
+
+
     }
 }

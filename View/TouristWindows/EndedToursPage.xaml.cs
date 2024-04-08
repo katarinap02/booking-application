@@ -1,5 +1,7 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.DTO;
+using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,22 +25,25 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class EndedToursPage : Page
     {
-        public ObservableCollection<Tour> Tours { get; set; }
-        public Tour SelectedTour {  get; set; }
-        private readonly TourReservationRepository _repository;
+        public ObservableCollection<TourViewModel> Tours { get; set; }
+        public TourViewModel SelectedTour {  get; set; }
+        //private readonly TourReservationRepository _repository;
+        private readonly TouristService _touristService;
         public EndedToursPage(int userId)
         {
             InitializeComponent();
             DataContext = this;
-            _repository = new TourReservationRepository();
-            Tours = new ObservableCollection<Tour>(_repository.FindMyEndedTours(userId));
-
+            //_repository = new TourReservationRepository();
+            //Tours = new ObservableCollection<Tour>(_repository.FindMyEndedTours(userId));
+            _touristService = new TouristService();
+            Tours = new ObservableCollection<TourViewModel>(_touristService.FindMyEndedTours(userId));
 
         }
 
         private void RateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            GuideRateWindow guideRateWindow = new GuideRateWindow(SelectedTour);
+            guideRateWindow.ShowDialog();
         }
     }
 }

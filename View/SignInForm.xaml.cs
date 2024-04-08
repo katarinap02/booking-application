@@ -70,7 +70,7 @@ namespace BookingApp.View
                     {
                         if(_guidedTourRepository.HasTourCurrently(user.Id)) {
                             Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
-                            GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new DTO.TourDTO(tour), user);
+                            GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new DTO.TourViewModel(tour), user);
                             guideWithTourWindow.Show();
                         }
                         else

@@ -1,6 +1,7 @@
 ﻿using BookingApp.DTO;
 using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -24,10 +25,12 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class TourReservationWindow : Window
     {
-        public Tour SelectedTour { get; set; }
+        public TourViewModel SelectedTour { get; set; }
         private readonly TourParticipantRepository _tourParticipantRepository;
         private readonly TourReservationRepository _tourReservationRepository;
-        private readonly TourRepository _tourRepository;
+
+        //private readonly TourRepository _tourRepository;
+        private readonly TouristService _touristService;
         public TourReservation TourReservation { get; set; }
         public TourParticipant TourParticipant { get; set; }
         public List<TourParticipantDTO> TourParticipantDTOs { get; set; }
@@ -66,7 +69,7 @@ namespace BookingApp.View.TouristWindows
         }
         #endregion
 
-        public TourReservationWindow(Tour selectedTour, int insertedNumberOfParticipants, int userId)
+        public TourReservationWindow(TourViewModel selectedTour, int insertedNumberOfParticipants, int userId)
         {
             InitializeComponent();
             this.DataContext = this;
@@ -76,7 +79,7 @@ namespace BookingApp.View.TouristWindows
 
             _tourParticipantRepository = new TourParticipantRepository();
             _tourReservationRepository = new TourReservationRepository();
-            _tourRepository = new TourRepository();
+            _touristService = new TouristService();
 
             TourReservation = new TourReservation();
             TourParticipant = new TourParticipant();
@@ -132,7 +135,14 @@ namespace BookingApp.View.TouristWindows
 
         private void ReduceNumberOfAvailablePlaces()
         {
-            _tourRepository.UpdateAvailablePlaces(SelectedTour, TourParticipantDTOs.Count);
+            try
+            {
+                _touristService.UpdateAvailablePlaces(SelectedTour, TourParticipantDTOs.Count);
+            }
+            catch (ArgumentNullException)
+            {
+                MessageBox.Show("something wrong happened");
+            }
         }
         private void AddParticipantButton_Click(object sender, RoutedEventArgs e)
         {
@@ -174,7 +184,7 @@ namespace BookingApp.View.TouristWindows
             TourReservation.TourId = SelectedTour.Id;
             TourReservation.TouristId = UserId;
             TourReservation.ParticipantIds = _tourParticipantRepository.GetAllIdsByReservation(_tourReservationRepository.NextId());
-            TourReservation.StartCheckpoint = SelectedTour.currentCheckpoint;
+            TourReservation.StartCheckpoint = SelectedTour.CurrentCheckpoint;
 
             _tourReservationRepository.Add(TourReservation);
         }
