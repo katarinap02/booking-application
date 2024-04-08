@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using BookingApp.Observer;
 using BookingApp.Model;
 using System.Security.Cryptography;
+using BookingApp.Services;
 
 namespace BookingApp.View.GuestPages
 {
@@ -26,23 +27,23 @@ namespace BookingApp.View.GuestPages
     public partial class ProfilePage : Page { 
         
         public User User { get; set; }  
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
-        public AccommodationRepository AccommodationRepository { get; set; }
+        public AccommodationReservationService AccommodationReservationService { get; set; }
+        public AccommodationService AccommodationService { get; set; }
 
-        public AccommodationRateRepository AccommodationRateRepository { get; set; }
+        public AccommodationRateService AccommodationRateService { get; set; }
         public Frame Frame { get; set; }
 
-        public ProfilePage(User user, AccommodationReservationRepository accommodationReservationRepository, AccommodationRepository accommodationRepository, AccommodationRateRepository accommodationRateRepository, Frame frame)
+        public ProfilePage(User user, AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, AccommodationRateService accommodationRateService, Frame frame)
         {
             InitializeComponent();
            
             this.User = user;
             this.Frame = frame;
-            this.AccommodationReservationRepository = accommodationReservationRepository;
-            this.AccommodationRepository = accommodationRepository;
-            this.AccommodationRateRepository = accommodationRateRepository;
+            this.AccommodationReservationService = accommodationReservationService;
+            this.AccommodationService = accommodationService;
+            this.AccommodationRateService = accommodationRateService;
            
-            Profile.Content = new ProfileInfo(AccommodationReservationRepository, User, Profile);
+            Profile.Content = new ProfileInfo(AccommodationReservationService, User, Profile);
            
            
 
@@ -52,12 +53,12 @@ namespace BookingApp.View.GuestPages
 
         public void RateAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            Profile.Content = new RateAccommodationPage(User, AccommodationReservationRepository, AccommodationRepository, AccommodationRateRepository, Profile);
+            Profile.Content = new RateAccommodationPage(User, AccommodationReservationService, AccommodationService, AccommodationRateService, Profile);
         }
 
         public void RatesByHost_Click(object sender, RoutedEventArgs e)
         {
-            Profile.Content = new RatesByHostPage(User, AccommodationRateRepository, Profile);
+            Profile.Content = new RatesByHostPage(User, AccommodationRateService, Profile);
         }
 
       

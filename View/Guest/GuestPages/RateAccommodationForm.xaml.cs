@@ -27,7 +27,7 @@ namespace BookingApp.View.GuestPages
     {
         public AccommodationReservationDTO SelectedReservation { get; set; }
         public User User { get; set; }
-        public AccommodationRepository AccommodationRepository { get; set; }
+        public AccommodationService AccommodationService { get; set; }
 
         public HostService HostService { get; set; }
 
@@ -35,16 +35,16 @@ namespace BookingApp.View.GuestPages
 
         public AccommodationRateDTO AccommodationRate { get; set; }
 
-        public AccommodationRateRepository AccommodationRateRepository { get; set; }
-        public RateAccommodationForm(User user, AccommodationReservationDTO selectedReservation, AccommodationRepository accommodationRepository, AccommodationRateRepository accommodationRateRepository, Frame frame)
+        public AccommodationRateService AccommodationRateService { get; set; }
+        public RateAccommodationForm(User user, AccommodationReservationDTO selectedReservation, AccommodationService accommodationService, AccommodationRateService accommodationRateService, Frame frame)
         {
             InitializeComponent();
             this.User = user;
             this.SelectedReservation = selectedReservation;
-            this.AccommodationRepository = accommodationRepository;
+            this.AccommodationService = accommodationService;
             this.HostService = new HostService();
             this.Frame = frame;
-            this.AccommodationRateRepository = accommodationRateRepository;
+            this.AccommodationRateService = accommodationRateService;
             this.AccommodationRate = new AccommodationRateDTO();
             DataContext = this;
 
@@ -54,8 +54,8 @@ namespace BookingApp.View.GuestPages
         {
             AccommodationRate.ReservationId = SelectedReservation.Id;
             AccommodationRate.GuestId = User.Id;
-            AccommodationRate.HostId = AccommodationRepository.GetById(SelectedReservation.AccommodationId).HostId;
-            AccommodationRateRepository.Add(AccommodationRate.ToAccommodationRate());
+            AccommodationRate.HostId = AccommodationService.GetById(SelectedReservation.AccommodationId).HostId;
+            AccommodationRateService.Add(AccommodationRate.ToAccommodationRate());
             AccommodationRate rate = AccommodationRate.ToAccommodationRate();
             Host host = HostService.GetById(rate.HostId);
             HostService.BecomeSuperHost(host);

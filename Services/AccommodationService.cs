@@ -1,4 +1,5 @@
 ﻿using BookingApp.Model;
+using BookingApp.Observer;
 using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
@@ -42,6 +43,10 @@ namespace BookingApp.Services
             return AccommodationRepository.GetById(id);
         }
 
+        public void Subscribe(IObserver observer)
+        {
+            AccommodationRepository.AccommodationSubject.Subscribe(observer);
+        }
         
     }
 }
