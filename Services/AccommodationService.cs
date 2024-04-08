@@ -1,4 +1,5 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.DTO;
+using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
 using System;
@@ -6,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace BookingApp.Services
 {
@@ -47,6 +49,20 @@ namespace BookingApp.Services
         {
             AccommodationRepository.AccommodationSubject.Subscribe(observer);
         }
-        
+
+        public void FreeDateRange(Accommodation accommodation, AccommodationReservationDTO selectedReservation)
+        {
+            foreach(CalendarDateRange dateRange in accommodation.UnavailableDates)
+            {
+                if(dateRange.Start == selectedReservation.StartDate && dateRange.End == selectedReservation.EndDate)
+                {
+                    accommodation.UnavailableDates.Remove(dateRange);
+                    break;
+                }
+
+            }
+
+            AccommodationRepository.Update(accommodation);
+        }
     }
 }

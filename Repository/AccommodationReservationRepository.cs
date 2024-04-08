@@ -1,4 +1,5 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.DTO;
+using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Serializer;
 using System;
@@ -86,6 +87,16 @@ namespace BookingApp.Repository
             return _reservations.Max(a => a.Id) + 1;
         }
 
+
+        internal void Delete(AccommodationReservationDTO selectedReservation)
+        {
+            _reservations = _serializer.FromCSV(FilePath);
+            AccommodationReservation found = _reservations.Find(r =>r.Id == selectedReservation.Id);
+            _reservations.Remove(found);
+            _serializer.ToCSV(FilePath, _reservations);
+            ReservationSubject.NotifyObservers();
+        }
+
         public AccommodationReservation GetById(int accommodationId)
         {
             _reservations = _serializer.FromCSV(FilePath);
@@ -96,6 +107,7 @@ namespace BookingApp.Repository
 
             return null;
         }
+
 
     }
 }

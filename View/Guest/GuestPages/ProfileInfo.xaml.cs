@@ -30,14 +30,17 @@ namespace BookingApp.View.GuestPages
         public User User { get; set; }
         public AccommodationReservationService AccommodationReservationService { get; set; }
 
+        public AccommodationService AccommodationService { get; set; }
+        public AccommodationReservationDTO SelectedReservation { get; set; }
         public Frame Frame {  get; set; }   
-        public ProfileInfo(AccommodationReservationService accommodationReservationService, User user, Frame frame)
+        public ProfileInfo(AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, User user, Frame frame)
         {
             InitializeComponent();
             Reservations = new ObservableCollection<AccommodationReservationDTO>();
             this.User = user;
             this.Frame = frame;
             this.AccommodationReservationService = accommodationReservationService;
+            this.AccommodationService = accommodationService;
             DataContext = this;
             Update();
         }
@@ -53,6 +56,17 @@ namespace BookingApp.View.GuestPages
                     Reservations.Add(new AccommodationReservationDTO(reservation));
                 }
             }
+        }
+
+        public void Cancel_Click(object sender, RoutedEventArgs e) { 
+
+            Button button = sender as Button;
+            SelectedReservation = button.DataContext as AccommodationReservationDTO;
+            Frame.Content = new CancelReservationPage(AccommodationReservationService, AccommodationService, SelectedReservation, User, Frame);
+
+        
+        
+        
         }
     }
 }
