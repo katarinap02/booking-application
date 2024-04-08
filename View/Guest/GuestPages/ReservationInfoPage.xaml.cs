@@ -1,6 +1,7 @@
 ﻿using BookingApp.DTO;
 using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -25,22 +26,22 @@ namespace BookingApp.View.GuestPages
     public partial class ReservationInfoPage : Page
     {
         public AccommodationDTO SelectedAccommodation { get; set; }
-        public AccommodationRepository AccommodationRepository { get; set; }
+        public AccommodationService AccommodationService { get; set; }
 
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
+        public AccommodationReservationService AccommodationReservationService { get; set; }
         public User User { get; set; }
         public int DayNumber { get; set; }
         public Frame Frame { get; set; }
 
        
-        public ReservationInfoPage(AccommodationRepository accommodationRepository, AccommodationDTO SelectedAccommodation, AccommodationReservationRepository accommodationReservationRepository, User user, Frame frame)
+        public ReservationInfoPage(AccommodationService accommodationService, AccommodationDTO SelectedAccommodation, AccommodationReservationService accommodationReservationService, User user, Frame frame)
         {
             InitializeComponent();
             this.SelectedAccommodation = SelectedAccommodation;
-            this.AccommodationRepository = accommodationRepository;
+            this.AccommodationService = accommodationService;
             this.User = user;
             this.Frame = frame;
-            this.AccommodationReservationRepository = accommodationReservationRepository;
+            this.AccommodationReservationService = accommodationReservationService;
             bool dateIsValid;
             bool dayNumberIsValid;
             DataContext = this;
@@ -64,7 +65,7 @@ namespace BookingApp.View.GuestPages
 
            
 
-            Frame.Content = new CalendarPage(AccommodationRepository, AccommodationReservationRepository, SelectedAccommodation, DayNumber, User, start, end, Frame);
+            Frame.Content = new CalendarPage(AccommodationService, AccommodationReservationService, SelectedAccommodation, DayNumber, User, start, end, Frame);
 
 
         }

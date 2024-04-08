@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using BookingApp.Observer;
 using BookingApp.Model;
 using System.Security.Cryptography;
+using BookingApp.Services;
 
 namespace BookingApp.View.GuestPages
 {
@@ -30,31 +31,31 @@ namespace BookingApp.View.GuestPages
         public User User { get; set; }
         public AccommodationDTO SelectedAccommodation { get; set; }
 
-        public AccommodationRepository AccommodationRepository { get; set; }
+        public AccommodationService AccommodationService { get; set; }
 
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
+        public AccommodationReservationService AccommodationReservationService { get; set; }
         public Frame Frame { get; set; }    
       
 
-        public AccommodationsPage(AccommodationRepository accommodationRepository, AccommodationReservationRepository accommodationReservationRepository, User user, Frame frame)
+        public AccommodationsPage(AccommodationService accommodationService, AccommodationReservationService accommodationReservationService, User user, Frame frame)
         {
             InitializeComponent();
 
             Accommodations = new ObservableCollection<AccommodationDTO>();
-            this.AccommodationRepository = accommodationRepository;
-            accommodationRepository.AccommodationSubject.Subscribe(this);
+            this.AccommodationService = accommodationService;
+            AccommodationService.Subscribe(this);
             this.User = user;
             //AccommodationsDataGrid.ItemsSource = Accommodations;
             DataContext = this;
             this.Frame = frame;
-            this.AccommodationReservationRepository = accommodationReservationRepository;
+            this.AccommodationReservationService = accommodationReservationService;
            
             Update();
         }
         public void Update()
         {
             Accommodations.Clear();
-            foreach (Accommodation accommodation in AccommodationRepository.GetAll())
+            foreach (Accommodation accommodation in AccommodationService.GetAll())
             {
 
                 Accommodations.Add(new AccommodationDTO(accommodation));
@@ -85,7 +86,7 @@ namespace BookingApp.View.GuestPages
 
 
             ObservableCollection<AccommodationDTO> totalAccommodations = new ObservableCollection<AccommodationDTO>();
-            foreach (Accommodation accommodation in AccommodationRepository.GetAll())
+            foreach (Accommodation accommodation in AccommodationService.GetAll())
                 totalAccommodations.Add(new AccommodationDTO(accommodation));
 
             List<AccommodationDTO> searchResults = FilterAccommodations(totalAccommodations, queries);
@@ -121,7 +122,7 @@ namespace BookingApp.View.GuestPages
             
             Button button = sender as Button;
             SelectedAccommodation = button.DataContext as AccommodationDTO;
-            Frame.Content = new ReservationInfoPage(AccommodationRepository,  SelectedAccommodation, AccommodationReservationRepository, User, Frame);
+            Frame.Content = new ReservationInfoPage(AccommodationService,  SelectedAccommodation, AccommodationReservationService, User, Frame);
 
 
 

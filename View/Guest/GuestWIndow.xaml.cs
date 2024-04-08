@@ -1,5 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using BookingApp.View.GuestPages;
 using System;
 using System.Collections.Generic;
@@ -20,21 +21,26 @@ namespace BookingApp.View
    
     public partial class GuestWindow : Window
     {
-        public AccommodationRepository AccommodationRepository { get; set; }
+      /*  public AccommodationRepository AccommodationRepository { get; set; }
         public AccommodationRateRepository AccommodationRateRepository { get; set; }
         public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
-        public User User {  get; set; }
+        public User User {  get; set; }*/
 
+        public AccommodationService AccommodationService { get; set; }
+        public AccommodationRateService AccommodationRateService { get; set; }
+        public AccommodationReservationService AccommodationReservationService { get; set; }
+
+        public User User { get; set; }
         
         public GuestWindow(User user)
         {
             InitializeComponent();
-            AccommodationRepository = new AccommodationRepository();
-            AccommodationRateRepository = new AccommodationRateRepository();
-            AccommodationReservationRepository = new AccommodationReservationRepository();
-            AccommodationRateRepository = new AccommodationRateRepository();
+            AccommodationService = new AccommodationService();
+            AccommodationRateService = new AccommodationRateService();
+            AccommodationReservationService = new AccommodationReservationService();
+          
             this.User = user;
-            Main.Content = new HomePage(AccommodationRepository, AccommodationReservationRepository, User, Main);
+            Main.Content = new HomePage(AccommodationService, AccommodationReservationService, User, Main);
             Main.DataContext = this;
           
             
@@ -44,17 +50,17 @@ namespace BookingApp.View
 
         private void HomeClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new HomePage(AccommodationRepository, AccommodationReservationRepository, User, Main);
+            Main.Content = new HomePage(AccommodationService, AccommodationReservationService, User, Main);
         }
 
         private void ProfileClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ProfilePage(User, AccommodationReservationRepository, AccommodationRepository, AccommodationRateRepository, Main);
+            Main.Content = new ProfilePage(User, AccommodationReservationService, AccommodationService, AccommodationRateService, Main);
         }
 
         private void AccommodationsClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new AccommodationsPage(AccommodationRepository, AccommodationReservationRepository, User, Main);
+            Main.Content = new AccommodationsPage(AccommodationService, AccommodationReservationService, User, Main);
         }
 
         private void ForumsClick(object sender, RoutedEventArgs e)

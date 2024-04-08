@@ -2,6 +2,7 @@
 using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,23 +31,23 @@ namespace BookingApp.View.GuestPages
         public User User { get; set; }
 
         public AccommodationReservationDTO SelectedReservation {  get; set; }
-        public AccommodationRepository AccommodationRepository { get; set; }
+        public AccommodationService AccommodationService { get; set; }
 
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
-        public AccommodationRateRepository AccommodationRateRepository { get; set; }
+        public AccommodationReservationService AccommodationReservationService { get; set; }
+        public AccommodationRateService AccommodationRateService { get; set; }
         
         public Frame Frame {  get; set; }   
 
-        public RateAccommodationPage(User user, AccommodationReservationRepository accommodationReservationRepository, AccommodationRepository accommodationRepository, AccommodationRateRepository accommodationRateRepository, Frame frame)
+        public RateAccommodationPage(User user, AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, AccommodationRateService accommodationRateService, Frame frame)
         {
             InitializeComponent();
             this.User = user;
-            this.AccommodationReservationRepository = accommodationReservationRepository;
+            this.AccommodationReservationService = accommodationReservationService;
             this.Frame = frame;
             Reservations = new ObservableCollection<AccommodationReservationDTO>();
             DataContext = this;
-            this.AccommodationRepository = accommodationRepository;
-            this.AccommodationRateRepository = accommodationRateRepository;
+            this.AccommodationService = accommodationService;
+            this.AccommodationRateService = accommodationRateService;
             Update();
 
         }
@@ -54,7 +55,7 @@ namespace BookingApp.View.GuestPages
         public void Update()
         {
             Reservations.Clear();
-            foreach (AccommodationReservation reservation in AccommodationReservationRepository.GetAll())
+            foreach (AccommodationReservation reservation in AccommodationReservationService.GetAll())
             {
                 if (reservation.GuestId == User.Id && IsBeforeFiveDays(reservation))
                 {
@@ -74,7 +75,7 @@ namespace BookingApp.View.GuestPages
 
         private void Rate_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new RateAccommodationForm(User, SelectedReservation, AccommodationRepository, AccommodationRateRepository, Frame);
+            Frame.Content = new RateAccommodationForm(User, SelectedReservation, AccommodationService, AccommodationRateService, Frame);
         }
     }
 }
