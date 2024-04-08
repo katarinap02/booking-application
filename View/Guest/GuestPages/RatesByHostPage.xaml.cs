@@ -2,6 +2,7 @@
 using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,16 +31,16 @@ namespace BookingApp.View.GuestPages
         public ObservableCollection<GuestRateDTO> GuestRates {  get; set; }
         public User User { get; set; }
         public GuestRateRepository GuestRateRepository { get; set; }
-        public AccommodationRateRepository AccommodationRateRepository { get; set; }
+        public AccommodationRateService AccommodationRateService { get; set; }
         public Frame Frame { get; set; }
 
         
 
-        public RatesByHostPage(User user, AccommodationRateRepository accommodationRateRepository, Frame frame)
+        public RatesByHostPage(User user, AccommodationRateService accommodationRateService, Frame frame)
         {
             InitializeComponent();
             this.User = user;
-            this.AccommodationRateRepository = accommodationRateRepository;
+            this.AccommodationRateService = accommodationRateService;
             this.Frame = frame;
             this.GuestRateRepository = new GuestRateRepository();
             this.GuestRates = new ObservableCollection<GuestRateDTO>();
@@ -47,19 +48,19 @@ namespace BookingApp.View.GuestPages
             Update();
 
         }
-
+        
         public void Update()
         {
            GuestRates.Clear();
-           foreach(GuestRate guestRate in GuestRateRepository.GetAll()) { 
-                if(IsAccommodationRated(guestRate.ReservationId, AccommodationRateRepository))
+         /*  foreach(GuestRate guestRate in GuestRateRepository.GetAll()) { 
+                if(IsAccommodationRated(guestRate.ReservationId, AccommodationRateService))
                 {
                     GuestRates.Add(new GuestRateDTO(guestRate));
                 }
             
-           }
+           }*/
         }
-
+        /*
         private bool IsAccommodationRated(int reservationId, AccommodationRateRepository accommodationRateRepository)
         {
             foreach(AccommodationRate accommodationRate in accommodationRateRepository.GetAll())
@@ -70,6 +71,6 @@ namespace BookingApp.View.GuestPages
                 }
             }
             return false;
-        }
+        }*/
     }
 }

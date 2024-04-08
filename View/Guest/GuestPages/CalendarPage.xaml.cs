@@ -1,6 +1,7 @@
 ﻿using BookingApp.DTO;
 using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -26,7 +27,7 @@ namespace BookingApp.View.GuestPages
     public partial class CalendarPage : Page
     {
         public AccommodationDTO SelectedAccommodation { get; set; }
-        public AccommodationRepository AccommodationRepository { get; set; }
+        public AccommodationService AccommodationService { get; set; }
         public User User { get; set; }
 
         public DateTime StartDate { get; set; }
@@ -35,17 +36,17 @@ namespace BookingApp.View.GuestPages
         public CalendarDateRange SelectedDateRange { get; set; }
 
         public AccommodationReservation Reservation { get; set; }
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
+        public AccommodationReservationService AccommodationReservationService { get; set; }
 
         public Frame Frame { get; set; }
         public int DayNumber { get; set; }
 
         public int GuestNumber { get; set; }
-        public CalendarPage(AccommodationRepository accommodationRepository, AccommodationReservationRepository accommodationReservationRepository, AccommodationDTO selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end, Frame frame)
+        public CalendarPage(AccommodationService accommodationService, AccommodationReservationService accommodationReservationService, AccommodationDTO selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end, Frame frame)
         {
             InitializeComponent();
             this.SelectedAccommodation = selectedAccommodation;
-            this.AccommodationRepository = accommodationRepository;
+            this.AccommodationService = accommodationService;
             this.User = user;
             this.StartDate = start;
             this.EndDate = end;
@@ -56,8 +57,8 @@ namespace BookingApp.View.GuestPages
             reserveButton.IsEnabled = false;
             PeopleNumberSection.IsEnabled = false;
             Reservation = new AccommodationReservation();
-           // finishReservation.IsEnabled = false;
-            AccommodationReservationRepository = accommodationReservationRepository;
+            // finishReservation.IsEnabled = false;
+            AccommodationReservationService = accommodationReservationService;
 
             // continueLabel.Visibility = Visibility.Hidden;
              ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
@@ -277,11 +278,11 @@ namespace BookingApp.View.GuestPages
                 Reservation.Country = SelectedAccommodation.Country;
 
                 SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
-                AccommodationRepository.Update(SelectedAccommodation.ToAccommodation());
+                AccommodationService.Update(SelectedAccommodation.ToAccommodation());
 
-                AccommodationReservationRepository.Add(Reservation);
+                AccommodationReservationService.Add(Reservation);
 
-                Frame.Content = new ReservationSuccessfulPage(AccommodationRepository, AccommodationReservationRepository, SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
+                Frame.Content = new ReservationSuccessfulPage(AccommodationService, AccommodationReservationService, SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
 
 
 

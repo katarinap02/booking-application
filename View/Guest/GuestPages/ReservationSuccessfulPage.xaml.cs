@@ -1,6 +1,7 @@
 ﻿using BookingApp.DTO;
 using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,28 +24,28 @@ namespace BookingApp.View.GuestPages
     /// </summary>
     public partial class ReservationSuccessfulPage : Page
     {
-        public AccommodationRepository AccommodationRepository { get; set; }
-        public AccommodationRateRepository AccommodationRateRepository { get; set; }
+        public AccommodationService AccommodationService { get; set; }
+        public AccommodationRateService AccommodationRateService { get; set; }
         public AccommodationDTO SelectedAccommodation { get; set; }
 
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
+        public AccommodationReservationService AccommodationReservationService { get; set; }
         public CalendarDateRange SelectedDateRange { get; set; }
         public User User { get; set; }
 
         public Frame Frame { get; set; }
 
         public int GuestNumber { get; set; }
-        public ReservationSuccessfulPage(AccommodationRepository accommodationRepository, AccommodationReservationRepository accommodationReservationRepository, AccommodationDTO selectedAccommodation, CalendarDateRange selectedDateRange, int guestNumber, User user, Frame frame)
+        public ReservationSuccessfulPage(AccommodationService accommodationService, AccommodationReservationService accommodationReservationService, AccommodationDTO selectedAccommodation, CalendarDateRange selectedDateRange, int guestNumber, User user, Frame frame)
         {
             InitializeComponent();
 
-            this.AccommodationRepository = accommodationRepository;
+            this.AccommodationService = accommodationService;
             this.SelectedAccommodation = selectedAccommodation;
             this.SelectedDateRange = selectedDateRange;
             this.GuestNumber = guestNumber;
             this.User = user;
             this.Frame = frame;
-            this.AccommodationReservationRepository = accommodationReservationRepository;
+            this.AccommodationReservationService = accommodationReservationService;
 
             PrintAccommodationLocation(SelectedAccommodation);
             PrintDateRange(SelectedDateRange);
@@ -76,12 +77,12 @@ namespace BookingApp.View.GuestPages
 
         private void HomePage_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new HomePage(AccommodationRepository, AccommodationReservationRepository, User, Frame);
+            Frame.Content = new HomePage(AccommodationService, AccommodationReservationService, User, Frame);
         }
 
         private void ProfilePage_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new ProfilePage(User, AccommodationReservationRepository, AccommodationRepository, AccommodationRateRepository, Frame);
+            Frame.Content = new ProfilePage(User, AccommodationReservationService, AccommodationService, AccommodationRateService, Frame);
         }
     }
 }

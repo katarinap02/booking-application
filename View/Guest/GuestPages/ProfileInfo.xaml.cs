@@ -2,6 +2,7 @@
 using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,16 +28,16 @@ namespace BookingApp.View.GuestPages
     {
         public ObservableCollection<AccommodationReservationDTO> Reservations { get; set; }
         public User User { get; set; }
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
+        public AccommodationReservationService AccommodationReservationService { get; set; }
 
         public Frame Frame {  get; set; }   
-        public ProfileInfo(AccommodationReservationRepository accommodationReservationRepository, User user, Frame frame)
+        public ProfileInfo(AccommodationReservationService accommodationReservationService, User user, Frame frame)
         {
             InitializeComponent();
             Reservations = new ObservableCollection<AccommodationReservationDTO>();
             this.User = user;
             this.Frame = frame;
-            this.AccommodationReservationRepository = accommodationReservationRepository;
+            this.AccommodationReservationService = accommodationReservationService;
             DataContext = this;
             Update();
         }
@@ -45,7 +46,7 @@ namespace BookingApp.View.GuestPages
         {
             Reservations.Clear();
 
-            foreach (AccommodationReservation reservation in AccommodationReservationRepository.GetAll())
+            foreach (AccommodationReservation reservation in AccommodationReservationService.GetAll())
             {
                 if (reservation.GuestId == User.Id)
                 {
