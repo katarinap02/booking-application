@@ -2,6 +2,7 @@
 using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -27,21 +28,21 @@ namespace BookingApp.View.HostPages.RatePages
     {
         public ObservableCollection<AccommodationRateDTO> Accommodations { get; set; }
 
-        public AccommodationReservationRepository accommodationRepository { get; set; }
+        public AccommodationReservationService accommodationService { get; set; }
 
-        public UserRepository userRepository { get; set; }
+        public UserService userService { get; set; }
 
-        public AccommodationRateRepository accommodationRateRepository { get; set; }
+        public AccommodationRateService accommodationRateService { get; set; }
 
-        public GuestRateRepository guestRateRepository { get; set; }
+        public GuestRateService guestRateService { get; set; }
         public RateDisplayPage()
         {
             InitializeComponent();
             Accommodations = new ObservableCollection<AccommodationRateDTO>();
-            accommodationRepository = new AccommodationReservationRepository();
-            userRepository = new UserRepository();
-            accommodationRateRepository = new AccommodationRateRepository();
-            guestRateRepository = new GuestRateRepository();
+            accommodationService = new AccommodationReservationService();
+            userService = new UserService();
+            accommodationRateService = new AccommodationRateService();
+            guestRateService = new GuestRateService();
             DataContext = this;
 
             Update();
@@ -50,13 +51,13 @@ namespace BookingApp.View.HostPages.RatePages
         public void Update()
         {
             Accommodations.Clear();
-            foreach (AccommodationRate accommodationRate in accommodationRateRepository.GetAll())
+            foreach (AccommodationRate accommodationRate in accommodationRateService.GetAll())
             {
-                AccommodationReservation accommodationReservation = accommodationRepository.GetById(accommodationRate.ReservationId);
-                User user = userRepository.GetById(accommodationRate.GuestId);
+                AccommodationReservation accommodationReservation = accommodationService.GetById(accommodationRate.ReservationId);
+                User user = userService.GetById(accommodationRate.GuestId);
 
 
-                foreach (GuestRate guestRate in guestRateRepository.GetAll())
+                foreach (GuestRate guestRate in guestRateService.GetAll())
                 {
                     if (guestRate.ReservationId == accommodationRate.ReservationId)
                     {

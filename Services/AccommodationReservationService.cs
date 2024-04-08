@@ -39,5 +39,10 @@ namespace BookingApp.Services
             return AccommodationReservationRepository.Add(reservation);
         }
 
+        public AccommodationReservation GetById(int id)
+        {
+            return AccommodationReservationRepository.GetById(id);
+        }
+
     }
 }
