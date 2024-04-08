@@ -1,4 +1,5 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.DTO;
+using BookingApp.Model;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,8 +21,8 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class GuideRateWindow : Window
     {
-        public Tour SelectedTour { get; set; }
-        public GuideRateWindow(Tour selectedTour)
+        public TourViewModel SelectedTour { get; set; }
+        public GuideRateWindow(TourViewModel selectedTour)
         {
             InitializeComponent();
             DataContext = this;
