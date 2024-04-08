@@ -43,7 +43,7 @@ namespace BookingApp.View.GuestPages
             this.AccommodationService = accommodationService;
             this.AccommodationRateService = accommodationRateService;
            
-            Profile.Content = new ProfileInfo(AccommodationReservationService, User, Profile);
+            Profile.Content = new ProfileInfo(AccommodationReservationService, AccommodationService, User, Profile);
            
            
 

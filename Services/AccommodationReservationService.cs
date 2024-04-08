@@ -1,4 +1,5 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.DTO;
+using BookingApp.Model;
 using BookingApp.Repository;
 using BookingApp.Serializer;
 using System;
@@ -39,5 +40,9 @@ namespace BookingApp.Services
             return AccommodationReservationRepository.Add(reservation);
         }
 
+        public void Delete(AccommodationReservationDTO selectedReservation)
+        {
+            AccommodationReservationRepository.Delete(selectedReservation);
+        }
     }
 }
