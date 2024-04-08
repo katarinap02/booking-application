@@ -32,6 +32,8 @@ namespace BookingApp.View.HostPages.RatePages
         public UserRepository userRepository { get; set; }
 
         public AccommodationRateRepository accommodationRateRepository { get; set; }
+
+        public GuestRateRepository guestRateRepository { get; set; }
         public RateDisplayPage()
         {
             InitializeComponent();
@@ -39,6 +41,7 @@ namespace BookingApp.View.HostPages.RatePages
             accommodationRepository = new AccommodationReservationRepository();
             userRepository = new UserRepository();
             accommodationRateRepository = new AccommodationRateRepository();
+            guestRateRepository = new GuestRateRepository();
             DataContext = this;
 
             Update();
@@ -51,7 +54,18 @@ namespace BookingApp.View.HostPages.RatePages
             {
                 AccommodationReservation accommodationReservation = accommodationRepository.GetById(accommodationRate.ReservationId);
                 User user = userRepository.GetById(accommodationRate.GuestId);
-                Accommodations.Add(new AccommodationRateDTO(accommodationRate, accommodationReservation, user));
+
+
+                foreach (GuestRate guestRate in guestRateRepository.GetAll())
+                {
+                    if (guestRate.ReservationId == accommodationRate.ReservationId)
+                    {
+                        Accommodations.Add(new AccommodationRateDTO(accommodationRate, accommodationReservation, user));
+                        break;
+                    }
+                }
+
+               
 
             }
         }

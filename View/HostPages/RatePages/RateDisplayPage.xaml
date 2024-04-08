@@ -127,7 +127,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal"  Grid.Row="4" Grid.Column="1" Margin="15 0 0 0">
                                 <Label Content="comment:" FontSize="13" VerticalAlignment="Center" />
-                                <TextBlock
+                                <TextBlock FontWeight="Bold"
                                     Margin="5,0,0,0" Grid.RowSpan="2"
                                     Text="{Binding AdditionalComment}" 
                                     VerticalAlignment="Center"/>
