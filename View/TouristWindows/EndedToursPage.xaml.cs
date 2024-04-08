@@ -38,7 +38,8 @@ namespace BookingApp.View.TouristWindows
 
         private void RateButton_Click(object sender, RoutedEventArgs e)
         {
-
+            GuideRateWindow guideRateWindow = new GuideRateWindow(SelectedTour);
+            guideRateWindow.ShowDialog();
         }
     }
 }
