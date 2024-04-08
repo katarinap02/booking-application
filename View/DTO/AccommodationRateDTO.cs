@@ -176,7 +176,7 @@ namespace BookingApp.DTO
 
             if (replacedPath.StartsWith("Resources/Images/"))
             {
-                replacedPath = "../../" + replacedPath;
+                replacedPath = "../../../" + replacedPath;
             }
 
             return replacedPath;
@@ -201,7 +201,7 @@ namespace BookingApp.DTO
             }
             else
             {
-                OnePicture = "../../Resources/Images/no_image.jpg";
+                OnePicture = "../../../Resources/Images/no_image.jpg";
             }
 
         }
