@@ -58,40 +58,7 @@ namespace BookingApp.Repository
             return host; //vraca proslo
         }
 
-        public void BecomeSuperHost(Host host)
-        {
-            int counter = 0;
-            double gradeSum = 0;
-            foreach(AccommodationRate rate in _rates)
-            {
-                if(rate.HostId == host.Id)
-                {
-                    counter++;
-                    gradeSum = gradeSum + (Convert.ToDouble(rate.Correctness + rate.Cleanliness) / 2);
-                }
-            }
-
-            if(counter < 10)
-            {
-                host.IsSuperHost = false;
-                Update(host);
-                return;
-            }
-
-            double average = gradeSum / Convert.ToDouble(counter);
-            if(average >= 4.5)
-            {
-                host.IsSuperHost = true; ;
-                
-            }
-            else
-            {
-                host.IsSuperHost = false;
-            }
-
-            Update(host);
-            return;
-        }
+        
 
         public Host GetById(int hostId)
         {

@@ -70,6 +70,36 @@ namespace BookingApp.DTO
             }
         }
 
+        private double rateAverage;
+        public double RateAverage
+        {
+            get { return rateAverage; }
+            set
+            {
+                if (rateAverage != value)
+                {
+
+                    rateAverage = value;
+                    OnPropertyChanged("RateAverage");
+                }
+            }
+        }
+
+        private int rateCount;
+        public int RateCount
+        {
+            get { return rateCount; }
+            set
+            {
+                if (rateCount != value)
+                {
+
+                    rateCount = value;
+                    OnPropertyChanged("RateCount");
+                }
+            }
+        }
+
         public HostDTO() { }
 
         public HostDTO(Host host)
@@ -77,11 +107,13 @@ namespace BookingApp.DTO
             userName = host.Username;
             password = host.Password;
             isSuperHost = host.IsSuperHost;
+            rateAverage = host.RateAverage;
+            rateCount = host.RateCount;
         }
 
         public Host ToHost()
         {
-            Host host = new Host(userName, password, IsSuperHost);
+            Host host = new Host(userName, password, IsSuperHost, rateAverage, rateCount);
             return host;
         }
 
