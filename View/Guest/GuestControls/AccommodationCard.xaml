@@ -13,9 +13,28 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="157,4,375,-5" Grid.Row="1"/>
-                <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="450,5,20,-5" Grid.Row="1"/>
+                
+                    <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="157,4,375,-5" Grid.Row="1"/>
+                    <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="450,5,69,-5" Grid.Row="1"/>
+                    <Image VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10 0 0 20" Width="20">
+                        <Image.Style>
+                            <Style TargetType="Image">
+                                <Setter Property="Source" Value="{x:Null}"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsSuperHost}" Value="True">
+                                        <Setter Property="Source" Value="../../../Resources/Images/star.png"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding IsSUperHost}" Value="False">
+                                        <Setter Property="Source" Value="{x:Null}"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Image.Style>
+
+                    </Image>
                
+                
+
                 <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{Binding Rate}" Margin="216,36,536,-36" Grid.Row="1"/>
                 <TextBlock x:Name="AccommodationDays" FontSize="20" Text="{Binding MinReservationDays}" Margin="376,35,376,-35" Grid.Row="1"/>
                 <TextBlock x:Name="AccommodationGuests" FontSize="20" Text="{Binding MaxGuestNumber}" Margin="537,36,215,-36" Grid.Row="1"/>

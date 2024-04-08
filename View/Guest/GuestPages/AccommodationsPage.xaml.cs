@@ -35,6 +35,8 @@ namespace BookingApp.View.GuestPages
 
         public AccommodationReservationService AccommodationReservationService { get; set; }
         public Frame Frame { get; set; }    
+
+        public HostService HostService { get; set; }
       
 
         public AccommodationsPage(AccommodationService accommodationService, AccommodationReservationService accommodationReservationService, User user, Frame frame)
@@ -49,6 +51,8 @@ namespace BookingApp.View.GuestPages
             DataContext = this;
             this.Frame = frame;
             this.AccommodationReservationService = accommodationReservationService;
+            this.HostService = new HostService();
+            
            
             Update();
         }
@@ -57,8 +61,13 @@ namespace BookingApp.View.GuestPages
             Accommodations.Clear();
             foreach (Accommodation accommodation in AccommodationService.GetAll())
             {
-
-                Accommodations.Add(new AccommodationDTO(accommodation));
+                
+                AccommodationDTO accommodationDTO = new AccommodationDTO(accommodation);
+                Host host = HostService.GetById(accommodation.HostId);
+                HostService.BecomeSuperHost(host);
+                accommodationDTO.IsSuperHost = host.IsSuperHost;
+                Accommodations.Add(accommodationDTO);
+                
                 //MessageBox.Show(Accommodations[0].Type.ToString());
             }
         }

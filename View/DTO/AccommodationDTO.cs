@@ -223,6 +223,22 @@ namespace BookingApp.DTO
             }
         }
 
+        private bool isSuperHost;
+        public bool IsSuperHost
+        {
+            get { return isSuperHost; }
+            set
+            {
+                if (isSuperHost != value)
+                {
+                    isSuperHost = value;
+                    OnPropertyChanged("IsSuperHost");
+                }
+            }
+        }
+
+
+
         public string Location => City + ", " + Country;
         public string Error => null;
 
