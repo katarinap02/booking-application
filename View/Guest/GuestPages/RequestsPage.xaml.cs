@@ -39,33 +39,40 @@ namespace BookingApp.View.GuestPages
             DelayRequestService = new DelayRequestService();
             Requests = new ObservableCollection<DelayRequestViewModel>();
             DataContext = this;
-            requestStatusBox.Text = "Pending";
-            Update();
+            foreach (ComboBoxItem item in requestStatusBox.Items)
+            {
+                if (item.Content.ToString() == "Pending")
+                {
+                    requestStatusBox.SelectedItem = item;
+                    break;
+                }
+            }
+
+            //Update();
         }
 
         public void Update()
         {
-            
-            String statusValue = requestStatusBox.Text;
-            switch(statusValue)
+            Requests.Clear();
+
+            switch (requestStatusBox.SelectedItem)
             {
-                case "Pending":
+                case ComboBoxItem pendingItem when pendingItem.Content.ToString() == "Pending":
                     ShowPendingRequests(Requests);
                     break;
-                case "Approved":
-                    ShowApprovedRequests(Requests); 
+                case ComboBoxItem approvedItem when approvedItem.Content.ToString() == "Approved":
+                    ShowApprovedRequests(Requests);
                     break;
-                case "Rejected":
+                case ComboBoxItem rejectedItem when rejectedItem.Content.ToString() == "Rejected":
                     ShowRejectedRequests(Requests);
                     break;
-
             }
 
         }
 
         private void ShowRejectedRequests(ObservableCollection<DelayRequestViewModel> requests)
         {
-            Requests.Clear();
+         
             foreach (DelayRequest request in DelayRequestService.GetAll())
                 if (request.Status == RequestStatus.REJECTED)
                     Requests.Add(new DelayRequestViewModel(request));
@@ -73,7 +80,7 @@ namespace BookingApp.View.GuestPages
 
         private void ShowApprovedRequests(ObservableCollection<DelayRequestViewModel> requests)
         {
-            Requests.Clear();
+           
             foreach (DelayRequest request in DelayRequestService.GetAll())
                 if (request.Status == RequestStatus.APPROVED)
                     Requests.Add(new DelayRequestViewModel(request));
@@ -81,10 +88,15 @@ namespace BookingApp.View.GuestPages
 
         private void ShowPendingRequests(ObservableCollection<DelayRequestViewModel> requests)
         {
-            Requests.Clear();
+           
             foreach (DelayRequest request in DelayRequestService.GetAll())
                 if(request.Status == RequestStatus.PENDING) 
                 Requests.Add(new DelayRequestViewModel(request));
+        }
+
+        private void RequestStatusBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
         }
     }
 }

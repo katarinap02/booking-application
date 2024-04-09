@@ -26,10 +26,10 @@ ItemsSource="{Binding Requests}" Background="{StaticResource BackgroundColorN}" 
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <ComboBox x:Name="requestStatusBox" HorizontalAlignment="Left" Margin="30,234,0,0" VerticalAlignment="Top" Width="148" Height="28">
-                    <ComboBoxItem Content="Pending"></ComboBoxItem>
-                    <ComboBoxItem Content="Approved"></ComboBoxItem>
-                    <ComboBoxItem Content="Rejected"></ComboBoxItem>
+                <ComboBox x:Name="requestStatusBox" HorizontalAlignment="Left" Margin="30,234,0,0" VerticalAlignment="Top" Width="148" Height="28"  SelectionChanged="RequestStatusBox_SelectionChanged">
+                    <ComboBoxItem Content="Pending" Tag="0"></ComboBoxItem>
+                    <ComboBoxItem Content="Approved" Tag="1"></ComboBoxItem>
+                    <ComboBoxItem Content="Rejected" Tag="2"></ComboBoxItem>
                 </ComboBox>
 
             </Grid>
