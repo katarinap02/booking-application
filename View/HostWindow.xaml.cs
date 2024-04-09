@@ -62,8 +62,8 @@ namespace BookingApp.View
                 Accommodations.Add(new AccommodationReservationDTO(accommodation));
                 
             }
-           // FirstPage firstPage = new FirstPage(User);
-            //HostFrame.Navigate(firstPage);
+            FirstPage firstPage = new FirstPage(User);
+            HostFrame.Navigate(firstPage);
         }
 
         private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
@@ -71,6 +71,20 @@ namespace BookingApp.View
             RegisterAccommodationWindow registerWindow = new RegisterAccommodationWindow(accommodationRepository, User);
 
             registerWindow.ShowDialog();
+        }
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
+        {
+            FirstPage firstPage = new FirstPage(User);
+            HostFrame.Navigate(firstPage);
+            LeftDock.Visibility = Visibility.Collapsed;
+        }
+
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        {
+            RegisterAccommodationPage page = new RegisterAccommodationPage();
+            HostFrame.Navigate(page);
+            LeftDock.Visibility = Visibility.Collapsed;
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -93,15 +107,20 @@ namespace BookingApp.View
             Update();
         }
 
-        private void NavigateToPage(string pageName)
+        
+
+        private void More_Click(object sender, RoutedEventArgs e)
         {
-            
-          //  String pageUri = "View/HostPages/" + pageName + ".xaml"; // ovo je nacin sa putanjama, a moze da se instancira i nova stranica prilikom navigacije, pa da ne moraju da se koriste putanje, ali ima neke razlike u ponasanju stranica prilikom navigacije (procitati na linku)
-            //HostFrame.Navigate(new Uri(pageUri, UriKind.RelativeOrAbsolute)); // ovo je skraceni zapis za MainFrame.NavigationService.Navigate(...);
+            if (LeftDock.Visibility == Visibility.Visible)
+            {
+                LeftDock.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                LeftDock.Visibility = Visibility.Visible;
+            }
         }
 
-
-
-
+        
     }
 }

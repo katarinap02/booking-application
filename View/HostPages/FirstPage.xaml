@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.HostPages"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="1024"
+      d:DesignHeight="705" d:DesignWidth="1024"
       Title="FirstPage">
 
     <Grid>
@@ -20,14 +20,14 @@
 
         <Label
         x:Name="TitleLabel"
-        Grid.Row="0"
+        Grid.ColumnSpan="2"
         VerticalAlignment="Center"
         HorizontalAlignment="Center"
         Content="Welcome"
         FontSize="32"
          />
 
-        <StackPanel Grid.Column="1" VerticalAlignment="Center" Orientation="Horizontal">
+        <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal" Margin="137,0,0,0" Width="167">
             <Label
                 x:Name="SuperHostLabel"
                 Margin="5,0,0,20"
@@ -52,12 +52,12 @@
             </Image>
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5 20 0 0" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,20,0,0" HorizontalAlignment="Right"  Grid.Row="0" Width="146">
             <TextBlock Text="count of rates:" FontSize="13" VerticalAlignment="Center" Margin="5,0,0,0" />
             <TextBlock x:Name="CountBox" Padding="0 2 0 0" Text="{Binding hostDTO.RateCount}"  Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
         </StackPanel>
 
-        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="5 50 0 0" Grid.Row="0">
+        <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,50,0,0" HorizontalAlignment="Right" Grid.Row="0" Width="146">
             <TextBlock Text="average of rates:" FontSize="13" VerticalAlignment="Center" Margin="5,0,0,0" />
             <TextBlock x:Name="AverageBox" Padding="0 2 0 0" Text="{Binding hostDTO.RateAverage}" Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
         </StackPanel>
@@ -179,19 +179,19 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
-                                 <Image
+                            <Image
                                 Grid.Row="0"
                                 Grid.RowSpan="7"
                                 Grid.Column="0"
                                 Height="150"
                                 Margin="10"
                                 VerticalAlignment="Center">
-                                        <Image.Style>
-                                            <Style TargetType="Image">
+                                <Image.Style>
+                                    <Style TargetType="Image">
                                         <Setter Property="Source" Value="{Binding OnePicture}" />
                                     </Style>
-                                        </Image.Style>
-                                    </Image> 
+                                </Image.Style>
+                            </Image>
 
 
                             <TextBlock
