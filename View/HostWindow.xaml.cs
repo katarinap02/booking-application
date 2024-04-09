@@ -4,6 +4,7 @@ using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.View.GuestWindows;
 using BookingApp.View.HostPages;
+using BookingApp.View.HostPages.RatePages;
 using BookingApp.View.HostWindows;
 using System;
 using System.Collections.Generic;
@@ -78,6 +79,7 @@ namespace BookingApp.View
             FirstPage firstPage = new FirstPage(User);
             HostFrame.Navigate(firstPage);
             LeftDock.Visibility = Visibility.Collapsed;
+            RatingPanel.Visibility = Visibility.Collapsed;
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -85,6 +87,14 @@ namespace BookingApp.View
             RegisterAccommodationPage page = new RegisterAccommodationPage();
             HostFrame.Navigate(page);
             LeftDock.Visibility = Visibility.Collapsed;
+            RatingPanel.Visibility = Visibility.Collapsed;
+        }
+        private void GuestRatings_Click(object sender, RoutedEventArgs e)
+        {
+            RateDisplayPage page = new RateDisplayPage();
+            HostFrame.Navigate(page);
+            LeftDock.Visibility = Visibility.Collapsed;
+            RatingPanel.Visibility = Visibility.Collapsed;
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
@@ -118,6 +128,18 @@ namespace BookingApp.View
             else
             {
                 LeftDock.Visibility = Visibility.Visible;
+            }
+        }
+
+        private void Rating_Click(object sender, RoutedEventArgs e)
+        {
+            if (RatingPanel.Visibility == Visibility.Visible)
+            {
+                RatingPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                RatingPanel.Visibility = Visibility.Visible;
             }
         }
 

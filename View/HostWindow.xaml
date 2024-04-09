@@ -108,14 +108,14 @@
 
             <MenuItem x:Name="HomeItem" Height="47" Margin="0 0 0 0" >
                 <MenuItem.Header>
-                    <Button BorderThickness="0" >
+                    <Button BorderThickness="0" Click="HomeButton_Click" >
                         <Image Source="../Resources/Images/home.png" Width="25" Height="25"/>
                     </Button>
                 </MenuItem.Header>
             </MenuItem>
 
         </Menu>
-        <Menu x:Name="LeftDock" DockPanel.Dock="Left" HorizontalAlignment="Left" Visibility="Visible">
+        <Menu x:Name="LeftDock" DockPanel.Dock="Left" HorizontalAlignment="Left" Visibility="Collapsed">
             <StackPanel>
                 <MenuItem Margin="10 15 10 0">
                     <MenuItem.Header>
@@ -138,11 +138,29 @@
                         </Button>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Margin="10 35 10 0" Header="Rating" FontSize="15" HorizontalAlignment="Center">
-                    <MenuItem>
-                        
-                    </MenuItem>
+                <MenuItem Margin="10 35 10 0">
+                    <MenuItem.Header>
+                        <Button BorderThickness="0" Content="Rating" Click="Rating_Click" FontSize="15" Width="180" Height="25">
+
+                        </Button>
+                    </MenuItem.Header>
                 </MenuItem>
+                <StackPanel x:Name="RatingPanel" Visibility="Collapsed" Margin="45 0 0 0">
+                    <MenuItem Margin="25 7 10 0">
+                        <MenuItem.Header>
+                            <Button BorderThickness="0" Click="GuestRatings_Click" Content="guest ratings" FontSize="13" Width="100" Height="25">
+
+                            </Button>
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <MenuItem Margin="25 7 10 0">
+                        <MenuItem.Header>
+                            <Button BorderThickness="0" Content="rate guest" FontSize="13" Width="100" Height="25">
+
+                            </Button>
+                        </MenuItem.Header>
+                    </MenuItem>
+                </StackPanel>
                 <MenuItem Margin="10 35 10 0">
                     <MenuItem.Header>
                         <Button BorderThickness="0" Content="Renovation" FontSize="15" Width="180" Height="25">
