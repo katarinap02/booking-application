@@ -157,7 +157,14 @@ namespace BookingApp.View.TouristWindows
 
         private void DetailsButton_Click(object sender, RoutedEventArgs e)
         {
+            TourDetailsWindow tourDetailsWindow = new TourDetailsWindow(SelectedTour, false);
+            tourDetailsWindow.ShowDialog();
+        }
 
+        private void NotificationButton_Click(object sender, RoutedEventArgs e)
+        {
+            TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow();
+            touristNotificationWindow.ShowDialog();
         }
     }
 }
