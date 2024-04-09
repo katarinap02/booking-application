@@ -44,7 +44,7 @@ namespace BookingApp.View.GuideWindows
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            NewTourWindow newTourWindow = new NewTourWindow();
+            NewTourWindow newTourWindow = new NewTourWindow(Guide);
             newTourWindow.ShowDialog();
             GetGridData();
         }

@@ -128,7 +128,7 @@ namespace BookingApp.View.TouristWindows
             }
             else
             {
-                List<TourViewModel> allTours = _touristService.GetAll();
+                List<TourViewModel> allTours = _touristService.GetAllTours();
                 foreach (TourViewModel tour in allTours)
                     Tours.Add(tour);
             }
@@ -157,7 +157,14 @@ namespace BookingApp.View.TouristWindows
 
         private void DetailsButton_Click(object sender, RoutedEventArgs e)
         {
+            TourDetailsWindow tourDetailsWindow = new TourDetailsWindow(SelectedTour, false);
+            tourDetailsWindow.ShowDialog();
+        }
 
+        private void NotificationButton_Click(object sender, RoutedEventArgs e)
+        {
+            TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow();
+            touristNotificationWindow.ShowDialog();
         }
     }
 }

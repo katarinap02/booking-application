@@ -8,22 +8,27 @@ using System.Threading.Tasks;
 namespace BookingApp.Model
 {
     public enum NotificationType { RateTour, TourCanceled, GuideQuit, JoinedTour }
-    class TouristNotification : ISerializable
+    public class TouristNotification : ISerializable
     {
         public int Id;
         public int TouristId;
         public int TourId;
+        public string GuideName;
         public NotificationType NotificationType;
         public string TourName;
+        public int CurrentCheckpoint;
 
+        public TouristNotification() { }
 
-        public TouristNotification(int id, int touristId, int tourId, NotificationType type, string tourName)
+        public TouristNotification(int id, int touristId, int tourId, NotificationType type, string tourName, string guideName, int currentCheckpoint)
         {
             Id = id;
             TouristId = touristId;
             TourId = tourId;
             NotificationType = type;
             TourName = tourName;
+            GuideName = guideName;
+            CurrentCheckpoint = currentCheckpoint;
         }
 
         public void FromCSV(string[] values)
@@ -33,6 +38,8 @@ namespace BookingApp.Model
             TourId = Convert.ToInt32(values[2]);
             ParseNotificationType(values[3]);
             TourName = values[4];
+            GuideName = values[5];
+            CurrentCheckpoint = Convert.ToInt32(values[6]);
 
         }
 
@@ -58,7 +65,7 @@ namespace BookingApp.Model
 
         public string[] ToCSV()
         {
-            string[] csValues = { Id.ToString(), TouristId.ToString(), TourId.ToString(), NotificationType.ToString(), TourName };
+            string[] csValues = { Id.ToString(), TouristId.ToString(), TourId.ToString(), NotificationType.ToString(), TourName, GuideName, CurrentCheckpoint.ToString() };
             return csValues;
         }
     }

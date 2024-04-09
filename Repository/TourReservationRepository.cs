@@ -17,14 +17,14 @@ namespace BookingApp.Repository
 
         private List<TourReservation> _tourReservations;
         private readonly TourParticipantRepository _participantRepository;
-        private readonly TourRepository _tourRepository;
+        private TourRepository _tourRepository;
 
         public TourReservationRepository()
         {
             _serializer = new Serializer<TourReservation>();
             _tourReservations = GetAll();
             _participantRepository = new TourParticipantRepository();
-            _tourRepository = new TourRepository();
+            //_tourRepository = new TourRepository();
         }
 
         public List<TourReservation> GetAll()
@@ -55,43 +55,45 @@ namespace BookingApp.Repository
             return reservations;
         }
 
-        public List<TourReservation> GetNotJoinedReservations(int tour_id)
+        public List<TourParticipant> GetJoinedParticipantsByTour(int tour_id)
         {
             List<TourReservation> tourReservations = GetReservationsByTour(tour_id);
-            if (tourReservations.Count == 0) return null;
-            foreach(TourReservation reservation in tourReservations.ToList())
+            List<TourParticipant> participants = new List<TourParticipant>();
+            foreach(TourReservation tourReservation in tourReservations.ToList())
             {
-                if (reservation.HasJoinedTour)
+                foreach (TourParticipant participant in _participantRepository.GetAllJoinedParticipantsByReservation(tourReservation.Id))
                 {
-                    tourReservations.Remove(reservation);
+                    participants.Add(participant);
                 }
             }
-            return tourReservations;
+            return participants;
         }
 
-        public List<string> GetNotJoinedNamesByTour(int tour_id)
+        public int GetNumberOfJoinedParticipants(int tour_id)
         {
-            List<TourReservation> tourReservations = GetNotJoinedReservations(tour_id);
-            List<string> names = new List<string>();    
-            foreach (TourReservation tourReservation in tourReservations)
+            List<TourParticipant> tourParticipants = GetJoinedParticipantsByTour(tour_id);
+            return tourParticipants.Count();
+        }
+
+
+        public List<TourParticipant> GetNotJoinedReservations(int tour_id) 
+        {
+            List<TourReservation> tourReservations = GetReservationsByTour(tour_id);
+            List<TourParticipant> participants = new List<TourParticipant>();
+            foreach (TourReservation tourReservation in tourReservations.ToList())
             {
-                names.Add(_participantRepository.GetAllParticipantNames(tourReservation.Id));
+                foreach (TourParticipant participant in _participantRepository.GetAllNotJoinedParticipantsByReservation(tourReservation.Id))
+                {
+                    participants.Add(participant);
+                }
             }
-            return names;
+            return participants;
         }
 
         public TourReservation GetById(int reservation_id)
         {
             return _tourReservations.Find(res => res.Id == reservation_id);
-        }
-
-        public void JoinTour(int reservation_id, int current_checkpoint) 
-        {
-            TourReservation tourReservation = GetById(reservation_id);
-            tourReservation.HasJoinedTour = true;
-            tourReservation.StartCheckpoint = current_checkpoint;
-            _serializer.ToCSV(FilePath, _tourReservations);
-        }
+        }        
 
         public List<Tour> FindMyTours(int id)
         {
@@ -104,11 +106,13 @@ namespace BookingApp.Repository
 
 
             List<Tour> tours = new List<Tour>();
-
+            // ovo je dobro pitanje sto stoji tu. Niko ne zna ali treba
+            _tourRepository = new TourRepository();
             foreach (TourReservation tourReservation in tourReservations)
             {
-                // daj mi turu koja je sa tim tourId-jem, ali kod rezervacije mora atribut HasJoinedTour biti true, jer mi treba samo one ture nakojoj smo zapravo (isli)
-                if (_tourRepository.GetTourById(tourReservation.TourId) != null && tourReservation.HasJoinedTour)
+                
+                // daj mi turu koja je sa tim tourId-jem, ali mora bar jedan participant da se prikljucio turi
+                if (_tourRepository.GetTourById(tourReservation.TourId) != null && _participantRepository.IsSomeoneJoinedToTourByReservation(tourReservation.Id))
                 {
                     tours.Add(_tourRepository.GetTourById(tourReservation.TourId));
                 }

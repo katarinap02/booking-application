@@ -14,7 +14,6 @@ namespace BookingApp.Model
         public int TourId;
         public int TouristId;
         public int StartCheckpoint;
-        public bool HasJoinedTour;
 
         public TourReservation() { }
 
@@ -25,7 +24,6 @@ namespace BookingApp.Model
             TouristId = touristId;
             StartCheckpoint = startCheckpoint;
             List<int> _participantIds = new List<int>();
-            HasJoinedTour = false;
         }
 
         public void FromCSV(string[] values)
@@ -33,22 +31,20 @@ namespace BookingApp.Model
             Id = Convert.ToInt32(values[0]);
             TourId = Convert.ToInt32(values[1]);
             TouristId = Convert.ToInt32(values[2]);
-            StartCheckpoint = Convert.ToInt32(values[3]);
-            if (!string.IsNullOrEmpty(values[4]))
+            if (!string.IsNullOrEmpty(values[3]))
             {
-                string participantIds = values[4];
+                string participantIds = values[3];
                 List<string> participantIdsSplit = participantIds.Split(',').ToList();
                 // pretvaranje sa List<string> u List<int>
                 ParticipantIds = participantIdsSplit.Select(int.Parse).ToList();
             }
-            HasJoinedTour = Convert.ToBoolean(values[5]);
         }
 
         public string[] ToCSV()
         {
             string participantIds = ParticipantIds != null ? string.Join(",", ParticipantIds) : "";
 
-            string[] csValue = { Id.ToString(), TourId.ToString(), TouristId.ToString(), StartCheckpoint.ToString(), participantIds, HasJoinedTour.ToString()};
+            string[] csValue = { Id.ToString(), TourId.ToString(), TouristId.ToString(), participantIds};
 
             return csValue;
         }

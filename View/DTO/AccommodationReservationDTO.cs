@@ -55,35 +55,35 @@ namespace BookingApp.DTO
             }
         }
 
-        private DateTime startDate;
-        public DateTime StartDate
-        {
-            get { return startDate; }
-            set
+            private DateTime startDate;
+            public DateTime StartDate
             {
-                if (startDate != value)
+                get { return startDate; }
+                set
                 {
+                    if (startDate != value)
+                    {
 
-                    startDate = value;
-                    OnPropertyChanged("StartDate");
+                        startDate = value;
+                        OnPropertyChanged("StartDate");
+                    }
                 }
             }
-        }
 
-        private DateTime endDate;
-        public DateTime EndDate
-        {
-            get { return endDate; }
-            set
+            private DateTime endDate;
+            public DateTime EndDate
             {
-                if (endDate != value)
+                get { return endDate; }
+                set
                 {
+                    if (endDate != value)
+                    {
 
-                    endDate = value;
-                    OnPropertyChanged("EndDate");
+                        endDate = value;
+                        OnPropertyChanged("EndDate");
+                    }
                 }
             }
-        }
 
         private int numberOfPeople;
 

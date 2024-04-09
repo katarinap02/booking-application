@@ -30,6 +30,7 @@
     <None Remove="View\TouristWindows\logout.png" />
     <None Remove="View\TouristWindows\minus.png" />
     <None Remove="View\TouristWindows\notification.png" />
+    <None Remove="View\TouristWindows\pdf.png" />
     <None Remove="View\TouristWindows\plus.png" />
     <None Remove="View\TouristWindows\search.png" />
     <None Remove="View\TouristWindows\user.png" />
@@ -114,6 +115,7 @@
 
     <Resource Include="View\TouristWindows\minus.png" />
     <Resource Include="View\TouristWindows\notification.png" />
+    <Resource Include="View\TouristWindows\pdf.png" />
     <Resource Include="View\TouristWindows\plus.png" />
     <Resource Include="View\TouristWindows\search.png" />
     <Resource Include="View\TouristWindows\user.png" />

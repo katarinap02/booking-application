@@ -26,6 +26,7 @@ namespace BookingApp.Model
         public int currentCheckpoint { get; set; }
         public string Country { get; set; }
         public int AvailablePlaces { get; set; }
+        public int GuideId { get; set; }
 
         public Tour() { }
 
@@ -44,6 +45,25 @@ namespace BookingApp.Model
             currentCheckpoint = 0;
             Country = country;
             AvailablePlaces = maxTourists;
+            // + u dao napraviti da dodeljuje jedinstven groupId
+        }
+
+        public Tour(string name, string city, string country, string description, string language, int maxTourists, List<string> checkpoints, DateTime date, float duration, List<string> pictures, int guideId)
+        {
+            Name = name;
+            City = city;
+            Description = description;
+            Language = language;
+            MaxTourists = maxTourists;
+            Checkpoints = checkpoints;
+            Date = date;
+            Duration = duration;
+            Pictures = pictures;
+            Status = TourStatus.inPreparation; //kad se pravi noava tura, ona ne moze biti zavrsena ili u toku
+            currentCheckpoint = 0;
+            Country = country;
+            AvailablePlaces = maxTourists;
+            GuideId = guideId;
             // + u dao napraviti da dodeljuje jedinstven groupId
         }
 
@@ -66,7 +86,7 @@ namespace BookingApp.Model
             }
 
             string[] CSVvalues = { Id.ToString(), Status.ToString(), Name, City, Description, Language, MaxTourists.ToString(), Duration.ToString(), Date.ToString(),
-                GroupId.ToString(), currentCheckpoint.ToString(), Country, checkpointsString, pictureString, AvailablePlaces.ToString()};
+                GroupId.ToString(), currentCheckpoint.ToString(), Country, checkpointsString, pictureString, AvailablePlaces.ToString(), GuideId.ToString()};
 
             return CSVvalues;
         }
@@ -109,6 +129,7 @@ namespace BookingApp.Model
             }
 
             AvailablePlaces = int.Parse(values[14]);
+            GuideId = int.Parse(values[15]);
         }
 
         public void ParseTourStatus(string csv_values)

@@ -9,6 +9,12 @@
       Title="EndedToursPage">
 
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#3e3f40" Offset="0.001"/>
+                <GradientStop Color="#A6CEDA" Offset="0.015"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="30"/>
@@ -26,13 +32,10 @@
        Grid.ColumnSpan="9"
        Grid.Row="0"
        HorizontalAlignment="Center"/>
-        <Label Content="tooltip"
-       Grid.Column="1"
-       HorizontalAlignment="Right" Margin="0,0,8,0"/>
-        <ToggleButton x:Name="toggleSwitch" Content="Switch" Width="60" Height="30" HorizontalAlignment="Right"
-              Grid.Column="1"
-              VerticalAlignment="Center" Style="{StaticResource TooltipStyle}">
-        </ToggleButton>
+        <Button Style="{StaticResource NotificationIconButton}"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Click="NotificationButton_Click"/>
         <DataGrid ItemsSource="{Binding Tours}"
                   SelectedItem="{Binding Path=SelectedTour}"
                   Grid.Row="2"
