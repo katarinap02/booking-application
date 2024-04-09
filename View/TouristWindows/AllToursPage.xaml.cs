@@ -128,7 +128,7 @@ namespace BookingApp.View.TouristWindows
             }
             else
             {
-                List<TourViewModel> allTours = _touristService.GetAll();
+                List<TourViewModel> allTours = _touristService.GetAllTours();
                 foreach (TourViewModel tour in allTours)
                     Tours.Add(tour);
             }

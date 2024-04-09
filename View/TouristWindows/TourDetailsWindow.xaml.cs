@@ -25,6 +25,7 @@ namespace BookingApp.View.TouristWindows
         public TourViewModel Tour { get; set; }
         private int checkpointIndex;
         public ObservableCollection<Checkpoint> checkpointWithColors {  get; set; }
+        public List<string> ImagePaths { get; set; }
         public bool IsMyTour;
 
         public TourDetailsWindow(TourViewModel selectedTour, bool isMyTour)
@@ -33,6 +34,7 @@ namespace BookingApp.View.TouristWindows
             DataContext = this;
             Tour = selectedTour;
             IsMyTour = isMyTour;
+            ImagePaths = Tour.Pictures;
             checkpointWithColors = new ObservableCollection<Checkpoint>();
 
 
@@ -41,7 +43,7 @@ namespace BookingApp.View.TouristWindows
 
         public void WindowInitialization()
         {
-            SolidColorBrush activeColor = Brushes.Green;
+            SolidColorBrush activeColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#56707a"));
             SolidColorBrush inactiveColor = Brushes.Gray;
             foreach (var checkpoint in Tour.Checkpoints)
             {
@@ -62,6 +64,14 @@ namespace BookingApp.View.TouristWindows
                 else
                 {
                     checkpointWithColors[i].IndicatorColor = inactiveColor;
+                }
+            }
+            // images
+            if(ImagePaths != null)
+            {
+                for (int i = 0; i < ImagePaths.Count; i++)
+                {
+                    ImagePaths[i] = "../../" + ImagePaths[i];
                 }
             }
         }
@@ -94,5 +104,9 @@ namespace BookingApp.View.TouristWindows
             }
         }
 
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

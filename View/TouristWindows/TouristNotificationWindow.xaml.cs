@@ -1,5 +1,8 @@
-﻿using System;
+﻿using BookingApp.DTO;
+using BookingApp.Services;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +22,22 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class TouristNotificationWindow : Window
     {
+        public ObservableCollection<TouristNotificationViewModel> touristNotificationViewModels { get; set; }
+        public TouristNotificationViewModel SelectedNotification {  get; set; }
+        private readonly TouristService _touristService;
         public TouristNotificationWindow()
         {
             InitializeComponent();
+            DataContext = this;
+            _touristService = new TouristService();
+            touristNotificationViewModels = new ObservableCollection<TouristNotificationViewModel>(_touristService.GetAllNotifications());
+
+        }
+
+        private void DetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            AddedTouristsNotificationWindow addedTouristsNotificationWindow = new AddedTouristsNotificationWindow(SelectedNotification);
+            addedTouristsNotificationWindow.ShowDialog();
         }
     }
 }

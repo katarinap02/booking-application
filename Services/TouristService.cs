@@ -13,16 +13,18 @@ namespace BookingApp.Services
     {
         private readonly TourRepository tourRepository;
         private readonly TourReservationRepository tourReservationRepository;
+        private readonly TouristNotificationRepository touristNotificationRepository;
         private readonly VoucherRepository voucherRepository;
 
         public TouristService()
         {
             tourRepository = new TourRepository();
             tourReservationRepository = new TourReservationRepository();
+            touristNotificationRepository = new TouristNotificationRepository();
             voucherRepository = new VoucherRepository();
         }
 
-        public List<TourViewModel> GetAll()
+        public List<TourViewModel> GetAllTours()
         {
             return ToTourViewModel(tourRepository.GetAll());
         }
@@ -51,6 +53,16 @@ namespace BookingApp.Services
                 VouchersViewModel.Add(new VoucherViewModel(voucher));
             }
             return VouchersViewModel;
+        }
+
+        public List<TouristNotificationViewModel> ToTouristNotificationViewModel(List<TouristNotification> touristNotifications)
+        {
+            List<TouristNotificationViewModel> NotificaionViewModel = new List<TouristNotificationViewModel>();
+            foreach(TouristNotification notification in touristNotifications)
+            {
+                NotificaionViewModel.Add(new TouristNotificationViewModel(notification));
+            }
+            return NotificaionViewModel;
         }
         public List<TourViewModel>? SearchTours(Tour searchCriteria)
         {
@@ -81,5 +93,15 @@ namespace BookingApp.Services
         {
             return ToVoucherViewModel(voucherRepository.FindVouchersByUser(id));
         }
+
+        public List<TouristNotificationViewModel> GetAllNotifications()
+        {
+            return ToTouristNotificationViewModel(touristNotificationRepository.GetAllReversed());
+        }
+
+        //public List<string> GetParticipantsThatJoined(int tourId)
+        //{
+
+        //}
     }
 }

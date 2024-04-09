@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookingApp.DTO
 {
-    class TouristNotificationDTO : INotifyPropertyChanged
+    public class TouristNotificationViewModel : INotifyPropertyChanged
     {
         private int _id;
         public int Id { 
@@ -87,6 +87,23 @@ namespace BookingApp.DTO
             }
         }
 
+        private string _guideName;
+        public string GuideName
+        {
+            get
+            {
+                return _guideName;
+            }
+            set
+            {
+                if(value != _guideName)
+                {
+                    _guideName = value;
+                    OnPropertyChanged(nameof(GuideName));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -94,25 +111,47 @@ namespace BookingApp.DTO
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public TouristNotificationDTO() { }
-        public TouristNotificationDTO(TouristNotification touristNotification)
+        public TouristNotificationViewModel() { }
+        public TouristNotificationViewModel(TouristNotification touristNotification)
         {
             Id = touristNotification.Id;
             TouristId = touristNotification.TouristId;
             TourId = touristNotification.TourId;
             NotificationType = touristNotification.NotificationType;
             TourName = touristNotification.TourName;
+            GuideName = touristNotification.GuideName;
         }
 
         public TouristNotification ToTouristNotification()
         {
-            TouristNotification touristNotification = new TouristNotification(Id, TouristId, TourId, NotificationType, TourName);
+            TouristNotification touristNotification = new TouristNotification(Id, TouristId, TourId, NotificationType, TourName, GuideName);
             touristNotification.Id = Id;
             touristNotification.TourId = TourId;
             touristNotification.TouristId = TouristId;
             touristNotification.NotificationType = NotificationType;
             touristNotification.TourName = TourName;
+            touristNotification.GuideName = GuideName;
             return touristNotification;
+        }
+
+        public override string ToString()
+        {
+            string type = "";
+            if(_notificationType == NotificationType.RateTour)
+            {
+                type = "Rate tour";
+            }else if(_notificationType == NotificationType.JoinedTour)
+            {
+                type = "Joined tour";
+            }else if(_notificationType == NotificationType.TourCanceled)
+            {
+                type = "Tour canceled";
+            }else if(_notificationType == NotificationType.GuideQuit)
+            {
+                type = "Guide quit";
+                return $"{type} :: Guide - {GuideName}";
+            }
+            return $"{type} :: Tour - \"{_tourName}\"";
         }
     }
 }
