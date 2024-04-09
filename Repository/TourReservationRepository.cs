@@ -127,5 +127,10 @@ namespace BookingApp.Repository
             return FindToursForUserByReservation(id).FindAll(t => t.Status == TourStatus.Finnished);
         }
 
+        public List<TourReservation> FindReservationsByUserIdAndTourId(int tourId, int userId)
+        {
+            return _tourReservations.FindAll(t => t.TourId == tourId && t.TouristId == userId);
+        }
+
     }
 }

@@ -5,10 +5,62 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         mc:Ignorable="d"
-        Title="AddedTouristsNotificationWindow" Height="400" Width="400">
-    <Grid>
+        Title="AddedTouristsNotificationWindow" Height="375" Width="480" WindowStartupLocation="CenterScreen">
+    <Grid Background="{StaticResource TouristBackgroundColor1}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Label Content="Tour:"
+               Grid.Column="1"
+               Grid.Row="1"
+               FontSize="20"
+               FontWeight="DemiBold"/>
+        <Label x:Name="tourNameLabel"
+               Content="VALAMI tour"
+               FontWeight="Bold"
+               Margin="58, 0"
+               FontSize="20"
+               Grid.Column="1"
+               Grid.Row="1"/>
+        <Label Content="added participants:"
+               Grid.Column="1"
+               Grid.Row="1"
+               FontWeight="DemiBold"
+               FontSize="15"
+               VerticalAlignment="Bottom"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto"
-                      Style="{StaticResource CustomScrollViewerStyle}">
+                      Style="{StaticResource CustomScrollViewerStyle}"
+                      Grid.Column="1"
+                      Grid.Row="2"
+                      Margin="110, 0">
+            <ItemsControl ItemsSource="{Binding Tourists}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="{Binding}" VerticalAlignment="Center" FontSize="18"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
         </ScrollViewer>
+
+        <Button Content="Close"
+                Style="{StaticResource EnlargeButtonStyle}"
+                Click="CloseButton_Click"
+                HorizontalAlignment="Right"
+                Margin="0, 0, 25, 0"
+                FontSize="19"
+                Grid.Column="1"
+                Width="70"
+                Grid.Row="3"/>
     </Grid>
 </Window>
