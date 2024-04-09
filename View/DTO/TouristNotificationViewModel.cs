@@ -47,10 +47,10 @@ namespace BookingApp.DTO
             }
             set
             {
-                if( _touristId != value )
+                if( _tourId != value )
                 {
-                    _touristId = value;
-                    OnPropertyChanged(nameof(_touristId));
+                    _tourId = value;
+                    OnPropertyChanged(nameof(TourId));
                 }
             }
         }

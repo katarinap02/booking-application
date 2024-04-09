@@ -3,6 +3,7 @@ using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -32,12 +33,22 @@ namespace BookingApp.View.TouristWindows
             _touristService = new TouristService();
             touristNotificationViewModels = new ObservableCollection<TouristNotificationViewModel>(_touristService.GetAllNotifications());
 
+            ButtonInitialization();
+        }
+
+        private void ButtonInitialization()
+        {
         }
 
         private void DetailsButton_Click(object sender, RoutedEventArgs e)
         {
             AddedTouristsNotificationWindow addedTouristsNotificationWindow = new AddedTouristsNotificationWindow(SelectedNotification);
             addedTouristsNotificationWindow.ShowDialog();
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 }

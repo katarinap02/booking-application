@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         mc:Ignorable="d"
-        Title="TouristNotificationWindow" Height="450" Width="800">
+        Title="TouristNotificationWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -16,6 +16,8 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <TextBlock Text="Notifications" HorizontalAlignment="Left" VerticalAlignment="Center"
@@ -35,13 +37,24 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Details" Click="DetailsButton_Click" Width="78" Height="28"
+                            <Button Content="Details"
+                                    Click="DetailsButton_Click" Width="78" Height="28"
                                     FontSize="18"
-                                    Style="{StaticResource EnlargeButtonStyle1}"/>
+                                    Style="{StaticResource EnlargeButtonStyleForNotification}">
+                            </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
             </DataGrid.Columns>
         </DataGrid>
+
+        <Button Content="Close"
+        Style="{StaticResource EnlargeButtonStyle}"
+        Click="CloseButton_Click"
+        HorizontalAlignment="Right"
+        FontSize="19"
+        Grid.Column="1"
+        Width="90"
+        Grid.Row="4"/>
     </Grid>
 </Window>
