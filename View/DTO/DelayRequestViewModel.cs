@@ -7,6 +7,7 @@ using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
 using BookingApp.Model;
+using BookingApp.Services;
 
 namespace BookingApp.DTO
 {
@@ -128,6 +129,19 @@ namespace BookingApp.DTO
                 }
             }
         }
+        private AccommodationReservationService AccommodationReservationService = new AccommodationReservationService();
+        private AccommodationService AccommodationService = new AccommodationService();
+
+        public string AccommodationName => GetAccommodationName(AccommodationReservationService, AccommodationService, ReservationId);
+
+        private static string GetAccommodationName(AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, int reservationId)
+        {
+            int accommodationId = accommodationReservationService.GetById(reservationId).AccommodationId;
+            string accommodationName = accommodationService.GetById(accommodationId).Name;
+            return accommodationName;
+        }
+
+        public string DateRange => startDate.ToString() + "-" + endDate.ToString();
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -20,7 +20,7 @@
                     <LineBreak/>
                     <TreeViewItem Header="Rates by host" FontSize="37" Selected="RatesByHost_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Requests" FontSize="37"></TreeViewItem>
+                    <TreeViewItem Header="Requests" FontSize="37" Selected="Requests_Click"></TreeViewItem>
                     <LineBreak/>
                     <TreeViewItem Header="Forums" FontSize="37"></TreeViewItem>
                     <LineBreak/>
