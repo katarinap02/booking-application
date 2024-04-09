@@ -35,6 +35,9 @@ namespace BookingApp.View.GuestPages
         public AccommodationReservationDTO SelectedReservation { get; set; }
         public AccommodationReservationService AccommodationReservationService { get; set; }
 
+        public DelayRequest DelayRequest { get; set; }
+        public DelayRequestService DelayRequestService { get; set; }
+
         public int DayNumber {  get; set; }
         public AccommodationDTO SelectedAccommodation {  get; set; }
         public Frame Frame { get; set; }
@@ -46,6 +49,10 @@ namespace BookingApp.View.GuestPages
             this.SelectedReservation = selectedReservation;
             this.User = user;
             this.Frame = frame;
+            DelayRequestService = new DelayRequestService();
+            DelayRequest = new DelayRequest();
+            reserveButton.IsEnabled = false;
+
             StartDate = DateTime.Now;
             EndDate = DateTime.MaxValue;
 
@@ -234,6 +241,19 @@ namespace BookingApp.View.GuestPages
 
         private void SelectDate_Click(object sender, RoutedEventArgs e)
         {
+            SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
+            SelectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
+
+            DelayRequest.GuestId = SelectedReservation.GuestId;
+            Accommodation tmpAccommodation = AccommodationService.GetById(SelectedReservation.AccommodationId);
+            DelayRequest.HostId = tmpAccommodation.HostId;
+            DelayRequest.ReservationId = SelectedReservation.Id;
+            DelayRequest.StartDate = SelectedDateRange.Start;
+            DelayRequest.EndDate = SelectedDateRange.End;
+
+            DelayRequestService.Add(DelayRequest);
+            MessageBox.Show("radi");
+
 
         }
     }
