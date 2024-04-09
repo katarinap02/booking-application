@@ -104,6 +104,23 @@ namespace BookingApp.DTO
             }
         }
 
+        private int _currentCheckpoint;
+        public int CurrentCheckpoint
+        {
+            get
+            {
+                return _currentCheckpoint;
+            }
+            set
+            {
+                if( _currentCheckpoint != value )
+                {
+                    _currentCheckpoint = value;
+                    OnPropertyChanged(nameof(CurrentCheckpoint));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -120,17 +137,19 @@ namespace BookingApp.DTO
             NotificationType = touristNotification.NotificationType;
             TourName = touristNotification.TourName;
             GuideName = touristNotification.GuideName;
+            CurrentCheckpoint = touristNotification.CurrentCheckpoint;
         }
 
         public TouristNotification ToTouristNotification()
         {
-            TouristNotification touristNotification = new TouristNotification(Id, TouristId, TourId, NotificationType, TourName, GuideName);
+            TouristNotification touristNotification = new TouristNotification(Id, TouristId, TourId, NotificationType, TourName, GuideName, CurrentCheckpoint);
             touristNotification.Id = Id;
             touristNotification.TourId = TourId;
             touristNotification.TouristId = TouristId;
             touristNotification.NotificationType = NotificationType;
             touristNotification.TourName = TourName;
             touristNotification.GuideName = GuideName;
+            touristNotification.CurrentCheckpoint = CurrentCheckpoint;
             return touristNotification;
         }
 
