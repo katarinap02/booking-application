@@ -1,0 +1,61 @@
+﻿<Page x:Class="BookingApp.View.TouristWindows.EndedToursPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="945"
+      Title="EndedToursPage">
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
+                <GradientStop Color="#3e3f40" Offset="0.001"/>
+                <GradientStop Color="#A6CEDA" Offset="0.015"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="Ended Tours"
+       FontSize="50"
+       Grid.ColumnSpan="9"
+       Grid.Row="0"
+       HorizontalAlignment="Center"/>
+        <Button Style="{StaticResource NotificationIconButton}"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Click="NotificationButton_Click"/>
+        <DataGrid ItemsSource="{Binding Tours}"
+                  SelectedItem="{Binding Path=SelectedTour}"
+                  Grid.Row="2"
+                  Grid.Column="1"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="15">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="200"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="200"/>
+                <DataGridTextColumn Header="City" Binding="{Binding City}" Width="200"/>
+                <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="110"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Rate" Click="RateButton_Click" Width="75" Height="22"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Page>

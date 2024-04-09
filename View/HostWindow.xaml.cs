@@ -3,6 +3,7 @@ using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.View.GuestWindows;
+using BookingApp.View.HostPages;
 using BookingApp.View.HostWindows;
 using System;
 using System.Collections.Generic;
@@ -32,9 +33,9 @@ namespace BookingApp.View
         public AccommodationReservationRepository accommodationReservationRepository { get; set; }
 
         public AccommodationReservationDTO SelectedAccommodation { get; set; }
+        public User User { get; set; }
 
-
-        public HostWindow()
+        public HostWindow(User user)
         {
 
             InitializeComponent();
@@ -43,8 +44,12 @@ namespace BookingApp.View
             accommodationRepository = new AccommodationRepository();
             accommodationReservationRepository = new AccommodationReservationRepository();
             DataContext = this;
-            Update();
+            User = user;
             
+            Update();
+
+            
+
 
 
         }
@@ -57,12 +62,14 @@ namespace BookingApp.View
                 Accommodations.Add(new AccommodationReservationDTO(accommodation));
                 
             }
+           // FirstPage firstPage = new FirstPage(User);
+            //HostFrame.Navigate(firstPage);
         }
 
         private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
         {
-          //  NavigateToPage("RegisterAccommodationPage");
-            RegisterAccommodationWindow registerWindow = new RegisterAccommodationWindow(accommodationRepository);
+            RegisterAccommodationWindow registerWindow = new RegisterAccommodationWindow(accommodationRepository, User);
+
             registerWindow.ShowDialog();
         }
 

@@ -15,9 +15,9 @@ namespace BookingApp.View.GuideWindows
     {
         public List<Tour> TodaysTours;
         public User Guide { get; set; }
-        public List<TourDTO> TodayDTOs;
+        public List<TourViewModel> TodayDTOs;
         private readonly TourRepository tourRepository;
-        public TourDTO SelectedTour { get; set; }
+        public TourViewModel SelectedTour { get; set; }
 
         public GuideMainWindow(User user)
         {
@@ -33,18 +33,18 @@ namespace BookingApp.View.GuideWindows
 
         public void GetGridData() {
             TodaysTours = tourRepository.findToursNeedingGuide();
-            TodayDTOs = new List<TourDTO>();
+            TodayDTOs = new List<TourViewModel>();
 
             foreach (Tour tour in TodaysTours)
             {
-                TodayDTOs.Add(new TourDTO(tour));
+                TodayDTOs.Add(new TourViewModel(tour));
             }
             ToursDataGrid.ItemsSource = TodayDTOs;
         }
 
         private void AddButton_Click(object sender, RoutedEventArgs e)
         {
-            NewTourWindow newTourWindow = new NewTourWindow();
+            NewTourWindow newTourWindow = new NewTourWindow(Guide);
             newTourWindow.ShowDialog();
             GetGridData();
         }
@@ -58,7 +58,7 @@ namespace BookingApp.View.GuideWindows
             }
             else {
                 Tour t = tourRepository.GetTourById(10);
-                GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourDTO(t), Guide);
+                GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourViewModel(t), Guide);
                 guideWithTourWindow.Show();
                 Close();
             }

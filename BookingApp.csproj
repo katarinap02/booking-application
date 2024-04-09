@@ -9,22 +9,60 @@
 
   <ItemGroup>
     <None Remove="Resources\Images\add.png" />
+    <None Remove="Resources\Images\cottage.jpg" />
     <None Remove="Resources\Images\delete.png" />
     <None Remove="Resources\Images\edit.png" />
+    <None Remove="Resources\Images\example.jpg" />
+    <None Remove="Resources\Images\house.jpg" />
+    <None Remove="Resources\Images\Istanbul1.jpg" />
+    <None Remove="Resources\Images\no_image.jpg" />
+    <None Remove="Resources\Images\paris1.jpg" />
+    <None Remove="Resources\Images\star.png" />
     <None Remove="Resources\Images\view.png" />
+    <None Remove="View\TouristWindows\hamburger.png" />
+    <None Remove="View\TouristWindows\logout.png" />
     <None Remove="View\TouristWindows\minus.png" />
+    <None Remove="View\TouristWindows\notification.png" />
+    <None Remove="View\TouristWindows\pdf.png" />
     <None Remove="View\TouristWindows\plus.png" />
     <None Remove="View\TouristWindows\search.png" />
+    <None Remove="View\TouristWindows\user.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Remove="View\Guest\GuestThemes\DarkTheme.xaml" />
+    <Page Remove="View\Guest\GuestThemes\LightTheme.xaml" />
   </ItemGroup>
 
   <ItemGroup>
     <Content Include="Resources\Images\add.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\cottage.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\delete.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\edit.png">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\example.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\house.jpg">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\Istanbul1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\no_image.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\paris1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\star.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\view.png">
@@ -38,9 +76,21 @@
   </ItemGroup>
 
   <ItemGroup>
+
+    <Resource Include="View\Guest\GuestThemes\DarkTheme.xaml" />
+    <Resource Include="View\Guest\GuestThemes\LightTheme.xaml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
+    <Resource Include="View\TouristWindows\hamburger.png" />
+    <Resource Include="View\TouristWindows\logout.png" />
+
     <Resource Include="View\TouristWindows\minus.png" />
+    <Resource Include="View\TouristWindows\notification.png" />
+    <Resource Include="View\TouristWindows\pdf.png" />
     <Resource Include="View\TouristWindows\plus.png" />
     <Resource Include="View\TouristWindows\search.png" />
+    <Resource Include="View\TouristWindows\user.png" />
   </ItemGroup>
 
 </Project>

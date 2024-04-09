@@ -26,16 +26,17 @@ namespace BookingApp.View.TouristWindows
     public partial class TourNumberOfParticipantsWindow : Window
     {
         public static ObservableCollection<Tour> Tours { get; set; }
-        public Tour SelectedTour {  get; set; }
+        public TourViewModel SelectedTour {  get; set; }
         private int InsertedNumberOfParticipants;
         private readonly TourRepository _repository;
+        public int UserId;
 
-
-        public TourNumberOfParticipantsWindow(Tour selectedTour)
+        public TourNumberOfParticipantsWindow(TourViewModel selectedTour, int userId)
         {
             InitializeComponent();
             this.DataContext = this;
             SelectedTour = selectedTour;
+            UserId = userId;
 
             _repository = new TourRepository();
             Tours = new ObservableCollection<Tour>(_repository.GetTourByCityWithAvailablePlaces(SelectedTour.City));
@@ -109,7 +110,7 @@ namespace BookingApp.View.TouristWindows
                 MessageBox.Show("Not enough places for the reservation");
                 return;
             }
-            TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants);
+            TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants, UserId);
             tourReservationWindow.ShowDialog();
             Close();
         }
@@ -139,7 +140,7 @@ namespace BookingApp.View.TouristWindows
         private void BookButton_Click(object sender, RoutedEventArgs e)
         {
             InsertedNumberOfParticipants = Convert.ToInt32(NumberOfParticipants.Text);
-            TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants);
+            TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants, UserId);
             tourReservationWindow.ShowDialog();
             Close();
         }

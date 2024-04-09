@@ -1,0 +1,48 @@
+﻿<UserControl x:Class="BookingApp.View.GuestControls.AccommodationCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookingApp.View.GuestControls"
+             mc:Ignorable="d" d:DesignWidth="821" Height="103">
+
+    <Grid>
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="1" CornerRadius="30"  Background="white" Width="821" Height="103">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="157,-10,375,-5" Grid.Row="1"/>
+                <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="450,-10,69,-5" Grid.Row="1"/>
+
+
+
+
+                <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{Binding Rate}" Margin="216,30,536,-36" Grid.Row="1"/>
+                <TextBlock x:Name="AccommodationDays" FontSize="20" Text="{Binding MinReservationDays}" Margin="376,30,376,-35" Grid.Row="1"/>
+                <TextBlock x:Name="AccommodationGuests" FontSize="20" Text="{Binding MaxGuestNumber}" Margin="537,30,215,-36" Grid.Row="1"/>
+                <Image VerticalAlignment="Top" HorizontalAlignment="Left" Margin="776,-3,0,0" Width="20" Height="17">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Source" Value="{x:Null}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSuperHost}" Value="True">
+                                    <Setter Property="Source" Value="../../../Resources/Images/star.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsSUperHost}" Value="False">
+                                    <Setter Property="Source" Value="{x:Null}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+
+                </Image>
+
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

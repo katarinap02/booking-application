@@ -1,4 +1,5 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.DTO;
+using BookingApp.Model;
 using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
@@ -24,22 +25,24 @@ namespace BookingApp.View.TouristWindows
     public partial class AvailableToursWindow : Window
     {
         public static ObservableCollection<Tour> Tours { get; set; }
-        public Tour NewSelectedTour { get; set; }
+        public TourViewModel NewSelectedTour { get; set; }
         private readonly TourRepository _repository;
         private int InsertedNumberOfParticipants;
-        public AvailableToursWindow(Tour selectedTour, int insertedNumberOfParticipans)
+        public int UserId;
+        public AvailableToursWindow(TourViewModel selectedTour, int insertedNumberOfParticipans, int userId)
         {
             InitializeComponent();
             DataContext = this;
             NewSelectedTour = selectedTour;
             InsertedNumberOfParticipants = insertedNumberOfParticipans;
+            UserId = userId;
             _repository = new TourRepository();
             Tours = new ObservableCollection<Tour>(_repository.GetTourByCityWithAvailablePlaces(NewSelectedTour.Country));
         }
 
         private void BookButton_Click(object sender, RoutedEventArgs e)
         {
-            TourReservationWindow tourReservationWindow = new TourReservationWindow(NewSelectedTour, InsertedNumberOfParticipants);
+            TourReservationWindow tourReservationWindow = new TourReservationWindow(NewSelectedTour, InsertedNumberOfParticipants, UserId);
             tourReservationWindow.ShowDialog();
             Close();
         }

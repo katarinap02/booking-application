@@ -1,4 +1,5 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.DTO;
+using BookingApp.Model;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
@@ -31,17 +32,18 @@ namespace BookingApp.Repository
 
         public List<Tour> GetAll()
         {
-            return _serializer.FromCSV(FilePath);
+            return _serializer.FromCSV(FilePath).FindAll(t => t.Status != TourStatus.Finnished);
         }
 
-        public void Add(Tour tour) 
+        public void Add(Tour tour)
         {
             _tours.Add(tour);
             _serializer.ToCSV(FilePath, _tours);
         }
 
 
-        public int NextPersonalId() {
+        public int NextPersonalId()
+        {
             List<int> personalIds = new List<int>();
             foreach (Tour tour in _tours)
             {
@@ -49,7 +51,8 @@ namespace BookingApp.Repository
             }
 
             int max = 0;
-            if(personalIds.Count == 0) {
+            if (personalIds.Count == 0)
+            {
                 max = -1;
             }
             else
@@ -63,7 +66,7 @@ namespace BookingApp.Repository
         public int NextId() //generise ID za novu grupu tura
         {
             List<int> groupIds = new List<int>();
-            foreach(Tour tour in _tours)
+            foreach (Tour tour in _tours)
             {
                 groupIds.Add(tour.GroupId);
             }
@@ -76,22 +79,22 @@ namespace BookingApp.Repository
             {
                 max = groupIds.Max();
             }
-            return max + 1 ;
+            return max + 1;
         }
 
         public List<Tour>? SearchTours(Tour searchCriteria)
         {
             List<Tour> filteredTours = GetAll();
-            
-            if(!string.IsNullOrEmpty(searchCriteria.Country.ToLower()))
+
+            if (!string.IsNullOrEmpty(searchCriteria.Country.ToLower()))
             {
                 filteredTours = _tours.FindAll(tour => tour.Country.ToLower().Contains(searchCriteria.Country.ToLower())).ToList();
             }
-            if(!string.IsNullOrEmpty(searchCriteria.City.ToLower()))
+            if (!string.IsNullOrEmpty(searchCriteria.City.ToLower()))
             {
                 filteredTours = filteredTours.Where(tour => tour.City.ToLower().Contains(searchCriteria.City.ToLower())).ToList();
             }
-            if(searchCriteria.Duration != 0)
+            if (searchCriteria.Duration != 0)
             {
                 filteredTours = filteredTours.Where(tour => tour.Duration == searchCriteria.Duration).ToList();
             }
@@ -99,7 +102,7 @@ namespace BookingApp.Repository
             {
                 filteredTours = filteredTours.Where(tour => tour.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();
             }
-            if(searchCriteria.AvailablePlaces != 0)
+            if (searchCriteria.AvailablePlaces != 0)
             {
                 filteredTours = filteredTours.Where(tour => tour.MaxTourists >= searchCriteria.AvailablePlaces).ToList();
             }
@@ -111,13 +114,13 @@ namespace BookingApp.Repository
             return _tours.FindAll(tour => tour.City.ToLower().Equals(city.ToLower())).Where(tour => tour.AvailablePlaces > 0).ToList();
         }
 
-        public List<Tour>? findToursNeedingGuide() 
+        public List<Tour>? findToursNeedingGuide()
         {
             List<Tour> allTours = GetAll();
             List<Tour> ret = new List<Tour>();
-            foreach(Tour tour in allTours)
+            foreach (Tour tour in allTours)
             {
-                if (tour.Date.Date == DateTime.Now.Date && tour.Status==TourStatus.inPreparation)
+                if (tour.Date.Date == DateTime.Now.Date && tour.Status == TourStatus.inPreparation)
                 {
                     ret.Add(tour);
                 }
@@ -149,33 +152,36 @@ namespace BookingApp.Repository
         public int FindMaxNumberOfParticipants()
         {
             List<Tour> allTours = GetAll();
-            int maxTourists = allTours[0].MaxTourists;
-            foreach(Tour tour in allTours)
+            if(allTours.Count != 0)
             {
-                if(tour.MaxTourists > maxTourists)
+                int maxTourists = allTours[0].MaxTourists;
+                foreach (Tour tour in allTours)
                 {
-                    maxTourists = tour.MaxTourists;
+                    if (tour.MaxTourists > maxTourists)
+                    {
+                        maxTourists = tour.MaxTourists;
+                    }
                 }
+                return maxTourists;
             }
-
-            return maxTourists;
+            return 0;
         }
 
         public void bindGuideAndTour(Tour tour, User guide)
         {
             tour.Status = TourStatus.gotGuide;
-            //GuidedTourRepository.Add(guide, tour);
         }
 
         public void finnishTour(int id)
         {
             Tour tour = GetTourById(id);
-            if(tour == null) return;
+            if (tour == null) return;
             tour.Status = TourStatus.Finnished;
             _serializer.ToCSV(FilePath, _tours);
         }
 
-        public void activateTour(int id) {
+        public void activateTour(int id)
+        {
             Tour tour = GetTourById(id);
             if (tour == null) return;
             tour.Status = TourStatus.Active;
