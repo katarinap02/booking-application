@@ -31,10 +31,9 @@ namespace BookingApp.Model
             Id = Convert.ToInt32(values[0]);
             TourId = Convert.ToInt32(values[1]);
             TouristId = Convert.ToInt32(values[2]);
-            StartCheckpoint = Convert.ToInt32(values[3]);
-            if (!string.IsNullOrEmpty(values[4]))
+            if (!string.IsNullOrEmpty(values[3]))
             {
-                string participantIds = values[4];
+                string participantIds = values[3];
                 List<string> participantIdsSplit = participantIds.Split(',').ToList();
                 // pretvaranje sa List<string> u List<int>
                 ParticipantIds = participantIdsSplit.Select(int.Parse).ToList();
@@ -45,7 +44,7 @@ namespace BookingApp.Model
         {
             string participantIds = ParticipantIds != null ? string.Join(",", ParticipantIds) : "";
 
-            string[] csValue = { Id.ToString(), TourId.ToString(), StartCheckpoint.ToString(), participantIds};
+            string[] csValue = { Id.ToString(), TourId.ToString(), TouristId.ToString(), participantIds};
 
             return csValue;
         }

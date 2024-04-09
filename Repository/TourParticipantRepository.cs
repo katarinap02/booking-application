@@ -115,5 +115,16 @@ namespace BookingApp.Repository
             _serializer.ToCSV(FilePath, _tourParticipants);
         }
 
+        public bool IsSomeoneJoinedToTourByReservation(int reservationId)
+        {
+            List<TourParticipant> tourParticipants = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
+            foreach(TourParticipant tp in tourParticipants){
+                if(tp.HasJoinedTour == true)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }

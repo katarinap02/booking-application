@@ -18,7 +18,9 @@ namespace BookingApp.View.GuideWindows
             InitializeComponent();
 
             _tourReservationRepository = new TourReservationRepository();
-            _tourParticipantRepository = new TourParticipantRepository();
+
+            // ovo je akos komentarisao
+            //_tourParticipantRepository = new TourParticipantRepository();
 
 
             tourParticipants = _tourReservationRepository.GetNotJoinedReservations(tour_id);

@@ -152,16 +152,19 @@ namespace BookingApp.Repository
         public int FindMaxNumberOfParticipants()
         {
             List<Tour> allTours = GetAll();
-            int maxTourists = allTours[0].MaxTourists;
-            foreach (Tour tour in allTours)
+            if(allTours.Count != 0)
             {
-                if (tour.MaxTourists > maxTourists)
+                int maxTourists = allTours[0].MaxTourists;
+                foreach (Tour tour in allTours)
                 {
-                    maxTourists = tour.MaxTourists;
+                    if (tour.MaxTourists > maxTourists)
+                    {
+                        maxTourists = tour.MaxTourists;
+                    }
                 }
+                return maxTourists;
             }
-
-            return maxTourists;
+            return 0;
         }
 
         public void bindGuideAndTour(Tour tour, User guide)

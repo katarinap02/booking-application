@@ -17,14 +17,14 @@ namespace BookingApp.Repository
 
         private List<TourReservation> _tourReservations;
         private readonly TourParticipantRepository _participantRepository;
-        private readonly TourRepository _tourRepository;
+        private TourRepository _tourRepository;
 
         public TourReservationRepository()
         {
             _serializer = new Serializer<TourReservation>();
             _tourReservations = GetAll();
             _participantRepository = new TourParticipantRepository();
-            _tourRepository = new TourRepository();
+            //_tourRepository = new TourRepository();
         }
 
         public List<TourReservation> GetAll()
@@ -106,11 +106,13 @@ namespace BookingApp.Repository
 
 
             List<Tour> tours = new List<Tour>();
-
+            // ovo je dobro pitanje sto stoji tu. Niko ne zna ali treba
+            _tourRepository = new TourRepository();
             foreach (TourReservation tourReservation in tourReservations)
             {
-                // daj mi turu koja je sa tim tourId-jem, ali kod rezervacije mora atribut HasJoinedTour biti true, jer mi treba samo one ture nakojoj smo zapravo (isli)
-                if (_tourRepository.GetTourById(tourReservation.TourId) != null && tourReservation.HasJoinedTour)
+                
+                // daj mi turu koja je sa tim tourId-jem, ali mora bar jedan participant da se prikljucio turi
+                if (_tourRepository.GetTourById(tourReservation.TourId) != null && _participantRepository.IsSomeoneJoinedToTourByReservation(tourReservation.Id))
                 {
                     tours.Add(_tourRepository.GetTourById(tourReservation.TourId));
                 }
