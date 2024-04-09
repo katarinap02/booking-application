@@ -19,12 +19,14 @@ namespace BookingApp.View
         private readonly TourRepository _tourRepository;
         public TourViewModel Tour { get; set; }
         private List<DateTime> selectedDates = new List<DateTime>();
+        private User Guide;
 
-        public NewTourWindow() {
+        public NewTourWindow(User guide) {
             InitializeComponent();
             DataContext = this;
             _tourRepository = new TourRepository();
             Tour = new TourViewModel();
+            Guide = guide;
         }
 
         private void AddTour_Click(object sender, RoutedEventArgs e)
@@ -37,6 +39,7 @@ namespace BookingApp.View
                 int groupId = _tourRepository.NextId();
                 foreach (DateTime date in selectedDates)
                 {
+                    Tour.GuideId = Guide.Id;
                     Tour.GroupId = groupId;
                     Tour.Date = date;
                     Tour.Id = _tourRepository.NextPersonalId();
