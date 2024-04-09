@@ -23,17 +23,21 @@ namespace BookingApp.Model
         public RequestStatus Status { get; set; }
 
         public string Comment { get; set; }
-        public DelayRequest() { }
+        public DelayRequest() { 
+        
+            Status = RequestStatus.PENDING;
+        }
 
-        public DelayRequest(int id, int guestId, int hostId, int reservationId, DateTime startDate, DateTime endDate)
+        public DelayRequest(int guestId, int hostId, int reservationId, DateTime startDate, DateTime endDate, RequestStatus status, string comment)
         {
-            Id = id;
+
             GuestId = guestId;
             HostId = hostId;
             ReservationId = reservationId;
             StartDate = startDate;
             EndDate = endDate;
-            Status = RequestStatus.PENDING;
+            Status = status;
+            Comment = comment;
         }
 
         public string[] ToCSV()
