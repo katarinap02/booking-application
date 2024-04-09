@@ -38,5 +38,10 @@ namespace BookingApp.View.TouristWindows
             _touristService = new TouristService();
             Vouchers = new ObservableCollection<VoucherViewModel>(_touristService.FindVouchersByUser(userId));
         }
+
+        private void NotificationButton_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
