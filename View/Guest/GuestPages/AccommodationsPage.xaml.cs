@@ -59,15 +59,34 @@ namespace BookingApp.View.GuestPages
         public void Update()
         {
             Accommodations.Clear();
+            List<AccommodationDTO> superHostAccommodations = new List<AccommodationDTO>();
+            List<AccommodationDTO> nonSuperHostAccommodations = new List<AccommodationDTO>();
+
+            SeparateAccommodations(AccommodationService, superHostAccommodations, nonSuperHostAccommodations);
+            
+
+            foreach(AccommodationDTO superHostAccommodation in superHostAccommodations)
+                Accommodations.Add(superHostAccommodation);
+            
+            foreach (AccommodationDTO nonSuperHostAccommodation in nonSuperHostAccommodations)
+                Accommodations.Add(nonSuperHostAccommodation);
+        }
+
+        private void SeparateAccommodations(AccommodationService accommodationService, List<AccommodationDTO> superHostAccommodations, List<AccommodationDTO> nonSuperHostAccommodations)
+        {
             foreach (Accommodation accommodation in AccommodationService.GetAll())
             {
-                
+
                 AccommodationDTO accommodationDTO = new AccommodationDTO(accommodation);
                 Host host = HostService.GetById(accommodation.HostId);
                 HostService.BecomeSuperHost(host);
                 accommodationDTO.IsSuperHost = host.IsSuperHost;
-                Accommodations.Add(accommodationDTO);
-                
+
+                if (accommodationDTO.IsSuperHost)
+                    superHostAccommodations.Add(accommodationDTO);
+                else
+                    nonSuperHostAccommodations.Add(accommodationDTO);
+
                 //MessageBox.Show(Accommodations[0].Type.ToString());
             }
         }
