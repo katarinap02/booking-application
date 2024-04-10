@@ -153,13 +153,9 @@ namespace BookingApp.DTO
 
         private AccommodationService accommodationService = new AccommodationService();
         private HostService hostService = new HostService();
-        public string AccommodationDetails => GetAccommodationName(accommodationService, AccommodationId) + ", " + Location;
+        public string AccommodationDetails => Name + ", " + Location;
 
-        private string GetAccommodationName(AccommodationService accommodationService, int accommodationId)
-        {
-            return accommodationService.GetById(accommodationId).Name;
-        }
-
+       
         public string HostUsername => GetHostUsername(hostService, accommodationService.GetById(AccommodationId).HostId);
 
         private string GetHostUsername(HostService hostService, int hostId)
