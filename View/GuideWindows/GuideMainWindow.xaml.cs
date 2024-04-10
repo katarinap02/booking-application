@@ -49,6 +49,12 @@ namespace BookingApp.View.GuideWindows
             GetGridData();
         }
 
+        private void CancelTours_Click(object sender, RoutedEventArgs e)
+        {
+            CancelTourWindow cancelTourWindow = new CancelTourWindow(Guide);
+            cancelTourWindow.ShowDialog();
+        }
+
         private void SelectTourButton_Click(object sender, RoutedEventArgs e)
         {
             if(SelectedTour != null) {
@@ -57,10 +63,7 @@ namespace BookingApp.View.GuideWindows
                 Close();
             }
             else {
-                Tour t = tourRepository.GetTourById(10);
-                GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourViewModel(t), Guide);
-                guideWithTourWindow.Show();
-                Close();
+                MessageBox.Show("Please select a tour to cancel!");
             }
         }
     }

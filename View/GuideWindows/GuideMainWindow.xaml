@@ -17,6 +17,7 @@
 
         <!-- Add Button -->
         <Button Content="Add Tour" Grid.Row="0" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="75" Click="AddButton_Click"/>
+        <Button Content="Show Tours to Cancel" HorizontalAlignment="Left" Margin="130,0,0,0" VerticalAlignment="Center" Width="140" Click="CancelTours_Click"/>
         <!--Click="AddButton_Click"-->
 
         <!-- Data Grid -->
