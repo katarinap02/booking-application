@@ -11,17 +11,17 @@
 
     <Grid>
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
-            <Grid>
-               
-                <ListBox Name="ReservationListBox" Width="716" Height="377" Margin="26,380,318,33"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+            <Grid Margin="0,0,0,-2">
+
+                <ListBox Name="ReservationListBox" Height="377" Margin="26,380,21,33"  ScrollViewer.VerticalScrollBarVisibility="Auto"
 ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColorN}" SelectedItem="{Binding SelectedReservation}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <controls:ReservationCard></controls:ReservationCard>
-                                <Button Style="{StaticResource ButtonStyleN}" Content="Details" Width="90" Height="25" FontSize="15" Margin="550, -65, 0, 0"/>
-                                <Button Style="{StaticResource ButtonStyleN}" Content="Delay" Width="90" Height="25" FontSize="15" Margin="550, 0, 0, 0" Click="Delay_Click"/>
-                                <Button Style="{StaticResource ButtonStyleN}" Content="Cancel" Width="90" Height="25" FontSize="15" Margin="550, 65, 0, 0" Click="Cancel_Click"/>
+                                <Button Style="{StaticResource ButtonStyleN}" Content="Details" Width="90" Height="25" FontSize="15" Margin="800, -65, 0, 0"/>
+                                <Button Style="{StaticResource ButtonStyleN}" Content="Delay" Width="90" Height="25" FontSize="15" Margin="800, 0, 0, 0" Click="Delay_Click"/>
+                                <Button Style="{StaticResource ButtonStyleN}" Content="Cancel" Width="90" Height="25" FontSize="15" Margin="800, 65, 0, 0" Click="Cancel_Click"/>
 
 
                             </Grid>
@@ -29,6 +29,8 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <Label Content="{Binding User.Username}" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="408,10,442,735"/>
+                <TextBlock TextWrapping="Wrap" FontSize="23" Margin="26,77,720,569">Status:<LineBreak/>Total reservation number:<LineBreak/>Reservation number this year:<LineBreak/>Ratng:<LineBreak/></TextBlock>
+                <Label Content="Reservations" FontSize="30" Style="{StaticResource HeaderStyleN}" Margin="26,320,830,415"/>
             </Grid>
         </Border>
     </Grid>
