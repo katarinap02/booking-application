@@ -20,6 +20,8 @@ namespace BookingApp.Repository
 
         private readonly TourReservationRepository _reservationRepository;
 
+        private readonly VoucherRepository _voucherRepository;
+
         //private GuidedTourRepository GuidedTourRepository;
 
         public TourRepository()
@@ -28,6 +30,7 @@ namespace BookingApp.Repository
             //GuidedTourRepository = new GuidedTourRepository();
             _tours = _serializer.FromCSV(FilePath);
             _reservationRepository = new TourReservationRepository();
+            _voucherRepository = new VoucherRepository();
         }
 
         public List<Tour> GetAll()
@@ -198,16 +201,7 @@ namespace BookingApp.Repository
         public List<Tour> findToursByGuideId(int guideId)
         {
             List<Tour> tours = GetAll();
-            foreach(Tour tour in tours.ToList())
-            {
-                TimeSpan difference = DateTime.Now - tour.Date;
-                /*
-                if (tour.GuideId != guideId)
-                {
-                    tours.Remove(tour);
-                }*/
-            }
-            return tours;
+            return tours.FindAll(t => t.GuideId == guideId);
         }
 
         public List<Tour> findToursToCancel(int guideId)
@@ -215,8 +209,8 @@ namespace BookingApp.Repository
             List<Tour> tours = findToursByGuideId(guideId);
             foreach (Tour tour in tours.ToList())
             {
-                TimeSpan difference = DateTime.Now - tour.Date;
-                if (difference.TotalHours <= 48 || tour.Status != TourStatus.inPreparation)
+                TimeSpan difference = tour.Date - DateTime.Now;
+                if (difference.TotalHours <= 48 || tour.Status != TourStatus.inPreparation || tour.Date < DateTime.Now)
                 {
                     tours.Remove(tour);
                 }
@@ -224,12 +218,26 @@ namespace BookingApp.Repository
             return tours;
         }
 
-        public void cancelTour(int id)
+        public void grantVoucher(string reason, DateOnly expireDate, int tour_id, int guide_id)
         {
-            Tour tour = GetTourById(id);
+            List<TourReservation> Reservations = _reservationRepository.GetReservationsByTour(tour_id);
+            foreach (TourReservation reservation in Reservations)
+            {
+                Voucher voucher = new Voucher(0, reservation.TouristId, guide_id, false, reason, expireDate);
+                _voucherRepository.Add(voucher);
+            }
+        }
+
+        public void cancelTour(int tour_id, int guide_id)
+        {
+            Tour tour = GetTourById(tour_id);
             if (tour == null) return;
             tour.Status = TourStatus.Canceled;
-            //dodeli vaucer
+
+            string reason = "Tour " + tour.Name + " has been canceled";
+            DateOnly expireDate = new DateOnly(DateTime.Now.Year+1, DateTime.Now.Month, DateTime.Now.Day);
+            grantVoucher(reason, expireDate, tour_id, guide_id);
+            MessageBox.Show(reason);
             _serializer.ToCSV(FilePath, _tours);
         }
 
@@ -268,7 +276,13 @@ namespace BookingApp.Repository
                 participantNumber.Add(_reservationRepository.GetNumberOfJoinedParticipants(tour.Id));
             }
 
-            return participantNumber.Max();
+            return participantNumber.Max(); // treba da mi vraca turu a ne broj
+        }
+
+        public List<Tour> findFinnishedToursByGuide(int guide_id)
+        {
+            List<Tour> tours = findToursByGuideId(guide_id);
+            return tours.FindAll(t => t.Status == TourStatus.Finnished);
         }
 
     }
