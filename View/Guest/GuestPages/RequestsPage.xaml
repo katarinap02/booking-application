@@ -13,6 +13,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
+                <TextBlock TextWrapping="Wrap" FontSize="25" Margin="187,94,187,649">You can see all of your requests sorted by status on this page.</TextBlock>
 
                 <ListBox Name="RequestsListBox" Margin="24,287,34,26"  ScrollViewer.VerticalScrollBarVisibility="Auto"
 ItemsSource="{Binding Requests}" Background="{StaticResource BackgroundColorN}" SelectedItem="{Binding SelectedRequest}">
