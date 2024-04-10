@@ -43,6 +43,7 @@ namespace BookingApp.View.GuestPages
             this.SelectedReservation = selectedReservation;
             this.User = user;
             this.Frame = frame;
+            DataContext = this;
 
         }
 

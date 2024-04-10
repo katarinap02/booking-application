@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="168" d:DesignWidth="597">
     <Grid>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="1" CornerRadius="30"  Background="white" Width="597" Height="168">
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Width="597" Height="168">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>

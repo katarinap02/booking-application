@@ -12,7 +12,20 @@
         <Grid>
 
 
-            <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,549,5"/>
+            <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,549,5">
+                <Grid>
+                    <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="37,136,37,412">Please choose new dates for your reservation, and then wait for host's response. Requests can be pending, approved or rejected.</TextBlock>
+                    <Label Content="Accommodation" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="136,434,-136,312"/>
+                    <Label Content="Host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="218,648,218,98"/>
+                    <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
+                        <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="59,-2,63,2"/>
+                    </Border>
+
+                    <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Width="500" Margin="11,168,11,-168"></controls:AccommodationCardSmall>
+
+                </Grid>
+               
+            </Border>
             <Border Width="526" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="549,1,10,0">
 
                 <Grid>

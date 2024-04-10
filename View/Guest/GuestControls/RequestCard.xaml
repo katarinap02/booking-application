@@ -7,7 +7,7 @@
               mc:Ignorable="d" d:DesignWidth="990" Height="103">
 
     <Grid>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="1" CornerRadius="30"  Background="white" Width="990" Height="103">
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Width="990" Height="103">
             <Grid Margin="10">
                 <Label Content="Zahtev za pomeranje" Style="{StaticResource HeaderStyleN}" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top"/>
                 <Label Content="{Binding AccommodationName}" HorizontalAlignment="Left" Margin="29,23,0,0" VerticalAlignment="Top"  Height="50"/>
