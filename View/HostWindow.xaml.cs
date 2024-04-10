@@ -97,6 +97,14 @@ namespace BookingApp.View
             RatingPanel.Visibility = Visibility.Collapsed;
         }
 
+        private void Delay_Click(object sender, RoutedEventArgs e)
+        {
+            DelayPage page = new DelayPage();
+            HostFrame.Navigate(page);
+            LeftDock.Visibility = Visibility.Collapsed;
+            RatingPanel.Visibility = Visibility.Collapsed;
+        }
+
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();

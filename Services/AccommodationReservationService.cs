@@ -46,9 +46,22 @@ namespace BookingApp.Services
             AccommodationReservationRepository.Delete(selectedReservation);
         }
 
+        public AccommodationReservation Update(AccommodationReservation reservation)
+        {
+            return AccommodationReservationRepository.Update(reservation);
+        }
+
         public AccommodationReservation GetById(int id)
         {
             return AccommodationReservationRepository.GetById(id);
+        }
+
+        public void UpdateReservation(int id, DateTime StartDate, DateTime EndDate)
+        {
+            AccommodationReservation reservation = GetById(id);
+            reservation.StartDate = StartDate;
+            reservation.EndDate = EndDate;
+            Update(reservation);
         }
 
 

@@ -87,6 +87,18 @@ namespace BookingApp.Repository
             return _reservations.Max(a => a.Id) + 1;
         }
 
+        public AccommodationReservation Update(AccommodationReservation accommodation)
+        {
+            _reservations = _serializer.FromCSV(FilePath);
+            AccommodationReservation current = _reservations.Find(a => a.Id == accommodation.Id);
+            int index = _reservations.IndexOf(current);
+            _reservations.Remove(current);
+            _reservations.Insert(index, accommodation);
+            _serializer.ToCSV(FilePath, _reservations);
+            ReservationSubject.NotifyObservers();
+            return accommodation;
+        }
+
 
         internal void Delete(AccommodationReservationDTO selectedReservation)
         {

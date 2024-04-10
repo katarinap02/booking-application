@@ -42,6 +42,20 @@ namespace BookingApp.DTO
             }
         }
 
+        private string guestUserame;
+        public string GuestUsername
+        {
+            get { return guestUserame; }
+            set
+            {
+                if (guestUserame != value)
+                {
+                    guestUserame = value;
+                    OnPropertyChanged("GuestUsername");
+                }
+            }
+        }
+
         private int hostId;
         public int HostId
         {
@@ -66,6 +80,20 @@ namespace BookingApp.DTO
                 {
                     reservationId = value;
                     OnPropertyChanged("ReservationId");
+                }
+            }
+        }
+
+        private string reservationName;
+        public string ReservationName
+        {
+            get { return reservationName; }
+            set
+            {
+                if (reservationName != value)
+                {
+                    reservationName = value;
+                    OnPropertyChanged("ReservationName");
                 }
             }
         }
@@ -96,6 +124,36 @@ namespace BookingApp.DTO
 
                     endDate = value;
                     OnPropertyChanged("EndDate");
+                }
+            }
+        }
+
+        private DateTime startLastDate;
+        public DateTime StartLastDate
+        {
+            get { return startLastDate; }
+            set
+            {
+                if (startLastDate != value)
+                {
+
+                    startLastDate = value;
+                    OnPropertyChanged("StartLastDate");
+                }
+            }
+        }
+
+        private DateTime endLastDate;
+        public DateTime EndLastDate
+        {
+            get { return endLastDate; }
+            set
+            {
+                if (endLastDate != value)
+                {
+
+                    endLastDate = value;
+                    OnPropertyChanged("EndLastDate");
                 }
             }
         }
