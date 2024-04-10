@@ -186,6 +186,20 @@ namespace BookingApp.DTO
                 }
             }
         }
+
+        private bool reserved;
+        public bool Reserved
+        {
+            get { return reserved; }
+            set
+            {
+                if (reserved != value)
+                {
+                    reserved = value;
+                    OnPropertyChanged("Reserved");
+                }
+            }
+        }
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

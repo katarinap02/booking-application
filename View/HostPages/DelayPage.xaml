@@ -84,9 +84,12 @@
             
         </Grid>
 
+        <StackPanel Grid.Row="1">
+            <Label Content="select request" FontSize="15"  VerticalAlignment="Center" FontWeight="Bold" Margin="25 10 0 0">
+                
+            </Label>
         <ListView
 x:Name="AccommodationsListView"
-Grid.Row="1"
 Margin="25,10,30,40"
 Padding="0"
 Background="Transparent"
@@ -157,6 +160,23 @@ SelectionMode="Single">
                                     Margin="1,0,0,0"
                                     Text="{Binding EndDate}" 
                                     VerticalAlignment="Center"/>
+
+                                <Image VerticalAlignment="Center" Margin="30 20 0 20" Width="20">
+                                    <Image.Style>
+                                        <Style TargetType="Image">
+                                            <Setter Property="Source" Value="../../Resources/Images/blue_square.png"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding Reserved}" Value="True">
+                                                    <Setter Property="Source" Value="../../Resources/Images/red_dot.png"/>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding Reserved}" Value="False">
+                                                    <Setter Property="Source" Value="../../Resources/Images/blue_square.png"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+
+                                </Image>
                             </StackPanel>
 
 
@@ -171,6 +191,6 @@ SelectionMode="Single">
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-
+        </StackPanel>
     </Grid>
 </Page>

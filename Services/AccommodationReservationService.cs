@@ -64,6 +64,15 @@ namespace BookingApp.Services
             Update(reservation);
         }
 
+        public bool IsReserved(DateTime StartDate, DateTime EndDate)
+        {
+            foreach (AccommodationReservation res in GetAll())
+            {
+                if ((StartDate <= res.EndDate && StartDate >= res.StartDate) || (EndDate <= res.EndDate && EndDate >= res.StartDate))
+                { return true; }
 
+            }
+            return false;
+        }
     }
 }

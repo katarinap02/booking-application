@@ -61,6 +61,7 @@ namespace BookingApp.View.HostPages
                 delayRequestViewModel.ReservationName = reservation.Name;
                 delayRequestViewModel.StartLastDate = reservation.StartDate;
                 delayRequestViewModel.EndLastDate = reservation.EndDate;
+                delayRequestViewModel.Reserved = AccommodationReservationService.IsReserved(delay.StartDate, delay.EndDate);
                 if(delayRequestViewModel.Status == RequestStatus.PENDING) {
                     Delays.Add(delayRequestViewModel);
                 }
