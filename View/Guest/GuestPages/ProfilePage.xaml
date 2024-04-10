@@ -14,7 +14,7 @@
             <Grid>
                 <TreeView Name="TreeMenu" Height="692" Margin="10,30,0,67">
                     <LineBreak/>
-                    <TreeViewItem Header="Profile" FontSize="37" IsSelected="True"></TreeViewItem>
+                    <TreeViewItem Header="Profile" FontSize="37" Selected="Profile_Click"></TreeViewItem>
                     <LineBreak/>
                     <TreeViewItem Header="Rate accommodation" FontSize="37" Selected="RateAccommodation_Click"></TreeViewItem>
                     <LineBreak/>
