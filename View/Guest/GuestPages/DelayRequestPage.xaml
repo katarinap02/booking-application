@@ -21,7 +21,7 @@
                         <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="59,-2,63,2"/>
                     </Border>
 
-                    <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Width="500" Margin="11,168,11,-168"></controls:AccommodationCardSmall>
+                    <controls:AccommodationCardSmaller DataContext="{Binding SelectedAccommodation}" Width="500" Margin="11,168,11,-168"></controls:AccommodationCardSmaller>
 
                 </Grid>
                
