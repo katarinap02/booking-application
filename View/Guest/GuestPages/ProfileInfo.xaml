@@ -29,8 +29,11 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <Label Content="{Binding User.Username}" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="408,10,442,735"/>
-                <TextBlock TextWrapping="Wrap" FontSize="23" Margin="26,77,720,569">Status:<LineBreak/>Total reservation number:<LineBreak/>Reservation number this year:<LineBreak/>Ratng:<LineBreak/></TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="23" Margin="26,81,276,470">Status:<LineBreak/>Total reservation number:<LineBreak/>Reservation number this year:<LineBreak/>Ratng:<LineBreak/></TextBlock>
                 <Label Content="Reservations" FontSize="30" Style="{StaticResource HeaderStyleN}" Margin="26,320,830,415"/>
+                <Label x:Name="statusLabel" FontSize="23" Margin="105,75,739,670"/>
+                <Label x:Name="totalReservationsLabel" FontSize="23" Margin="295,106,547,641"></Label>
+                <Label x:Name="totalReservationsYearLabel" FontSize="23" Margin="335,137,528,603"></Label>
             </Grid>
         </Border>
     </Grid>
