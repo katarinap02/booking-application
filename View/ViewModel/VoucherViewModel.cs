@@ -1,6 +1,8 @@
 ﻿using BookingApp.Model;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -10,6 +12,10 @@ namespace BookingApp.ViewModel
 {
     public class VoucherViewModel : INotifyPropertyChanged
     {
+        private readonly VoucherService _voucherService;
+
+        public ObservableCollection<VoucherViewModel> Vouchers { get; set; }
+
         private int _id;
         public int Id
         {
@@ -111,12 +117,45 @@ namespace BookingApp.ViewModel
             }
         }
 
+        private int _userId;
+        public int UserId
+        {
+            get
+            {
+                return _userId;
+            }
+            set
+            {
+                if (value != _userId)
+                {
+                    _userId = value;
+                    OnPropertyChanged(nameof(UserId));
+                }
+            }
+        }
+
+
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-        public VoucherViewModel() { }
+
+        public void RefreshVouchers()
+        {
+            Vouchers.Clear();
+            List<VoucherViewModel> vouchers = _voucherService.FindVouchersByUser(UserId);
+            foreach(var voucher in vouchers)
+            {
+                Vouchers.Add(voucher);
+            }
+        }
+
+
+        public VoucherViewModel() {
+            _voucherService = new VoucherService();
+            Vouchers = new ObservableCollection<VoucherViewModel>();
+        }
         public VoucherViewModel(Voucher voucher)
         {
             _id = voucher.Id;

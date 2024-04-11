@@ -25,24 +25,23 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class EndedToursPage : Page
     {
-        public ObservableCollection<TourViewModel> Tours { get; set; }
-        public TourViewModel SelectedTour {  get; set; }
-        //private readonly TourReservationRepository _repository;
-        private readonly TouristService _touristService;
+        public TourViewModel Tour { get; set; }
+
         public EndedToursPage(int userId)
         {
             InitializeComponent();
-            DataContext = this;
-            //_repository = new TourReservationRepository();
-            //Tours = new ObservableCollection<Tour>(_repository.FindMyEndedTours(userId));
-            _touristService = new TouristService();
-            Tours = new ObservableCollection<TourViewModel>(_touristService.FindMyEndedTours(userId));
+            Tour = new TourViewModel();
+            DataContext = Tour;
+
+            Tour.UserId = userId;
+
+            Tour.RefreshEndedTours();
 
         }
 
         private void RateButton_Click(object sender, RoutedEventArgs e)
         {
-            GuideRateWindow guideRateWindow = new GuideRateWindow(SelectedTour);
+            GuideRateWindow guideRateWindow = new GuideRateWindow();
             guideRateWindow.ShowDialog();
         }
 

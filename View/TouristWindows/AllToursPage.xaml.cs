@@ -24,147 +24,45 @@ namespace BookingApp.View.TouristWindows
     /// <summary>
     /// Interaction logic for AllToursPage.xaml
     /// </summary>
-    public partial class AllToursPage : Page, INotifyPropertyChanged
+    public partial class AllToursPage : Page
     {
-        //public ObservableCollection<Tour> Tours { get; set; }
-        public ObservableCollection<TourViewModel> Tours { get; set; }
-        public TourViewModel SelectedTour { get; set; }
+        public TourViewModel Tour { get; set; }
 
-        //private readonly TourRepository _repository;
-        private readonly TouristService _touristService;
         public int UserId;
-
-        #region Property
-        private int _maximumValuePeoples;
-
-        public string MaximumValuePeoples
-        {
-            get
-            {
-                return _maximumValuePeoples.ToString();
-            }
-            set
-            {
-                if (value != _maximumValuePeoples.ToString())
-                {
-                    _maximumValuePeoples = Convert.ToInt32(value);
-                    OnPropertyChanged(nameof(_maximumValuePeoples));
-                }
-            }
-        }
-        #endregion
-        #region PropertyChanged
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-        #endregion
-        public AllToursPage(int userId)
+        public AllToursPage()
         {
             InitializeComponent();
-            DataContext = this;
-            _touristService = new TouristService();
-            Tours = new ObservableCollection<TourViewModel>();
+            Tour = new TourViewModel();
+            DataContext = Tour;
 
-            UserId = userId;
-            MaximumValuePeoples = _touristService.FindMaxNumberOfParticipants().ToString();
+            Tour.initializeAllTours();
 
-            RefreshDataGrid(false);
+            Tour.RefreshAllToursDataGrid(false);
         }
 
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
-            CountrySearch.Text = "";
-            CitySearch.Text = "";
-            DurationSearch.Text = "0";
-            LanguageSearch.Text = "";
-            PeopleSearch.Text = "0";
+            Tour.ResetButton();
         }
         private void SearchButton_Click(object sender, RoutedEventArgs e)
         {
-            Tours.Clear();
-            List<TourViewModel>? foundTours = Search();
-
-            if (foundTours != null)
-                foreach (TourViewModel t in foundTours)
-                    Tours.Add(t);
+            Tour.SearchButton();
         }
 
-        private List<TourViewModel>? Search()
-        {
-            DurationSearch.Text = EmptyStringToZero(DurationSearch.Text);
-            PeopleSearch.Text = EmptyStringToZero(PeopleSearch.Text);
-
-            Tour tour = new Tour("", CitySearch.Text, CountrySearch.Text, "", LanguageSearch.Text, int.Parse(PeopleSearch.Text),
-                                new List<string>(), new DateTime(), float.Parse(DurationSearch.Text), new List<string>());
-            List<TourViewModel>? foundTours = _touristService.SearchTours(tour);
-            return foundTours;
-        }
-
-        private string EmptyStringToZero(string text)
-        {
-            if (text == string.Empty)
-            {
-                return "0";
-            }
-
-            return text;
-        }
-        
-        private void RefreshDataGrid(bool withSearch)
-        {
-            Tours.Clear();
-            if (withSearch)
-            {
-                List<TourViewModel>? foundTours = Search();
-
-                if (foundTours != null)
-                    foreach (TourViewModel t in foundTours)
-                        Tours.Add(t);
-            }
-            else
-            {
-                List<TourViewModel> allTours = _touristService.GetAllTours();
-                foreach (TourViewModel tour in allTours)
-                    Tours.Add(tour);
-            }
-
-        }
 
         private void BookButton_Click(object sender, RoutedEventArgs e)
         {
-            if(SelectedTour == null)
-            {
-                MessageBox.Show("Something wrong happened");
-            }
-            else
-            {
-                TourNumberOfParticipantsWindow tourNumberOfParticipantsWindow = new TourNumberOfParticipantsWindow(SelectedTour, UserId);
-                tourNumberOfParticipantsWindow.ShowDialog();
-
-                if(Tours.Count != _touristService.ToursCount())
-                {
-                    RefreshDataGrid(true);
-                }
-                else
-                    RefreshDataGrid(false);
-            }
+            Tour.BookButton(Tour.SelectedTour);
         }
 
         private void DetailsButton_Click(object sender, RoutedEventArgs e)
         {
-            TourDetailsWindow tourDetailsWindow = new TourDetailsWindow(SelectedTour, false);
-            tourDetailsWindow.ShowDialog();
+            Tour.DetailsButton(Tour.SelectedTour, false);
         }
 
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
         {
-            TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow();
-            touristNotificationWindow.ShowDialog();
+            Tour.NotificationButton();
         }
     }
 }
