@@ -60,10 +60,11 @@ namespace BookingApp.View.HostPages
                 User user = UserService.GetById(delay.GuestId);
                 delayRequestViewModel.GuestUsername = user.Username;
                 AccommodationReservation reservation = AccommodationReservationService.GetById(delay.ReservationId);
+                Accommodation accommodation = AccommodationService.GetById(AccommodationReservationService.GetById(delay.ReservationId).AccommodationId);
                 delayRequestViewModel.ReservationName = reservation.Name;
                 delayRequestViewModel.StartLastDate = reservation.StartDate;
                 delayRequestViewModel.EndLastDate = reservation.EndDate;
-                delayRequestViewModel.Reserved = AccommodationReservationService.IsReserved(delay.StartDate, delay.EndDate);
+                delayRequestViewModel.Reserved = AccommodationReservationService.IsReserved(delay.StartDate, delay.EndDate, accommodation.Id);
                 if(delayRequestViewModel.Status == RequestStatus.PENDING) {
                     Delays.Add(delayRequestViewModel);
                 }
