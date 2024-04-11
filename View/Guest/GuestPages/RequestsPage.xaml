@@ -1,0 +1,44 @@
+﻿<Page x:Class="BookingApp.View.GuestPages.RequestsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.View.GuestPages"
+            xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="798" d:DesignWidth="1085"
+      Title="RateAccommodationPage">
+
+    <Grid>
+
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
+            <Grid>
+                <TextBlock TextWrapping="Wrap" FontSize="25" Margin="187,94,187,649">You can see all of your requests sorted by status on this page.</TextBlock>
+
+                <ListBox Name="RequestsListBox" Margin="24,287,34,26"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+ItemsSource="{Binding Requests}" Background="{StaticResource BackgroundColorN}" SelectedItem="{Binding SelectedRequest}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <controls:RequestCard></controls:RequestCard>
+
+
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+                <ComboBox x:Name="requestStatusBox" HorizontalAlignment="Left" Margin="30,234,0,0" VerticalAlignment="Top" Width="148" Height="28"  SelectionChanged="RequestStatusBox_SelectionChanged">
+                    <ComboBoxItem Content="Pending" Tag="0"></ComboBoxItem>
+                    <ComboBoxItem Content="Approved" Tag="1"></ComboBoxItem>
+                    <ComboBoxItem Content="Rejected" Tag="2"></ComboBoxItem>
+                </ComboBox>
+
+            </Grid>
+
+
+        </Border>
+
+
+    </Grid>
+
+</Page>

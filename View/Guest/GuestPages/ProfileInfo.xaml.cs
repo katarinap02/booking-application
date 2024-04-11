@@ -42,7 +42,34 @@ namespace BookingApp.View.GuestPages
             this.AccommodationReservationService = accommodationReservationService;
             this.AccommodationService = accommodationService;
             DataContext = this;
+            statusLabel.Content = "guest";
+            totalReservationsLabel.Content = GetTotalReservations(AccommodationReservationService);
+            totalReservationsYearLabel.Content = GetTotalReservationsYear(AccommodationReservationService);
             Update();
+        }
+
+        private string GetTotalReservationsYear(AccommodationReservationService accommodationReservationService)
+        {
+            int number = 0;
+            foreach (AccommodationReservation reservation in accommodationReservationService.GetAll())
+            {
+                if (reservation.GuestId == User.Id && reservation.StartDate.Year == DateTime.Now.Year)
+                    number++;
+            }
+
+            return number.ToString();
+        }
+
+        private string GetTotalReservations(AccommodationReservationService accommodationReservationService)
+        {
+            int number = 0;
+            foreach(AccommodationReservation reservation in accommodationReservationService.GetAll())
+            {
+                if (reservation.GuestId == User.Id)
+                    number++;
+            }
+
+            return number.ToString();
         }
 
         public void Update()

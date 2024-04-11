@@ -31,8 +31,10 @@ namespace BookingApp.View.GuestPages
 
         public CalendarDateRange SelectedDateRange { get; set; }
 
-        public AccommodationService AccommodationService { get; set; }  
+        public AccommodationService AccommodationService { get; set; }
         public AccommodationReservationDTO SelectedReservation { get; set; }
+
+       
         public AccommodationReservationService AccommodationReservationService { get; set; }
 
         public DelayRequest DelayRequest { get; set; }
@@ -52,6 +54,7 @@ namespace BookingApp.View.GuestPages
             DelayRequestService = new DelayRequestService();
             DelayRequest = new DelayRequest();
             reserveButton.IsEnabled = false;
+            DataContext = this;
 
             StartDate = DateTime.Now;
             EndDate = DateTime.MaxValue;

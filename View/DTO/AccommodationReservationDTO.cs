@@ -1,4 +1,6 @@
 ﻿using BookingApp.Model;
+using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -149,6 +151,19 @@ namespace BookingApp.DTO
         public string Location => City + ", " + Country;
         public string DateRangeString => StartDate.ToString() + "-" + EndDate.ToString();
 
+        private AccommodationService accommodationService = new AccommodationService();
+        private HostService hostService = new HostService();
+        public string AccommodationDetails => Name + ", " + Location;
+
+       
+        public string HostUsername => GetHostUsername(hostService, accommodationService.GetById(AccommodationId).HostId);
+
+        private string GetHostUsername(HostService hostService, int hostId)
+        {
+            return hostService.GetById(hostId).Username;
+        }
+
+        public int NumberOfDays => (EndDate - StartDate).Days + 1;
         public AccommodationReservationDTO() { }
 
         public AccommodationReservationDTO(AccommodationReservation ac)

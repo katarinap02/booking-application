@@ -26,6 +26,7 @@ namespace BookingApp.View.GuestPages
     public partial class RateAccommodationForm : Page
     {
         public AccommodationReservationDTO SelectedReservation { get; set; }
+        public AccommodationDTO SelectedAccommodation { get; set; }
         public User User { get; set; }
         public AccommodationService AccommodationService { get; set; }
 
@@ -46,6 +47,7 @@ namespace BookingApp.View.GuestPages
             this.Frame = frame;
             this.AccommodationRateService = accommodationRateService;
             this.AccommodationRate = new AccommodationRateDTO();
+            SelectedAccommodation = new AccommodationDTO(AccommodationService.GetById(SelectedReservation.AccommodationId));
             DataContext = this;
 
         }

@@ -61,6 +61,16 @@ namespace BookingApp.View.GuestPages
             Profile.Content = new RatesByHostPage(User, AccommodationRateService, Profile);
         }
 
+        public void Requests_Click(object sender, RoutedEventArgs e)
+        {
+            Profile.Content = new RequestsPage(User, Profile);
+        }
+
+        public void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            Profile.Content = new ProfileInfo(AccommodationReservationService, AccommodationService, User, Profile);
+        }
+
       
        
     }
