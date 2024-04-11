@@ -477,7 +477,7 @@ namespace BookingApp.View.ViewModel
 
             Button button = sender as Button;
             SelectedAccommodation = button.DataContext as AccommodationViewModel;
-            Frame.Content = new ReservationInfoPage(AccommodationService, SelectedAccommodation, AccommodationReservationService, User, Frame);
+            Frame.Content = new ReservationInfoPage(SelectedAccommodation, User, Frame);
 
 
 
