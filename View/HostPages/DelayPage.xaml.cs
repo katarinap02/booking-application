@@ -33,6 +33,7 @@ namespace BookingApp.View.HostPages
 
         public UserService UserService {  get; set; }
         public AccommodationReservationService AccommodationReservationService { get; set; }
+        public AccommodationService AccommodationService { get; set; }
 
         public DelayRequestViewModel SelectedDelay { get; set; }
 
@@ -46,6 +47,7 @@ namespace BookingApp.View.HostPages
             UserService = new UserService();
             AccommodationReservationService = new AccommodationReservationService();
             Delay = new DelayRequestViewModel();
+            AccommodationService = new AccommodationService();
             Update();
         }
 
@@ -77,12 +79,23 @@ namespace BookingApp.View.HostPages
                 Delay.Status = RequestStatus.APPROVED;
                 AccommodationReservationService.UpdateReservation(Delay.ReservationId, Delay.StartDate, Delay.EndDate);
                 DelayRequestService.Update(Delay.ToDelayRequest());
+                Accommodation accommodation = AccommodationService.GetById(AccommodationReservationService.GetById(Delay.ReservationId).AccommodationId);
+                ReplaceDates(accommodation, Delay);
+                AccommodationService.Update(accommodation);
                 Update();
             }
             
         }
 
-        
+        private void ReplaceDates(Accommodation accommodation, DelayRequestViewModel delay)
+        {
+            foreach(CalendarDateRange dateRange in accommodation.UnavailableDates)
+                if(dateRange.Start == delay.StartLastDate && dateRange.End ==  delay.EndLastDate)
+                {
+                    dateRange.Start = delay.StartDate;
+                    dateRange.End = delay.EndDate;
+                }
+        }
 
         private void Reject_Click(object sender, RoutedEventArgs e)
         {

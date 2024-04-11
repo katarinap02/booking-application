@@ -7,16 +7,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 
 namespace BookingApp.Services
 {
     public class AccommodationReservationService
     {
         private readonly AccommodationReservationRepository AccommodationReservationRepository;
+        
 
         public AccommodationReservationService()
         {
             AccommodationReservationRepository = new AccommodationReservationRepository();
+            
         }
 
         public List<AccommodationReservation> GetAll()
@@ -61,8 +64,11 @@ namespace BookingApp.Services
             AccommodationReservation reservation = GetById(id);
             reservation.StartDate = StartDate;
             reservation.EndDate = EndDate;
+            
             Update(reservation);
         }
+
+     
 
         public bool IsReserved(DateTime StartDate, DateTime EndDate)
         {
