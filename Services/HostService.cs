@@ -52,7 +52,7 @@ namespace BookingApp.Services
                 }
             }
 
-            if (counter < 10)
+            if (counter < 50)
             {
                 host.IsSuperHost = false;
                 hostRepository.Update(host);

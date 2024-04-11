@@ -68,7 +68,7 @@
 
             <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="5 0 0 0">
                 <TextBlock Text="Explanation" FontSize="15" VerticalAlignment="Top" Margin="5,0,0,0" />
-                <TextBox x:Name="ExplanationTextBox" Width="380" Height="118" Margin="15 0 0 0" Text="{Binding Path= Delay.Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"> </TextBox>
+                <TextBox x:Name="ExplanationTextBox" Width="380" Height="118" Margin="15 0 0 0"  Text="{Binding Path= Delay.Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"> </TextBox>
             </StackPanel>
 
             <Label Content="Enter an explanation only with request rejection." FontSize="15" Grid.Row="6" VerticalAlignment="Bottom">
@@ -77,7 +77,7 @@
             <StackPanel Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
                 <Button Content="Approve" Click="Approve_Click" FontSize="15" Width="90" Height="35" Margin="0 0 75 0">
                 </Button>
-                <Button Content="Reject" Click="Reject_Click" FontSize="15" Width="90" Height="35" Margin="75 0 0 0">
+                <Button Content="Reject" Click="Reject_Click"  FontSize="15" Width="90" Height="35" Margin="75 0 0 0">
                     
                 </Button>
             </StackPanel>

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -7,6 +8,8 @@ using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
 using BookingApp.Model;
+using BookingApp.Observer;
+using BookingApp.Repository;
 using static System.Net.Mime.MediaTypeNames;
 
 
@@ -14,6 +17,8 @@ namespace BookingApp.View.ViewModel
 {
     public class AccommodationViewModel : INotifyPropertyChanged
     {
+        
+
         private int id;
         public int Id
         {
@@ -339,6 +344,8 @@ namespace BookingApp.View.ViewModel
         public AccommodationViewModel()
         {
             reservationDaysLimit = 1;
+
+            
         }
 
         public AccommodationViewModel(Accommodation accommodation)
@@ -400,6 +407,8 @@ namespace BookingApp.View.ViewModel
 
             return type;
         }
+
+        
     }
 
 
