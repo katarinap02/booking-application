@@ -123,7 +123,7 @@
                                Width="75"
                                Source="/View/TouristWindows/user.png"
                                HorizontalAlignment="Left"/>
-                        <Label Content="{Binding Username}"
+                        <Label Content="{Binding UserName}"
                                VerticalAlignment="Center"
                                FontWeight="Bold"
                                FontSize="24"/>
@@ -131,20 +131,7 @@
                     </StackPanel>
                 </Grid>
             </Border>
-            <StackPanel x:Name="NotifyLogoutPanel" Visibility="Collapsed">
-                <Button Click="NotificationButton_Click">
-                    <StackPanel Orientation="Horizontal" Margin="-10,0,0,0">
-                        <Image Height="30" Width="39" Source="/View/TouristWindows/notification.png"/>
-                        <Label Content="Notifications" FontSize="16"/>
-                    </StackPanel>
-                </Button>
-                <Button Click="LogoutButton_Click">
-                    <StackPanel Orientation="Horizontal" Margin="-42,0,0,0">
-                        <Image Height="33" Width="33" Source="/View/TouristWindows/logout.png"/>
-                        <Label Content="Logout" FontSize="16"/>
-                    </StackPanel>
-                </Button>
-            </StackPanel>
+            
             <Button Content="All Tours"
                     x:Name="AllToursButton"
                     Style="{StaticResource RoundedButtonStyle2}"

@@ -6,7 +6,166 @@
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         mc:Ignorable="d"
         Title="GuideRateWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
-        
+    <Window.Resources>
+        <Style x:Key="CoolRadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5,0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid>
+                            <Ellipse x:Name="RadioEllipse" Width="35" Height="35" Stroke="White" StrokeThickness="5">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="#FF007ACC" Offset="0" />
+                                        <GradientStop Color="#FF003C66" Offset="1" />
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="RadioEllipse" Property="Stroke" Value="Green" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="{StaticResource TouristBackgroundColor1Linear}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Tour and Guide Rate"
+               FontSize="50"
+               Grid.ColumnSpan="5"
+               Grid.Row="1"
+               HorizontalAlignment="Center"/>
+
+        <Label Content="Guide"
+               Grid.Column="1"
+               Grid.Row="2"
+               FontSize="30"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"/>
+        <Rectangle Stroke="Black"
+                   Grid.Column="1"
+                   Grid.Row="3"
+                   Grid.RowSpan="2"/>
+        <Label Content="knowledge"
+               Grid.Column="1"
+               Grid.Row="3"
+               HorizontalContentAlignment="Center"
+               FontSize="16"/>
+        <StackPanel Grid.Column="1"
+                    Grid.Row="4"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+>
+            <RadioButton Content="1" GroupName="Knowledge" IsChecked="True"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="2" GroupName="Knowledge"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="3" GroupName="Knowledge"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="4" GroupName="Knowledge"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="5" GroupName="Knowledge"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+        </StackPanel>
+        <Rectangle Stroke="Black"
+                   Grid.Column="1"
+                   Grid.Row="5"
+                   Grid.RowSpan="3"/>
+        <Label Content="language"
+               Grid.Column="1"
+               Grid.Row="5"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               FontSize="16"/>
+        <StackPanel Grid.Column="1"
+                    Grid.Row="6"
+                    Grid.RowSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <RadioButton Content="1" GroupName="Language" IsChecked="True"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="2" GroupName="Language"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="3" GroupName="Language"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="4" GroupName="Language"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="5" GroupName="Language"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+        </StackPanel>
+
+        <Label Content="Tour"
+               Grid.Column="3"
+               Grid.Row="2"
+               FontSize="30"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"/>
+        <Rectangle Stroke="Black"
+                   Grid.Column="3"
+                   Grid.Row="3"
+                   Grid.RowSpan="2"/>
+        <Label Content="interestingness"
+               Grid.Column="3"
+               Grid.Row="3"
+               HorizontalContentAlignment="Center"
+               FontSize="16"/>
+        <StackPanel Grid.Column="3"
+                    Grid.Row="4"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <RadioButton Content="1" GroupName="Interestingness" IsChecked="True"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="2" GroupName="Interestingness"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="3" GroupName="Interestingness"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="4" GroupName="Interestingness"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="5" GroupName="Interestingness"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+        </StackPanel>
+        <Label Content="Comment:"
+               Grid.Column="3"
+               Grid.Row="5"
+               FontSize="16"/>
+        <TextBox Grid.Column="3"
+                 Grid.Row="6"
+                 Grid.RowSpan="2"
+                 GotFocus="TextBox_GotFocus"
+                 LostFocus="TextBox_LostFocus"
+                 Text="Leave a comment..."
+                 Foreground="Gray"
+                 TextWrapping="Wrap"/>
     </Grid>
 </Window>

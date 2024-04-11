@@ -21,12 +21,33 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class GuideRateWindow : Window
     {
-        public TourViewModel SelectedTour { get; set; }
-        public GuideRateWindow(TourViewModel selectedTour)
+        public TourViewModel Tour { get; set; }
+
+        public GuideRateWindow()
         {
             InitializeComponent();
-            DataContext = this;
-            SelectedTour = selectedTour;
+            Tour = new TourViewModel();
+            DataContext = Tour;
+        }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null && textBox.Text == "Leave a comment...")
+            {
+                textBox.Text = "";
+                textBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null && string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = "Leave a comment...";
+                textBox.Foreground = Brushes.Gray;
+            }
         }
     }
 }

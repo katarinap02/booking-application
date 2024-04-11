@@ -25,22 +25,23 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class MyToursPage : Page
     {
-        public ObservableCollection<TourViewModel> Tours { get; set; }
-
-        public TourViewModel SelectedTour { get; set; }
-        private readonly TouristService _touristService;
-        public MyToursPage(int userId)
+        public TourViewModel Tour { get; set; }
+        public MyToursPage(TourViewModel selectedTour, int userId)
         {
             InitializeComponent();
-            DataContext = this;
-            _touristService = new TouristService();
-            Tours = new ObservableCollection<TourViewModel>(_touristService.FindMyTours(userId));
+            Tour = new TourViewModel();
+            DataContext = Tour;
+
+            Tour.UserId = userId;
+
+            Tour.SelectedTour = selectedTour;
+
+            Tour.RefreshMyTours();
         }
 
         private void DetailsButton_Click(object sender, RoutedEventArgs e)
         {
-            TourDetailsWindow tourDetailsWindow = new TourDetailsWindow(SelectedTour, true);
-            tourDetailsWindow.ShowDialog();
+            Tour.DetailsButton(Tour.SelectedTour, true);
         }
 
         private void NotificationButton_Click(object sender, RoutedEventArgs e)

@@ -10,9 +10,12 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using BookingApp.Model;
 using BookingApp.Observer;
+
+using BookingApp.Repository;
+
 using BookingApp.Services;
 using BookingApp.View.GuestPages;
-using static System.Net.Mime.MediaTypeNames;
+
 
 
 namespace BookingApp.View.ViewModel
@@ -20,6 +23,7 @@ namespace BookingApp.View.ViewModel
    
     public class AccommodationViewModel : INotifyPropertyChanged, IObserver
     {
+
         public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
 
 
@@ -375,6 +379,7 @@ namespace BookingApp.View.ViewModel
             AccommodationReservationService = new AccommodationReservationService();
             HostService = new HostService();
             AccommodationsPage = accommodationsPage;
+
         }
 
         public AccommodationViewModel(Accommodation accommodation)
@@ -436,6 +441,7 @@ namespace BookingApp.View.ViewModel
 
             return type;
         }
+
 
         public void Update()
         {

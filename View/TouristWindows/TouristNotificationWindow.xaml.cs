@@ -25,13 +25,13 @@ namespace BookingApp.View.TouristWindows
     {
         public ObservableCollection<TouristNotificationViewModel> touristNotificationViewModels { get; set; }
         public TouristNotificationViewModel SelectedNotification {  get; set; }
-        private readonly TouristService _touristService;
+        private readonly TouristNotificationService _touristNotificationService;
         public TouristNotificationWindow()
         {
             InitializeComponent();
             DataContext = this;
-            _touristService = new TouristService();
-            touristNotificationViewModels = new ObservableCollection<TouristNotificationViewModel>(_touristService.GetAllNotifications());
+            _touristNotificationService = new TouristNotificationService();
+            touristNotificationViewModels = new ObservableCollection<TouristNotificationViewModel>(_touristNotificationService.GetAllNotifications());
 
             ButtonInitialization();
         }

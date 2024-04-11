@@ -18,38 +18,20 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.View.ViewModel;
+using BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels;
 
 namespace BookingApp.View.HostPages
 {
     /// <summary>
     /// Interaction logic for FirstPage.xaml
     /// </summary>
-    public partial class FirstPage : Page, IObserver
-    {
-        public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
-
-        public AccommodationRepository accommodationRepository { get; set; }
-
-        public HostService hostService { get; set; }
-
-        public AccommodationReservationViewModel SelectedAccommodation { get; set; }
-
-        public Host host {  get; set; }
-
-        public HostViewModel hostViewModel { get; set; }
-
-        
+    public partial class FirstPage : Page
+    {   
         public FirstPage(User user)
         {
             InitializeComponent();
-            Accommodations = new ObservableCollection<AccommodationViewModel>();
-            accommodationRepository = new AccommodationRepository();
-            hostService = new HostService();
-            DataContext = this;
-            host = hostService.GetByUsername(user.Username);
-            hostService.BecomeSuperHost(host);
-            hostViewModel = new HostViewModel(host);
-            Update();
+            DataContext = new FirstPageViewModel(user);
+            
         }
 
         private void Displacement_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -69,15 +51,6 @@ namespace BookingApp.View.HostPages
 
         }
 
-        public void Update()
-        {
-            Accommodations.Clear();
-            foreach (Accommodation accommodation in accommodationRepository.GetAll())
-            {
-                
-                Accommodations.Add(new AccommodationViewModel(accommodation));
 
-            }
-        }
     }
 }
