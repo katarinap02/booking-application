@@ -61,9 +61,9 @@ namespace BookingApp.View.GuestPages
 
         public void Delay_Click(object sender, RoutedEventArgs e)
         {
-           /* Button button = sender as Button;
+            Button button = sender as Button;
             SelectedReservation = button.DataContext as AccommodationReservationViewModel;
-            Frame.Content = new DelayRequestPage(AccommodationReservationService, AccommodationService, SelectedReservation, User, Frame);*/
+            Frame.Content = new DelayRequestPage(SelectedReservation, User, Frame);
 
         }
     }

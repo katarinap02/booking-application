@@ -537,6 +537,8 @@ namespace BookingApp.View.ViewModel
 
             return filteredAccommodations;
         }
+
+        
     }
 
 

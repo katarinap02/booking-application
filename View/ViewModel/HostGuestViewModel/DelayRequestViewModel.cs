@@ -222,7 +222,7 @@ namespace BookingApp.View.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public DelayRequestViewModel()
+        public DelayRequestViewModel(User user)
         {
 
         }
@@ -237,6 +237,10 @@ namespace BookingApp.View.ViewModel
             endDate = dr.EndDate;
             comment = dr.Comment;
             status = dr.Status;
+        }
+
+        public DelayRequestViewModel()
+        {
         }
 
         public DelayRequest ToDelayRequest()

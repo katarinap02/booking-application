@@ -97,5 +97,18 @@ namespace BookingApp.Services
                 MessageBox.Show("Reservation cancelled");
             }
         }
+
+        internal void DelayReservation(CalendarDateRange selectedDateRange, DelayRequest delayRequest, DelayRequestService delayRequestService, AccommodationService accommodationService, AccommodationReservationViewModel selectedReservation)
+        {
+            delayRequest.GuestId = selectedReservation.GuestId;
+            Accommodation tmpAccommodation = accommodationService.GetById(selectedReservation.AccommodationId);
+            delayRequest.HostId = tmpAccommodation.HostId;
+            delayRequest.ReservationId = selectedReservation.Id;
+            delayRequest.StartDate = selectedDateRange.Start;
+            delayRequest.EndDate = selectedDateRange.End;
+
+            delayRequestService.Add(delayRequest);
+            MessageBox.Show("Request sent");
+        }
     }
 }
