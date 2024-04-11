@@ -1,5 +1,4 @@
-﻿using BookingApp.DTO;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Repository;
 using BookingApp.Serializer;
 using System;
@@ -8,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.Services
 {
@@ -44,7 +44,7 @@ namespace BookingApp.Services
         }
 
 
-        public void Delete(AccommodationReservationDTO selectedReservation)
+        public void Delete(AccommodationReservationViewModel selectedReservation)
         {
             AccommodationReservationRepository.Delete(selectedReservation);
         }

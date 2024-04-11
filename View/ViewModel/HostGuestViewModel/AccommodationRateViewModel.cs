@@ -9,9 +9,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace BookingApp.DTO
+namespace BookingApp.View.ViewModel.HostGuestViewModel
 {
-    public class AccommodationRateDTO : INotifyPropertyChanged
+    public class AccommodationRateViewModel : INotifyPropertyChanged
     {
         private int reservationId;
         public int ReservationId
@@ -182,9 +182,9 @@ namespace BookingApp.DTO
             return replacedPath;
         }
 
-        public AccommodationRateDTO() { }
+        public AccommodationRateViewModel() { }
 
-        public AccommodationRateDTO(AccommodationRate ar, AccommodationReservation ac, User us)
+        public AccommodationRateViewModel(AccommodationRate ar, AccommodationReservation ac, User us)
         {
             reservationId = ar.ReservationId;
             guestId = ar.GuestId;
@@ -206,7 +206,7 @@ namespace BookingApp.DTO
 
         }
 
-        public AccommodationRateDTO(AccommodationRateDTO ar)
+        public AccommodationRateViewModel(AccommodationRateViewModel ar)
         {
             reservationId = ar.ReservationId;
             guestId = ar.GuestId;

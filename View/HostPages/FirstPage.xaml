@@ -39,10 +39,10 @@
                     <Style TargetType="Image">
                         <Setter Property="Source" Value="{x:Null}"/>
                         <Style.Triggers>
-                            <DataTrigger Binding="{Binding hostDTO.IsSuperHost}" Value="True">
+                            <DataTrigger Binding="{Binding hostViewModel.IsSuperHost}" Value="True">
                                 <Setter Property="Source" Value="../../Resources/Images/star.png"/>
                             </DataTrigger>
-                            <DataTrigger Binding="{Binding hostDTO.IsSUperHost}" Value="False">
+                            <DataTrigger Binding="{Binding hostViewModel.IsSUperHost}" Value="False">
                                 <Setter Property="Source" Value="{x:Null}"/>
                             </DataTrigger>
                         </Style.Triggers>
@@ -54,12 +54,12 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,20,0,0" HorizontalAlignment="Right"  Grid.Row="0" Width="146">
             <TextBlock Text="count of rates:" FontSize="13" VerticalAlignment="Center" Margin="5,0,0,0" />
-            <TextBlock x:Name="CountBox" Padding="0 2 0 0" Text="{Binding hostDTO.RateCount}"  Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
+            <TextBlock x:Name="CountBox" Padding="0 2 0 0" Text="{Binding hostViewModel.RateCount}"  Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,50,0,0" HorizontalAlignment="Right" Grid.Row="0" Width="146">
             <TextBlock Text="average of rates:" FontSize="13" VerticalAlignment="Center" Margin="5,0,0,0" />
-            <TextBlock x:Name="AverageBox" Padding="0 2 0 0" Text="{Binding hostDTO.RateAverage}" Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
+            <TextBlock x:Name="AverageBox" Padding="0 2 0 0" Text="{Binding hostViewModel.RateAverage}" Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
         </StackPanel>
 
 

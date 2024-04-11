@@ -9,9 +9,9 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace BookingApp.DTO
+namespace BookingApp.View.ViewModel
 {
-    public class GuestRateDTO : INotifyPropertyChanged
+    public class GuestRateViewModel : INotifyPropertyChanged
     {
         private int reservationId;
         public int ReservationId
@@ -109,7 +109,7 @@ namespace BookingApp.DTO
             {
                 if (columnName == "Cleanliness")
                 {
-                    if (Cleanliness < 1 || Cleanliness > 5 )
+                    if (Cleanliness < 1 || Cleanliness > 5)
                         return "Cleanliness must be from 1 to 5";
                 }
                 else if (columnName == "RulesFollowing")
@@ -117,8 +117,8 @@ namespace BookingApp.DTO
                     if (RulesFollowing < 0 || RulesFollowing > 5)
                         return "RulesFollowing must be from 1 to 5";
                 }
-                
-                
+
+
 
                 return null;
             }
@@ -143,9 +143,10 @@ namespace BookingApp.DTO
 
 
 
-        public GuestRateDTO() { }
+        public GuestRateViewModel() { }
 
-        public GuestRateDTO(GuestRate gr) {
+        public GuestRateViewModel(GuestRate gr)
+        {
 
             reservationId = gr.ReservationId;
             guestId = gr.UserId;

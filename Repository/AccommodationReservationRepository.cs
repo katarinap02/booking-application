@@ -1,10 +1,10 @@
-﻿using BookingApp.DTO;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.Repository
 {
@@ -100,7 +100,7 @@ namespace BookingApp.Repository
         }
 
 
-        internal void Delete(AccommodationReservationDTO selectedReservation)
+        internal void Delete(AccommodationReservationViewModel selectedReservation)
         {
             _reservations = _serializer.FromCSV(FilePath);
             AccommodationReservation found = _reservations.Find(r =>r.Id == selectedReservation.Id);

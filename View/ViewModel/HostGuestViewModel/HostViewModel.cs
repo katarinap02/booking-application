@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 
-namespace BookingApp.DTO
+namespace BookingApp.View.ViewModel
 {
-     public class HostDTO: INotifyPropertyChanged
+    public class HostViewModel : INotifyPropertyChanged
     {
         private int id;
         public int Id
@@ -100,9 +100,9 @@ namespace BookingApp.DTO
             }
         }
 
-        public HostDTO() { }
+        public HostViewModel() { }
 
-        public HostDTO(Host host)
+        public HostViewModel(Host host)
         {
             userName = host.Username;
             password = host.Password;

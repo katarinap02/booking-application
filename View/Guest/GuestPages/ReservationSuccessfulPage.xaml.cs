@@ -1,5 +1,4 @@
-﻿using BookingApp.DTO;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Repository;
 using BookingApp.Services;
 using System;
@@ -16,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.View.GuestPages
 {
@@ -26,7 +26,7 @@ namespace BookingApp.View.GuestPages
     {
         public AccommodationService AccommodationService { get; set; }
         public AccommodationRateService AccommodationRateService { get; set; }
-        public AccommodationDTO SelectedAccommodation { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
 
         public AccommodationReservationService AccommodationReservationService { get; set; }
         public CalendarDateRange SelectedDateRange { get; set; }
@@ -35,7 +35,7 @@ namespace BookingApp.View.GuestPages
         public Frame Frame { get; set; }
 
         public int GuestNumber { get; set; }
-        public ReservationSuccessfulPage(AccommodationService accommodationService, AccommodationReservationService accommodationReservationService, AccommodationDTO selectedAccommodation, CalendarDateRange selectedDateRange, int guestNumber, User user, Frame frame)
+        public ReservationSuccessfulPage(AccommodationService accommodationService, AccommodationReservationService accommodationReservationService, AccommodationViewModel selectedAccommodation, CalendarDateRange selectedDateRange, int guestNumber, User user, Frame frame)
         {
             InitializeComponent();
 
@@ -70,7 +70,7 @@ namespace BookingApp.View.GuestPages
             reservationDetailsCard.lblDateRange.Content = startDate + "-" + endDate;
         }
 
-        private void PrintAccommodationLocation(AccommodationDTO selectedAccommodation)
+        private void PrintAccommodationLocation(AccommodationViewModel selectedAccommodation)
         {
             reservationDetailsCard.lblAccommodationDetails.Content = selectedAccommodation.Name + ", " + selectedAccommodation.City + ", " + selectedAccommodation.Country;
         }

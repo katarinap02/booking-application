@@ -10,9 +10,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace BookingApp.DTO
+namespace BookingApp.View.ViewModel
 {
-    public class AccommodationReservationDTO : INotifyPropertyChanged
+    public class AccommodationReservationViewModel : INotifyPropertyChanged
     {
         private int id;
         public int Id
@@ -57,35 +57,35 @@ namespace BookingApp.DTO
             }
         }
 
-            private DateTime startDate;
-            public DateTime StartDate
+        private DateTime startDate;
+        public DateTime StartDate
+        {
+            get { return startDate; }
+            set
             {
-                get { return startDate; }
-                set
+                if (startDate != value)
                 {
-                    if (startDate != value)
-                    {
 
-                        startDate = value;
-                        OnPropertyChanged("StartDate");
-                    }
+                    startDate = value;
+                    OnPropertyChanged("StartDate");
                 }
             }
+        }
 
-            private DateTime endDate;
-            public DateTime EndDate
+        private DateTime endDate;
+        public DateTime EndDate
+        {
+            get { return endDate; }
+            set
             {
-                get { return endDate; }
-                set
+                if (endDate != value)
                 {
-                    if (endDate != value)
-                    {
 
-                        endDate = value;
-                        OnPropertyChanged("EndDate");
-                    }
+                    endDate = value;
+                    OnPropertyChanged("EndDate");
                 }
             }
+        }
 
         private int numberOfPeople;
 
@@ -155,7 +155,7 @@ namespace BookingApp.DTO
         private HostService hostService = new HostService();
         public string AccommodationDetails => Name + ", " + Location;
 
-       
+
         public string HostUsername => GetHostUsername(hostService, accommodationService.GetById(AccommodationId).HostId);
 
         private string GetHostUsername(HostService hostService, int hostId)
@@ -164,9 +164,9 @@ namespace BookingApp.DTO
         }
 
         public int NumberOfDays => (EndDate - StartDate).Days + 1;
-        public AccommodationReservationDTO() { }
+        public AccommodationReservationViewModel() { }
 
-        public AccommodationReservationDTO(AccommodationReservation ac)
+        public AccommodationReservationViewModel(AccommodationReservation ac)
         {
             id = ac.Id;
             guestId = ac.GuestId;
@@ -177,15 +177,15 @@ namespace BookingApp.DTO
             name = ac.Name;
             city = ac.City;
             country = ac.Country;
-            
+
 
 
 
 
         }
 
-       public AccommodationReservation ToAccommodationReservation()
-       {
+        public AccommodationReservation ToAccommodationReservation()
+        {
 
             AccommodationReservation a = new AccommodationReservation(guestId, accommodationId, startDate, endDate, numberOfPeople, name, city, country);
             a.Id = id;

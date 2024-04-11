@@ -2,6 +2,7 @@
 using BookingApp.Repository;
 using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;
+using BookingApp.ViewModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -70,7 +71,7 @@ namespace BookingApp.View
                     {
                         if(_guidedTourRepository.HasTourCurrently(user.Id)) {
                             Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
-                            GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new DTO.TourViewModel(tour), user);
+                            GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourViewModel(tour), user);
                             guideWithTourWindow.Show();
                         }
                         else

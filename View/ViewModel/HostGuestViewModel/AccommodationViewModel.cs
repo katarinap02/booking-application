@@ -10,9 +10,9 @@ using BookingApp.Model;
 using static System.Net.Mime.MediaTypeNames;
 
 
-namespace BookingApp.DTO
+namespace BookingApp.View.ViewModel
 {
-    public class AccommodationDTO : INotifyPropertyChanged
+    public class AccommodationViewModel : INotifyPropertyChanged
     {
         private int id;
         public int Id
@@ -73,7 +73,7 @@ namespace BookingApp.DTO
             }
         }
 
-        
+
 
         private AccommodationType type;
         public AccommodationType Type
@@ -125,7 +125,7 @@ namespace BookingApp.DTO
             {
                 if (maxGuestNumber != value)
                 {
-                    
+
                     maxGuestNumber = value;
                     OnPropertyChanged("MaxGuestNumber");
                 }
@@ -140,7 +140,7 @@ namespace BookingApp.DTO
             {
                 if (minReservationDays != value)
                 {
-                    
+
                     minReservationDays = value;
                     OnPropertyChanged("MinReservationNumber");
                 }
@@ -155,14 +155,14 @@ namespace BookingApp.DTO
             {
                 if (reservationDaysLimit != value)
                 {
-                    
+
                     reservationDaysLimit = value;
                     OnPropertyChanged("ReservationDaysLimit");
                 }
             }
         }
 
-        
+
 
 
         private List<string> picture = new List<string>();
@@ -242,7 +242,7 @@ namespace BookingApp.DTO
         public string Location => City + ", " + Country;
         public string Error => null;
 
-        
+
         private Regex _NumberRegex = new Regex("^[0-9]+$");
         private Regex _ImageRegex = new Regex("^(?:https://(?:[^,]*,)?)*https://(?:[^,]+)?(?:,(?=https://)[^,]*)*$");
 
@@ -262,7 +262,7 @@ namespace BookingApp.DTO
                         return "City is required";
 
                 }
-                
+
                 else if (columnName == "Country")
                 {
                     if (string.IsNullOrEmpty(Country))
@@ -281,11 +281,11 @@ namespace BookingApp.DTO
                 }
                 else if (columnName == "ReservationDaysLimit")
                 {
-                    
+
                     if (ReservationDaysLimit < 0)
                         return "Reservation days limit must be greater than 0";
                 }
-                
+
 
                 return null;
             }
@@ -310,38 +310,38 @@ namespace BookingApp.DTO
 
 
         public string ConvertToRelativePath(string inputPath)
-    {
-        
-        string pattern = @"\\";
-
-        
-        string replacedPath = Regex.Replace(inputPath, pattern, "/");
-
-        
-        if (replacedPath.StartsWith("Resources/Images/"))
         {
-            replacedPath = "../../" + replacedPath;
+
+            string pattern = @"\\";
+
+
+            string replacedPath = Regex.Replace(inputPath, pattern, "/");
+
+
+            if (replacedPath.StartsWith("Resources/Images/"))
+            {
+                replacedPath = "../../" + replacedPath;
+            }
+
+            return replacedPath;
         }
 
-        return replacedPath;
-    }
 
 
 
-
-    public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public AccommodationDTO()
+        public AccommodationViewModel()
         {
             reservationDaysLimit = 1;
         }
 
-        public AccommodationDTO(Accommodation accommodation)
+        public AccommodationViewModel(Accommodation accommodation)
         {
             id = accommodation.Id;
             name = accommodation.Name;
@@ -355,14 +355,15 @@ namespace BookingApp.DTO
 
             hostId = accommodation.HostId;
 
-            if(accommodation.Pictures.Count != 0) {
+            if (accommodation.Pictures.Count != 0)
+            {
                 OnePicture = ConvertToRelativePath(accommodation.Pictures[0]);
             }
             else
             {
                 OnePicture = "../../Resources/Images/no_image.jpg";
             }
-            
+
 
 
 
@@ -372,15 +373,15 @@ namespace BookingApp.DTO
         public Accommodation ToAccommodation()
         {
             type = GetAccommodationType();
-            
+
             Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit, hostId);
             a.Id = id;
             a.UnavailableDates = unavailableDates;
             a.Pictures = picture;
-            
 
-            
-            
+
+
+
 
             return a;
 
@@ -401,5 +402,5 @@ namespace BookingApp.DTO
         }
     }
 
-   
+
 }

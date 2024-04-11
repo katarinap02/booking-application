@@ -1,5 +1,4 @@
-﻿using BookingApp.DTO;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.Services;
@@ -18,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.View.GuestPages
 {
@@ -26,17 +26,17 @@ namespace BookingApp.View.GuestPages
     /// </summary>
     public partial class ProfileInfo : Page, IObserver
     {
-        public ObservableCollection<AccommodationReservationDTO> Reservations { get; set; }
+        public ObservableCollection<AccommodationReservationViewModel> Reservations { get; set; }
         public User User { get; set; }
         public AccommodationReservationService AccommodationReservationService { get; set; }
 
         public AccommodationService AccommodationService { get; set; }
-        public AccommodationReservationDTO SelectedReservation { get; set; }
+        public AccommodationReservationViewModel SelectedReservation { get; set; }
         public Frame Frame {  get; set; }   
         public ProfileInfo(AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, User user, Frame frame)
         {
             InitializeComponent();
-            Reservations = new ObservableCollection<AccommodationReservationDTO>();
+            Reservations = new ObservableCollection<AccommodationReservationViewModel>();
             this.User = user;
             this.Frame = frame;
             this.AccommodationReservationService = accommodationReservationService;
@@ -80,7 +80,7 @@ namespace BookingApp.View.GuestPages
             {
                 if (reservation.GuestId == User.Id)
                 {
-                    Reservations.Add(new AccommodationReservationDTO(reservation));
+                    Reservations.Add(new AccommodationReservationViewModel(reservation));
                 }
             }
         }
@@ -88,7 +88,7 @@ namespace BookingApp.View.GuestPages
         public void Cancel_Click(object sender, RoutedEventArgs e) { 
 
             Button button = sender as Button;
-            SelectedReservation = button.DataContext as AccommodationReservationDTO;
+            SelectedReservation = button.DataContext as AccommodationReservationViewModel;
             Frame.Content = new CancelReservationPage(AccommodationReservationService, AccommodationService, SelectedReservation, User, Frame);
 
         
@@ -99,7 +99,7 @@ namespace BookingApp.View.GuestPages
         public void Delay_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            SelectedReservation = button.DataContext as AccommodationReservationDTO;
+            SelectedReservation = button.DataContext as AccommodationReservationViewModel;
             Frame.Content = new DelayRequestPage(AccommodationReservationService, AccommodationService, SelectedReservation, User, Frame);
 
         }
