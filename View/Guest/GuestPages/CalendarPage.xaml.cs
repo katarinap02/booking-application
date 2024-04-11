@@ -276,6 +276,7 @@ namespace BookingApp.View.GuestPages
                 Reservation.Name = SelectedAccommodation.Name;
                 Reservation.City = SelectedAccommodation.City;
                 Reservation.Country = SelectedAccommodation.Country;
+                Reservation.NumberOfPeople = GuestNumber;
 
                 SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
                 AccommodationService.Update(SelectedAccommodation.ToAccommodation());

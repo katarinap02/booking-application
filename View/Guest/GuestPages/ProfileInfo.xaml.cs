@@ -18,78 +18,41 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.View.ViewModel;
+using BookingApp.View.ViewModel.HostGuestViewModel;
 
 namespace BookingApp.View.GuestPages
 {
     /// <summary>
     /// Interaction logic for ProfileInfo.xaml
     /// </summary>
-    public partial class ProfileInfo : Page, IObserver
+    public partial class ProfileInfo : Page
     {
-        public ObservableCollection<AccommodationReservationViewModel> Reservations { get; set; }
+      
         public User User { get; set; }
-        public AccommodationReservationService AccommodationReservationService { get; set; }
-
-        public AccommodationService AccommodationService { get; set; }
+       
         public AccommodationReservationViewModel SelectedReservation { get; set; }
         public Frame Frame {  get; set; }   
+
+        public ProfileInfoViewModel ViewModel { get; set; }
         public ProfileInfo(AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, User user, Frame frame)
         {
             InitializeComponent();
-            Reservations = new ObservableCollection<AccommodationReservationViewModel>();
+          
             this.User = user;
             this.Frame = frame;
-            this.AccommodationReservationService = accommodationReservationService;
-            this.AccommodationService = accommodationService;
-            DataContext = this;
-            statusLabel.Content = "guest";
-            totalReservationsLabel.Content = GetTotalReservations(AccommodationReservationService);
-            totalReservationsYearLabel.Content = GetTotalReservationsYear(AccommodationReservationService);
-            Update();
+            ViewModel = new ProfileInfoViewModel(User, Frame);
+            DataContext = ViewModel;
+            
+            ViewModel.Update();
         }
 
-        private string GetTotalReservationsYear(AccommodationReservationService accommodationReservationService)
-        {
-            int number = 0;
-            foreach (AccommodationReservation reservation in accommodationReservationService.GetAll())
-            {
-                if (reservation.GuestId == User.Id && reservation.StartDate.Year == DateTime.Now.Year)
-                    number++;
-            }
-
-            return number.ToString();
-        }
-
-        private string GetTotalReservations(AccommodationReservationService accommodationReservationService)
-        {
-            int number = 0;
-            foreach(AccommodationReservation reservation in accommodationReservationService.GetAll())
-            {
-                if (reservation.GuestId == User.Id)
-                    number++;
-            }
-
-            return number.ToString();
-        }
-
-        public void Update()
-        {
-            Reservations.Clear();
-
-            foreach (AccommodationReservation reservation in AccommodationReservationService.GetAll())
-            {
-                if (reservation.GuestId == User.Id)
-                {
-                    Reservations.Add(new AccommodationReservationViewModel(reservation));
-                }
-            }
-        }
+       
 
         public void Cancel_Click(object sender, RoutedEventArgs e) { 
 
-            Button button = sender as Button;
+           /* Button button = sender as Button;
             SelectedReservation = button.DataContext as AccommodationReservationViewModel;
-            Frame.Content = new CancelReservationPage(AccommodationReservationService, AccommodationService, SelectedReservation, User, Frame);
+            Frame.Content = new CancelReservationPage(SelectedReservation, User, Frame);*/
 
         
         
@@ -98,9 +61,9 @@ namespace BookingApp.View.GuestPages
 
         public void Delay_Click(object sender, RoutedEventArgs e)
         {
-            Button button = sender as Button;
+           /* Button button = sender as Button;
             SelectedReservation = button.DataContext as AccommodationReservationViewModel;
-            Frame.Content = new DelayRequestPage(AccommodationReservationService, AccommodationService, SelectedReservation, User, Frame);
+            Frame.Content = new DelayRequestPage(AccommodationReservationService, AccommodationService, SelectedReservation, User, Frame);*/
 
         }
     }
