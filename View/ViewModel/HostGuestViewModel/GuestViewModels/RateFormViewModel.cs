@@ -15,7 +15,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
 
-namespace BookingApp.View.ViewModel.HostGuestViewModel
+namespace BookingApp.View.ViewModel
 {
     public class RateFormViewModel : IObserver
     {

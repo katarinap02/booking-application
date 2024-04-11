@@ -15,7 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Xml.Linq;
 
-namespace BookingApp.View.ViewModel.HostGuestViewModel
+namespace BookingApp.View.ViewModel
 {
     public class ProfileInfoViewModel : IObserver
     {
