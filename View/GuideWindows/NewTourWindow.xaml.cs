@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingApp.Model;
-using BookingApp.DTO;
+using BookingApp.ViewModel;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;

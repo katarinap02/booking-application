@@ -9,12 +9,12 @@ using System.Windows.Input;
 using BookingApp.Model;
 using BookingApp.Services;
 
-namespace BookingApp.DTO
+namespace BookingApp.View.ViewModel
 {
     public class DelayRequestViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
-        
+
         private int id;
         public int Id
         {
@@ -180,7 +180,7 @@ namespace BookingApp.DTO
             get { return status; }
             set
             {
-                if( status != value)
+                if (status != value)
                 {
                     status = value;
                     OnPropertyChanged("Status");

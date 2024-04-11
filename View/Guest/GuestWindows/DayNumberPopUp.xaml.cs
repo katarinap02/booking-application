@@ -1,5 +1,4 @@
-﻿using BookingApp.DTO;
-using BookingApp.Repository;
+﻿using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -16,18 +15,18 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.Observer;
 using BookingApp.Model;
-
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.View
 {
     public partial class DayNumberPopUp : Window
     {
-        public AccommodationDTO SelectedAccommodation { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
         public AccommodationRepository AccommodationRepository { get; set; }
 
         public User User { get; set; }  
         public int DayNumber {  get; set; }
-        public DayNumberPopUp(AccommodationRepository accommodationRepository, AccommodationDTO SelectedAccommodation, User user)
+        public DayNumberPopUp(AccommodationRepository accommodationRepository, AccommodationViewModel SelectedAccommodation, User user)
         {
             InitializeComponent();
             this.SelectedAccommodation = SelectedAccommodation;

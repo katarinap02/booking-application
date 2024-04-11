@@ -1,5 +1,4 @@
-﻿using BookingApp.DTO;
-using BookingApp.Repository;
+﻿using BookingApp.Repository;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -15,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.View.HostPages
 {
@@ -23,13 +23,13 @@ namespace BookingApp.View.HostPages
     /// </summary>
     public partial class RegisterAccommodationPage : Page
     {
-        public AccommodationDTO accommodationDTO { get; set; }
+        public AccommodationViewModel accommodationDTO { get; set; }
         private AccommodationRepository accommodationRepository;
         public RegisterAccommodationPage()
         {
             InitializeComponent();
             DataContext = this;
-            accommodationDTO = new AccommodationDTO();
+            accommodationDTO = new AccommodationViewModel();
             accommodationRepository = new AccommodationRepository();
         }
 

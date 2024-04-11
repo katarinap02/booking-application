@@ -1,4 +1,4 @@
-﻿using BookingApp.DTO;
+﻿using BookingApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

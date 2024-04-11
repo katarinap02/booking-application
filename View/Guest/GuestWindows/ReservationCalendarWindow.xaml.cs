@@ -1,5 +1,4 @@
-﻿using BookingApp.DTO;
-using BookingApp.Repository;
+﻿using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,12 +19,13 @@ using System.Security.Cryptography;
 using System.Collections;
 using System.Globalization;
 using Calendar = System.Windows.Controls.Calendar;
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.View
 {
     public partial class ReservationCalendarWindow : Window
     {
-        public AccommodationDTO SelectedAccommodation { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
         public AccommodationRepository AccommodationRepository { get; set; }
         public User User { get; set; }
 
@@ -35,7 +35,7 @@ namespace BookingApp.View
         public int DayNumber { get; set; }
         
 
-        public ReservationCalendarWindow(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end)
+        public ReservationCalendarWindow(AccommodationRepository accommodationRepository, AccommodationViewModel selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end)
         {
             InitializeComponent();
             this.SelectedAccommodation = selectedAccommodation;
@@ -53,7 +53,7 @@ namespace BookingApp.View
 
         }
 
-        private void ConfigureCalendar(AccommodationDTO selectedAccommodation, DateTime start, DateTime end, int dayNumber)
+        private void ConfigureCalendar(AccommodationViewModel selectedAccommodation, DateTime start, DateTime end, int dayNumber)
         {
             CalendarDateRange chosenDateRange = new CalendarDateRange(start, end);
             ReservationCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
@@ -103,7 +103,7 @@ namespace BookingApp.View
 
         }
 
-        private void ShowReccommendedDates(AccommodationDTO selectedAccommodation, int dayNumber)
+        private void ShowReccommendedDates(AccommodationViewModel selectedAccommodation, int dayNumber)
         {
             ReservationCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
             ReservationCalendar.DisplayDateStart = DateTime.Today;
