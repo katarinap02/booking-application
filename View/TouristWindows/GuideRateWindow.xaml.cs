@@ -21,12 +21,13 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class GuideRateWindow : Window
     {
-        public TourViewModel SelectedTour { get; set; }
-        public GuideRateWindow(TourViewModel selectedTour)
+        public TourViewModel Tour { get; set; }
+
+        public GuideRateWindow()
         {
             InitializeComponent();
-            DataContext = this;
-            SelectedTour = selectedTour;
+            Tour = new TourViewModel();
+            DataContext = Tour;
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)

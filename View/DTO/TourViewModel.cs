@@ -1,13 +1,25 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Media;
 using BookingApp.Model;
+using BookingApp.Repository;
+using BookingApp.Services;
+using BookingApp.View.TouristWindows;
 
 namespace BookingApp.DTO
 {
     public class TourViewModel : INotifyPropertyChanged
     {
+        private readonly TouristService _touristService;
+        private readonly UserService _userService;
+
+        public ObservableCollection<TourViewModel> Tours { get; set; }
+        public ObservableCollection<Checkpoint> CheckpointWithColors { get; set; }
+
         private int id;
         public int Id
         {
@@ -236,6 +248,179 @@ namespace BookingApp.DTO
             }
         }
 
+        // akos
+        private string _durationSearch;
+        public string DurationSearch
+        {
+            get
+            {
+                return _durationSearch;
+            }
+            set
+            {
+                if(value != _durationSearch)
+                {
+                    _durationSearch = value ?? string.Empty;
+                    OnPropertyChanged(nameof(DurationSearch));
+                }
+            }
+        }
+
+        private string _peopleSearch;
+        public string PeopleSearch
+        {
+            get
+            {
+                return _peopleSearch;
+            }
+            set
+            {
+                if (value != _peopleSearch)
+                {
+                    _peopleSearch = value ?? string.Empty;
+                    OnPropertyChanged(nameof(PeopleSearch));
+                }
+            }
+        }
+
+        private string _citySearch;
+        public string CitySearch
+        {
+            get
+            {
+                return _citySearch;
+            }
+            set
+            {
+                if (value != _citySearch)
+                {
+                    _citySearch = value ?? string.Empty;
+                    OnPropertyChanged(nameof(CitySearch));
+                }
+            }
+        }
+
+        private string _countrySearch;
+        public string CountrySearch
+        {
+            get
+            {
+                return _countrySearch;
+            }
+            set
+            {
+                if (value != _countrySearch)
+                {
+                    _countrySearch = value ?? string.Empty;
+                    OnPropertyChanged(nameof(CountrySearch));
+                }
+            }
+        }
+
+        private string _languageSearch;
+        public string LanguageSearch
+        {
+            get
+            {
+                return _languageSearch;
+            }
+            set
+            {
+                if (value != _languageSearch)
+                {
+                    _languageSearch = value ?? string.Empty;
+                    OnPropertyChanged(nameof(LanguageSearch));
+                }
+            }
+        }
+
+        private int _maximumValuePeoples;
+
+        public int MaximumValuePeoples
+        {
+            get
+            {
+                return _maximumValuePeoples;
+            }
+            set
+            {
+                if(value != _maximumValuePeoples)
+                {
+                    _maximumValuePeoples = value;
+                    OnPropertyChanged(nameof(MaximumValuePeoples));
+                }
+            }
+        }
+
+        private TourViewModel _selectedTour;
+        public TourViewModel SelectedTour
+        {
+            get
+            {
+                return _selectedTour;
+            }
+            set
+            {
+                if(value != _selectedTour)
+                {
+                    _selectedTour = value;
+                    OnPropertyChanged(nameof(SelectedTour));
+                }
+            }
+        }
+
+        private int _userId;
+        public int UserId
+        {
+            get
+            {
+                return _userId;
+            }
+            set
+            {
+                if (_userId != value)
+                {
+                    _userId = value;
+                    OnPropertyChanged(nameof(UserId));
+                }
+            }
+        }
+
+        private string _username;
+        public string UserName
+        {
+            get
+            {
+                return _username;
+            }
+            set
+            {
+                if(_username != value)
+                {
+                    _username = value;
+                    OnPropertyChanged(nameof(UserName));
+                }
+            }
+        }
+
+        private Visibility _pdfPanel;
+        public Visibility PdfPanel
+        {
+            get
+            {
+                return _pdfPanel;
+            }
+            set
+            {
+                if( _pdfPanel != value)
+                {
+                    _pdfPanel = value;
+                    OnPropertyChanged(nameof(PdfPanel));
+                }
+            }
+        }
+
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -243,7 +428,196 @@ namespace BookingApp.DTO
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public TourViewModel() { }
+        public int getUserId(string Username)
+        {
+
+            UserId = _userService.GetByUsername(Username).Id;
+            return UserId;
+        }
+
+
+        public void initializeAllTours()
+        {
+            MaximumValuePeoples = _touristService.FindMaxNumberOfParticipants();
+        }
+
+        //******************************* ZA ALLTOURS PAGE
+        public void BookButton(TourViewModel selectedTour)
+        {
+            TourNumberOfParticipantsWindow tourNumberOfParticipantsWindow = new TourNumberOfParticipantsWindow(selectedTour, UserId);
+            tourNumberOfParticipantsWindow.ShowDialog();
+
+            if (Tours.Count != _touristService.ToursCount())
+                RefreshAllToursDataGrid(true);
+            else
+                RefreshAllToursDataGrid(false);
+        }
+
+        public void DetailsButton(TourViewModel selectedTour, bool isMyTour)
+        {
+            TourDetailsWindow tourDetailsWindow = new TourDetailsWindow(selectedTour, isMyTour);
+            tourDetailsWindow.ShowDialog();
+        }
+
+        public void NotificationButton()
+        {
+            // TREBA DA SE IZMENI DA PRIKAZE SAMO MOJE NOTIFIKACIJE
+            TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow();
+            touristNotificationWindow.ShowDialog();
+        }
+
+        private List<TourViewModel>? Search()
+        {
+            DurationSearch = SetToEmptyIfNull(DurationSearch);
+            CitySearch = SetToEmptyIfNull(CitySearch);
+            CountrySearch = SetToEmptyIfNull(CountrySearch);
+            LanguageSearch = SetToEmptyIfNull(LanguageSearch);
+            PeopleSearch = SetToEmptyIfNull(PeopleSearch);
+
+
+            DurationSearch = EmptyStringToZero(DurationSearch);
+            PeopleSearch = EmptyStringToZero(PeopleSearch);
+
+
+            Tour tour = new Tour("", CitySearch, CountrySearch, "", LanguageSearch, int.Parse(PeopleSearch),
+                                new List<string>(), new DateTime(), float.Parse(DurationSearch), new List<string>());
+            List<TourViewModel>? foundTours = _touristService.SearchTours(tour);
+            return foundTours;
+        }
+
+        public void SearchButton()
+        {
+            Tours.Clear();
+            List<TourViewModel>? foundTours = Search();
+
+            if (foundTours != null)
+                foreach (TourViewModel t in foundTours)
+                    Tours.Add(t);
+        }
+
+        public void ResetButton()
+        {
+            CountrySearch = string.Empty;
+            CitySearch = string.Empty;
+            LanguageSearch = string.Empty;
+            DurationSearch = "0";
+            PeopleSearch = "0";
+        }
+
+        private string SetToEmptyIfNull(string search)
+        {
+            if(search == null)
+            {
+                return string.Empty;
+            }
+            return search;
+        }
+
+        private string EmptyStringToZero(string text)
+        {
+            if (text == string.Empty)
+            {
+                return "0";
+            }
+
+            return text;
+        }
+
+        public void RefreshAllToursDataGrid(bool withSearch)
+        {
+            Tours.Clear();
+            if (withSearch)
+            {
+                List<TourViewModel>? foundTours = Search();
+
+                if (foundTours != null)
+                    foreach (TourViewModel t in foundTours)
+                        Tours.Add(t);
+            }
+            else
+            {
+                List<TourViewModel> allTours = _touristService.GetAllTours();
+                foreach (TourViewModel tour in allTours)
+                    Tours.Add(tour);
+            }
+
+        }
+
+        //**********************************************
+
+        // ******************* ZA MY TOURS PAGE
+
+        public void RefreshMyTours()
+        {
+            Tours.Clear();
+            List<TourViewModel> tours = _touristService.FindMyTours(UserId);
+            foreach(var tour in tours)
+            {
+                Tours.Add(tour);
+            }
+        }
+        public void RefreshEndedTours()
+        {
+            Tours.Clear();
+            List<TourViewModel> tours = _touristService.FindMyEndedTours(UserId);
+            foreach (var tour in tours)
+            {
+                Tours.Add(tour);
+            }
+        }
+
+        //*********************** TOUR DETAILS
+
+        public void TourDetailsWindowInitialization(bool IsMyTour)
+        {
+
+            SolidColorBrush activeColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#56707a"));
+            SolidColorBrush inactiveColor = Brushes.Gray;
+            CheckpointWithColors.Clear();
+            foreach (var checkpoint in SelectedTour.Checkpoints)
+            {
+                CheckpointWithColors.Add(new Checkpoint { Name = checkpoint, IndicatorColor = inactiveColor });
+            }
+
+            if (IsMyTour)
+            {
+                PdfPanel = Visibility.Visible;
+            }
+            else
+            {
+                PdfPanel = Visibility.Collapsed;
+            }
+
+            int checkpointIndex;
+            checkpointIndex = SelectedTour.CurrentCheckpoint;
+            for (int i = 0; i < SelectedTour.Checkpoints.Count; i++)
+            {
+                if (i == checkpointIndex)
+                {
+                    CheckpointWithColors[i].IndicatorColor = activeColor;
+                }
+                else
+                {
+                    CheckpointWithColors[i].IndicatorColor = inactiveColor;
+                }
+            }
+            // images
+            if (SelectedTour.Pictures != null)
+            {
+                for (int i = 0; i < SelectedTour.Pictures.Count; i++)
+                {
+                    SelectedTour.Pictures[i] = "../../" + SelectedTour.Pictures[i];
+                }
+            }
+        }
+
+
+        public TourViewModel() {
+            _touristService = new TouristService();
+            _userService = new UserService();
+            Tours = new ObservableCollection<TourViewModel>();
+            CheckpointWithColors = new ObservableCollection<Checkpoint>();
+        }
 
         public TourViewModel (Tour tour)
         {
@@ -277,5 +651,27 @@ namespace BookingApp.DTO
 
     }
 
+    //************ OVO JE ZA TOUR DETAILS
+    public class Checkpoint : INotifyPropertyChanged
+    {
+        private string name;
+        public string Name
+        {
+            get { return name; }
+            set { name = value; NotifyPropertyChanged(nameof(Name)); }
+        }
 
+        private Brush indicatorColor;
+        public Brush IndicatorColor
+        {
+            get { return indicatorColor; }
+            set { indicatorColor = value; NotifyPropertyChanged(nameof(IndicatorColor)); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+    }
 }

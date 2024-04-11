@@ -25,18 +25,17 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class VouchersPage : Page
     {
-        public ObservableCollection<VoucherViewModel> Vouchers { get; set; }
+        public VoucherViewModel Voucher { get; set; }
 
-        //private readonly VoucherRepository _repository;
-        private readonly VoucherService _voucherService;
         public VouchersPage(int userId)
         {
             InitializeComponent();
-            DataContext = this;
-            //_repository = new VoucherRepository();
-            //Vouchers = new ObservableCollection<Voucher>(_repository.FindVouchersByUser(userId));
-            _voucherService = new VoucherService();
-            Vouchers = new ObservableCollection<VoucherViewModel>(_voucherService.FindVouchersByUser(userId));
+            Voucher = new VoucherViewModel();
+            DataContext = Voucher;
+
+            Voucher.UserId = userId;
+
+            Voucher.RefreshVouchers();
         }
 
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
