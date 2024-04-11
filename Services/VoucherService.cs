@@ -1,6 +1,6 @@
-﻿using BookingApp.DTO;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
