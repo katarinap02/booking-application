@@ -15,16 +15,12 @@ namespace BookingApp.Services
         private readonly TourRepository tourRepository;
         private readonly TourParticipantRepository tourparticipantRepository;
         private readonly TourReservationRepository tourReservationRepository;
-        private readonly TouristNotificationRepository touristNotificationRepository;
-        private readonly VoucherRepository voucherRepository;
 
         public TouristService()
         {
             tourRepository = new TourRepository();
             tourparticipantRepository = new TourParticipantRepository();
             tourReservationRepository = new TourReservationRepository();
-            touristNotificationRepository = new TouristNotificationRepository();
-            voucherRepository = new VoucherRepository();
         }
 
         public List<TourViewModel> GetAllTours()
@@ -48,25 +44,6 @@ namespace BookingApp.Services
             return ToursViewModel;
         }
 
-        public List<VoucherViewModel> ToVoucherViewModel(List<Voucher> Vouchers)
-        {
-            List<VoucherViewModel> VouchersViewModel = new List<VoucherViewModel>();
-            foreach(Voucher voucher in Vouchers)
-            {
-                VouchersViewModel.Add(new VoucherViewModel(voucher));
-            }
-            return VouchersViewModel;
-        }
-
-        public List<TouristNotificationViewModel> ToTouristNotificationViewModel(List<TouristNotification> touristNotifications)
-        {
-            List<TouristNotificationViewModel> NotificaionViewModel = new List<TouristNotificationViewModel>();
-            foreach(TouristNotification notification in touristNotifications)
-            {
-                NotificaionViewModel.Add(new TouristNotificationViewModel(notification));
-            }
-            return NotificaionViewModel;
-        }
         public List<TourViewModel>? SearchTours(Tour searchCriteria)
         {
             return ToTourViewModel(tourRepository.SearchTours(searchCriteria));
@@ -92,15 +69,6 @@ namespace BookingApp.Services
             return ToTourViewModel(tourReservationRepository.FindMyEndedTours(id));
         }
 
-        public List<VoucherViewModel> FindVouchersByUser(int id)
-        {
-            return ToVoucherViewModel(voucherRepository.FindVouchersByUser(id));
-        }
-
-        public List<TouristNotificationViewModel> GetAllNotifications()
-        {
-            return ToTouristNotificationViewModel(touristNotificationRepository.GetAllReversed());
-        }
 
         public List<string> GetParticipantsThatJoined(TouristNotification notification)
         {

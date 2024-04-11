@@ -36,6 +36,10 @@
         <!-- *********************** -->
 
         <SolidColorBrush x:Key="TouristBackgroundColor1" Color="#A6CEDA"/>
+        <LinearGradientBrush x:Key="TouristBackgroundColor1Linear" StartPoint="0,1" EndPoint="0,0">
+            <GradientStop Offset="1" Color="#A6CEDA" />
+            <GradientStop Offset="0" Color="#8AB9C5" />
+        </LinearGradientBrush>
         <SolidColorBrush x:Key="TouristBackgroundColor2" Color="#4CB9DA"/>
         <SolidColorBrush x:Key="TouristGroundColor1" Color="#58DBD0"/>
         <SolidColorBrush x:Key="TouristGroundColor2" Color="#42BC87"/>

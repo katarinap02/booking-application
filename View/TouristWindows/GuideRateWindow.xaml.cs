@@ -28,5 +28,25 @@ namespace BookingApp.View.TouristWindows
             DataContext = this;
             SelectedTour = selectedTour;
         }
+
+        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null && textBox.Text == "Leave a comment...")
+            {
+                textBox.Text = "";
+                textBox.Foreground = Brushes.Black;
+            }
+        }
+
+        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+            if (textBox != null && string.IsNullOrWhiteSpace(textBox.Text))
+            {
+                textBox.Text = "Leave a comment...";
+                textBox.Foreground = Brushes.Gray;
+            }
+        }
     }
 }

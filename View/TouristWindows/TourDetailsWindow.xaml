@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         mc:Ignorable="d"
         Title="TourDetailsWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid Background="{StaticResource TouristBackgroundColor1}">
+    <Grid Background="{StaticResource TouristBackgroundColor1Linear}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
