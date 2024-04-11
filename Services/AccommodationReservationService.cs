@@ -70,11 +70,11 @@ namespace BookingApp.Services
 
      
 
-        public bool IsReserved(DateTime StartDate, DateTime EndDate)
+        public bool IsReserved(DateTime StartDate, DateTime EndDate, int accommodationId)
         {
             foreach (AccommodationReservation res in GetAll())
             {
-                if ((StartDate <= res.EndDate && StartDate >= res.StartDate) || (EndDate <= res.EndDate && EndDate >= res.StartDate))
+                if ((StartDate <= res.EndDate && StartDate >= res.StartDate) || (EndDate <= res.EndDate && EndDate >= res.StartDate) && res.AccommodationId == accommodationId)
                 { return true; }
 
             }
