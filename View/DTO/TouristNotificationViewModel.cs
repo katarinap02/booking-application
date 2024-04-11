@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookingApp.DTO
 {
-    class TouristNotificationDTO : INotifyPropertyChanged
+    public class TouristNotificationViewModel : INotifyPropertyChanged
     {
         private int _id;
         public int Id { 
@@ -47,10 +47,10 @@ namespace BookingApp.DTO
             }
             set
             {
-                if( _touristId != value )
+                if( _tourId != value )
                 {
-                    _touristId = value;
-                    OnPropertyChanged(nameof(_touristId));
+                    _tourId = value;
+                    OnPropertyChanged(nameof(TourId));
                 }
             }
         }
@@ -87,6 +87,40 @@ namespace BookingApp.DTO
             }
         }
 
+        private string _guideName;
+        public string GuideName
+        {
+            get
+            {
+                return _guideName;
+            }
+            set
+            {
+                if(value != _guideName)
+                {
+                    _guideName = value;
+                    OnPropertyChanged(nameof(GuideName));
+                }
+            }
+        }
+
+        private int _currentCheckpoint;
+        public int CurrentCheckpoint
+        {
+            get
+            {
+                return _currentCheckpoint;
+            }
+            set
+            {
+                if( _currentCheckpoint != value )
+                {
+                    _currentCheckpoint = value;
+                    OnPropertyChanged(nameof(CurrentCheckpoint));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -94,25 +128,49 @@ namespace BookingApp.DTO
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public TouristNotificationDTO() { }
-        public TouristNotificationDTO(TouristNotification touristNotification)
+        public TouristNotificationViewModel() { }
+        public TouristNotificationViewModel(TouristNotification touristNotification)
         {
             Id = touristNotification.Id;
             TouristId = touristNotification.TouristId;
             TourId = touristNotification.TourId;
             NotificationType = touristNotification.NotificationType;
             TourName = touristNotification.TourName;
+            GuideName = touristNotification.GuideName;
+            CurrentCheckpoint = touristNotification.CurrentCheckpoint;
         }
 
         public TouristNotification ToTouristNotification()
         {
-            TouristNotification touristNotification = new TouristNotification(Id, TouristId, TourId, NotificationType, TourName);
+            TouristNotification touristNotification = new TouristNotification(Id, TouristId, TourId, NotificationType, TourName, GuideName, CurrentCheckpoint);
             touristNotification.Id = Id;
             touristNotification.TourId = TourId;
             touristNotification.TouristId = TouristId;
             touristNotification.NotificationType = NotificationType;
             touristNotification.TourName = TourName;
+            touristNotification.GuideName = GuideName;
+            touristNotification.CurrentCheckpoint = CurrentCheckpoint;
             return touristNotification;
+        }
+
+        public override string ToString()
+        {
+            string type = "";
+            if(_notificationType == NotificationType.RateTour)
+            {
+                type = "Rate tour";
+            }else if(_notificationType == NotificationType.JoinedTour)
+            {
+                type = "Joined tour";
+            }else if(_notificationType == NotificationType.TourCanceled)
+            {
+                type = "Tour canceled";
+            }else if(_notificationType == NotificationType.GuideQuit)
+            {
+                type = "Guide quit";
+                return $"{type} :: Guide - {GuideName}";
+            }
+            return $"{type} :: Tour - \"{_tourName}\"";
         }
     }
 }

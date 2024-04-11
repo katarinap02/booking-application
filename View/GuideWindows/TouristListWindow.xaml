@@ -5,8 +5,8 @@
     <Grid Margin="0,0,0,0">
         <DataGrid x:Name="dataGrid" AutoGenerateColumns="False" Margin="10,10,10,40">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Tourist Name" Binding="{Binding TouristName}" Width="*" />
-                <DataGridTextColumn Header="Reservation ID" Binding="{Binding ReservationID}" Width="*" />
+                <DataGridTextColumn Header="Tourist Name" Binding="{Binding Name}" Width="*" />
+                <DataGridTextColumn Header="ID" Binding="{Binding Id}" Width="*" />
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="JoinedButton" Content="Tourists Joined" HorizontalAlignment="Left" Margin="10,310,0,0" VerticalAlignment="Top" Width="150" Click="JoinedButton_Click"/>

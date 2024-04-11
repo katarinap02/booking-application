@@ -9,20 +9,30 @@
 
   <ItemGroup>
     <None Remove="Resources\Images\add.png" />
+    <None Remove="Resources\Images\back_arrow.png" />
+    <None Remove="Resources\Images\blue_square.png" />
     <None Remove="Resources\Images\cottage.jpg" />
     <None Remove="Resources\Images\delete.png" />
+    <None Remove="Resources\Images\down_right_arrow.png" />
     <None Remove="Resources\Images\edit.png" />
     <None Remove="Resources\Images\example.jpg" />
+    <None Remove="Resources\Images\home.png" />
     <None Remove="Resources\Images\house.jpg" />
     <None Remove="Resources\Images\Istanbul1.jpg" />
+    <None Remove="Resources\Images\menu_item1.png" />
+    <None Remove="Resources\Images\notification.png" />
     <None Remove="Resources\Images\no_image.jpg" />
     <None Remove="Resources\Images\paris1.jpg" />
+    <None Remove="Resources\Images\red_dot.png" />
     <None Remove="Resources\Images\star.png" />
+    <None Remove="Resources\Images\urgent.png" />
+    <None Remove="Resources\Images\video-camera.png" />
     <None Remove="Resources\Images\view.png" />
     <None Remove="View\TouristWindows\hamburger.png" />
     <None Remove="View\TouristWindows\logout.png" />
     <None Remove="View\TouristWindows\minus.png" />
     <None Remove="View\TouristWindows\notification.png" />
+    <None Remove="View\TouristWindows\pdf.png" />
     <None Remove="View\TouristWindows\plus.png" />
     <None Remove="View\TouristWindows\search.png" />
     <None Remove="View\TouristWindows\user.png" />
@@ -37,16 +47,28 @@
     <Content Include="Resources\Images\add.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\back_arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\blue_square.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\cottage.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\delete.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\down_right_arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\example.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\home.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\house.jpg">
@@ -55,14 +77,29 @@
     <Content Include="Resources\Images\Istanbul1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\menu_item1.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\notification.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\no_image.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\paris1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Images\red_dot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\Images\star.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\urgent.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\video-camera.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\view.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
@@ -86,6 +123,7 @@
 
     <Resource Include="View\TouristWindows\minus.png" />
     <Resource Include="View\TouristWindows\notification.png" />
+    <Resource Include="View\TouristWindows\pdf.png" />
     <Resource Include="View\TouristWindows\plus.png" />
     <Resource Include="View\TouristWindows\search.png" />
     <Resource Include="View\TouristWindows\user.png" />

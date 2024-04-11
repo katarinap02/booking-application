@@ -43,6 +43,20 @@ namespace BookingApp.DTO
             }
         }
 
+        private string guestUserame;
+        public string GuestUsername
+        {
+            get { return guestUserame; }
+            set
+            {
+                if (guestUserame != value)
+                {
+                    guestUserame = value;
+                    OnPropertyChanged("GuestUsername");
+                }
+            }
+        }
+
         private int hostId;
         public int HostId
         {
@@ -67,6 +81,20 @@ namespace BookingApp.DTO
                 {
                     reservationId = value;
                     OnPropertyChanged("ReservationId");
+                }
+            }
+        }
+
+        private string reservationName;
+        public string ReservationName
+        {
+            get { return reservationName; }
+            set
+            {
+                if (reservationName != value)
+                {
+                    reservationName = value;
+                    OnPropertyChanged("ReservationName");
                 }
             }
         }
@@ -101,6 +129,36 @@ namespace BookingApp.DTO
             }
         }
 
+        private DateTime startLastDate;
+        public DateTime StartLastDate
+        {
+            get { return startLastDate; }
+            set
+            {
+                if (startLastDate != value)
+                {
+
+                    startLastDate = value;
+                    OnPropertyChanged("StartLastDate");
+                }
+            }
+        }
+
+        private DateTime endLastDate;
+        public DateTime EndLastDate
+        {
+            get { return endLastDate; }
+            set
+            {
+                if (endLastDate != value)
+                {
+
+                    endLastDate = value;
+                    OnPropertyChanged("EndLastDate");
+                }
+            }
+        }
+
         private string comment;
         public string Comment
         {
@@ -129,6 +187,22 @@ namespace BookingApp.DTO
                 }
             }
         }
+
+
+        private bool reserved;
+        public bool Reserved
+        {
+            get { return reserved; }
+            set
+            {
+                if (reserved != value)
+                {
+                    reserved = value;
+                    OnPropertyChanged("Reserved");
+                }
+            }
+        }
+
         private AccommodationReservationService AccommodationReservationService = new AccommodationReservationService();
         private AccommodationService AccommodationService = new AccommodationService();
 
@@ -142,6 +216,7 @@ namespace BookingApp.DTO
         }
 
         public string DateRange => startDate.ToString() + "-" + endDate.ToString();
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

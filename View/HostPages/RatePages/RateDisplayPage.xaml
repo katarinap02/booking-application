@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.HostPages.RatePages"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="1024"
+      d:DesignHeight="705" d:DesignWidth="1024"
       Title="RateDisplayPage">
 
     <Grid>
@@ -27,7 +27,7 @@
             FontSize="32"
              />
 
-        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="5 0 25 0" HorizontalAlignment="Right">
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="5 0 35 0" HorizontalAlignment="Right">
             <Image Source="../../../Resources/Images/notification.png" Width="20" Height="25"/>
             <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">
                 <Hyperlink Style="{StaticResource HyperlinkStyle}" FontSize="15"  RequestNavigate="RateGuest_RequestNavigate" >
@@ -40,7 +40,7 @@
     x:Name="AccommodationsRateListView"
     Grid.Row="1"
     
-    Margin="20,0,20,40"
+    Margin="40,0,0,40"
     Padding="0"
     Background="Transparent"
     BorderThickness="0"

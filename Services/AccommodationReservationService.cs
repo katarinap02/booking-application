@@ -46,11 +46,33 @@ namespace BookingApp.Services
             AccommodationReservationRepository.Delete(selectedReservation);
         }
 
+        public AccommodationReservation Update(AccommodationReservation reservation)
+        {
+            return AccommodationReservationRepository.Update(reservation);
+        }
+
         public AccommodationReservation GetById(int id)
         {
             return AccommodationReservationRepository.GetById(id);
         }
 
+        public void UpdateReservation(int id, DateTime StartDate, DateTime EndDate)
+        {
+            AccommodationReservation reservation = GetById(id);
+            reservation.StartDate = StartDate;
+            reservation.EndDate = EndDate;
+            Update(reservation);
+        }
 
+        public bool IsReserved(DateTime StartDate, DateTime EndDate)
+        {
+            foreach (AccommodationReservation res in GetAll())
+            {
+                if ((StartDate <= res.EndDate && StartDate >= res.StartDate) || (EndDate <= res.EndDate && EndDate >= res.StartDate))
+                { return true; }
+
+            }
+            return false;
+        }
     }
 }

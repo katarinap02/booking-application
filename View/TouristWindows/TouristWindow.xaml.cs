@@ -94,7 +94,7 @@ namespace BookingApp.View.TouristWindows
         public void Update()
         {
             Tours.Clear();
-            List<TourViewModel> ToursViewModel = _touristService.GetAll();
+            List<TourViewModel> ToursViewModel = _touristService.GetAllTours();
             foreach(TourViewModel tour in ToursViewModel)
             {
                 Tours.Add(tour);
@@ -163,38 +163,55 @@ namespace BookingApp.View.TouristWindows
 
         }
 
-        private void MenuButton_Checked(object sender, RoutedEventArgs e)
-        {
-            NotifyLogoutPanel.Visibility = Visibility.Visible;
-        }
-
-        private void MenuButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            NotifyLogoutPanel.Visibility = Visibility.Collapsed;
-        }
-
         private void AllToursButton_Click(object sender, RoutedEventArgs e)
         {
+            resetButtonColors();
             MainFrame.Content = new AllToursPage(getUserId());
+            AllToursButton.Background = darkerBlue();
         }
 
         private void MyToursButton_Click(object sender, RoutedEventArgs e)
         {
+            resetButtonColors();
             MainFrame.Content = new MyToursPage(getUserId());
+            MyToursButton.Background = darkerBlue();
         }
 
         private void EndedToursButton_Click(object sender, RoutedEventArgs e)
         {
+            resetButtonColors();
             MainFrame.Content = new EndedToursPage(getUserId());
+            EndedToursButton.Background = darkerBlue();
         }
         private void VouchersButton_Click(object sender, RoutedEventArgs e)
         {
+            resetButtonColors();
             MainFrame.Content = new VouchersPage(getUserId());
+            VouchersButton.Background = darkerBlue();
         }
 
         private int getUserId()
         {
             return _userRepository.GetByUsername(Username).Id;
+        }
+
+        private void resetButtonColors()
+        {
+            AllToursButton.Background = lighterBlue();
+            MyToursButton.Background = lighterBlue();
+            EndedToursButton.Background = lighterBlue();
+            RequestedToursButton.Background = lighterBlue();
+            VouchersButton.Background = lighterBlue();
+            LogOutButton.Background = lighterBlue();
+        }
+
+        private SolidColorBrush darkerBlue()
+        {
+            return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#344299"));
+        }
+        private SolidColorBrush lighterBlue()
+        {
+            return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4C5FD9"));
         }
 
     }

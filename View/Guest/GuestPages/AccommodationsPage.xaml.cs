@@ -35,6 +35,8 @@ namespace BookingApp.View.GuestPages
 
         public AccommodationReservationService AccommodationReservationService { get; set; }
         public Frame Frame { get; set; }    
+
+        public HostService HostService { get; set; }
       
 
         public AccommodationsPage(AccommodationService accommodationService, AccommodationReservationService accommodationReservationService, User user, Frame frame)
@@ -49,16 +51,42 @@ namespace BookingApp.View.GuestPages
             DataContext = this;
             this.Frame = frame;
             this.AccommodationReservationService = accommodationReservationService;
+            this.HostService = new HostService();
+            
            
             Update();
         }
         public void Update()
         {
             Accommodations.Clear();
+            List<AccommodationDTO> superHostAccommodations = new List<AccommodationDTO>();
+            List<AccommodationDTO> nonSuperHostAccommodations = new List<AccommodationDTO>();
+
+            SeparateAccommodations(AccommodationService, superHostAccommodations, nonSuperHostAccommodations);
+            
+
+            foreach(AccommodationDTO superHostAccommodation in superHostAccommodations)
+                Accommodations.Add(superHostAccommodation);
+            
+            foreach (AccommodationDTO nonSuperHostAccommodation in nonSuperHostAccommodations)
+                Accommodations.Add(nonSuperHostAccommodation);
+        }
+
+        private void SeparateAccommodations(AccommodationService accommodationService, List<AccommodationDTO> superHostAccommodations, List<AccommodationDTO> nonSuperHostAccommodations)
+        {
             foreach (Accommodation accommodation in AccommodationService.GetAll())
             {
 
-                Accommodations.Add(new AccommodationDTO(accommodation));
+                AccommodationDTO accommodationDTO = new AccommodationDTO(accommodation);
+                Host host = HostService.GetById(accommodation.HostId);
+                HostService.BecomeSuperHost(host);
+                accommodationDTO.IsSuperHost = host.IsSuperHost;
+
+                if (accommodationDTO.IsSuperHost)
+                    superHostAccommodations.Add(accommodationDTO);
+                else
+                    nonSuperHostAccommodations.Add(accommodationDTO);
+
                 //MessageBox.Show(Accommodations[0].Type.ToString());
             }
         }

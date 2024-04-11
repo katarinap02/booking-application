@@ -4,6 +4,7 @@ using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -12,17 +13,21 @@ namespace BookingApp.Services
     public class TouristService
     {
         private readonly TourRepository tourRepository;
+        private readonly TourParticipantRepository tourparticipantRepository;
         private readonly TourReservationRepository tourReservationRepository;
+        private readonly TouristNotificationRepository touristNotificationRepository;
         private readonly VoucherRepository voucherRepository;
 
         public TouristService()
         {
             tourRepository = new TourRepository();
+            tourparticipantRepository = new TourParticipantRepository();
             tourReservationRepository = new TourReservationRepository();
+            touristNotificationRepository = new TouristNotificationRepository();
             voucherRepository = new VoucherRepository();
         }
 
-        public List<TourViewModel> GetAll()
+        public List<TourViewModel> GetAllTours()
         {
             return ToTourViewModel(tourRepository.GetAll());
         }
@@ -52,6 +57,16 @@ namespace BookingApp.Services
             }
             return VouchersViewModel;
         }
+
+        public List<TouristNotificationViewModel> ToTouristNotificationViewModel(List<TouristNotification> touristNotifications)
+        {
+            List<TouristNotificationViewModel> NotificaionViewModel = new List<TouristNotificationViewModel>();
+            foreach(TouristNotification notification in touristNotifications)
+            {
+                NotificaionViewModel.Add(new TouristNotificationViewModel(notification));
+            }
+            return NotificaionViewModel;
+        }
         public List<TourViewModel>? SearchTours(Tour searchCriteria)
         {
             return ToTourViewModel(tourRepository.SearchTours(searchCriteria));
@@ -80,6 +95,32 @@ namespace BookingApp.Services
         public List<VoucherViewModel> FindVouchersByUser(int id)
         {
             return ToVoucherViewModel(voucherRepository.FindVouchersByUser(id));
+        }
+
+        public List<TouristNotificationViewModel> GetAllNotifications()
+        {
+            return ToTouristNotificationViewModel(touristNotificationRepository.GetAllReversed());
+        }
+
+        public List<string> GetParticipantsThatJoined(TouristNotification notification)
+        {
+            // moram naci rezervacije
+            List<TourReservation> reservations = tourReservationRepository.FindReservationsByUserIdAndTourId(notification.TourId, notification.TouristId);
+
+            List<string> nowJoinedParticipantNames = new List<string>();
+            foreach (var reservation in reservations)
+            {
+                List<TourParticipant> joinedTourParticipants = tourparticipantRepository.GetAllJoinedParticipantsByReservation(reservation.Id);
+                foreach(var participant in joinedTourParticipants)
+                {
+                    // ako se sad prikljucio onda cemo prikazati u notifitikaciji
+                    if(participant.JoinedCheckpointIndex == notification.CurrentCheckpoint)
+                    {
+                        nowJoinedParticipantNames.Add(participant.LastName + " " + participant.Name);
+                    }
+                }
+            }
+            return nowJoinedParticipantNames;
         }
     }
 }

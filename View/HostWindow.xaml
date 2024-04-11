@@ -7,6 +7,7 @@
         mc:Ignorable="d"
         Title="HostWindow" Height="768" Width="1024"
         WindowStartupLocation="CenterScreen">
+    <!--
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -64,4 +65,124 @@
 
 
     </Grid>
+    -->
+
+    <DockPanel>
+        <Menu DockPanel.Dock="Top"  >
+            <MenuItem x:Name="MoreItem" Margin="10 10 0 5">
+                <MenuItem.Header>
+                    <Button BorderThickness="0" Click="More_Click">
+                        <Image Source="../Resources/Images/menu_item1.png" Width="25" Height="23"/>
+                    </Button>
+                </MenuItem.Header>
+
+            </MenuItem>
+            <MenuItem x:Name="BackItem" >
+                <MenuItem.Header>
+                    <Button BorderThickness="0">
+                        <Image Source="../Resources/Images/back_arrow.png" Width="25" Height="25"/>
+                    </Button>
+                </MenuItem.Header>
+            </MenuItem>
+
+            <MenuItem Width="564">
+                <MenuItem.Header>
+                    <TextBox x:Name="textboxSearch" HorizontalAlignment="Right" Margin="255 0 0 0 " Width="300" Height="26"></TextBox>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Width="210" >
+                <MenuItem.Header >
+                    <Button x:Name="buttonSearch" FontSize="15" DockPanel.Dock="Right" Width="59" Content="Search" Height="26"/>
+                </MenuItem.Header>
+            </MenuItem>
+            <MenuItem Width="94">
+                <MenuItem.Header >
+                    <Button>
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../Resources/Images/video-camera.png" Width="20" Height="25"/>
+                            <TextBlock  Text="DEMO" FontSize="15" VerticalAlignment="Center" Margin="10,0,0,0" />
+                        </StackPanel>
+                    </Button>
+                </MenuItem.Header>
+            </MenuItem>
+
+            <MenuItem x:Name="HomeItem" Height="47" Margin="0 0 0 0" >
+                <MenuItem.Header>
+                    <Button BorderThickness="0" Click="HomeButton_Click" >
+                        <Image Source="../Resources/Images/home.png" Width="25" Height="25"/>
+                    </Button>
+                </MenuItem.Header>
+            </MenuItem>
+
+        </Menu>
+        <Menu x:Name="LeftDock" DockPanel.Dock="Left" HorizontalAlignment="Left" Visibility="Collapsed">
+            <StackPanel>
+                <MenuItem Margin="10 15 10 0">
+                    <MenuItem.Header>
+                        <Button BorderThickness="0" Content="Home" Click="HomeButton_Click" FontSize="15" Width="180" Height="25">
+
+                        </Button>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Margin="10 35 10 0">
+                    <MenuItem.Header>
+                        <Button BorderThickness="0" Content="Register accommodation" Click="RegisterButton_Click" FontSize="15" Width="180" Height="25">
+
+                        </Button>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Margin="10 35 10 0">
+                    <MenuItem.Header>
+                        <Button BorderThickness="0" Content="Displacement request" Click="Delay_Click" FontSize="15" Width="180" Height="25">
+
+                        </Button>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Margin="10 35 10 0">
+                    <MenuItem.Header>
+                        <Button BorderThickness="0" Content="Rating" Click="Rating_Click" FontSize="15" Width="180" Height="25">
+
+                        </Button>
+                    </MenuItem.Header>
+                </MenuItem>
+                <StackPanel x:Name="RatingPanel" Visibility="Collapsed" Margin="45 0 0 0">
+                    <MenuItem Margin="25 7 10 0">
+                        <MenuItem.Header>
+                            <Button BorderThickness="0" Click="GuestRatings_Click" Content="guest ratings" FontSize="13" Width="100" Height="25">
+
+                            </Button>
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <MenuItem Margin="25 7 10 0">
+                        <MenuItem.Header>
+                            <Button BorderThickness="0" Content="rate guest" FontSize="13" Width="100" Height="25">
+
+                            </Button>
+                        </MenuItem.Header>
+                    </MenuItem>
+                </StackPanel>
+                <MenuItem Margin="10 35 10 0">
+                    <MenuItem.Header>
+                        <Button BorderThickness="0" Content="Renovation" FontSize="15" Width="180" Height="25">
+
+                        </Button>
+                    </MenuItem.Header>
+                </MenuItem>
+                <MenuItem Margin="10 35 10 0">
+                    <MenuItem.Header>
+                        <Button BorderThickness="0" Content="Forum" FontSize="15" Width="180" Height="25">
+
+                        </Button>
+                    </MenuItem.Header>
+                </MenuItem>
+            </StackPanel>
+        </Menu>
+        <Grid>
+            <Frame
+    x:Name="HostFrame"
+    NavigationUIVisibility="Hidden"
+    Source="../View/HostPages/RatePages/RateDisplayPage.xaml" Height="705" VerticalAlignment="Center" />
+        </Grid>
+    </DockPanel>
+
 </Window>
