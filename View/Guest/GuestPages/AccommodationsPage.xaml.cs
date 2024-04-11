@@ -1,5 +1,4 @@
-﻿using BookingApp.DTO;
-using BookingApp.Repository;
+﻿using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,6 +17,7 @@ using BookingApp.Observer;
 using BookingApp.Model;
 using System.Security.Cryptography;
 using BookingApp.Services;
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.View.GuestPages
 {

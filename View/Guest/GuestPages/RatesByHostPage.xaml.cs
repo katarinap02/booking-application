@@ -1,5 +1,4 @@
-﻿using BookingApp.DTO;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.Services;
@@ -18,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.View.GuestPages
 {
@@ -25,7 +25,7 @@ namespace BookingApp.View.GuestPages
     /// Interaction logic for RatesByHostPage.xaml
     /// </summary>
     /// 
-    
+
     public partial class RatesByHostPage : Page, IObserver
     {
         public ObservableCollection<GuestRateViewModel> GuestRates {  get; set; }

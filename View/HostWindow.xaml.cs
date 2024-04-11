@@ -1,5 +1,4 @@
-﻿using BookingApp.DTO;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.View.GuestWindows;
@@ -20,7 +19,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.View
 {

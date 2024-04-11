@@ -1,5 +1,4 @@
-﻿using BookingApp.DTO;
-using BookingApp.Repository;
+﻿using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,6 +16,7 @@ using System.Windows.Shapes;
 using BookingApp.Observer;
 using BookingApp.Model;
 using System.Security.Cryptography;
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.View
 {

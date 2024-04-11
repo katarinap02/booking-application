@@ -9,7 +9,7 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Xml.Linq;
 
-namespace BookingApp.DTO
+namespace BookingApp.View.ViewModel.HostGuestViewModel
 {
     public class AccommodationRateViewModel : INotifyPropertyChanged
     {

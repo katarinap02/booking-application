@@ -4,7 +4,7 @@ using System.ComponentModel;
 using System.Text.RegularExpressions;
 using BookingApp.Model;
 
-namespace BookingApp.DTO
+namespace BookingApp.ViewModel
 {
     public class TourViewModel : INotifyPropertyChanged
     {

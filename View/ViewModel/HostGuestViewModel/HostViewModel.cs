@@ -7,9 +7,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Documents;
 
-namespace BookingApp.DTO
+namespace BookingApp.View.ViewModel
 {
-     public class HostViewModel: INotifyPropertyChanged
+    public class HostViewModel : INotifyPropertyChanged
     {
         private int id;
         public int Id

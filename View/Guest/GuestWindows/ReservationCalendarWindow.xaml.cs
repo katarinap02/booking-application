@@ -1,5 +1,4 @@
-﻿using BookingApp.DTO;
-using BookingApp.Repository;
+﻿using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,6 +19,7 @@ using System.Security.Cryptography;
 using System.Collections;
 using System.Globalization;
 using Calendar = System.Windows.Controls.Calendar;
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.View
 {
