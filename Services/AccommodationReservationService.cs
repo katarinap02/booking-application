@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using BookingApp.View.ViewModel;
+using System.Windows;
 
 namespace BookingApp.Services
 {
@@ -79,6 +80,35 @@ namespace BookingApp.Services
 
             }
             return false;
+        }
+
+        internal void CancelReservation(AccommodationService accommodationService, AccommodationReservationViewModel reservation)
+        {
+            int daysBefore = (reservation.StartDate - DateTime.Today).Days;
+            int dayLimit = accommodationService.GetById(reservation.AccommodationId).ReservationDaysLimit;
+            if (daysBefore < dayLimit)
+            {
+                MessageBox.Show("It is too late to cancel reservation");
+            }
+            else
+            {
+                AccommodationReservationRepository.Delete(reservation);
+                accommodationService.FreeDateRange(accommodationService.GetById(reservation.AccommodationId), reservation);
+                MessageBox.Show("Reservation cancelled");
+            }
+        }
+
+        internal void DelayReservation(CalendarDateRange selectedDateRange, DelayRequest delayRequest, DelayRequestService delayRequestService, AccommodationService accommodationService, AccommodationReservationViewModel selectedReservation)
+        {
+            delayRequest.GuestId = selectedReservation.GuestId;
+            Accommodation tmpAccommodation = accommodationService.GetById(selectedReservation.AccommodationId);
+            delayRequest.HostId = tmpAccommodation.HostId;
+            delayRequest.ReservationId = selectedReservation.Id;
+            delayRequest.StartDate = selectedDateRange.Start;
+            delayRequest.EndDate = selectedDateRange.End;
+
+            delayRequestService.Add(delayRequest);
+            MessageBox.Show("Request sent");
         }
     }
 }

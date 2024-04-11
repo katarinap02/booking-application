@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
@@ -7,13 +8,17 @@ using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
 using BookingApp.Model;
+using BookingApp.Observer;
 using BookingApp.Services;
+using BookingApp.View.GuestPages;
 
 namespace BookingApp.View.ViewModel
 {
-    public class DelayRequestViewModel : INotifyPropertyChanged
+    public class DelayRequestViewModel : INotifyPropertyChanged, IObserver
     {
         public event PropertyChangedEventHandler PropertyChanged;
+
+        
 
         private int id;
         public int Id
@@ -217,13 +222,27 @@ namespace BookingApp.View.ViewModel
 
         public string DateRange => startDate.ToString() + "-" + endDate.ToString();
 
+        public ObservableCollection<DelayRequestViewModel> Requests { get; set; }
+        public DelayRequestService DelayRequestService { get; set; }
+        public User User { get; set; }
+        public Frame Frame { get; set; }
+
+        public ComboBox RequestStatusBox { get; set; }
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public DelayRequestViewModel()
+        public DelayRequestViewModel(User user, Frame frame, RequestsPage page)
         {
+            User = user;
+            Frame = frame;
+            DelayRequestService = new DelayRequestService();
+            Requests = new ObservableCollection<DelayRequestViewModel>();
+            RequestStatusBox = page.requestStatusBox;
+           
+
+
 
         }
 
@@ -239,6 +258,10 @@ namespace BookingApp.View.ViewModel
             status = dr.Status;
         }
 
+        public DelayRequestViewModel()
+        {
+        }
+
         public DelayRequest ToDelayRequest()
         {
             DelayRequest request = new DelayRequest(guestId, hostId, reservationId, startDate, endDate, status, comment);
@@ -246,5 +269,51 @@ namespace BookingApp.View.ViewModel
             return request;
         }
 
+        public void Update()
+        {
+            Requests.Clear();
+
+            switch (RequestStatusBox.SelectedItem)
+            {
+                case ComboBoxItem pendingItem when pendingItem.Content.ToString() == "Pending":
+                    ShowPendingRequests(Requests);
+                    break;
+                case ComboBoxItem approvedItem when approvedItem.Content.ToString() == "Approved":
+                    ShowApprovedRequests(Requests);
+                    break;
+                case ComboBoxItem rejectedItem when rejectedItem.Content.ToString() == "Rejected":
+                    ShowRejectedRequests(Requests);
+                    break;
+            }
+        }
+
+        private void ShowRejectedRequests(ObservableCollection<DelayRequestViewModel> requests)
+        {
+
+            foreach (DelayRequest request in DelayRequestService.GetAll())
+                if (request.Status == RequestStatus.REJECTED)
+                    Requests.Add(new DelayRequestViewModel(request));
+        }
+
+        private void ShowApprovedRequests(ObservableCollection<DelayRequestViewModel> requests)
+        {
+
+            foreach (DelayRequest request in DelayRequestService.GetAll())
+                if (request.Status == RequestStatus.APPROVED)
+                    Requests.Add(new DelayRequestViewModel(request));
+        }
+
+        private void ShowPendingRequests(ObservableCollection<DelayRequestViewModel> requests)
+        {
+
+            foreach (DelayRequest request in DelayRequestService.GetAll())
+                if (request.Status == RequestStatus.PENDING)
+                    Requests.Add(new DelayRequestViewModel(request));
+        }
+
+        public void RequestStatusBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
+        }
     }
 }

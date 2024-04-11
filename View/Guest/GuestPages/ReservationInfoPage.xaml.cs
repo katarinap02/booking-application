@@ -26,24 +26,22 @@ namespace BookingApp.View.GuestPages
     public partial class ReservationInfoPage : Page
     {
         public AccommodationViewModel SelectedAccommodation { get; set; }
-        public AccommodationService AccommodationService { get; set; }
+       
 
-        public AccommodationReservationService AccommodationReservationService { get; set; }
+        public AccommodationReservationViewModel ViewModel { get; set; }
         public User User { get; set; }
-        public int DayNumber { get; set; }
+      
         public Frame Frame { get; set; }
 
        
-        public ReservationInfoPage(AccommodationService accommodationService, AccommodationViewModel SelectedAccommodation, AccommodationReservationService accommodationReservationService, User user, Frame frame)
+        public ReservationInfoPage(AccommodationViewModel selectedAccommodation, User user, Frame frame)
         {
             InitializeComponent();
-            this.SelectedAccommodation = SelectedAccommodation;
-            this.AccommodationService = accommodationService;
-            this.User = user;
-            this.Frame = frame;
-            this.AccommodationReservationService = accommodationReservationService;
-            bool dateIsValid;
-            bool dayNumberIsValid;
+            User = user;
+            Frame = frame;
+            SelectedAccommodation = selectedAccommodation;
+            ViewModel = new AccommodationReservationViewModel(SelectedAccommodation, User, Frame, this);
+            
             DataContext = this;
           
            
@@ -56,48 +54,11 @@ namespace BookingApp.View.GuestPages
             
 
            
-            
-            DayNumber = Convert.ToInt32(txtDayNumber.Text);
-            DateTime start = Convert.ToDateTime(txtStartDate.Text);
-            DateTime end = Convert.ToDateTime(txtEndDate.Text);
-
-           
-
-           
-
-            Frame.Content = new CalendarPage(AccommodationService, AccommodationReservationService, SelectedAccommodation, DayNumber, User, start, end, Frame);
+           ViewModel.Continue_Click(sender, e);
 
 
         }
 
-        private bool ValidateDayNumber(int dayNumber)
-        {
-            if (DayNumber < SelectedAccommodation.MinReservationDays)
-            {
-                
-                return false;
-            }
-            else
-            {
-                
-                return true;
-            }
-        }
-
-        private bool ValidateDateInputs(DateTime start, DateTime end)
-        {
-            if (start >= end)
-            {
-               
-                return false;
-            }
-            else
-            {
-               
-                return true;
-            }
-
-
-        }
+       
     }
 }

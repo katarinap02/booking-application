@@ -1,33 +1,19 @@
 ﻿using BookingApp.Model;
-using BookingApp.Repository;
 using BookingApp.Services;
+using BookingApp.View.GuestPages;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using BookingApp.View.ViewModel;
 
-namespace BookingApp.View.GuestPages
+namespace BookingApp.View.ViewModel.HostGuestViewModel
 {
-    /// <summary>
-    /// Interaction logic for CalendarPage.xaml
-    /// </summary>
-    public partial class CalendarPage : Page
+    public class DelayRequestPageViewModel
     {
-        public AccommodationViewModel SelectedAccommodation { get; set; }
-        public AccommodationService AccommodationService { get; set; }
         public User User { get; set; }
 
         public DateTime StartDate { get; set; }
@@ -35,33 +21,37 @@ namespace BookingApp.View.GuestPages
 
         public CalendarDateRange SelectedDateRange { get; set; }
 
-        public AccommodationReservation Reservation { get; set; }
+        public AccommodationService AccommodationService { get; set; }
+        public AccommodationReservationViewModel SelectedReservation { get; set; }
+
+
         public AccommodationReservationService AccommodationReservationService { get; set; }
 
-        public Frame Frame { get; set; }
+        public DelayRequest DelayRequest { get; set; }
+        public DelayRequestService DelayRequestService { get; set; }
+
         public int DayNumber { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
+        public Frame Frame { get; set; }
 
-        public int GuestNumber { get; set; }
-        public CalendarPage(AccommodationService accommodationService, AccommodationReservationService accommodationReservationService, AccommodationViewModel selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end, Frame frame)
+        public Calendar ReservationCalendar { get; set; }
+
+        public Button reserveButton { get; set; }   
+       
+        public DelayRequestPageViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, DelayRequestPage page)
         {
-            InitializeComponent();
-            this.SelectedAccommodation = selectedAccommodation;
-            this.AccommodationService = accommodationService;
-            this.User = user;
-            this.StartDate = start;
-            this.EndDate = end;
-            this.DayNumber = dayNumber;
-            this.Frame = frame;
-
-            DataContext = this;
-            reserveButton.IsEnabled = false;
-            PeopleNumberSection.IsEnabled = false;
-            Reservation = new AccommodationReservation();
-            // finishReservation.IsEnabled = false;
-            AccommodationReservationService = accommodationReservationService;
-
-            // continueLabel.Visibility = Visibility.Hidden;
-             ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
+            AccommodationService = new AccommodationService();
+            AccommodationReservationService = new AccommodationReservationService();
+            SelectedReservation = selectedReservation;
+            StartDate = DateTime.Now;
+            EndDate = DateTime.MaxValue;
+            DayNumber = (SelectedReservation.EndDate - SelectedReservation.StartDate).Days + 1;
+            SelectedAccommodation = new AccommodationViewModel(AccommodationService.GetById(SelectedReservation.AccommodationId));
+            ReservationCalendar = page.ReservationCalendar;
+            reserveButton = page.reserveButton;
+            DelayRequest = new DelayRequest();
+            DelayRequestService = new DelayRequestService();
+            ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
         }
 
         private void ConfigureCalendar(AccommodationViewModel selectedAccommodation, DateTime start, DateTime end, int dayNumber)
@@ -220,19 +210,7 @@ namespace BookingApp.View.GuestPages
             }
         }
 
-        private void SelectDate_Click(object sender, RoutedEventArgs e)
-        {
-
-            PeopleNumberSection.IsEnabled = true;
-            SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
-            SelectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
-
-
-
-
-        }
-
-        private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        public void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
 
             Calendar calendar = (Calendar)sender;
@@ -241,57 +219,30 @@ namespace BookingApp.View.GuestPages
             if (selectedDatesCount != DayNumber)
             {
                 reserveButton.IsEnabled = false;
-               /* warningLabel.Visibility = Visibility.Visible;
-                dayNumberLabel.Visibility = Visibility.Visible;
-                continueLabel.Visibility = Visibility.Hidden;*/
+
 
             }
             else
             {
                 reserveButton.IsEnabled = true;
-              /*  warningLabel.Visibility = Visibility.Hidden;
-                dayNumberLabel.Visibility = Visibility.Hidden;
-                continueLabel.Visibility = Visibility.Visible;*/
+
 
             }
 
             Mouse.Capture(null);
         }
 
-        private void Reserve_Click(object sender, RoutedEventArgs e)
+        public void SelectDate_Click(object sender, RoutedEventArgs e)
         {
-            GuestNumber = Convert.ToInt32(txtGuestNumber.Text);
-            if (GuestNumber > SelectedAccommodation.MaxGuestNumber)
-            {
-               // finishReservation.IsEnabled = false;
-                
-            }
-            else
-            {
-                finishReservation.IsEnabled = true;
-                Reservation.GuestId = User.Id;
-                Reservation.AccommodationId = SelectedAccommodation.Id;
-                Reservation.StartDate = SelectedDateRange.Start;
-                Reservation.EndDate = SelectedDateRange.End;
-                Reservation.Name = SelectedAccommodation.Name;
-                Reservation.City = SelectedAccommodation.City;
-                Reservation.Country = SelectedAccommodation.Country;
-                Reservation.NumberOfPeople = GuestNumber;
+             
+             SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
+             SelectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
+             AccommodationReservationService.DelayReservation(SelectedDateRange, DelayRequest, DelayRequestService, AccommodationService, SelectedReservation);
 
-                SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
-                AccommodationService.Update(SelectedAccommodation.ToAccommodation());
+            
 
-                AccommodationReservationService.Add(Reservation);
-
-                Frame.Content = new ReservationSuccessfulPage(AccommodationService, AccommodationReservationService, SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
-
-
-
-
-            }
 
         }
-
 
     }
 }
