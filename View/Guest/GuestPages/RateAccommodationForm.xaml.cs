@@ -27,94 +27,38 @@ namespace BookingApp.View.GuestPages
     public partial class RateAccommodationForm : Page
     {
         public AccommodationReservationViewModel SelectedReservation { get; set; }
-        public AccommodationViewModel SelectedAccommodation { get; set; }
+        
         public User User { get; set; }
-        public AccommodationService AccommodationService { get; set; }
-
-        public HostService HostService { get; set; }
+      
 
         public Frame Frame { get; set; }
 
-        public AccommodationRateViewModel AccommodationRate { get; set; }
-
-        public AccommodationRateService AccommodationRateService { get; set; }
-        public RateAccommodationForm(User user, AccommodationReservationViewModel selectedReservation, AccommodationService accommodationService, AccommodationRateService accommodationRateService, Frame frame)
+        public RateFormViewModel ViewModel { get; set; }
+        public RateAccommodationForm(User user, AccommodationReservationViewModel selectedReservation, Frame frame)
         {
             InitializeComponent();
             this.User = user;
             this.SelectedReservation = selectedReservation;
-            this.AccommodationService = accommodationService;
-            this.HostService = new HostService();
+          
             this.Frame = frame;
-            this.AccommodationRateService = accommodationRateService;
-            this.AccommodationRate = new AccommodationRateViewModel();
-            SelectedAccommodation = new AccommodationViewModel(AccommodationService.GetById(SelectedReservation.AccommodationId));
-            DataContext = this;
+            ViewModel = new RateFormViewModel(User, Frame, SelectedReservation, this);
+            
+            DataContext = ViewModel;
 
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            AccommodationRate.ReservationId = SelectedReservation.Id;
-            AccommodationRate.GuestId = User.Id;
-            AccommodationRate.HostId = AccommodationService.GetById(SelectedReservation.AccommodationId).HostId;
-            AccommodationRateService.Add(AccommodationRate.ToAccommodationRate());
-            AccommodationRate rate = AccommodationRate.ToAccommodationRate();
-            Host host = HostService.GetById(rate.HostId);
-            HostService.BecomeSuperHost(host);
-            MessageBox.Show("jej");
+           ViewModel.Save_Click(sender, e);
 
         }
 
         private void AddPicture_Click(object sender, RoutedEventArgs e)
         {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All files (*.*)|*.*";
-            if (openFileDialog.ShowDialog() == true)
-            {
-                string selectedFileName = openFileDialog.FileName;
-                try
-                {
-                    BitmapImage bitmapImage = new BitmapImage(new Uri(selectedFileName));
-
-                    string imageUrl = selectedFileName;
-
-                    imageUrl = ConvertToRelativePath(imageUrl);
-                    AddPicture(imageUrl);
-
-
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error loading image: {ex.Message}");
-                }
-            }
+            ViewModel.AddPicture_Click(sender, e);
+            
         }
 
-        public string ConvertToRelativePath(string input)
-        {
-            int index = input.IndexOf("Resources");
-            if (index != -1)
-            {
-                return input.Substring(index);
-            }
-            else
-            {
-                MessageBox.Show("Please select an image from the resources privided within this app!");
-                return input;
-            }
-        }
-
-        private void AddPicture(string pictureUrl)
-        {
-            if (!string.IsNullOrEmpty(pictureUrl))
-            {
-
-                AccommodationRate.Images.Add(pictureUrl);
-                
-              //  pictureListBox.ItemsSource = AccommodationRate.Images;
-                
-            }
-        }
+       
     }
 }

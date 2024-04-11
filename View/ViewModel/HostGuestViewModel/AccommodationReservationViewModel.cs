@@ -1,9 +1,11 @@
 ﻿using BookingApp.Model;
+using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.Services;
 using BookingApp.View.GuestPages;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.Linq;
@@ -176,6 +178,8 @@ namespace BookingApp.View.ViewModel
         public int DayNumber { get; set; }
         public Frame Frame { get; set; }
         public ReservationInfoPage ReservationInfoPage { get; set; }
+       
+       
 
         public AccommodationReservationViewModel() { }
 
@@ -282,5 +286,7 @@ namespace BookingApp.View.ViewModel
           
 
         }
+
+       
     }
 }
