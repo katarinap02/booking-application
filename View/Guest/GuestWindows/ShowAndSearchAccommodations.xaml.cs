@@ -23,10 +23,10 @@ namespace BookingApp.View
 
     public partial class ShowAndSearchAccommodations : Window, IObserver
     {
-        public ObservableCollection<AccommodationDTO> Accommodations { get; set; }
+        public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
 
         public User User { get; set; }
-        public AccommodationDTO SelectedAccommodation { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
 
         public AccommodationRepository AccommodationRepository { get; set; }    
 
@@ -37,7 +37,7 @@ namespace BookingApp.View
 
             InitializeComponent();
 
-            Accommodations = new ObservableCollection<AccommodationDTO>();
+            Accommodations = new ObservableCollection<AccommodationViewModel>();
             this.AccommodationRepository = accommodationRepository;
             accommodationRepository.AccommodationSubject.Subscribe(this);
             this.User = user;
@@ -54,7 +54,7 @@ namespace BookingApp.View
             foreach(Accommodation accommodation in AccommodationRepository.GetAll())
             {
                 
-                Accommodations.Add(new AccommodationDTO(accommodation));
+                Accommodations.Add(new AccommodationViewModel(accommodation));
                 //MessageBox.Show(Accommodations[0].Type.ToString());
             }
         }
@@ -76,20 +76,20 @@ namespace BookingApp.View
         }
 
 
-        private List<AccommodationDTO> SearchAccommodations(List<string> queries)
+        private List<AccommodationViewModel> SearchAccommodations(List<string> queries)
         {
            
 
-            ObservableCollection<AccommodationDTO> totalAccommodations = new ObservableCollection<AccommodationDTO>();
+            ObservableCollection<AccommodationViewModel> totalAccommodations = new ObservableCollection<AccommodationViewModel>();
             foreach (Accommodation accommodation in AccommodationRepository.GetAll())
-                totalAccommodations.Add(new AccommodationDTO(accommodation));
+                totalAccommodations.Add(new AccommodationViewModel(accommodation));
 
-            List<AccommodationDTO> searchResults = FilterAccommodations(totalAccommodations, queries);  
+            List<AccommodationViewModel> searchResults = FilterAccommodations(totalAccommodations, queries);  
 
 
             int totalItems = searchResults.Count;
-            List<AccommodationDTO> results = new List<AccommodationDTO>();
-            foreach (AccommodationDTO accommodation in searchResults)
+            List<AccommodationViewModel> results = new List<AccommodationViewModel>();
+            foreach (AccommodationViewModel accommodation in searchResults)
                 results.Add(accommodation);
 
             return results;
@@ -99,9 +99,9 @@ namespace BookingApp.View
 
         }
 
-        private List<AccommodationDTO> FilterAccommodations(ObservableCollection<AccommodationDTO> totalAccommodations, List<string> queries)
+        private List<AccommodationViewModel> FilterAccommodations(ObservableCollection<AccommodationViewModel> totalAccommodations, List<string> queries)
         {
-            List<AccommodationDTO> filteredAccommodations = totalAccommodations.Where(accommodation => (string.IsNullOrEmpty(queries[0]) || accommodation.Name.ToUpper().Contains(queries[0].ToUpper())) &&
+            List<AccommodationViewModel> filteredAccommodations = totalAccommodations.Where(accommodation => (string.IsNullOrEmpty(queries[0]) || accommodation.Name.ToUpper().Contains(queries[0].ToUpper())) &&
                                                                            (string.IsNullOrEmpty(queries[1]) || accommodation.City.ToUpper().Contains(queries[1].ToUpper())) &&
                                                                            (string.IsNullOrEmpty(queries[2]) || accommodation.Country.ToUpper().Contains(queries[2].ToUpper())) &&
                                                                            (string.IsNullOrEmpty(queries[3]) || accommodation.Type.ToString().ToUpper().Contains(queries[3].ToUpper())) &&

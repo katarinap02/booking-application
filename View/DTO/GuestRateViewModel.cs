@@ -11,7 +11,7 @@ using System.Xml.Linq;
 
 namespace BookingApp.DTO
 {
-    public class GuestRateDTO : INotifyPropertyChanged
+    public class GuestRateViewModel : INotifyPropertyChanged
     {
         private int reservationId;
         public int ReservationId
@@ -143,9 +143,9 @@ namespace BookingApp.DTO
 
 
 
-        public GuestRateDTO() { }
+        public GuestRateViewModel() { }
 
-        public GuestRateDTO(GuestRate gr) {
+        public GuestRateViewModel(GuestRate gr) {
 
             reservationId = gr.ReservationId;
             guestId = gr.UserId;

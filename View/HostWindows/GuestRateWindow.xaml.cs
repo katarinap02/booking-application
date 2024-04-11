@@ -22,19 +22,19 @@ namespace BookingApp.View.GuestWindows
     /// </summary>
     public partial class RateGuestWindow : Window
     {
-        public AccommodationReservationDTO accommodationReservationDTO {  get; set; }
+        public AccommodationReservationViewModel accommodationReservationDTO {  get; set; }
 
-        public GuestRateDTO guestRateDTO { get; set; }
+        public GuestRateViewModel guestRateDTO { get; set; }
 
         public GuestRateRepository guestRateRepository { get; set; }
 
         
         
-        public RateGuestWindow(AccommodationReservationDTO ac)
+        public RateGuestWindow(AccommodationReservationViewModel ac)
         {
             InitializeComponent();
             accommodationReservationDTO = ac;
-            guestRateDTO = new GuestRateDTO();
+            guestRateDTO = new GuestRateViewModel();
             guestRateRepository = new GuestRateRepository();
             DataContext = this;
 

@@ -23,7 +23,7 @@ namespace BookingApp.View
     {
 
         public AccommodationRepository AccommodationRepository { get; set; }
-        public AccommodationDTO SelectedAccommodation { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
 
         public AccommodationReservation Reservation { get; set; }
         public User User { get; set; }
@@ -31,7 +31,7 @@ namespace BookingApp.View
         public CalendarDateRange SelectedDateRange { get; set; }
 
         public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
-        public ReservationInfoWindow(AccommodationRepository accommodationRepository, AccommodationDTO selectedAccommodation, User user, CalendarDateRange selectedDateRange) {
+        public ReservationInfoWindow(AccommodationRepository accommodationRepository, AccommodationViewModel selectedAccommodation, User user, CalendarDateRange selectedDateRange) {
 
             InitializeComponent();
             this.AccommodationRepository = accommodationRepository;

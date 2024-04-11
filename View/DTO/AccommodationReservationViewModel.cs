@@ -12,7 +12,7 @@ using System.Xml.Linq;
 
 namespace BookingApp.DTO
 {
-    public class AccommodationReservationDTO : INotifyPropertyChanged
+    public class AccommodationReservationViewModel : INotifyPropertyChanged
     {
         private int id;
         public int Id
@@ -164,9 +164,9 @@ namespace BookingApp.DTO
         }
 
         public int NumberOfDays => (EndDate - StartDate).Days + 1;
-        public AccommodationReservationDTO() { }
+        public AccommodationReservationViewModel() { }
 
-        public AccommodationReservationDTO(AccommodationReservation ac)
+        public AccommodationReservationViewModel(AccommodationReservation ac)
         {
             id = ac.Id;
             guestId = ac.GuestId;

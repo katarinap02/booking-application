@@ -26,29 +26,29 @@ namespace BookingApp.View.HostPages
     /// </summary>
     public partial class FirstPage : Page, IObserver
     {
-        public ObservableCollection<AccommodationDTO> Accommodations { get; set; }
+        public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
 
         public AccommodationRepository accommodationRepository { get; set; }
 
         public HostService hostService { get; set; }
 
-        public AccommodationReservationDTO SelectedAccommodation { get; set; }
+        public AccommodationReservationViewModel SelectedAccommodation { get; set; }
 
         public Host host {  get; set; }
 
-        public HostDTO hostDTO { get; set; }
+        public HostViewModel hostViewModel { get; set; }
 
         
         public FirstPage(User user)
         {
             InitializeComponent();
-            Accommodations = new ObservableCollection<AccommodationDTO>();
+            Accommodations = new ObservableCollection<AccommodationViewModel>();
             accommodationRepository = new AccommodationRepository();
             hostService = new HostService();
             DataContext = this;
             host = hostService.GetByUsername(user.Username);
             hostService.BecomeSuperHost(host);
-            hostDTO = new HostDTO(host);
+            hostViewModel = new HostViewModel(host);
             Update();
         }
 
@@ -75,7 +75,7 @@ namespace BookingApp.View.HostPages
             foreach (Accommodation accommodation in accommodationRepository.GetAll())
             {
                 
-                Accommodations.Add(new AccommodationDTO(accommodation));
+                Accommodations.Add(new AccommodationViewModel(accommodation));
 
             }
         }

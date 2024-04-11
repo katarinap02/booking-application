@@ -29,11 +29,11 @@ namespace BookingApp.View
     /// </summary>
     public partial class HostWindow : Window, IObserver
     {
-        public ObservableCollection<AccommodationReservationDTO> Accommodations { get; set; }
+        public ObservableCollection<AccommodationReservationViewModel> Accommodations { get; set; }
         public AccommodationRepository accommodationRepository { get; set; }
         public AccommodationReservationRepository accommodationReservationRepository { get; set; }
 
-        public AccommodationReservationDTO SelectedAccommodation { get; set; }
+        public AccommodationReservationViewModel SelectedAccommodation { get; set; }
         public User User { get; set; }
 
         public HostWindow(User user)
@@ -41,7 +41,7 @@ namespace BookingApp.View
 
             InitializeComponent();
             
-            Accommodations = new ObservableCollection<AccommodationReservationDTO>();
+            Accommodations = new ObservableCollection<AccommodationReservationViewModel>();
             accommodationRepository = new AccommodationRepository();
             accommodationReservationRepository = new AccommodationReservationRepository();
             DataContext = this;
@@ -60,7 +60,7 @@ namespace BookingApp.View
             Accommodations.Clear();
             foreach (AccommodationReservation accommodation in accommodationReservationRepository.GetGuestForRate())
             {
-                Accommodations.Add(new AccommodationReservationDTO(accommodation));
+                Accommodations.Add(new AccommodationReservationViewModel(accommodation));
                 
             }
             FirstPage firstPage = new FirstPage(User);

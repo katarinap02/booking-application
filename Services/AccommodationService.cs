@@ -50,7 +50,7 @@ namespace BookingApp.Services
             AccommodationRepository.AccommodationSubject.Subscribe(observer);
         }
 
-        public void FreeDateRange(Accommodation accommodation, AccommodationReservationDTO selectedReservation)
+        public void FreeDateRange(Accommodation accommodation, AccommodationReservationViewModel selectedReservation)
         {
             foreach(CalendarDateRange dateRange in accommodation.UnavailableDates)
             {

@@ -32,7 +32,7 @@ namespace BookingApp.View.GuestPages
         public CalendarDateRange SelectedDateRange { get; set; }
 
         public AccommodationService AccommodationService { get; set; }
-        public AccommodationReservationDTO SelectedReservation { get; set; }
+        public AccommodationReservationViewModel SelectedReservation { get; set; }
 
        
         public AccommodationReservationService AccommodationReservationService { get; set; }
@@ -41,9 +41,9 @@ namespace BookingApp.View.GuestPages
         public DelayRequestService DelayRequestService { get; set; }
 
         public int DayNumber {  get; set; }
-        public AccommodationDTO SelectedAccommodation {  get; set; }
+        public AccommodationViewModel SelectedAccommodation {  get; set; }
         public Frame Frame { get; set; }
-        public DelayRequestPage(AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, AccommodationReservationDTO selectedReservation, User user, Frame frame)
+        public DelayRequestPage(AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, AccommodationReservationViewModel selectedReservation, User user, Frame frame)
         {
             InitializeComponent();
             this.AccommodationReservationService = accommodationReservationService;
@@ -60,11 +60,11 @@ namespace BookingApp.View.GuestPages
             EndDate = DateTime.MaxValue;
 
             DayNumber = (SelectedReservation.EndDate - SelectedReservation.StartDate).Days + 1;
-            SelectedAccommodation = new AccommodationDTO(AccommodationService.GetById(SelectedReservation.AccommodationId));
+            SelectedAccommodation = new AccommodationViewModel(AccommodationService.GetById(SelectedReservation.AccommodationId));
             ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
         }
 
-        private void ConfigureCalendar(AccommodationDTO selectedAccommodation, DateTime start, DateTime end, int dayNumber)
+        private void ConfigureCalendar(AccommodationViewModel selectedAccommodation, DateTime start, DateTime end, int dayNumber)
         {
             CalendarDateRange chosenDateRange = new CalendarDateRange(start, end);
             ReservationCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
@@ -114,7 +114,7 @@ namespace BookingApp.View.GuestPages
 
         }
 
-        private void ShowReccommendedDates(AccommodationDTO selectedAccommodation, int dayNumber)
+        private void ShowReccommendedDates(AccommodationViewModel selectedAccommodation, int dayNumber)
         {
             ReservationCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
             ReservationCalendar.DisplayDateStart = DateTime.Today;

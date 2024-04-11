@@ -31,11 +31,11 @@ namespace BookingApp.View.GuestPages
 
         public AccommodationService AccommodationService { get; set; }
 
-        public AccommodationReservationDTO SelectedReservation { get; set; }
+        public AccommodationReservationViewModel SelectedReservation { get; set; }
 
         public User User { get; set; }  
         public Frame Frame { get; set; }
-        public CancelReservationPage(AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, AccommodationReservationDTO selectedReservation, User user, Frame frame)
+        public CancelReservationPage(AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, AccommodationReservationViewModel selectedReservation, User user, Frame frame)
         {
             InitializeComponent();
             this.AccommodationReservationService = accommodationReservationService;

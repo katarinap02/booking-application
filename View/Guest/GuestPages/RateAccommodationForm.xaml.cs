@@ -25,8 +25,8 @@ namespace BookingApp.View.GuestPages
     /// </summary>
     public partial class RateAccommodationForm : Page
     {
-        public AccommodationReservationDTO SelectedReservation { get; set; }
-        public AccommodationDTO SelectedAccommodation { get; set; }
+        public AccommodationReservationViewModel SelectedReservation { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
         public User User { get; set; }
         public AccommodationService AccommodationService { get; set; }
 
@@ -34,10 +34,10 @@ namespace BookingApp.View.GuestPages
 
         public Frame Frame { get; set; }
 
-        public AccommodationRateDTO AccommodationRate { get; set; }
+        public AccommodationRateViewModel AccommodationRate { get; set; }
 
         public AccommodationRateService AccommodationRateService { get; set; }
-        public RateAccommodationForm(User user, AccommodationReservationDTO selectedReservation, AccommodationService accommodationService, AccommodationRateService accommodationRateService, Frame frame)
+        public RateAccommodationForm(User user, AccommodationReservationViewModel selectedReservation, AccommodationService accommodationService, AccommodationRateService accommodationRateService, Frame frame)
         {
             InitializeComponent();
             this.User = user;
@@ -46,8 +46,8 @@ namespace BookingApp.View.GuestPages
             this.HostService = new HostService();
             this.Frame = frame;
             this.AccommodationRateService = accommodationRateService;
-            this.AccommodationRate = new AccommodationRateDTO();
-            SelectedAccommodation = new AccommodationDTO(AccommodationService.GetById(SelectedReservation.AccommodationId));
+            this.AccommodationRate = new AccommodationRateViewModel();
+            SelectedAccommodation = new AccommodationViewModel(AccommodationService.GetById(SelectedReservation.AccommodationId));
             DataContext = this;
 
         }

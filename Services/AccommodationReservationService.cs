@@ -44,7 +44,7 @@ namespace BookingApp.Services
         }
 
 
-        public void Delete(AccommodationReservationDTO selectedReservation)
+        public void Delete(AccommodationReservationViewModel selectedReservation)
         {
             AccommodationReservationRepository.Delete(selectedReservation);
         }

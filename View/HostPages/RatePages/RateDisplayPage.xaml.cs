@@ -26,7 +26,7 @@ namespace BookingApp.View.HostPages.RatePages
     /// </summary>
     public partial class RateDisplayPage : Page, IObserver
     {
-        public ObservableCollection<AccommodationRateDTO> Accommodations { get; set; }
+        public ObservableCollection<AccommodationRateViewModel> Accommodations { get; set; }
 
         public AccommodationReservationService accommodationService { get; set; }
 
@@ -38,7 +38,7 @@ namespace BookingApp.View.HostPages.RatePages
         public RateDisplayPage()
         {
             InitializeComponent();
-            Accommodations = new ObservableCollection<AccommodationRateDTO>();
+            Accommodations = new ObservableCollection<AccommodationRateViewModel>();
             accommodationService = new AccommodationReservationService();
             userService = new UserService();
             accommodationRateService = new AccommodationRateService();
@@ -61,7 +61,7 @@ namespace BookingApp.View.HostPages.RatePages
                 {
                     if (guestRate.ReservationId == accommodationRate.ReservationId)
                     {
-                        Accommodations.Add(new AccommodationRateDTO(accommodationRate, accommodationReservation, user));
+                        Accommodations.Add(new AccommodationRateViewModel(accommodationRate, accommodationReservation, user));
                         break;
                     }
                 }

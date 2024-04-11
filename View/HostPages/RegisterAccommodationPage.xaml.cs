@@ -23,13 +23,13 @@ namespace BookingApp.View.HostPages
     /// </summary>
     public partial class RegisterAccommodationPage : Page
     {
-        public AccommodationDTO accommodationDTO { get; set; }
+        public AccommodationViewModel accommodationDTO { get; set; }
         private AccommodationRepository accommodationRepository;
         public RegisterAccommodationPage()
         {
             InitializeComponent();
             DataContext = this;
-            accommodationDTO = new AccommodationDTO();
+            accommodationDTO = new AccommodationViewModel();
             accommodationRepository = new AccommodationRepository();
         }
 

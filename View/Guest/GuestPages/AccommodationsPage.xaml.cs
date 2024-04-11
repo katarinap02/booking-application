@@ -26,10 +26,10 @@ namespace BookingApp.View.GuestPages
     /// </summary>
     public partial class AccommodationsPage : Page, IObserver
     {
-        public ObservableCollection<AccommodationDTO> Accommodations { get; set; }
+        public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
 
         public User User { get; set; }
-        public AccommodationDTO SelectedAccommodation { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
 
         public AccommodationService AccommodationService { get; set; }
 
@@ -43,7 +43,7 @@ namespace BookingApp.View.GuestPages
         {
             InitializeComponent();
 
-            Accommodations = new ObservableCollection<AccommodationDTO>();
+            Accommodations = new ObservableCollection<AccommodationViewModel>();
             this.AccommodationService = accommodationService;
             AccommodationService.Subscribe(this);
             this.User = user;
@@ -59,25 +59,25 @@ namespace BookingApp.View.GuestPages
         public void Update()
         {
             Accommodations.Clear();
-            List<AccommodationDTO> superHostAccommodations = new List<AccommodationDTO>();
-            List<AccommodationDTO> nonSuperHostAccommodations = new List<AccommodationDTO>();
+            List<AccommodationViewModel> superHostAccommodations = new List<AccommodationViewModel>();
+            List<AccommodationViewModel> nonSuperHostAccommodations = new List<AccommodationViewModel>();
 
             SeparateAccommodations(AccommodationService, superHostAccommodations, nonSuperHostAccommodations);
             
 
-            foreach(AccommodationDTO superHostAccommodation in superHostAccommodations)
+            foreach(AccommodationViewModel superHostAccommodation in superHostAccommodations)
                 Accommodations.Add(superHostAccommodation);
             
-            foreach (AccommodationDTO nonSuperHostAccommodation in nonSuperHostAccommodations)
+            foreach (AccommodationViewModel nonSuperHostAccommodation in nonSuperHostAccommodations)
                 Accommodations.Add(nonSuperHostAccommodation);
         }
 
-        private void SeparateAccommodations(AccommodationService accommodationService, List<AccommodationDTO> superHostAccommodations, List<AccommodationDTO> nonSuperHostAccommodations)
+        private void SeparateAccommodations(AccommodationService accommodationService, List<AccommodationViewModel> superHostAccommodations, List<AccommodationViewModel> nonSuperHostAccommodations)
         {
             foreach (Accommodation accommodation in AccommodationService.GetAll())
             {
 
-                AccommodationDTO accommodationDTO = new AccommodationDTO(accommodation);
+                AccommodationViewModel accommodationDTO = new AccommodationViewModel(accommodation);
                 Host host = HostService.GetById(accommodation.HostId);
                 HostService.BecomeSuperHost(host);
                 accommodationDTO.IsSuperHost = host.IsSuperHost;
@@ -109,20 +109,20 @@ namespace BookingApp.View.GuestPages
         }
 
 
-        private List<AccommodationDTO> SearchAccommodations(List<string> queries)
+        private List<AccommodationViewModel> SearchAccommodations(List<string> queries)
         {
 
 
-            ObservableCollection<AccommodationDTO> totalAccommodations = new ObservableCollection<AccommodationDTO>();
+            ObservableCollection<AccommodationViewModel> totalAccommodations = new ObservableCollection<AccommodationViewModel>();
             foreach (Accommodation accommodation in AccommodationService.GetAll())
-                totalAccommodations.Add(new AccommodationDTO(accommodation));
+                totalAccommodations.Add(new AccommodationViewModel(accommodation));
 
-            List<AccommodationDTO> searchResults = FilterAccommodations(totalAccommodations, queries);
+            List<AccommodationViewModel> searchResults = FilterAccommodations(totalAccommodations, queries);
 
 
             int totalItems = searchResults.Count;
-            List<AccommodationDTO> results = new List<AccommodationDTO>();
-            foreach (AccommodationDTO accommodation in searchResults)
+            List<AccommodationViewModel> results = new List<AccommodationViewModel>();
+            foreach (AccommodationViewModel accommodation in searchResults)
                 results.Add(accommodation);
 
             return results;
@@ -132,9 +132,9 @@ namespace BookingApp.View.GuestPages
 
         }
 
-        private List<AccommodationDTO> FilterAccommodations(ObservableCollection<AccommodationDTO> totalAccommodations, List<string> queries)
+        private List<AccommodationViewModel> FilterAccommodations(ObservableCollection<AccommodationViewModel> totalAccommodations, List<string> queries)
         {
-            List<AccommodationDTO> filteredAccommodations = totalAccommodations.Where(accommodation => (string.IsNullOrEmpty(queries[0]) || accommodation.Name.ToUpper().Contains(queries[0].ToUpper())) &&
+            List<AccommodationViewModel> filteredAccommodations = totalAccommodations.Where(accommodation => (string.IsNullOrEmpty(queries[0]) || accommodation.Name.ToUpper().Contains(queries[0].ToUpper())) &&
                                                                            (string.IsNullOrEmpty(queries[1]) || accommodation.City.ToUpper().Contains(queries[1].ToUpper())) &&
                                                                            (string.IsNullOrEmpty(queries[2]) || accommodation.Country.ToUpper().Contains(queries[2].ToUpper())) &&
                                                                            (string.IsNullOrEmpty(queries[3]) || accommodation.Type.ToString().ToUpper().Contains(queries[3].ToUpper())) &&
@@ -149,7 +149,7 @@ namespace BookingApp.View.GuestPages
 
             
             Button button = sender as Button;
-            SelectedAccommodation = button.DataContext as AccommodationDTO;
+            SelectedAccommodation = button.DataContext as AccommodationViewModel;
             Frame.Content = new ReservationInfoPage(AccommodationService,  SelectedAccommodation, AccommodationReservationService, User, Frame);
 
 

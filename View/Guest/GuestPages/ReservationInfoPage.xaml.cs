@@ -25,7 +25,7 @@ namespace BookingApp.View.GuestPages
     /// </summary>
     public partial class ReservationInfoPage : Page
     {
-        public AccommodationDTO SelectedAccommodation { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
         public AccommodationService AccommodationService { get; set; }
 
         public AccommodationReservationService AccommodationReservationService { get; set; }
@@ -34,7 +34,7 @@ namespace BookingApp.View.GuestPages
         public Frame Frame { get; set; }
 
        
-        public ReservationInfoPage(AccommodationService accommodationService, AccommodationDTO SelectedAccommodation, AccommodationReservationService accommodationReservationService, User user, Frame frame)
+        public ReservationInfoPage(AccommodationService accommodationService, AccommodationViewModel SelectedAccommodation, AccommodationReservationService accommodationReservationService, User user, Frame frame)
         {
             InitializeComponent();
             this.SelectedAccommodation = SelectedAccommodation;

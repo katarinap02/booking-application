@@ -22,12 +22,12 @@ namespace BookingApp.View
 {
     public partial class DayNumberPopUp : Window
     {
-        public AccommodationDTO SelectedAccommodation { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
         public AccommodationRepository AccommodationRepository { get; set; }
 
         public User User { get; set; }  
         public int DayNumber {  get; set; }
-        public DayNumberPopUp(AccommodationRepository accommodationRepository, AccommodationDTO SelectedAccommodation, User user)
+        public DayNumberPopUp(AccommodationRepository accommodationRepository, AccommodationViewModel SelectedAccommodation, User user)
         {
             InitializeComponent();
             this.SelectedAccommodation = SelectedAccommodation;

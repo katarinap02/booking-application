@@ -24,14 +24,14 @@ namespace BookingApp.View.HostWindows
     public partial class RegisterAccommodationWindow : Window
     {
         public User User { get; set; }
-        public AccommodationDTO accommodationDTO { get; set; }
+        public AccommodationViewModel accommodationDTO { get; set; }
         private AccommodationRepository accommodationRepository;
         public RegisterAccommodationWindow(AccommodationRepository ar, User user)
         {
             InitializeComponent();
             accommodationRepository = ar;
             DataContext = this;
-            accommodationDTO = new AccommodationDTO();
+            accommodationDTO = new AccommodationViewModel();
             User = user;
         }
 

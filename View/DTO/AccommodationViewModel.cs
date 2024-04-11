@@ -12,7 +12,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace BookingApp.DTO
 {
-    public class AccommodationDTO : INotifyPropertyChanged
+    public class AccommodationViewModel : INotifyPropertyChanged
     {
         private int id;
         public int Id
@@ -336,12 +336,12 @@ namespace BookingApp.DTO
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public AccommodationDTO()
+        public AccommodationViewModel()
         {
             reservationDaysLimit = 1;
         }
 
-        public AccommodationDTO(Accommodation accommodation)
+        public AccommodationViewModel(Accommodation accommodation)
         {
             id = accommodation.Id;
             name = accommodation.Name;

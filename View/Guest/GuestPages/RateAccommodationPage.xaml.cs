@@ -27,10 +27,10 @@ namespace BookingApp.View.GuestPages
     public partial class RateAccommodationPage : Page, IObserver
     {
 
-        public ObservableCollection<AccommodationReservationDTO> Reservations { get; set; }
+        public ObservableCollection<AccommodationReservationViewModel> Reservations { get; set; }
         public User User { get; set; }
 
-        public AccommodationReservationDTO SelectedReservation {  get; set; }
+        public AccommodationReservationViewModel SelectedReservation {  get; set; }
         public AccommodationService AccommodationService { get; set; }
 
         public AccommodationReservationService AccommodationReservationService { get; set; }
@@ -44,7 +44,7 @@ namespace BookingApp.View.GuestPages
             this.User = user;
             this.AccommodationReservationService = accommodationReservationService;
             this.Frame = frame;
-            Reservations = new ObservableCollection<AccommodationReservationDTO>();
+            Reservations = new ObservableCollection<AccommodationReservationViewModel>();
             DataContext = this;
             this.AccommodationService = accommodationService;
             this.AccommodationRateService = accommodationRateService;
@@ -59,7 +59,7 @@ namespace BookingApp.View.GuestPages
             {
                 if (reservation.GuestId == User.Id && IsBeforeFiveDays(reservation))
                 {
-                    Reservations.Add(new AccommodationReservationDTO(reservation));
+                    Reservations.Add(new AccommodationReservationViewModel(reservation));
                 }
             }
         }
