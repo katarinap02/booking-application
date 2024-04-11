@@ -271,5 +271,16 @@ namespace BookingApp.View.ViewModel
 
 
         }
+
+        public void CancelReservation_Click(object sender, RoutedEventArgs e)
+        {
+            
+         
+            AccommodationService = new AccommodationService();
+            AccommodationReservationService = new AccommodationReservationService();
+            AccommodationReservationService.CancelReservation(AccommodationService, this);
+          
+
+        }
     }
 }

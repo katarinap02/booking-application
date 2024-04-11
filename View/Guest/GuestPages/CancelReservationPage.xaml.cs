@@ -27,40 +27,26 @@ namespace BookingApp.View.GuestPages
 
     public partial class CancelReservationPage : Page
     {
-        public AccommodationReservationService AccommodationReservationService { get; set; }
-
-        public AccommodationService AccommodationService { get; set; }
+       
 
         public AccommodationReservationViewModel SelectedReservation { get; set; }
 
         public User User { get; set; }  
         public Frame Frame { get; set; }
-        public CancelReservationPage(AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, AccommodationReservationViewModel selectedReservation, User user, Frame frame)
+        public CancelReservationPage(AccommodationReservationViewModel selectedReservation, User user, Frame frame)
         {
             InitializeComponent();
-            this.AccommodationReservationService = accommodationReservationService;
-            this.AccommodationService = accommodationService;
+            
             this.SelectedReservation = selectedReservation;
             this.User = user;
             this.Frame = frame;
-            DataContext = this;
+            DataContext = SelectedReservation;
 
         }
 
         private void CancelReservation_Click(object sender, RoutedEventArgs e)
         {
-            int daysBefore = (SelectedReservation.StartDate - DateTime.Today).Days;
-            int dayLimit = AccommodationService.GetById(SelectedReservation.AccommodationId).ReservationDaysLimit;
-            if (daysBefore < dayLimit)
-            {
-                MessageBox.Show("It is too late to cancel reservation");
-            }
-            else
-            {
-                AccommodationReservationService.Delete(SelectedReservation);
-                AccommodationService.FreeDateRange(AccommodationService.GetById(SelectedReservation.AccommodationId), SelectedReservation);
-                MessageBox.Show("jej");
-            }
+           SelectedReservation.CancelReservation_Click(sender, e);
 
         }
     }
