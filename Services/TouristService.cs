@@ -90,5 +90,10 @@ namespace BookingApp.Services
             }
             return nowJoinedParticipantNames;
         }
+
+        public List<TourViewModel> GetTourByCityWithAvailablePlaces(string city)
+        {
+            return ToTourViewModel(tourRepository.GetTourByCityWithAvailablePlaces(city));
+        }
     }
 }
