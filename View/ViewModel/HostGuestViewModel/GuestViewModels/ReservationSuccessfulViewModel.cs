@@ -48,12 +48,12 @@ namespace BookingApp.ViewModel
 
         public void HomePage_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new HomePage(AccommodationService, AccommodationReservationService, User, Frame);
+            Frame.Content = new HomePage(User, Frame);
         }
 
         public void ProfilePage_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new ProfilePage(User, AccommodationReservationService, AccommodationService, AccommodationRateService, Frame);
+            Frame.Content = new ProfilePage(User, Frame);
         }
 
     }

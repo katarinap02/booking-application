@@ -22,26 +22,15 @@ namespace BookingApp.View
    
     public partial class GuestWindow : Window
     {
-      /*  public AccommodationRepository AccommodationRepository { get; set; }
-        public AccommodationRateRepository AccommodationRateRepository { get; set; }
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
-        public User User {  get; set; }*/
-
-        public AccommodationService AccommodationService { get; set; }
-        public AccommodationRateService AccommodationRateService { get; set; }
-        public AccommodationReservationService AccommodationReservationService { get; set; }
-
+      
         public User User { get; set; }
         
         public GuestWindow(User user)
         {
             InitializeComponent();
-            AccommodationService = new AccommodationService();
-            AccommodationRateService = new AccommodationRateService();
-            AccommodationReservationService = new AccommodationReservationService();
-          
+        
             this.User = user;
-            Main.Content = new HomePage(AccommodationService, AccommodationReservationService, User, Main);
+            Main.Content = new HomePage(User, Main);
             Main.DataContext = this;
           
             
@@ -51,17 +40,17 @@ namespace BookingApp.View
 
         private void HomeClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new HomePage(AccommodationService, AccommodationReservationService, User, Main);
+            Main.Content = new HomePage(User, Main);
         }
 
         private void ProfileClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ProfilePage(User, AccommodationReservationService, AccommodationService, AccommodationRateService, Main);
+            Main.Content = new ProfilePage(User, Main);
         }
 
         private void AccommodationsClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new AccommodationsPage(AccommodationService, AccommodationReservationService, User, Main);
+            Main.Content = new AccommodationsPage(User, Main);
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
