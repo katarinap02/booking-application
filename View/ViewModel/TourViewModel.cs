@@ -530,7 +530,7 @@ namespace BookingApp.ViewModel
         public void NotificationButton()
         {
             // TREBA DA SE IZMENI DA PRIKAZE SAMO MOJE NOTIFIKACIJE
-            TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow();
+            TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow(UserId);
             touristNotificationWindow.ShowDialog();
         }
 
