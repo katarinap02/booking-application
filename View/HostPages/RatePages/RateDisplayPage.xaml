@@ -40,7 +40,7 @@
     x:Name="AccommodationsRateListView"
     Grid.Row="1"
     
-    Margin="40,0,0,40"
+    Margin="15,0,0,20"
     Padding="0"
     Background="Transparent"
     BorderThickness="0"
@@ -50,7 +50,7 @@
                 <ListView.ItemContainerStyle>
                     <Style TargetType="ListViewItem">
                         <Setter Property="Background" Value="White" />
-                    <Setter Property="Width" Value="420"/>
+                    <Setter Property="Width" Value="460"/>
                     <Setter Property="Padding" Value="0" />
                         <Setter Property="Margin" Value="15,15,15,15" />
                         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
@@ -85,7 +85,7 @@
                                 Grid.Row="0"
                                 Grid.RowSpan="4"
                                 Grid.Column="0"
-                                Height="150"
+                                Width="170"
                                 Margin="10"
                                 VerticalAlignment="Center">
                                 <Image.Style>
@@ -98,14 +98,14 @@
 
                             <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="15 5 0 0">
                                 <Label Content="guestUsername:" FontSize="13" VerticalAlignment="Center" />
-                                <TextBlock FontWeight="Bold"
+                                <TextBlock FontWeight="Bold" Width="Auto"
                                     Margin="5,0,0,0"
                                     Text="{Binding GuestUsername}" 
                                     VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="15 0 0 0">
                                 <Label Content="accommodation:" FontSize="13" VerticalAlignment="Center" />
-                                <TextBlock FontWeight="Bold"
+                                <TextBlock FontWeight="Bold" Width="Auto"
                                     Margin="5,0,0,0"
                                     Text="{Binding AccommodationName}" 
                                     VerticalAlignment="Center"/>
@@ -113,23 +113,22 @@
 
                             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="15 0 0 0">
                                 <Label Content="cleanliness:" FontSize="13" VerticalAlignment="Center" />
-                                <TextBlock FontWeight="Bold"
+                                <TextBlock FontWeight="Bold" Width="Auto"
                                     Margin="5,0,0,0"
                                     Text="{Binding Cleanliness}" 
                                     VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Margin="15 0 0 0">
                                 <Label Content="correctnes of the host:" FontSize="13" VerticalAlignment="Center" />
-                                <TextBlock FontWeight="Bold"
+                                <TextBlock FontWeight="Bold" Width="Auto"
                                     Margin="5,0,0,0"
                                     Text="{Binding Correctness}" 
                                     VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal"  Grid.Row="4" Grid.Column="1" Margin="15 0 0 5">
                                 <Label Content="comment:" FontSize="13" VerticalAlignment="Center" />
-                                <TextBlock FontWeight="Bold"
+                                <TextBlock FontWeight="Bold" Width="Auto"
                                     Margin="5,0,0,0" Grid.RowSpan="2"
-                                    MaxWidth="70"
                                     Text="{Binding AdditionalComment}" 
                                     VerticalAlignment="Center"/>
                             </StackPanel>
