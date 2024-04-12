@@ -23,12 +23,15 @@ namespace BookingApp.Model
         public RequestStatus Status { get; set; }
 
         public string Comment { get; set; }
+
+        public DateTime RepliedDate { get; set; }
         public DelayRequest() { 
         
             Status = RequestStatus.PENDING;
+            RepliedDate = DateTime.Now;
         }
 
-        public DelayRequest(int guestId, int hostId, int reservationId, DateTime startDate, DateTime endDate, RequestStatus status, string comment)
+        public DelayRequest(int guestId, int hostId, int reservationId, DateTime startDate, DateTime endDate, RequestStatus status, string comment, DateTime repliedDate)
         {
 
             GuestId = guestId;
@@ -38,6 +41,7 @@ namespace BookingApp.Model
             EndDate = endDate;
             Status = status;
             Comment = comment;
+            RepliedDate = repliedDate;
         }
 
         public string[] ToCSV()
@@ -50,7 +54,8 @@ namespace BookingApp.Model
                 ReservationId.ToString(),
                 DateRange,
                 Comment,
-                Status.ToString()
+                Status.ToString(),
+                RepliedDate.ToString()
             };
 
             return csvValues;
@@ -67,6 +72,8 @@ namespace BookingApp.Model
             EndDate = DateTime.Parse(dateParts[1]);
             Comment = values[5];
             Status = StatusFromCsv(values[6]);
+            if (values[7] != null) 
+                RepliedDate = DateTime.Parse(values[7]);
 
         }
 

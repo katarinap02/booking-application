@@ -208,6 +208,21 @@ namespace BookingApp.View.ViewModel
             }
         }
 
+        private DateTime repliedDate;
+        public DateTime RepliedDate
+        {
+            get { return repliedDate; }
+            set
+            {
+                if (repliedDate != value)
+                {
+
+                    repliedDate = value;
+                    OnPropertyChanged("RepliedDate");
+                }
+            }
+        }
+
         private AccommodationReservationService AccommodationReservationService = new AccommodationReservationService();
         private AccommodationService AccommodationService = new AccommodationService();
 
@@ -256,6 +271,7 @@ namespace BookingApp.View.ViewModel
             endDate = dr.EndDate;
             comment = dr.Comment;
             status = dr.Status;
+            repliedDate = dr.RepliedDate;
         }
 
         public DelayRequestViewModel()
@@ -264,7 +280,7 @@ namespace BookingApp.View.ViewModel
 
         public DelayRequest ToDelayRequest()
         {
-            DelayRequest request = new DelayRequest(guestId, hostId, reservationId, startDate, endDate, status, comment);
+            DelayRequest request = new DelayRequest(guestId, hostId, reservationId, startDate, endDate, status, comment, repliedDate);
             request.Id = id;
             return request;
         }

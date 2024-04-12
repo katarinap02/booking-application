@@ -33,7 +33,8 @@ namespace BookingApp.ViewModel
         public void Update()
         {
            Notifications.Clear();
-           foreach(DelayRequest request in DelayRequestService.GetAll())
+            List<DelayRequest> delayRequests = DelayRequestService.GetAll().OrderByDescending(d => d.RepliedDate).ToList();
+           foreach(DelayRequest request in delayRequests)
            {
 
                 if(request.Status == RequestStatus.APPROVED)
@@ -54,7 +55,8 @@ namespace BookingApp.ViewModel
             string hostUsername = HostService.GetById(request.HostId).Username;
             string message = hostUsername + " has rejected your request.\n";
             AccommodationReservation reservation = AccommodationReservationService.GetById(request.ReservationId);
-            message += "Reservation: " + reservation.DateRange;
+            message += "Reservation: " + reservation.DateRange + "\n";
+            message += "Time: " + request.RepliedDate.ToString();
             return message;
         }
 
@@ -63,7 +65,8 @@ namespace BookingApp.ViewModel
             string hostUsername = HostService.GetById(request.HostId).Username;
             string message = hostUsername + " has approved your request.\n";
             AccommodationReservation reservation = AccommodationReservationService.GetById(request.ReservationId);
-            message += "Reservation: " + reservation.DateRange;
+            message += "Reservation: " + reservation.DateRange + "\n";
+            message += "Time: " + request.RepliedDate.ToString();
             return message;
         }
     }

@@ -76,6 +76,7 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
             {
                 Delay = SelectedDelay;
                 Delay.Status = RequestStatus.APPROVED;
+                Delay.RepliedDate = DateTime.Now;
                 AccommodationReservationService.UpdateReservation(Delay.ReservationId, Delay.StartDate, Delay.EndDate);
                 DelayRequestService.Update(Delay.ToDelayRequest());
                 Accommodation accommodation = AccommodationService.GetById(AccommodationReservationService.GetById(Delay.ReservationId).AccommodationId);
@@ -109,6 +110,7 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
                 Delay.ReservationId = SelectedDelay.ReservationId;
                 Delay.HostId = SelectedDelay.HostId;
                 Delay.Status = RequestStatus.REJECTED;
+                Delay.RepliedDate = DateTime.Now;
                // Delay.Comment = DelayPage.ExplanationTextBox.Text;
                 DelayRequestService.Update(Delay.ToDelayRequest());
                 Update();

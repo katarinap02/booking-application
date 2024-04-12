@@ -12,7 +12,13 @@
     <Grid>
         <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Background="White" Height="400" Width="300">
             <ListBox x:Name="notificationListBox" ItemsSource="{Binding Notifications}" Margin="8,8,8,8" Width="280">
-               
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="1" Margin="0,0,0,5">
+                            <TextBlock Text="{Binding}" Padding="5"/>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
             </ListBox>
         </Border>
     </Grid>
