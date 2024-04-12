@@ -55,7 +55,8 @@ namespace BookingApp.ViewModel
             string hostUsername = HostService.GetById(request.HostId).Username;
             string message = hostUsername + " has rejected your request.\n";
             AccommodationReservation reservation = AccommodationReservationService.GetById(request.ReservationId);
-            message += "Reservation: " + reservation.DateRange + "\n";
+            string dateRange = reservation.StartDate.ToString("MM/dd/yyyy") + " -> " + reservation.EndDate.ToString("MM/dd/yyyy");
+            message += "Reservation: " + dateRange + "\n";
             message += "Time: " + request.RepliedDate.ToString();
             return message;
         }
@@ -65,7 +66,8 @@ namespace BookingApp.ViewModel
             string hostUsername = HostService.GetById(request.HostId).Username;
             string message = hostUsername + " has approved your request.\n";
             AccommodationReservation reservation = AccommodationReservationService.GetById(request.ReservationId);
-            message += "Reservation: " + reservation.DateRange + "\n";
+            string dateRange = reservation.StartDate.ToString("MM/dd/yyyy") + " -> " + reservation.EndDate.ToString("MM/dd/yyyy");
+            message += "Reservation: " + dateRange + "\n";
             message += "Time: " + request.RepliedDate.ToString();
             return message;
         }

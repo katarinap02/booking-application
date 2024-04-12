@@ -154,7 +154,7 @@ namespace BookingApp.View.ViewModel
         }
 
         public string Location => City + ", " + Country;
-        public string DateRangeString => StartDate.ToString() + "-" + EndDate.ToString();
+        public string DateRangeString => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
 
         private AccommodationService accommodationService = new AccommodationService();
         private HostService hostService = new HostService();

@@ -6,15 +6,15 @@
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
       xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="300"
+      d:DesignHeight="400" d:DesignWidth="250"
       Title="NotificationPopUp">
 
     <Grid>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Background="White" Height="400" Width="300">
-            <ListBox x:Name="notificationListBox" ItemsSource="{Binding Notifications}" Margin="8,8,8,8" Width="280">
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Background="White" Height="400" Width="250">
+            <ListBox x:Name="notificationListBox" ItemsSource="{Binding Notifications}" Margin="6,8,8,8" Width="232" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="1" Margin="0,0,0,5">
+                        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="1" Margin="0,0,0,5" CornerRadius="10">
                             <TextBlock Text="{Binding}" Padding="5"/>
                         </Border>
                     </DataTemplate>
