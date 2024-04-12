@@ -54,8 +54,8 @@
             <!--<Button Content="Light theme" HorizontalAlignment="Left" Margin="1362,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="LightTheme_Click"/>-->
 
         </Grid>
-        <Image Source="{StaticResource Bell}" Margin="1739,-124,161,889" RenderTransformOrigin="0.606,0.532"/>
-        <Button Content="Log out" Style="{StaticResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1804,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105"/>
+        <Image Source="{StaticResource Bell}" Margin="1720,-105,155,889" Width="25"/>
+        <Button Content="Log out" Style="{StaticResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1795,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105"/>
     </Grid>
 
 </Window>
