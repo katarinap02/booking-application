@@ -19,7 +19,7 @@
             <Setter Property="BorderBrush" Value="{StaticResource AccentColorN}"/>
             <Setter Property="FontWeight" Value="Bold"/>
             <Setter Property="FontFamily" Value="Arial"/>
-            <Setter Property="FontSize" Value="30"/>
+            <Setter Property="FontSize" Value="25"/>
 
         </Style>
 
