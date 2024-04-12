@@ -255,6 +255,7 @@ namespace BookingApp.View.ViewModel
         public string RequestHeader { get; set; }
         public AccommodationViewModel Accommodation { get; set; }
 
+
         public ComboBox RequestStatusBox { get; set; }
         protected virtual void OnPropertyChanged(string propertyName)
         {
