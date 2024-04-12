@@ -278,7 +278,7 @@ namespace BookingApp.ViewModel
 
                 
 
-                Frame.Content = new ReservationSuccessfulPage(AccommodationService, AccommodationReservationService, SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
+                Frame.Content = new ReservationSuccessfulPage(SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
 
 
 
