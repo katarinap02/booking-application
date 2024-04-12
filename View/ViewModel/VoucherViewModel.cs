@@ -1,5 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.Services;
+using BookingApp.View.TouristWindows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -179,6 +180,11 @@ namespace BookingApp.ViewModel
             MessageBox.Show("You just used a voucher!");
         }
 
+        public void NotificationButton()
+        {
+            TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow(UserId);
+            touristNotificationWindow.ShowDialog();
+        }
 
         public VoucherViewModel() {
             _voucherService = new VoucherService();

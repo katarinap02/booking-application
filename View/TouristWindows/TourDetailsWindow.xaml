@@ -28,7 +28,7 @@
             <StackPanel x:Name="PdfPanel" Visibility="{Binding PdfPanel}">
                 <Button Click="PdfButton_Click" Width="150">
                     <StackPanel Orientation="Horizontal" Margin="-10,0,0,0">
-                        <Image Height="30" Width="39" Source="/View/TouristWindows/pdf.png"/>
+                        <Image Height="30" Width="39" Source="/Resources/Images/pdf.png"/>
                         <Label Content="Export reservation" FontSize="16"/>
                     </StackPanel>
                 </Button>

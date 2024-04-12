@@ -46,7 +46,7 @@ namespace BookingApp.View.TouristWindows
 
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Tour.NotificationButton();
         }
     }
 }
