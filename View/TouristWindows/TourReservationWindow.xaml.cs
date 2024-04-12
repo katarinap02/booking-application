@@ -25,86 +25,22 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class TourReservationWindow : Window
     {
-        public TourViewModel SelectedTour { get; set; }
-        private readonly TourParticipantRepository _tourParticipantRepository;
-        private readonly TourReservationRepository _tourReservationRepository;
-
-        //private readonly TourRepository _tourRepository;
-        private readonly TouristService _touristService;
-        public TourReservation TourReservation { get; set; }
-        public TourParticipant TourParticipant { get; set; }
-        public List<TourParticipantDTO> TourParticipantDTOs { get; set; }
-        public List<TourParticipantDTO> TourParticipantsListBox { get; set; }
-
+        public TourReservationViewModel TourReservation { get; set; }
         public int UserId;
 
-        #region Property
-        private int participantCount;
-
-
-        public string ParticipantCount
-        {
-            get
-            {
-                return participantCount.ToString();
-            }
-            set
-            {
-                if(value !=  participantCount.ToString())
-                {
-                    participantCount = Convert.ToInt32(value);
-                    OnPropertyChanged(nameof(participantCount));
-                }
-            }
-        }
-        #endregion
-        #region PropertyChanged
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-        #endregion
 
         public TourReservationWindow(TourViewModel selectedTour, int insertedNumberOfParticipants, int userId)
         {
             InitializeComponent();
-            this.DataContext = this;
-            SelectedTour = selectedTour;
-            ParticipantCount = insertedNumberOfParticipants.ToString();
-            UserId = userId;
-
-            _tourParticipantRepository = new TourParticipantRepository();
-            _tourReservationRepository = new TourReservationRepository();
-            _touristService = new TouristService();
-
-            TourReservation = new TourReservation();
-            TourParticipant = new TourParticipant();
-
-            TourParticipantDTOs = new List<TourParticipantDTO>();
-            TourParticipantsListBox = new List<TourParticipantDTO>();
-            InitializeTourDetailsLabels();
-            InitializeParticipantInformationGroupBox();
+            TourReservation = new TourReservationViewModel();
+            DataContext = TourReservation;
+            TourReservation.SelectedTour = selectedTour;
+            TourReservation.ParticipantCount = insertedNumberOfParticipants.ToString();
+            TourReservation.UserId = userId;
 
         }
 
-        private void InitializeParticipantInformationGroupBox()
-        {
-            if (Convert.ToInt32(ParticipantCount) == 0)
-                setGroupBoxVisibility(false);
-            else
-                setGroupBoxVisibility(true);
-        }
 
-        private void InitializeTourDetailsLabels()
-        {
-            availablePlaces.Foreground = Brushes.Green;
-            availablePlaces.Content = SelectedTour.AvailablePlaces;
-            tourName.Content = SelectedTour.Name;
-        }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -113,179 +49,21 @@ namespace BookingApp.View.TouristWindows
 
         private void BookButton_Click(object sender, RoutedEventArgs e)
         {
-            int participantCount = Convert.ToInt32(ParticipantCount);
-            if (participantCount < TourParticipantDTOs.Count)
-            {
-                MessageBox.Show("Too many participants in the list of participants", "Participants error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            } 
-            else if (participantCount > TourParticipantDTOs.Count)
-            {
-                MessageBox.Show("Too less participants in the list of participants", "Participants error", MessageBoxButton.OK, MessageBoxImage.Warning);
-            }
-            else
-            {
-                saveParticipants();
-                saveReservation();
-
-                ReduceNumberOfAvailablePlaces();
-                MessageBox.Show("Tour " + "\"" + SelectedTour.Name + "\"" + " booked!");
+            if(TourReservation.Book())
                 Close();
-            }
         }
 
-        private void ReduceNumberOfAvailablePlaces()
-        {
-            try
-            {
-                _touristService.UpdateAvailablePlaces(SelectedTour, TourParticipantDTOs.Count);
-            }
-            catch (ArgumentNullException)
-            {
-                MessageBox.Show("something wrong happened");
-            }
-        }
         private void AddParticipantButton_Click(object sender, RoutedEventArgs e)
         {
-            if(!AllFieldsFilled(years.Text, name.Text, lastName.Text))
-            {
-                MessageBox.Show("All fields must be filled");
-            }
-            else
-            {
-                TourParticipantDTO tourParticipantDTO = saveParticipantToDTO(name.Text, lastName.Text, years.Text);
-                TourParticipantsListBox.Add(tourParticipantDTO);
-
-                SetupForNextParticipantInput();
-            }
+            TourReservation.AddParticipant();
         }
 
-        private void SetupForNextParticipantInput()
-        {
-            ParticipantsListBox.ItemsSource = null;
-            ParticipantsListBox.ItemsSource = TourParticipantsListBox;
 
-            name.Text = "";
-            lastName.Text = "";
-            years.Text = "";
-        }
-
-        private bool AllFieldsFilled(string years, string name, string lastName)
-        {
-            if (years == string.Empty || name == string.Empty || lastName == string.Empty)
-            {
-                return false;
-            }
-
-            return true;
-        }
-
-        private void saveReservation()
-        {
-            TourReservation.TourId = SelectedTour.Id;
-            TourReservation.TouristId = UserId;
-            TourReservation.ParticipantIds = _tourParticipantRepository.GetAllIdsByReservation(_tourReservationRepository.NextId());
-            TourReservation.StartCheckpoint = SelectedTour.CurrentCheckpoint;
-
-            _tourReservationRepository.Add(TourReservation);
-        }
-
-        private void saveParticipants()
-        {
-            int reservationId = _tourReservationRepository.NextId();
-            foreach (TourParticipantDTO tp in TourParticipantDTOs)
-            {
-                tp.ReservationId = reservationId;
-                tp.Id = _tourParticipantRepository.NextId();
-                _tourParticipantRepository.Add(tp.ToTourParticipant());
-            }
-        }
-        private TourParticipantDTO saveParticipantToDTO(string name, string lastName, string years)
-        {
-            TourParticipant.Name = name;
-            TourParticipant.LastName = lastName;
-            TourParticipant.Years = Convert.ToInt32(years);
-            TourParticipant.Id = _tourParticipantRepository.NextId();
-            TourParticipantDTO tourParticipantDTO = new TourParticipantDTO(TourParticipant);
-
-            TourParticipantDTOs.Add(tourParticipantDTO);
-            return tourParticipantDTO;
-        }
 
         private void removeParticipant_Click(object sender, RoutedEventArgs e)
         {
-            TourParticipantDTO selectedItem = (TourParticipantDTO)ParticipantsListBox.SelectedItem;
-            TourParticipantDTOs.Remove(selectedItem);
-
-            TourParticipantsListBox.Remove(selectedItem);
-            ParticipantsListBox.ItemsSource = null;
-            ParticipantsListBox.ItemsSource = TourParticipantsListBox;
+            TourReservation.RemoveParticipant();
         }
 
-        private void ParticipantsMinus_Click(object sender, RoutedEventArgs e)
-        {
-            if(Convert.ToInt32(ParticipantCount) > 0)
-                ParticipantCount = (Convert.ToInt32(ParticipantCount) - 1).ToString();
-            if(Convert.ToInt32(ParticipantCount) == 0)
-                setGroupBoxVisibility(false);
-        }
-
-
-
-        private void ParticipantsPlus_Click(object sender, RoutedEventArgs e)
-        {
-            if(Convert.ToInt32(ParticipantCount) < SelectedTour.AvailablePlaces)
-            {
-                ParticipantCount = (Convert.ToInt32(ParticipantCount) + 1).ToString();
-
-                setGroupBoxVisibility(true);
-            }
-        }
-
-        private void setGroupBoxVisibility(bool visibility)
-        {
-            if(visibility)
-                ParticipantInformationGroupBox.Visibility = Visibility.Visible;
-            else
-                ParticipantInformationGroupBox.Visibility = Visibility.Collapsed;
-        }
-        private void YearsPlus_Click(object sender, RoutedEventArgs e)
-        {
-            if(years.Text == "")
-                years.Text = "0";
-
-            years.Text = (Convert.ToInt32(years.Text) + 1).ToString();
-            
-        }
-
-        private void YearsMinus_Click(object sender, RoutedEventArgs e)
-        {
-            if(Convert.ToInt32(years.Text) > 0)
-            {
-                years.Text = (Convert.ToInt32(years.Text) - 1).ToString();
-            }
-        }
-
-        private void years_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = IsDigit(e);
-        }
-        private bool IsDigit(TextCompositionEventArgs e)
-        {
-            if (!char.IsDigit(e.Text, e.Text.Length - 1))
-                return true;
-
-            return false;
-        }
-
-        private void years_LostFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = "0";
-                return;
-            }
-        }
     }
 }

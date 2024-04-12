@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookingApp.ViewModel
 {
-    public class TourParticipantDTO : INotifyPropertyChanged
+    public class TourParticipantViewModel : INotifyPropertyChanged
     {
         private int _id;
         public int Id
@@ -86,8 +86,8 @@ namespace BookingApp.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public TourParticipantDTO() { }
-        public TourParticipantDTO(TourParticipant tourParticipant)
+        public TourParticipantViewModel() { }
+        public TourParticipantViewModel(TourParticipant tourParticipant)
         {
             _name = tourParticipant.Name;
             _id = tourParticipant.Id;

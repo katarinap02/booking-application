@@ -15,6 +15,7 @@ namespace BookingApp.ViewModel
     public class TourViewModel : INotifyPropertyChanged
     {
         private readonly TouristService _touristService;
+        private readonly GuideRateService _guideRateService;
         private readonly UserService _userService;
 
         public ObservableCollection<TourViewModel> Tours { get; set; }
@@ -420,6 +421,73 @@ namespace BookingApp.ViewModel
             }
         }
 
+        private SolidColorBrush _availablePlacesColor;
+        public SolidColorBrush AvailablePlacesColor
+        {
+            get
+            {
+                return _availablePlacesColor;
+            }
+            set
+            {
+                if (value != _availablePlacesColor)
+                {
+                    _availablePlacesColor = value;
+                    OnPropertyChanged(nameof(AvailablePlacesColor));
+                }
+            }
+        }
+
+        private HorizontalAlignment _closeButtonAlignmentNumberOfParticipants;
+        public HorizontalAlignment CloseButtonalignmentNumberOfParticipants
+        {
+            get
+            {
+                return _closeButtonAlignmentNumberOfParticipants;
+            }
+            set
+            {
+                if (_closeButtonAlignmentNumberOfParticipants != value)
+                {
+                    _closeButtonAlignmentNumberOfParticipants = value;
+                    OnPropertyChanged(nameof(CloseButtonalignmentNumberOfParticipants));
+                }
+            }
+        }
+
+        private Visibility _confirmButtonVisibilityNumberOfParticipants;
+        public Visibility ConfirmButtonVisibilityNumberOfParticipants
+        {
+            get
+            {
+                return _confirmButtonVisibilityNumberOfParticipants;
+            }
+            set
+            {
+                if (_confirmButtonVisibilityNumberOfParticipants != value)
+                {
+                    _confirmButtonVisibilityNumberOfParticipants = value;
+                    OnPropertyChanged(nameof(ConfirmButtonVisibilityNumberOfParticipants));
+                }
+            }
+        }
+
+        private int _insertedNumberOfParticipants;
+        public int InsertedNumberOfParticipants
+        {
+            get
+            {
+                return _insertedNumberOfParticipants;
+            }
+            set
+            {
+                if(value != _insertedNumberOfParticipants)
+                {
+                    _insertedNumberOfParticipants = value;
+                    OnPropertyChanged(nameof(InsertedNumberOfParticipants));
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -462,7 +530,7 @@ namespace BookingApp.ViewModel
         public void NotificationButton()
         {
             // TREBA DA SE IZMENI DA PRIKAZE SAMO MOJE NOTIFIKACIJE
-            TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow();
+            TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow(UserId);
             touristNotificationWindow.ShowDialog();
         }
 
@@ -566,6 +634,13 @@ namespace BookingApp.ViewModel
             }
         }
 
+        public bool IsRated()
+        {
+            return _guideRateService.IsRated(SelectedTour.Id);
+        }
+
+
+
         //*********************** TOUR DETAILS
 
         public void TourDetailsWindowInitialization(bool IsMyTour)
@@ -611,9 +686,84 @@ namespace BookingApp.ViewModel
             }
         }
 
+        //********************TourNumberOfParticipantsWindow
+        public void RefreshToursByCity()
+        {
+            Tours.Clear();
+            List<TourViewModel> tours = _touristService.GetTourByCityWithAvailablePlaces(SelectedTour.City);
+            foreach(var tour in tours)
+            {
+                Tours.Add(tour);
+            }
+        }
+
+        private Visibility _dataTabVisibility;
+        public Visibility DataTabVisibility
+        {
+            get
+            {
+                return _dataTabVisibility;
+            }
+            set
+            {
+                if(_dataTabVisibility != value)
+                {
+                    _dataTabVisibility = value;
+                    OnPropertyChanged(nameof(DataTabVisibility));
+                }
+            }
+        }
+
+        public (int, int) InitializeNumberOfParticipantsWindow()
+        {
+            if (SelectedTour.AvailablePlaces == 0)
+            {
+                AvailablePlacesColor = Brushes.Red;
+                if (Tours.Count > 0)
+                {
+                    DataTabVisibility = Visibility.Visible;
+                    
+                }
+                CloseButtonalignmentNumberOfParticipants = HorizontalAlignment.Center;
+                ConfirmButtonVisibilityNumberOfParticipants = Visibility.Collapsed;
+                MessageBox.Show("No more places for the selected tour, please select another one!");
+                // returnujemo big window size, widht, height
+                return (800, 600);
+            }
+            else
+            {
+                AvailablePlacesColor = Brushes.Green;
+
+                DataTabVisibility = Visibility.Collapsed;
+                CloseButtonalignmentNumberOfParticipants = HorizontalAlignment.Left;
+                ConfirmButtonVisibilityNumberOfParticipants = Visibility.Visible;
+                // small
+                return (600, 220);
+            }
+        }
+        public void ConfirmNumberOfParticipants()
+        {
+            if (InsertedNumberOfParticipants > SelectedTour.AvailablePlaces)
+            {
+                MessageBox.Show("Not enough places for the reservation");
+                return;
+            }
+            if(InsertedNumberOfParticipants == 0)
+                InsertedNumberOfParticipants = 1;
+            TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants, UserId);
+            tourReservationWindow.ShowDialog();
+        }
+
+        public void BookNumberOfParticipants()
+        {
+            TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants, UserId);
+            tourReservationWindow.ShowDialog();
+        }
+
 
         public TourViewModel() {
             _touristService = new TouristService();
+            _guideRateService = new GuideRateService();
             _userService = new UserService();
             Tours = new ObservableCollection<TourViewModel>();
             CheckpointWithColors = new ObservableCollection<Checkpoint>();

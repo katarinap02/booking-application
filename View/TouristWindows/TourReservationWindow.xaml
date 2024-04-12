@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="TourReservationWindow" Height="625" Width="1000" WindowStartupLocation="CenterScreen">
     <Grid>
@@ -46,7 +47,7 @@
                Grid.ColumnSpan="2"
                FontSize="20"/>
         <Label x:Name="tourName"
-               Content="AK"
+               Content="{Binding SelectedTour.Name}"
                VerticalAlignment="Center"
                Grid.Column="3"
                Grid.Row="1" Grid.ColumnSpan="2" Margin="15,0,0,0"
@@ -59,40 +60,20 @@
                FontSize="18"
                HorizontalAlignment="Right"
                VerticalAlignment="Center"/>
-        <TextBox x:Name="Participants"
-                 Text="{Binding Path=ParticipantCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                 IsEnabled="False"
-                 Grid.Row="2"
-                 Grid.Column="4"
-                 HorizontalAlignment="Left"
-                 VerticalAlignment="Center"
-                 TextAlignment="Justify"
-                 Width="30"
-                 Height="30"/>
-        <Button x:Name="ParticipantsPlus"
-                Grid.Column="4"
-                Grid.Row="2"
-                HorizontalAlignment="Left"
-                Width="30"
-                Height="30"
-                Margin="40, -10,0,25"
-                Click="ParticipantsPlus_Click">
-            <Image Source="/View/TouristWindows/plus.png"
-                   Width="25"
-                   Height="25"
-                   HorizontalAlignment="Center"/>
-        </Button>
-        <Button x:Name="ParticipantsMinus"
-                Grid.Column="4"
-                Grid.Row="2"
-                HorizontalAlignment="Left"
-                Height="30"
-                Width="30" 
-                Margin="40,34,0,0"
-                Click="ParticipantsMinus_Click">
-            <Image Source="/View/TouristWindows/minus.png"
-                   Width="22" Height="25"/>
-        </Button>
+        <xctk:IntegerUpDown x:Name="Participants"
+                            Text="{Binding ParticipantCount}"
+                            Grid.Row="2"
+                            Grid.Column="4"
+                            Increment="1"
+                            Minimum="1"
+                            Maximum="{Binding SelectedTour.AvailablePlaces}"
+                            DefaultValue="1"
+                            TextAlignment="Justify"
+                            HorizontalAlignment="Left"
+                            Width="120"
+                            Height="50"
+                            FontSize="20"/>
+
         <Label Content="available places:"
                Grid.Column="2"
                Grid.Row="3"
@@ -103,7 +84,9 @@
                Grid.Column="4"
                Grid.Row="3"
                FontSize="15"
+               Content="{Binding SelectedTour.AvailablePlaces}"
                HorizontalContentAlignment="Left"
+               Foreground="Green"
                />
 
         <GroupBox x:Name="ParticipantInformationGroupBox"
@@ -136,13 +119,14 @@
                        Grid.Row="2"
                        HorizontalContentAlignment="Left"
                        VerticalContentAlignment="Center"/>
-                <Label Content="Years:"
+                <Label Content="Age:"
                        Grid.Column="0"
                        Grid.Row="3"
                        HorizontalContentAlignment="Left"
                        VerticalContentAlignment="Center"/>
 
                 <TextBox x:Name="name"
+                         Text="{Binding Name}"
                          Grid.Column="1"
                          Grid.Row="1"
                          Grid.ColumnSpan="2"
@@ -151,46 +135,22 @@
                          Height="25"/>
 
                 <TextBox x:Name="lastName"
+                         Text="{Binding LastName}"
                          Grid.Column="1"
                          Grid.Row="2"
                          Grid.ColumnSpan="2"
                          HorizontalAlignment="Left"
                          Width="100"
                          Height="25"/>
-                <TextBox x:Name="years"
-                         Grid.Column="1"
-                         Grid.Row="3"
-                         HorizontalAlignment="Left"
-                         TextAlignment="Justify"
-                         Width="31"
-                         Height="25"
-                         PreviewTextInput="years_PreviewTextInput"
-                         LostFocus="years_LostFocus" Margin="0,10,0,10"/>
-                <Button x:Name="YearsPlus"
-                        Grid.Column="1"
-                        Grid.Row="3"
-                        HorizontalAlignment="Center"
-                        Width="26"
-                        Height="27"
-                        Click="YearsPlus_Click" Margin="0,9,-5,9">
-                    <Image Source="/View/TouristWindows/plus.png"
-                           Width="24"
-                           Height="25"
-                           HorizontalAlignment="Center"/>
-                </Button>
-                <Button x:Name="YearsMinus"
-                        Grid.Column="1"
-                        Grid.Row="3"
-                        HorizontalAlignment="Left"
-                        VerticalAlignment="Center"
-                        Height="27"
-                        Width="26"
-                        Click="YearsMinus_Click" Margin="71,0,0,0">
-                    <Image Source="/View/TouristWindows/minus.png"
-                           Height="25"
-                           Width="22"
-                           HorizontalAlignment="Center"/>
-                </Button>
+                <xctk:IntegerUpDown x:Name="years"
+                                    Text="{Binding Age}"
+                                    Grid.Column="1"
+                                    Grid.Row="3"
+                                    TextAlignment="Justify"
+                                    Height="30"
+                                    Increment="1"
+                                    Minimum="1"/>
+
                 <Button x:Name="AddButton"
                         Grid.Row="1"
                         Grid.Column="4"
@@ -226,6 +186,8 @@
                Grid.Row="1"
                Grid.Column="5"/>
         <ListBox x:Name="ParticipantsListBox"
+                 ItemsSource="{Binding ParticipantsListBox}"
+                 SelectedItem="{Binding SelectedParticipant}"
                Grid.Row="2"
                Grid.Column="5"
                Grid.RowSpan="8"

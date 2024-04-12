@@ -18,9 +18,9 @@ namespace BookingApp.Services
             _touristNotificationRepository = new TouristNotificationRepository();
         }
 
-        public List<TouristNotificationViewModel> GetAllNotifications()
+        public List<TouristNotificationViewModel> GetMyNotifications(int touristId)
         {
-            return ToTouristNotificationViewModel(_touristNotificationRepository.GetAllReversed());
+            return ToTouristNotificationViewModel(_touristNotificationRepository.GetMyNotifications(touristId));
         }
 
         public List<TouristNotificationViewModel> ToTouristNotificationViewModel(List<TouristNotification> touristNotifications)

@@ -46,9 +46,28 @@ namespace BookingApp.Repository
             return _tourParticipants.Find(tp => tp.Id == id);
         }
 
+        public TourParticipant SaveParticipant(string name, string lastName, string years)
+        {
+            TourParticipant tourParticipant = new TourParticipant();
+            tourParticipant.Name = name;
+            tourParticipant.LastName = lastName;
+            tourParticipant.Years = Convert.ToInt32(years);
+            tourParticipant.Id = NextId();
+
+            return tourParticipant;
+        }
+
+        public void SaveParticipant(TourParticipant tourParticipant, int reservationId)
+        {
+            tourParticipant.ReservationId = reservationId;
+            tourParticipant.Id = NextId();
+            Add(tourParticipant);
+        }
+
         public List<int> GetAllIdsByReservation(int reservationId)
         {
-            List<TourParticipant> tourParticipantsByReservation = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
+            List<TourParticipant> allTourParticipants = GetAll();
+            List<TourParticipant> tourParticipantsByReservation = allTourParticipants.FindAll(tp => tp.ReservationId == reservationId);
             List<int> tourParticipantIds = new List<int>();
 
             foreach (TourParticipant tp in  tourParticipantsByReservation)

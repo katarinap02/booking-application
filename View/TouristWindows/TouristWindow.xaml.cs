@@ -37,7 +37,7 @@ namespace BookingApp.View.TouristWindows
 
             Username = username;
 
-            MainFrame.Content = new AllToursPage();
+            MainFrame.Content = new AllToursPage(Tour.getUserId(Username));
 
         }
 
@@ -50,7 +50,7 @@ namespace BookingApp.View.TouristWindows
         private void AllToursButton_Click(object sender, RoutedEventArgs e)
         {
             resetButtonColors();
-            MainFrame.Content = new AllToursPage();
+            MainFrame.Content = new AllToursPage(Tour.getUserId(Username));
             AllToursButton.Background = darkerBlue();
         }
 
