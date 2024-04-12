@@ -28,10 +28,10 @@ namespace BookingApp.View.HostPages
     public partial class DelayPage : Page
     {
         public DelayPageViewModel DelayPageViewModel { get; set; }
-        public DelayPage()
+        public DelayPage(User user)
         {
             InitializeComponent();
-            DelayPageViewModel = new DelayPageViewModel();
+            DelayPageViewModel = new DelayPageViewModel(user);
             DataContext = DelayPageViewModel;
             
         }

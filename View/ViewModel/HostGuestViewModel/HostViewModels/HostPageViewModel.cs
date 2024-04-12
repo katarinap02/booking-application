@@ -93,7 +93,7 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
 
         public void Delay_Click(object sender, RoutedEventArgs e)
         {
-            DelayPage page = new DelayPage();
+            DelayPage page = new DelayPage(User);
             HostFrame.Navigate(page);
             LeftDock.Visibility = Visibility.Collapsed;
             RatingPanel.Visibility = Visibility.Collapsed;

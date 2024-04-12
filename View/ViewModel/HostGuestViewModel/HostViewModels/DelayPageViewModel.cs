@@ -22,6 +22,10 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
 
         public ObservableCollection<DelayRequestViewModel> Delays { get; set; }
 
+        public ObservableCollection<string> Notifications { get; set; }
+
+        public ReservationCancellationService ReservationCancellationService { get; set; }
+
         public DelayRequestService DelayRequestService { get; set; }
 
         public UserService UserService { get; set; }
@@ -32,19 +36,25 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
 
         public DelayRequestViewModel Delay { get; set; }
 
-       // public ICommand ApproveCommand { get; set; }
-      //  public ICommand RejectCommand { get; set; }
+        public User User { get; set; }
 
-        public DelayPageViewModel() {
+        // public ICommand ApproveCommand { get; set; }
+        //  public ICommand RejectCommand { get; set; }
+
+        public DelayPageViewModel(User user) {
             Delays = new ObservableCollection<DelayRequestViewModel>();
+            Notifications = new ObservableCollection<string>();
+            ReservationCancellationService = new ReservationCancellationService();
             DelayRequestService = new DelayRequestService();
             UserService = new UserService();
             AccommodationReservationService = new AccommodationReservationService();
             Delay = new DelayRequestViewModel();
             AccommodationService = new AccommodationService();
+            User = user;
            // ApproveCommand = new ApproveDelayCommand(SelectedDelay, Delay, AccommodationReservationService, AccommodationService,
             // UserService, DelayRequestService);
             Update();
+            UpdateNotifications();
 
         }
 
@@ -68,6 +78,28 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
                 }
 
             }
+        }
+
+        public void UpdateNotifications()
+        {
+            Notifications.Clear();
+            List<ReservationCancellation> cancellations = ReservationCancellationService.GetAll().OrderByDescending(c => c.CancellationDate).ToList();
+            foreach (ReservationCancellation cancellation in cancellations)
+            {
+                if (cancellation.HostId == User.Id)
+                    Notifications.Add(CreateCancellationNotification(cancellation));
+            }
+        }
+
+        private string CreateCancellationNotification(ReservationCancellation cancellation)
+        {
+            string guestUsername = UserService.GetById(cancellation.GuestId).Username;
+            string message = guestUsername + " has cancelled a reservation.\n";
+            AccommodationReservation reservation = AccommodationReservationService.GetById(cancellation.ReservationId);
+            string dateRange = reservation.StartDate.ToString("MM/dd/yyyy") + " -> " + reservation.EndDate.ToString("MM/dd/yyyy");
+            message += "Reservation: " + dateRange + "\n";
+            message += "Time: " + cancellation.CancellationDate.ToString();
+            return message;
         }
 
         public void Approve(object sender, RoutedEventArgs e)
