@@ -208,6 +208,21 @@ namespace BookingApp.View.ViewModel
             }
         }
 
+        private DateTime repliedDate;
+        public DateTime RepliedDate
+        {
+            get { return repliedDate; }
+            set
+            {
+                if (repliedDate != value)
+                {
+
+                    repliedDate = value;
+                    OnPropertyChanged("RepliedDate");
+                }
+            }
+        }
+
         private AccommodationReservationService AccommodationReservationService = new AccommodationReservationService();
         private AccommodationService AccommodationService = new AccommodationService();
 
@@ -227,10 +242,60 @@ namespace BookingApp.View.ViewModel
         public User User { get; set; }
         public Frame Frame { get; set; }
 
+        public DelayRequestViewModel SelectedRequest { get; set; }
+
+        public HostService HostService { get; set; }
+        public string HostUsername {  get; set; }
+
+        public string OldDateRange { get; set; }
+        public string NewDateRange { get; set; }   
+        public int NumberOfPeople { get; set; }
+        public int NumberOfDays { get; set; }
+
+        public string RequestHeader { get; set; }
+        public AccommodationViewModel Accommodation { get; set; }
+
         public ComboBox RequestStatusBox { get; set; }
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public DelayRequestViewModel(User user, Frame frame, DelayRequestViewModel selectedRequest)
+        {
+            User = user;
+            Frame = frame;
+            SelectedRequest = selectedRequest;
+            DelayRequestService = new DelayRequestService();
+            AccommodationService = new AccommodationService();
+            AccommodationReservationService = new AccommodationReservationService();
+            HostService = new HostService();
+            AccommodationReservation reservation = AccommodationReservationService.GetById(SelectedRequest.ReservationId);
+            Accommodation = new AccommodationViewModel(AccommodationService.GetById(reservation.AccommodationId));
+            HostUsername = HostService.GetById(SelectedRequest.HostId).Username;
+            OldDateRange = SelectedRequest.EndLastDate.ToString("MM/dd/yyyy") + " - " + SelectedRequest.StartLastDate.ToString("MM/dd/yyyy");
+            NewDateRange = SelectedRequest.EndDate.ToString("MM/dd/yyyy") + " - " + SelectedRequest.StartDate.ToString("MM/dd/yyyy");
+            NumberOfPeople = reservation.NumberOfPeople;
+            Comment = SelectedRequest.Comment;
+            NumberOfDays = (reservation.EndDate - reservation.StartDate).Days + 1;
+            RequestHeader = CreateRequestHeader(SelectedRequest);
+
+
+
+        }
+
+        private string? CreateRequestHeader(DelayRequestViewModel selectedRequest)
+        {
+            if (selectedRequest.Status == RequestStatus.PENDING)
+            {
+                Comment = "Waiting for host's response...";
+                return "Your request is pending.";
+            }
+                
+            else if (selectedRequest.Status == RequestStatus.APPROVED)
+                return "Your request is approved.";
+            else
+                return "Your request is rejected";
         }
 
         public DelayRequestViewModel(User user, Frame frame, RequestsPage page)
@@ -256,6 +321,7 @@ namespace BookingApp.View.ViewModel
             endDate = dr.EndDate;
             comment = dr.Comment;
             status = dr.Status;
+            repliedDate = dr.RepliedDate;
         }
 
         public DelayRequestViewModel()
@@ -264,7 +330,7 @@ namespace BookingApp.View.ViewModel
 
         public DelayRequest ToDelayRequest()
         {
-            DelayRequest request = new DelayRequest(guestId, hostId, reservationId, startDate, endDate, status, comment);
+            DelayRequest request = new DelayRequest(guestId, hostId, reservationId, startDate, endDate, status, comment, repliedDate);
             request.Id = id;
             return request;
         }

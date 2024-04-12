@@ -31,7 +31,7 @@
 
         </Border>
         
-            <Frame x:Name="Profile" Width="1090" Height="820" Margin="669,85,161,85"></Frame>
+            <Frame x:Name="Profile" Width="1090" Height="820" Margin="669,85,161,85" NavigationUIVisibility="Hidden"></Frame>
       
 
 

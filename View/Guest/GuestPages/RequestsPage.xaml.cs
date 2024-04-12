@@ -30,6 +30,8 @@ namespace BookingApp.View.GuestPages
         public DelayRequestService DelayRequestService { get; set; }
         public User User { get; set; }
         public Frame Frame { get; set; }  
+
+        public DelayRequestViewModel SelectedRequest { get; set; }
         
         public DelayRequestViewModel ViewModel { get; set; }
         public RequestsPage(User user, Frame frame)
@@ -60,6 +62,13 @@ namespace BookingApp.View.GuestPages
         private void RequestStatusBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             ViewModel.RequestStatusBox_SelectionChanged(sender, e);
+        }
+
+        private void Details_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            SelectedRequest = button.DataContext as DelayRequestViewModel;
+            Frame.Content = new RequestDetailsPage(SelectedRequest, User, Frame);
         }
     }
 }

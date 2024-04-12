@@ -61,6 +61,7 @@ namespace BookingApp.Model
             foreach(string value in values)
             {
                 string[] dateParts = value.Split("-");
+
                 DateTime start = Convert.ToDateTime(dateParts[0]);
                
                 DateTime end = Convert.ToDateTime(dateParts[1]);

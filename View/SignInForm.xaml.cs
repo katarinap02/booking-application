@@ -60,24 +60,24 @@ namespace BookingApp.View
                     if (user.Type.ToString().Equals("tourist"))
                     {
                         TouristWindow touristWindow = new TouristWindow(user.Username);
-                        touristWindow.Show();
+                        touristWindow.ShowDialog();
                     }
                     else if (user.Type.ToString().Equals("host"))
                     {
                         HostWindow hostWindow = new HostWindow(user);
-                        hostWindow.Show();
+                        hostWindow.ShowDialog();
                     }
                     else if (user.Type.ToString().Equals("guide"))
                     {
                         if(_guidedTourRepository.HasTourCurrently(user.Id)) {
                             Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
                             GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourViewModel(tour), user);
-                            guideWithTourWindow.Show();
+                            guideWithTourWindow.ShowDialog();
                         }
                         else
                         {
                             GuideMainWindow guideMainWindow = new GuideMainWindow(user);
-                            guideMainWindow.Show();
+                            guideMainWindow.ShowDialog();
                         }
 
                     }
@@ -87,7 +87,7 @@ namespace BookingApp.View
                         GuestWindow guestWindow = new GuestWindow(user);
                         guestWindow.ShowDialog();
                     }
-                    Close();
+                    //Close();
 
                 } 
                 else
