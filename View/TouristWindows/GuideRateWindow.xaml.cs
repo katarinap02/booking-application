@@ -13,6 +13,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Microsoft.Win32;
+using System.Globalization;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -22,12 +24,17 @@ namespace BookingApp.View.TouristWindows
     public partial class GuideRateWindow : Window
     {
         public TourViewModel Tour { get; set; }
+        public GuideRateViewModel GuideRate { get; set; }
 
-        public GuideRateWindow()
+        public GuideRateWindow(TourViewModel selectedTour, int userId)
         {
             InitializeComponent();
-            Tour = new TourViewModel();
-            DataContext = Tour;
+            GuideRate = new GuideRateViewModel();
+            DataContext = GuideRate;
+
+            if (GuideRate.initializeGuideRate(selectedTour.Id, selectedTour.GuideId, userId))
+                Close();
+
         }
 
         private void TextBox_GotFocus(object sender, RoutedEventArgs e)
@@ -49,5 +56,22 @@ namespace BookingApp.View.TouristWindows
                 textBox.Foreground = Brushes.Gray;
             }
         }
+
+        private void Addimage_Click(object sender, RoutedEventArgs e)
+        {
+            GuideRate.AddImage();
+        }
+
+        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void SubmitButton_Click(object sender, RoutedEventArgs e)
+        {
+            GuideRate.Submit(GuideRate);
+            Close();
+        }
+        
     }
 }

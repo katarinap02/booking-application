@@ -129,4 +129,12 @@
     <Resource Include="View\TouristWindows\user.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="E:\FTN\3ev\sims\project\sims-ra-2024-group-1-team-b\Services\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="E:\FTN\3ev\sims\project\sims-ra-2024-group-1-team-b\Services\.editorconfig" />
+  </ItemGroup>
+
 </Project>

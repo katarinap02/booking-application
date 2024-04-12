@@ -35,13 +35,18 @@ namespace BookingApp.View.TouristWindows
 
             Tour.UserId = userId;
 
-            Tour.RefreshEndedTours();
 
+            Tour.RefreshEndedTours();
         }
 
         private void RateButton_Click(object sender, RoutedEventArgs e)
         {
-            GuideRateWindow guideRateWindow = new GuideRateWindow();
+            if (Tour.IsRated())
+            {
+                MessageBox.Show("This tour is already rated");
+                return;
+            }
+            GuideRateWindow guideRateWindow = new GuideRateWindow(Tour.SelectedTour, Tour.UserId);
             guideRateWindow.ShowDialog();
         }
 

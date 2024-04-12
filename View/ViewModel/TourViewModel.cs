@@ -15,6 +15,7 @@ namespace BookingApp.ViewModel
     public class TourViewModel : INotifyPropertyChanged
     {
         private readonly TouristService _touristService;
+        private readonly GuideRateService _guideRateService;
         private readonly UserService _userService;
 
         public ObservableCollection<TourViewModel> Tours { get; set; }
@@ -633,6 +634,12 @@ namespace BookingApp.ViewModel
             }
         }
 
+        public bool IsRated()
+        {
+            return _guideRateService.IsRated(SelectedTour.Id);
+        }
+
+
 
         //*********************** TOUR DETAILS
 
@@ -756,6 +763,7 @@ namespace BookingApp.ViewModel
 
         public TourViewModel() {
             _touristService = new TouristService();
+            _guideRateService = new GuideRateService();
             _userService = new UserService();
             Tours = new ObservableCollection<TourViewModel>();
             CheckpointWithColors = new ObservableCollection<Checkpoint>();
