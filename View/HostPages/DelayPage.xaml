@@ -82,7 +82,9 @@
                     
                 </Button>
             </StackPanel>
-            <Label></Label>
+            <Label Content="Request Cancellings:" Grid.Row="7" VerticalAlignment="Center" FontSize="17">
+                
+            </Label>
 
             <ListBox x:Name="NotificationListBox" Width="235" Height="150" Margin="230,25,31,50" Grid.RowSpan="2" Grid.Row="7" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Notifications}">
                 <ListBox.ItemTemplate>
