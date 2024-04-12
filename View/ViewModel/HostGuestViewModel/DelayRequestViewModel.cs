@@ -357,7 +357,7 @@ namespace BookingApp.View.ViewModel
         {
 
             foreach (DelayRequest request in DelayRequestService.GetAll())
-                if (request.Status == RequestStatus.REJECTED)
+                if (request.Status == RequestStatus.REJECTED && request.GuestId == User.Id)
                     Requests.Add(new DelayRequestViewModel(request));
         }
 
@@ -365,7 +365,7 @@ namespace BookingApp.View.ViewModel
         {
 
             foreach (DelayRequest request in DelayRequestService.GetAll())
-                if (request.Status == RequestStatus.APPROVED)
+                if (request.Status == RequestStatus.APPROVED && request.GuestId == User.Id)
                     Requests.Add(new DelayRequestViewModel(request));
         }
 
@@ -373,7 +373,7 @@ namespace BookingApp.View.ViewModel
         {
 
             foreach (DelayRequest request in DelayRequestService.GetAll())
-                if (request.Status == RequestStatus.PENDING)
+                if (request.Status == RequestStatus.PENDING && request.GuestId == User.Id)
                     Requests.Add(new DelayRequestViewModel(request));
         }
 

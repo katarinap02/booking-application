@@ -37,12 +37,12 @@ namespace BookingApp.ViewModel
            foreach(DelayRequest request in delayRequests)
            {
 
-                if(request.Status == RequestStatus.APPROVED)
+                if(request.Status == RequestStatus.APPROVED && request.GuestId == User.Id)
                 {
                     Notifications.Add(CreateApprovedNotification(request));
                     
                 }
-                if (request.Status == RequestStatus.REJECTED)
+                if (request.Status == RequestStatus.REJECTED && request.GuestId == User.Id)
                 {
                     Notifications.Add(CreateRejectedNotification(request));
                 }
