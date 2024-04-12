@@ -35,7 +35,7 @@ namespace BookingApp.View.GuestPages
         public AccommodationViewModel ViewModel { get; set; }
       
 
-        public AccommodationsPage(AccommodationService accommodationService, AccommodationReservationService accommodationReservationService, User user, Frame frame)
+        public AccommodationsPage(User user, Frame frame)
         {
             InitializeComponent();
 

@@ -242,7 +242,7 @@ namespace BookingApp.View.ViewModel
             DateTime end = Convert.ToDateTime(ReservationInfoPage.txtEndDate.Text);
 
 
-            Frame.Content = new CalendarPage(AccommodationService, AccommodationReservationService, SelectedAccommodation, DayNumber, User, start, end, Frame);
+            Frame.Content = new CalendarPage(SelectedAccommodation, DayNumber, User, start, end, Frame);
 
 
         }

@@ -27,23 +27,19 @@ namespace BookingApp.View.GuestPages
     public partial class ProfilePage : Page { 
         
         public User User { get; set; }  
-        public AccommodationReservationService AccommodationReservationService { get; set; }
-        public AccommodationService AccommodationService { get; set; }
+      
 
-        public AccommodationRateService AccommodationRateService { get; set; }
         public Frame Frame { get; set; }
 
-        public ProfilePage(User user, AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, AccommodationRateService accommodationRateService, Frame frame)
+        public ProfilePage(User user, Frame frame)
         {
             InitializeComponent();
            
             this.User = user;
             this.Frame = frame;
-            this.AccommodationReservationService = accommodationReservationService;
-            this.AccommodationService = accommodationService;
-            this.AccommodationRateService = accommodationRateService;
            
-            Profile.Content = new ProfileInfo(AccommodationReservationService, AccommodationService, User, Profile);
+           
+            Profile.Content = new ProfileInfo(User, Profile);
            
            
 
@@ -58,7 +54,7 @@ namespace BookingApp.View.GuestPages
 
         public void RatesByHost_Click(object sender, RoutedEventArgs e)
         {
-            Profile.Content = new RatesByHostPage(User, AccommodationRateService, Profile);
+            Profile.Content = new RatesByHostPage(User, Profile);
         }
 
         public void Requests_Click(object sender, RoutedEventArgs e)
@@ -68,7 +64,7 @@ namespace BookingApp.View.GuestPages
 
         public void Profile_Click(object sender, RoutedEventArgs e)
         {
-            Profile.Content = new ProfileInfo(AccommodationReservationService, AccommodationService, User, Profile);
+            Profile.Content = new ProfileInfo(User, Profile);
         }
 
       

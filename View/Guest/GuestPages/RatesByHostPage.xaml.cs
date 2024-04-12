@@ -28,22 +28,20 @@ namespace BookingApp.View.GuestPages
 
     public partial class RatesByHostPage : Page, IObserver
     {
-        public ObservableCollection<GuestRateViewModel> GuestRates {  get; set; }
+        
         public User User { get; set; }
-        public GuestRateRepository GuestRateRepository { get; set; }
-        public AccommodationRateService AccommodationRateService { get; set; }
+       
+      
         public Frame Frame { get; set; }
 
         
 
-        public RatesByHostPage(User user, AccommodationRateService accommodationRateService, Frame frame)
+        public RatesByHostPage(User user, Frame frame)
         {
             InitializeComponent();
             this.User = user;
-            this.AccommodationRateService = accommodationRateService;
             this.Frame = frame;
-            this.GuestRateRepository = new GuestRateRepository();
-            this.GuestRates = new ObservableCollection<GuestRateViewModel>();
+          
             DataContext = this;
             Update();
 
@@ -51,7 +49,7 @@ namespace BookingApp.View.GuestPages
         
         public void Update()
         {
-           GuestRates.Clear();
+          
          /*  foreach(GuestRate guestRate in GuestRateRepository.GetAll()) { 
                 if(IsAccommodationRated(guestRate.ReservationId, AccommodationRateService))
                 {
