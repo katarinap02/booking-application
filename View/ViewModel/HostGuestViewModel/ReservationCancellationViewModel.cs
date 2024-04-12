@@ -45,8 +45,7 @@ namespace BookingApp.ViewModel
         {
             string guestUsername = UserService.GetById(cancellation.GuestId).Username;
             string message = guestUsername + " has cancelled a reservation.\n";
-            AccommodationReservation reservation = AccommodationReservationService.GetById(cancellation.ReservationId);
-            string dateRange = reservation.StartDate.ToString("MM/dd/yyyy") + " -> " + reservation.EndDate.ToString("MM/dd/yyyy");
+            string dateRange = cancellation.StartDate.ToString("MM/dd/yyyy") + " -> " + cancellation.EndDate.ToString("MM/dd/yyyy");
             message += "Reservation: " + dateRange + "\n";
             message += "Time: " + cancellation.CancellationDate.ToString();
             return message;

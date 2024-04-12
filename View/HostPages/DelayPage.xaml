@@ -83,37 +83,18 @@
                 </Button>
             </StackPanel>
             <Label></Label>
-            <StackPanel Orientation="Horizontal">
-                <ListView
-            x:Name="NotificationsListView"
-            Margin="25,10,30,40"
-            Padding="0"
-            Background="Transparent"
-            BorderThickness="0"
-            ItemsSource="{Binding Notifications}"
-            ScrollViewer.VerticalScrollBarVisibility="Auto"
-            SelectionMode="Single">
-                    <ListView.ItemContainerStyle>
-                        <Style TargetType="ListViewItem">
-                            <Setter Property="Background" Value="White" />
-                            <Setter Property="Padding" Value="0" />
-                            <Setter Property="Margin" Value="0,5,5,5" />
-                            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                        </Style>
-                    </ListView.ItemContainerStyle>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border
-            BorderBrush="Gray"
-            BorderThickness="1"
-            CornerRadius="5">
 
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+            <ListBox x:Name="NotificationListBox" Width="235" Height="150" Margin="230,25,31,50" Grid.RowSpan="2" Grid.Row="7" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Notifications}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Gray" BorderThickness="1" Margin="0,0,0,5">
+                            <TextBlock Text="{Binding}" Padding="5"/>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
 
-            </StackPanel>
+        
             
         </Grid>
 

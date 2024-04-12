@@ -93,7 +93,7 @@ namespace BookingApp.Services
             else
             {
                 Accommodation accommodation = accommodationService.GetById(reservation.AccommodationId);
-                ReservationCancellation cancellation = new ReservationCancellation(reservation.GuestId, accommodation.HostId, reservation.Id, DateTime.Now);
+                ReservationCancellation cancellation = new ReservationCancellation(reservation.GuestId, accommodation.HostId, reservation.Id, DateTime.Now, reservation.StartDate, reservation.EndDate);
                 cancellationService.Add(cancellation);
                 AccommodationReservationRepository.Delete(reservation);
                 accommodationService.FreeDateRange(accommodation, reservation);

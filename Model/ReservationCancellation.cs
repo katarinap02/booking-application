@@ -16,18 +16,25 @@ namespace BookingApp.Model
 
         public DateTime CancellationDate { get; set; }
 
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
+
         public ReservationCancellation() { }
-        public ReservationCancellation(int guestId, int hostId, int reservationId, DateTime cancellationDate)
+        public ReservationCancellation(int guestId, int hostId, int reservationId, DateTime cancellationDate, DateTime startDate, DateTime endDate)
         {
             GuestId = guestId;
             HostId = hostId;
             ReservationId = reservationId;
             CancellationDate = cancellationDate;
+            StartDate = startDate;
+            EndDate = endDate;
         }
+
+
 
         public string[] ToCSV()
         {
-            string[] csvValues = { GuestId.ToString(), HostId.ToString(), ReservationId.ToString(), CancellationDate.ToString() };
+            string[] csvValues = { GuestId.ToString(), HostId.ToString(), ReservationId.ToString(), CancellationDate.ToString(),  StartDate.ToString(), EndDate.ToString()};
             return csvValues;
         }
 
@@ -37,6 +44,8 @@ namespace BookingApp.Model
             HostId = Convert.ToInt32(values[1]);
             ReservationId = Convert.ToInt32(values[2]);
             CancellationDate = Convert.ToDateTime(values[3]);
+            StartDate = Convert.ToDateTime(values[4]);
+            EndDate = Convert.ToDateTime(values[5]);
         }
     }
 }
