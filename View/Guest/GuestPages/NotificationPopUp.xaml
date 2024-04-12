@@ -4,13 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
+      xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       mc:Ignorable="d" 
-      d:DesignHeight="600" d:DesignWidth="300"
+      d:DesignHeight="400" d:DesignWidth="300"
       Title="NotificationPopUp">
 
     <Grid>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Background="White" Height="600" Width="300">
-            
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Background="White" Height="400" Width="300">
+            <ListBox x:Name="notificationListBox" ItemsSource="{Binding Notifications}" Margin="8,8,8,8" Width="280">
+               
+            </ListBox>
         </Border>
     </Grid>
 </Page>

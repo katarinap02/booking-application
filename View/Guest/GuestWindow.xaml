@@ -50,7 +50,7 @@
 
             </StackPanel>
             <Frame x:Name="Main" Height="990" Width="1920" Margin="0,55,0,-21" NavigationUIVisibility="Hidden"/>
-            <Frame x:Name="NotificationFrame" Margin="1565,25,0,359" Height="650" Width="350" NavigationUIVisibility="Hidden"/>
+            <Frame x:Name="NotificationFrame" Margin="1565,55,-10,559" Height="450" Width="350" NavigationUIVisibility="Hidden"/>
             <!--<Button Content="Dark theme" HorizontalAlignment="Left" Margin="1215,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="DarkTheme_Click"/>-->
             <!--<Button Content="Light theme" HorizontalAlignment="Left" Margin="1362,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="LightTheme_Click"/>-->
 

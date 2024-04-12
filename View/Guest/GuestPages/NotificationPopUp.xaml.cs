@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookingApp.Model;
+using BookingApp.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,18 @@ namespace BookingApp.View.GuestPages
     /// </summary>
     public partial class NotificationPopUp : Page
     {
-        public NotificationPopUp()
+        public User User { get; set; }
+        public NotificationViewModel ViewModel { get; set; }
+        public NotificationPopUp(User user)
         {
             InitializeComponent();
+            User = user;
+            ViewModel = new NotificationViewModel(User);
+            DataContext = ViewModel;
+            ViewModel.Update();
+           // MessageBox.Show(ViewModel.Notifications[0]);
         }
+
+
     }
 }
