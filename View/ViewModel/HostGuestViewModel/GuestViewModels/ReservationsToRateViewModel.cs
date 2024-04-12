@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
-namespace BookingApp.View.ViewModel.HostGuestViewModel
+namespace BookingApp.View.ViewModel
 {
     public class ReservationsToRateViewModel : IObserver
     {
