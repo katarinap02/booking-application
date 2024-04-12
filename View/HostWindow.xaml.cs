@@ -20,136 +20,65 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.View.ViewModel;
+using BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels;
 
 namespace BookingApp.View
 {
     /// <summary>
     /// Interaction logic for HostWindow.xaml
     /// </summary>
-    public partial class HostWindow : Window, IObserver
+    public partial class HostWindow : Window
     {
-        public ObservableCollection<AccommodationReservationViewModel> Accommodations { get; set; }
-        public AccommodationRepository accommodationRepository { get; set; }
-        public AccommodationReservationRepository accommodationReservationRepository { get; set; }
-
-        public AccommodationReservationViewModel SelectedAccommodation { get; set; }
-        public User User { get; set; }
+        
+        public HostPageViewModel hostPageViewModel { get; set; }
 
         public HostWindow(User user)
         {
 
             InitializeComponent();
-            
-            Accommodations = new ObservableCollection<AccommodationReservationViewModel>();
-            accommodationRepository = new AccommodationRepository();
-            accommodationReservationRepository = new AccommodationReservationRepository();
-            DataContext = this;
-            User = user;
-            
-            Update();
-
-            
-
-
+            hostPageViewModel = new HostPageViewModel(user, HostFrame, LeftDock, RatingPanel);
+            DataContext = hostPageViewModel;
 
         }
 
-        public void Update()
-        {
-            Accommodations.Clear();
-            foreach (AccommodationReservation accommodation in accommodationReservationRepository.GetGuestForRate())
-            {
-                Accommodations.Add(new AccommodationReservationViewModel(accommodation));
-                
-            }
-            FirstPage firstPage = new FirstPage(User);
-            HostFrame.Navigate(firstPage);
-        }
-
-        private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
-        {
-            RegisterAccommodationWindow registerWindow = new RegisterAccommodationWindow(accommodationRepository, User);
-
-            registerWindow.ShowDialog();
-        }
 
         private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            FirstPage firstPage = new FirstPage(User);
-            HostFrame.Navigate(firstPage);
-            LeftDock.Visibility = Visibility.Collapsed;
-            RatingPanel.Visibility = Visibility.Collapsed;
+            hostPageViewModel.HomeButton_Click(sender, e);
         }
 
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            RegisterAccommodationPage page = new RegisterAccommodationPage();
-            HostFrame.Navigate(page);
-            LeftDock.Visibility = Visibility.Collapsed;
-            RatingPanel.Visibility = Visibility.Collapsed;
+            hostPageViewModel.RegisterButton_Click(sender, e);
         }
         private void GuestRatings_Click(object sender, RoutedEventArgs e)
         {
-            RateDisplayPage page = new RateDisplayPage();
-            HostFrame.Navigate(page);
-            LeftDock.Visibility = Visibility.Collapsed;
-            RatingPanel.Visibility = Visibility.Collapsed;
+            hostPageViewModel.GuestRatings_Click(sender, e);
         }
 
         private void Delay_Click(object sender, RoutedEventArgs e)
         {
-            DelayPage page = new DelayPage();
-            HostFrame.Navigate(page);
-            LeftDock.Visibility = Visibility.Collapsed;
-            RatingPanel.Visibility = Visibility.Collapsed;
+            hostPageViewModel.Delay_Click(sender, e); ;
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-
-        private void Rate_Click(object sender, RoutedEventArgs e)
-        {
-            if (SelectedAccommodation != null)
-            {
-                RateGuestWindow rateGuestWindow = new RateGuestWindow(SelectedAccommodation);
-                rateGuestWindow.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Select guest to rate.");
-            }
-
-            Update();
-        }
-
         
 
         private void More_Click(object sender, RoutedEventArgs e)
         {
-            if (LeftDock.Visibility == Visibility.Visible)
-            {
-                LeftDock.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                LeftDock.Visibility = Visibility.Visible;
-            }
+            hostPageViewModel.More_Click(sender, e);
         }
 
         private void Rating_Click(object sender, RoutedEventArgs e)
         {
-            if (RatingPanel.Visibility == Visibility.Visible)
-            {
-                RatingPanel.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                RatingPanel.Visibility = Visibility.Visible;
-            }
+            hostPageViewModel.Rating_Click(sender, e);
         }
 
         
+
+
     }
 }
