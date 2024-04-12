@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -61,6 +62,17 @@ namespace BookingApp.View
         private void AccommodationsClick(object sender, RoutedEventArgs e)
         {
             Main.Content = new AccommodationsPage(AccommodationService, AccommodationReservationService, User, Main);
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            NotificationFrame.Visibility = Visibility.Visible;
+            NotificationFrame.Content = new NotificationPopUp();
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+           NotificationFrame.Visibility = Visibility.Collapsed;
         }
 
         private void ForumsClick(object sender, RoutedEventArgs e)
