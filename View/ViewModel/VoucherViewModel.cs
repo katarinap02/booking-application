@@ -7,6 +7,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BookingApp.ViewModel
 {
@@ -134,6 +135,23 @@ namespace BookingApp.ViewModel
             }
         }
 
+        private VoucherViewModel _selectedVoucher;
+        public VoucherViewModel SelectedVoucher
+        {
+            get
+            {
+                return _selectedVoucher;
+            }
+            set
+            {
+                if(value != _selectedVoucher)
+                {
+                    _selectedVoucher = value;
+                    OnPropertyChanged(nameof(SelectedVoucher));
+                }
+            }
+        }
+
 
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
@@ -149,6 +167,16 @@ namespace BookingApp.ViewModel
             {
                 Vouchers.Add(voucher);
             }
+        }
+
+        public void Use()
+        {
+            if(_voucherService.SetVoucherToUsed(SelectedVoucher.Id) == null)
+            {
+                MessageBox.Show("Something wrong happened");
+                return;
+            }
+            MessageBox.Show("You just used a voucher!");
         }
 
 

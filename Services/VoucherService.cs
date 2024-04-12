@@ -32,5 +32,15 @@ namespace BookingApp.Services
         {
             return ToVoucherViewModel(_voucherRepository.FindVouchersByUser(id));
         }
+
+        public bool HasVoucher(int userId)
+        {
+            return _voucherRepository.FindVouchersByUser(userId).Count() > 0;
+        }
+
+        public Voucher SetVoucherToUsed(int id)
+        {
+           return _voucherRepository.SetVoucherToUsed(id);
+        }
     }
 }

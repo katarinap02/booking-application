@@ -47,7 +47,7 @@
                Grid.ColumnSpan="2"
                FontSize="20"/>
         <Label x:Name="tourName"
-               Content="{Binding TourReservation.SelectedTour.Name}"
+               Content="{Binding SelectedTour.Name}"
                VerticalAlignment="Center"
                Grid.Column="3"
                Grid.Row="1" Grid.ColumnSpan="2" Margin="15,0,0,0"
@@ -61,12 +61,13 @@
                HorizontalAlignment="Right"
                VerticalAlignment="Center"/>
         <xctk:IntegerUpDown x:Name="Participants"
-                            Text="{Binding Path=TourReservation.SelectedTour.ParticipantCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                            IsEnabled="False"
+                            Text="{Binding ParticipantCount}"
                             Grid.Row="2"
                             Grid.Column="4"
                             Increment="1"
-                            Minimum="0"
+                            Minimum="1"
+                            Maximum="{Binding SelectedTour.AvailablePlaces}"
+                            DefaultValue="1"
                             TextAlignment="Justify"
                             HorizontalAlignment="Left"
                             Width="120"
@@ -83,7 +84,7 @@
                Grid.Column="4"
                Grid.Row="3"
                FontSize="15"
-               Content="{Binding TourReservation.SelectedTour.AvailablePlaces}"
+               Content="{Binding SelectedTour.AvailablePlaces}"
                HorizontalContentAlignment="Left"
                Foreground="Green"
                />
@@ -148,7 +149,7 @@
                                     TextAlignment="Justify"
                                     Height="30"
                                     Increment="1"
-                                    Minimum="0"/>
+                                    Minimum="1"/>
 
                 <Button x:Name="AddButton"
                         Grid.Row="1"

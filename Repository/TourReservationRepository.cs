@@ -95,8 +95,9 @@ namespace BookingApp.Repository
             return _tourReservations.Find(res => res.Id == reservation_id);
         }
         
-        public void saveReservation(TourReservation tourReservation, Tour selectedTour, int userId)
+        public void saveReservation(Tour selectedTour, int userId)
         {
+            TourReservation tourReservation = new TourReservation();
             tourReservation.TourId = selectedTour.Id;
             tourReservation.TouristId = userId;
             tourReservation.ParticipantIds = _tourparticipantRepository.GetAllIdsByReservation(NextId());

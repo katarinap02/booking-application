@@ -28,13 +28,12 @@ namespace BookingApp.View.TouristWindows
     {
         public TourViewModel Tour { get; set; }
 
-        public int UserId;
-        public AllToursPage()
+        public AllToursPage(int userId)
         {
             InitializeComponent();
             Tour = new TourViewModel();
             DataContext = Tour;
-
+            Tour.UserId = userId;
             Tour.initializeAllTours();
 
             Tour.RefreshAllToursDataGrid(false);

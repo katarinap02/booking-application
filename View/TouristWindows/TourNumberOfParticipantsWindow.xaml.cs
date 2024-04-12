@@ -33,6 +33,7 @@ namespace BookingApp.View.TouristWindows
             Tour = new TourViewModel();
             DataContext = Tour;
             Tour.SelectedTour = selectedTour;
+            Tour.AvailablePlaces = selectedTour.AvailablePlaces;
             Tour.UserId = userId;
 
             Tour.RefreshToursByCity();

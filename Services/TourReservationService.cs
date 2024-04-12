@@ -22,9 +22,9 @@ namespace BookingApp.Services
             return _tourReservationRepository.NextId();
         }
 
-        public void saveReservation(TourReservationViewModel tourReservationViewModel, TourViewModel selectedTour, int userId)
+        public void saveReservation(TourViewModel selectedTour, int userId)
         {
-            _tourReservationRepository.saveReservation(tourReservationViewModel.ToTourReservation(), selectedTour.ToTour(), userId);
+            _tourReservationRepository.saveReservation(selectedTour.ToTour(), userId);
         }
     }
 }

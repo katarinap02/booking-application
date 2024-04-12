@@ -49,8 +49,8 @@ namespace BookingApp.View.TouristWindows
 
         private void BookButton_Click(object sender, RoutedEventArgs e)
         {
-            TourReservation.Book();
-            Close();
+            if(TourReservation.Book())
+                Close();
         }
 
         private void AddParticipantButton_Click(object sender, RoutedEventArgs e)

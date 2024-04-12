@@ -721,7 +721,7 @@ namespace BookingApp.ViewModel
                 ConfirmButtonVisibilityNumberOfParticipants = Visibility.Collapsed;
                 MessageBox.Show("No more places for the selected tour, please select another one!");
                 // returnujemo big window size, widht, height
-                return (800, 220);
+                return (800, 600);
             }
             else
             {
@@ -734,7 +734,6 @@ namespace BookingApp.ViewModel
                 return (600, 220);
             }
         }
-
         public void ConfirmNumberOfParticipants()
         {
             if (InsertedNumberOfParticipants > SelectedTour.AvailablePlaces)
@@ -742,6 +741,8 @@ namespace BookingApp.ViewModel
                 MessageBox.Show("Not enough places for the reservation");
                 return;
             }
+            if(InsertedNumberOfParticipants == 0)
+                InsertedNumberOfParticipants = 1;
             TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants, UserId);
             tourReservationWindow.ShowDialog();
         }

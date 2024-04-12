@@ -66,7 +66,8 @@ namespace BookingApp.Repository
 
         public List<int> GetAllIdsByReservation(int reservationId)
         {
-            List<TourParticipant> tourParticipantsByReservation = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
+            List<TourParticipant> allTourParticipants = GetAll();
+            List<TourParticipant> tourParticipantsByReservation = allTourParticipants.FindAll(tp => tp.ReservationId == reservationId);
             List<int> tourParticipantIds = new List<int>();
 
             foreach (TourParticipant tp in  tourParticipantsByReservation)

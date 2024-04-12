@@ -1,6 +1,7 @@
 ﻿using BookingApp.Model;
 using BookingApp.Repository;
 using BookingApp.Services;
+using BookingApp.View.TouristWindows;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,10 +19,8 @@ namespace BookingApp.ViewModel
     {
         private readonly TourParticipantService _tourParticipantService;
         private readonly TourReservationService _tourReservationService;
+        private readonly VoucherService _voucherService;
         private readonly TouristService _touristService;
-
-        public TourReservationViewModel TourReservation { get; set; }
-
 
         public List<TourParticipantViewModel> TourParticipantDTOs { get; set; }
         public List<TourParticipantViewModel> TourParticipantsListBox { get; set; }
@@ -233,30 +232,6 @@ namespace BookingApp.ViewModel
             }
         }
 
-                //<xctk:IntegerUpDown x:Name="Participants"
-                //Text="{Binding Path=TourReservation.SelectedTour.ParticipantCount, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
-                //IsEnabled="False"
-                //Grid.Row="2"
-                //Grid.Column="4"
-                //Minimum="0"
-                //Maximum="{Binding MaximumValuePeoples}"
-                //Value="0"
-                //TextAlignment="Justify"
-                //HorizontalAlignment="Left"
-                //FontSize="20"
-                //Height="35"
-                //Width="100"/>
-
-                        //<TextBox x:Name="years"
-                        // Grid.Column="1"
-                        // Grid.Row="3"
-                        // HorizontalAlignment="Left"
-                        // TextAlignment="Justify"
-                        // Width="31"
-                        // Height="25"
-                        // PreviewTextInput="years_PreviewTextInput"
-                        // LostFocus="years_LostFocus" Margin="0,10,0,10"/>
-
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -320,19 +295,21 @@ namespace BookingApp.ViewModel
 
         private void saveReservation()
         {
-            _tourReservationService.saveReservation(TourReservation, SelectedTour, UserId);
+            _tourReservationService.saveReservation(SelectedTour, UserId);
         }
 
-        public void Book()
+        public bool Book()
         {
             int participantCount = Convert.ToInt32(ParticipantCount);
             if (participantCount < TourParticipantDTOs.Count)
             {
                 System.Windows.MessageBox.Show("Too many participants in the list of participants", "Participants error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
             else if (participantCount > TourParticipantDTOs.Count)
             {
                 System.Windows.MessageBox.Show("Too less participants in the list of participants", "Participants error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return false;
             }
             else
             {
@@ -340,7 +317,14 @@ namespace BookingApp.ViewModel
                 saveReservation();
 
                 ReduceNumberOfAvailablePlaces();
+                // ovo za vaucere
+                if (_voucherService.HasVoucher(UserId))
+                {
+                    VoucherWindow voucherWindom = new VoucherWindow(UserId);
+                    voucherWindom.ShowDialog();
+                }
                 System.Windows.MessageBox.Show("Tour " + "\"" + SelectedTour.Name + "\"" + " booked!");
+                return true;
             }
         }
 
@@ -360,7 +344,7 @@ namespace BookingApp.ViewModel
             _tourParticipantService = new TourParticipantService();
             _tourReservationService = new TourReservationService();
             _touristService = new TouristService();
-            TourReservation = new TourReservationViewModel();
+            _voucherService = new VoucherService();
 
             TourParticipantDTOs = new List<TourParticipantViewModel>();
             TourParticipantsListBox = new List<TourParticipantViewModel>();

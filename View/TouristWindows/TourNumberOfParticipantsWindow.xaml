@@ -29,6 +29,8 @@
                             Text="{Binding InsertedNumberOfParticipants}"
                             Minimum="1"
                             Increment="1"
+                            DefaultValue="1"
+                            AllowTextInput="False"
                             Maximum="{Binding AvailablePlaces}"
                             Grid.Row="1"
                             Grid.Column="1"
