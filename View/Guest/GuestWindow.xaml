@@ -57,7 +57,7 @@
         </Grid>
        
 
-        <Button Content="Log out" Style="{StaticResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1791,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105"/>
+        <Button Content="Log out" Style="{StaticResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1791,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105" Click="LogOut_Click"/>
         <ToggleButton x:Name="notificationsButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Width="50" Height="50" Background="{StaticResource AccentColorN}" Margin="1500, -991, -85, 0">
             <ToggleButton.Content>
                 <Image Source="{StaticResource Bell}" Height="35" Width="30"/>
