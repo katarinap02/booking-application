@@ -1,4 +1,5 @@
 ﻿using BookingApp.Model;
+using BookingApp.View.GuestTools;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -160,27 +161,14 @@ namespace BookingApp.View.ViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
+        public PathConverter PathConverter { get; set; }
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public string ConvertToRelativePath(string inputPath)
-        {
-
-            string pattern = @"\\";
-
-
-            string replacedPath = Regex.Replace(inputPath, pattern, "/");
-
-
-            if (replacedPath.StartsWith("Resources/Images/"))
-            {
-                replacedPath = "../../../" + replacedPath;
-            }
-
-            return replacedPath;
-        }
+       
 
         public AccommodationRateViewModel() { }
 
@@ -194,15 +182,13 @@ namespace BookingApp.View.ViewModel
             additionalComment = ar.AdditionalComment;
             guestUsername = us.Username;
             accommodationName = ac.Name;
-
+            PathConverter = new PathConverter();
             if (ar.Images.Count != 0)
-            {
-                OnePicture = ConvertToRelativePath(ar.Images[0]);
-            }
+                OnePicture = PathConverter.ConvertToRelativePath(ar.Images[0]);
+            
             else
-            {
                 OnePicture = "../../../Resources/Images/no_image.jpg";
-            }
+            
 
         }
 
