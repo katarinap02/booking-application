@@ -114,7 +114,7 @@ namespace BookingApp.Repository
 
         public List<Tour> GetTourByCityWithAvailablePlaces(string city)
         {
-            return _tours.FindAll(tour => tour.City.ToLower().Equals(city.ToLower())).Where(tour => tour.AvailablePlaces > 0).ToList();
+            return _tours.FindAll(tour => tour.City.ToLower().Equals(city.ToLower()) && tour.Status != TourStatus.Finnished).Where(tour => tour.AvailablePlaces > 0).ToList();
         }
 
         public List<Tour>? findToursNeedingGuide()

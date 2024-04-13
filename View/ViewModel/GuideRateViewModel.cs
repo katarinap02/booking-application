@@ -224,8 +224,23 @@ namespace BookingApp.ViewModel
 
         public void Submit(GuideRateViewModel rate)
         {
-            Pictures = imagePreviews.Select(image => image.UriSource.AbsoluteUri).ToList();
+            Pictures = imagePreviews.Select(image => GetAbsolutePath(image.UriSource)).ToList();
             _guideRateService.SaveRate(rate);
+        }
+
+        private string GetAbsolutePath(Uri uri)
+        {
+            string absolutePath = uri.LocalPath;
+            absolutePath = absolutePath.Replace("\\", "/");
+
+            string rootDirectory = "/Resources/Images/";
+            int index = absolutePath.IndexOf(rootDirectory);
+            if (index >= 0)
+            {
+                absolutePath = absolutePath.Substring(index);
+            }
+
+            return absolutePath;
         }
 
         public bool initializeGuideRate(int tourId, int guideId, int userId)

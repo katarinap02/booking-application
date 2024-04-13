@@ -29,7 +29,7 @@
 29|Finnished|Test||||0|10|3/29/2024 12:00:00 AM|16|1||test1,test2||9|1
 30|inPreparation|Test||||0|10|3/30/2024 12:00:00 AM|16|0||test1,test2||10|1
 31|inPreparation|Test||||0|10|3/31/2024 12:00:00 AM|16|0||test1,test2||10|1
-32|Finnished|***Moze Cancel|Novi Sad|Start je preko 48h od sad, moze da se cancel-uje|Serbian|10|2|4/13/2024 12:00:00 AM|17|0|Serbia|Checvkpoint 1,Checkpoint 2||7|1
+32|Finnished|***Moze Cancel|Novi Sad|Start je preko 48h od sad, moze da se cancel-uje|Serbian|10|2|4/13/2024 12:00:00 AM|17|0|Serbia|Checvkpoint 1,Checkpoint 2||6|1
 33|inPreparation|Moze Cancel|Novi Sad|Start je preko 48h od sad, moze da se cancel-uje|Serbian|10|2|4/14/2024 12:00:00 AM|17|0|Serbia|Checvkpoint 1,Checkpoint 2||0|1
 34|inPreparation|Moze Cancel|Novi Sad|Start je preko 48h od sad, moze da se cancel-uje|Serbian|10|2|4/15/2024 12:00:00 AM|17|0|Serbia|Checvkpoint 1,Checkpoint 2||0|1
 35|Finnished|Ne moze da se canceluje|Novi Sad|Manje od 48h do pocetka|Serbian|10|3|4/11/2024 12:00:00 AM|18|1|Serbia|Test 1,Test 2||0|1

@@ -300,8 +300,7 @@ namespace BookingApp.ViewModel
 
         public bool Book()
         {
-            int participantCount = Convert.ToInt32(ParticipantCount);
-            if (participantCount < TourParticipantDTOs.Count)
+            if (Convert.ToInt32(ParticipantCount) < TourParticipantDTOs.Count)
             {
                 System.Windows.MessageBox.Show("Too many participants in the list of participants", "Participants error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;

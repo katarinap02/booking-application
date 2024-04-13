@@ -653,17 +653,9 @@ namespace BookingApp.ViewModel
                 CheckpointWithColors.Add(new Checkpoint { Name = checkpoint, IndicatorColor = inactiveColor });
             }
 
-            if (IsMyTour)
-            {
-                PdfPanel = Visibility.Visible;
-            }
-            else
-            {
-                PdfPanel = Visibility.Collapsed;
-            }
+            PdfPanel = IsMyTour ? Visibility.Visible : PdfPanel;
 
-            int checkpointIndex;
-            checkpointIndex = SelectedTour.CurrentCheckpoint;
+            int checkpointIndex = SelectedTour.CurrentCheckpoint;
             for (int i = 0; i < SelectedTour.Checkpoints.Count; i++)
             {
                 if (i == checkpointIndex)
@@ -721,7 +713,6 @@ namespace BookingApp.ViewModel
                 if (Tours.Count > 0)
                 {
                     DataTabVisibility = Visibility.Visible;
-                    
                 }
                 CloseButtonalignmentNumberOfParticipants = HorizontalAlignment.Center;
                 ConfirmButtonVisibilityNumberOfParticipants = Visibility.Collapsed;
@@ -729,16 +720,13 @@ namespace BookingApp.ViewModel
                 // returnujemo big window size, widht, height
                 return (800, 600);
             }
-            else
-            {
-                AvailablePlacesColor = Brushes.Green;
+            AvailablePlacesColor = Brushes.Green;
 
-                DataTabVisibility = Visibility.Collapsed;
-                CloseButtonalignmentNumberOfParticipants = HorizontalAlignment.Left;
-                ConfirmButtonVisibilityNumberOfParticipants = Visibility.Visible;
-                // small
-                return (600, 220);
-            }
+            DataTabVisibility = Visibility.Collapsed;
+            CloseButtonalignmentNumberOfParticipants = HorizontalAlignment.Left;
+            ConfirmButtonVisibilityNumberOfParticipants = Visibility.Visible;
+            // small
+            return (600, 220);
         }
         public void ConfirmNumberOfParticipants()
         {

@@ -30,7 +30,7 @@ namespace BookingApp.View.TouristWindows
             Tour = new TourViewModel();
             Tour.SelectedTour = selectedTour;
             DataContext = Tour;
-
+            Tour.PdfPanel = Visibility.Collapsed;
             Tour.TourDetailsWindowInitialization(isMyTour);
         }
 

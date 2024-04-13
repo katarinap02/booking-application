@@ -155,20 +155,23 @@ namespace BookingApp.ViewModel
 
         public override string ToString()
         {
-            string type = "";
-            if(_notificationType == NotificationType.RateTour)
+            string type;
+            switch (_notificationType)
             {
-                type = "Rate tour";
-            }else if(_notificationType == NotificationType.JoinedTour)
-            {
-                type = "Joined tour";
-            }else if(_notificationType == NotificationType.TourCanceled)
-            {
-                type = "Tour canceled";
-            }else if(_notificationType == NotificationType.GuideQuit)
-            {
-                type = "Guide quit";
-                return $"{type} :: Guide - {GuideName}";
+                case NotificationType.RateTour:
+                    type = "Rate tour";
+                    break;
+                case NotificationType.JoinedTour:
+                    type = "Joined tour";
+                    break;
+                case NotificationType.TourCanceled:
+                    type = "Tour canceled";
+                    break;
+                case NotificationType.GuideQuit:
+                    return $"Guide quit :: Guide - {GuideName}";
+                default:
+                    type = "";
+                    break;
             }
             return $"{type} :: Tour - \"{_tourName}\"";
         }
