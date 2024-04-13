@@ -1,5 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.View.ViewModel;
+using BookingApp.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace BookingApp.View.GuestPages
         public User User { get; set; }
         public Frame Frame { get; set; }
 
-        public DelayRequestViewModel ViewModel { get; set; }
+        public RequestDetailsViewModel ViewModel { get; set; }
 
         public DelayRequestViewModel SelectedRequest { get; set; }
         public RequestDetailsPage(DelayRequestViewModel selectedRequest, User user, Frame frame)
@@ -34,7 +35,7 @@ namespace BookingApp.View.GuestPages
             User = user;
             Frame = frame;
             SelectedRequest = selectedRequest;
-            ViewModel = new DelayRequestViewModel(User, Frame, SelectedRequest);
+            ViewModel = new RequestDetailsViewModel(User, Frame, SelectedRequest);
             
             DataContext = ViewModel;
         }

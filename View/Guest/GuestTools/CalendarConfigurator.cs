@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BookingApp.View.Guest.GuestTools
+namespace BookingApp.View.GuestTools
 {
     public class CalendarConfigurator
     {

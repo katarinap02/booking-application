@@ -14,7 +14,7 @@ using BookingApp.View.GuestPages;
 
 namespace BookingApp.View.ViewModel
 {
-    public class DelayRequestViewModel : INotifyPropertyChanged, IObserver
+    public class DelayRequestViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -235,82 +235,14 @@ namespace BookingApp.View.ViewModel
             return accommodationName;
         }
 
-        public string DateRange => startDate.ToString() + "-" + endDate.ToString();
+        public string DateRange => startDate.ToString("MM/dd/yyyy") + " -> " + endDate.ToString("MM/dd/yyyy");
 
-        public ObservableCollection<DelayRequestViewModel> Requests { get; set; }
-        public DelayRequestService DelayRequestService { get; set; }
-        public User User { get; set; }
-        public Frame Frame { get; set; }
-
-        public DelayRequestViewModel SelectedRequest { get; set; }
-
-        public HostService HostService { get; set; }
-        public string HostUsername {  get; set; }
-
-        public string OldDateRange { get; set; }
-        public string NewDateRange { get; set; }   
-        public int NumberOfPeople { get; set; }
-        public int NumberOfDays { get; set; }
-
-        public string RequestHeader { get; set; }
-        public AccommodationViewModel Accommodation { get; set; }
-
-
-        public ComboBox RequestStatusBox { get; set; }
+        
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public DelayRequestViewModel(User user, Frame frame, DelayRequestViewModel selectedRequest)
-        {
-            User = user;
-            Frame = frame;
-            SelectedRequest = selectedRequest;
-            DelayRequestService = new DelayRequestService();
-            AccommodationService = new AccommodationService();
-            AccommodationReservationService = new AccommodationReservationService();
-            HostService = new HostService();
-            AccommodationReservation reservation = AccommodationReservationService.GetById(SelectedRequest.ReservationId);
-            Accommodation = new AccommodationViewModel(AccommodationService.GetById(reservation.AccommodationId));
-            HostUsername = HostService.GetById(SelectedRequest.HostId).Username;
-            OldDateRange = SelectedRequest.EndLastDate.ToString("MM/dd/yyyy") + " - " + SelectedRequest.StartLastDate.ToString("MM/dd/yyyy");
-            NewDateRange = SelectedRequest.EndDate.ToString("MM/dd/yyyy") + " - " + SelectedRequest.StartDate.ToString("MM/dd/yyyy");
-            NumberOfPeople = reservation.NumberOfPeople;
-            Comment = SelectedRequest.Comment;
-            NumberOfDays = (reservation.EndDate - reservation.StartDate).Days + 1;
-            RequestHeader = CreateRequestHeader(SelectedRequest);
-
-
-
-        }
-
-        private string? CreateRequestHeader(DelayRequestViewModel selectedRequest)
-        {
-            if (selectedRequest.Status == RequestStatus.PENDING)
-            {
-                Comment = "Waiting for host's response...";
-                return "Your request is pending.";
-            }
-                
-            else if (selectedRequest.Status == RequestStatus.APPROVED)
-                return "Your request is approved.";
-            else
-                return "Your request is rejected";
-        }
-
-        public DelayRequestViewModel(User user, Frame frame, RequestsPage page)
-        {
-            User = user;
-            Frame = frame;
-            DelayRequestService = new DelayRequestService();
-            Requests = new ObservableCollection<DelayRequestViewModel>();
-            RequestStatusBox = page.requestStatusBox;
-           
-
-
-
-        }
 
         public DelayRequestViewModel(DelayRequest dr)
         {
@@ -336,51 +268,6 @@ namespace BookingApp.View.ViewModel
             return request;
         }
 
-        public void Update()
-        {
-            Requests.Clear();
-
-            switch (RequestStatusBox.SelectedItem)
-            {
-                case ComboBoxItem pendingItem when pendingItem.Content.ToString() == "Pending":
-                    ShowPendingRequests(Requests);
-                    break;
-                case ComboBoxItem approvedItem when approvedItem.Content.ToString() == "Approved":
-                    ShowApprovedRequests(Requests);
-                    break;
-                case ComboBoxItem rejectedItem when rejectedItem.Content.ToString() == "Rejected":
-                    ShowRejectedRequests(Requests);
-                    break;
-            }
-        }
-
-        private void ShowRejectedRequests(ObservableCollection<DelayRequestViewModel> requests)
-        {
-
-            foreach (DelayRequest request in DelayRequestService.GetAll())
-                if (request.Status == RequestStatus.REJECTED && request.GuestId == User.Id)
-                    Requests.Add(new DelayRequestViewModel(request));
-        }
-
-        private void ShowApprovedRequests(ObservableCollection<DelayRequestViewModel> requests)
-        {
-
-            foreach (DelayRequest request in DelayRequestService.GetAll())
-                if (request.Status == RequestStatus.APPROVED && request.GuestId == User.Id)
-                    Requests.Add(new DelayRequestViewModel(request));
-        }
-
-        private void ShowPendingRequests(ObservableCollection<DelayRequestViewModel> requests)
-        {
-
-            foreach (DelayRequest request in DelayRequestService.GetAll())
-                if (request.Status == RequestStatus.PENDING && request.GuestId == User.Id)
-                    Requests.Add(new DelayRequestViewModel(request));
-        }
-
-        public void RequestStatusBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            Update();
-        }
+        
     }
 }

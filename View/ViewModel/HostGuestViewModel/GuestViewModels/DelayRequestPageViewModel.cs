@@ -1,6 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.Services;
-using BookingApp.View.Guest.GuestTools;
+using BookingApp.View.GuestTools;
 using BookingApp.View.GuestPages;
 using System;
 using System.Collections.Generic;
