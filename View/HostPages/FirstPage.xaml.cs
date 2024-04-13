@@ -1,7 +1,7 @@
-﻿using BookingApp.DTO;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,25 +17,21 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BookingApp.View.ViewModel;
+using BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels;
 
 namespace BookingApp.View.HostPages
 {
     /// <summary>
     /// Interaction logic for FirstPage.xaml
     /// </summary>
-    public partial class FirstPage : Page, IObserver
-    {
-        public ObservableCollection<AccommodationDTO> Accommodations { get; set; }
-        public AccommodationRepository accommodationRepository { get; set; }
-
-        public AccommodationReservationDTO SelectedAccommodation { get; set; }
-        public FirstPage()
+    public partial class FirstPage : Page
+    {   
+        public FirstPage(User user)
         {
             InitializeComponent();
-            Accommodations = new ObservableCollection<AccommodationDTO>();
-            accommodationRepository = new AccommodationRepository();
-            DataContext = this;
-            Update();
+            DataContext = new FirstPageViewModel(user);
+            
         }
 
         private void Displacement_RequestNavigate(object sender, RequestNavigateEventArgs e)
@@ -55,15 +51,6 @@ namespace BookingApp.View.HostPages
 
         }
 
-        public void Update()
-        {
-            Accommodations.Clear();
-            foreach (Accommodation accommodation in accommodationRepository.GetAll())
-            {
-                
-                Accommodations.Add(new AccommodationDTO(accommodation));
 
-            }
-        }
     }
 }

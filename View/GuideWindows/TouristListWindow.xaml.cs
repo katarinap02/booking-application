@@ -9,49 +9,32 @@ namespace BookingApp.View.GuideWindows
 {
     public partial class TouristListWindow : Window
     {
-        public ObservableCollection<TouristReservationInfo> TouristReservationInfos { get; set; }
         private readonly TourReservationRepository _tourReservationRepository;
-        private readonly TourParticipantRepository _tourParticipantRepository;
+        public List<TourParticipant> tourParticipants { get; set; }
         public int CheckpointNumber { get; set; }
 
-        public TouristListWindow(int tour_id, int current_checkpoint)
+        public TouristListWindow(int tour_id, int current_checkpoint) // BITNO poopraviti binding!
         {
             InitializeComponent();
 
             _tourReservationRepository = new TourReservationRepository();
-            _tourParticipantRepository = new TourParticipantRepository();
 
-            var tourReservations = _tourReservationRepository.GetNotJoinedReservations(tour_id);
+            // ovo je akos komentarisao
+            //_tourParticipantRepository = new TourParticipantRepository();
+
+
+            tourParticipants = _tourReservationRepository.GetNotJoinedReservations(tour_id);
             CheckpointNumber = current_checkpoint;
 
-            TouristReservationInfos = new ObservableCollection<TouristReservationInfo>();
-            if(tourReservations != null)
-            {
-                prepareData(tourReservations);
-            }
-
-            dataGrid.ItemsSource = TouristReservationInfos;
+            dataGrid.ItemsSource = tourParticipants;
         }
 
-        private void prepareData(List<TourReservation> tourReservations) {
-            foreach (var reservation in tourReservations)
-            {
-                TouristReservationInfos.Add(new TouristReservationInfo
-                {
-                    TouristName = _tourParticipantRepository.GetAllParticipantNames(reservation.Id),
-                    ReservationID = reservation.Id
-                });
-            }
-        }
 
         private void JoinedButton_Click(object sender, RoutedEventArgs e)
         {
-            if (dataGrid.SelectedItem != null && dataGrid.SelectedItem is TouristReservationInfo selectedInfo)
+            if (dataGrid.SelectedItem != null)
             {
-                int reservationId = selectedInfo.ReservationID;
-                MessageBox.Show(reservationId.ToString());
-                _tourReservationRepository.JoinTour(reservationId, CheckpointNumber);
-                Close();
+                MessageBox.Show(tourParticipants[0].LastName);
             }
             else
             {
@@ -60,9 +43,4 @@ namespace BookingApp.View.GuideWindows
         }
     }
 
-    public class TouristReservationInfo
-    {
-        public string TouristName { get; set; }
-        public int ReservationID { get; set; }
-    }
 }

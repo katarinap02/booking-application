@@ -1,6 +1,7 @@
-﻿using BookingApp.DTO;
+﻿using BookingApp.ViewModel;
 using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -23,163 +24,72 @@ namespace BookingApp.View.TouristWindows
     /// <summary>
     /// Interaction logic for TouristWindow.xaml
     /// </summary>
-    public partial class TouristWindow : Window, INotifyPropertyChanged
+    public partial class TouristWindow : Window
     {
-        public ObservableCollection<Tour> Tours { get; set; }
-        public Tour SelectedTour {  get; set; }
-        private readonly TourRepository _tourRepository;
-        private readonly UserRepository _userRepository;
+        public TourViewModel Tour { get; set; }
 
-        #region Property
-        private string _username;
-        public string Username
-        {
-            get => _username;
-            set
-            {
-                if (value != _username)
-                {
-                    _username = value;
-                    OnPropertyChanged(nameof(Username));
-                }
-            }
-        }
-        private int _maximumValuePeoples;
-
-
-        public string MaximumValuePeoples
-        {
-            get
-            {
-                return _maximumValuePeoples.ToString();
-            }
-            set
-            {
-                if (value != _maximumValuePeoples.ToString())
-                {
-                    _maximumValuePeoples = Convert.ToInt32(value);
-                    OnPropertyChanged(nameof(_maximumValuePeoples));
-                }
-            }
-        }
-        #endregion
-        #region PropertyChanged
-        public event PropertyChangedEventHandler? PropertyChanged;
-        protected virtual void OnPropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged(this, new PropertyChangedEventArgs(name));
-            }
-        }
-        #endregion
         public TouristWindow(string username)
         {
             InitializeComponent();
-            DataContext = this;
-            _tourRepository = new TourRepository();
-            _userRepository = new UserRepository();
-            Tours = new ObservableCollection<Tour>(_tourRepository.GetAll());
-            Username = username;
+            Tour = new TourViewModel();
+            DataContext = Tour;
 
-            MainFrame.Content = new AllToursPage(getUserId());
-            MaximumValuePeoples = _tourRepository.FindMaxNumberOfParticipants().ToString();
-        }
+            Tour.UserName = username;
 
-        private void DurationSearch_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-            e.Handled = IsFloat(textBox, e);
-        }
-
-        private bool IsFloat(TextBox textBox, TextCompositionEventArgs e)
-        {
-            if((!char.IsDigit(e.Text, e.Text.Length - 1) && e.Text != ".")
-                || (e.Text == "." && textBox.Text.Contains("."))
-                || (e.Text == "." && textBox.Text.Length == 0))
-            {
-                return true;
-            }
-            return false;
-        }
-
-        private void DurationSearch_LostFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = "0";
-                return;
-            }
-        }
-
-        private void PeopleSearch_PreviewTextInput(object sender, TextCompositionEventArgs e)
-        {
-            e.Handled = IsDigit(e);
-        }
-
-        private bool IsDigit(TextCompositionEventArgs e)
-        {
-            if (!char.IsDigit(e.Text, e.Text.Length - 1))
-                return true;
-
-            return false;
-        }
-
-        private void PeopleSearch_LostFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = (TextBox)sender;
-
-            if (string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = "0";
-                return;
-            }
-        }
-
-        private void NotificationButton_Click(object sender, RoutedEventArgs e)
-        {
+            MainFrame.Content = new AllToursPage(Tour.getUserId(Tour.UserName));
 
         }
+
 
         private void LogoutButton_Click(object sender, RoutedEventArgs e)
         {
-
-        }
-
-        private void MenuButton_Checked(object sender, RoutedEventArgs e)
-        {
-            NotifyLogoutPanel.Visibility = Visibility.Visible;
-        }
-
-        private void MenuButton_Unchecked(object sender, RoutedEventArgs e)
-        {
-            NotifyLogoutPanel.Visibility = Visibility.Collapsed;
+            Close();
         }
 
         private void AllToursButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new AllToursPage(getUserId());
+            resetButtonColors();
+            MainFrame.Content = new AllToursPage(Tour.getUserId(Tour.UserName));
+            AllToursButton.Background = darkerBlue();
         }
 
         private void MyToursButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new MyToursPage(getUserId());
+            resetButtonColors();
+            MainFrame.Content = new MyToursPage(Tour.SelectedTour, Tour.getUserId(Tour.UserName));
+            MyToursButton.Background = darkerBlue();
         }
 
         private void EndedToursButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new EndedToursPage(getUserId());
+            resetButtonColors();
+            MainFrame.Content = new EndedToursPage(Tour.getUserId(Tour.UserName));
+            EndedToursButton.Background = darkerBlue();
         }
         private void VouchersButton_Click(object sender, RoutedEventArgs e)
         {
-            MainFrame.Content = new VouchersPage(getUserId());
+            resetButtonColors();
+            MainFrame.Content = new VouchersPage(Tour.getUserId(Tour.UserName));
+            VouchersButton.Background = darkerBlue();
         }
 
-        private int getUserId()
+        private void resetButtonColors()
         {
-            return _userRepository.GetByUsername(Username).Id;
+            AllToursButton.Background = lighterBlue();
+            MyToursButton.Background = lighterBlue();
+            EndedToursButton.Background = lighterBlue();
+            RequestedToursButton.Background = lighterBlue();
+            VouchersButton.Background = lighterBlue();
+            LogOutButton.Background = lighterBlue();
+        }
+
+        private SolidColorBrush darkerBlue()
+        {
+            return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#344299"));
+        }
+        private SolidColorBrush lighterBlue()
+        {
+            return new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4C5FD9"));
         }
 
     }

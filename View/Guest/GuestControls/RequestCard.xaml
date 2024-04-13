@@ -1,0 +1,21 @@
+﻿<UserControl x:Class="BookingApp.View.GuestControls.RequestCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookingApp.View.GuestControls"
+              mc:Ignorable="d" d:DesignWidth="990" Height="103">
+
+    <Grid>
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Width="990" Height="103">
+            <Grid Margin="10">
+                <Label Content="Zahtev za pomeranje" Style="{StaticResource HeaderStyleN}" HorizontalAlignment="Left" Margin="23,0,0,0" VerticalAlignment="Top"/>
+                <Label Content="{Binding AccommodationName}" HorizontalAlignment="Left" Margin="29,23,0,0" VerticalAlignment="Top"  Height="50"/>
+                <Label Content="{Binding DateRange}" HorizontalAlignment="Left" Margin="29,48,0,0" VerticalAlignment="Top" Height="50"/>
+
+            </Grid>
+
+        </Border>
+    </Grid>
+
+</UserControl>

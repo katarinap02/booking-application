@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.HostPages"
       mc:Ignorable="d" 
-      d:DesignHeight="700" d:DesignWidth="1024"
+      d:DesignHeight="705" d:DesignWidth="1024"
       Title="RegisterAccommodationPage">
 
     <Page.Resources>
@@ -15,7 +15,7 @@
         </Style>
     </Page.Resources>
 
-    <Grid Margin="0 60 0 40">
+    <Grid Margin="0 15 0 40">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="800"></ColumnDefinition>
@@ -58,7 +58,7 @@
             <TextBox x:Name ="textBoxCountry" Text="{Binding Path= accommodationDTO.Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="277"/>
         </StackPanel>
 
-        <StackPanel Grid.Row ="3" Grid.Column="1" Orientation="Horizontal" Margin="100 0 100 0" HorizontalAlignment="Center" >
+        <StackPanel Grid.Row ="3" Grid.Column="1" Orientation="Horizontal" Margin="0 0 100 0" HorizontalAlignment="Left" >
             <RadioButton x:Name="radioButtonApartment" GroupName="TypeButton" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="True"></RadioButton>
             <Label
                 x:Name="ApartmentLabel"
@@ -97,14 +97,14 @@
         <StackPanel Grid.Row ="5" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,70" Grid.RowSpan="2">
             <Label
        x:Name="PictureLabel" 
-       Content="Pictures" Height="29" Width="57" VerticalAlignment="Top" Margin="0 13 0 0"
+       Content="Pictures" Height="29" Width="57" VerticalAlignment="Top" Margin="0 23 0 0"
     />
-            <ListBox Name="txtPictureUrls" ItemsSource="{Binding Path= accommodationDTO.Pictures, UpdateSourceTrigger=PropertyChanged}" Height="59" VerticalAlignment="Center" Margin="5,0,5,0" Width="593"/>
-            <Button Click="Picture_Click"  VerticalAlignment="Top" Height="27" Width="75" FontSize="15" Content="Browse" Margin="0 20 20 0"></Button>
+            <ListBox  Name="txtPictureUrls" ItemsSource="{Binding Path= accommodationDTO.Pictures, UpdateSourceTrigger=PropertyChanged}" Height="59" VerticalAlignment="Center" Margin="5,0,5,0" Width="593"/>
+            <Button Click="Picture_Click"  VerticalAlignment="Top" Height="27" Width="75" FontSize="15" Content="Browse" Margin="0 29 20 0"></Button>
         </StackPanel>
         <TextBox Margin="0,0,0,5" Name="txtPictureUrlTextBox" Visibility="Hidden" Width="179" Height="34"/>
 
-        <Button Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="1"  Height="39" Width="134" FontSize="20" Content="Submit" Click="Save_Click"></Button>
+        <Button Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1"  Height="39" Width="134" FontSize="20" Content="Submit" Click="Save_Click"></Button>
 
     </Grid>
 </Page>

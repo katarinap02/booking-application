@@ -1,8 +1,9 @@
-﻿using BookingApp.DTO;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.View.GuestWindows;
+using BookingApp.View.HostPages;
+using BookingApp.View.HostPages.RatePages;
 using BookingApp.View.HostWindows;
 using System;
 using System.Collections.Generic;
@@ -18,83 +19,65 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
+using BookingApp.View.ViewModel;
+using BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels;
 
 namespace BookingApp.View
 {
     /// <summary>
     /// Interaction logic for HostWindow.xaml
     /// </summary>
-    public partial class HostWindow : Window, IObserver
+    public partial class HostWindow : Window
     {
-        public ObservableCollection<AccommodationReservationDTO> Accommodations { get; set; }
-        public AccommodationRepository accommodationRepository { get; set; }
-        public AccommodationReservationRepository accommodationReservationRepository { get; set; }
-
-        public AccommodationReservationDTO SelectedAccommodation { get; set; }
-        public User User { get; set; }
+        
+        public HostPageViewModel hostPageViewModel { get; set; }
 
         public HostWindow(User user)
         {
 
             InitializeComponent();
-            
-            Accommodations = new ObservableCollection<AccommodationReservationDTO>();
-            accommodationRepository = new AccommodationRepository();
-            accommodationReservationRepository = new AccommodationReservationRepository();
-            DataContext = this;
-            User = user;
-            Update();
-            
-
+            hostPageViewModel = new HostPageViewModel(user, HostFrame, LeftDock, RatingPanel);
+            DataContext = hostPageViewModel;
 
         }
 
-        public void Update()
+
+        private void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            Accommodations.Clear();
-            foreach (AccommodationReservation accommodation in accommodationReservationRepository.GetGuestForRate())
-            {
-                Accommodations.Add(new AccommodationReservationDTO(accommodation));
-                
-            }
+            hostPageViewModel.HomeButton_Click(sender, e);
         }
 
-        private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
+        private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            RegisterAccommodationWindow registerWindow = new RegisterAccommodationWindow(accommodationRepository, User);
+            hostPageViewModel.RegisterButton_Click(sender, e);
+        }
+        private void GuestRatings_Click(object sender, RoutedEventArgs e)
+        {
+            hostPageViewModel.GuestRatings_Click(sender, e);
+        }
 
-            registerWindow.ShowDialog();
+        private void Delay_Click(object sender, RoutedEventArgs e)
+        {
+            hostPageViewModel.Delay_Click(sender, e); ;
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
+        
 
-        private void Rate_Click(object sender, RoutedEventArgs e)
+        private void More_Click(object sender, RoutedEventArgs e)
         {
-            if (SelectedAccommodation != null)
-            {
-                RateGuestWindow rateGuestWindow = new RateGuestWindow(SelectedAccommodation);
-                rateGuestWindow.ShowDialog();
-            }
-            else
-            {
-                MessageBox.Show("Select guest to rate.");
-            }
-
-            Update();
+            hostPageViewModel.More_Click(sender, e);
         }
 
-        private void NavigateToPage(string pageName)
+        private void Rating_Click(object sender, RoutedEventArgs e)
         {
-            
-          //  String pageUri = "View/HostPages/" + pageName + ".xaml"; // ovo je nacin sa putanjama, a moze da se instancira i nova stranica prilikom navigacije, pa da ne moraju da se koriste putanje, ali ima neke razlike u ponasanju stranica prilikom navigacije (procitati na linku)
-            //HostFrame.Navigate(new Uri(pageUri, UriKind.RelativeOrAbsolute)); // ovo je skraceni zapis za MainFrame.NavigationService.Navigate(...);
+            hostPageViewModel.Rating_Click(sender, e);
         }
 
-
+        
 
 
     }

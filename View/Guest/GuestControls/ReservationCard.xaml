@@ -5,9 +5,9 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookingApp.View.GuestControls"
              mc:Ignorable="d" 
-             d:DesignHeight="103" d:DesignWidth="679">
+             d:DesignHeight="103" d:DesignWidth="990">
     <Grid>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="1" CornerRadius="30"  Background="white" Width="679" Height="103">
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Width="980" Height="103">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>

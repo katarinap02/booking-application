@@ -1,7 +1,7 @@
-﻿using BookingApp.DTO;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,41 +17,54 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BookingApp.View.ViewModel;
+using BookingApp.View.ViewModel.HostGuestViewModel;
 
 namespace BookingApp.View.GuestPages
 {
     /// <summary>
     /// Interaction logic for ProfileInfo.xaml
     /// </summary>
-    public partial class ProfileInfo : Page, IObserver
+    public partial class ProfileInfo : Page
     {
-        public ObservableCollection<AccommodationReservationDTO> Reservations { get; set; }
+      
         public User User { get; set; }
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
-
+       
+        public AccommodationReservationViewModel SelectedReservation { get; set; }
         public Frame Frame {  get; set; }   
-        public ProfileInfo(AccommodationReservationRepository accommodationReservationRepository, User user, Frame frame)
+
+        public ProfileInfoViewModel ViewModel { get; set; }
+        public ProfileInfo(User user, Frame frame)
         {
             InitializeComponent();
-            Reservations = new ObservableCollection<AccommodationReservationDTO>();
+          
             this.User = user;
             this.Frame = frame;
-            this.AccommodationReservationRepository = accommodationReservationRepository;
-            DataContext = this;
-            Update();
+            ViewModel = new ProfileInfoViewModel(User, Frame);
+            DataContext = ViewModel;
+            
+            ViewModel.Update();
         }
 
-        public void Update()
-        {
-            Reservations.Clear();
+       
 
-            foreach (AccommodationReservation reservation in AccommodationReservationRepository.GetAll())
-            {
-                if (reservation.GuestId == User.Id)
-                {
-                    Reservations.Add(new AccommodationReservationDTO(reservation));
-                }
-            }
+        public void Cancel_Click(object sender, RoutedEventArgs e) { 
+
+            Button button = sender as Button;
+            SelectedReservation = button.DataContext as AccommodationReservationViewModel;
+            Frame.Content = new CancelReservationPage(SelectedReservation, User, Frame);
+
+        
+        
+        
+        }
+
+        public void Delay_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            SelectedReservation = button.DataContext as AccommodationReservationViewModel;
+            Frame.Content = new DelayRequestPage(SelectedReservation, User, Frame);
+
         }
     }
 }

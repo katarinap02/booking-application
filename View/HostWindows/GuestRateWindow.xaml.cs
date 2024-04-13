@@ -1,5 +1,4 @@
-﻿using BookingApp.DTO;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
@@ -14,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.View.GuestWindows
 {
@@ -22,19 +22,19 @@ namespace BookingApp.View.GuestWindows
     /// </summary>
     public partial class RateGuestWindow : Window
     {
-        public AccommodationReservationDTO accommodationReservationDTO {  get; set; }
+        public AccommodationReservationViewModel accommodationReservationDTO {  get; set; }
 
-        public GuestRateDTO guestRateDTO { get; set; }
+        public GuestRateViewModel guestRateDTO { get; set; }
 
         public GuestRateRepository guestRateRepository { get; set; }
 
         
         
-        public RateGuestWindow(AccommodationReservationDTO ac)
+        public RateGuestWindow(AccommodationReservationViewModel ac)
         {
             InitializeComponent();
             accommodationReservationDTO = ac;
-            guestRateDTO = new GuestRateDTO();
+            guestRateDTO = new GuestRateViewModel();
             guestRateRepository = new GuestRateRepository();
             DataContext = this;
 

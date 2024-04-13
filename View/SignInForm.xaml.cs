@@ -2,6 +2,7 @@
 using BookingApp.Repository;
 using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;
+using BookingApp.ViewModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -45,6 +46,8 @@ namespace BookingApp.View
             _repository = new UserRepository();
             _guidedTourRepository = new GuidedTourRepository();
             _tourRepository = new TourRepository();
+          
+
         }
 
         private void SignIn(object sender, RoutedEventArgs e)
@@ -59,24 +62,24 @@ namespace BookingApp.View
                     if (user.Type.ToString().Equals("tourist"))
                     {
                         TouristWindow touristWindow = new TouristWindow(user.Username);
-                        touristWindow.Show();
+                        touristWindow.ShowDialog();
                     }
                     else if (user.Type.ToString().Equals("host"))
                     {
                         HostWindow hostWindow = new HostWindow(user);
-                        hostWindow.Show();
+                        hostWindow.ShowDialog();
                     }
                     else if (user.Type.ToString().Equals("guide"))
                     {
                         if(_guidedTourRepository.HasTourCurrently(user.Id)) {
                             Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
-                            GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new DTO.TourDTO(tour), user);
-                            guideWithTourWindow.Show();
+                            GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourViewModel(tour), user);
+                            guideWithTourWindow.ShowDialog();
                         }
                         else
                         {
                             GuideMainWindow guideMainWindow = new GuideMainWindow(user);
-                            guideMainWindow.Show();
+                            guideMainWindow.ShowDialog();
                         }
 
                     }
@@ -86,7 +89,7 @@ namespace BookingApp.View
                         GuestWindow guestWindow = new GuestWindow(user);
                         guestWindow.ShowDialog();
                     }
-                    Close();
+                    //Close();
 
                 } 
                 else

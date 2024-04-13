@@ -1,5 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using BookingApp.View.GuideWindows;
 using System;
 using System.Collections.Generic;
@@ -23,18 +24,15 @@ namespace BookingApp.View.GuestPages
     /// </summary>
     public partial class HomePage : Page
     {
-        public AccommodationRepository AccommodationRepository { get; set; }
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
+   
         public User User { get; set; }
 
         public Frame Frame { get; set; }    
         
-        public HomePage(AccommodationRepository accommodationRepository, AccommodationReservationRepository accommodationReservationRepository, User user, Frame frame)
+        public HomePage(User user, Frame frame)
         {
             InitializeComponent();
             this.User = user;
-            this.AccommodationRepository = accommodationRepository;
-            this.AccommodationReservationRepository = accommodationReservationRepository;
             DataContext = this;
             this.Frame = frame;
             
@@ -42,7 +40,7 @@ namespace BookingApp.View.GuestPages
 
         private void ReserveButton_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new AccommodationsPage(AccommodationRepository, AccommodationReservationRepository, User, Frame);
+            Frame.Content = new AccommodationsPage(User, Frame);
             
         }
 

@@ -1,4 +1,4 @@
-﻿using BookingApp.DTO;
+﻿using BookingApp.ViewModel;
 using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using BookingApp.Observer;
 using BookingApp.Model;
 using System.Security.Cryptography;
+using BookingApp.Services;
 
 namespace BookingApp.View.GuestPages
 {
@@ -26,23 +27,19 @@ namespace BookingApp.View.GuestPages
     public partial class ProfilePage : Page { 
         
         public User User { get; set; }  
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
-        public AccommodationRepository AccommodationRepository { get; set; }
+      
 
-        public AccommodationRateRepository AccommodationRateRepository { get; set; }
         public Frame Frame { get; set; }
 
-        public ProfilePage(User user, AccommodationReservationRepository accommodationReservationRepository, AccommodationRepository accommodationRepository, AccommodationRateRepository accommodationRateRepository, Frame frame)
+        public ProfilePage(User user, Frame frame)
         {
             InitializeComponent();
            
             this.User = user;
             this.Frame = frame;
-            this.AccommodationReservationRepository = accommodationReservationRepository;
-            this.AccommodationRepository = accommodationRepository;
-            this.AccommodationRateRepository = accommodationRateRepository;
            
-            Profile.Content = new ProfileInfo(AccommodationReservationRepository, User, Profile);
+           
+            Profile.Content = new ProfileInfo(User, Profile);
            
            
 
@@ -52,12 +49,22 @@ namespace BookingApp.View.GuestPages
 
         public void RateAccommodation_Click(object sender, RoutedEventArgs e)
         {
-            Profile.Content = new RateAccommodationPage(User, AccommodationReservationRepository, AccommodationRepository, AccommodationRateRepository, Profile);
+            Profile.Content = new RateAccommodationPage(User, Profile);
         }
 
         public void RatesByHost_Click(object sender, RoutedEventArgs e)
         {
-           // Frame.Content = new RatesByHostPage(User, AccommodationRateRepository, Frame);
+            Profile.Content = new RatesByHostPage(User, Profile);
+        }
+
+        public void Requests_Click(object sender, RoutedEventArgs e)
+        {
+            Profile.Content = new RequestsPage(User, Profile);
+        }
+
+        public void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            Profile.Content = new ProfileInfo(User, Profile);
         }
 
       

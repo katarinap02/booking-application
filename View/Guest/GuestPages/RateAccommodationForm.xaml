@@ -6,33 +6,28 @@
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
       xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       mc:Ignorable="d" 
-      d:DesignHeight="990" d:DesignWidth="1920"
+      d:DesignHeight="798" d:DesignWidth="1085"
       Title="RateAccommodationForm">
-
+    
     <Grid>
         <Grid>
-            <Border Width="396" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="268,98,1256,98">
+
+
+            <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,549,5">
                 <Grid>
-                    <TreeView Name="TreeMenu" Height="692" Margin="10,30,0,67">
-                        <LineBreak/>
-                        <TreeViewItem Header="Profile" FontSize="37"></TreeViewItem>
-                        <LineBreak/>
-                        <TreeViewItem Header="Rate accommodation" IsSelected="True" FontSize="37"></TreeViewItem>
-                        <LineBreak/>
-                        <TreeViewItem Header="Rates by guest" FontSize="37"></TreeViewItem>
-                        <LineBreak/>
-                        <TreeViewItem Header="Requests" FontSize="37"></TreeViewItem>
-                        <LineBreak/>
-                        <TreeViewItem Header="Forums" FontSize="37"></TreeViewItem>
-                        <LineBreak/>
-                        <TreeViewItem Header="Settings" FontSize="37"></TreeViewItem>
+                    <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="24,99,24,534">Welcome to the accommodation rating page. To create a review, fill the cleanliness and correctness rate fields, as well as the comment field.</TextBlock>
+                    <TextBlock TextWrapping="Wrap" FontSize="23" TextAlignment="Center" FontWeight="Bold" Margin="0,255,0,461">Optional: You can leave your accommodation pictures and reccommend renovation.</TextBlock>
+                    <Label Content="Accommodation" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="136,434,-136,312"/>
+                    <Label Content="Host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="218,648,218,98"/>
+                    <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
+                        <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="59,-2,63,2"/>
+                    </Border>
 
-                    </TreeView>
+                    <controls:AccommodationCardSmaller DataContext="{Binding SelectedAccommodation}" Width="500" Margin="11,168,11,-168"></controls:AccommodationCardSmaller>
                 </Grid>
-
             </Border>
-            <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="697,98,697,98"/>
-            <Border Width="526" Height="517" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="1249,98,145,374">
+            <Border Width="526" Height="517" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="549,1,10,280">
+
                 <Grid>
                     <Label Content="Cleanliness:" FontSize="20" HorizontalAlignment="Left" Margin="88,51,0,0" VerticalAlignment="Top"/>
                     <Label Content="Correctness:" FontSize="20" HorizontalAlignment="Left" Margin="308,51,0,0" VerticalAlignment="Top"/>
@@ -55,15 +50,18 @@
                         <ComboBoxItem Content="1" Tag="1"></ComboBoxItem>
                     </ComboBox>
                     <Label Content="Comment:" FontSize="20" HorizontalAlignment="Left" Margin="36,157,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding AccommodationRate.AdditionalComment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="412" Height="100"/>
+
+                    <Button FontSize="15" Click="AddPicture_Click" Content="Add picture" HorizontalAlignment="Left" Margin="55,334,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}"/>
+                    <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="44,456,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="29" Width="208"/>
+                    <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="367,454,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}" Click="Save_Click"/>
+                    <ListBox x:Name="pictureListBox" Margin="194,334,55,84" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Images}"/>
 
                 </Grid>
             </Border>
-            <TextBox HorizontalAlignment="Left" Margin="1295,298,0,0" TextWrapping="Wrap" Text="{Binding AccommodationRate.AdditionalComment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="100"/>
-            <Button FontSize="15" Click="AddPicture_Click" Content="Add picture" HorizontalAlignment="Left" Margin="1295,422,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}"/>
-            <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="1295,560,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="29"/>
-            <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="1621,558,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}" Click="Save_Click"/>
-            <ListBox x:Name="pictureListBox" Margin="1432,422,213,469"></ListBox>
+
 
         </Grid>
     </Grid>
+        
 </Page>

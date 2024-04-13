@@ -1,4 +1,4 @@
-﻿using BookingApp.DTO;
+﻿using BookingApp.ViewModel;
 using BookingApp.Model;
 using BookingApp.Repository;
 using System.Collections.ObjectModel;
@@ -16,9 +16,9 @@ namespace BookingApp.View.GuideWindows
         private TourRepository tourRepository;
         private GuidedTourRepository guidedTourRepository;
         private User Guide;
-        public TourDTO Tour { get; set; }
+        public TourViewModel Tour { get; set; }
 
-        public GuideWithTourWindow(TourDTO tourDTO, User user)
+        public GuideWithTourWindow(TourViewModel tourDTO, User user)
         {
             InitializeComponent();
 
@@ -53,7 +53,7 @@ namespace BookingApp.View.GuideWindows
 
         }
 
-        public void ActivateTourIfNotActive(TourDTO tourDTO)
+        public void ActivateTourIfNotActive(TourViewModel tourDTO)
         {
             if (!guidedTourRepository.Exists(Guide.Id, Tour.Id))
             {

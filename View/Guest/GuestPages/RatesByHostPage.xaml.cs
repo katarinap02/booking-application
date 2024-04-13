@@ -1,5 +1,10 @@
-﻿using System;
+﻿using BookingApp.Model;
+using BookingApp.Observer;
+using BookingApp.Repository;
+using BookingApp.Services;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,17 +17,58 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BookingApp.View.ViewModel;
 
-namespace BookingApp.View.Guest.GuestPages
+namespace BookingApp.View.GuestPages
 {
     /// <summary>
     /// Interaction logic for RatesByHostPage.xaml
     /// </summary>
-    public partial class RatesByHostPage : Page
+    /// 
+
+    public partial class RatesByHostPage : Page, IObserver
     {
-        public RatesByHostPage()
+        
+        public User User { get; set; }
+       
+      
+        public Frame Frame { get; set; }
+
+        
+
+        public RatesByHostPage(User user, Frame frame)
         {
             InitializeComponent();
+            this.User = user;
+            this.Frame = frame;
+          
+            DataContext = this;
+            Update();
+
         }
+        
+        public void Update()
+        {
+          
+         /*  foreach(GuestRate guestRate in GuestRateRepository.GetAll()) { 
+                if(IsAccommodationRated(guestRate.ReservationId, AccommodationRateService))
+                {
+                    GuestRates.Add(new GuestRateDTO(guestRate));
+                }
+            
+           }*/
+        }
+        /*
+        private bool IsAccommodationRated(int reservationId, AccommodationRateRepository accommodationRateRepository)
+        {
+            foreach(AccommodationRate accommodationRate in accommodationRateRepository.GetAll())
+            {
+                if(accommodationRate.ReservationId == reservationId)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }*/
     }
 }

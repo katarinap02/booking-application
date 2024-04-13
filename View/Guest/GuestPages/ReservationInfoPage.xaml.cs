@@ -1,6 +1,6 @@
-﻿using BookingApp.DTO;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BookingApp.View.ViewModel;
 
 namespace BookingApp.View.GuestPages
 {
@@ -24,25 +25,23 @@ namespace BookingApp.View.GuestPages
     /// </summary>
     public partial class ReservationInfoPage : Page
     {
-        public AccommodationDTO SelectedAccommodation { get; set; }
-        public AccommodationRepository AccommodationRepository { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
+       
 
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
+        public AccommodationReservationViewModel ViewModel { get; set; }
         public User User { get; set; }
-        public int DayNumber { get; set; }
+      
         public Frame Frame { get; set; }
 
        
-        public ReservationInfoPage(AccommodationRepository accommodationRepository, AccommodationDTO SelectedAccommodation, AccommodationReservationRepository accommodationReservationRepository, User user, Frame frame)
+        public ReservationInfoPage(AccommodationViewModel selectedAccommodation, User user, Frame frame)
         {
             InitializeComponent();
-            this.SelectedAccommodation = SelectedAccommodation;
-            this.AccommodationRepository = accommodationRepository;
-            this.User = user;
-            this.Frame = frame;
-            this.AccommodationReservationRepository = accommodationReservationRepository;
-            bool dateIsValid;
-            bool dayNumberIsValid;
+            User = user;
+            Frame = frame;
+            SelectedAccommodation = selectedAccommodation;
+            ViewModel = new AccommodationReservationViewModel(SelectedAccommodation, User, Frame, this);
+            
             DataContext = this;
           
            
@@ -55,48 +54,11 @@ namespace BookingApp.View.GuestPages
             
 
            
-            
-            DayNumber = Convert.ToInt32(txtDayNumber.Text);
-            DateTime start = Convert.ToDateTime(txtStartDate.Text);
-            DateTime end = Convert.ToDateTime(txtEndDate.Text);
-
-           
-
-           
-
-            Frame.Content = new CalendarPage(AccommodationRepository, AccommodationReservationRepository, SelectedAccommodation, DayNumber, User, start, end, Frame);
+           ViewModel.Continue_Click(sender, e);
 
 
         }
 
-        private bool ValidateDayNumber(int dayNumber)
-        {
-            if (DayNumber < SelectedAccommodation.MinReservationDays)
-            {
-                
-                return false;
-            }
-            else
-            {
-                
-                return true;
-            }
-        }
-
-        private bool ValidateDateInputs(DateTime start, DateTime end)
-        {
-            if (start >= end)
-            {
-               
-                return false;
-            }
-            else
-            {
-               
-                return true;
-            }
-
-
-        }
+       
     }
 }

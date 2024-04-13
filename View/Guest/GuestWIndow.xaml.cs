@@ -1,5 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.Services;
 using BookingApp.View.GuestPages;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -20,19 +22,15 @@ namespace BookingApp.View
    
     public partial class GuestWindow : Window
     {
-        public AccommodationRepository AccommodationRepository { get; set; }
-        public AccommodationRateRepository AccommodationRateRepository { get; set; }
-        public AccommodationReservationRepository AccommodationReservationRepository { get; set; }
-        public User User {  get; set; }
-
+      
+        public User User { get; set; }
         
         public GuestWindow(User user)
         {
             InitializeComponent();
-            AccommodationRepository = new AccommodationRepository();
-            AccommodationReservationRepository = new AccommodationReservationRepository();
+        
             this.User = user;
-            Main.Content = new HomePage(AccommodationRepository, AccommodationReservationRepository, User, Main);
+            Main.Content = new HomePage(User, Main);
             Main.DataContext = this;
           
             
@@ -42,17 +40,28 @@ namespace BookingApp.View
 
         private void HomeClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new HomePage(AccommodationRepository, AccommodationReservationRepository, User, Main);
+            Main.Content = new HomePage(User, Main);
         }
 
         private void ProfileClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new ProfilePage(User, AccommodationReservationRepository, AccommodationRepository, AccommodationRateRepository, Main);
+            Main.Content = new ProfilePage(User, Main);
         }
 
         private void AccommodationsClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new AccommodationsPage(AccommodationRepository, AccommodationReservationRepository, User, Main);
+            Main.Content = new AccommodationsPage(User, Main);
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            NotificationFrame.Visibility = Visibility.Visible;
+            NotificationFrame.Content = new NotificationPopUp(User);
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+           NotificationFrame.Visibility = Visibility.Collapsed;
         }
 
         private void ForumsClick(object sender, RoutedEventArgs e)
@@ -82,6 +91,12 @@ namespace BookingApp.View
             
 
 
+        }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            
         }
     }
 }

@@ -7,14 +7,14 @@
              mc:Ignorable="d" 
              d:DesignHeight="168" d:DesignWidth="597">
     <Grid>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="1" CornerRadius="30"  Background="white" Width="597" Height="168">
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Width="597" Height="168">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="44,27,194,-27" Grid.Row="1"/>
-                <TextBlock x:Name="Location" FontSize="20" Text="{Binding City}" Margin="44,66,178,-66" Grid.Row="1"/>
+                <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="44,66,178,-66" Grid.Row="1"/>
 
                 <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{Binding Rate}" Margin="87,98,460,-97" Grid.Row="1"/>
                 <TextBlock x:Name="AccommodationDays" FontSize="20" Text="{Binding MinReservationDays}" Margin="242,98,304,-98" Grid.Row="1"/>
