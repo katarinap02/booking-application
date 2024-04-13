@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using BookingApp.View.ViewModel;
 using System.Windows;
+using BookingApp.ViewModel;
 
 namespace BookingApp.Services
 {
