@@ -234,17 +234,12 @@ namespace BookingApp.ViewModel
             if (selectedDatesCount != DayNumber)
             {
                 Page.reserveButton.IsEnabled = false;
-                /* warningLabel.Visibility = Visibility.Visible;
-                 dayNumberLabel.Visibility = Visibility.Visible;
-                 continueLabel.Visibility = Visibility.Hidden;*/
+            
 
             }
             else
             {
                 Page.reserveButton.IsEnabled = true;
-                /*  warningLabel.Visibility = Visibility.Hidden;
-                  dayNumberLabel.Visibility = Visibility.Hidden;
-                  continueLabel.Visibility = Visibility.Visible;*/
 
             }
 
@@ -262,24 +257,11 @@ namespace BookingApp.ViewModel
             else
             {
                 Page.finishReservation.IsEnabled = true;
-                Reservation.GuestId = User.Id;
-                Reservation.AccommodationId = SelectedAccommodation.Id;
-                Reservation.StartDate = SelectedDateRange.Start;
-                Reservation.EndDate = SelectedDateRange.End;
-                Reservation.Name = SelectedAccommodation.Name;
-                Reservation.City = SelectedAccommodation.City;
-                Reservation.Country = SelectedAccommodation.Country;
-                Reservation.NumberOfPeople = GuestNumber;
-
+                Reservation = new AccommodationReservation(User.Id, SelectedAccommodation.Id, SelectedDateRange.Start, SelectedDateRange.End, GuestNumber, SelectedAccommodation.Name, SelectedAccommodation.City, SelectedAccommodation.Country);
                 SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
                 AccommodationService.Update(SelectedAccommodation.ToAccommodation());
-
                 AccommodationReservationService.Add(Reservation);
-
-                
-
                 Frame.Content = new ReservationSuccessfulPage(SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
-
 
 
 
