@@ -21,6 +21,7 @@ namespace BookingApp.View.GuideWindows
         public CancelTourWindow(User guide)
         {
             InitializeComponent();
+            DataContext = this;
             TourRepository = new TourRepository();
             Guide = guide;
             TourViewModels = new ObservableCollection<TourViewModel>();
