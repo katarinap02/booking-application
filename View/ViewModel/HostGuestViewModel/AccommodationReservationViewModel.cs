@@ -172,6 +172,7 @@ namespace BookingApp.View.ViewModel
 
         public AccommodationViewModel SelectedAccommodation { get; set; }
         public AccommodationService AccommodationService { get; set; }
+        public ReservationCancellationService ReservationCancellationService { get; set; }
 
         public AccommodationReservationService AccommodationReservationService { get; set; }
         public User User { get; set; }
@@ -278,11 +279,11 @@ namespace BookingApp.View.ViewModel
 
         public void CancelReservation_Click(object sender, RoutedEventArgs e)
         {
-            
-         
+
+            ReservationCancellationService = new ReservationCancellationService();
             AccommodationService = new AccommodationService();
             AccommodationReservationService = new AccommodationReservationService();
-            AccommodationReservationService.CancelReservation(AccommodationService, this);
+            AccommodationReservationService.CancelReservation(AccommodationService, ReservationCancellationService, this);
           
 
         }

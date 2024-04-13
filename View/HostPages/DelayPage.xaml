@@ -35,10 +35,11 @@
                 <RowDefinition Height="50" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
-                <RowDefinition Height="40" />
-                <RowDefinition Height="60" />
+                <RowDefinition Height="20" />
                 <RowDefinition Height="120" />
                 <RowDefinition Height="40" />
+                <RowDefinition Height="90" />
+                <RowDefinition Height="50" />
                 <RowDefinition Height="*" />
                 
             </Grid.RowDefinitions>
@@ -53,34 +54,49 @@
             FontSize="24"
             
              />
-            <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5 0 0 0">
+            <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/red_dot.png" Width="20" Height="25"/>
                 <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Text="reserved" FontSize="15">
                 
                 </TextBlock>
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="7 0 0 0">
+            <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="7 0 0 0">
                 <Image Source="../../Resources/Images/blue_square.png" Width="16" Height="20"/>
                 <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Text="not reserved" FontSize="15">
                 </TextBlock>
             </StackPanel>
 
 
-            <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="5 0 0 0">
+            <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="5 0 0 0">
                 <TextBlock Text="Explanation" FontSize="15" VerticalAlignment="Top" Margin="5,0,0,0" />
                 <TextBox x:Name="ExplanationTextBox" Width="380" Height="118" Margin="15 0 0 0"  Text="{Binding Path= Delay.Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"> </TextBox>
             </StackPanel>
 
-            <Label Content="Enter an explanation only with request rejection." FontSize="15" Grid.Row="6" VerticalAlignment="Bottom">
+            <Label Content="Enter an explanation only with request rejection." FontSize="15" Grid.Row="5" VerticalAlignment="Bottom">
                 
             </Label>
-            <StackPanel Grid.Row="8" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+            <StackPanel Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
                 <Button Content="Approve" Click="Approve_Click" FontSize="15" Width="90" Height="35" Margin="0 0 75 0">
                 </Button>
                 <Button Content="Reject" Click="Reject_Click"  FontSize="15" Width="90" Height="35" Margin="75 0 0 0">
                     
                 </Button>
             </StackPanel>
+            <Label Content="Request Cancellings:" Grid.Row="7" VerticalAlignment="Center" FontSize="17">
+                
+            </Label>
+
+            <ListBox x:Name="NotificationListBox" Width="235" Height="150" Margin="230,25,31,50" Grid.RowSpan="2" Grid.Row="7" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Notifications}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="Gray" BorderThickness="1" Margin="0,0,0,5">
+                            <TextBlock Text="{Binding}" Padding="5"/>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+
+        
             
         </Grid>
 

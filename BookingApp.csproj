@@ -28,13 +28,9 @@
     <None Remove="Resources\Images\urgent.png" />
     <None Remove="Resources\Images\video-camera.png" />
     <None Remove="Resources\Images\view.png" />
-    <None Remove="View\TouristWindows\hamburger.png" />
-    <None Remove="View\TouristWindows\logout.png" />
-    <None Remove="View\TouristWindows\minus.png" />
-    <None Remove="View\TouristWindows\notification.png" />
+    <None Remove="View\TouristWindows\notificationtourist.png" />
     <None Remove="View\TouristWindows\pdf.png" />
-    <None Remove="View\TouristWindows\plus.png" />
-    <None Remove="View\TouristWindows\search.png" />
+    <None Remove="View\TouristWindows\searchtourist.png" />
     <None Remove="View\TouristWindows\user.png" />
   </ItemGroup>
 
@@ -117,16 +113,14 @@
     <Resource Include="View\Guest\GuestThemes\LightTheme.xaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
+    <Resource Include="Resources\Images\notificationtourist.png" />
+    <Resource Include="Resources\Images\pdf.png" />
+    <Resource Include="Resources\Images\searchtourist.png" />
+    <Resource Include="Resources\Images\user.png" />
+  </ItemGroup>
 
-    <Resource Include="View\TouristWindows\hamburger.png" />
-    <Resource Include="View\TouristWindows\logout.png" />
-
-    <Resource Include="View\TouristWindows\minus.png" />
-    <Resource Include="View\TouristWindows\notification.png" />
-    <Resource Include="View\TouristWindows\pdf.png" />
-    <Resource Include="View\TouristWindows\plus.png" />
-    <Resource Include="View\TouristWindows\search.png" />
-    <Resource Include="View\TouristWindows\user.png" />
+  <ItemGroup>
+    <EditorConfigFiles Remove="E:\FTN\3ev\sims\project\sims-ra-2024-group-1-team-b\Services\.editorconfig" />
   </ItemGroup>
 
 </Project>

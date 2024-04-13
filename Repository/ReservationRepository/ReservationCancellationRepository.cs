@@ -22,6 +22,7 @@ namespace BookingApp.Repository
         {
             _serializer = new Serializer<ReservationCancellation>();
             _cancellations = new List<ReservationCancellation>();
+            CancellationSubject = new Subject();
         }
 
         public List<ReservationCancellation> GetAll()

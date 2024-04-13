@@ -82,7 +82,7 @@ namespace BookingApp.Services
             return false;
         }
 
-        internal void CancelReservation(AccommodationService accommodationService, AccommodationReservationViewModel reservation)
+        internal void CancelReservation(AccommodationService accommodationService, ReservationCancellationService cancellationService, AccommodationReservationViewModel reservation)
         {
             int daysBefore = (reservation.StartDate - DateTime.Today).Days;
             int dayLimit = accommodationService.GetById(reservation.AccommodationId).ReservationDaysLimit;
@@ -92,8 +92,11 @@ namespace BookingApp.Services
             }
             else
             {
+                Accommodation accommodation = accommodationService.GetById(reservation.AccommodationId);
+                ReservationCancellation cancellation = new ReservationCancellation(reservation.GuestId, accommodation.HostId, reservation.Id, DateTime.Now, reservation.StartDate, reservation.EndDate);
+                cancellationService.Add(cancellation);
                 AccommodationReservationRepository.Delete(reservation);
-                accommodationService.FreeDateRange(accommodationService.GetById(reservation.AccommodationId), reservation);
+                accommodationService.FreeDateRange(accommodation, reservation);
                 MessageBox.Show("Reservation cancelled");
             }
         }

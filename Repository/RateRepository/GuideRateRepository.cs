@@ -41,5 +41,16 @@ namespace BookingApp.Repository
                 return 1;
             return _guideRates.Max(g => g.Id) + 1;
         }
-}
+
+        public bool IsRated(int tourId)
+        {
+            List<GuideRate> rates = GetAll();
+            if(rates.FindAll(r => r.TourId == tourId).Count != 0)
+            {
+                return true;
+            }
+            return false;
+        }
+
+    }
 }

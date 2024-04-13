@@ -12,6 +12,7 @@ namespace BookingApp.Model
         public int Id { get; set; }
         public int TouristId { get; set; }
         public int GuideId { get; set; }
+        public int TourId { get; set; }
         public int Knowledge {  get; set; }
         public int Language { get; set; }
         public int TourInterest {  get; set; }
@@ -19,10 +20,11 @@ namespace BookingApp.Model
         public List<string> Pictures {  get; set; }
 
         public GuideRate() { }
-        public GuideRate(int id, int touristId, int guideId, int knowledge, int language, int tourinterest, string additionalComment, List<string> pictures)
+        public GuideRate(int id, int touristId, int tourId, int guideId, int knowledge, int language, int tourinterest, string additionalComment, List<string> pictures)
         {
             Id = id;
             TouristId = touristId;
+            TourId = tourId;
             GuideId = guideId;
             Knowledge = knowledge;
             Language = language;
@@ -36,14 +38,15 @@ namespace BookingApp.Model
         {
             Id = Convert.ToInt32(values[0]);
             TouristId= Convert.ToInt32(values[1]);
-            GuideId= Convert.ToInt32(values[2]);
-            Knowledge = Convert.ToInt32(values[3]);
-            Language = Convert.ToInt32(values[4]);
-            TourInterest= Convert.ToInt32(values[5]);
-            AdditionalComment = values[6];
-            if (!string.IsNullOrEmpty(values[7]))
+            TourId = Convert.ToInt32(values[2]);
+            GuideId= Convert.ToInt32(values[3]);
+            Knowledge = Convert.ToInt32(values[4]);
+            Language = Convert.ToInt32(values[5]);
+            TourInterest= Convert.ToInt32(values[6]);
+            AdditionalComment = values[7];
+            if (!string.IsNullOrEmpty(values[8]))
             {
-                string picture = values[7];
+                string picture = values[8];
                 Pictures = picture.Split(",").ToList();
             }
 
@@ -57,7 +60,7 @@ namespace BookingApp.Model
                 pictureString = string.Join(",", Pictures);
             }
 
-            string[] CSVvalues = {Id.ToString(), TouristId.ToString(), GuideId.ToString(), Knowledge.ToString(),
+            string[] CSVvalues = {Id.ToString(), TouristId.ToString(), TourId.ToString(), GuideId.ToString(), Knowledge.ToString(),
             Language.ToString(), TourInterest.ToString(), AdditionalComment, pictureString};
             return CSVvalues;
         }

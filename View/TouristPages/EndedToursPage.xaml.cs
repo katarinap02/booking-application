@@ -21,12 +21,13 @@ using System.Windows.Shapes;
 namespace BookingApp.View.TouristWindows
 {
     /// <summary>
-    /// Interaction logic for MyToursPage.xaml
+    /// Interaction logic for EndedToursPage.xaml
     /// </summary>
-    public partial class MyToursPage : Page
+    public partial class EndedToursPage : Page
     {
         public TourViewModel Tour { get; set; }
-        public MyToursPage(TourViewModel selectedTour, int userId)
+
+        public EndedToursPage(int userId)
         {
             InitializeComponent();
             Tour = new TourViewModel();
@@ -34,19 +35,24 @@ namespace BookingApp.View.TouristWindows
 
             Tour.UserId = userId;
 
-            Tour.SelectedTour = selectedTour;
 
-            Tour.RefreshMyTours();
+            Tour.RefreshEndedTours();
         }
 
-        private void DetailsButton_Click(object sender, RoutedEventArgs e)
+        private void RateButton_Click(object sender, RoutedEventArgs e)
         {
-            Tour.DetailsButton(Tour.SelectedTour, true);
+            if (Tour.IsRated())
+            {
+                MessageBox.Show("This tour is already rated");
+                return;
+            }
+            GuideRateWindow guideRateWindow = new GuideRateWindow(Tour.SelectedTour, Tour.UserId);
+            guideRateWindow.ShowDialog();
         }
 
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
         {
-
+            Tour.NotificationButton();
         }
     }
 }

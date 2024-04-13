@@ -121,7 +121,7 @@
                                 Orientation="Horizontal">
                         <Image
                                Width="75"
-                               Source="/View/TouristWindows/user.png"
+                               Source="/Resources/Images/user.png"
                                HorizontalAlignment="Left"/>
                         <Label Content="{Binding UserName}"
                                VerticalAlignment="Center"
@@ -172,7 +172,7 @@
                     Height="70"
                     FontSize="36"
                     Margin="15"
-                    Click="VouchersButton_Click"/>
+                    Click="LogoutButton_Click"/>
         </StackPanel>
         <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>

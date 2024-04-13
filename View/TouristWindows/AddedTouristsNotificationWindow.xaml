@@ -25,7 +25,6 @@
                FontSize="20"
                FontWeight="DemiBold"/>
         <Label x:Name="tourNameLabel"
-               Content="VALAMI tour"
                FontWeight="Bold"
                Margin="58, 0"
                FontSize="20"

@@ -46,5 +46,19 @@ namespace BookingApp.Repository
         {
            return _vouchers.FindAll(v => v.TouristId == id && !v.HasBeenUsed);
         }
+
+        public Voucher? SetVoucherToUsed(int id)
+        {
+            Voucher voucher = _vouchers.Find(v => v.Id == id);
+            if (voucher == null)
+            {
+                return null;
+            }
+
+            voucher.HasBeenUsed = true;
+            _serializer.ToCSV(FilePath, _vouchers);
+            return voucher;
+
+        }
     }
 }

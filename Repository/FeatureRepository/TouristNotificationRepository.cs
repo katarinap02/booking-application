@@ -27,9 +27,10 @@ namespace BookingApp.Repository
             return _serializer.FromCSV(FilePath);
         }
 
-        public List<TouristNotification> GetAllReversed()
+        public List<TouristNotification> GetMyNotifications(int touristId)
         {
             List<TouristNotification> notifications = GetAll();
+            notifications = notifications.FindAll(n => n.TouristId == touristId);
             notifications.Reverse();
             return notifications;
         }
