@@ -1,4 +1,5 @@
 ﻿using BookingApp.Model;
+using BookingApp.Observer;
 using BookingApp.Services;
 using BookingApp.View.GuestPages;
 using BookingApp.View.ViewModel;
@@ -12,7 +13,7 @@ using System.Windows.Controls;
 
 namespace BookingApp.ViewModel
 {
-    public class ShowRequestsViewModel
+    public class ShowRequestsViewModel : IObserver
     {
         public ObservableCollection<DelayRequestViewModel> Requests { get; set; }
         public DelayRequestService DelayRequestService { get; set; }

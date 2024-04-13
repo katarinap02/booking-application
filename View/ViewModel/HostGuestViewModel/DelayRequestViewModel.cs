@@ -163,7 +163,7 @@ namespace BookingApp.View.ViewModel
                 }
             }
         }
-
+      
         private string comment;
         public string Comment
         {
