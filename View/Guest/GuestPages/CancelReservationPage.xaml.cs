@@ -46,7 +46,7 @@ namespace BookingApp.View.GuestPages
 
         private void CancelReservation_Click(object sender, RoutedEventArgs e)
         {
-           SelectedReservation.CancelReservation_Click(sender, e);
+            SelectedReservation.CancelReservation_Click(sender, e);
 
         }
     }
