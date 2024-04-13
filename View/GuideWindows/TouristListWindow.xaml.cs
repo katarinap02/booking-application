@@ -1,4 +1,4 @@
-﻿using BookingApp.DTO;
+﻿using BookingApp.ViewModel;
 using BookingApp.Model;
 using BookingApp.Repository;
 using System.Collections.Generic;
@@ -13,8 +13,8 @@ namespace BookingApp.View.GuideWindows
         private readonly TourReservationRepository _tourReservationRepository;
         private readonly TourParticipantRepository _tourParticipantRepository;
         public List<TourParticipant> tourParticipants { get; set; }
-        public ObservableCollection<TourParticipantDTO> tourParticipantDTOs { get; set; }
-        public TourParticipantDTO SelectedParticipant { get; set; }
+        public ObservableCollection<TourParticipantViewModel> tourParticipantDTOs { get; set; }
+        public TourParticipantViewModel SelectedParticipant { get; set; }
         public int CheckpointNumber { get; set; }
 
         public TouristListWindow(int tour_id, int current_checkpoint) // BITNO popraviti binding!
@@ -31,11 +31,11 @@ namespace BookingApp.View.GuideWindows
 
         public void prepareData(int tour_id) {
             tourParticipants = _tourReservationRepository.GetNotJoinedReservations(tour_id); 
-            tourParticipantDTOs = new ObservableCollection<TourParticipantDTO>();
+            tourParticipantDTOs = new ObservableCollection<TourParticipantViewModel>();
             foreach( TourParticipant tp in  tourParticipants )
             {
                 MessageBox.Show(tp.Name, "Window"); 
-                tourParticipantDTOs.Add(new TourParticipantDTO(tp)); 
+                tourParticipantDTOs.Add(new TourParticipantViewModel(tp)); 
             }
             dataGrid.ItemsSource = tourParticipantDTOs;
         }
