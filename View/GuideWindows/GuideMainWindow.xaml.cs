@@ -55,6 +55,12 @@ namespace BookingApp.View.GuideWindows
             cancelTourWindow.ShowDialog();
         }
 
+        private void FinnishedTours_Click(object sender, RoutedEventArgs e)
+        {
+            FinnishedTour finnishedTourWindow = new FinnishedTour(Guide);
+            finnishedTourWindow.ShowDialog();
+        }
+
         private void SelectTourButton_Click(object sender, RoutedEventArgs e)
         {
             if(SelectedTour != null) {
@@ -65,6 +71,12 @@ namespace BookingApp.View.GuideWindows
             else {
                 MessageBox.Show("Please select a tour to cancel!");
             }
+        }
+
+        private void YearlyTours_Click(object sender, RoutedEventArgs e)
+        {
+            MostVisitedTourWindow mostVisitedTourWindow = new MostVisitedTourWindow(Guide);
+            mostVisitedTourWindow.ShowDialog();
         }
     }
 }
