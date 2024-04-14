@@ -25,6 +25,7 @@
     <None Remove="Resources\Images\paris1.jpg" />
     <None Remove="Resources\Images\red_dot.png" />
     <None Remove="Resources\Images\star.png" />
+    <None Remove="Resources\Images\taj_mahal1.jpg" />
     <None Remove="Resources\Images\urgent.png" />
     <None Remove="Resources\Images\video-camera.png" />
     <None Remove="Resources\Images\view.png" />
@@ -90,6 +91,9 @@
     </Content>
     <Content Include="Resources\Images\star.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\Images\taj_mahal1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Images\urgent.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
