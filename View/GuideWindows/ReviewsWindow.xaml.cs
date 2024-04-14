@@ -17,17 +17,34 @@ namespace BookingApp.View.GuideWindows
         private readonly GuideRateService _guideRateService;
 
         public ObservableCollection<GuideRateViewModel> guideRateViewModels { get; set; }   
+        public GuideRateViewModel selectedRate { get; set; }
 
         public ReviewsWindow(int tour_id)
         {
-            _guideRateService = new GuideRateService();
+            _guideRateService = new GuideRateService(); 
             InitializeComponent();
             DataContext = this;
+            getData(tour_id);
         }
 
         private void getData(int tour_id) {
-            
+            guideRateViewModels = new ObservableCollection<GuideRateViewModel>();
+            foreach(GuideRateViewModel rate in _guideRateService.getRatesByTour(tour_id))
+            {
+                guideRateViewModels.Add(rate);
+            }
         }
 
+        private void Invalid_Click(object sender, RoutedEventArgs e)
+        {
+            if(selectedRate == null)
+            {
+                MessageBox.Show("PLease select review in order to mark it as invalid");
+            }
+            else
+            {
+                MessageBox.Show(selectedRate.AdditionalComment, "Testiranje unutar xaml.cs"); //test
+            }
+        }
     }
 }

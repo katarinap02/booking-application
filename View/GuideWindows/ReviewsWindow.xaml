@@ -16,8 +16,8 @@
         </Grid.RowDefinitions>
 
         <!-- Data Grid -->
-        <DataGrid x:Name="ToursDataGrid" ItemsSource="{Binding TourViewModels, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" AutoGenerateColumns="False" Margin="10" 
-                  SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" SelectionMode="Single">
+        <DataGrid x:Name="RevuewsDataGrid" ItemsSource="{Binding guideRateViewModels, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" AutoGenerateColumns="False" Margin="10" 
+                  SelectedItem="{Binding selectedRate, UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" SelectionMode="Single">
             <!-- Define your columns here -->
             <DataGrid.Columns>
                 <DataGridTextColumn Width="*" Header="Tourist ID" Binding="{Binding TouristId}" />
@@ -31,7 +31,7 @@
         </DataGrid>
 
         <!-- Select Tour Button -->
-        <Button Content="Mark as invalid" Grid.Row="2" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="100" />
+        <Button Content="Mark as invalid" Grid.Row="2" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="100" Click="Invalid_Click"/>
      
     </Grid>
 </Window>
