@@ -255,6 +255,10 @@ namespace BookingApp.View.ViewModel
         }
 
         public string FirstPicture => "../" + OnePicture;
+       
+
+        private AccommodationRateService accommodationRateService = new AccommodationRateService();
+     //   public string Rate => accommodationRateService.GetAverageRate(Id).ToString();
 
         public AccommodationViewModel(Accommodation accommodation)
         {
