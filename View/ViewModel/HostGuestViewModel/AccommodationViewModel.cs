@@ -238,7 +238,7 @@ namespace BookingApp.View.ViewModel
             return replacedPath;
         }
 
-       
+        public string Location => City.ToString() + ", " + Country.ToString();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -253,7 +253,8 @@ namespace BookingApp.View.ViewModel
             reservationDaysLimit = 1;
           
         }
-       
+
+        public string FirstPicture => "../" + OnePicture;
 
         public AccommodationViewModel(Accommodation accommodation)
         {

@@ -7,6 +7,7 @@ using BookingApp.View.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -36,6 +37,10 @@ namespace BookingApp.ViewModel
 
         public AccommodationSearcher AccommodationSearcher { get; set; }
 
+       
+
+       
+
         public ShowAccommodationsViewModel(User user, Frame frame, AccommodationsPage accommodationsPage)
         {
             
@@ -63,10 +68,17 @@ namespace BookingApp.ViewModel
             SeparateAccommodations(AccommodationService, superHostAccommodations, nonSuperHostAccommodations);
 
             foreach (AccommodationViewModel superHostAccommodation in superHostAccommodations)
+            {
                 Accommodations.Add(superHostAccommodation);
+               
+            }
 
             foreach (AccommodationViewModel nonSuperHostAccommodation in nonSuperHostAccommodations)
+            {
                 Accommodations.Add(nonSuperHostAccommodation);
+              
+            }
+                
         }
         public void SeparateAccommodations(AccommodationService accommodationService, List<AccommodationViewModel> superHostAccommodations, List<AccommodationViewModel> nonSuperHostAccommodations)
         {

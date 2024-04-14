@@ -28,7 +28,8 @@ namespace BookingApp.View.TouristWindows
             DataContext = Voucher;
 
             Voucher.UserId = userId;
-            Voucher.RefreshVouchers();
+            if (!Voucher.RefreshVoucherDataGrid())
+                Close();
         }
 
         private void UseButton_Click(object sender, RoutedEventArgs e)

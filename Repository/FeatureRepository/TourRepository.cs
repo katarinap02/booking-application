@@ -66,7 +66,7 @@ namespace BookingApp.Repository
             return max + 1;
         }
 
-        public int NextId() //generise ID za novu grupu tura
+        public int NextId() 
         {
             List<int> groupIds = new List<int>();
             foreach (Tour tour in _tours)
@@ -157,15 +157,7 @@ namespace BookingApp.Repository
             List<Tour> allTours = GetAll();
             if(allTours.Count != 0)
             {
-                int maxTourists = allTours[0].MaxTourists;
-                foreach (Tour tour in allTours)
-                {
-                    if (tour.MaxTourists > maxTourists)
-                    {
-                        maxTourists = tour.MaxTourists;
-                    }
-                }
-                return maxTourists;
+                return MaxNumberOfParticipants(allTours);
             }
             return 0;
         }
@@ -327,6 +319,36 @@ namespace BookingApp.Repository
                 return false;
             }
             return false;
+        }
+
+        public int FindMaxNumberOfParticipants(List<Tour> tours)
+        {
+            if(tours.Count != 0)
+            {
+                int availablePlaces = tours[0].AvailablePlaces;
+                foreach (Tour tour in tours)
+                {
+                    if (tour.AvailablePlaces > availablePlaces)
+                    {
+                        availablePlaces = tour.AvailablePlaces;
+                    }
+                }
+                return availablePlaces;
+            }
+            return 0;
+        }
+
+        private int MaxNumberOfParticipants(List<Tour> tours)
+        {
+            int maxTourists = tours[0].MaxTourists;
+            foreach (Tour tour in tours)
+            {
+                if (tour.MaxTourists > maxTourists)
+                {
+                    maxTourists = tour.MaxTourists;
+                }
+            }
+            return maxTourists;
         }
     }
 }

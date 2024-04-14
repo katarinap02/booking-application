@@ -160,15 +160,20 @@ namespace BookingApp.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void RefreshVouchers()
+        public bool RefreshVoucherDataGrid()
         {
+            _voucherService.RefreshVouchers();
             Vouchers.Clear();
             List<VoucherViewModel> vouchers = _voucherService.FindVouchersByUser(UserId);
             foreach(var voucher in vouchers)
             {
                 Vouchers.Add(voucher);
             }
+            if (Vouchers.Count == 0)
+                return false;
+            return true;
         }
+
 
         public void Use()
         {

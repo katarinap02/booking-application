@@ -42,5 +42,10 @@ namespace BookingApp.Services
         {
            return _voucherRepository.SetVoucherToUsed(id);
         }
+
+        public void RefreshVouchers()
+        {
+            _voucherRepository.RefreshVouchers();
+        }
     }
 }

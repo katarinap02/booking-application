@@ -35,7 +35,7 @@ namespace BookingApp.View.TouristWindows
 
             Voucher.UserId = userId;
 
-            Voucher.RefreshVouchers();
+            Voucher.RefreshVoucherDataGrid();
         }
 
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
