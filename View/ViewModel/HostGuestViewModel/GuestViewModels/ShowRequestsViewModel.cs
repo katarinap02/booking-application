@@ -55,7 +55,7 @@ namespace BookingApp.ViewModel
         {
 
             foreach (DelayRequest request in DelayRequestService.GetAll())
-                if (request.Status == RequestStatus.REJECTED && request.GuestId == User.Id)
+                if (request.Status == RequestStatus.REJECTED && IsUser(request.GuestId, User.Id))
                     Requests.Add(new DelayRequestViewModel(request));
         }
 
@@ -63,7 +63,7 @@ namespace BookingApp.ViewModel
         {
 
             foreach (DelayRequest request in DelayRequestService.GetAll())
-                if (request.Status == RequestStatus.APPROVED && request.GuestId == User.Id)
+                if (request.Status == RequestStatus.APPROVED && IsUser(request.GuestId, User.Id))
                     Requests.Add(new DelayRequestViewModel(request));
         }
 
@@ -71,13 +71,18 @@ namespace BookingApp.ViewModel
         {
 
             foreach (DelayRequest request in DelayRequestService.GetAll())
-                if (request.Status == RequestStatus.PENDING && request.GuestId == User.Id)
+                if (request.Status == RequestStatus.PENDING && IsUser(request.GuestId, User.Id))
                     Requests.Add(new DelayRequestViewModel(request));
         }
 
         public void RequestStatusBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Update();
+        }
+
+        private bool IsUser(int guestId, int userId)
+        {
+            return guestId == userId;
         }
     }
 }
