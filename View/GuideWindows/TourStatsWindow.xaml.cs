@@ -1,47 +1,53 @@
-﻿using LiveCharts;
+﻿using BookingApp.Repository;
+using LiveCharts;
+using LiveCharts.Defaults;
+using LiveCharts.Wpf;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
 
 namespace BookingApp.View.GuideWindows
 {
-    public partial class TourStatsWindow : Window, INotifyPropertyChanged
+    public partial class TourStatsWindow : Window
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        private ChartValues<double> _ageStatistics;
-        public ChartValues<double> AgeStatistics
-        {
-            get { return _ageStatistics; }
-            set
-            {
-                _ageStatistics = value;
-                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(AgeStatistics)));
-            }
-        }
+        private readonly TourRepository _tourRepository;
+        public SeriesCollection series { get; set; }
 
         public TourStatsWindow(int tourId)
         {
             InitializeComponent();
-            UpdateAgeStatistics(tourId);
+            _tourRepository = new TourRepository();
+            UpdateAgeStatistics(tourId);            
             DataContext = this;
         }
 
         private void UpdateAgeStatistics(int tourId)
         {
-            List<int> ageCounts = GetAgeStatistic(tourId);
-
-            AgeStatistics = new ChartValues<double>
+            List<int> ages = _tourRepository.GetAgeStatistic(tourId);
+            MessageBox.Show(ages[0].ToString());
+            series = new SeriesCollection
             {
-                ageCounts[0],
-                ageCounts[1],
-                ageCounts[2]
+                new PieSeries
+                {
+                    Title = "Under 18",
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(ages[0]) },
+                    DataLabels = true
+                },
+                new PieSeries
+                {
+                    Title = "Between 18 and 50",
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(ages[1]) },
+                    DataLabels = true
+                },
+                new PieSeries
+                {
+                    Title = "Above 50",
+                    Values = new ChartValues<ObservableValue> { new ObservableValue(ages[2]) },
+                    DataLabels = true
+                }
             };
         }
 
-        private List<int> GetAgeStatistic(int tourId)
-        {
-            return new List<int> { 10, 20, 5 }; // Placeholder data, replace with actual statistics
-        }
+        
     }
 }
