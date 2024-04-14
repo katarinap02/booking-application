@@ -1,6 +1,7 @@
 ﻿using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Services;
+using BookingApp.View.Guest.GuestTools;
 using BookingApp.View.GuestPages;
 using BookingApp.View.ViewModel;
 using System;
@@ -33,6 +34,8 @@ namespace BookingApp.ViewModel
 
         public HostService HostService { get; set; }
 
+        public AccommodationSearcher AccommodationSearcher { get; set; }
+
         public ShowAccommodationsViewModel(User user, Frame frame, AccommodationsPage accommodationsPage)
         {
             
@@ -46,6 +49,7 @@ namespace BookingApp.ViewModel
             AccommodationReservationService = new AccommodationReservationService();
             HostService = new HostService();
             AccommodationsPage = accommodationsPage;
+            AccommodationSearcher = new AccommodationSearcher(AccommodationService);
 
         }
 
@@ -57,7 +61,6 @@ namespace BookingApp.ViewModel
             List<AccommodationViewModel> nonSuperHostAccommodations = new List<AccommodationViewModel>();
 
             SeparateAccommodations(AccommodationService, superHostAccommodations, nonSuperHostAccommodations);
-
 
             foreach (AccommodationViewModel superHostAccommodation in superHostAccommodations)
                 Accommodations.Add(superHostAccommodation);
@@ -86,14 +89,9 @@ namespace BookingApp.ViewModel
 
         public void ReserveButton_Click(object sender, RoutedEventArgs e)
         {
-
-
             Button button = sender as Button;
             SelectedAccommodation = button.DataContext as AccommodationViewModel;
             Frame.Content = new ReservationInfoPage(SelectedAccommodation, User, Frame);
-
-
-
 
         }
 
@@ -107,47 +105,10 @@ namespace BookingApp.ViewModel
             queries.Add(AccommodationsPage.txtSearchGuestNumber.Text); //guestQuery
             queries.Add(AccommodationsPage.txtSearchReservationDays.Text); //reservationQuery
 
-            AccommodationsPage.AccommodationListBox.ItemsSource = SearchAccommodations(queries);
-
-
-
+            AccommodationsPage.AccommodationListBox.ItemsSource = AccommodationSearcher.SearchAccommodations(queries);
 
         }
 
-        private List<AccommodationViewModel> SearchAccommodations(List<string> queries)
-        {
-
-
-            ObservableCollection<AccommodationViewModel> totalAccommodations = new ObservableCollection<AccommodationViewModel>();
-            foreach (Accommodation accommodation in AccommodationService.GetAll())
-                totalAccommodations.Add(new AccommodationViewModel(accommodation));
-
-            List<AccommodationViewModel> searchResults = FilterAccommodations(totalAccommodations, queries);
-
-
-            int totalItems = searchResults.Count;
-            List<AccommodationViewModel> results = new List<AccommodationViewModel>();
-            foreach (AccommodationViewModel accommodation in searchResults)
-                results.Add(accommodation);
-
-            return results;
-
-
-
-
-        }
-
-        private List<AccommodationViewModel> FilterAccommodations(ObservableCollection<AccommodationViewModel> totalAccommodations, List<string> queries)
-        {
-            List<AccommodationViewModel> filteredAccommodations = totalAccommodations.Where(accommodation => (string.IsNullOrEmpty(queries[0]) || accommodation.Name.ToUpper().Contains(queries[0].ToUpper())) &&
-                                                                           (string.IsNullOrEmpty(queries[1]) || accommodation.City.ToUpper().Contains(queries[1].ToUpper())) &&
-                                                                           (string.IsNullOrEmpty(queries[2]) || accommodation.Country.ToUpper().Contains(queries[2].ToUpper())) &&
-                                                                           (string.IsNullOrEmpty(queries[3]) || accommodation.Type.ToString().ToUpper().Contains(queries[3].ToUpper())) &&
-                                                                           (string.IsNullOrEmpty(queries[4]) || Convert.ToInt32(queries[4]) <= accommodation.MaxGuestNumber) &&
-                                                                           (string.IsNullOrEmpty(queries[5]) || Convert.ToInt32(queries[5]) >= accommodation.MinReservationDays)
-                                                                           ).ToList();
-
-            return filteredAccommodations;
-        }
+       
     }
 }

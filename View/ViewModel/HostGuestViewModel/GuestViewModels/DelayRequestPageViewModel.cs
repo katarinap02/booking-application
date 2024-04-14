@@ -16,7 +16,6 @@ namespace BookingApp.View.ViewModel
     public class DelayRequestPageViewModel
     {
         public CalendarConfigurator CalendarConfigurator { get; set; }
-        public User User { get; set; }
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -34,8 +33,7 @@ namespace BookingApp.View.ViewModel
 
         public int DayNumber { get; set; }
         public AccommodationViewModel SelectedAccommodation { get; set; }
-        public Frame Frame { get; set; }
-
+  
         public Calendar ReservationCalendar { get; set; }
 
         public Button reserveButton { get; set; }   
