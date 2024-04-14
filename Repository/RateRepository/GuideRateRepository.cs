@@ -45,11 +45,22 @@ namespace BookingApp.Repository
         public bool IsRated(int tourId)
         {
             List<GuideRate> rates = GetAll();
-            if(rates.FindAll(r => r.TourId == tourId).Count != 0)
+            if (rates.FindAll(r => r.TourId == tourId).Count != 0)
             {
                 return true;
             }
             return false;
+        }
+
+        public List<GuideRate> getRatesForGuide(int guide_id){
+            List < GuideRate > rates = GetAll();
+            return rates.FindAll(r => r.GuideId == guide_id);
+        }
+
+        public List<GuideRate> getRatesForTour(int tour_id)
+        {
+            List<GuideRate> rates = GetAll();
+            return rates.FindAll(r => r.TourId == tour_id);
         }
 
     }
