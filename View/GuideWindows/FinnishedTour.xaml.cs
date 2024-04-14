@@ -46,7 +46,7 @@ namespace BookingApp.View.GuideWindows
                 SelectedTour = (TourViewModel)ToursDataGrid.SelectedItem;
                 MessageBox.Show(SelectedTour.Name.ToString());
                 TourStatsWindow tourStatsWindow1 = new TourStatsWindow(SelectedTour.Id);
-                //tourStatsWindow1.Show(); //puca ovde
+                tourStatsWindow1.Show(); //puca ovde
             }
             else
             {
