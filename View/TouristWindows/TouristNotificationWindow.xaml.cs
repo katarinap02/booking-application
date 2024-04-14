@@ -23,27 +23,22 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class TouristNotificationWindow : Window
     {
-        public ObservableCollection<TouristNotificationViewModel> touristNotificationViewModels { get; set; }
-        public TouristNotificationViewModel SelectedNotification {  get; set; }
-        private readonly TouristNotificationService _touristNotificationService;
+        public TouristNotificationViewModel TouristNotification { get; set; }
         public TouristNotificationWindow(int userId)
         {
             InitializeComponent();
-            DataContext = this;
-            _touristNotificationService = new TouristNotificationService();
-            touristNotificationViewModels = new ObservableCollection<TouristNotificationViewModel>(_touristNotificationService.GetMyNotifications(userId));
+            TouristNotification = new TouristNotificationViewModel();
+            DataContext = TouristNotification;
 
-            ButtonInitialization();
-        }
+            TouristNotification.UserId = userId;
 
-        private void ButtonInitialization()
-        {
+            TouristNotification.InitializeTouristNotificationWindow();
+
         }
 
         private void DetailsButton_Click(object sender, RoutedEventArgs e)
         {
-            AddedTouristsNotificationWindow addedTouristsNotificationWindow = new AddedTouristsNotificationWindow(SelectedNotification);
-            addedTouristsNotificationWindow.ShowDialog();
+            TouristNotification.DetailsButton();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)

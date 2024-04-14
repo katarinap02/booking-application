@@ -1,4 +1,5 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.ViewModel;
+using BookingApp.Model;
 using BookingApp.Repository;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,31 +11,42 @@ namespace BookingApp.View.GuideWindows
     public partial class TouristListWindow : Window
     {
         private readonly TourReservationRepository _tourReservationRepository;
+        private readonly TourParticipantRepository _tourParticipantRepository;
         public List<TourParticipant> tourParticipants { get; set; }
+        public ObservableCollection<TourParticipantViewModel> tourParticipantDTOs { get; set; }
+        public TourParticipantViewModel SelectedParticipant { get; set; }
         public int CheckpointNumber { get; set; }
 
-        public TouristListWindow(int tour_id, int current_checkpoint) // BITNO poopraviti binding!
+        public TouristListWindow(int tour_id, int current_checkpoint) // BITNO popraviti binding!
         {
             InitializeComponent();
-
+            DataContext = this;
             _tourReservationRepository = new TourReservationRepository();
+            _tourParticipantRepository = new TourParticipantRepository();
 
-            // ovo je akos komentarisao
-            //_tourParticipantRepository = new TourParticipantRepository();
-
-
-            tourParticipants = _tourReservationRepository.GetNotJoinedReservations(tour_id);
+            prepareData(tour_id);            
+            
             CheckpointNumber = current_checkpoint;
-
-            dataGrid.ItemsSource = tourParticipants;
         }
 
+        public void prepareData(int tour_id) {
+            tourParticipants = _tourReservationRepository.GetNotJoinedReservations(tour_id); 
+            tourParticipantDTOs = new ObservableCollection<TourParticipantViewModel>();
+            foreach( TourParticipant tp in  tourParticipants )
+            {
+                MessageBox.Show(tp.Name, "Window"); 
+                tourParticipantDTOs.Add(new TourParticipantViewModel(tp)); 
+            }
+            dataGrid.ItemsSource = tourParticipantDTOs;
+        }
 
         private void JoinedButton_Click(object sender, RoutedEventArgs e)
         {
-            if (dataGrid.SelectedItem != null)
+            if (dataGrid.SelectedItem != null && SelectedParticipant != null)
             {
-                MessageBox.Show(tourParticipants[0].LastName);
+                _tourParticipantRepository.JoinTour(SelectedParticipant.Id, CheckpointNumber);
+                Close();
+                MessageBox.Show("Tourist " + SelectedParticipant.Name +" "+ SelectedParticipant.LastName + " joined");
             }
             else
             {

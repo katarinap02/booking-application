@@ -18,8 +18,6 @@ namespace BookingApp.View.ViewModel
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        
-
         private int id;
         public int Id
         {

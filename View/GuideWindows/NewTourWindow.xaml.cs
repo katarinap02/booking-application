@@ -43,6 +43,7 @@ namespace BookingApp.View
                     Tour.GroupId = groupId;
                     Tour.Date = date;
                     Tour.Id = _tourRepository.NextPersonalId();
+                    Tour.AvailablePlaces = Tour.MaxTourists;
                     _tourRepository.Add(Tour.ToTour());
                 }
             

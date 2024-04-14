@@ -1,5 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.Repository;
+using BookingApp.View.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,6 @@ namespace BookingApp.View.GuestControls
         {
             InitializeComponent();
             
-
         }
 
      
