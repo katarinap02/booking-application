@@ -22,9 +22,6 @@ using BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels;
 
 namespace BookingApp.View.HostPages
 {
-    /// <summary>
-    /// Interaction logic for DelayPage.xaml
-    /// </summary>
     public partial class DelayPage : Page
     {
         public DelayPageViewModel DelayPageViewModel { get; set; }
@@ -33,14 +30,11 @@ namespace BookingApp.View.HostPages
             InitializeComponent();
             DelayPageViewModel = new DelayPageViewModel(user);
             DataContext = DelayPageViewModel;
-            
         }
-
         private void Approve_Click(object sender, RoutedEventArgs e)
         {
             DelayPageViewModel.Approve(sender, e);
         }
-
         private void Reject_Click(object sender, RoutedEventArgs e)
         {
             DelayPageViewModel?.Reject(sender, e);

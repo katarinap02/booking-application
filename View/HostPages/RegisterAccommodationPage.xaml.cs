@@ -35,18 +35,9 @@ namespace BookingApp.View.HostPages
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (accommodationDTO.IsValid)
-            {
+            
                 accommodationRepository.Add(accommodationDTO.ToAccommodation());
                 MessageBox.Show("Accommodation added.");
-
-            }
-            else
-            {
-
-                MessageBox.Show("Accommodation can not be created. Not all fields are valid.");
-
-           }
 
         }
 

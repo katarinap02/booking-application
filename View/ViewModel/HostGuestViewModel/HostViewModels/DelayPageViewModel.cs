@@ -38,9 +38,6 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
 
         public User User { get; set; }
 
-        // public ICommand ApproveCommand { get; set; }
-        //  public ICommand RejectCommand { get; set; }
-
         public DelayPageViewModel(User user) {
             Delays = new ObservableCollection<DelayRequestViewModel>();
             Notifications = new ObservableCollection<string>();
@@ -51,8 +48,6 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
             Delay = new DelayRequestViewModel();
             AccommodationService = new AccommodationService();
             User = user;
-           // ApproveCommand = new ApproveDelayCommand(SelectedDelay, Delay, AccommodationReservationService, AccommodationService,
-            // UserService, DelayRequestService);
             Update();
             UpdateNotifications();
 
@@ -145,7 +140,6 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
                 Delay.RepliedDate = DateTime.Now;
                 Delay.StartLastDate = SelectedDelay.StartLastDate;
                 Delay.EndLastDate = SelectedDelay.EndLastDate;
-               // Delay.Comment = DelayPage.ExplanationTextBox.Text;
                 DelayRequestService.Update(Delay.ToDelayRequest());
                 Update();
             }
