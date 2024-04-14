@@ -255,6 +255,8 @@ namespace BookingApp.View.ViewModel
             comment = dr.Comment;
             status = dr.Status;
             repliedDate = dr.RepliedDate;
+            startLastDate = dr.StartLastDate;
+            endLastDate = dr.EndLastDate;
         }
 
         public DelayRequestViewModel()
@@ -263,7 +265,7 @@ namespace BookingApp.View.ViewModel
 
         public DelayRequest ToDelayRequest()
         {
-            DelayRequest request = new DelayRequest(guestId, hostId, reservationId, startDate, endDate, status, comment, repliedDate);
+            DelayRequest request = new DelayRequest(guestId, hostId, reservationId, startDate, endDate, status, comment, repliedDate, startLastDate, endLastDate);
             request.Id = id;
             return request;
         }

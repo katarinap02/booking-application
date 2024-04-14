@@ -76,7 +76,7 @@ namespace BookingApp.Services
         {
             foreach (AccommodationReservation res in GetAll())
             {
-                if ((StartDate <= res.EndDate && StartDate >= res.StartDate) || (EndDate <= res.EndDate && EndDate >= res.StartDate) && res.AccommodationId == accommodationId)
+                if (((StartDate <= res.EndDate && StartDate >= res.StartDate) || (EndDate <= res.EndDate && EndDate >= res.StartDate)) && res.AccommodationId == accommodationId)
                 { return true; }
 
             }
@@ -110,7 +110,8 @@ namespace BookingApp.Services
             delayRequest.ReservationId = selectedReservation.Id;
             delayRequest.StartDate = selectedDateRange.Start;
             delayRequest.EndDate = selectedDateRange.End;
-
+            delayRequest.StartLastDate = selectedReservation.StartDate;
+            delayRequest.EndLastDate = selectedReservation.EndDate;
             delayRequestService.Add(delayRequest);
             MessageBox.Show("Request sent");
         }

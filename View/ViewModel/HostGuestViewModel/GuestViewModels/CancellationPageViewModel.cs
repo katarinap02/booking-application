@@ -15,16 +15,14 @@ namespace BookingApp.View
     {
         public string AccommodationDetails { get; set; }
        
-        public User User { get; set; }
-        public Frame Frame { get; set; }
+      
         public AccommodationReservationViewModel SelectedReservation { get; set; }
         public AccommodationReservationService AccommodationReservationService { get; set; }
         public AccommodationService AccommodationService { get; set; }
         public ReservationCancellationService ReservationCancellationService { get; set; }
-        public CancellationPageViewModel(User user, AccommodationReservationViewModel selectedReservation)
+        public CancellationPageViewModel(AccommodationReservationViewModel selectedReservation)
         {
             SelectedReservation = selectedReservation;
-            User = user;
             AccommodationReservationService = new AccommodationReservationService();
             AccommodationService = new AccommodationService();
             ReservationCancellationService = new ReservationCancellationService();

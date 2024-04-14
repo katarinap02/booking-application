@@ -124,6 +124,7 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
                 {
                     dateRange.Start = delay.StartDate;
                     dateRange.End = delay.EndDate;
+                    break;
                 }
         }
 
@@ -142,6 +143,8 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
                 Delay.HostId = SelectedDelay.HostId;
                 Delay.Status = RequestStatus.REJECTED;
                 Delay.RepliedDate = DateTime.Now;
+                Delay.StartLastDate = SelectedDelay.StartLastDate;
+                Delay.EndLastDate = SelectedDelay.EndLastDate;
                // Delay.Comment = DelayPage.ExplanationTextBox.Text;
                 DelayRequestService.Update(Delay.ToDelayRequest());
                 Update();

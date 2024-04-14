@@ -41,7 +41,7 @@ namespace BookingApp.View.GuestPages
             this.SelectedReservation = selectedReservation;
             this.User = user;
             this.Frame = frame;
-            ViewModel = new CancellationPageViewModel(User, SelectedReservation);
+            ViewModel = new CancellationPageViewModel(SelectedReservation);
             DataContext = SelectedReservation;
 
         }

@@ -12,8 +12,7 @@ namespace BookingApp.ViewModel
 {
     public class RequestDetailsViewModel
     {
-        public User User { get; set; }
-        public Frame Frame { get; set; }
+     
 
         public DelayRequestViewModel SelectedRequest { get; set; }
 
@@ -36,10 +35,9 @@ namespace BookingApp.ViewModel
 
         public string Comment { get; set; }
         public ComboBox RequestStatusBox { get; set; }
-        public RequestDetailsViewModel(User user, Frame frame, DelayRequestViewModel selectedRequest)
+        public RequestDetailsViewModel(DelayRequestViewModel selectedRequest)
         {
-            User = user;
-            Frame = frame;
+      
             SelectedRequest = selectedRequest;
             DelayRequestService = new DelayRequestService();
             AccommodationService = new AccommodationService();
@@ -48,8 +46,8 @@ namespace BookingApp.ViewModel
             AccommodationReservation reservation = AccommodationReservationService.GetById(SelectedRequest.ReservationId);
             Accommodation = new AccommodationViewModel(AccommodationService.GetById(reservation.AccommodationId));
             HostUsername = HostService.GetById(SelectedRequest.HostId).Username;
-            OldDateRange = SelectedRequest.EndLastDate.ToString("MM/dd/yyyy") + " - " + SelectedRequest.StartLastDate.ToString("MM/dd/yyyy");
-            NewDateRange = SelectedRequest.EndDate.ToString("MM/dd/yyyy") + " - " + SelectedRequest.StartDate.ToString("MM/dd/yyyy");
+            OldDateRange = selectedRequest.StartLastDate.ToString("MM/dd/yyyy") + " -> " + selectedRequest.EndLastDate.ToString("MM/dd/yyyy");
+            NewDateRange = SelectedRequest.StartDate.ToString("MM/dd/yyyy") + " -> " + SelectedRequest.EndDate.ToString("MM/dd/yyyy");
             NumberOfPeople = reservation.NumberOfPeople;
             Comment = SelectedRequest.Comment;
             NumberOfDays = (reservation.EndDate - reservation.StartDate).Days + 1;
