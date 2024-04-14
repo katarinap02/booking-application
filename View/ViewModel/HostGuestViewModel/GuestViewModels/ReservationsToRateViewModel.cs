@@ -72,7 +72,7 @@ namespace BookingApp.View.ViewModel
         private bool IsBeforeFiveDays(AccommodationReservation reservation)
         {
             int daysPassed = (DateTime.Now - reservation.EndDate).Days;
-            if (daysPassed <= 5)
+            if (daysPassed <= 5 && daysPassed > 0)
                 return true;
             else
                 return false;

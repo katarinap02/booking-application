@@ -1,7 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.Repository;
 using BookingApp.Serializer;
-using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
