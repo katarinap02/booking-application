@@ -105,6 +105,7 @@
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0" />
     <PackageReference Include="LiveCharts.WinForms" Version="0.9.7.1" />
+    <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
   </ItemGroup>
 
   <ItemGroup>

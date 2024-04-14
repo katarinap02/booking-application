@@ -70,7 +70,7 @@ namespace BookingApp.Services
         }
 
 
-        public List<string> GetParticipantsThatJoined(TouristNotification notification)
+        public List<string> GetParticipantsThatJoinedNow(TouristNotification notification)
         {
             // moram naci rezervacije
             List<TourReservation> reservations = tourReservationRepository.FindReservationsByUserIdAndTourId(notification.TourId, notification.TouristId);

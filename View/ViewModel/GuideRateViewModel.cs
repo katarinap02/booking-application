@@ -1,6 +1,7 @@
 ﻿using BookingApp.Model;
 using BookingApp.Services;
 using BookingApp.View.ViewModel;
+using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -25,6 +26,7 @@ namespace BookingApp.ViewModel
         public ICommand SelectKnowledgeRatingCommand { get; set; }
         public ICommand SelectLanguageRatingCommand { get; set; }
         public ICommand SelectInterestRatingCommand { get; set; }
+        public ICommand DeletePreviewImageCommand {  get; set; }
 
         private int _id;
         public int Id
@@ -193,6 +195,23 @@ namespace BookingApp.ViewModel
             }
         }
 
+        private int _userId;
+        public int UserId
+        {
+            get
+            {
+                return _userId;
+            }
+            set
+            {
+                if(value != _userId)
+                {
+                    _userId = value;
+                    OnPropertyChanged(nameof(UserId));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -243,15 +262,20 @@ namespace BookingApp.ViewModel
             return absolutePath;
         }
 
-        public bool initializeGuideRate(int tourId, int guideId, int userId)
+        public bool initializeGuideRate(int tourId, int guideId)
         {
+            if(!_guideRateService.CanBeRated(tourId, UserId))
+            {
+                return true;
+            }
             IsAddImageButtonEnabled = true;
-            TouristId = userId;
+            TouristId = UserId;
             TourId = tourId;
             GuideId = guideId;
             Knowledge = 1;
             Language = 1;
             TourInterest = 1;
+            AdditionalComment = "Leave a comment...";
             return false;
         }
 
@@ -275,13 +299,19 @@ namespace BookingApp.ViewModel
             TourInterest = selectedIndex + 1;
         }
 
+        private void DeleteImagePreview(BitmapImage image)
+        {
+            imagePreviews.Remove(image);
+        }
+
         public GuideRateViewModel() {
             _guideRateService = new GuideRateService();
 
             imagePreviews = new ObservableCollection<BitmapImage>();
-            SelectKnowledgeRatingCommand = new RelayCommand(ExecuteSelectKnowledgeRating);
-            SelectLanguageRatingCommand = new RelayCommand(ExecuteSelectLanguageRating);
-            SelectInterestRatingCommand = new RelayCommand(ExecuteSelectInterestRating);
+            SelectKnowledgeRatingCommand = new View.ViewModel.RelayCommand(ExecuteSelectKnowledgeRating);
+            SelectLanguageRatingCommand = new View.ViewModel.RelayCommand(ExecuteSelectLanguageRating);
+            SelectInterestRatingCommand = new View.ViewModel.RelayCommand(ExecuteSelectInterestRating);
+            DeletePreviewImageCommand = new RelayCommand<BitmapImage>(DeleteImagePreview);
         }
         public GuideRateViewModel(GuideRate guideRate)
         {

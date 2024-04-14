@@ -23,7 +23,6 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class GuideRateWindow : Window
     {
-        public TourViewModel Tour { get; set; }
         public GuideRateViewModel GuideRate { get; set; }
 
         public GuideRateWindow(TourViewModel selectedTour, int userId)
@@ -32,7 +31,8 @@ namespace BookingApp.View.TouristWindows
             GuideRate = new GuideRateViewModel();
             DataContext = GuideRate;
 
-            if (GuideRate.initializeGuideRate(selectedTour.Id, selectedTour.GuideId, userId))
+            GuideRate.UserId = userId;
+            if (GuideRate.initializeGuideRate(selectedTour.Id, selectedTour.GuideId))
                 Close();
 
         }

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         mc:Ignorable="d"
-        Title="AddedTouristsNotificationWindow" Height="375" Width="480" WindowStartupLocation="CenterScreen">
+        Title="AddedTouristsNotificationWindow" Height="385" Width="480" WindowStartupLocation="CenterScreen">
     <Grid Background="{StaticResource TouristBackgroundColor1}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -25,6 +25,7 @@
                FontSize="20"
                FontWeight="DemiBold"/>
         <Label x:Name="tourNameLabel"
+               Content="{Binding SelectedNotification.TourName}"
                FontWeight="Bold"
                Margin="58, 0"
                FontSize="20"
@@ -40,8 +41,8 @@
                       Style="{StaticResource CustomScrollViewerStyle}"
                       Grid.Column="1"
                       Grid.Row="2"
-                      Margin="110, 0">
-            <ItemsControl ItemsSource="{Binding Tourists}">
+                      Margin="140, 0">
+            <ItemsControl ItemsSource="{Binding tourists}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal" Margin="5">

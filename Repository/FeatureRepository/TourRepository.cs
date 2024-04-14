@@ -311,13 +311,22 @@ namespace BookingApp.Repository
             return mostPopularTourInYear;
         }
 
-
-
         public List<Tour> findFinnishedToursByGuide(int guide_id)
         {
             List<Tour> tours = _serializer.FromCSV(FilePath).FindAll(t => t.Status == TourStatus.Finnished && t.GuideId == guide_id);
             return tours;
         }
 
+        public bool isTourFinished(int tourId)
+        {
+            var tour = GetTourById(tourId);
+            if (tour != null)
+            {
+                if (tour.Status == TourStatus.Finnished)
+                    return true;
+                return false;
+            }
+            return false;
+        }
     }
 }
