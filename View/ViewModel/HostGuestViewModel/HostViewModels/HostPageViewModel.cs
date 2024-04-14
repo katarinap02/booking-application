@@ -78,14 +78,14 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
 
         public void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
-            RegisterAccommodationPage page = new RegisterAccommodationPage();
+            RegisterAccommodationPage page = new RegisterAccommodationPage(User);
             HostFrame.Navigate(page);
             LeftDock.Visibility = Visibility.Collapsed;
             RatingPanel.Visibility = Visibility.Collapsed;
         }
         public void GuestRatings_Click(object sender, RoutedEventArgs e)
         {
-            RateDisplayPage page = new RateDisplayPage();
+            RateDisplayPage page = new RateDisplayPage(User);
             HostFrame.Navigate(page);
             LeftDock.Visibility = Visibility.Collapsed;
             RatingPanel.Visibility = Visibility.Collapsed;

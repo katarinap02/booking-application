@@ -16,7 +16,6 @@ namespace BookingApp.View.ViewModel
     public class DelayRequestPageViewModel
     {
         public CalendarConfigurator CalendarConfigurator { get; set; }
-        public User User { get; set; }
 
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
@@ -34,8 +33,7 @@ namespace BookingApp.View.ViewModel
 
         public int DayNumber { get; set; }
         public AccommodationViewModel SelectedAccommodation { get; set; }
-        public Frame Frame { get; set; }
-
+  
         public Calendar ReservationCalendar { get; set; }
 
         public Button reserveButton { get; set; }   
@@ -66,17 +64,9 @@ namespace BookingApp.View.ViewModel
             int dayNumber = DayNumber;
             int selectedDatesCount = calendar.SelectedDates.Count;
             if (selectedDatesCount != DayNumber)
-            {
-                reserveButton.IsEnabled = false;
-
-
-            }
+                reserveButton.IsEnabled = false;      
             else
-            {
                 reserveButton.IsEnabled = true;
-
-
-            }
 
             Mouse.Capture(null);
         }
@@ -87,8 +77,6 @@ namespace BookingApp.View.ViewModel
              SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
              SelectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
              AccommodationReservationService.DelayReservation(SelectedDateRange, DelayRequest, DelayRequestService, AccommodationService, SelectedReservation);
-
-            
 
 
         }

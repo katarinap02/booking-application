@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
@@ -489,6 +490,23 @@ namespace BookingApp.ViewModel
             }
         }
 
+        private Visibility _dataTabVisibility;
+        public Visibility DataTabVisibility
+        {
+            get
+            {
+                return _dataTabVisibility;
+            }
+            set
+            {
+                if (_dataTabVisibility != value)
+                {
+                    _dataTabVisibility = value;
+                    OnPropertyChanged(nameof(DataTabVisibility));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -653,17 +671,9 @@ namespace BookingApp.ViewModel
                 CheckpointWithColors.Add(new Checkpoint { Name = checkpoint, IndicatorColor = inactiveColor });
             }
 
-            if (IsMyTour)
-            {
-                PdfPanel = Visibility.Visible;
-            }
-            else
-            {
-                PdfPanel = Visibility.Collapsed;
-            }
+            PdfPanel = IsMyTour ? Visibility.Visible : PdfPanel;
 
-            int checkpointIndex;
-            checkpointIndex = SelectedTour.CurrentCheckpoint;
+            int checkpointIndex = SelectedTour.CurrentCheckpoint;
             for (int i = 0; i < SelectedTour.Checkpoints.Count; i++)
             {
                 if (i == checkpointIndex)
@@ -696,23 +706,6 @@ namespace BookingApp.ViewModel
             }
         }
 
-        private Visibility _dataTabVisibility;
-        public Visibility DataTabVisibility
-        {
-            get
-            {
-                return _dataTabVisibility;
-            }
-            set
-            {
-                if(_dataTabVisibility != value)
-                {
-                    _dataTabVisibility = value;
-                    OnPropertyChanged(nameof(DataTabVisibility));
-                }
-            }
-        }
-
         public (int, int) InitializeNumberOfParticipantsWindow()
         {
             if (SelectedTour.AvailablePlaces == 0)
@@ -721,24 +714,21 @@ namespace BookingApp.ViewModel
                 if (Tours.Count > 0)
                 {
                     DataTabVisibility = Visibility.Visible;
-                    
                 }
                 CloseButtonalignmentNumberOfParticipants = HorizontalAlignment.Center;
                 ConfirmButtonVisibilityNumberOfParticipants = Visibility.Collapsed;
                 MessageBox.Show("No more places for the selected tour, please select another one!");
+                AvailablePlaces = _touristService.FindMaxNumberOfParticipants(Tours.ToList());
                 // returnujemo big window size, widht, height
                 return (800, 600);
             }
-            else
-            {
-                AvailablePlacesColor = Brushes.Green;
+            AvailablePlacesColor = Brushes.Green;
 
-                DataTabVisibility = Visibility.Collapsed;
-                CloseButtonalignmentNumberOfParticipants = HorizontalAlignment.Left;
-                ConfirmButtonVisibilityNumberOfParticipants = Visibility.Visible;
-                // small
-                return (600, 220);
-            }
+            DataTabVisibility = Visibility.Collapsed;
+            CloseButtonalignmentNumberOfParticipants = HorizontalAlignment.Left;
+            ConfirmButtonVisibilityNumberOfParticipants = Visibility.Visible;
+            // small
+            return (600, 220);
         }
         public void ConfirmNumberOfParticipants()
         {
@@ -755,10 +745,11 @@ namespace BookingApp.ViewModel
 
         public void BookNumberOfParticipants()
         {
+            if (InsertedNumberOfParticipants == 0)
+                InsertedNumberOfParticipants = 1;
             TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants, UserId);
             tourReservationWindow.ShowDialog();
         }
-
 
         public TourViewModel() {
             _touristService = new TouristService();

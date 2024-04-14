@@ -221,78 +221,6 @@ namespace BookingApp.View.ViewModel
             }
         }
 
-
-
-        public string Location => City + ", " + Country;
-        public string Error => null;
-
-
-        private Regex _NumberRegex = new Regex("^[0-9]+$");
-        private Regex _ImageRegex = new Regex("^(?:https://(?:[^,]*,)?)*https://(?:[^,]+)?(?:,(?=https://)[^,]*)*$");
-
-        public string this[string columnName]
-        {
-            get
-            {
-                if (columnName == "Name")
-                {
-                    if (string.IsNullOrEmpty(Name))
-                        return "Name is required";
-
-                }
-                else if (columnName == "City")
-                {
-                    if (string.IsNullOrEmpty(City))
-                        return "City is required";
-
-                }
-
-                else if (columnName == "Country")
-                {
-                    if (string.IsNullOrEmpty(Country))
-                        return "Country is required";
-
-                }
-                else if (columnName == "MinReservationDays")
-                {
-                    if (MinReservationDays < 0)
-                        return "Min reservation days must be greater than 0";
-                }
-                else if (columnName == "MaxGuestNumber")
-                {
-                    if (MaxGuestNumber < 0)
-                        return "Max guest number must be greater than 0";
-                }
-                else if (columnName == "ReservationDaysLimit")
-                {
-
-                    if (ReservationDaysLimit < 0)
-                        return "Reservation days limit must be greater than 0";
-                }
-
-
-                return null;
-            }
-        }
-
-        private readonly string[] _validatedProperties = { "City", "Name", "Country", "MinReservationDays", "MaxGuestNumbe", "ReservationDaysLimit" };
-
-        public bool IsValid
-        {
-            get
-            {
-                foreach (var property in _validatedProperties)
-                {
-                    if (this[property] != null)
-                        return false;
-                }
-
-                return true;
-            }
-        }
-
-
-
         public string ConvertToRelativePath(string inputPath)
         {
 
@@ -310,7 +238,7 @@ namespace BookingApp.View.ViewModel
             return replacedPath;
         }
 
-       
+        public string Location => City.ToString() + ", " + Country.ToString();
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -325,7 +253,12 @@ namespace BookingApp.View.ViewModel
             reservationDaysLimit = 1;
           
         }
+
+        public string FirstPicture => "../" + OnePicture;
        
+
+        private AccommodationRateService accommodationRateService = new AccommodationRateService();
+     //   public string Rate => accommodationRateService.GetAverageRate(Id).ToString();
 
         public AccommodationViewModel(Accommodation accommodation)
         {

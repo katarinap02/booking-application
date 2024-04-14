@@ -44,12 +44,31 @@ namespace BookingApp.View.ViewModel
             Reservations.Clear();
             foreach (AccommodationReservation reservation in AccommodationReservationService.GetAll())
             {
-                if (reservation.GuestId == User.Id && IsBeforeFiveDays(reservation))
+                
+                if (reservation.GuestId == User.Id && IsBeforeFiveDays(reservation) && !IsReservationRated(reservation))
                 {
                     Reservations.Add(new AccommodationReservationViewModel(reservation));
+                   
                 }
             }
         }
+
+        private bool IsReservationRated(AccommodationReservation reservation)
+        {
+            bool isFound = false;
+            foreach (AccommodationRate rate in AccommodationRateService.GetAll())
+            {
+                if (rate.ReservationId == reservation.Id)
+                {
+                    isFound = true;
+                    break;
+                }
+            }
+            return isFound;
+               
+           
+        }
+
         private bool IsBeforeFiveDays(AccommodationReservation reservation)
         {
             int daysPassed = (DateTime.Now - reservation.EndDate).Days;

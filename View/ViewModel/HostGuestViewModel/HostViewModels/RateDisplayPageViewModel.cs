@@ -21,7 +21,11 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
 
         public UserService userService { get; set; }
 
+        public HostService hostService { get; set; }
+
         public AccommodationRateService accommodationRateService { get; set; }
+
+        public Host host { get; set; }
 
         public GuestRateService guestRateService
         {
@@ -29,12 +33,14 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
         }
 
 
-        public RateDisplayPageViewModel() {
+        public RateDisplayPageViewModel(User user) {
             Accommodations = new ObservableCollection<AccommodationRateViewModel>();
             accommodationService = new AccommodationReservationService();
             userService = new UserService();
             accommodationRateService = new AccommodationRateService();
             guestRateService = new GuestRateService();
+            hostService = new HostService();
+            host = hostService.GetByUsername(user.Username);
             Update();
         }
 
@@ -49,7 +55,7 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
 
                 foreach (GuestRate guestRate in guestRateService.GetAll())
                 {
-                    if (guestRate.ReservationId == accommodationRate.ReservationId)
+                    if (guestRate.ReservationId == accommodationRate.ReservationId && accommodationRate.HostId == host.Id)
                     {
                         Accommodations.Add(new AccommodationRateViewModel(accommodationRate, accommodationReservation, user));
                         break;

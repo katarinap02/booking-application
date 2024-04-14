@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.View.ViewModel;
+using BookingApp.Model;
 
 namespace BookingApp.View.HostPages
 {
@@ -25,28 +26,22 @@ namespace BookingApp.View.HostPages
     {
         public AccommodationViewModel accommodationDTO { get; set; }
         private AccommodationRepository accommodationRepository;
-        public RegisterAccommodationPage()
+        private User user {  get; set; }
+        public RegisterAccommodationPage(User us)
         {
             InitializeComponent();
             DataContext = this;
             accommodationDTO = new AccommodationViewModel();
             accommodationRepository = new AccommodationRepository();
+            user = us;
         }
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if (accommodationDTO.IsValid)
-            {
-                accommodationRepository.Add(accommodationDTO.ToAccommodation());
+                Accommodation accommodation = accommodationDTO.ToAccommodation();
+                accommodation.HostId = user.Id;
+                accommodationRepository.Add(accommodation);
                 MessageBox.Show("Accommodation added.");
-
-            }
-            else
-            {
-
-                MessageBox.Show("Accommodation can not be created. Not all fields are valid.");
-
-           }
 
         }
 

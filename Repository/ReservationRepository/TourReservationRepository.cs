@@ -17,14 +17,13 @@ namespace BookingApp.Repository
 
         private List<TourReservation> _tourReservations;
         private readonly TourParticipantRepository _tourparticipantRepository;
-        private TourRepository _tourRepository;
+        private static readonly TourRepository _tourRepository = new TourRepository();
 
         public TourReservationRepository()
         {
             _serializer = new Serializer<TourReservation>();
             _tourReservations = GetAll();
             _tourparticipantRepository = new TourParticipantRepository();
-            //_tourRepository = new TourRepository();
         }
 
         public List<TourReservation> GetAll()
@@ -117,8 +116,8 @@ namespace BookingApp.Repository
 
 
             List<Tour> tours = new List<Tour>();
-            // ovo je dobro pitanje sto stoji tu. Niko ne zna ali treba
-            _tourRepository = new TourRepository();
+
+
             foreach (TourReservation tourReservation in tourReservations)
             {
                 
@@ -142,6 +141,5 @@ namespace BookingApp.Repository
         {
             return _tourReservations.FindAll(t => t.TourId == tourId && t.TouristId == userId);
         }
-
     }
 }

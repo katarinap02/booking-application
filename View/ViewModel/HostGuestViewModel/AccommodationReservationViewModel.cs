@@ -153,18 +153,13 @@ namespace BookingApp.View.ViewModel
             }
         }
 
-        public string Location => City + ", " + Country;
-        public string DateRangeString => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
-
-        private AccommodationReservationService accommodationReservationService = new AccommodationReservationService();
-        private AccommodationService accommodationService = new AccommodationService();
-        private ReservationCancellationService reservationCancellationService = new ReservationCancellationService();
+        
         private HostService hostService = new HostService();
-        public string AccommodationDetails => Name + ", " + Location;
+        private AccommodationService accommodationService = new AccommodationService();
 
-
+        public string AccommodationDetails => Name + ", " + City + ", " + Country;  
         public string HostUsername => GetHostUsername(hostService, accommodationService.GetById(AccommodationId).HostId);
-
+        public string DateRangeString => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
         private string GetHostUsername(HostService hostService, int hostId)
         {
             return hostService.GetById(hostId).Username;
@@ -208,14 +203,7 @@ namespace BookingApp.View.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void CancelReservation_Click(object sender, RoutedEventArgs e)
-        {
-            
-
-            accommodationReservationService.CancelReservation(accommodationService, reservationCancellationService, this);
-
-
-        }
+       
 
 
     }

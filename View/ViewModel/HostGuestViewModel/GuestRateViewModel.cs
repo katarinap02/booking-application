@@ -100,49 +100,6 @@ namespace BookingApp.View.ViewModel
                 }
             }
         }
-
-        public string Error => null;
-
-        public string this[string columnName]
-        {
-            get
-            {
-                if (columnName == "Cleanliness")
-                {
-                    if (Cleanliness < 1 || Cleanliness > 5)
-                        return "Cleanliness must be from 1 to 5";
-                }
-                else if (columnName == "RulesFollowing")
-                {
-                    if (RulesFollowing < 0 || RulesFollowing > 5)
-                        return "RulesFollowing must be from 1 to 5";
-                }
-
-
-
-                return null;
-            }
-        }
-
-        private readonly string[] _validatedProperties = { "Cleanliness", "RulesFollowing" };
-
-        public bool IsValid
-        {
-            get
-            {
-                foreach (var property in _validatedProperties)
-                {
-                    if (this[property] != null)
-                        return false;
-                }
-
-                return true;
-            }
-        }
-
-
-
-
         public GuestRateViewModel() { }
 
         public GuestRateViewModel(GuestRate gr)

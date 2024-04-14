@@ -35,7 +35,7 @@ namespace BookingApp.View.GuestPages
             User = user;
             Frame = frame;
             SelectedRequest = selectedRequest;
-            ViewModel = new RequestDetailsViewModel(User, Frame, SelectedRequest);
+            ViewModel = new RequestDetailsViewModel(SelectedRequest);
             
             DataContext = ViewModel;
         }

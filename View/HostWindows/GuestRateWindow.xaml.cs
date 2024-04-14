@@ -47,21 +47,14 @@ namespace BookingApp.View.GuestWindows
 
         private void Save_Click(object sender, RoutedEventArgs e)
         {
-            if(guestRateDTO.IsValid)
-            {
+            
                 guestRateDTO.ReservationId = accommodationReservationDTO.Id;
                 guestRateDTO.GuestId = accommodationReservationDTO.GuestId;
                 guestRateDTO.AccommodationId = accommodationReservationDTO.AccommodationId;
                 guestRateRepository.Add(guestRateDTO.toGuestRate());
                 MessageBox.Show("Guest rate added.");
                 Close();
-            }
-            else
-            {
-
-                MessageBox.Show("Please enter rating from 1 - 5.");
-
-            }
+            
         }
     }
 }

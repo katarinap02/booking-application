@@ -33,6 +33,11 @@ namespace BookingApp.Services
             return tourRepository.FindMaxNumberOfParticipants();
         }
 
+        public int FindMaxNumberOfParticipants(List<TourViewModel> tours)
+        {
+            return tourRepository.FindMaxNumberOfParticipants(ToTour(tours));
+        }
+
         public List<TourViewModel> ToTourViewModel(List<Tour> Tours)
         {
             // creating list from Tour to TourViewModel
@@ -42,6 +47,15 @@ namespace BookingApp.Services
                 ToursViewModel.Add(new TourViewModel(tour));
             }
             return ToursViewModel;
+        }
+
+        public List<Tour> ToTour(List<TourViewModel> toursViewModel)
+        {
+            List<Tour> tours = new List<Tour>();
+            foreach(TourViewModel tourViewModel in toursViewModel){
+                tours.Add(tourViewModel.ToTour());
+            }
+            return tours;
         }
 
         public List<TourViewModel>? SearchTours(Tour searchCriteria)
@@ -70,7 +84,7 @@ namespace BookingApp.Services
         }
 
 
-        public List<string> GetParticipantsThatJoined(TouristNotification notification)
+        public List<string> GetParticipantsThatJoinedNow(TouristNotification notification)
         {
             // moram naci rezervacije
             List<TourReservation> reservations = tourReservationRepository.FindReservationsByUserIdAndTourId(notification.TourId, notification.TouristId);

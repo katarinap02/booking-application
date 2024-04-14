@@ -38,9 +38,6 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
 
         public User User { get; set; }
 
-        // public ICommand ApproveCommand { get; set; }
-        //  public ICommand RejectCommand { get; set; }
-
         public DelayPageViewModel(User user) {
             Delays = new ObservableCollection<DelayRequestViewModel>();
             Notifications = new ObservableCollection<string>();
@@ -51,8 +48,6 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
             Delay = new DelayRequestViewModel();
             AccommodationService = new AccommodationService();
             User = user;
-           // ApproveCommand = new ApproveDelayCommand(SelectedDelay, Delay, AccommodationReservationService, AccommodationService,
-            // UserService, DelayRequestService);
             Update();
             UpdateNotifications();
 
@@ -72,7 +67,7 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
                 delayRequestViewModel.StartLastDate = reservation.StartDate;
                 delayRequestViewModel.EndLastDate = reservation.EndDate;
                 delayRequestViewModel.Reserved = AccommodationReservationService.IsReserved(delay.StartDate, delay.EndDate, accommodation.Id);
-                if (delayRequestViewModel.Status == RequestStatus.PENDING)
+                if (delayRequestViewModel.Status == RequestStatus.PENDING && delayRequestViewModel.HostId == User.Id)
                 {
                     Delays.Add(delayRequestViewModel);
                 }
@@ -124,6 +119,7 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
                 {
                     dateRange.Start = delay.StartDate;
                     dateRange.End = delay.EndDate;
+                    break;
                 }
         }
 
@@ -142,7 +138,8 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
                 Delay.HostId = SelectedDelay.HostId;
                 Delay.Status = RequestStatus.REJECTED;
                 Delay.RepliedDate = DateTime.Now;
-               // Delay.Comment = DelayPage.ExplanationTextBox.Text;
+                Delay.StartLastDate = SelectedDelay.StartLastDate;
+                Delay.EndLastDate = SelectedDelay.EndLastDate;
                 DelayRequestService.Update(Delay.ToDelayRequest());
                 Update();
             }
