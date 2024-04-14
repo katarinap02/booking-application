@@ -31,6 +31,7 @@ namespace BookingApp.View.GuestPages
 
         public AccommodationReservationViewModel SelectedReservation { get; set; }
 
+        public CancellationPageViewModel ViewModel { get; set; }
         public User User { get; set; }  
         public Frame Frame { get; set; }
         public CancelReservationPage(AccommodationReservationViewModel selectedReservation, User user, Frame frame)
@@ -40,13 +41,14 @@ namespace BookingApp.View.GuestPages
             this.SelectedReservation = selectedReservation;
             this.User = user;
             this.Frame = frame;
+            ViewModel = new CancellationPageViewModel(User, SelectedReservation);
             DataContext = SelectedReservation;
 
         }
 
         private void CancelReservation_Click(object sender, RoutedEventArgs e)
         {
-            SelectedReservation.CancelReservation_Click(sender, e);
+            ViewModel.CancelReservation_Click(sender, e);
 
         }
     }
