@@ -32,6 +32,6 @@
 
         <!-- Select Tour Button -->
         <Button Content="Show statistics" Grid.Row="2" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="100" Click="Stats_Click" />
-        <Button Content="Show reviews" Grid.Row="2" HorizontalAlignment="Left" Margin="150, 0, 0, 0" VerticalAlignment="Center" Width="100" />
+        <Button Content="Show reviews" Grid.Row="2" HorizontalAlignment="Left" Margin="150, 0, 0, 0" VerticalAlignment="Center" Width="100" Click="Review_Click"/>
     </Grid>
 </Window>

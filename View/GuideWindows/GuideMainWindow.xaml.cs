@@ -78,5 +78,10 @@ namespace BookingApp.View.GuideWindows
             MostVisitedTourWindow mostVisitedTourWindow = new MostVisitedTourWindow(Guide);
             mostVisitedTourWindow.ShowDialog();
         }
+
+        private void LogOut_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
 }

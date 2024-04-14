@@ -66,7 +66,7 @@ namespace BookingApp.Repository
             return max + 1;
         }
 
-        public int NextId() //generise ID za novu grupu tura
+        public int NextId() 
         {
             List<int> groupIds = new List<int>();
             foreach (Tour tour in _tours)

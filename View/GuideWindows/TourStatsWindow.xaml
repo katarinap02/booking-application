@@ -3,9 +3,15 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         Title="Tour Statistics" Height="400" Width="600">
-    <Grid>
-        <lvc:CartesianChart Series="{Binding AgeStatistics}">
-            <lvc:ColumnSeries Title="Tourists by Age" Values="{Binding}" />
-        </lvc:CartesianChart>
-    </Grid>
-</Window>
+	<Grid>
+		<lvc:PieChart Series="{Binding series}" Hoverable="True" InnerRadius="20" Margin="50">
+			<lvc:PieChart.ChartLegend>
+				<lvc:DefaultLegend BulletSize="15" TextBlock.FontSize="10"></lvc:DefaultLegend>
+			</lvc:PieChart.ChartLegend>
+			<lvc:PieChart.DataTooltip>
+				<lvc:DefaultTooltip BulletSize="20"></lvc:DefaultTooltip>
+			</lvc:PieChart.DataTooltip>
+		</lvc:PieChart>
+	</Grid>
+
+			</Window>

@@ -16,22 +16,22 @@
         </Grid.RowDefinitions>
 
         <!-- Data Grid -->
-        <DataGrid x:Name="ToursDataGrid" ItemsSource="{Binding TourViewModels, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" AutoGenerateColumns="False" Margin="10" 
-                  SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" SelectionMode="Single">
+        <DataGrid x:Name="RevuewsDataGrid" ItemsSource="{Binding guideRateViewModels, UpdateSourceTrigger=PropertyChanged}" Grid.Row="1" AutoGenerateColumns="False" Margin="10" 
+                  SelectedItem="{Binding selectedRate, UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" SelectionMode="Single">
             <!-- Define your columns here -->
             <DataGrid.Columns>
-                <DataGridTextColumn Width="*" Header="Tour Name" Binding="{Binding Name}" />
-                <DataGridTextColumn  Header="Description" Binding="{Binding Description}" />
-                <DataGridTextColumn Width="*" Header="City" Binding="{Binding City}" />
-                <DataGridTextColumn Width="*" Header="Country" Binding="{Binding Country}" />
-                <DataGridTextColumn Width="*" Header="Duration" Binding="{Binding Duration}" />
-                <!--Mozda dodati broj ljudi koji je prisustvovao turi i vremenom zameniti-->
+                <DataGridTextColumn Width="*" Header="Tourist ID" Binding="{Binding TouristId}" />
+                <DataGridTextColumn Width="*" Header="General Knowledge" Binding="{Binding Knowledge}" />
+                <DataGridTextColumn Width="*" Header="Entertainment" Binding="{Binding TourInterest}" />
+                <DataGridTextColumn Width="*" Header="Language knowledge" Binding="{Binding Language}" />
+                <DataGridTextColumn Header="Comment" Binding="{Binding AdditionalComment}" />
+                <!--Didati checkpoint na kom se neko ukljucio-->
             </DataGrid.Columns>
 
         </DataGrid>
 
         <!-- Select Tour Button -->
-        <Button Content="Show statistics" Grid.Row="2" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="100" />
-        <Button Content="Show reviews" Grid.Row="2" HorizontalAlignment="Left" Margin="150, 0, 0, 0" VerticalAlignment="Center" Width="100" />
+        <Button Content="Mark as invalid" Grid.Row="2" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center" Width="100" Click="Invalid_Click"/>
+     
     </Grid>
 </Window>

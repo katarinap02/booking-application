@@ -44,9 +44,22 @@ namespace BookingApp.View.GuideWindows
             if(ToursDataGrid.SelectedItem != null)
             {
                 SelectedTour = (TourViewModel)ToursDataGrid.SelectedItem;
-                MessageBox.Show(SelectedTour.Name.ToString());
                 TourStatsWindow tourStatsWindow1 = new TourStatsWindow(SelectedTour.Id);
-                //tourStatsWindow1.Show(); //puca ovde
+                tourStatsWindow1.Show(); //puca ovde
+            }
+            else
+            {
+                MessageBox.Show("No tour is selected!");
+            }
+        }
+
+        private void Review_Click(object sender, RoutedEventArgs e)
+        {
+            if (ToursDataGrid.SelectedItem != null)
+            {
+                SelectedTour = (TourViewModel)ToursDataGrid.SelectedItem;
+                ReviewsWindow reviewsWindow = new ReviewsWindow(SelectedTour.Id);
+                reviewsWindow.Show();
             }
             else
             {
