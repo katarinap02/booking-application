@@ -60,5 +60,17 @@ namespace BookingApp.Repository
             return voucher;
 
         }
+
+        public void RefreshVouchers()
+        {
+            foreach(var voucher in _vouchers)
+            {
+                if(voucher.ExpireDate < DateOnly.FromDateTime(DateTime.Today))
+                {
+                    voucher.HasBeenUsed = true;
+                }
+            }
+            _serializer.ToCSV(FilePath, _vouchers);
+        }
     }
 }

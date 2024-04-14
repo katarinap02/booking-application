@@ -489,6 +489,23 @@ namespace BookingApp.ViewModel
             }
         }
 
+        private Visibility _dataTabVisibility;
+        public Visibility DataTabVisibility
+        {
+            get
+            {
+                return _dataTabVisibility;
+            }
+            set
+            {
+                if (_dataTabVisibility != value)
+                {
+                    _dataTabVisibility = value;
+                    OnPropertyChanged(nameof(DataTabVisibility));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -688,23 +705,6 @@ namespace BookingApp.ViewModel
             }
         }
 
-        private Visibility _dataTabVisibility;
-        public Visibility DataTabVisibility
-        {
-            get
-            {
-                return _dataTabVisibility;
-            }
-            set
-            {
-                if(_dataTabVisibility != value)
-                {
-                    _dataTabVisibility = value;
-                    OnPropertyChanged(nameof(DataTabVisibility));
-                }
-            }
-        }
-
         public (int, int) InitializeNumberOfParticipantsWindow()
         {
             if (SelectedTour.AvailablePlaces == 0)
@@ -746,7 +746,6 @@ namespace BookingApp.ViewModel
             TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants, UserId);
             tourReservationWindow.ShowDialog();
         }
-
 
         public TourViewModel() {
             _touristService = new TouristService();
