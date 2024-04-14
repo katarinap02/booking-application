@@ -1,6 +1,9 @@
 ﻿using BookingApp.Model;
+using BookingApp.Services;
+using BookingApp.View.TouristWindows;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -10,6 +13,10 @@ namespace BookingApp.ViewModel
 {
     public class TouristNotificationViewModel : INotifyPropertyChanged
     {
+        private readonly TouristNotificationService _touristNotificationService;
+        private readonly TouristService _touristService;
+        public ObservableCollection<string> tourists { get; set; }
+        public ObservableCollection<TouristNotificationViewModel> touristNotificationViewModels { get; set; }
         private int _id;
         public int Id { 
             get { return _id; }
@@ -121,6 +128,39 @@ namespace BookingApp.ViewModel
             }
         }
 
+        private TouristNotificationViewModel _selectedNotification;
+        public TouristNotificationViewModel SelectedNotification
+        {
+            get
+            {
+                return _selectedNotification;
+            }
+            set
+            {
+                if( value != _selectedNotification )
+                {
+                    _selectedNotification = value;
+                    OnPropertyChanged(nameof(SelectedNotification));
+                }
+            }
+        }
+
+        private int _userId;
+        public int UserId
+        {
+            get
+            {
+                return _userId;
+            }
+            set
+            {
+                if( _userId != value )
+                {
+                    _userId = value;
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -128,7 +168,36 @@ namespace BookingApp.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public TouristNotificationViewModel() { }
+        public void InitializeTouristNotificationWindow()
+        {
+            foreach(var notification in _touristNotificationService.GetMyNotifications(UserId))
+            {
+                touristNotificationViewModels.Add(notification);
+            }
+        }
+
+        public void InitializeAddedTouristsWindow()
+        {
+            foreach (var tourist in _touristService.GetParticipantsThatJoinedNow(SelectedNotification.ToTouristNotification()))
+            {
+                tourists.Add(tourist);
+            }
+
+        }
+
+        public void DetailsButton()
+        {
+            AddedTouristsNotificationWindow addedTouristsNotificationWindow = new AddedTouristsNotificationWindow(SelectedNotification);
+            addedTouristsNotificationWindow.ShowDialog();
+        }
+
+        public TouristNotificationViewModel() {
+            _touristNotificationService = new TouristNotificationService();
+            _touristService = new TouristService();
+
+            touristNotificationViewModels = new ObservableCollection<TouristNotificationViewModel>();
+            tourists = new ObservableCollection<string>();
+        }
         public TouristNotificationViewModel(TouristNotification touristNotification)
         {
             Id = touristNotification.Id;

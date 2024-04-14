@@ -142,6 +142,5 @@ namespace BookingApp.Repository
         {
             return _tourReservations.FindAll(t => t.TourId == tourId && t.TouristId == userId);
         }
-
     }
 }

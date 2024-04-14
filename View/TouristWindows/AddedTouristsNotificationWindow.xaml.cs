@@ -22,18 +22,17 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class AddedTouristsNotificationWindow : Window
     {
-        public TouristNotificationViewModel SelectedNotification { get; set; }
-        public ObservableCollection<string> Tourists { get; set; }
-        private readonly TouristService touristService;
+        public TouristNotificationViewModel TouristNotification { get; set; }
+
+        
         public AddedTouristsNotificationWindow(TouristNotificationViewModel selectedNotification)
         {
             InitializeComponent();
-            DataContext = this;
-            SelectedNotification = selectedNotification;
-            touristService = new TouristService();
-            Tourists = new ObservableCollection<string>(touristService.GetParticipantsThatJoined(selectedNotification.ToTouristNotification()));
+            TouristNotification = new TouristNotificationViewModel();
+            DataContext = TouristNotification;
+            TouristNotification.SelectedNotification = selectedNotification;
 
-            tourNameLabel.Content = selectedNotification.TourName;
+            TouristNotification.InitializeAddedTouristsWindow();
         }
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
