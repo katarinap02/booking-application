@@ -60,6 +60,7 @@ namespace BookingApp.View.ViewModel
             AccommodationRateService.Add(AccommodationRate.ToAccommodationRate());
             AccommodationRate rate = AccommodationRate.ToAccommodationRate();
             Host host = HostService.GetById(rate.HostId);
+            //MessageBox.Show(host.Id.ToString());
             HostService.BecomeSuperHost(host);
             MessageBox.Show("Rate added");
 

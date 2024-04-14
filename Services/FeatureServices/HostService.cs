@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BookingApp.Services
 {
@@ -41,6 +42,7 @@ namespace BookingApp.Services
 
         public void BecomeSuperHost(Host host)
         {
+            
             int counter = 0;
             double gradeSum = 0;
             foreach (AccommodationRate rate in accommodationRateRepository.GetAll())
@@ -51,17 +53,17 @@ namespace BookingApp.Services
                     gradeSum = gradeSum + (Convert.ToDouble(rate.Correctness + rate.Cleanliness) / 2);
                 }
             }
-
+            
             if (counter < 50)
             {
                 host.IsSuperHost = false;
                 hostRepository.Update(host);
-                return;
             }
 
             double average = gradeSum / Convert.ToDouble(counter);
             host.RateAverage = average;
             host.RateCount = counter;
+            
             if (average >= 4.5)
             {
                 host.IsSuperHost = true; ;
@@ -71,8 +73,9 @@ namespace BookingApp.Services
             {
                 host.IsSuperHost = false;
             }
-
+         
             hostRepository.Update(host);
+           
             return;
         }
     }
