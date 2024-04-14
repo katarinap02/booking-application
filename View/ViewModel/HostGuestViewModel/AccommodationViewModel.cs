@@ -21,20 +21,10 @@ using BookingApp.View.GuestPages;
 namespace BookingApp.View.ViewModel
 {
    
-    public class AccommodationViewModel : INotifyPropertyChanged, IObserver
+    public class AccommodationViewModel : INotifyPropertyChanged
     {
 
-        public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
-
-
-        public AccommodationViewModel SelectedAccommodation { get; set; }
-
-        public AccommodationService AccommodationService { get; set; }
-
-        public AccommodationReservationService AccommodationReservationService { get; set; }
-
-
-        public HostService HostService { get; set; }
+        
         private int id;
         public int Id
         {
@@ -110,33 +100,6 @@ namespace BookingApp.View.ViewModel
             }
         }
 
-        private bool isCheckedHouse;
-        public bool IsCheckedHouse
-        {
-            get { return isCheckedHouse; }
-            set
-            {
-                if (isCheckedHouse != value)
-                {
-                    isCheckedHouse = value;
-                    OnPropertyChanged("IsCheckedHouse");
-                }
-            }
-        }
-
-        private bool isCheckedCottage;
-        public bool IsCheckedCottage
-        {
-            get { return isCheckedCottage; }
-            set
-            {
-                if (isCheckedCottage != value)
-                {
-                    isCheckedCottage = value;
-                    OnPropertyChanged("IsCheckedCottage");
-                }
-            }
-        }
 
         private int maxGuestNumber;
         public int MaxGuestNumber
@@ -347,15 +310,11 @@ namespace BookingApp.View.ViewModel
             return replacedPath;
         }
 
-        public User User { get; set; }
-
-        public Frame Frame { get; set; }
-
+       
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public AccommodationsPage AccommodationsPage { get; set; }
-
+        
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -366,21 +325,7 @@ namespace BookingApp.View.ViewModel
             reservationDaysLimit = 1;
           
         }
-        public AccommodationViewModel(User user, Frame frame, AccommodationsPage accommodationsPage)
-        {
-            reservationDaysLimit = 1;
-            Accommodations = new ObservableCollection<AccommodationViewModel>();
-            AccommodationService = new AccommodationService();
-            AccommodationService.Subscribe(this);
-            User = user;
-            //AccommodationsDataGrid.ItemsSource = Accommodations;
-            
-            Frame = frame;
-            AccommodationReservationService = new AccommodationReservationService();
-            HostService = new HostService();
-            AccommodationsPage = accommodationsPage;
-
-        }
+       
 
         public AccommodationViewModel(Accommodation accommodation)
         {
@@ -413,135 +358,14 @@ namespace BookingApp.View.ViewModel
 
         public Accommodation ToAccommodation()
         {
-            type = GetAccommodationType();
-
+            
             Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit, hostId);
             a.Id = id;
             a.UnavailableDates = unavailableDates;
             a.Pictures = picture;
 
-
-
-
-
             return a;
 
-        }
-
-        public AccommodationType GetAccommodationType()
-        {
-            AccommodationType type = AccommodationType.APARTMENT;
-
-            if (isCheckedHouse)
-            { type = AccommodationType.HOUSE; }
-            else if (isCheckedCottage)
-            {
-                type = AccommodationType.COTTAGE;
-            }
-
-            return type;
-        }
-
-
-        public void Update()
-        {
-            Accommodations.Clear();
-            List<AccommodationViewModel> superHostAccommodations = new List<AccommodationViewModel>();
-            List<AccommodationViewModel> nonSuperHostAccommodations = new List<AccommodationViewModel>();
-
-            SeparateAccommodations(AccommodationService, superHostAccommodations, nonSuperHostAccommodations);
-
-
-            foreach (AccommodationViewModel superHostAccommodation in superHostAccommodations)
-                Accommodations.Add(superHostAccommodation);
-
-            foreach (AccommodationViewModel nonSuperHostAccommodation in nonSuperHostAccommodations)
-                Accommodations.Add(nonSuperHostAccommodation);
-        }
-        public void SeparateAccommodations(AccommodationService accommodationService, List<AccommodationViewModel> superHostAccommodations, List<AccommodationViewModel> nonSuperHostAccommodations)
-        {
-            foreach (Accommodation accommodation in AccommodationService.GetAll())
-            {
-
-                AccommodationViewModel accommodationDTO = new AccommodationViewModel(accommodation);
-                Host host = HostService.GetById(accommodation.HostId);
-                HostService.BecomeSuperHost(host);
-                accommodationDTO.IsSuperHost = host.IsSuperHost;
-
-                if (accommodationDTO.IsSuperHost)
-                    superHostAccommodations.Add(accommodationDTO);
-                else
-                    nonSuperHostAccommodations.Add(accommodationDTO);
-
-                //MessageBox.Show(Accommodations[0].Type.ToString());
-            }
-        }
-
-        public void ReserveButton_Click(object sender, RoutedEventArgs e)
-        {
-
-
-            Button button = sender as Button;
-            SelectedAccommodation = button.DataContext as AccommodationViewModel;
-            Frame.Content = new ReservationInfoPage(SelectedAccommodation, User, Frame);
-
-
-
-
-        }
-
-
-        public void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            List<string> queries = new List<string>();
-            queries.Add(AccommodationsPage.txtSearchName.Text); //nameQuery
-            queries.Add(AccommodationsPage.txtSearchCity.Text); //cityQuery
-            queries.Add(AccommodationsPage.txtSearchCountry.Text); //countryQuery
-            queries.Add(AccommodationsPage.txtSearchType.Text); //typeQuery
-            queries.Add(AccommodationsPage.txtSearchGuestNumber.Text); //guestQuery
-            queries.Add(AccommodationsPage.txtSearchReservationDays.Text); //reservationQuery
-
-            AccommodationsPage.AccommodationListBox.ItemsSource = SearchAccommodations(queries);
-
-
-
-
-        }
-
-        private List<AccommodationViewModel> SearchAccommodations(List<string> queries)
-        {
-
-
-            ObservableCollection<AccommodationViewModel> totalAccommodations = new ObservableCollection<AccommodationViewModel>();
-            foreach (Accommodation accommodation in AccommodationService.GetAll())
-                totalAccommodations.Add(new AccommodationViewModel(accommodation));
-
-            List<AccommodationViewModel> searchResults = FilterAccommodations(totalAccommodations, queries);
-
-
-            int totalItems = searchResults.Count;
-            List<AccommodationViewModel> results = new List<AccommodationViewModel>();
-            foreach (AccommodationViewModel accommodation in searchResults)
-                results.Add(accommodation);
-
-            return results;
-
-
-
-
-        }
-
-        private List<AccommodationViewModel> FilterAccommodations(ObservableCollection<AccommodationViewModel> totalAccommodations, List<string> queries)
-        {
-            List<AccommodationViewModel> filteredAccommodations = totalAccommodations.Where(accommodation => (string.IsNullOrEmpty(queries[0]) || accommodation.Name.ToUpper().Contains(queries[0].ToUpper())) &&
-                                                                           (string.IsNullOrEmpty(queries[1]) || accommodation.City.ToUpper().Contains(queries[1].ToUpper())) &&
-                                                                           (string.IsNullOrEmpty(queries[2]) || accommodation.Country.ToUpper().Contains(queries[2].ToUpper())) &&
-                                                                           (string.IsNullOrEmpty(queries[3]) || accommodation.Type.ToString().ToUpper().Contains(queries[3].ToUpper())) &&
-                                                                           (string.IsNullOrEmpty(queries[4]) || Convert.ToInt32(queries[4]) <= accommodation.MaxGuestNumber) &&
-                                                                           (string.IsNullOrEmpty(queries[5]) || Convert.ToInt32(queries[5]) >= accommodation.MinReservationDays)
-                                                                           ).ToList();
-
-            return filteredAccommodations;
         }
 
         

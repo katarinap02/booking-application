@@ -124,10 +124,8 @@ namespace BookingApp.Model
         List<CalendarDateRange> MakeListDates(string value)
         {
             List<CalendarDateRange> list = new List<CalendarDateRange>();
-            if (!string.IsNullOrEmpty(value)) {
-                list = ConvertToDateRanges(value.Split(",").ToList());
-
-            }
+            if (!string.IsNullOrEmpty(value)) 
+                list = ConvertToDateRanges(value.Split(",").ToList());       
             return list;
         }
 
@@ -135,36 +133,28 @@ namespace BookingApp.Model
         {
             List<String> list = new List<String>(); 
             if (!string.IsNullOrEmpty(value))
-            {
                 list = value.Split(",").ToList();
-            }
-
+           
             return list;
         }
 
         private AccommodationType TypeFromCsv(string value)
         {
             AccommodationType type = AccommodationType.APARTMENT;
-            switch (value)
-            {
-                case "HOUSE":
-                    type = AccommodationType.HOUSE;
-                    break;
-                case "COTTAGE":
-                    type = AccommodationType.COTTAGE;
-                    break;
-
-            }
+             if(value == "HOUSE")
+                type = AccommodationType.HOUSE;
+             else
+                type = AccommodationType.COTTAGE;
+            
             return type;
         }
 
         private string MakeStringFromPictures(List<string> pictures)
         {
             string PictureString = "";
-            if (pictures != null)
-            {
+            if (IsGreaterThanZero(pictures.Count))
                 PictureString = string.Join(",", Pictures);
-            }
+            
             return PictureString;
         }
 
@@ -172,11 +162,15 @@ namespace BookingApp.Model
         {
 
             string unavailableDates = "";
-            if (dates != null)
+            if (IsGreaterThanZero(dates.Count))
                 unavailableDates = string.Join(",", dates.Select(dateRange => ConvertToString(dateRange)));
             return unavailableDates;
         }
 
+        private bool IsGreaterThanZero(int number)
+        {
+            return number > 0;
+        }
 
     }
 }

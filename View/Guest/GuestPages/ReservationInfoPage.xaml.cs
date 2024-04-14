@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.View.ViewModel;
+using BookingApp.ViewModel;
 
 namespace BookingApp.View.GuestPages
 {
@@ -28,7 +29,7 @@ namespace BookingApp.View.GuestPages
         public AccommodationViewModel SelectedAccommodation { get; set; }
        
 
-        public AccommodationReservationViewModel ViewModel { get; set; }
+        public ReservationFinishViewModel ViewModel { get; set; }
         public User User { get; set; }
       
         public Frame Frame { get; set; }
@@ -40,7 +41,7 @@ namespace BookingApp.View.GuestPages
             User = user;
             Frame = frame;
             SelectedAccommodation = selectedAccommodation;
-            ViewModel = new AccommodationReservationViewModel(SelectedAccommodation, User, Frame, this);
+            ViewModel = new ReservationFinishViewModel(SelectedAccommodation, User, Frame, this);
             
             DataContext = this;
           

@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.View.ViewModel;
+using BookingApp.ViewModel;
 
 namespace BookingApp.View.GuestPages
 {
@@ -33,7 +34,7 @@ namespace BookingApp.View.GuestPages
 
         public DelayRequestViewModel SelectedRequest { get; set; }
         
-        public DelayRequestViewModel ViewModel { get; set; }
+        public ShowRequestsViewModel ViewModel { get; set; }
         public RequestsPage(User user, Frame frame)
         {
             InitializeComponent();
@@ -41,7 +42,7 @@ namespace BookingApp.View.GuestPages
             this.Frame = frame;
             
           
-            ViewModel = new DelayRequestViewModel(User, Frame, this);
+            ViewModel = new ShowRequestsViewModel(User, Frame, this);
             
             DataContext = ViewModel;
             foreach (ComboBoxItem item in requestStatusBox.Items)

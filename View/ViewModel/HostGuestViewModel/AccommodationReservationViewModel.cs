@@ -153,16 +153,13 @@ namespace BookingApp.View.ViewModel
             }
         }
 
-        public string Location => City + ", " + Country;
-        public string DateRangeString => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
-
-        private AccommodationService accommodationService = new AccommodationService();
+        
         private HostService hostService = new HostService();
-        public string AccommodationDetails => Name + ", " + Location;
+        private AccommodationService accommodationService = new AccommodationService();
 
-
+        public string AccommodationDetails => Name + ", " + City + ", " + Country;  
         public string HostUsername => GetHostUsername(hostService, accommodationService.GetById(AccommodationId).HostId);
-
+        public string DateRangeString => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
         private string GetHostUsername(HostService hostService, int hostId)
         {
             return hostService.GetById(hostId).Username;
@@ -170,31 +167,9 @@ namespace BookingApp.View.ViewModel
 
         public int NumberOfDays => (EndDate - StartDate).Days + 1;
 
-        public AccommodationViewModel SelectedAccommodation { get; set; }
-        public AccommodationService AccommodationService { get; set; }
-        public ReservationCancellationService ReservationCancellationService { get; set; }
-
-        public AccommodationReservationService AccommodationReservationService { get; set; }
-        public User User { get; set; }
-        public int DayNumber { get; set; }
-        public Frame Frame { get; set; }
-        public ReservationInfoPage ReservationInfoPage { get; set; }
-       
-       
-
         public AccommodationReservationViewModel() { }
 
-        public AccommodationReservationViewModel(AccommodationViewModel selectedAccommodation, User user, Frame frame, ReservationInfoPage reservationInfoPage) {
-
-            SelectedAccommodation = selectedAccommodation;
-            AccommodationService = new AccommodationService();
-            ReservationInfoPage = reservationInfoPage;
-            User = user;
-            Frame = frame;
-            AccommodationReservationService = new AccommodationReservationService();
-            
-        }
-
+       
         public AccommodationReservationViewModel(AccommodationReservation ac)
         {
             id = ac.Id;
@@ -206,9 +181,6 @@ namespace BookingApp.View.ViewModel
             name = ac.Name;
             city = ac.City;
             country = ac.Country;
-
-
-
 
 
         }
@@ -231,63 +203,8 @@ namespace BookingApp.View.ViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void Continue_Click(object sender, RoutedEventArgs e)
-        {
-
-
-
-
-            DayNumber = Convert.ToInt32(ReservationInfoPage.txtDayNumber.Text);
-            DateTime start = Convert.ToDateTime(ReservationInfoPage.txtStartDate.Text);
-            DateTime end = Convert.ToDateTime(ReservationInfoPage.txtEndDate.Text);
-
-
-            Frame.Content = new CalendarPage(SelectedAccommodation, DayNumber, User, start, end, Frame);
-
-
-        }
-
-        private bool ValidateDayNumber(int dayNumber)
-        {
-            if (DayNumber < SelectedAccommodation.MinReservationDays)
-            {
-
-                return false;
-            }
-            else
-            {
-
-                return true;
-            }
-        }
-
-        private bool ValidateDateInputs(DateTime start, DateTime end)
-        {
-            if (start >= end)
-            {
-
-                return false;
-            }
-            else
-            {
-
-                return true;
-            }
-
-
-        }
-
-        public void CancelReservation_Click(object sender, RoutedEventArgs e)
-        {
-
-            ReservationCancellationService = new ReservationCancellationService();
-            AccommodationService = new AccommodationService();
-            AccommodationReservationService = new AccommodationReservationService();
-            AccommodationReservationService.CancelReservation(AccommodationService, ReservationCancellationService, this);
-          
-
-        }
-
        
+
+
     }
 }

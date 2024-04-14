@@ -18,6 +18,7 @@ using BookingApp.Model;
 using System.Security.Cryptography;
 using BookingApp.Services;
 using BookingApp.View.ViewModel;
+using BookingApp.ViewModel;
 
 namespace BookingApp.View.GuestPages
 {
@@ -32,7 +33,7 @@ namespace BookingApp.View.GuestPages
     
         public Frame Frame { get; set; }    
 
-        public AccommodationViewModel ViewModel { get; set; }
+        public ShowAccommodationsViewModel ViewModel { get; set; }
       
 
         public AccommodationsPage(User user, Frame frame)
@@ -44,7 +45,7 @@ namespace BookingApp.View.GuestPages
             //AccommodationsDataGrid.ItemsSource = Accommodations;
             DataContext = this;
             this.Frame = frame;
-            ViewModel = new AccommodationViewModel(User, Frame, this);
+            ViewModel = new ShowAccommodationsViewModel(User, Frame, this);
             DataContext = ViewModel;
             ViewModel.Update();
            

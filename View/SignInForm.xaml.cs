@@ -46,6 +46,8 @@ namespace BookingApp.View
             _repository = new UserRepository();
             _guidedTourRepository = new GuidedTourRepository();
             _tourRepository = new TourRepository();
+          
+
         }
 
         private void SignIn(object sender, RoutedEventArgs e)
