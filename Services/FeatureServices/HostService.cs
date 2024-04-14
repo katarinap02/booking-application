@@ -53,30 +53,36 @@ namespace BookingApp.Services
                     gradeSum = gradeSum + (Convert.ToDouble(rate.Correctness + rate.Cleanliness) / 2);
                 }
             }
-            
-            if (counter < 50)
-            {
-                host.IsSuperHost = false;
-                hostRepository.Update(host);
-            }
 
             double average = gradeSum / Convert.ToDouble(counter);
             host.RateAverage = average;
             host.RateCount = counter;
-            
-            if (average >= 4.5)
-            {
-                host.IsSuperHost = true; ;
 
-            }
-            else
-            {
-                host.IsSuperHost = false;
-            }
-         
+            host.IsSuperHost = isSuperHost(counter, gradeSum, average);
             hostRepository.Update(host);
            
             return;
         }
+
+        public bool isSuperHost(int counter, double gradeSum, double average)
+        {
+            if (counter < 50)
+            {
+                return false;
+            }
+
+            if (average >= 4.5)
+            {
+                return true;
+
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+
+        
     }
 }

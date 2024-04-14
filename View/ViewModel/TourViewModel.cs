@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
@@ -717,6 +718,7 @@ namespace BookingApp.ViewModel
                 CloseButtonalignmentNumberOfParticipants = HorizontalAlignment.Center;
                 ConfirmButtonVisibilityNumberOfParticipants = Visibility.Collapsed;
                 MessageBox.Show("No more places for the selected tour, please select another one!");
+                AvailablePlaces = _touristService.FindMaxNumberOfParticipants(Tours.ToList());
                 // returnujemo big window size, widht, height
                 return (800, 600);
             }
@@ -743,6 +745,8 @@ namespace BookingApp.ViewModel
 
         public void BookNumberOfParticipants()
         {
+            if (InsertedNumberOfParticipants == 0)
+                InsertedNumberOfParticipants = 1;
             TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants, UserId);
             tourReservationWindow.ShowDialog();
         }

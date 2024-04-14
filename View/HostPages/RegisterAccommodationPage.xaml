@@ -53,9 +53,9 @@
             <TextBox x:Name ="textBoxCity" Text="{Binding Path= accommodationDTO.City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="281"/>
             <Label
                 x:Name="CountryLabel"
-                Content="City*" Height="29" Width="46"
-                Margin="80 0 0 0"/>
-            <TextBox x:Name ="textBoxCountry" Text="{Binding Path= accommodationDTO.Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="277"/>
+                Content="Country*" Height="29" Width="60"
+                Margin="75 0 0 0"/>
+            <TextBox x:Name ="textBoxCountry" Text="{Binding Path= accommodationDTO.Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="263"/>
         </StackPanel>
 
         <StackPanel Grid.Row ="3" Grid.Column="1" Orientation="Horizontal" Margin="0 0 100 0" HorizontalAlignment="Left" >
