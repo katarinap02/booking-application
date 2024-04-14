@@ -28,5 +28,6 @@ namespace BookingApp.Services
             return AccommodationRateRepository.Add(rate);
         }
 
+        
     }
 }

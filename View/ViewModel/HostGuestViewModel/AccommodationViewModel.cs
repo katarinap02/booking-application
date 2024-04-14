@@ -255,6 +255,9 @@ namespace BookingApp.View.ViewModel
         }
 
         public string FirstPicture => "../" + OnePicture;
+       
+
+     
 
         public AccommodationViewModel(Accommodation accommodation)
         {
