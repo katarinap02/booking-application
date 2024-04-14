@@ -54,6 +54,11 @@ namespace BookingApp.Services
 
             return rates;
         }
+        
+        public void markAsInvalid(int id)
+        {
+            guideRateRepository.markAsInvalid(id);
+        }
 
     }
 }

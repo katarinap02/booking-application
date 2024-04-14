@@ -43,7 +43,8 @@ namespace BookingApp.View.GuideWindows
             }
             else
             {
-                MessageBox.Show(selectedRate.AdditionalComment, "Testiranje unutar xaml.cs"); //test
+                _guideRateService.markAsInvalid(selectedRate.Id);
+                MessageBox.Show("Review marked as invalid", "Reviews Notification");
             }
         }
     }
