@@ -28,10 +28,10 @@ namespace BookingApp.View.HostPages.RatePages
     public partial class RateDisplayPage : Page, IObserver
     {
         
-        public RateDisplayPage()
+        public RateDisplayPage(User user)
         {
             InitializeComponent();
-            DataContext = new RateDisplayPageViewModel();
+            DataContext = new RateDisplayPageViewModel(user);
             
         }
 

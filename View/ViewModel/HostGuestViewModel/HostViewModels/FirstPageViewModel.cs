@@ -46,8 +46,10 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
             Accommodations.Clear();
             foreach (Accommodation accommodation in accommodationRepository.GetAll())
             {
-
-                Accommodations.Add(new AccommodationViewModel(accommodation));
+                if(accommodation.HostId == host.Id) {
+                    Accommodations.Add(new AccommodationViewModel(accommodation));
+                }
+                
 
             }
         }

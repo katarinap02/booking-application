@@ -86,7 +86,7 @@
                 
             </Label>
 
-            <ListBox x:Name="NotificationListBox" Width="235" Height="150" Margin="230,25,31,50" Grid.RowSpan="2" Grid.Row="7" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Notifications}">
+            <ListBox x:Name="NotificationListBox" Width="260" Height="150" Margin="220,25,31,50" Grid.RowSpan="2" Grid.Row="7" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Notifications}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Gray" BorderThickness="1" Margin="0,0,0,5">
