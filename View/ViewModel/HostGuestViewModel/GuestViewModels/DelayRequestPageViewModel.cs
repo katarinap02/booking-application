@@ -66,17 +66,9 @@ namespace BookingApp.View.ViewModel
             int dayNumber = DayNumber;
             int selectedDatesCount = calendar.SelectedDates.Count;
             if (selectedDatesCount != DayNumber)
-            {
-                reserveButton.IsEnabled = false;
-
-
-            }
+                reserveButton.IsEnabled = false;      
             else
-            {
                 reserveButton.IsEnabled = true;
-
-
-            }
 
             Mouse.Capture(null);
         }
@@ -87,8 +79,6 @@ namespace BookingApp.View.ViewModel
              SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
              SelectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
              AccommodationReservationService.DelayReservation(SelectedDateRange, DelayRequest, DelayRequestService, AccommodationService, SelectedReservation);
-
-            
 
 
         }

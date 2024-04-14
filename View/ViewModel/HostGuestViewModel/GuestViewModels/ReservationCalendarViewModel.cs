@@ -112,7 +112,7 @@ namespace BookingApp.ViewModel
                 SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
                 AccommodationService.Update(SelectedAccommodation.ToAccommodation());
                 AccommodationReservationService.Add(Reservation);
-                Frame.Content = new ReservationSuccessfulPage(SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
+                Frame.Content = new ReservationSuccessfulPage(new AccommodationReservationViewModel(Reservation), SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
 
 
 
