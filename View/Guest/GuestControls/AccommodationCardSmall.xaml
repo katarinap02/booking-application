@@ -13,13 +13,17 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="44,27,194,-27" Grid.Row="1"/>
-                <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="44,66,178,-66" Grid.Row="1"/>
+                <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="155,14,89,-13" Grid.Row="1" FontWeight="Bold"/>
+                <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="155,41,78,-40" Grid.Row="1"/>
 
-                <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{Binding Rate}" Margin="87,98,460,-97" Grid.Row="1"/>
-                <TextBlock x:Name="AccommodationDays" FontSize="20" Text="{Binding MinReservationDays}" Margin="242,98,304,-98" Grid.Row="1"/>
-                <TextBlock x:Name="AccommodationGuests" FontSize="20" Text="{Binding MaxGuestNumber}" Margin="397,98,147,-98" Grid.Row="1"/>
-
+                <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{Binding Rate}" Margin="211,99,336,-98" Grid.Row="1"/>
+                <TextBlock x:Name="AccommodationDays" FontSize="20" Text="{Binding MinReservationDays}" Margin="316,98,229,-98" Grid.Row="1"/>
+                <TextBlock x:Name="AccommodationGuests" FontSize="20" Text="{Binding MaxGuestNumber}" Margin="405,98,139,-98" Grid.Row="1"/>
+                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2"  Margin="0,10,440,-107" Grid.Row="1" Width="130" Height="100">
+                    <Grid>
+                        <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding FirstPicture}"/>
+                    </Grid>
+                </Border>
             </Grid>
 
         </Border>
