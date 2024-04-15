@@ -168,6 +168,16 @@ namespace BookingApp.Repository
             return false;
         }
 
+        public int getjoinedCheckpoint(int tour_id)
+        {
+            InitialiseRepos();
+            TourParticipant participant = GetById(_reservationrepository.getTouristParticipantID(tour_id));
+            if (!participant.HasJoinedTour)
+            {
+                return -1;
+            }
+            return participant.JoinedCheckpointIndex;
+        }
         
     }
 }
