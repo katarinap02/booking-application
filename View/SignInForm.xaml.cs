@@ -12,6 +12,7 @@ namespace BookingApp.View
     /// <summary>
     /// Interaction logic for SignInForm.xaml
     /// </summary>
+    /// Version 2.0
     public partial class SignInForm : Window
     {
 
