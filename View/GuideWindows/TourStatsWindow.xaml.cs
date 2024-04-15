@@ -24,7 +24,6 @@ namespace BookingApp.View.GuideWindows
         private void UpdateAgeStatistics(int tourId)
         {
             List<int> ages = _tourRepository.GetAgeStatistic(tourId);
-            MessageBox.Show(ages[0].ToString());
             series = new SeriesCollection
             {
                 new PieSeries

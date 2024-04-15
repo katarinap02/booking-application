@@ -262,6 +262,7 @@ namespace BookingApp.ViewModel
         public void Submit(GuideRateViewModel rate)
         {
             Pictures = imagePreviews.Select(image => GetAbsolutePath(image.UriSource)).ToList();
+            rate.IsValid= true;
             _guideRateService.SaveRate(rate);
         }
 
