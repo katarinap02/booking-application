@@ -1,5 +1,7 @@
 ﻿using BookingApp.Model;
+using BookingApp.Model.Features;
 using BookingApp.Repository;
+using BookingApp.Services.FeatureServices;
 using BookingApp.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -15,11 +17,14 @@ namespace BookingApp.Services
         private readonly TourReservationRepository tourReservationRepository;
         private readonly TourRepository tourRepository;
 
+        private TouristService touristService;
         public GuideRateService()
         {
             guideRateRepository = new GuideRateRepository();
             tourReservationRepository = new TourReservationRepository();
             tourRepository = new TourRepository();
+
+            touristService = new TouristService();
         }
 
         public void SaveRate(GuideRateViewModel rate)
@@ -38,7 +43,8 @@ namespace BookingApp.Services
             if (tourRepository.isTourFinished(tourId))
             {
                 // is my tour
-                return tourReservationRepository.FindMyEndedTours(userId).Any(t => t.Id == tourId);
+                Tourist tourist = touristService.GetTouristById(userId);
+                return tourReservationRepository.FindMyEndedTours(userId, tourist.Name, tourist.LastName).Any(t => t.Id == tourId);
             }
             return false;
         }

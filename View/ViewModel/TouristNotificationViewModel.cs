@@ -14,7 +14,7 @@ namespace BookingApp.ViewModel
     public class TouristNotificationViewModel : INotifyPropertyChanged
     {
         private readonly TouristNotificationService _touristNotificationService;
-        private readonly TouristService _touristService;
+        private readonly TourService _touristService;
         public ObservableCollection<string> tourists { get; set; }
         public ObservableCollection<TouristNotificationViewModel> touristNotificationViewModels { get; set; }
         private int _id;
@@ -211,7 +211,7 @@ namespace BookingApp.ViewModel
 
         public TouristNotificationViewModel() {
             _touristNotificationService = new TouristNotificationService();
-            _touristService = new TouristService();
+            _touristService = new TourService();
 
             touristNotificationViewModels = new ObservableCollection<TouristNotificationViewModel>();
             tourists = new ObservableCollection<string>();

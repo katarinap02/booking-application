@@ -15,7 +15,7 @@ namespace BookingApp.ViewModel
 {
     public class TourViewModel : INotifyPropertyChanged
     {
-        private readonly TouristService _touristService;
+        private readonly TourService _touristService;
         private readonly GuideRateService _guideRateService;
         private readonly UserService _userService;
 
@@ -752,7 +752,7 @@ namespace BookingApp.ViewModel
         }
 
         public TourViewModel() {
-            _touristService = new TouristService();
+            _touristService = new TourService();
             _guideRateService = new GuideRateService();
             _userService = new UserService();
             Tours = new ObservableCollection<TourViewModel>();
