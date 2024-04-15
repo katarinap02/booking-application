@@ -128,6 +128,23 @@ namespace BookingApp.ViewModel
             }
         }
 
+        private string _currentCheckpointName;
+        public string CurrentCheckpointName
+        {
+            get
+            {
+                return _currentCheckpointName;
+            }
+            set
+            {
+                if( value != _currentCheckpointName )
+                {
+                    _currentCheckpointName = value;
+                    OnPropertyChanged(nameof(CurrentCheckpointName));
+                }
+            }
+        }
+
         private TouristNotificationViewModel _selectedNotification;
         public TouristNotificationViewModel SelectedNotification
         {
@@ -178,6 +195,7 @@ namespace BookingApp.ViewModel
 
         public void InitializeAddedTouristsWindow()
         {
+            CurrentCheckpointName = _touristService.GetCheckpointsByTour(SelectedNotification.TourId)[CurrentCheckpoint];
             foreach (var tourist in _touristService.GetParticipantsThatJoinedNow(SelectedNotification.ToTouristNotification()))
             {
                 tourists.Add(tourist);

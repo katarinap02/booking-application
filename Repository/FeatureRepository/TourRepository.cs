@@ -350,5 +350,10 @@ namespace BookingApp.Repository
             }
             return maxTourists;
         }
+
+        public List<string> GetCheckpointsByTour(int tourId)
+        {
+            return _tours.Find(t => t.Id == tourId).Checkpoints;
+        }
     }
 }

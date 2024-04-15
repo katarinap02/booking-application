@@ -109,5 +109,10 @@ namespace BookingApp.Services
         {
             return ToTourViewModel(tourRepository.GetTourByCityWithAvailablePlaces(city));
         }
+
+        public List<string> GetCheckpointsByTour(int tourId)
+        {
+            return tourRepository.GetCheckpointsByTour(tourId);
+        }
     }
 }
