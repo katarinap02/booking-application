@@ -1,39 +1,26 @@
-1|inPreparation|Centar Grada|Novi Sad|Jedan lep dan za turu|SR|10|3|1/1/0001 12:00:00 AM|1|1|Serbia|Katedrala, Dunavski Park||0|1
-2|inPreparation|Petrovaradin|Novi Sad|Petrovaradinski sat radi punom parom|SR|20|2.5|1/1/0001 12:00:00 AM|2|2|Serbia|Sat na petrovaradinu, Katakombe, Muzej||18|1
-3|inPreparation|New York Tour|New York|Explore the Big Apple and experience it in the best possible way. Tour lasts for 5 days, plane ride included.|English|10|120|1/1/0001 12:00:00 AM|3|0|USA|Statue of Liberty,Times New Square||0|1
-4|Finnished|New York Hills|New York|Explore the Big Apple and experience it in the best possible way. Tour lasts for 5 days, plane ride included.|English|10|120|1/1/0001 12:00:00 AM|4|0|USA|Statue of Liberty,Times New Square||9|1
-5|inPreparation|New York Town|New York|Explore the Big Apple and experience it in the best possible way. Tour lasts for 5 days, plane ride included.|English|10|120|1/1/0001 12:00:00 AM|5|0|USA|Statue of Liberty,Times New Square||10|1
-6|inPreparation|New York Villages|New York|Explore the Big Apple and experience it in the best possible way. Tour lasts for 5 days, plane ride included.|English|10|120|1/1/0001 12:00:00 AM|6|0|USA|Statue of Liberty,Times New Square||10|1
-7|inPreparation|Belgrade tour||Discover the magnificent city of Belgrade in this 2 day tour!|Serbian|5|48|1/1/0001 12:00:00 AM|7|0|Serbia|Kalemegdan,Kalemegdan's Zoo,Street of Knez Mihailo|abcdef|5|1
-8|inPreparation|Belgrade tour||Discover the magnificent city of Belgrade in this 2 day tour!|Serbian|5|48|1/1/0001 12:00:00 AM|8|0|Serbia|Kalemegdan,Kalemegdan's Zoo,Street of Knez Mihailo|abcdef|5|1
-9|inPreparation|Belgrade tour||Discover the magnificent city of Belgrade in this 2 day tour!|Serbian|5|48|1/1/0001 12:00:00 AM|9|0|Serbia|Kalemegdan,Kalemegdan's Zoo,Street of Knez Mihailo|abcdef|5|1
-10|inPreparation|Barcelona Spring tour|Barcelona|Discover the beautiful city of Barcelona this spring in multiple tours!|Chinese|10|120|3/16/2024 12:00:00 AM|10|0|Spain|Sagrada de familia,Main Square||7|1
-11|Finnished|Barcelona Spring tour|Barcelona|Discover the beautiful city of Barcelona this spring in multiple tours!|Chinese|10|120|3/17/2024 12:00:00 AM|10|1|Spain|Sagrada de familia,Main Square||9|1
-12|inPreparation|Barcelona Spring tour|Barcelona|Discover the beautiful city of Barcelona this spring in multiple tours!|Chinese|10|120|3/18/2024 12:00:00 AM|10|0|Spain|Sagrada de familia,Main Square||10|1
-13|inPreparation|Barcelona Spring tour|Barcelona|Discover the beautiful city of Barcelona this spring in multiple tours!|Chinese|10|120|3/19/2024 12:00:00 AM|10|0|Spain|Sagrada de familia,Main Square||10|1
-14|Finnished|Istanbul summer vacation tour|Instanbul|Discover the place where east and the west combined, a place rich with culture and history.|Hungarian|30|200|3/16/2024 12:00:00 AM|11|2|Turkey|Hagia Sophia,Istiklal street,Blue Mosque,Topkapi palace,Dolmabahce palace|Resources\Images\Istanbul1.jpg|28|1
-15|Finnished|Istanbul summer vacation tour|Instanbul|Discover the place where east and the west combined, a place rich with culture and history.|Hungarian|30|200|3/17/2024 12:00:00 AM|11|0|Turkey|Hagia Sophia,Istiklal street,Blue Mosque,Topkapi palace,Dolmabahce palace|Resources\Images\Istanbul1.jpg|30|1
-16|inPreparation|Istanbul summer vacation tour|Instanbul|Discover the place where east and the west combined, a place rich with culture and history.|Hungarian|30|200|3/18/2024 12:00:00 AM|11|0|Turkey|Hagia Sophia,Istiklal street,Blue Mosque,Topkapi palace,Dolmabahce palace|Resources\Images\Istanbul1.jpg|30|1
-17|inPreparation|Istanbul summer vacation tour|Instanbul|Discover the place where east and the west combined, a place rich with culture and history.|Hungarian|30|200|3/19/2024 12:00:00 AM|11|0|Turkey|Hagia Sophia,Istiklal street,Blue Mosque,Topkapi palace,Dolmabahce palace|Resources\Images\Istanbul1.jpg|30|1
-18|inPreparation|Istanbul summer vacation tour|Instanbul|Discover the place where east and the west combined, a place rich with culture and history.|Hungarian|30|200|3/20/2024 12:00:00 AM|11|0|Turkey|Hagia Sophia,Istiklal street,Blue Mosque,Topkapi palace,Dolmabahce palace|Resources\Images\Istanbul1.jpg|30|1
-19|Active|Rome university tour|Rome|Experience the capital of Roman empire with your uni friends in this 5 day tour!|German|100|120|3/16/2024 12:00:00 AM|12|0|Italy|Coloseum,Tivoli,The Spanish steps||100|1
-20|Finnished|Rome university tour|Rome|Experience the capital of Roman empire with your uni friends in this 5 day tour!|German|100|120|3/17/2024 12:00:00 AM|12|2|Italy|Coloseum,Tivoli,The Spanish steps||99|1
-21|inPreparation|Rome university tour|Rome|Experience the capital of Roman empire with your uni friends in this 5 day tour!|German|100|120|3/18/2024 12:00:00 AM|12|0|Italy|Coloseum,Tivoli,The Spanish steps||100|1
-22|inPreparation|Rome university tour|Rome|Experience the capital of Roman empire with your uni friends in this 5 day tour!|German|100|120|3/19/2024 12:00:00 AM|12|0|Italy|Coloseum,Tivoli,The Spanish steps||100|1
-23|Active|Munich Easter tour|Munich|Visit this fameous German city and endulge in the wonders it has to offer!|Polish`|50|72|3/16/2024 12:00:00 AM|13|0|Germany|Museum of technology,BMW museum ||50|1
-24|Finnished|Munich Easter tour|Munich|Visit this fameous German city and endulge in the wonders it has to offer!|Polish`|50|72|3/17/2024 12:00:00 AM|13|1|Germany|Museum of technology,BMW museum ||47|1
-25|inPreparation|Munich Easter tour|Munich|Visit this fameous German city and endulge in the wonders it has to offer!|Polish`|50|72|3/18/2024 12:00:00 AM|13|0|Germany|Museum of technology,BMW museum ||50|1
-26|inPreparation|Curug tour|Curug|Visit the small village in the heart of Vojvodina |Serbian|40|24|3/16/2024 12:00:00 AM|14|0|Serbia|Wine tasting at Pearly island,Cheese tasting,Visiting church||37|1
-27|inPreparation|||||0|0|3/29/2024 12:00:00 AM|15|0||g,j||0|1
-28|inPreparation|||||0|0|3/30/2024 12:00:00 AM|15|0||g,j||0|1
-29|Finnished|Test||||0|10|3/29/2024 12:00:00 AM|16|1||test1,test2||9|1
-30|inPreparation|Test||||0|10|3/30/2024 12:00:00 AM|16|0||test1,test2||10|1
-31|inPreparation|Test||||0|10|3/31/2024 12:00:00 AM|16|0||test1,test2||10|1
-32|Finnished|***Moze Cancel|Novi Sad|Start je preko 48h od sad, moze da se cancel-uje|Serbian|10|2|4/13/2024 12:00:00 AM|17|0|Serbia|Checvkpoint 1,Checkpoint 2||6|1
-33|inPreparation|Moze Cancel|Novi Sad|Start je preko 48h od sad, moze da se cancel-uje|Serbian|10|2|4/14/2024 12:00:00 AM|17|0|Serbia|Checvkpoint 1,Checkpoint 2||0|1
-34|inPreparation|Moze Cancel|Novi Sad|Start je preko 48h od sad, moze da se cancel-uje|Serbian|10|2|4/15/2024 12:00:00 AM|17|0|Serbia|Checvkpoint 1,Checkpoint 2||0|1
-35|Finnished|Ne moze da se canceluje|Novi Sad|Manje od 48h do pocetka|Serbian|10|3|4/11/2024 12:00:00 AM|18|1|Serbia|Test 1,Test 2||0|1
-36|inPreparation|Ne moze da se canceluje|Novi Sad|Manje od 48h do pocetka|Serbian|10|3|4/11/2024 12:00:00 AM|18|0|Serbia|Test 1,Test 2||0|1
-37|Finnished|Ne moze da se canceluje|Novi Sad|Manje od 48h do pocetka|Serbian|10|3|4/11/2024 12:00:00 AM|18|1|Serbia|Test 1,Test 2||0|1
-38|inPreparation|Danasnja||||10|10|4/12/2024 12:00:00 AM|19|0||a,b||9|1
-39|Finnished|Nova||||20|2|4/11/2024 12:00:00 AM|20|0||a,d||9|1
+1|inPreparation|Centar Grada|Novi Sad|Jedan lep dan za turu|SR|10|3|4/15/2024 12:00:00 AM|1|1|Serbia|Katedrala, Dunavski Park||0|1
+2|inPreparation|Petrovaradin|Novi Sad|Petrovaradinski sat radi punom parom|SR|20|2.5|4/16/2024 12:00:00 AM|2|2|Serbia|Sat na petrovaradinu, Katakombe, Muzej||18|1
+3|inPreparation|New York Tour|New York|Explore the Big Apple and experience it in the best possible way. Tour lasts for 5 days, plane ride included.|English|10|120|4/17/2024 12:00:00 AM|3|0|USA|Statue of Liberty,Times New Square||0|1
+4|inPreparation|New York Hills|New York|Explore the Big Apple and experience it in the best possible way. Tour lasts for 5 days, plane ride included.|English|10|120|4/18/2024 12:00:00 AM|4|0|USA|Statue of Liberty,Times New Square||9|1
+5|Canceled|New York Town|New York|Explore the Big Apple and experience it in the best possible way. Tour lasts for 5 days, plane ride included.|English|10|120|4/19/2024 12:00:00 AM|5|0|USA|Statue of Liberty,Times New Square||9|1
+6|inPreparation|New York Villages?|New York|Explore the Big Apple and experience it in the best possible way. Tour lasts for 5 days, plane ride included.|English|10|120|4/20/2024 12:00:00 AM|6|0|USA|Statue of Liberty,Times New Square||9|1
+7|inPreparation|Belgrade tour|Belgrade|Discover the magnificent city of Belgrade in this 2 day tour!|Serbian|5|48|4/21/2024 12:00:00 AM|7|0|Serbia|Kalemegdan,Kalemegdan's Zoo,Street of Knez Mihailo|abcdef|5|1
+8|inPreparation|Belgrade tour|Belgrade|Discover the magnificent city of Belgrade in this 2 day tour!|Serbian|5|48|4/22/2024 12:00:00 AM|8|0|Serbia|Kalemegdan,Kalemegdan's Zoo,Street of Knez Mihailo|abcdef|5|1
+9|inPreparation|Belgrade tour|Belgrade|Discover the magnificent city of Belgrade in this 2 day tour!|Serbian|5|48|4/23/2024 12:00:00 AM|9|0|Serbia|Kalemegdan,Kalemegdan's Zoo,Street of Knez Mihailo|abcdef|5|1
+10|inPreparation|Barcelona Spring tour|Barcelona|Discover the beautiful city of Barcelona this spring in multiple tours!|Chinese|10|120|4/24/2024 12:00:00 AM|10|0|Spain|Sagrada de familia,Main Square||7|1
+11|inPreparation|Barcelona Spring tour|Barcelona|Discover the beautiful city of Barcelona this spring in multiple tours!|Chinese|10|120|4/25/2024 12:00:00 AM|10|1|Spain|Sagrada de familia,Main Square||9|1
+12|inPreparation|Barcelona Spring tour|Barcelona|Discover the beautiful city of Barcelona this spring in multiple tours!|Chinese|10|120|4/26/2024 12:00:00 AM|10|0|Spain|Sagrada de familia,Main Square||10|1
+13|inPreparation|Barcelona Spring tour|Barcelona|Discover the beautiful city of Barcelona this spring in multiple tours!|Chinese|10|120|4/27/2024 12:00:00 AM|10|0|Spain|Sagrada de familia,Main Square||10|1
+14|Finnished|Istanbul summer vacation tour|Instanbul|Discover the place where east and the west combined, a place rich with culture and history.|Hungarian|30|200|4/15/2024 12:00:00 AM|11|4|Turkey|Hagia Sophia,Istiklal street,Blue Mosque,Topkapi palace,Dolmabahce palace|Resources\Images\Istanbul1.jpg|27|1
+15|inPreparation|Istanbul summer vacation tour|Instanbul|Discover the place where east and the west combined, a place rich with culture and history.|Hungarian|30|200|4/16/2024 12:00:00 AM|11|0|Turkey|Hagia Sophia,Istiklal street,Blue Mosque,Topkapi palace,Dolmabahce palace|Resources\Images\Istanbul1.jpg|30|1
+16|inPreparation|Istanbul summer vacation tour|Instanbul|Discover the place where east and the west combined, a place rich with culture and history.|Hungarian|30|200|4/17/2024 12:00:00 AM|11|0|Turkey|Hagia Sophia,Istiklal street,Blue Mosque,Topkapi palace,Dolmabahce palace|Resources\Images\Istanbul1.jpg|30|1
+17|inPreparation|Istanbul summer vacation tour|Instanbul|Discover the place where east and the west combined, a place rich with culture and history.|Hungarian|30|200|4/18/2024 12:00:00 AM|11|0|Turkey|Hagia Sophia,Istiklal street,Blue Mosque,Topkapi palace,Dolmabahce palace|Resources\Images\Istanbul1.jpg|30|1
+18|inPreparation|Istanbul summer vacation tour|Instanbul|Discover the place where east and the west combined, a place rich with culture and history.|Hungarian|30|200|4/19/2024 12:00:00 AM|11|0|Turkey|Hagia Sophia,Istiklal street,Blue Mosque,Topkapi palace,Dolmabahce palace|Resources\Images\Istanbul1.jpg|30|1
+19|inPreparation|Rome university tour|Rome|Experience the capital of Roman empire with your uni friends in this 5 day tour!|German|100|120|4/15/2024 12:00:00 AM|12|0|Italy|Coloseum,Tivoli,The Spanish steps||100|1
+20|inPreparation|Rome university tour|Rome|Experience the capital of Roman empire with your uni friends in this 5 day tour!|German|100|120|4/16/2024 12:00:00 AM|12|2|Italy|Coloseum,Tivoli,The Spanish steps||99|1
+21|inPreparation|Rome university tour|Rome|Experience the capital of Roman empire with your uni friends in this 5 day tour!|German|100|120|4/17/2024 12:00:00 AM|12|0|Italy|Coloseum,Tivoli,The Spanish steps||100|1
+22|inPreparation|Rome university tour|Rome|Experience the capital of Roman empire with your uni friends in this 5 day tour!|German|100|120|4/18/2024 12:00:00 AM|12|0|Italy|Coloseum,Tivoli,The Spanish steps||100|1
+23|Finnished|Munich Easter tour*|Munich|Visit this fameous German city and endulge in the wonders it has to offer!|Polish`|50|72|4/15/2023 12:00:00 AM|13|1|Germany|Museum of technology,BMW museum ||46|1
+24|inPreparation|Munich Easter tour|Munich|Visit this fameous German city and endulge in the wonders it has to offer!|Polish|50|72|4/16/2024 12:00:00 AM|13|1|Germany|Museum of technology,BMW museum ||50|1
+25|inPreparation|Munich Easter tour|Munich|Visit this fameous German city and endulge in the wonders it has to offer!|Polish|50|72|4/17/2024 12:00:00 AM|13|0|Germany|Museum of technology,BMW museum ||50|1
+26|Finnished|Curug tour!|Curug|Visit the small village in the heart of Vojvodina |Serbian|40|24|4/15/2024 12:00:00 AM|14|2|Serbia|Wine tasting at Pearly island,Cheese tasting,Visiting church||34|1
