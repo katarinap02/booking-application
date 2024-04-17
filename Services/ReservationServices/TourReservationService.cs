@@ -13,12 +13,12 @@ namespace BookingApp.Services
     public class TourReservationService
     {
         private readonly TourReservationRepository _tourReservationRepository;
-
+        private readonly TourParticipantService _tourParticipantService;
         private readonly TouristService _touristService;
         public TourReservationService()
         {
             _tourReservationRepository = new TourReservationRepository();
-
+            _tourParticipantService = new TourParticipantService();
             _touristService = new TouristService();
         }
 
@@ -60,5 +60,31 @@ namespace BookingApp.Services
         {
             _tourReservationRepository.addParticipant(tourParticipantViewModel.ToTourParticipant(), reservation.ToTourReservation());
         }
+        
+        public List<TourReservation> GetReservationsByTour(int tour_id)
+        {
+            return _tourReservationRepository.GetReservationsByTour(tour_id);
+        }
+
+        public List<TourParticipant> GetJoinedParticipantsByTour(int tour_id)
+        {
+            List<TourReservation> tourReservations = GetReservationsByTour(tour_id);
+            List<TourParticipant> participants = new List<TourParticipant>();
+            foreach (TourReservation tourReservation in tourReservations.ToList())
+            {
+                foreach (TourParticipant participant in _tourParticipantService.GetAllJoinedParticipantsByReservation(tourReservation.Id))
+                {
+                    participants.Add(participant);
+                }
+            }
+            return participants;
+        }
+
+        public int GetNumberOfJoinedParticipants(int tour_id)
+        {
+            List<TourParticipant> tourParticipants = GetJoinedParticipantsByTour(tour_id);
+            return tourParticipants.Count();
+        }
+
     }
 }

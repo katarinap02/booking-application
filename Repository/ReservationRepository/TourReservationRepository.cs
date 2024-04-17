@@ -68,7 +68,7 @@ namespace BookingApp.Repository
             return participants;
         }
 
-        public int GetNumberOfJoinedParticipants(int tour_id)
+        public int GetNumberOfJoinedParticipants(int tour_id) // za brisanje
         {
             List<TourParticipant> tourParticipants = GetJoinedParticipantsByTour(tour_id);
             return tourParticipants.Count();

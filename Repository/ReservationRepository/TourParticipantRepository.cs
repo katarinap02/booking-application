@@ -101,7 +101,7 @@ namespace BookingApp.Repository
             return tourParticipants;
         }
 
-        public List<TourParticipant> GetAllJoinedParticipantsByReservation(int reservationId)
+        public List<TourParticipant> GetAllJoinedParticipantsByReservation(int reservationId) //za brisanje 
         {
             List<TourParticipant> tourParticipants = GetAllParticipantsByReservation(reservationId);
             foreach(TourParticipant tp in tourParticipants.ToList())

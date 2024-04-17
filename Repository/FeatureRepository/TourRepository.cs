@@ -196,7 +196,7 @@ namespace BookingApp.Repository
             return tours.FindAll(t => t.GuideId == guideId);
         }
 
-        public List<Tour> findToursToCancel(int guideId)
+        public List<Tour> findToursToCancel(int guideId) // za brisanje
         {
             List<Tour> tours = findToursByGuideId(guideId);
             foreach (Tour tour in tours.ToList())
@@ -211,7 +211,7 @@ namespace BookingApp.Repository
         }
 
         public void grantVoucher(string reason, DateOnly expireDate, int tour_id, int guide_id)
-        {
+        { // za brisanje
             List<TourReservation> Reservations = _reservationRepository.GetReservationsByTour(tour_id);
             foreach (TourReservation reservation in Reservations)
             {
@@ -220,7 +220,7 @@ namespace BookingApp.Repository
             }
         }
 
-        public void cancelTour(int tour_id, int guide_id)
+        public void cancelTour(int tour_id, int guide_id) // za brisanje
         {
             Tour tour = GetTourById(tour_id);
             if (tour == null) return;
@@ -233,7 +233,17 @@ namespace BookingApp.Repository
             _serializer.ToCSV(FilePath, _tours);
         }
 
-        public List<int> GetAgeStatistic(int id)
+        public void save(Tour tour) {
+            _tours = _serializer.FromCSV(FilePath);
+            Tour current = _tours.Find(t => t.Id == tour.Id);
+            int index = _tours.IndexOf(current);
+            _tours.Remove(current);
+            _tours.Insert(index, tour);
+            _serializer.ToCSV(FilePath, _tours);
+            // notify observers
+        }
+
+        public List<int> GetAgeStatistic(int id) // za brisanje
         {
             int below18 = 0;
             int above18 = 0;
@@ -259,7 +269,7 @@ namespace BookingApp.Repository
 
         }
         
-        public Tour GetMostPopularTourForGuide(int guide_id)
+        public Tour GetMostPopularTourForGuide(int guide_id) // za brisanje
         {
             List<Tour> tours = findToursByGuideId(guide_id);
             Tour mostPopularTour = null;
@@ -279,7 +289,7 @@ namespace BookingApp.Repository
             return mostPopularTour;
         }
 
-        public Tour GetMostPopularTourForGuideInYear(int guide_id, int year)
+        public Tour GetMostPopularTourForGuideInYear(int guide_id, int year) // za brisanje
         {
             List<Tour> tours = findToursByGuideId(guide_id);
 
@@ -303,7 +313,7 @@ namespace BookingApp.Repository
             return mostPopularTourInYear;
         }
 
-        public List<Tour> findFinnishedToursByGuide(int guide_id)
+        public List<Tour> findFinnishedToursByGuide(int guide_id) // izmeniti pozivanja
         {
             List<Tour> tours = _serializer.FromCSV(FilePath).FindAll(t => t.Status == TourStatus.Finnished && t.GuideId == guide_id);
             return tours;
