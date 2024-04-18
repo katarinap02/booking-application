@@ -79,16 +79,7 @@ namespace BookingApp.Repository
             return tourParticipantIds;
         }
 
-        public string GetAllParticipantNames(int reservationId) 
-        {
-            List<TourParticipant> tourParticipantsByReservation = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
-            List<string> participantNames = new List<string>();
-            foreach(TourParticipant tp in tourParticipantsByReservation)
-            {
-                participantNames.Add(tp.Name+" "+tp.LastName);
-            }
-            return string.Join(", ", participantNames);
-        }
+        
 
         public List<TourParticipant> GetAllParticipantsByReservation(int reservationId)
         {
@@ -166,17 +157,6 @@ namespace BookingApp.Repository
                 }
             }
             return false;
-        }
-
-        public int getjoinedCheckpoint(int tour_id)
-        {
-            InitialiseRepos();
-            TourParticipant participant = GetById(_reservationrepository.getTouristParticipantID(tour_id));
-            if (!participant.HasJoinedTour)
-            {
-                return -1;
-            }
-            return participant.JoinedCheckpointIndex;
         }
         
     }
