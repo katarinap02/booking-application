@@ -15,7 +15,15 @@
 
                 <ListBox Name="ReservationListBox" Margin="61,160,61,160"  ScrollViewer.VerticalScrollBarVisibility="Auto"
 ItemsSource="{Binding GuestRates}" Background="{StaticResource BackgroundColorN}" SelectedItem="{Binding SelectedReservation}">
-                   
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <controls:GuestRateCard/>
+
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+
                 </ListBox>
                 
             </Grid>

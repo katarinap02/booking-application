@@ -26,9 +26,10 @@ namespace BookingApp.View.GuestPages
     /// </summary>
     /// 
 
-    public partial class RatesByHostPage : Page, IObserver
+
+    public partial class RatesByHostPage : Page
     {
-        
+        public RatesByHostViewModel ViewModel { get; set; }
         public User User { get; set; }
        
       
@@ -41,34 +42,12 @@ namespace BookingApp.View.GuestPages
             InitializeComponent();
             this.User = user;
             this.Frame = frame;
-          
-            DataContext = this;
-            Update();
+            ViewModel = new RatesByHostViewModel(User, Frame);
+            DataContext = ViewModel;
+            ViewModel.Update();
 
         }
         
-        public void Update()
-        {
-          
-         /*  foreach(GuestRate guestRate in GuestRateRepository.GetAll()) { 
-                if(IsAccommodationRated(guestRate.ReservationId, AccommodationRateService))
-                {
-                    GuestRates.Add(new GuestRateDTO(guestRate));
-                }
-            
-           }*/
-        }
-        /*
-        private bool IsAccommodationRated(int reservationId, AccommodationRateRepository accommodationRateRepository)
-        {
-            foreach(AccommodationRate accommodationRate in accommodationRateRepository.GetAll())
-            {
-                if(accommodationRate.ReservationId == reservationId)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }*/
+        
     }
 }
