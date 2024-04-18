@@ -17,11 +17,11 @@ namespace BookingApp.Services
     {
         private readonly AccommodationReservationRepository AccommodationReservationRepository;
         
-
+        private DelayRequestService DelayRequestService {  get; set; }
         public AccommodationReservationService()
         {
             AccommodationReservationRepository = new AccommodationReservationRepository();
-            
+            DelayRequestService = new DelayRequestService();
         }
 
         public List<AccommodationReservation> GetAll()
@@ -97,6 +97,10 @@ namespace BookingApp.Services
                 ReservationCancellation cancellation = new ReservationCancellation(reservation.GuestId, accommodation.HostId, reservation.Id, DateTime.Now, reservation.StartDate, reservation.EndDate);
                 cancellationService.Add(cancellation);
                 AccommodationReservationRepository.Delete(reservation);
+                foreach (DelayRequest request in DelayRequestService.GetAll())
+                    if (request.ReservationId == reservation.Id)
+                        DelayRequestService.Delete(request);
+
                 accommodationService.FreeDateRange(accommodation, reservation);
                 MessageBox.Show("Reservation cancelled");
             }
