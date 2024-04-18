@@ -12,10 +12,12 @@ namespace BookingApp.Services
     public class TourParticipantService
     {
         private readonly TourParticipantRepository _tourParticipantRepository;
+        private readonly TourReservationService _tourReservationService;
 
         public TourParticipantService()
         {
             _tourParticipantRepository = new TourParticipantRepository();
+            _tourReservationService = new TourReservationService();
         }
 
         public TourParticipantViewModel saveParticipantToDTO(string name, string lastName, string years)
@@ -41,6 +43,22 @@ namespace BookingApp.Services
             }
 
             return tourParticipants;
+        }
+
+        public TourParticipant GetById(int id)
+        {
+            return _tourParticipantRepository.GetById(id);
+        }
+
+
+        public int getjoinedCheckpoint(int tour_id)
+        {
+            TourParticipant participant = GetById(_tourReservationService.getTouristParticipantID(tour_id));
+            if (!participant.HasJoinedTour)
+            {
+                return -1;
+            }
+            return participant.JoinedCheckpointIndex;
         }
 
     }

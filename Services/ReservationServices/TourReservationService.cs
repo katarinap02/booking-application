@@ -86,5 +86,10 @@ namespace BookingApp.Services
             return tourParticipants.Count();
         }
 
+        public int getTouristParticipantID(int tour_id)
+        {
+            return _tourReservationRepository.getTouristParticipantID(tour_id);
+        }
+
     }
 }

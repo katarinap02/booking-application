@@ -15,7 +15,6 @@ namespace BookingApp.View.GuideWindows
     {
 
         private readonly GuideRateService _guideRateService;
-        private readonly TourParticipantRepository _tourParticipantRepository;
         private readonly TourParticipantService _tourParticipantService;
 
         public ObservableCollection<GuideRateViewModel> guideRateViewModels { get; set; }   
@@ -24,8 +23,7 @@ namespace BookingApp.View.GuideWindows
         public ReviewsWindow(int tour_id)
         {
             _guideRateService = new GuideRateService(); 
-            _tourParticipantRepository = new TourParticipantRepository();
-            _tourParticipantService = new TourParticipantService();
+             _tourParticipantService = new TourParticipantService();
             InitializeComponent();
             DataContext = this;
             getData(tour_id);
@@ -60,7 +58,7 @@ namespace BookingApp.View.GuideWindows
             }
             else
             {
-                int checkpoint = _tourParticipantRepository.getjoinedCheckpoint(selectedRate.TourId); // BITNO fali
+                int checkpoint = _tourParticipantService.getjoinedCheckpoint(selectedRate.TourId);
                 MessageBox.Show("Joined checkpoint number: " + checkpoint.ToString());
             }
             
