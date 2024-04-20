@@ -7,7 +7,6 @@
       mc:Ignorable="d" 
       d:DesignHeight="705" d:DesignWidth="1024"
       Title="GuestRatePage">
-
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
@@ -31,6 +30,7 @@
 
 
         <Grid Grid.Column="1" Grid.Row="1">
+            
             <Grid.RowDefinitions>
                 <RowDefinition Height="100" />
                 <RowDefinition Height="60" />
@@ -63,22 +63,22 @@
                     x:Name="Cleanliness1Label"
                     Content="1" Height="29" 
                     Margin="3 0 10 0"/>
-                <RadioButton x:Name="radioButtonCleanliness2" GroupName="TypeButton"  VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding accommodationDTO.IsCheckedHous}"></RadioButton>
+                <RadioButton x:Name="radioButtonCleanliness2" GroupName="TypeButton"  VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding guestRateViewModel.IsChecked2}"></RadioButton>
                 <Label
                     x:Name="Cleanliness2Label"
                     Content="2" Height="29" 
                     Margin="3 0 10 0"/>
-                <RadioButton x:Name="radioButtonCleanliness3"  GroupName="TypeButton" IsChecked="{Binding accommodationDTO.IsCheckedCottage}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
+                <RadioButton x:Name="radioButtonCleanliness3"  GroupName="TypeButton" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding guestRateViewModel.IsChecked3}" ></RadioButton>
                 <Label
                     x:Name="Cleanliness3eLabel"
                     Content="3" Height="29"
                     Margin="3 0 10 0"/>
-                <RadioButton x:Name="radioButtonCleanliness4"  GroupName="TypeButton" IsChecked="{Binding accommodationDTO.IsCheckedCottage}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
+                <RadioButton x:Name="radioButtonCleanliness4"  GroupName="TypeButton" IsChecked="{Binding guestRateViewModel.IsChecked4}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
                 <Label
                     x:Name="Cleanliness4eLabel"
                     Content="4" Height="29" 
                     Margin="3 0 10 0"/>
-                <RadioButton x:Name="radioButtonCleanliness5" GroupName="TypeButton" IsChecked="{Binding accommodationDTO.IsCheckedCottage}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
+                <RadioButton x:Name="radioButtonCleanliness5" GroupName="TypeButton" IsChecked="{Binding guestRateViewModel.IsChecked5}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
                 <Label
                 x:Name="Cleanliness5eLabel"
                 Content="5" Height="29" 
@@ -95,22 +95,22 @@
          x:Name="Rules1Label"
          Content="1" Height="29" 
          Margin="3 0 10 0"/>
-                <RadioButton x:Name="radioButtonRules2" GroupName="TypeButtonRules"  VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding accommodationDTO.IsCheckedHous}"></RadioButton>
+                <RadioButton x:Name="radioButtonRules2" GroupName="TypeButtonRules"  VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding guestRateViewModel.IsCheckedRules2}"></RadioButton>
                 <Label
          x:Name="Rules2Label"
          Content="2" Height="29" 
          Margin="3 0 10 0"/>
-                <RadioButton x:Name="radioButtonRules3"  GroupName="TypeButtonRules" IsChecked="{Binding accommodationDTO.IsCheckedCottage}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
+                <RadioButton x:Name="radioButtonRules3"  GroupName="TypeButtonRules" IsChecked="{Binding guestRateViewModel.IsCheckedRules3}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
                 <Label
          x:Name="Rules3eLabel"
          Content="3" Height="29"
          Margin="3 0 10 0"/>
-                <RadioButton x:Name="radioButtonRules4"  GroupName="TypeButtonRules" IsChecked="{Binding accommodationDTO.IsCheckedCottage}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
+                <RadioButton x:Name="radioButtonRules4"  GroupName="TypeButtonRules" IsChecked="{Binding guestRateViewModel.IsCheckedRules4}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
                 <Label
          x:Name="Rules4eLabel"
          Content="4" Height="29" 
          Margin="3 0 10 0"/>
-                <RadioButton x:Name="radioButtonRules5" GroupName="TypeButtonRules" IsChecked="{Binding accommodationDTO.IsCheckedCottage}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
+                <RadioButton x:Name="radioButtonRules5" GroupName="TypeButtonRules" IsChecked="{Binding guestRateViewModel.IsCheckedRules5}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
                 <Label
      x:Name="Ruless5eLabel"
      Content="5" Height="29" 
@@ -123,12 +123,12 @@
                     <TextBlock Text="additional" FontSize="15" VerticalAlignment="Top" Margin="5,0,0,0" />
                     <TextBlock Text="comment" FontSize="15" VerticalAlignment="Top" Margin="5,0,0,0" />
                 </StackPanel>
-                <TextBox x:Name="CommentTextBox" Width="360" Height="118" Margin="15 0 0 0"  Text="{Binding Path= Delay.Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+                <TextBox x:Name="CommentTextBox" Width="360" Height="118" Margin="15 0 0 0"  Text="{Binding Path= guestRateViewModel.AdditionalComment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
             </StackPanel>
 
             
             <StackPanel Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                <Button Content="Rate guest" FontSize="15" Width="110" Height="45" Margin="0 0 0 0">
+                <Button Content="Rate guest" Click="Save_Click" FontSize="15" Width="110" Height="45" Margin="0 0 0 0">
                 </Button>
                 
             </StackPanel>
@@ -166,7 +166,10 @@
             BorderThickness="1"
             CornerRadius="5">
                             <Grid Height="Auto" >
-
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
                                 <Grid.RowDefinitions>
                                     <RowDefinition Height="*" />
                                     <RowDefinition Height="*" />
@@ -175,7 +178,21 @@
 
                                 </Grid.RowDefinitions>
 
-                                <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="15 0 0 0">
+                                <Image
+                                    Grid.Row="0"
+                                    Grid.RowSpan="4"
+                                    Grid.Column="0"
+                                    Height="100"
+                                    Margin="10"
+                                    VerticalAlignment="Center">
+                                    <Image.Style>
+                                        <Style TargetType="Image">
+                                            <Setter Property="Source" Value="{Binding OnePicture}" />
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                                
+                                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="15 15 0 0">
                                     <Label Content="guest username:" FontSize="13" VerticalAlignment="Center" />
                                     <TextBlock FontWeight="Bold"
                                 Margin="5,0,0,0"
@@ -183,15 +200,15 @@
                                 VerticalAlignment="Center"/>
                                 </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="15 0 0 0">
+                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1"  Margin="15 0 0 0">
                                     <Label Content="accommodation:" FontSize="13" VerticalAlignment="Center" />
                                     <TextBlock FontWeight="Bold"
                                 Margin="5,0,0,0"
                                 Text="{Binding AccommodationName}" 
                                 VerticalAlignment="Center"/>
                                 </StackPanel>
-                              
-                                <StackPanel Orientation="Horizontal" Grid.Row="2"  Margin="15 0 0 0">
+
+                                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1"  Margin="15 0 0 15">
                                     <Label Content="new date:" FontSize="13" VerticalAlignment="Center" />
                                     <TextBlock FontWeight="Bold"
                                     Margin="5,0,0,0"

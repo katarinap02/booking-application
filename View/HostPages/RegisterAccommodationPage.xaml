@@ -64,7 +64,7 @@
                 x:Name="ApartmentLabel"
                 Content="Apartment" Height="29" Width="66"
                 Margin="3 0 50 0"/>
-            <RadioButton x:Name="radioButtonHouse" GroupName="TypeButton"  VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding accommodationDTO.IsCheckedHous}"></RadioButton>
+            <RadioButton x:Name="radioButtonHouse" GroupName="TypeButton"  VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding accommodationDTO.IsCheckedHouse}"></RadioButton>
             <Label
                 x:Name="HouseLabel"
                 Content="House" Height="29" Width="45"

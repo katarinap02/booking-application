@@ -34,12 +34,17 @@ namespace BookingApp.View.HostPages
 
         public Host host { get; set; }
         public AccommodationReservationViewModel SelectedAccommodation { get; set; }
+
+        public GuestRateViewModel guestRateViewModel { get; set; }
+
+        public GuestRateRepository guestRateRepository { get; set; }
         public GuestRatePage(User user)
         {
             Accommodations = new ObservableCollection<AccommodationReservationViewModel>();
             accommodationRepository = new AccommodationRepository();
             accommodationReservationRepository = new AccommodationReservationRepository();
-            
+            guestRateRepository = new GuestRateRepository();
+            guestRateViewModel = new GuestRateViewModel();
             hostService = new HostService();
             host = hostService.GetByUsername(user.Username);
             DataContext = this;
@@ -57,6 +62,20 @@ namespace BookingApp.View.HostPages
                  Accommodations.Add(new AccommodationReservationViewModel(accommodation));
 
              }
+        }
+
+        private void Save_Click(object sender, RoutedEventArgs e)
+        {
+            if (SelectedAccommodation != null)
+            {
+                guestRateViewModel.ReservationId = SelectedAccommodation.Id;
+                guestRateViewModel.GuestId = SelectedAccommodation.GuestId;
+                guestRateViewModel.AccommodationId = SelectedAccommodation.AccommodationId;
+                guestRateRepository.Add(guestRateViewModel.toGuestRate());
+                MessageBox.Show("Guest rate added.");
+            }
+            Update();
+
         }
     }
 }

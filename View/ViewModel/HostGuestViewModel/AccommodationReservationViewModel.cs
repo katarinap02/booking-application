@@ -3,6 +3,7 @@ using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.Services;
 using BookingApp.View.GuestPages;
+using BookingApp.View.GuestTools;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -153,7 +154,22 @@ namespace BookingApp.View.ViewModel
             }
         }
 
-        
+        private string onePicture;
+        public string OnePicture
+        {
+            get { return onePicture; }
+            set
+            {
+                if (onePicture != value)
+                {
+
+                    onePicture = value;
+                    OnPropertyChanged("OnePicture");
+                }
+            }
+        }
+
+
         private HostService hostService = new HostService();
         private AccommodationService accommodationService = new AccommodationService();
         private UserService userService = new UserService();
@@ -167,6 +183,10 @@ namespace BookingApp.View.ViewModel
         public string GuestUsername => userService.GetById(GuestId).Username;
 
         public string AccommodationName => accommodationService.GetById(AccommodationId).Name;
+
+        public Accommodation acc => accommodationService.GetById(AccommodationId);
+        public PathConverter PathConverter { get; set; }
+
         private string GetHostUsername(HostService hostService, int hostId)
         {
             return hostService.GetById(hostId).Username;
@@ -188,6 +208,12 @@ namespace BookingApp.View.ViewModel
             name = ac.Name;
             city = ac.City;
             country = ac.Country;
+            PathConverter = new PathConverter();
+            if (acc.Pictures.Count != 0)
+                OnePicture = PathConverter.ConvertToRelativePath(acc.Pictures[0]);
+
+            else
+                OnePicture = "../../../Resources/Images/no_image.jpg";
 
 
         }
