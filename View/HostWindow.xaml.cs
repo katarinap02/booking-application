@@ -77,8 +77,9 @@ namespace BookingApp.View
             hostPageViewModel.Rating_Click(sender, e);
         }
 
-        
-
-
+        private void RateGuest_Click(object sender, RoutedEventArgs e)
+        {
+            hostPageViewModel.RateGuest_Click(sender, e);
+        }
     }
 }

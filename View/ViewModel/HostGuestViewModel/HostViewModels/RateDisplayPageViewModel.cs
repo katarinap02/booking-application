@@ -36,9 +36,9 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
         public RateDisplayPageViewModel(User user) {
             Accommodations = new ObservableCollection<AccommodationRateViewModel>();
             accommodationService = new AccommodationReservationService();
-            userService = new UserService();
             accommodationRateService = new AccommodationRateService();
             guestRateService = new GuestRateService();
+            userService = new UserService();
             hostService = new HostService();
             host = hostService.GetByUsername(user.Username);
             Update();

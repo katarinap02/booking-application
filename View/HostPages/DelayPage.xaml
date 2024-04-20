@@ -76,9 +76,9 @@
                 
             </Label>
             <StackPanel Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                <Button Content="Approve" Click="Approve_Click" FontSize="15" Width="90" Height="35" Margin="0 0 75 0">
+                <Button Content="Approve" Click="Approve_Click" FontSize="15" Width="90" Height="40" Margin="0 0 75 0">
                 </Button>
-                <Button Content="Reject" Click="Reject_Click"  FontSize="15" Width="90" Height="35" Margin="75 0 0 0">
+                <Button Content="Reject" Click="Reject_Click"  FontSize="15" Width="90" Height="40" Margin="75 0 0 0">
                     
                 </Button>
             </StackPanel>
@@ -106,7 +106,7 @@
             </Label>
         <ListView
 x:Name="AccommodationsListView"
-Margin="25,10,30,40"
+Margin="30,10,50,40"
 Padding="0"
 Background="Transparent"
 BorderThickness="0"
@@ -147,7 +147,7 @@ SelectionMode="Single">
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="15 0 0 0">
-                                <Label Content="accommodatio name:" FontSize="13" VerticalAlignment="Center" />
+                                <Label Content="accommodation name:" FontSize="13" VerticalAlignment="Center" />
                                 <TextBlock FontWeight="Bold"
                                 Margin="5,0,0,0"
                                 Text="{Binding ReservationName}" 
@@ -157,27 +157,18 @@ SelectionMode="Single">
                                 <Label Content="last date:" FontSize="13" VerticalAlignment="Center" />
                                 <TextBlock FontWeight="Bold"
                                 Margin="5,0,0,0"
-                                Text="{Binding StartLastDate}" 
+                                Text="{Binding DateLastString}" 
                                 VerticalAlignment="Center"/>
-                                <TextBlock FontWeight="Bold" Text="-" VerticalAlignment="Center"/>
-                                <TextBlock FontWeight="Bold"
-                                Margin="1,0,0,0"
-                                Text="{Binding EndLastDate}" 
-                                VerticalAlignment="Center"/>
+                                
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="3"  Margin="15 0 0 0">
                                 <Label Content="new date:" FontSize="13" VerticalAlignment="Center" />
-                                <TextBlock FontWeight="Bold"
-                                    Margin="5,0,0,0"
-                                    Text="{Binding StartDate}" 
-                                    VerticalAlignment="Center"/>
-                                    <TextBlock FontWeight="Bold" Text="-" VerticalAlignment="Center"/>
                                     <TextBlock FontWeight="Bold"
-                                    Margin="1,0,0,0"
-                                    Text="{Binding EndDate}" 
+                                    Margin="5,0,0,0"
+                                    Text="{Binding DateString}" 
                                     VerticalAlignment="Center"/>
 
-                                <Image VerticalAlignment="Center" Margin="30 20 0 20" Width="20">
+                                    <Image VerticalAlignment="Center" Margin="20 0 0 0" Width="20">
                                     <Image.Style>
                                         <Style TargetType="Image">
                                             <Setter Property="Source" Value="../../Resources/Images/blue_square.png"/>

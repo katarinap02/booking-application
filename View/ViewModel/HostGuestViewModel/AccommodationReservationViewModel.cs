@@ -156,10 +156,17 @@ namespace BookingApp.View.ViewModel
         
         private HostService hostService = new HostService();
         private AccommodationService accommodationService = new AccommodationService();
+        private UserService userService = new UserService();
 
         public string AccommodationDetails => Name + ", " + City + ", " + Country;  
         public string HostUsername => GetHostUsername(hostService, accommodationService.GetById(AccommodationId).HostId);
         public string DateRangeString => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
+
+        public string DateString => StartDate.ToString("MM/dd/yyyy") + " - " + EndDate.ToString("MM/dd/yyyy");
+
+        public string GuestUsername => userService.GetById(GuestId).Username;
+
+        public string AccommodationName => accommodationService.GetById(AccommodationId).Name;
         private string GetHostUsername(HostService hostService, int hostId)
         {
             return hostService.GetById(hostId).Username;

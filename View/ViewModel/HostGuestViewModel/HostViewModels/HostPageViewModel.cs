@@ -21,11 +21,7 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public ObservableCollection<AccommodationReservationViewModel> Accommodations { get; set; }
-        public AccommodationRepository accommodationRepository { get; set; }
-        public AccommodationReservationRepository accommodationReservationRepository { get; set; }
-
-        public AccommodationReservationViewModel SelectedAccommodation { get; set; }
+        
 
         public Frame HostFrame { get; set; }
 
@@ -35,9 +31,6 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
         public StackPanel RatingPanel {  get; set; }
 
         public HostPageViewModel(User user, Frame frame, Menu dock, StackPanel panel) {
-            Accommodations = new ObservableCollection<AccommodationReservationViewModel>();
-            accommodationRepository = new AccommodationRepository();
-            accommodationReservationRepository = new AccommodationReservationRepository();
             HostFrame = frame;
             LeftDock = dock;
             User = user;
@@ -51,12 +44,6 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
 
         public void Update()
         {
-          //  Accommodations.Clear();
-         //   foreach (AccommodationReservation accommodation in accommodationReservationRepository.GetGuestForRate())
-           // {
-           //     Accommodations.Add(new AccommodationReservationViewModel(accommodation));
-
-           // }
             FirstPage firstPage = new FirstPage(User);
             HostFrame.Navigate(firstPage);
         }
@@ -86,6 +73,14 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
         public void GuestRatings_Click(object sender, RoutedEventArgs e)
         {
             RateDisplayPage page = new RateDisplayPage(User);
+            HostFrame.Navigate(page);
+            LeftDock.Visibility = Visibility.Collapsed;
+            RatingPanel.Visibility = Visibility.Collapsed;
+        }
+
+        public void RateGuest_Click(object sender, RoutedEventArgs e)
+        {
+            GuestRatePage page = new GuestRatePage(User);
             HostFrame.Navigate(page);
             LeftDock.Visibility = Visibility.Collapsed;
             RatingPanel.Visibility = Visibility.Collapsed;
