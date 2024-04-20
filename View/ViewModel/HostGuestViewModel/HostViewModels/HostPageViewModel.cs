@@ -44,7 +44,7 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
 
         public void Update()
         {
-            FirstPage firstPage = new FirstPage(User);
+            FirstPage firstPage = new FirstPage(User, HostFrame, LeftDock, RatingPanel);
             HostFrame.Navigate(firstPage);
         }
 
@@ -57,7 +57,7 @@ namespace BookingApp.View.ViewModel.HostGuestViewModel.HostViewModels
 
         public void HomeButton_Click(object sender, RoutedEventArgs e)
         {
-            FirstPage firstPage = new FirstPage(User);
+            FirstPage firstPage = new FirstPage(User, HostFrame, LeftDock, RatingPanel);
             HostFrame.Navigate(firstPage);
             LeftDock.Visibility = Visibility.Collapsed;
             RatingPanel.Visibility = Visibility.Collapsed;

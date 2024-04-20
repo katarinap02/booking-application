@@ -58,7 +58,7 @@ namespace BookingApp.View
 
         private void Delay_Click(object sender, RoutedEventArgs e)
         {
-            hostPageViewModel.Delay_Click(sender, e); ;
+            hostPageViewModel.Delay_Click(sender, e); 
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
