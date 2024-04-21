@@ -2,6 +2,7 @@
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.WPF.ViewModel;
 using System;
@@ -29,9 +30,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         {
             User = user;
             Notifications = new ObservableCollection<string>();
-            DelayRequestService = new DelayRequestService();
+            DelayRequestService = new DelayRequestService(Injector.Injector.CreateInstance<IDelayRequestRepository>());
             HostService = new HostService();
-            AccommodationReservationService = new AccommodationReservationService();
+            AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
         }
         public void Update()
         {

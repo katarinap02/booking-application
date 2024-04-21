@@ -1,6 +1,8 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
@@ -29,15 +31,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public ReservationFinishViewModel(AccommodationViewModel selectedAccommodation, User user, Frame frame, ReservationInfoPage reservationInfoPage)
         {
 
-            AccommodationService = new AccommodationService();
-            AccommodationReservationService = new AccommodationReservationService();
+            //AccommodationService = new AccommodationService();
+            AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             SelectedAccommodation = selectedAccommodation;
-            AccommodationService = new AccommodationService();
+            AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             Reservation = new AccommodationReservationViewModel();
             ReservationInfoPage = reservationInfoPage;
             User = user;
             Frame = frame;
-            AccommodationReservationService = new AccommodationReservationService();
+            AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
 
         }
 

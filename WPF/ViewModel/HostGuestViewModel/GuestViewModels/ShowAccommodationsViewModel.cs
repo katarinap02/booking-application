@@ -1,6 +1,9 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.Injector;
 using BookingApp.Observer;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.View.Guest.GuestTools;
@@ -46,13 +49,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         {
 
             Accommodations = new ObservableCollection<AccommodationViewModel>();
-            AccommodationService = new AccommodationService();
-            AccommodationService.Subscribe(this);
+            AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
+           // AccommodationService.Subscribe(this);
             User = user;
             //AccommodationsDataGrid.ItemsSource = Accommodations;
 
             Frame = frame;
-            AccommodationReservationService = new AccommodationReservationService();
+            AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             HostService = new HostService();
             AccommodationsPage = accommodationsPage;
             AccommodationSearcher = new AccommodationSearcher(AccommodationService);

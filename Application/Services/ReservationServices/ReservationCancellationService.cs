@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,11 @@ namespace BookingApp.Application.Services.ReservationServices
 {
     public class ReservationCancellationService
     {
-        private readonly ReservationCancellationRepository ReservationCancellationRepository;
+        private readonly IReservationCancellationRepository ReservationCancellationRepository;
 
-        public ReservationCancellationService()
+        public ReservationCancellationService(IReservationCancellationRepository reservationCancellationRepository)
         {
-            ReservationCancellationRepository = new ReservationCancellationRepository();
+            ReservationCancellationRepository = reservationCancellationRepository;
         }
 
         public List<ReservationCancellation> GetAll()

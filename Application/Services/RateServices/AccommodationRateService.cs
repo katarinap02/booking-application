@@ -1,6 +1,8 @@
 ﻿using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Rates;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
 using BookingApp.Serializer;
 using System;
@@ -14,11 +16,12 @@ namespace BookingApp.Application.Services.RateServices
 {
     public class AccommodationRateService
     {
-        private readonly AccommodationRateRepository AccommodationRateRepository;
+        private readonly IAccommodationRateRepository AccommodationRateRepository;
         private AccommodationReservationService AccommodationReservationService;
-        public AccommodationRateService()
+        public AccommodationRateService(IAccommodationRateRepository accommodationRateRepository, IAccommodationReservationRepository accommodationReservationRepository, IDelayRequestRepository delayRequestRepository)
         {
-            AccommodationRateRepository = new AccommodationRateRepository();
+            AccommodationRateRepository = accommodationRateRepository;
+            AccommodationReservationService = new AccommodationReservationService(accommodationReservationRepository, delayRequestRepository);
 
         }
 
@@ -34,7 +37,7 @@ namespace BookingApp.Application.Services.RateServices
 
         public double GetAverageRate(int accommodationId)
         {
-            AccommodationReservationService = new AccommodationReservationService();
+            
             double sum = 0;
             double counter = 0;
             foreach (AccommodationReservation reservation in AccommodationReservationService.GetAll())

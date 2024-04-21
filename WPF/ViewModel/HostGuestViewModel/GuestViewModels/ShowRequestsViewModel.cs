@@ -1,6 +1,7 @@
 ﻿using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
@@ -28,7 +29,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         {
             User = user;
             Frame = frame;
-            DelayRequestService = new DelayRequestService();
+            DelayRequestService = new DelayRequestService(Injector.Injector.CreateInstance<IDelayRequestRepository>());
             Requests = new ObservableCollection<DelayRequestViewModel>();
             RequestStatusBox = page.requestStatusBox;
 

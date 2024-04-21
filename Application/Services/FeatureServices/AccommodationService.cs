@@ -8,16 +8,17 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 
 namespace BookingApp.Application.Services.FeatureServices
 {
     public class AccommodationService
     {
-        private readonly AccommodationRepository AccommodationRepository;
+        private readonly IAccommodationRepository AccommodationRepository;
 
-        public AccommodationService()
+        public AccommodationService(IAccommodationRepository accommodationRepository)
         {
-            AccommodationRepository = new AccommodationRepository();
+            this.AccommodationRepository = accommodationRepository;
         }
 
         public List<Accommodation> GetAll()
@@ -46,10 +47,10 @@ namespace BookingApp.Application.Services.FeatureServices
             return AccommodationRepository.GetById(id);
         }
 
-        public void Subscribe(IObserver observer)
+     /*  public void Subscribe(IObserver observer)
         {
             AccommodationRepository.AccommodationSubject.Subscribe(observer);
-        }
+        }*/
 
         public void FreeDateRange(Accommodation accommodation, AccommodationReservationViewModel selectedReservation)
         {

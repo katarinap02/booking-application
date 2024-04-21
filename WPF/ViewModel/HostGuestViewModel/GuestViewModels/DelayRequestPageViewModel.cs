@@ -13,6 +13,8 @@ using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -43,8 +45,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public DelayRequestPageViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, DelayRequestPage page)
         {
-            AccommodationService = new AccommodationService();
-            AccommodationReservationService = new AccommodationReservationService();
+            AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
+            AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             SelectedReservation = selectedReservation;
             StartDate = DateTime.Now;
             EndDate = DateTime.MaxValue;
@@ -53,7 +55,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ReservationCalendar = page.ReservationCalendar;
             reserveButton = page.reserveButton;
             DelayRequest = new DelayRequest();
-            DelayRequestService = new DelayRequestService();
+            DelayRequestService = new DelayRequestService(Injector.Injector.CreateInstance<IDelayRequestRepository>());
             CalendarConfigurator = new CalendarConfigurator(ReservationCalendar);
             CalendarConfigurator.ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
         }

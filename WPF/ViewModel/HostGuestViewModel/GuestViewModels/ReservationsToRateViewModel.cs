@@ -4,6 +4,9 @@ using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Rates;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
@@ -38,9 +41,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Frame = frame;
             // SelectedReservation = reservation;
             Reservations = new ObservableCollection<AccommodationReservationViewModel>();
-            AccommodationRateService = new AccommodationRateService();
-            AccommodationService = new AccommodationService();
-            AccommodationReservationService = new AccommodationReservationService();
+            AccommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+            AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
+            AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             SelectedReservation = selectedReservation;
 
 

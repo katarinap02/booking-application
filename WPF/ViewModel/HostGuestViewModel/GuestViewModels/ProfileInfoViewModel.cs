@@ -2,6 +2,8 @@
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.View.GuestPages;
@@ -37,8 +39,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Frame = frame;
             User = user;
             Reservations = new ObservableCollection<AccommodationReservationViewModel>();
-            AccommodationReservationService = new AccommodationReservationService();
-            AccommodationService = new AccommodationService();
+            AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+            AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             Status = "guest";
             TotalReservations = GetTotalReservations(AccommodationReservationService);
             TotalYearReservations = GetTotalReservationsYear(AccommodationReservationService);

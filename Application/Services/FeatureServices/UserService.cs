@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Repository;
 using BookingApp.Serializer;
 using System;
@@ -11,11 +12,11 @@ namespace BookingApp.Application.Services.FeatureServices
 {
     public class UserService
     {
-        private readonly UserRepository UserRepository;
+        private readonly IUserRepository UserRepository;
 
-        public UserService()
+        public UserService(IUserRepository userRepository)
         {
-            UserRepository = new UserRepository();
+            this.UserRepository = userRepository;
         }
 
         public User GetByUsername(string username)

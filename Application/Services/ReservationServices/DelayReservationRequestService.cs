@@ -7,16 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 
 namespace BookingApp.Application.Services.ReservationServices
 {
     public class DelayRequestService
     {
-        private readonly DelayRequestRepository DelayRequestRepository;
+        private readonly IDelayRequestRepository DelayRequestRepository;
 
-        public DelayRequestService()
+        public DelayRequestService(IDelayRequestRepository delayRequest)
         {
-            DelayRequestRepository = new DelayRequestRepository();
+            this.DelayRequestRepository = delayRequest;
         }
 
         public List<DelayRequest> GetAll()
