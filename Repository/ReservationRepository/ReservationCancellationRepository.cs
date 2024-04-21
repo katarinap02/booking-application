@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.Serializer;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace BookingApp.Repository
 {
-    public class ReservationCancellationRepository
+    public class ReservationCancellationRepository : IReservationCancellationRepository
     {
         private const string FilePath = "../../../Resources/Data/reservation_cancellations.csv";
 
