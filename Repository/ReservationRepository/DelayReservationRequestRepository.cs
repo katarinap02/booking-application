@@ -1,10 +1,10 @@
-﻿using BookingApp.ViewModel;
-using BookingApp.Model;
+﻿using BookingApp.WPF.ViewModel;
 using BookingApp.Observer;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BookingApp.Domain.Model.Reservations;
 
 namespace BookingApp.Repository
 {

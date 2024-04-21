@@ -1,0 +1,179 @@
+﻿<Window x:Class="BookingApp.View.TouristWindows.TouristWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        
+        xmlns:local="clr-namespace:BookingApp.View.TouristWindows" xmlns:dto="clr-namespace:BookingApp.WPF.ViewModel" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="TouristWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <!-- Style for buttons -->
+        <Style x:Key="RoundedButtonStyle" TargetType="Button">
+            <Setter Property="Background" Value="#4C5FD9"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5"
+                                Padding="{TemplateBinding Padding}"
+                                SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" Direction="270" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#1976D2"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="RoundedButtonStyle2" TargetType="Button">
+            <Setter Property="Background" Value="#4C5FD9"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="BorderThickness" Value="0"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                        BorderBrush="{TemplateBinding BorderBrush}"
+                        BorderThickness="{TemplateBinding BorderThickness}"
+                        CornerRadius="20"
+                        Padding="{TemplateBinding Padding}"
+                        SnapsToDevicePixels="True">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" Direction="270" Opacity="0.6"/>
+                    <!-- Increased ShadowDepth and Opacity -->
+                </Setter.Value>
+            </Setter>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" Value="#0D5BAC"/>
+                    <Setter Property="Effect">
+                        <Setter.Value>
+                            <DropShadowEffect ShadowDepth="5" Direction="270" Opacity="0.5"/>
+                            <!-- Changed Effect on MouseOver -->
+                        </Setter.Value>
+                    </Setter>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="NotificationButtonStyle" TargetType="Button">
+            <Setter Property="Padding" Value="10"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <Border x:Name="Border"
+                                Background="{TemplateBinding Background}"
+                                BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                CornerRadius="5"
+                                SnapsToDevicePixels="True">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" Direction="270" Opacity="0.5"/>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="335"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <StackPanel Grid.Column="0" Background="{StaticResource TouristBackgroundColor2}">
+            <Border BorderBrush="Black" BorderThickness="0,0,0,2">
+                <Grid Height="80">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="75"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0"
+                                Orientation="Horizontal">
+                        <Image
+                               Width="75"
+                               Source="/Resources/Images/user.png"
+                               HorizontalAlignment="Left"/>
+                        <Label Content="{Binding UserName}"
+                               VerticalAlignment="Center"
+                               FontWeight="Bold"
+                               FontSize="24"/>
+
+                    </StackPanel>
+                </Grid>
+            </Border>
+            
+            <Button Content="All Tours"
+                    x:Name="AllToursButton"
+                    Style="{StaticResource RoundedButtonStyle2}"
+                    Height="70"
+                    FontSize="36"
+                    Margin="15"
+                    Click="AllToursButton_Click"/>
+            <Button Content="My Tours"
+                    x:Name="MyToursButton"
+                    Style="{StaticResource RoundedButtonStyle2}"
+                    Height="70"
+                    FontSize="36"
+                    Margin="15"
+                    Click="MyToursButton_Click"/>
+            <Button Content="Ended Tours"
+                    x:Name="EndedToursButton"
+                    Style="{StaticResource RoundedButtonStyle2}"
+                    Height="70"
+                    FontSize="36"
+                    Margin="15"
+                    Click="EndedToursButton_Click"/>
+            <Button Content="Requested Tours"
+                    x:Name="RequestedToursButton"
+                    Style="{StaticResource RoundedButtonStyle2}"
+                    Height="70"
+                    FontSize="36"
+                    Margin="15"/>
+            <Button Content="Vouchers"
+                    x:Name="VouchersButton"
+                    Style="{StaticResource RoundedButtonStyle2}"
+                    Height="70"
+                    FontSize="36"
+                    Margin="15"
+                    Click="VouchersButton_Click"/>
+            <Button Content="Log out"
+                    x:Name="LogOutButton"
+                    Style="{StaticResource RoundedButtonStyle2}"
+                    Height="70"
+                    FontSize="36"
+                    Margin="15"
+                    Click="LogoutButton_Click"/>
+        </StackPanel>
+        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+    </Grid>
+</Window>

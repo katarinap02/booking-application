@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+
     <None Remove="Resources\Images\add.png" />
     <None Remove="Resources\Images\back_arrow.png" />
     <None Remove="Resources\Images\blue_square.png" />
@@ -33,75 +34,80 @@
     <None Remove="View\TouristWindows\pdf.png" />
     <None Remove="View\TouristWindows\searchtourist.png" />
     <None Remove="View\TouristWindows\user.png" />
+
   </ItemGroup>
 
   <ItemGroup>
-    <Page Remove="View\Guest\GuestThemes\DarkTheme.xaml" />
-    <Page Remove="View\Guest\GuestThemes\LightTheme.xaml" />
+    <Page Remove="WPF\View\Guest\GuestThemes\DarkTheme.xaml" />
+    <Page Remove="WPF\View\Guest\GuestThemes\LightTheme.xaml" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Resources\Images\add.png">
+    <Content Include="WPF\Resources\Images\add.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\back_arrow.png">
+    <Content Include="WPF\Resources\Images\back_arrow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\blue_square.png">
+    <Content Include="WPF\Resources\Images\blue_square.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\cottage.jpg">
+    <Content Include="WPF\Resources\Images\cottage.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\delete.png">
+    <Content Include="WPF\Resources\Images\delete.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\down_right_arrow.png">
+    <Content Include="WPF\Resources\Images\down_right_arrow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\edit.png">
+    <Content Include="WPF\Resources\Images\edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\example.jpg">
+    <Content Include="WPF\Resources\Images\example.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\home.png">
+    <Content Include="WPF\Resources\Images\home.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\house.jpg">
+    <Content Include="WPF\Resources\Images\house.jpg">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\Istanbul1.jpg">
+    <Content Include="WPF\Resources\Images\Istanbul1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\menu_item1.png">
+    <Content Include="WPF\Resources\Images\menu_item1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\notification.png">
+    <Content Include="WPF\Resources\Images\notification.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\no_image.jpg">
+    <Content Include="WPF\Resources\Images\no_image.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\paris1.jpg">
+    <Content Include="WPF\Resources\Images\paris1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\red_dot.png">
+    <Content Include="WPF\Resources\Images\red_dot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\star.png">
+    <Content Include="WPF\Resources\Images\star.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\taj_mahal1.jpg">
+
+    <Content Include="WPF\Resources\Images\taj_mahal1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\urgent.png">
+
+
+    <Content Include="WPF\Resources\Images\urgent.png">
+
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\video-camera.png">
+    <Content Include="WPF\Resources\Images\video-camera.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
-    <Content Include="Resources\Images\view.png">
+    <Content Include="WPF\Resources\Images\view.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -116,18 +122,23 @@
 
   <ItemGroup>
 
-    <Resource Include="View\Guest\GuestThemes\DarkTheme.xaml" />
-    <Resource Include="View\Guest\GuestThemes\LightTheme.xaml">
+    <Resource Include="WPF\View\Guest\GuestThemes\DarkTheme.xaml" />
+    <Resource Include="WPF\View\Guest\GuestThemes\LightTheme.xaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\Images\notificationtourist.png" />
-    <Resource Include="Resources\Images\pdf.png" />
-    <Resource Include="Resources\Images\searchtourist.png" />
-    <Resource Include="Resources\Images\user.png" />
+    <Resource Include="WPF\Resources\Images\notificationtourist.png" />
+    <Resource Include="WPF\Resources\Images\pdf.png" />
+    <Resource Include="WPF\Resources\Images\searchtourist.png" />
+    <Resource Include="WPF\Resources\Images\user.png" />
   </ItemGroup>
 
   <ItemGroup>
     <EditorConfigFiles Remove="E:\FTN\3ev\sims\project\sims-ra-2024-group-1-team-b\Services\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="WPF\ViewModel\HostGuestViewModel\GuestViewModels\" />
+    <Folder Include="WPF\ViewModel\HostGuestViewModel\HostViewModels\Commands\" />
   </ItemGroup>
 
 </Project>

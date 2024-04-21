@@ -1,5 +1,6 @@
-﻿using BookingApp.Model;
-using BookingApp.Model.Features;
+﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model;
+using BookingApp.Domain.Model.Features;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
