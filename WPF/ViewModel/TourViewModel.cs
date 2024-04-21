@@ -8,7 +8,7 @@ using System.Windows;
 using System.Windows.Media;
 using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.RateServices;
-using BookingApp.Model;
+using BookingApp.Domain.Model.Features;
 using BookingApp.Repository;
 using BookingApp.View.TouristWindows;
 

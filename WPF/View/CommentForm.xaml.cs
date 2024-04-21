@@ -1,4 +1,5 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.Domain.Model;
+using BookingApp.Domain.Model.Features;
 using BookingApp.Repository;
 using System;
 using System.ComponentModel;

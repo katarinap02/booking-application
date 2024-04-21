@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Rates
 {
     public class GuideRate : ISerializable
     {
@@ -13,11 +13,11 @@ namespace BookingApp.Model
         public int TouristId { get; set; }
         public int GuideId { get; set; }
         public int TourId { get; set; }
-        public int Knowledge {  get; set; }
+        public int Knowledge { get; set; }
         public int Language { get; set; }
-        public int TourInterest {  get; set; }
-        public string AdditionalComment {  get; set; }
-        public List<string> Pictures {  get; set; }
+        public int TourInterest { get; set; }
+        public string AdditionalComment { get; set; }
+        public List<string> Pictures { get; set; }
 
         public GuideRate() { }
         public GuideRate(int id, int touristId, int tourId, int guideId, int knowledge, int language, int tourinterest, string additionalComment, List<string> pictures)
@@ -37,12 +37,12 @@ namespace BookingApp.Model
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            TouristId= Convert.ToInt32(values[1]);
+            TouristId = Convert.ToInt32(values[1]);
             TourId = Convert.ToInt32(values[2]);
-            GuideId= Convert.ToInt32(values[3]);
+            GuideId = Convert.ToInt32(values[3]);
             Knowledge = Convert.ToInt32(values[4]);
             Language = Convert.ToInt32(values[5]);
-            TourInterest= Convert.ToInt32(values[6]);
+            TourInterest = Convert.ToInt32(values[6]);
             AdditionalComment = values[7];
             if (!string.IsNullOrEmpty(values[8]))
             {

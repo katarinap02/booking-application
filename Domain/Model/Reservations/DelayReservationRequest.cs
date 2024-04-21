@@ -5,7 +5,7 @@ using System.Linq;
 using System.Windows.Controls;
 using System.Windows.Documents;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Reservations
 {
     public enum RequestStatus { PENDING, APPROVED, REJECTED }
     public class DelayRequest : ISerializable
@@ -28,8 +28,9 @@ namespace BookingApp.Model
         public string Comment { get; set; }
 
         public DateTime RepliedDate { get; set; }
-        public DelayRequest() { 
-        
+        public DelayRequest()
+        {
+
             Status = RequestStatus.PENDING;
             RepliedDate = DateTime.Now;
         }
@@ -47,7 +48,7 @@ namespace BookingApp.Model
             RepliedDate = repliedDate;
             StartLastDate = startLastDate;
             EndLastDate = endLastDate;
-          
+
         }
 
         public string[] ToCSV()
@@ -74,15 +75,15 @@ namespace BookingApp.Model
             Id = Convert.ToInt32(values[0]);
             GuestId = Convert.ToInt32(values[1]);
             HostId = Convert.ToInt32(values[2]);
-            ReservationId= Convert.ToInt32(values[3]);
+            ReservationId = Convert.ToInt32(values[3]);
             string[] dateParts = values[4].Split('-');
             StartDate = DateTime.Parse(dateParts[0]);
             EndDate = DateTime.Parse(dateParts[1]);
             Comment = values[5];
             Status = StatusFromCsv(values[6]);
             RepliedDate = DateTime.Parse(values[7]);
-            StartLastDate= DateTime.Parse(values[8]);
-            EndLastDate= DateTime.Parse(values[9]);
+            StartLastDate = DateTime.Parse(values[8]);
+            EndLastDate = DateTime.Parse(values[9]);
 
         }
 
@@ -90,10 +91,10 @@ namespace BookingApp.Model
         {
             RequestStatus status = RequestStatus.PENDING;
 
-            switch(value)
+            switch (value)
             {
                 case "PENDING":
-                    status = RequestStatus.PENDING; 
+                    status = RequestStatus.PENDING;
                     break;
                 case "APPROVED":
                     status = RequestStatus.APPROVED;

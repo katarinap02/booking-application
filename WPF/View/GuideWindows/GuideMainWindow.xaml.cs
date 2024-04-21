@@ -1,5 +1,4 @@
-﻿using BookingApp.Model;
-using BookingApp.Repository;
+﻿using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,6 +7,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using BookingApp.WPF.ViewModel;
+using BookingApp.Domain.Model.Features;
 
 namespace BookingApp.View.GuideWindows
 {

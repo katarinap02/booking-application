@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Features
 {
     public class GuidedTour : ISerializable
     {
@@ -20,8 +20,8 @@ namespace BookingApp.Model
             TourId = tourId;
         }
 
-        public GuidedTour(User guide, Tour tour) 
-        { 
+        public GuidedTour(User guide, Tour tour)
+        {
             GuideId = guide.Id;
             TourId = tour.Id;
         }

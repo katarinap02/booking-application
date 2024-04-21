@@ -1,4 +1,4 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using System;
 using System.Collections.Generic;

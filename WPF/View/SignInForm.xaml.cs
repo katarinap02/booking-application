@@ -1,4 +1,4 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Repository;
 using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;

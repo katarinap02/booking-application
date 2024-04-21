@@ -1,6 +1,7 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
-using BookingApp.Model;
+using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Reservations;
 using BookingApp.Observer;
 using System;
 using System.Collections.Generic;

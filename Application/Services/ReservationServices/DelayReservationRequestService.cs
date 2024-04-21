@@ -1,5 +1,4 @@
 ﻿using BookingApp.WPF.ViewModel;
-using BookingApp.Model;
 using BookingApp.Repository;
 using BookingApp.Serializer;
 using System;
@@ -7,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookingApp.Domain.Model.Reservations;
 
 namespace BookingApp.Application.Services.ReservationServices
 {

@@ -5,14 +5,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Features
 {
     public class Host : User, ISerializable
     {
         public bool IsSuperHost;
         public double RateAverage;
         public int RateCount;
-        public Host() {
+        public Host()
+        {
             Type = UserType.host;
         }
 
@@ -40,8 +41,8 @@ namespace BookingApp.Model
             IsSuperHost = Convert.ToBoolean(values[3]);
             RateCount = Convert.ToInt32(values[4]);
             RateAverage = Convert.ToDouble(values[5]);
-            
-            
+
+
         }
     }
 }

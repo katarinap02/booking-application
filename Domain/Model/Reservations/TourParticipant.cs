@@ -1,7 +1,7 @@
 ﻿using BookingApp.Serializer;
 using System;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Reservations
 {
     public class TourParticipant : ISerializable
     {
@@ -38,7 +38,7 @@ namespace BookingApp.Model
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            ReservationId= Convert.ToInt32(values[1]);
+            ReservationId = Convert.ToInt32(values[1]);
             Name = values[2];
             LastName = values[3];
             Years = Convert.ToInt32(values[4]);
@@ -48,7 +48,7 @@ namespace BookingApp.Model
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), ReservationId.ToString(), Name, LastName, Years.ToString(), HasJoinedTour.ToString(), JoinedCheckpointIndex.ToString()};
+            string[] csvValues = { Id.ToString(), ReservationId.ToString(), Name, LastName, Years.ToString(), HasJoinedTour.ToString(), JoinedCheckpointIndex.ToString() };
             return csvValues;
         }
     }

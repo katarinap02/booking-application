@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Reservations
 {
     public class TourReservation : ISerializable
     {
@@ -44,7 +44,7 @@ namespace BookingApp.Model
         {
             string participantIds = ParticipantIds != null ? string.Join(",", ParticipantIds) : "";
 
-            string[] csValue = { Id.ToString(), TourId.ToString(), TouristId.ToString(), participantIds};
+            string[] csValue = { Id.ToString(), TourId.ToString(), TouristId.ToString(), participantIds };
 
             return csValue;
         }

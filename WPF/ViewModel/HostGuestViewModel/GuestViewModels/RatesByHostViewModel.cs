@@ -1,5 +1,6 @@
 ﻿using BookingApp.Application.Services.RateServices;
-using BookingApp.Model;
+using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Rates;
 using BookingApp.Observer;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;

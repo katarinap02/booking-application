@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BookingApp.Serializer;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Rates
 {
     public class GuestRate : ISerializable
     {
@@ -15,13 +15,13 @@ namespace BookingApp.Model
 
         public int AcommodationId { get; set; } //dogovoriti se da li cuvamo id ili celog user-a
 
-        public int Cleanliness {  get; set; } // staviti ogranicenje od 1 do 5
+        public int Cleanliness { get; set; } // staviti ogranicenje od 1 do 5
 
-        public int RulesFollowing {  get; set; } // staviti ogranicenje od 1 do 5
+        public int RulesFollowing { get; set; } // staviti ogranicenje od 1 do 5
 
         public string AdditionalComment { get; set; } //mozda 
 
-        
+
 
 
         public GuestRate() { }
@@ -34,7 +34,7 @@ namespace BookingApp.Model
             Cleanliness = cleanliness;
             RulesFollowing = rulesFollowing;
             AdditionalComment = additionalComment;
-           
+
         }
 
         public void FromCSV(string[] values)
@@ -45,8 +45,8 @@ namespace BookingApp.Model
             Cleanliness = Convert.ToInt32(values[3]);
             RulesFollowing = Convert.ToInt32(values[4]);
             AdditionalComment = values[5];
-            
-            
+
+
         }
 
         public string[] ToCSV()

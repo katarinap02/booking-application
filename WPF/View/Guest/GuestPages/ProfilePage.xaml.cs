@@ -15,9 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.Observer;
-using BookingApp.Model;
 using System.Security.Cryptography;
 using BookingApp.Application.Services;
+using BookingApp.Domain.Model.Features;
 
 namespace BookingApp.View.GuestPages
 {

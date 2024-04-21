@@ -1,4 +1,6 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.Model.Reservations;
 using BookingApp.WPF.View.Guest.GuestTools;
 using System;
 using System.Collections.Generic;

@@ -1,7 +1,8 @@
-﻿using BookingApp.Serializer;
+﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Serializer;
 using System;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model
 {
     public class Comment : ISerializable
     {

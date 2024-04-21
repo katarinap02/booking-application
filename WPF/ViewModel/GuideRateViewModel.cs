@@ -1,5 +1,5 @@
 ﻿using BookingApp.Application.Services.RateServices;
-using BookingApp.Model;
+using BookingApp.Domain.Model.Rates;
 using BookingApp.WPF.ViewModel;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;

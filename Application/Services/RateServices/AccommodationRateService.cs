@@ -1,5 +1,6 @@
 ﻿using BookingApp.Application.Services.ReservationServices;
-using BookingApp.Model;
+using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.Model.Reservations;
 using BookingApp.Repository;
 using BookingApp.Serializer;
 using GalaSoft.MvvmLight.Messaging;

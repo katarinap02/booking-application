@@ -6,7 +6,7 @@ using System.Globalization;
 using System.Linq;
 using System.Windows.Input;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Features
 {
     public enum TourStatus { inPreparation, Active, Finnished, Canceled, gotGuide }
     public class Tour : ISerializable
@@ -80,7 +80,7 @@ namespace BookingApp.Model
             }
 
             string pictureString = "";
-            if(Pictures != null)
+            if (Pictures != null)
             {
                 pictureString = string.Join(",", Pictures);
             }

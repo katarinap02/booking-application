@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Features
 {
     public enum NotificationType { RateTour, TourCanceled, GuideQuit, JoinedTour }
     public class TouristNotification : ISerializable

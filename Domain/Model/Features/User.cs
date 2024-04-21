@@ -1,9 +1,9 @@
 ﻿using BookingApp.Serializer;
 using System;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Features
 {
-    public enum UserType{ host, tourist, guest, guide }
+    public enum UserType { host, tourist, guest, guide }
 
     public class User : ISerializable
     {
@@ -33,16 +33,19 @@ namespace BookingApp.Model
             Username = values[1];
             Password = values[2];
             if (values[3].Equals("host"))
-            { 
+            {
                 Type = UserType.host;
             }
-            else if (values[3].Equals("tourist")){
+            else if (values[3].Equals("tourist"))
+            {
                 Type = UserType.tourist;
             }
-            else if (values[3].Equals("guest")){
+            else if (values[3].Equals("guest"))
+            {
                 Type = UserType.guest;
             }
-            else if (values[3].Equals("guide")){
+            else if (values[3].Equals("guide"))
+            {
                 Type = UserType.guide;
             }
         }

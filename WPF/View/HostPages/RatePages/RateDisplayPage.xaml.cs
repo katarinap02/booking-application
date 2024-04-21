@@ -1,5 +1,4 @@
-﻿using BookingApp.Model;
-using BookingApp.Observer;
+﻿using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.Application.Services;
 using System;
@@ -19,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels;
+using BookingApp.Domain.Model.Features;
 
 namespace BookingApp.View.HostPages.RatePages
 {

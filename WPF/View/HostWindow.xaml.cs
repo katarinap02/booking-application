@@ -1,5 +1,4 @@
-﻿using BookingApp.Model;
-using BookingApp.Observer;
+﻿using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.View.GuestWindows;
 using BookingApp.View.HostPages;
@@ -21,6 +20,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels;
+using BookingApp.Domain.Model.Features;
 
 namespace BookingApp.View
 {

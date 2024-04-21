@@ -1,5 +1,4 @@
-﻿using BookingApp.Model;
-using BookingApp.Repository;
+﻿using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +6,8 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using BookingApp.WPF.ViewModel;
+using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Reservations;
 
 namespace BookingApp.Application.Services.FeatureServices
 {

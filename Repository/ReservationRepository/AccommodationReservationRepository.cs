@@ -1,10 +1,11 @@
-﻿using BookingApp.Model;
-using BookingApp.Observer;
+﻿using BookingApp.Observer;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
+using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.Model.Reservations;
 
 namespace BookingApp.Repository
 {

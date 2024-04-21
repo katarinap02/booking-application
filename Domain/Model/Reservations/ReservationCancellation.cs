@@ -5,7 +5,7 @@ using BookingApp.Serializer;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Reservations
 {
     public class ReservationCancellation : ISerializable
     {
@@ -34,7 +34,7 @@ namespace BookingApp.Model
 
         public string[] ToCSV()
         {
-            string[] csvValues = { GuestId.ToString(), HostId.ToString(), ReservationId.ToString(), CancellationDate.ToString(),  StartDate.ToString(), EndDate.ToString()};
+            string[] csvValues = { GuestId.ToString(), HostId.ToString(), ReservationId.ToString(), CancellationDate.ToString(), StartDate.ToString(), EndDate.ToString() };
             return csvValues;
         }
 

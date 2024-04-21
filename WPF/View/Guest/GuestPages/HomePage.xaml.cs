@@ -1,5 +1,4 @@
-﻿using BookingApp.Model;
-using BookingApp.Repository;
+﻿using BookingApp.Repository;
 using BookingApp.Application.Services;
 using BookingApp.View.GuideWindows;
 using System;
@@ -16,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BookingApp.Domain.Model.Features;
 
 namespace BookingApp.View.GuestPages
 {

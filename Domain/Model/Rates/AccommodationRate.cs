@@ -5,7 +5,7 @@ using BookingApp.Serializer;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Rates
 {
     public class AccommodationRate : ISerializable
     {
@@ -57,9 +57,9 @@ namespace BookingApp.Model
             return csvValues;
         }
 
-        private List<String> MakeListPictures(string value)
+        private List<string> MakeListPictures(string value)
         {
-            List<String> list = new List<String>();
+            List<string> list = new List<string>();
             if (!string.IsNullOrEmpty(value))
             {
                 list = value.Split(",").ToList();
@@ -78,6 +78,6 @@ namespace BookingApp.Model
             return PictureString;
         }
 
-       
+
     }
 }

@@ -5,12 +5,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using BookingApp.Model;
 using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
 using System.Windows.Media.Imaging;
 using BookingApp.WPF.ViewModel;
+using BookingApp.Domain.Model.Features;
 
 namespace BookingApp.View
 {

@@ -1,5 +1,5 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
-using BookingApp.Model;
+using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;

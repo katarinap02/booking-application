@@ -1,6 +1,6 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
-using BookingApp.Model;
+using BookingApp.Domain.Model.Features;
 using BookingApp.Observer;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.View.Guest.GuestTools;

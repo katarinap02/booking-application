@@ -6,11 +6,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-namespace BookingApp.Model
+namespace BookingApp.Domain.Model.Reservations
 {
     public class AccommodationReservation : ISerializable
     {
-        public int Id {  get; set; }
+        public int Id { get; set; }
         public int GuestId { get; set; }
         public int AccommodationId { get; set; }
         public DateTime StartDate { get; set; }
@@ -18,14 +18,14 @@ namespace BookingApp.Model
         public string DateRange => StartDate.ToString() + "-" + EndDate.ToString();
 
         public int NumberOfPeople { get; set; }
-        
-        public string Name { get; set; }    
-        public string City { get; set; }    
+
+        public string Name { get; set; }
+        public string City { get; set; }
         public string Country { get; set; }
 
 
         public AccommodationReservation() { }
-        
+
         public AccommodationReservation(int guestId, int accommodationId, DateTime startDate, DateTime endDate, int numberOfPeople, string name, string city, string country)
         {
             GuestId = guestId;
@@ -58,7 +58,7 @@ namespace BookingApp.Model
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            GuestId = Convert.ToInt32(values[1]);   
+            GuestId = Convert.ToInt32(values[1]);
             AccommodationId = Convert.ToInt32(values[2]);
             string[] dateParts = values[3].Split('-');
             StartDate = DateTime.Parse(dateParts[0]);

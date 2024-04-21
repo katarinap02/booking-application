@@ -9,7 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
-using BookingApp.Model;
+using BookingApp.Domain.Model.Reservations;
 using BookingApp.Observer;
 using BookingApp.View.GuestPages;
 

@@ -1,10 +1,10 @@
-﻿using BookingApp.Model;
-using BookingApp.Repository;
+﻿using BookingApp.Repository;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using BookingApp.WPF.ViewModel;
+using BookingApp.Domain.Model.Reservations;
 
 namespace BookingApp.View.GuideWindows
 {
