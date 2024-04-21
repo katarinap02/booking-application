@@ -6,9 +6,10 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Media;
+using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Application.Services.RateServices;
 using BookingApp.Model;
 using BookingApp.Repository;
-using BookingApp.Services;
 using BookingApp.View.TouristWindows;
 
 namespace BookingApp.WPF.ViewModel

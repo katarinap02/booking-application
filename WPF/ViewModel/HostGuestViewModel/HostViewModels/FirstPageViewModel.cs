@@ -1,6 +1,5 @@
 ﻿using BookingApp.Model;
 using BookingApp.Repository;
-using BookingApp.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +9,7 @@ using System.Threading.Tasks;
 using System.ComponentModel;
 using BookingApp.Observer;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
+using BookingApp.Application.Services.FeatureServices;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {

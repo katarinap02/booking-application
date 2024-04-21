@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using BookingApp.WPF.ViewModel;
 
-namespace BookingApp.Services
+namespace BookingApp.Application.Services.FeatureServices
 {
     public class TouristService
     {
@@ -52,7 +52,8 @@ namespace BookingApp.Services
         public List<Tour> ToTour(List<TourViewModel> toursViewModel)
         {
             List<Tour> tours = new List<Tour>();
-            foreach(TourViewModel tourViewModel in toursViewModel){
+            foreach (TourViewModel tourViewModel in toursViewModel)
+            {
                 tours.Add(tourViewModel.ToTour());
             }
             return tours;
@@ -93,10 +94,10 @@ namespace BookingApp.Services
             foreach (var reservation in reservations)
             {
                 List<TourParticipant> joinedTourParticipants = tourparticipantRepository.GetAllJoinedParticipantsByReservation(reservation.Id);
-                foreach(var participant in joinedTourParticipants)
+                foreach (var participant in joinedTourParticipants)
                 {
                     // ako se sad prikljucio onda cemo prikazati u notifitikaciji
-                    if(participant.JoinedCheckpointIndex == notification.CurrentCheckpoint)
+                    if (participant.JoinedCheckpointIndex == notification.CurrentCheckpoint)
                     {
                         nowJoinedParticipantNames.Add(participant.LastName + " " + participant.Name);
                     }

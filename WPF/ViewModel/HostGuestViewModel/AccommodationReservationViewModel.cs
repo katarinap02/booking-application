@@ -1,7 +1,7 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Repository;
-using BookingApp.Services;
 using BookingApp.View.GuestPages;
 using System;
 using System.Collections.Generic;

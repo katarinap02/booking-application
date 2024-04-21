@@ -7,9 +7,10 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Controls;
 using System.Windows.Input;
+using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Model;
 using BookingApp.Observer;
-using BookingApp.Services;
 using BookingApp.View.GuestPages;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel

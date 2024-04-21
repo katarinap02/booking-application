@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Services
+namespace BookingApp.Application.Services.RateServices
 {
     class GuideRateService
     {
@@ -42,11 +42,11 @@ namespace BookingApp.Services
             }
             return false;
         }
-        
+
         public List<GuideRateViewModel> getRatesByTour(int tour_id)
         {
-            List < GuideRateViewModel > rates = new List < GuideRateViewModel >();
-            List <GuideRate> guideRates = guideRateRepository.getRatesForTour(tour_id);
+            List<GuideRateViewModel> rates = new List<GuideRateViewModel>();
+            List<GuideRate> guideRates = guideRateRepository.getRatesForTour(tour_id);
             foreach (var guideRate in guideRates)
             {
                 rates.Add(new GuideRateViewModel(guideRate));

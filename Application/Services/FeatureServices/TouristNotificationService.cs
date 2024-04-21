@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Services
+namespace BookingApp.Application.Services.FeatureServices
 {
     public class TouristNotificationService
     {

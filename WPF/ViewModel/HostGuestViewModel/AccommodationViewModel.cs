@@ -8,12 +8,11 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using BookingApp.Application.Services.RateServices;
 using BookingApp.Model;
 using BookingApp.Observer;
 
 using BookingApp.Repository;
-
-using BookingApp.Services;
 using BookingApp.View.GuestPages;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel

@@ -1,6 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.Repository;
-using BookingApp.Services;
+using BookingApp.Application.Services;
 using System;
 using System.Collections;
 using System.Collections.Generic;

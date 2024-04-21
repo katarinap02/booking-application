@@ -1,5 +1,6 @@
-﻿using BookingApp.Model;
-using BookingApp.Services;
+﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Application.Services.ReservationServices;
+using BookingApp.Model;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;

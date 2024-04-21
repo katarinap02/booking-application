@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace BookingApp.Services
+namespace BookingApp.Application.Services.FeatureServices
 {
     public class HostService
     {
@@ -16,7 +16,8 @@ namespace BookingApp.Services
         public Subject hostSubject;
         private readonly AccommodationRateRepository accommodationRateRepository;
 
-        public HostService() {
+        public HostService()
+        {
             hostRepository = new HostRepository();
             hostSubject = new Subject();
             accommodationRateRepository = new AccommodationRateRepository();
@@ -42,7 +43,7 @@ namespace BookingApp.Services
 
         public void BecomeSuperHost(Host host)
         {
-            
+
             int counter = 0;
             double gradeSum = 0;
             foreach (AccommodationRate rate in accommodationRateRepository.GetAll())
@@ -50,7 +51,7 @@ namespace BookingApp.Services
                 if (rate.HostId == host.Id)
                 {
                     counter++;
-                    gradeSum = gradeSum + (Convert.ToDouble(rate.Correctness + rate.Cleanliness) / 2);
+                    gradeSum = gradeSum + Convert.ToDouble(rate.Correctness + rate.Cleanliness) / 2;
                 }
             }
 
@@ -60,7 +61,7 @@ namespace BookingApp.Services
 
             host.IsSuperHost = isSuperHost(counter, gradeSum, average);
             hostRepository.Update(host);
-           
+
             return;
         }
 
@@ -83,6 +84,6 @@ namespace BookingApp.Services
 
         }
 
-        
+
     }
 }

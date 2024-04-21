@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Services
+namespace BookingApp.Application.Services.FeatureServices
 {
     public class UserService
     {
@@ -20,7 +20,7 @@ namespace BookingApp.Services
 
         public User GetByUsername(string username)
         {
-           return UserRepository.GetByUsername(username);   
+            return UserRepository.GetByUsername(username);
         }
 
         public User GetById(int id)

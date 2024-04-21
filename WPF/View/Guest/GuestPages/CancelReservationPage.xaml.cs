@@ -1,5 +1,5 @@
 ﻿using BookingApp.Model;
-using BookingApp.Services;
+using BookingApp.Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,5 @@
-﻿using BookingApp.Repository;
-using BookingApp.Services;
+﻿using BookingApp.Application.Services.RateServices;
+using BookingApp.Repository;
 using BookingApp.WPF.ViewModel;
 using System;
 using System.Collections.Generic;

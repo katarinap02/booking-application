@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 using BookingApp.Observer;
 using BookingApp.Model;
 using System.Security.Cryptography;
-using BookingApp.Services;
+using BookingApp.Application.Services;
 
 namespace BookingApp.View.GuestPages
 {

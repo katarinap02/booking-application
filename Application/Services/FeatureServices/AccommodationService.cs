@@ -9,12 +9,12 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 
-namespace BookingApp.Services
+namespace BookingApp.Application.Services.FeatureServices
 {
     public class AccommodationService
     {
         private readonly AccommodationRepository AccommodationRepository;
-        
+
         public AccommodationService()
         {
             AccommodationRepository = new AccommodationRepository();
@@ -30,9 +30,10 @@ namespace BookingApp.Services
             return AccommodationRepository.Add(accommodation);
         }
 
-        public void Delete(Accommodation accommodation) { 
-        
-             AccommodationRepository.Delete(accommodation);
+        public void Delete(Accommodation accommodation)
+        {
+
+            AccommodationRepository.Delete(accommodation);
         }
 
         public Accommodation Update(Accommodation accommodation)
@@ -52,9 +53,9 @@ namespace BookingApp.Services
 
         public void FreeDateRange(Accommodation accommodation, AccommodationReservationViewModel selectedReservation)
         {
-            foreach(CalendarDateRange dateRange in accommodation.UnavailableDates)
+            foreach (CalendarDateRange dateRange in accommodation.UnavailableDates)
             {
-                if(dateRange.Start == selectedReservation.StartDate && dateRange.End == selectedReservation.EndDate)
+                if (dateRange.Start == selectedReservation.StartDate && dateRange.End == selectedReservation.EndDate)
                 {
                     accommodation.UnavailableDates.Remove(dateRange);
                     break;

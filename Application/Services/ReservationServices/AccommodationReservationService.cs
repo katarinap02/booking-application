@@ -10,19 +10,20 @@ using System.Windows.Controls;
 using System.Windows;
 using BookingApp.WPF.ViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
+using BookingApp.Application.Services.FeatureServices;
 
-namespace BookingApp.Services
+namespace BookingApp.Application.Services.ReservationServices
 {
     public class AccommodationReservationService
     {
         private readonly AccommodationReservationRepository AccommodationReservationRepository;
-        
+
         public DelayRequestService DelayRequestService { get; set; }
         public AccommodationReservationService()
         {
             AccommodationReservationRepository = new AccommodationReservationRepository();
             DelayRequestService = new DelayRequestService();
-            
+
         }
 
         public List<AccommodationReservation> GetAll()
@@ -38,7 +39,7 @@ namespace BookingApp.Services
 
         public bool Rated(AccommodationReservation ar)
         {
-           return AccommodationReservationRepository.Rated(ar);
+            return AccommodationReservationRepository.Rated(ar);
         }
 
         public AccommodationReservation Add(AccommodationReservation reservation)
@@ -67,17 +68,17 @@ namespace BookingApp.Services
             AccommodationReservation reservation = GetById(id);
             reservation.StartDate = StartDate;
             reservation.EndDate = EndDate;
-            
+
             Update(reservation);
         }
 
-     
+
 
         public bool IsReserved(DateTime StartDate, DateTime EndDate, int accommodationId)
         {
             foreach (AccommodationReservation res in GetAll())
             {
-                if (((StartDate <= res.EndDate && StartDate >= res.StartDate) || (EndDate <= res.EndDate && EndDate >= res.StartDate)) && res.AccommodationId == accommodationId)
+                if ((StartDate <= res.EndDate && StartDate >= res.StartDate || EndDate <= res.EndDate && EndDate >= res.StartDate) && res.AccommodationId == accommodationId)
                 { return true; }
 
             }

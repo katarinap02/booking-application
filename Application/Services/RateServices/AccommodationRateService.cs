@@ -1,4 +1,5 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.Application.Services.ReservationServices;
+using BookingApp.Model;
 using BookingApp.Repository;
 using BookingApp.Serializer;
 using GalaSoft.MvvmLight.Messaging;
@@ -9,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace BookingApp.Services
+namespace BookingApp.Application.Services.RateServices
 {
     public class AccommodationRateService
     {
@@ -18,7 +19,7 @@ namespace BookingApp.Services
         public AccommodationRateService()
         {
             AccommodationRateRepository = new AccommodationRateRepository();
-           
+
         }
 
         public List<AccommodationRate> GetAll()
@@ -53,16 +54,16 @@ namespace BookingApp.Services
             }
 
             double average = sum / counter;
-            
-            if(average > 0)
+
+            if (average > 0)
                 return average;
             else return 0;
 
 
-                
-                    
+
+
         }
 
-        
+
     }
 }

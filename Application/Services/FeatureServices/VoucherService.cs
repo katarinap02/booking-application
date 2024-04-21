@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Services
+namespace BookingApp.Application.Services.FeatureServices
 {
     public class VoucherService
     {
@@ -40,7 +40,7 @@ namespace BookingApp.Services
 
         public Voucher SetVoucherToUsed(int id)
         {
-           return _voucherRepository.SetVoucherToUsed(id);
+            return _voucherRepository.SetVoucherToUsed(id);
         }
 
         public void RefreshVouchers()

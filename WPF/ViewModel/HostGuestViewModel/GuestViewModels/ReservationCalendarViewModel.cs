@@ -1,5 +1,4 @@
 ﻿using BookingApp.Model;
-using BookingApp.Services;
 using BookingApp.View.GuestPages;
 using System;
 using System.Collections.Generic;
@@ -11,6 +10,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.View.Guest.GuestTools;
+using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Application.Services.ReservationServices;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
