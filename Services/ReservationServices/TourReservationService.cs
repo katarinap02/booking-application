@@ -12,13 +12,11 @@ namespace BookingApp.Services
 {
     public class TourReservationService
     {
-        private readonly TourReservationRepository _tourReservationRepository;
-        private readonly TourParticipantService _tourParticipantService;
+        private static readonly TourReservationRepository _tourReservationRepository = new TourReservationRepository();
+        private static readonly TourParticipantService _tourParticipantService = new TourParticipantService();
         private readonly TouristService _touristService;
         public TourReservationService()
         {
-            _tourReservationRepository = new TourReservationRepository();
-            _tourParticipantService = new TourParticipantService();
             _touristService = new TouristService();
         }
 

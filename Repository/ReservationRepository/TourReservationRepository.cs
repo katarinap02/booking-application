@@ -16,14 +16,13 @@ namespace BookingApp.Repository
         private readonly Serializer<TourReservation> _serializer;
 
         private List<TourReservation> _tourReservations;
-        private readonly TourParticipantRepository _tourparticipantRepository;
+        private static readonly TourParticipantRepository _tourparticipantRepository = new TourParticipantRepository();
         private static readonly TourRepository _tourRepository = new TourRepository();
 
         public TourReservationRepository()
         {
             _serializer = new Serializer<TourReservation>();
             _tourReservations = _serializer.FromCSV(FilePath);
-            _tourparticipantRepository = new TourParticipantRepository();
         }
 
         public List<TourReservation> GetAll()
