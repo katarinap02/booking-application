@@ -161,7 +161,7 @@
                     
                 </TextBox>
 
-                <TextBlock Text="Username"
+                <TextBlock Text="Password"
                    Foreground="DarkGray"
                    FontSize="12"
                    FontWeight="Medium"
