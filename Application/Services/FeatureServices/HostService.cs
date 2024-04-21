@@ -70,7 +70,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public bool isSuperHost(int counter, double gradeSum, double average)
         {
-            if (counter < 50)
+            if (counter < 10)
             {
                 return false;
             }

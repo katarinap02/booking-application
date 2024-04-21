@@ -1,6 +1,7 @@
 ﻿using BookingApp.Application.Services.RateServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
@@ -31,7 +32,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             User = user;
             Frame = frame;
             GuestRates = new ObservableCollection<GuestRateViewModel>();
-            GuestRateService = new GuestRateService();
+            GuestRateService = new GuestRateService(Injector.Injector.CreateInstance<IGuestRateRepository>());
             AccommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
         }
         public void Update()
