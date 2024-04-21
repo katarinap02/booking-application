@@ -25,5 +25,22 @@ namespace BookingApp.WPF.View.Guest.GuestTools
 
             return replacedPath;
         }
+
+        public string ConvertToRelativePathSecond(string inputPath)
+        {
+
+            string pattern = @"\\";
+
+
+            string replacedPath = Regex.Replace(inputPath, pattern, "/");
+
+
+            if (replacedPath.StartsWith("Resources/Images/"))
+            {
+                replacedPath = "../../" + replacedPath;
+            }
+
+            return replacedPath;
+        }
     }
 }

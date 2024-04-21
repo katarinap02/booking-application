@@ -214,10 +214,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             country = ac.Country;
             PathConverter = new PathConverter();
             if (acc.Pictures.Count != 0)
-                OnePicture = PathConverter.ConvertToRelativePath(acc.Pictures[0]);
+                OnePicture = PathConverter.ConvertToRelativePathSecond(acc.Pictures[0]);
 
             else
-                OnePicture = "../../../Resources/Images/no_image.jpg";
+                OnePicture = "../../Resources/Images/no_image.jpg";
 
 
         }
