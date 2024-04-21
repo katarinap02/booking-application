@@ -4,6 +4,9 @@ using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Rates;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
@@ -41,10 +44,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public RateDisplayPageViewModel(User user)
         {
             Accommodations = new ObservableCollection<AccommodationRateViewModel>();
-            accommodationService = new AccommodationReservationService();
-            accommodationRateService = new AccommodationRateService();
+            accommodationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+            accommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             guestRateService = new GuestRateService();
-            userService = new UserService();
+            userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
             hostService = new HostService();
             host = hostService.GetByUsername(user.Username);
             Update();

@@ -1,6 +1,8 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
@@ -24,9 +26,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public CancellationPageViewModel(AccommodationReservationViewModel selectedReservation)
         {
             SelectedReservation = selectedReservation;
-            AccommodationReservationService = new AccommodationReservationService();
-            AccommodationService = new AccommodationService();
-            ReservationCancellationService = new ReservationCancellationService();
+            AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+            AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
+            ReservationCancellationService = new ReservationCancellationService(Injector.Injector.CreateInstance<IReservationCancellationRepository>());
 
 
         }

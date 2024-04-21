@@ -10,6 +10,8 @@ using System.Windows.Input;
 using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.View.GuestPages;
 
@@ -222,8 +224,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
-        private AccommodationReservationService AccommodationReservationService = new AccommodationReservationService();
-        private AccommodationService AccommodationService = new AccommodationService();
+        private AccommodationReservationService AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+        private AccommodationService AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
 
         public string AccommodationName => GetAccommodationName(AccommodationReservationService, AccommodationService, ReservationId);
 

@@ -2,6 +2,9 @@
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using System;
 using System.Collections.Generic;
@@ -26,9 +29,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public ReservationCancellationViewModel(User user)
         {
             Notifications = new ObservableCollection<string>();
-            ReservationCancellationService = new ReservationCancellationService();
-            UserService = new UserService();
-            AccommodationReservationService = new AccommodationReservationService();
+            ReservationCancellationService = new ReservationCancellationService(Injector.Injector.CreateInstance<IReservationCancellationRepository>());
+            UserService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
+            AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             User = user;
             Update();
         }

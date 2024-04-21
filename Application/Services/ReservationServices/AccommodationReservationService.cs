@@ -12,18 +12,19 @@ using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 
 namespace BookingApp.Application.Services.ReservationServices
 {
     public class AccommodationReservationService
     {
-        private readonly AccommodationReservationRepository AccommodationReservationRepository;
+        private readonly IAccommodationReservationRepository AccommodationReservationRepository;
 
         public DelayRequestService DelayRequestService { get; set; }
-        public AccommodationReservationService()
+        public AccommodationReservationService(IAccommodationReservationRepository accommodationReservationRepository, IDelayRequestRepository delayRequest)
         {
-            AccommodationReservationRepository = new AccommodationReservationRepository();
-            DelayRequestService = new DelayRequestService();
+            AccommodationReservationRepository = accommodationReservationRepository;
+            DelayRequestService = new DelayRequestService(delayRequest);
 
         }
 

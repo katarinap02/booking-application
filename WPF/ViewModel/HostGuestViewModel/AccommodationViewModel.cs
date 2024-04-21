@@ -10,6 +10,8 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using BookingApp.Application.Services.RateServices;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 
 using BookingApp.Repository;
@@ -282,7 +284,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public string FirstPicture => "../" + OnePicture;
 
 
-        private AccommodationRateService accommodationRateService = new AccommodationRateService();
+        private AccommodationRateService accommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
         //   public string Rate => accommodationRateService.GetAverageRate(Id).ToString();
 
         public AccommodationViewModel(Accommodation accommodation)

@@ -13,6 +13,8 @@ using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -56,8 +58,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             page.PeopleNumberSection.IsEnabled = false;
             Reservation = new AccommodationReservation();
 
-            AccommodationService = new AccommodationService();
-            AccommodationReservationService = new AccommodationReservationService();
+            AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
+            AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
 
             CalendarConfigurator = new CalendarConfigurator(ReservationCalendar);
 

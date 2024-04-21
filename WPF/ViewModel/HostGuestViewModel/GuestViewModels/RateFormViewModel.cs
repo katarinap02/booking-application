@@ -2,6 +2,9 @@
 using BookingApp.Application.Services.RateServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
@@ -42,8 +45,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public RateFormViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, RateAccommodationForm page)
         {
             Images = new ObservableCollection<string>();
-            AccommodationRateService = new AccommodationRateService();
-            AccommodationService = new AccommodationService();
+            AccommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+            AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             HostService = new HostService();
             AccommodationRate = new AccommodationRateViewModel();
             User = user;

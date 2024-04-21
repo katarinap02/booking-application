@@ -16,6 +16,8 @@ using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -45,12 +47,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         {
             Delays = new ObservableCollection<DelayRequestViewModel>();
             Notifications = new ObservableCollection<string>();
-            ReservationCancellationService = new ReservationCancellationService();
-            DelayRequestService = new DelayRequestService();
-            UserService = new UserService();
-            AccommodationReservationService = new AccommodationReservationService();
+            ReservationCancellationService = new ReservationCancellationService(Injector.Injector.CreateInstance<IReservationCancellationRepository>());
+            DelayRequestService = new DelayRequestService(Injector.Injector.CreateInstance<IDelayRequestRepository>());
+            UserService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
+            AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             Delay = new DelayRequestViewModel();
-            AccommodationService = new AccommodationService();
+            AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             User = user;
             Update();
             UpdateNotifications();
