@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Observer;
 using BookingApp.Serializer;
 using System;
@@ -9,7 +10,8 @@ using System.Threading.Tasks;
 
 namespace BookingApp.Repository
 {
-    public class GuestRateRepository { 
+    public class GuestRateRepository : IGuestRateRepository
+    { 
     private const string FilePath = "../../../Resources/Data/guest_rate.csv";
     private readonly Serializer<GuestRate> _serializer;
     private List<GuestRate> _rates;

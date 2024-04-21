@@ -14,6 +14,8 @@ using BookingApp.Domain.Model.Features;
 using System.Windows.Controls;
 using BookingApp.View.HostPages;
 using System.Windows;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -22,7 +24,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
-        public AccommodationRepository accommodationRepository { get; set; }
+        public AccommodationService accommodationService { get; set; }
 
         public HostService hostService { get; set; }
 
@@ -42,7 +44,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public FirstPageViewModel(User user, Frame frame, Menu dock, StackPanel panel)
 
          {
-                hostService = new HostService();
+                hostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
                 host = hostService.GetByUsername(user.Username);
                 hostService.BecomeSuperHost(host);
                 hostViewModel = new HostViewModel(host);
@@ -51,7 +53,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 User = user;
                 RatingPanel = panel;
                 Accommodations = new ObservableCollection<AccommodationViewModel>();
-                accommodationRepository = new AccommodationRepository();
+                accommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
                 Update();
 
          }
@@ -61,7 +63,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public void Update()
           {
                 Accommodations.Clear();
-                foreach (Accommodation accommodation in accommodationRepository.GetAll())
+                foreach (Accommodation accommodation in accommodationService.GetAll())
                 {
                     if (accommodation.HostId == host.Id)
                     {

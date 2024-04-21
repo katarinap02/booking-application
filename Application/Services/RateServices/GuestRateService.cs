@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
@@ -10,11 +11,16 @@ namespace BookingApp.Application.Services.RateServices
 {
     public class GuestRateService
     {
-        private readonly GuestRateRepository GuestRateRepository;
+        private readonly IGuestRateRepository GuestRateRepository;
 
         public GuestRateService()
         {
             GuestRateRepository = new GuestRateRepository();
+        }
+
+        public GuestRateService(IGuestRateRepository guestRateRepository)
+        {
+            this.GuestRateRepository = guestRateRepository;
         }
 
         public List<GuestRate> GetAll()
