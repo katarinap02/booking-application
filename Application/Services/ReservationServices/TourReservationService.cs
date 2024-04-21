@@ -1,5 +1,10 @@
-﻿using BookingApp.Repository;
+
+
+using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.Model.Reservations;
+using BookingApp.Repository;
 using BookingApp.WPF.ViewModel;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,11 +15,12 @@ namespace BookingApp.Application.Services.ReservationServices
 {
     public class TourReservationService
     {
-        private readonly TourReservationRepository _tourReservationRepository;
-
+        private static readonly TourReservationRepository _tourReservationRepository = new TourReservationRepository();
+        private static readonly TourParticipantService _tourParticipantService = new TourParticipantService();
+        private readonly TouristService _touristService;
         public TourReservationService()
         {
-            _tourReservationRepository = new TourReservationRepository();
+            _touristService = new TouristService();
         }
 
         public int NextReservationId()
@@ -26,5 +32,65 @@ namespace BookingApp.Application.Services.ReservationServices
         {
             _tourReservationRepository.saveReservation(selectedTour.ToTour(), userId);
         }
+
+        public TourParticipantViewModel FindTouristById(int touristId)
+        {
+            return _touristService.FindTouristById(touristId);
+        }
+
+        public TourReservationViewModel ToTouReservationViewModel(TourReservation reservation)
+        {
+            TourReservationViewModel tourReservationViewModel = new TourReservationViewModel();
+            tourReservationViewModel.Id = reservation.Id;
+            tourReservationViewModel.TourId = reservation.TourId;
+            tourReservationViewModel.TouristId = reservation.TouristId;
+            tourReservationViewModel.ParticipantIds = reservation.ParticipantIds;
+            return tourReservationViewModel;
+        }
+
+        public TourReservationViewModel FindReservationByTOuristIdAndTourId(int userId, int tourId)
+        {
+            if(_tourReservationRepository.FindReservationByTouristIdAndTourId(userId, tourId) == null)
+            {
+                return null;
+            }
+            return ToTouReservationViewModel(_tourReservationRepository.FindReservationByTouristIdAndTourId(userId, tourId));
+        }
+
+        public void addParticipant(TourParticipantViewModel tourParticipantViewModel, TourReservationViewModel reservation)
+        {
+            _tourReservationRepository.addParticipant(tourParticipantViewModel.ToTourParticipant(), reservation.ToTourReservation());
+        }
+        
+        public List<TourReservation> GetReservationsByTour(int tour_id)
+        {
+            return _tourReservationRepository.GetReservationsByTour(tour_id);
+        }
+
+        public List<TourParticipant> GetJoinedParticipantsByTour(int tour_id)
+        {
+            List<TourReservation> tourReservations = GetReservationsByTour(tour_id);
+            List<TourParticipant> participants = new List<TourParticipant>();
+            foreach (TourReservation tourReservation in tourReservations.ToList())
+            {
+                foreach (TourParticipant participant in _tourParticipantService.GetAllJoinedParticipantsByReservation(tourReservation.Id))
+                {
+                    participants.Add(participant);
+                }
+            }
+            return participants;
+        }
+
+        public int GetNumberOfJoinedParticipants(int tour_id)
+        {
+            List<TourParticipant> tourParticipants = GetJoinedParticipantsByTour(tour_id);
+            return tourParticipants.Count();
+        }
+
+        public int getTouristParticipantID(int tour_id)
+        {
+            return _tourReservationRepository.getTouristParticipantID(tour_id);
+        }
+
     }
 }

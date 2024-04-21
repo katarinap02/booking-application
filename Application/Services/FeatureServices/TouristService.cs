@@ -1,45 +1,49 @@
+
 ﻿using BookingApp.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Repository;
+using BookingApp.Repository.FeatureRepository;
 
 namespace BookingApp.Application.Services.FeatureServices
 {
     public class TouristService
     {
-        private readonly TourRepository tourRepository;
-        private readonly TourParticipantRepository tourparticipantRepository;
-        private readonly TourReservationRepository tourReservationRepository;
+        private readonly TouristRepository _touristRepository;
 
         public TouristService()
         {
-            tourRepository = new TourRepository();
-            tourparticipantRepository = new TourParticipantRepository();
-            tourReservationRepository = new TourReservationRepository();
+            _touristRepository = new TouristRepository();
         }
 
-        public List<TourViewModel> GetAllTours()
+        public TourParticipantViewModel ToTourParticipantViewModel(Tourist tourist)
         {
-            return ToTourViewModel(tourRepository.GetAll());
+            TourParticipantViewModel viewModel = new TourParticipantViewModel();
+            viewModel.Name = tourist.Name;
+            viewModel.LastName = tourist.LastName;
+            viewModel.Years = tourist.Age;
+            return viewModel;
         }
 
-        public int FindMaxNumberOfParticipants()
+        public TourParticipantViewModel FindTouristById(int touristId)
         {
-            return tourRepository.FindMaxNumberOfParticipants();
+            return ToTourParticipantViewModel(_touristRepository.FindTouristById(touristId));
         }
-
-        public int FindMaxNumberOfParticipants(List<TourViewModel> tours)
+        public Tourist GetTouristById(int touristId)
         {
-            return tourRepository.FindMaxNumberOfParticipants(ToTour(tours));
+
+            return _touristRepository.FindTouristById(touristId);
+
+           // return tourRepository.FindMaxNumberOfParticipants(ToTour(tours));
         }
 
-        public List<TourViewModel> ToTourViewModel(List<Tour> Tours)
+        /*public List<TourViewModel> ToTourViewModel(List<Tour> Tours)
         {
             // creating list from Tour to TourViewModel
             List<TourViewModel> ToursViewModel = new List<TourViewModel>();
@@ -110,6 +114,7 @@ namespace BookingApp.Application.Services.FeatureServices
         public List<TourViewModel> GetTourByCityWithAvailablePlaces(string city)
         {
             return ToTourViewModel(tourRepository.GetTourByCityWithAvailablePlaces(city));
-        }
+
+        }*/
     }
 }

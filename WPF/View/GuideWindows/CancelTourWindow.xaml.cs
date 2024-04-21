@@ -6,14 +6,18 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+
+using BookingApp.Application.Services;
+
 using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Application.Services.FeatureServices;
 
 namespace BookingApp.View.GuideWindows
 {
     public partial class CancelTourWindow: Window
     {
-        private readonly TourRepository TourRepository;
+        private readonly TourService tourService;
         public User Guide { get; set; }
         public TourViewModel SelectedTour { get; set; }
         public ObservableCollection<TourViewModel> TourViewModels;
@@ -22,7 +26,7 @@ namespace BookingApp.View.GuideWindows
         {
             InitializeComponent();
             DataContext = this;
-            TourRepository = new TourRepository();
+            tourService = new TourService();
             Guide = guide;
             TourViewModels = new ObservableCollection<TourViewModel>();
             
@@ -31,7 +35,8 @@ namespace BookingApp.View.GuideWindows
 
         public void getGridData()
         {
-            List<Tour> tours = TourRepository.findToursToCancel(Guide.Id);
+            TourViewModels.Clear();
+            List<Tour> tours = tourService.findToursToCancel(Guide.Id);
             foreach (Tour tour in tours)
             {
                 TourViewModels.Add(new TourViewModel(tour));
@@ -44,8 +49,8 @@ namespace BookingApp.View.GuideWindows
             if(SelectedTour  != null)
             {
                 MessageBox.Show(SelectedTour.Id.ToString());
-                TourRepository.cancelTour(SelectedTour.Id, Guide.Id);
-                //getGridData();
+                tourService.cancelTour(SelectedTour.Id, Guide.Id);
+                getGridData();
             }
             else
             {

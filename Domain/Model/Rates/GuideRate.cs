@@ -19,6 +19,8 @@ namespace BookingApp.Domain.Model.Rates
         public string AdditionalComment { get; set; }
         public List<string> Pictures { get; set; }
 
+        public bool IsValid { get; set; }
+
         public GuideRate() { }
         public GuideRate(int id, int touristId, int tourId, int guideId, int knowledge, int language, int tourinterest, string additionalComment, List<string> pictures)
         {
@@ -31,8 +33,22 @@ namespace BookingApp.Domain.Model.Rates
             TourInterest = tourinterest;
             AdditionalComment = additionalComment;
             Pictures = pictures;
+            IsValid = true;
         }
 
+        public GuideRate(int id, int touristId, int tourId, int guideId, int knowledge, int language, int tourinterest, string additionalComment, List<string> pictures, bool valid)
+        {
+            Id = id;
+            TouristId = touristId;
+            TourId = tourId;
+            GuideId = guideId;
+            Knowledge = knowledge;
+            Language = language;
+            TourInterest = tourinterest;
+            AdditionalComment = additionalComment;
+            Pictures = pictures;
+            IsValid = valid;
+        }
 
         public void FromCSV(string[] values)
         {
@@ -49,7 +65,7 @@ namespace BookingApp.Domain.Model.Rates
                 string picture = values[8];
                 Pictures = picture.Split(",").ToList();
             }
-
+            IsValid = Boolean.Parse(values[9]);
         }
 
         public string[] ToCSV()
@@ -61,7 +77,7 @@ namespace BookingApp.Domain.Model.Rates
             }
 
             string[] CSVvalues = {Id.ToString(), TouristId.ToString(), TourId.ToString(), GuideId.ToString(), Knowledge.ToString(),
-            Language.ToString(), TourInterest.ToString(), AdditionalComment, pictureString};
+            Language.ToString(), TourInterest.ToString(), AdditionalComment, pictureString, IsValid.ToString()};
             return CSVvalues;
         }
     }

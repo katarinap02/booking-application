@@ -1,5 +1,6 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Repository;
+using BookingApp.Application.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,6 +8,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Application.Services.ReservationServices;
 
 namespace BookingApp.View.GuideWindows
 {
@@ -15,12 +18,16 @@ namespace BookingApp.View.GuideWindows
 
         private readonly TourRepository _tourRepository;
         private readonly TourReservationRepository _tourReservationRepository;
+        private readonly TourService _tourService;
+        private readonly TourReservationService _tourReservationService;
         private User Guide {  get; set; }
         private bool FirstTime {  get; set; }
         public MostVisitedTourWindow(User guide)
         {
             _tourRepository = new TourRepository();
             _tourReservationRepository = new TourReservationRepository();
+            _tourService = new TourService();
+            _tourReservationService = new TourReservationService();
             Guide = guide;
             FirstTime = true;
             InitializeComponent();
@@ -45,7 +52,7 @@ namespace BookingApp.View.GuideWindows
 
         private void ShowMostVisitedTourAllTime()
         {
-            Tour mostVisitedTourAllTime = _tourRepository.GetMostPopularTourForGuide(Guide.Id);
+            Tour mostVisitedTourAllTime = _tourService.GetMostPopularTourForGuide(Guide.Id);
 
             if (FirstTime)
             {
@@ -54,7 +61,7 @@ namespace BookingApp.View.GuideWindows
             else if (mostVisitedTourAllTime != null)
             {
                 tourNameLabel.Content = mostVisitedTourAllTime.Name;
-                int participantCount = _tourReservationRepository.GetNumberOfJoinedParticipants(mostVisitedTourAllTime.Id);
+                int participantCount = _tourReservationService.GetNumberOfJoinedParticipants(mostVisitedTourAllTime.Id);
                 participantsLabel.Content = $"Participants: {participantCount}";
             }
             else
@@ -66,12 +73,12 @@ namespace BookingApp.View.GuideWindows
 
         private void ShowMostVisitedTourPreviousYears(int year)
         {
-            Tour mostVisitedTourPreviousYears = _tourRepository.GetMostPopularTourForGuideInYear(Guide.Id, year);
+            Tour mostVisitedTourPreviousYears = _tourService.GetMostPopularTourForGuideInYear(Guide.Id, year);
 
             if (mostVisitedTourPreviousYears != null)
             {
                 tourNameLabel.Content = mostVisitedTourPreviousYears.Name;
-                int participantCount = _tourReservationRepository.GetNumberOfJoinedParticipants(mostVisitedTourPreviousYears.Id);
+                int participantCount = _tourReservationService.GetNumberOfJoinedParticipants(mostVisitedTourPreviousYears.Id);
                 participantsLabel.Content = $"Participants: {participantCount}";
             }
             else

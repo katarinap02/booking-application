@@ -16,7 +16,7 @@ namespace BookingApp.WPF.ViewModel
 {
     public class TourViewModel : INotifyPropertyChanged
     {
-        private readonly TouristService _touristService;
+        private readonly TourService _touristService;
         private readonly GuideRateService _guideRateService;
         private readonly UserService _userService;
 
@@ -752,14 +752,21 @@ namespace BookingApp.WPF.ViewModel
             tourReservationWindow.ShowDialog();
         }
 
+
         public TourViewModel()
         {
+            _touristService = new TourService();
+        }
+
+    /*    public TourViewModel()
+        {
             _touristService = new TouristService();
+
             _guideRateService = new GuideRateService();
             _userService = new UserService();
             Tours = new ObservableCollection<TourViewModel>();
             CheckpointWithColors = new ObservableCollection<Checkpoint>();
-        }
+        }*/
 
         public TourViewModel(Tour tour)
         {

@@ -3,7 +3,6 @@ using BookingApp.Domain.Model.Rates;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Repository;
 using BookingApp.Serializer;
-using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;

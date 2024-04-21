@@ -27,16 +27,20 @@ namespace BookingApp.View.HostPages
     /// </summary>
     public partial class FirstPage : Page
     {   
-        public FirstPage(User user)
+
+        public FirstPageViewModel firstPageViewModel {  get; set; }
+        public FirstPage(User user, Frame frame, Menu dock, StackPanel panel)
         {
             InitializeComponent();
-            DataContext = new FirstPageViewModel(user);
+            firstPageViewModel = new FirstPageViewModel(user, frame, dock, panel);
+            DataContext = firstPageViewModel;
             
         }
 
         private void Displacement_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-
+            
+            
         }
         private void Forums_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
@@ -44,13 +48,22 @@ namespace BookingApp.View.HostPages
         }
         private void RateGuest_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
-
+            
+            
         }
         private void Statistic_RequestNavigate(object sender, RequestNavigateEventArgs e)
         {
 
         }
 
+        private void Displacement_Click(object sender, RoutedEventArgs e)
+        {
+            firstPageViewModel.Delay_Navigate(sender, e);
+        }
 
+        private void RateGuest_Click(object sender, RoutedEventArgs e)
+        {
+            firstPageViewModel.RateGuest_Navigate(sender, e);
+        }
     }
 }

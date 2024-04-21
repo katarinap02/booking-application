@@ -32,7 +32,7 @@ namespace BookingApp.Repository
             List<TouristNotification> notifications = GetAll();
             notifications = notifications.FindAll(n => n.TouristId == touristId);
             notifications.Reverse();
-            return notifications;
+            return notifications.Distinct().ToList();
         }
         public void Add(TouristNotification notification)
         {

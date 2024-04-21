@@ -1,6 +1,7 @@
 ﻿using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 namespace BookingApp.Domain.Model.Features
 {
     public enum NotificationType { RateTour, TourCanceled, GuideQuit, JoinedTour }
-    public class TouristNotification : ISerializable
+    public class TouristNotification : ISerializable, IEquatable<TouristNotification>
     {
         public int Id;
         public int TouristId;
@@ -30,7 +31,6 @@ namespace BookingApp.Domain.Model.Features
             GuideName = guideName;
             CurrentCheckpoint = currentCheckpoint;
         }
-
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
@@ -67,6 +67,29 @@ namespace BookingApp.Domain.Model.Features
         {
             string[] csValues = { Id.ToString(), TouristId.ToString(), TourId.ToString(), NotificationType.ToString(), TourName, GuideName, CurrentCheckpoint.ToString() };
             return csValues;
+        }
+
+        public bool Equals(TouristNotification? other)
+        {
+            if (other == null)
+                return false;
+
+            return TourId == other.TourId &&
+                   TouristId == other.TouristId &&
+                   CurrentCheckpoint == other.CurrentCheckpoint &&
+                   NotificationType == other.NotificationType;
+        }
+        public override bool Equals(object obj)
+        {
+            if (obj == null || GetType() != obj.GetType())
+                return false;
+
+            return Equals(obj as TouristNotification);
+        }
+        public override int GetHashCode()
+        {
+            return TourId.GetHashCode() ^ TouristId.GetHashCode() ^
+                   CurrentCheckpoint.GetHashCode() ^ NotificationType.GetHashCode();
         }
     }
 }

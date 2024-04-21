@@ -63,5 +63,17 @@ namespace BookingApp.Repository
             return rates.FindAll(r => r.TourId == tour_id);
         }
 
+        public GuideRate getById(int id)
+        {
+            return _guideRates.Find(g => g.Id == id);
+        }
+
+        public void markAsInvalid(int id)
+        {
+            GuideRate guideRate = getById(id);
+            guideRate.IsValid = false;
+            _serializer.ToCSV(FilePath, _guideRates);
+        }
+
     }
 }

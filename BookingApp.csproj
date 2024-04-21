@@ -8,30 +8,33 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="WPF\Resources\Images\add.png" />
-    <None Remove="WPF\Resources\Images\back_arrow.png" />
-    <None Remove="WPF\Resources\Images\blue_square.png" />
-    <None Remove="WPF\Resources\Images\cottage.jpg" />
-    <None Remove="WPF\Resources\Images\delete.png" />
-    <None Remove="WPF\Resources\Images\down_right_arrow.png" />
-    <None Remove="WPF\Resources\Images\edit.png" />
-    <None Remove="WPF\Resources\Images\example.jpg" />
-    <None Remove="WPF\Resources\Images\home.png" />
-    <None Remove="WPF\Resources\Images\house.jpg" />
-    <None Remove="WPF\Resources\Images\Istanbul1.jpg" />
-    <None Remove="WPF\Resources\Images\menu_item1.png" />
-    <None Remove="WPF\Resources\Images\notification.png" />
-    <None Remove="WPF\Resources\Images\no_image.jpg" />
-    <None Remove="WPF\Resources\Images\paris1.jpg" />
-    <None Remove="WPF\Resources\Images\red_dot.png" />
-    <None Remove="WPF\Resources\Images\star.png" />
-    <None Remove="WPF\Resources\Images\urgent.png" />
-    <None Remove="WPF\Resources\Images\video-camera.png" />
-    <None Remove="WPF\Resources\Images\view.png" />
-    <None Remove="WPF\View\TouristWindows\notificationtourist.png" />
-    <None Remove="WPF\View\TouristWindows\pdf.png" />
-    <None Remove="WPF\View\TouristWindows\searchtourist.png" />
-    <None Remove="WPF\View\TouristWindows\user.png" />
+
+    <None Remove="Resources\Images\add.png" />
+    <None Remove="Resources\Images\back_arrow.png" />
+    <None Remove="Resources\Images\blue_square.png" />
+    <None Remove="Resources\Images\cottage.jpg" />
+    <None Remove="Resources\Images\delete.png" />
+    <None Remove="Resources\Images\down_right_arrow.png" />
+    <None Remove="Resources\Images\edit.png" />
+    <None Remove="Resources\Images\example.jpg" />
+    <None Remove="Resources\Images\home.png" />
+    <None Remove="Resources\Images\house.jpg" />
+    <None Remove="Resources\Images\Istanbul1.jpg" />
+    <None Remove="Resources\Images\menu_item1.png" />
+    <None Remove="Resources\Images\notification.png" />
+    <None Remove="Resources\Images\no_image.jpg" />
+    <None Remove="Resources\Images\paris1.jpg" />
+    <None Remove="Resources\Images\red_dot.png" />
+    <None Remove="Resources\Images\star.png" />
+    <None Remove="Resources\Images\taj_mahal1.jpg" />
+    <None Remove="Resources\Images\urgent.png" />
+    <None Remove="Resources\Images\video-camera.png" />
+    <None Remove="Resources\Images\view.png" />
+    <None Remove="View\TouristWindows\notificationtourist.png" />
+    <None Remove="View\TouristWindows\pdf.png" />
+    <None Remove="View\TouristWindows\searchtourist.png" />
+    <None Remove="View\TouristWindows\user.png" />
+
   </ItemGroup>
 
   <ItemGroup>
@@ -91,7 +94,14 @@
     <Content Include="WPF\Resources\Images\star.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+
+    <Content Include="WPF\Resources\Images\taj_mahal1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+
     <Content Include="WPF\Resources\Images\urgent.png">
+
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="WPF\Resources\Images\video-camera.png">

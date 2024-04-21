@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         mc:Ignorable="d"
-        Title="AddedTouristsNotificationWindow" Height="385" Width="480" WindowStartupLocation="CenterScreen">
+        Title="AddedTouristsNotificationWindow" Height="425" Width="480" WindowStartupLocation="CenterScreen">
     <Grid Background="{StaticResource TouristBackgroundColor1}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -14,7 +14,8 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="80"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="200"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="20"/>
@@ -31,16 +32,27 @@
                FontSize="20"
                Grid.Column="1"
                Grid.Row="1"/>
+        <Label Content="Keypoint:"
+               Grid.Column="1"
+               Grid.Row="2"
+               FontSize="20"
+               FontWeight="DemiBold"/>
+        <Label Content="{Binding CurrentCheckpointName}"
+               FontWeight="Bold"
+               Margin="100, 0"
+               FontSize="20"
+               Grid.Column="1"
+               Grid.Row="2"/>
         <Label Content="added participants:"
                Grid.Column="1"
-               Grid.Row="1"
+               Grid.Row="2"
                FontWeight="DemiBold"
                FontSize="15"
                VerticalAlignment="Bottom"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto"
                       Style="{StaticResource CustomScrollViewerStyle}"
                       Grid.Column="1"
-                      Grid.Row="2"
+                      Grid.Row="3"
                       Margin="140, 0">
             <ItemsControl ItemsSource="{Binding tourists}">
                 <ItemsControl.ItemTemplate>
@@ -61,6 +73,6 @@
                 FontSize="19"
                 Grid.Column="1"
                 Width="70"
-                Grid.Row="3"/>
+                Grid.Row="4"/>
     </Grid>
 </Window>

@@ -42,9 +42,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         {
             Accommodations = new ObservableCollection<AccommodationRateViewModel>();
             accommodationService = new AccommodationReservationService();
-            userService = new UserService();
             accommodationRateService = new AccommodationRateService();
             guestRateService = new GuestRateService();
+            userService = new UserService();
             hostService = new HostService();
             host = hostService.GetByUsername(user.Username);
             Update();

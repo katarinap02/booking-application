@@ -1,4 +1,5 @@
 ﻿using BookingApp.Application.Services.RateServices;
+using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Repository;
 using BookingApp.WPF.ViewModel;
 using System;
@@ -15,6 +16,7 @@ namespace BookingApp.View.GuideWindows
     {
 
         private readonly GuideRateService _guideRateService;
+        private readonly TourParticipantService _tourParticipantService;
 
         public ObservableCollection<GuideRateViewModel> guideRateViewModels { get; set; }   
         public GuideRateViewModel selectedRate { get; set; }
@@ -22,6 +24,7 @@ namespace BookingApp.View.GuideWindows
         public ReviewsWindow(int tour_id)
         {
             _guideRateService = new GuideRateService(); 
+             _tourParticipantService = new TourParticipantService();
             InitializeComponent();
             DataContext = this;
             getData(tour_id);
@@ -39,12 +42,27 @@ namespace BookingApp.View.GuideWindows
         {
             if(selectedRate == null)
             {
-                MessageBox.Show("PLease select review in order to mark it as invalid");
+                MessageBox.Show("PLease select a review in order to mark it as invalid");
             }
             else
             {
-                MessageBox.Show(selectedRate.AdditionalComment, "Testiranje unutar xaml.cs"); //test
+                _guideRateService.markAsInvalid(selectedRate.Id);
+                MessageBox.Show("Review marked as invalid", "Reviews Notification");
             }
+        }
+
+        private void Checkpoint_Click(object sender, RoutedEventArgs e)
+        {
+            if (selectedRate == null)
+            {
+                MessageBox.Show("PLease select a review");
+            }
+            else
+            {
+                int checkpoint = _tourParticipantService.getjoinedCheckpoint(selectedRate.TourId);
+                MessageBox.Show("Joined checkpoint number: " + checkpoint.ToString());
+            }
+            
         }
     }
 }

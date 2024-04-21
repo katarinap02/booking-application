@@ -163,10 +163,6 @@ namespace BookingApp.Repository
             return 0;
         }
 
-        public void bindGuideAndTour(Tour tour, User guide)
-        {
-            tour.Status = TourStatus.gotGuide;
-        }
 
         public void finnishTour(int id)
         {
@@ -196,115 +192,19 @@ namespace BookingApp.Repository
             List<Tour> tours = _serializer.FromCSV(FilePath);
             return tours.FindAll(t => t.GuideId == guideId);
         }
-
-        public List<Tour> findToursToCancel(int guideId)
-        {
-            List<Tour> tours = findToursByGuideId(guideId);
-            foreach (Tour tour in tours.ToList())
-            {
-                TimeSpan difference = tour.Date - DateTime.Now;
-                if (difference.TotalHours <= 48 || tour.Status != TourStatus.inPreparation || tour.Date < DateTime.Now)
-                {
-                    tours.Remove(tour);
-                }
-            }
-            return tours;
-        }
-
-        public void grantVoucher(string reason, DateOnly expireDate, int tour_id, int guide_id)
-        {
-            List<TourReservation> Reservations = _reservationRepository.GetReservationsByTour(tour_id);
-            foreach (TourReservation reservation in Reservations)
-            {
-                Voucher voucher = new Voucher(0, reservation.TouristId, guide_id, false, reason, expireDate);
-                _voucherRepository.Add(voucher);
-            }
-        }
-
-        public void cancelTour(int tour_id, int guide_id)
-        {
-            Tour tour = GetTourById(tour_id);
-            if (tour == null) return;
-            tour.Status = TourStatus.Canceled;
-
-            string reason = "Tour " + tour.Name + " has been canceled";
-            DateOnly expireDate = new DateOnly(DateTime.Now.Year+1, DateTime.Now.Month, DateTime.Now.Day);
-            grantVoucher(reason, expireDate, tour_id, guide_id);
-            MessageBox.Show(reason);
-            _serializer.ToCSV(FilePath, _tours);
-        }
-
-        public List<int> GetAgeStatistic(int id)
-        {
-            int below18 = 0;
-            int above18 = 0;
-            int above50 = 0;
-            List<TourParticipant> participants = _reservationRepository.GetJoinedParticipantsByTour(id);
-
-            foreach (TourParticipant participant in participants)
-            {
-                if(participant.Years < 18)
-                {
-                    below18++;
-                }
-                else if (participant.Years < 50)
-                {
-                    above18++;
-                }
-                else
-                {
-                    above50++;
-                }
-            }
-            return new List<int> { below18, above18, above50 };
-
-        }
         
-        public Tour GetMostPopularTourForGuide(int guide_id)
-        {
-            List<Tour> tours = findToursByGuideId(guide_id);
-            Tour mostPopularTour = null;
-            int maxParticipants = 0;
 
-            foreach (Tour tour in tours)
-            {
-                int numberOfParticipants = _reservationRepository.GetNumberOfJoinedParticipants(tour.Id);
+        public void save(Tour tour) {
+            _tours = _serializer.FromCSV(FilePath);
+            Tour current = _tours.Find(t => t.Id == tour.Id);
+            int index = _tours.IndexOf(current);
+            _tours.Remove(current);
+            _tours.Insert(index, tour);
+            _serializer.ToCSV(FilePath, _tours);
+            // notify observers
+        }        
 
-                if (numberOfParticipants > maxParticipants)
-                {
-                    maxParticipants = numberOfParticipants;
-                    mostPopularTour = tour;
-                }
-            }
-
-            return mostPopularTour;
-        }
-
-        public Tour GetMostPopularTourForGuideInYear(int guide_id, int year)
-        {
-            List<Tour> tours = findToursByGuideId(guide_id);
-
-            Tour mostPopularTourInYear = null;
-            int maxParticipantsInYear = 0;
-
-            foreach (Tour tour in tours)
-            {
-                if (tour.Date.Year == year)
-                {
-                    int numberOfParticipants = _reservationRepository.GetNumberOfJoinedParticipants(tour.Id);
-
-                    if (numberOfParticipants > maxParticipantsInYear)
-                    {
-                        maxParticipantsInYear = numberOfParticipants;
-                        mostPopularTourInYear = tour;
-                    }
-                }
-            }
-
-            return mostPopularTourInYear;
-        }
-
-        public List<Tour> findFinnishedToursByGuide(int guide_id)
+        public List<Tour> findFinnishedToursByGuide(int guide_id) // izmeniti pozivanja
         {
             List<Tour> tours = _serializer.FromCSV(FilePath).FindAll(t => t.Status == TourStatus.Finnished && t.GuideId == guide_id);
             return tours;
@@ -350,6 +250,11 @@ namespace BookingApp.Repository
                 }
             }
             return maxTourists;
+        }
+
+        public List<string> GetCheckpointsByTour(int tourId)
+        {
+            return _tours.Find(t => t.Id == tourId).Checkpoints;
         }
     }
 }

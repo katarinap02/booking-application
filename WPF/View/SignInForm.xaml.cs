@@ -1,5 +1,6 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Repository;
+using BookingApp.View.GuideTestWindows;
 using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;
 using BookingApp.WPF.ViewModel;
@@ -78,8 +79,17 @@ namespace BookingApp.View
                         }
                         else
                         {
-                            GuideMainWindow guideMainWindow = new GuideMainWindow(user);
-                            guideMainWindow.ShowDialog();
+                            if (user.Username == "test") // prostor za testiranje prozora
+                            {
+                                LoginTestWindow loginTestWindow = new LoginTestWindow();
+                                loginTestWindow.Show();
+                            }
+                            else
+                            {
+                                GuideMainWindow guideMainWindow = new GuideMainWindow(user);
+                                guideMainWindow.ShowDialog();
+                            }
+                            
                         }
 
                     }

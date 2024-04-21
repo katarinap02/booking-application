@@ -97,6 +97,34 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private bool isCheckedHouse;
+        public bool IsCheckedHouse
+        {
+            get { return isCheckedHouse; }
+            set
+            {
+                if (isCheckedHouse != value)
+                {
+                    isCheckedHouse = value;
+                    OnPropertyChanged("IsCheckedHouse");
+                }
+            }
+        }
+
+        private bool isCheckedCottage;
+        public bool IsCheckedCottage
+        {
+            get { return isCheckedCottage; }
+            set
+            {
+                if (isCheckedCottage != value)
+                {
+                    isCheckedCottage = value;
+                    OnPropertyChanged("IsCheckedCottage");
+                }
+            }
+        }
+
 
         private int maxGuestNumber;
         public int MaxGuestNumber
@@ -280,14 +308,26 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
                 OnePicture = "../../Resources/Images/no_image.jpg";
             }
 
+        }
 
-
-
-
+        private AccommodationType ConvertToType()
+        { 
+            if(isCheckedHouse)
+            {
+                return AccommodationType.HOUSE;
+            }
+            if(isCheckedCottage)
+            {
+                return AccommodationType.COTTAGE;
+            }
+            return AccommodationType.APARTMENT;
         }
 
         public Accommodation ToAccommodation()
         {
+            if(type == AccommodationType.APARTMENT && (isCheckedCottage || isCheckedHouse)) {
+                type = ConvertToType();
+            }
 
             Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit, hostId);
             a.Id = id;

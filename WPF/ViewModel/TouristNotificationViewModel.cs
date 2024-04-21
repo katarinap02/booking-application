@@ -14,7 +14,7 @@ namespace BookingApp.WPF.ViewModel
     public class TouristNotificationViewModel : INotifyPropertyChanged
     {
         private readonly TouristNotificationService _touristNotificationService;
-        private readonly TouristService _touristService;
+        private readonly TourService _touristService;
         public ObservableCollection<string> tourists { get; set; }
         public ObservableCollection<TouristNotificationViewModel> touristNotificationViewModels { get; set; }
         private int _id;
@@ -129,6 +129,23 @@ namespace BookingApp.WPF.ViewModel
             }
         }
 
+        private string _currentCheckpointName;
+        public string CurrentCheckpointName
+        {
+            get
+            {
+                return _currentCheckpointName;
+            }
+            set
+            {
+                if( value != _currentCheckpointName )
+                {
+                    _currentCheckpointName = value;
+                    OnPropertyChanged(nameof(CurrentCheckpointName));
+                }
+            }
+        }
+
         private TouristNotificationViewModel _selectedNotification;
         public TouristNotificationViewModel SelectedNotification
         {
@@ -179,6 +196,7 @@ namespace BookingApp.WPF.ViewModel
 
         public void InitializeAddedTouristsWindow()
         {
+            CurrentCheckpointName = _touristService.GetCheckpointsByTour(SelectedNotification.TourId)[CurrentCheckpoint];
             foreach (var tourist in _touristService.GetParticipantsThatJoinedNow(SelectedNotification.ToTouristNotification()))
             {
                 tourists.Add(tourist);
@@ -195,7 +213,7 @@ namespace BookingApp.WPF.ViewModel
         public TouristNotificationViewModel()
         {
             _touristNotificationService = new TouristNotificationService();
-            _touristService = new TouristService();
+            _touristService = new TourService();
 
             touristNotificationViewModels = new ObservableCollection<TouristNotificationViewModel>();
             tourists = new ObservableCollection<string>();

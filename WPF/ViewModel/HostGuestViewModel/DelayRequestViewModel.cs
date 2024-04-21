@@ -227,6 +227,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
         public string AccommodationName => GetAccommodationName(AccommodationReservationService, AccommodationService, ReservationId);
 
+        public string DateLastString => StartLastDate.ToString("MM/dd/yyyy") + " - " + EndLastDate.ToString("MM/dd/yyyy");
+        public string DateString => StartDate.ToString("MM/dd/yyyy") + " - " + EndDate.ToString("MM/dd/yyyy");
         private static string GetAccommodationName(AccommodationReservationService accommodationReservationService, AccommodationService accommodationService, int reservationId)
         {
             int accommodationId = accommodationReservationService.GetById(reservationId).AccommodationId;

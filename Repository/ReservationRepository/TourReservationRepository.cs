@@ -17,14 +17,13 @@ namespace BookingApp.Repository
         private readonly Serializer<TourReservation> _serializer;
 
         private List<TourReservation> _tourReservations;
-        private readonly TourParticipantRepository _tourparticipantRepository;
+        private static readonly TourParticipantRepository _tourparticipantRepository = new TourParticipantRepository();
         private static readonly TourRepository _tourRepository = new TourRepository();
 
         public TourReservationRepository()
         {
             _serializer = new Serializer<TourReservation>();
-            _tourReservations = GetAll();
-            _tourparticipantRepository = new TourParticipantRepository();
+            _tourReservations = _serializer.FromCSV(FilePath);
         }
 
         public List<TourReservation> GetAll()
@@ -53,26 +52,6 @@ namespace BookingApp.Repository
             List<TourReservation> allReservations = GetAll();
             reservations = allReservations.FindAll(res  => res.TourId == tour_id);
             return reservations;
-        }
-
-        public List<TourParticipant> GetJoinedParticipantsByTour(int tour_id)
-        {
-            List<TourReservation> tourReservations = GetReservationsByTour(tour_id);
-            List<TourParticipant> participants = new List<TourParticipant>();
-            foreach(TourReservation tourReservation in tourReservations.ToList())
-            {
-                foreach (TourParticipant participant in _tourparticipantRepository.GetAllJoinedParticipantsByReservation(tourReservation.Id))
-                {
-                    participants.Add(participant);
-                }
-            }
-            return participants;
-        }
-
-        public int GetNumberOfJoinedParticipants(int tour_id)
-        {
-            List<TourParticipant> tourParticipants = GetJoinedParticipantsByTour(tour_id);
-            return tourParticipants.Count();
         }
 
 
@@ -106,15 +85,14 @@ namespace BookingApp.Repository
             Add(tourReservation);
         }
 
-        public List<Tour> FindMyTours(int id)
+        public List<Tour> FindMyTours(int id, string touristName, string touristLastName)
         {
-            return FindToursForUserByReservation(id).FindAll(t => t.Status != TourStatus.Finnished);
+            return FindToursForUserByReservation(id, touristName, touristLastName).FindAll(t => t.Status != TourStatus.Finnished);
         }
 
-        public List<Tour> FindToursForUserByReservation(int id)
+        public List<Tour> FindToursForUserByReservation(int id, string touristName, string touristLastName)
         {
             List<TourReservation> tourReservations = _tourReservations.FindAll(res => res.TouristId == id);
-
 
             List<Tour> tours = new List<Tour>();
 
@@ -123,7 +101,7 @@ namespace BookingApp.Repository
             {
                 
                 // daj mi turu koja je sa tim tourId-jem, ali mora bar jedan participant da se prikljucio turi
-                if (_tourRepository.GetTourById(tourReservation.TourId) != null && _tourparticipantRepository.IsSomeoneJoinedToTourByReservation(tourReservation.Id))
+                if (_tourRepository.GetTourById(tourReservation.TourId) != null && _tourparticipantRepository.IsUserJoined(tourReservation.Id, touristName, touristLastName))
                 {
                     tours.Add(_tourRepository.GetTourById(tourReservation.TourId));
                 }
@@ -133,14 +111,37 @@ namespace BookingApp.Repository
         }
 
 
-        public List<Tour> FindMyEndedTours(int id)
+        public List<Tour> FindMyEndedTours(int id, string touristName, string touristLastName)
         {
-            return FindToursForUserByReservation(id).FindAll(t => t.Status == TourStatus.Finnished);
+            return FindToursForUserByReservation(id, touristName, touristLastName).FindAll(t => t.Status == TourStatus.Finnished);
         }
 
         public List<TourReservation> FindReservationsByUserIdAndTourId(int tourId, int userId)
         {
             return _tourReservations.FindAll(t => t.TourId == tourId && t.TouristId == userId);
+        }
+
+        public int getTouristParticipantID(int tour_id)
+        {
+            List<TourReservation> reservations = GetReservationsByTour(tour_id);
+            return reservations[0].ParticipantIds[0];
+        }
+
+        public TourReservation FindReservationByTouristIdAndTourId(int userId, int tourId)
+        {
+            return _tourReservations.Find(tr => tr.TouristId == userId && tr.TourId == tourId);
+        }
+
+        public void addParticipant(TourParticipant participant, TourReservation reservation)
+        {
+            TourParticipant participantRepo = _tourparticipantRepository.SaveParticipant(participant.Name, participant.LastName, participant.Years.ToString());
+            participantRepo.Id = _tourparticipantRepository.NextId();
+            participantRepo.ReservationId = reservation.Id;
+            _tourparticipantRepository.Add(participantRepo);
+            
+            reservation.ParticipantIds.Add(participant.Id);
+            _serializer.ToCSV(FilePath, _tourReservations);
+
         }
     }
 }

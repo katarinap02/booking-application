@@ -7,65 +7,6 @@
         mc:Ignorable="d"
         Title="HostWindow" Height="768" Width="1024"
         WindowStartupLocation="CenterScreen">
-    <!--
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="800"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="15"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-
-        <StackPanel Grid.Row="2" Grid.Column="1" >
-            <Label Content="Please rate these guests:" FontWeight="Bold" Margin="0 0 0 5"/>
-            <DataGrid x:Name="AccommodationsDataGrid" ItemsSource="{Binding Accommodations, UpdateSourceTrigger=PropertyChanged}"
-       SelectedItem="{Binding SelectedAccommodation, UpdateSourceTrigger=PropertyChanged}"
-       IsReadOnly="True" SelectionMode="Single" 
-       AutoGenerateColumns="False" Height="395" HeadersVisibility="Column" FontSize="13">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Id guest" Binding="{Binding GuestId}" Width="200"/>
-                    <DataGridTextColumn Header="Id Accommodation" Binding="{Binding AccommodationId}" Width="200"/>
-                    <DataGridTextColumn Header="End of the visit to the accommodation" Binding="{Binding EndDate}" Width="*"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </StackPanel>
-
-        <ToolBar Grid.Row="0" Grid.ColumnSpan="3">
-            <Button Click="RegisterAccommodation_Click">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="../Resources/Images/add.png" Width="20" Height="25"/>
-                    <TextBlock Text="Register accommodation" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
-                </StackPanel>
-            </Button>
-            <Separator/>
-            <Button Click="Rate_Click">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="../Resources/Images/edit.png" Width="20" Height="25"/>
-                    <TextBlock Name="RateTxtBlock" Text="Rate guest" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
-                </StackPanel>
-            </Button>
-            <Button Click="Close_Click">
-                <StackPanel Orientation="Horizontal">
-                    <Image Source="../Resources/Images/delete.png" Width="20" Height="25"/>
-                    <TextBlock Name="CloseBlock" Text="Close" FontSize="14" VerticalAlignment="Center" Margin="5,0,0,0" />
-                </StackPanel>
-            </Button>
-        </ToolBar>
-
-        <Frame
-            x:Name="HostFrame"
-            NavigationUIVisibility="Hidden"
-            Source="../View/HostPages/RatePages/RateDisplayPage.xaml" Grid.ColumnSpan="3" Margin="0,0,56,10" Grid.RowSpan="3" />
-
-
-
-
-    </Grid>
-    -->
 
     <DockPanel>
         <Menu DockPanel.Dock="Top"  >
@@ -166,7 +107,7 @@
                     </MenuItem>
                     <MenuItem Margin="25 7 10 0">
                         <MenuItem.Header>
-                            <Button BorderThickness="0" Content="rate guest" FontSize="13" Width="100" Height="25">
+                            <Button BorderThickness="0" Content="rate guest" Click="RateGuest_Click" FontSize="13" Width="100" Height="25">
 
                             </Button>
                         </MenuItem.Header>

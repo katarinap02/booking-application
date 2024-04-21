@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model;
+using BookingApp.Domain.Model.Reservations;
 using BookingApp.Repository;
 using BookingApp.WPF.ViewModel;
 using System;
@@ -11,11 +12,11 @@ namespace BookingApp.Application.Services.ReservationServices
 {
     public class TourParticipantService
     {
-        private readonly TourParticipantRepository _tourParticipantRepository;
+        private static readonly TourParticipantRepository _tourParticipantRepository = new TourParticipantRepository();
+        private static readonly TourReservationService _tourReservationService = new TourReservationService();
 
         public TourParticipantService()
         {
-            _tourParticipantRepository = new TourParticipantRepository();
         }
 
         public TourParticipantViewModel saveParticipantToDTO(string name, string lastName, string years)
@@ -28,5 +29,36 @@ namespace BookingApp.Application.Services.ReservationServices
         {
             _tourParticipantRepository.SaveParticipant(tourParticipantViewModel.ToTourParticipant(), reservationId);
         }
+
+        public List<TourParticipant> GetAllJoinedParticipantsByReservation(int reservationId)
+        {
+            List<TourParticipant> tourParticipants = _tourParticipantRepository.GetAllParticipantsByReservation(reservationId);
+            foreach (TourParticipant tp in tourParticipants.ToList())
+            {
+                if (!tp.HasJoinedTour)
+                {
+                    tourParticipants.Remove(tp);
+                }
+            }
+
+            return tourParticipants;
+        }
+
+        public TourParticipant GetById(int id)
+        {
+            return _tourParticipantRepository.GetById(id);
+        }
+
+
+        public int getjoinedCheckpoint(int tour_id)
+        {
+            TourParticipant participant = GetById(_tourReservationService.getTouristParticipantID(tour_id));
+            if (!participant.HasJoinedTour)
+            {
+                return -1;
+            }
+            return participant.JoinedCheckpointIndex;
+        }
+
     }
 }

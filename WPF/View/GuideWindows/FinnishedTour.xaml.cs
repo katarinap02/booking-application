@@ -6,23 +6,27 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+
+using BookingApp.Application.Services;
+
 using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Application.Services.FeatureServices;
 
 namespace BookingApp.View.GuideWindows
 {
     public partial class FinnishedTour : Window
     {
-        TourRepository TourRepository;
-        User Guide { get; set; }
-        TourViewModel SelectedTour { get; set; }
-        ObservableCollection<TourViewModel> TourViewModels;
+        private readonly TourService TourService;
+        public User Guide { get; set; }
+        public TourViewModel SelectedTour { get; set; }
+        public ObservableCollection<TourViewModel> TourViewModels;
 
         public FinnishedTour(User guide)
         {
             InitializeComponent();
             DataContext = this;
-            TourRepository = new TourRepository();
+            TourService = new TourService();
             Guide = guide;
             SelectedTour = new TourViewModel();
             TourViewModels = new ObservableCollection<TourViewModel>();
@@ -31,7 +35,7 @@ namespace BookingApp.View.GuideWindows
 
         public void getGridData()
         {
-            List<Tour> tours = TourRepository.findFinnishedToursByGuide(Guide.Id);
+            List<Tour> tours = TourService.findFinnishedToursByGuide(Guide.Id);
             foreach (Tour tour in tours)
             {
                 TourViewModels.Add(new TourViewModel(tour));

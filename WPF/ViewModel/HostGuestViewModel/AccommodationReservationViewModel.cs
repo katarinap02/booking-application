@@ -1,8 +1,10 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Observer;
 using BookingApp.Repository;
-using BookingApp.View.GuestPages;
+
+using BookingApp.WPF.View.Guest.GuestTools;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -154,12 +156,40 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         }
 
 
+        private string onePicture;
+        public string OnePicture
+        {
+            get { return onePicture; }
+            set
+            {
+                if (onePicture != value)
+                {
+
+                    onePicture = value;
+                    OnPropertyChanged("OnePicture");
+                }
+            }
+        }
+
+
+
         private HostService hostService = new HostService();
         private AccommodationService accommodationService = new AccommodationService();
+        private UserService userService = new UserService();
 
         public string AccommodationDetails => Name + ", " + City + ", " + Country;
         public string HostUsername => GetHostUsername(hostService, accommodationService.GetById(AccommodationId).HostId);
         public string DateRangeString => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
+
+        public string DateString => StartDate.ToString("MM/dd/yyyy") + " - " + EndDate.ToString("MM/dd/yyyy");
+
+        public string GuestUsername => userService.GetById(GuestId).Username;
+
+        public string AccommodationName => accommodationService.GetById(AccommodationId).Name;
+
+        public Accommodation acc => accommodationService.GetById(AccommodationId);
+        public PathConverter PathConverter { get; set; }
+
         private string GetHostUsername(HostService hostService, int hostId)
         {
             return hostService.GetById(hostId).Username;
@@ -181,6 +211,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             name = ac.Name;
             city = ac.City;
             country = ac.Country;
+            PathConverter = new PathConverter();
+            if (acc.Pictures.Count != 0)
+                OnePicture = PathConverter.ConvertToRelativePath(acc.Pictures[0]);
+
+            else
+                OnePicture = "../../../Resources/Images/no_image.jpg";
 
 
         }

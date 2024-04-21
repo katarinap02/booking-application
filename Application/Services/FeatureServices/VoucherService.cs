@@ -47,5 +47,10 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             _voucherRepository.RefreshVouchers();
         }
+
+        public void Add(Voucher voucher)
+        {
+            _voucherRepository.Add(voucher);
+        }
     }
 }

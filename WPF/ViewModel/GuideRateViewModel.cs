@@ -212,6 +212,24 @@ namespace BookingApp.WPF.ViewModel
             }
         }
 
+        private bool _isValid;
+
+        public bool IsValid
+        {
+            get
+            {
+                return _isValid;
+            }
+            set
+            {
+                if (value != _isValid)
+                {
+                    _isValid = value;
+                    OnPropertyChanged(nameof(IsValid));
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -244,6 +262,7 @@ namespace BookingApp.WPF.ViewModel
         public void Submit(GuideRateViewModel rate)
         {
             Pictures = imagePreviews.Select(image => GetAbsolutePath(image.UriSource)).ToList();
+            rate.IsValid= true;
             _guideRateService.SaveRate(rate);
         }
 
@@ -325,11 +344,12 @@ namespace BookingApp.WPF.ViewModel
             TourInterest = guideRate.TourInterest;
             AdditionalComment = guideRate.AdditionalComment;
             Pictures = guideRate.Pictures;
+            IsValid = guideRate.IsValid;
         }
 
         public GuideRate toGuideRate()
         {
-            GuideRate guideRate = new GuideRate(_id, _touristId, _tourId, _guideId, _knowledge, _language, _tourInterest, _additionalComment, _pictures);
+            GuideRate guideRate = new GuideRate(_id, _touristId, _tourId, _guideId, _knowledge, _language, _tourInterest, _additionalComment, _pictures, IsValid);
             return guideRate;
         }
     }

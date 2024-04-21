@@ -80,16 +80,7 @@ namespace BookingApp.Repository
             return tourParticipantIds;
         }
 
-        public string GetAllParticipantNames(int reservationId) 
-        {
-            List<TourParticipant> tourParticipantsByReservation = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
-            List<string> participantNames = new List<string>();
-            foreach(TourParticipant tp in tourParticipantsByReservation)
-            {
-                participantNames.Add(tp.Name+" "+tp.LastName);
-            }
-            return string.Join(", ", participantNames);
-        }
+        
 
         public List<TourParticipant> GetAllParticipantsByReservation(int reservationId)
         {
@@ -102,7 +93,7 @@ namespace BookingApp.Repository
             return tourParticipants;
         }
 
-        public List<TourParticipant> GetAllJoinedParticipantsByReservation(int reservationId)
+        public List<TourParticipant> GetAllJoinedParticipantsByReservation(int reservationId) //za brisanje 
         {
             List<TourParticipant> tourParticipants = GetAllParticipantsByReservation(reservationId);
             foreach(TourParticipant tp in tourParticipants.ToList())
@@ -157,18 +148,17 @@ namespace BookingApp.Repository
             _notificationRepository.Add(notification);
         }
 
-        public bool IsSomeoneJoinedToTourByReservation(int reservationId)
+        public bool IsUserJoined(int reservationId, string touristName, string touristLastName)
         {
             List<TourParticipant> tourParticipants = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
             foreach(TourParticipant tp in tourParticipants){
-                if(tp.HasJoinedTour == true)
+                if(tp.Name.Equals(touristName) && tp.LastName.Equals(touristLastName) && tp.HasJoinedTour == true)
                 {
                     return true;
                 }
             }
             return false;
         }
-
         
     }
 }

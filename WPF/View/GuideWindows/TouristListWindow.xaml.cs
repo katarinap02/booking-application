@@ -33,8 +33,7 @@ namespace BookingApp.View.GuideWindows
             tourParticipants = _tourReservationRepository.GetNotJoinedReservations(tour_id); 
             tourParticipantDTOs = new ObservableCollection<TourParticipantViewModel>();
             foreach( TourParticipant tp in  tourParticipants )
-            {
-                MessageBox.Show(tp.Name, "Window"); 
+            { 
                 tourParticipantDTOs.Add(new TourParticipantViewModel(tp)); 
             }
             dataGrid.ItemsSource = tourParticipantDTOs;

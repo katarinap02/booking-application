@@ -20,6 +20,8 @@ namespace BookingApp.Application.Services.RateServices
         public List<GuestRate> GetAll()
         {
             return GuestRateRepository.GetAll();
-        }
+        }  
+
+       
     }
 }

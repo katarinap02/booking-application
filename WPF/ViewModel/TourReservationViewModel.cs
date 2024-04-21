@@ -21,7 +21,7 @@ namespace BookingApp.WPF.ViewModel
         private readonly TourParticipantService _tourParticipantService;
         private readonly TourReservationService _tourReservationService;
         private readonly VoucherService _voucherService;
-        private readonly TouristService _touristService;
+        private readonly TourService _touristService;
 
         public List<TourParticipantViewModel> TourParticipantDTOs { get; set; }
         public List<TourParticipantViewModel> TourParticipantsListBox { get; set; }
@@ -285,9 +285,19 @@ namespace BookingApp.WPF.ViewModel
             ParticipantsListBox = null;
             ParticipantsListBox = TourParticipantsListBox;
         }
-        private void saveParticipants()
+        private void saveParticipants(bool hasAlreadyReserved, TourReservationViewModel reservation)
         {
+            if (hasAlreadyReserved)
+            {
+                foreach (TourParticipantViewModel tp in TourParticipantDTOs)
+                {
+                    _tourReservationService.addParticipant(tp, reservation);
+                }
+                return;
+            }
             int reservationId = _tourReservationService.NextReservationId();
+            TourParticipantDTOs.Add(_tourReservationService.FindTouristById(UserId));
+            TourParticipantDTOs.Reverse();
             foreach (TourParticipantViewModel tp in TourParticipantDTOs)
             {
                 _tourParticipantService.saveParticipant(tp, reservationId);
@@ -301,21 +311,31 @@ namespace BookingApp.WPF.ViewModel
 
         public bool Book()
         {
-            if (Convert.ToInt32(ParticipantCount) < TourParticipantDTOs.Count)
+            // trebam da uracunam i korisnika
+            if (participantCount - 1 < TourParticipantDTOs.Count)
             {
                 System.Windows.MessageBox.Show("Too many participants in the list of participants", "Participants error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
-            else if (participantCount > TourParticipantDTOs.Count)
+            else if (participantCount - 1 > TourParticipantDTOs.Count)
             {
                 System.Windows.MessageBox.Show("Too less participants in the list of participants", "Participants error", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return false;
             }
             else
+                //ako postoji vec rezervacija za tu turu
             {
-                saveParticipants();
-                saveReservation();
-
+                TourReservationViewModel reservation = _tourReservationService.FindReservationByTOuristIdAndTourId(UserId, SelectedTour.Id);
+                // ovo znaci da vec ima rezervacija
+                if (reservation != null)
+                {
+                    saveParticipants(true, reservation);
+                }
+                else
+                {
+                    saveParticipants(false, reservation);
+                    saveReservation();
+                }
                 ReduceNumberOfAvailablePlaces();
                 // ovo za vaucere
                 if (_voucherService.HasVoucher(UserId))
@@ -344,7 +364,7 @@ namespace BookingApp.WPF.ViewModel
         {
             _tourParticipantService = new TourParticipantService();
             _tourReservationService = new TourReservationService();
-            _touristService = new TouristService();
+            _touristService = new TourService();
             _voucherService = new VoucherService();
 
             TourParticipantDTOs = new List<TourParticipantViewModel>();
