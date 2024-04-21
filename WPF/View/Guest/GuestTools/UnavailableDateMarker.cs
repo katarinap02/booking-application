@@ -1,12 +1,11 @@
-﻿using BookingApp.View.Guest.GuestTools;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace BookingApp.View.GuestTools
+namespace BookingApp.WPF.View.Guest.GuestTools
 {
     public class UnavailableDateMarker
     {
@@ -35,14 +34,14 @@ namespace BookingApp.View.GuestTools
 
             }
             if (unavailableDateRanges.Count > 0)
-               BetweenDateMarker.CheckDaysBetween(unavailableDateRanges, dayNumber, chosenDateRange);
+                BetweenDateMarker.CheckDaysBetween(unavailableDateRanges, dayNumber, chosenDateRange);
 
 
 
         }
 
-       
 
-       
+
+
     }
 }

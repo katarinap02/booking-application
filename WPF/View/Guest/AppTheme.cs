@@ -5,15 +5,15 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace BookingApp.View
+namespace BookingApp.WPF.View.Guest
 {
     public class AppTheme
     {
         public static void ChangeTheme(Uri themeuri)
         {
             ResourceDictionary theme = new ResourceDictionary() { Source = themeuri };
-            App.Current.Resources.Clear();
-            App.Current.Resources.MergedDictionaries.Add(theme);
+            Application.Current.Resources.Clear();
+            Application.Current.Resources.MergedDictionaries.Add(theme);
         }
     }
 }

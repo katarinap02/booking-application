@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.View.Guest.GuestTools
+namespace BookingApp.WPF.View.Guest.GuestTools
 {
     public class AccommodationSearcher
     {

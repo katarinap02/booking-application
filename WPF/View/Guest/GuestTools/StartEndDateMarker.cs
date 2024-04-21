@@ -5,16 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 
-namespace BookingApp.View.Guest.GuestTools
+namespace BookingApp.WPF.View.Guest.GuestTools
 {
     public class StartEndDateMarker
     {
         public Calendar ReservationCalendar { get; set; }
 
-        public StartEndDateMarker(Calendar reservationCalendar) {
-            
+        public StartEndDateMarker(Calendar reservationCalendar)
+        {
+
             ReservationCalendar = reservationCalendar;
-                
+
         }
         public void CheckStartRange(List<CalendarDateRange> unavailableDateRanges, int dayNumber, CalendarDateRange chosenDateRange)
         {

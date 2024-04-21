@@ -8,18 +8,19 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace BookingApp.View.GuestTools
+namespace BookingApp.WPF.View.Guest.GuestTools
 {
     public class CalendarConfigurator
     {
         public Calendar ReservationCalendar { get; set; }
-        
+
         public UnavailableDateMarker UnavailableDateMarker { get; set; }
-        public CalendarConfigurator(Calendar reservationCalendar) {
-        
+        public CalendarConfigurator(Calendar reservationCalendar)
+        {
+
             ReservationCalendar = reservationCalendar;
             UnavailableDateMarker = new UnavailableDateMarker(ReservationCalendar);
-            
+
         }
 
         public void ConfigureCalendar(AccommodationViewModel selectedAccommodation, DateTime start, DateTime end, int dayNumber)
@@ -44,7 +45,7 @@ namespace BookingApp.View.GuestTools
         }
 
 
-       
+
 
         private void ShowReccommendedDates(AccommodationViewModel selectedAccommodation, int dayNumber)
         {
@@ -96,6 +97,6 @@ namespace BookingApp.View.GuestTools
             return true;
         }
 
-       
+
     }
 }

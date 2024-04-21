@@ -1,8 +1,8 @@
 ﻿using BookingApp.Model;
 using BookingApp.Observer;
 using BookingApp.Services;
-using BookingApp.View.Guest.GuestTools;
 using BookingApp.View.GuestPages;
+using BookingApp.WPF.View.Guest.GuestTools;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
