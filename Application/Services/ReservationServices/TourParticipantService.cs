@@ -12,13 +12,11 @@ namespace BookingApp.Application.Services.ReservationServices
 {
     public class TourParticipantService
     {
-        private readonly TourParticipantRepository _tourParticipantRepository;
-        private readonly TourReservationService _tourReservationService;
+        private static readonly TourParticipantRepository _tourParticipantRepository = new TourParticipantRepository();
+        private static readonly TourReservationService _tourReservationService = new TourReservationService();
 
         public TourParticipantService()
         {
-            _tourParticipantRepository = new TourParticipantRepository();
-            _tourReservationService = new TourReservationService();
         }
 
         public TourParticipantViewModel saveParticipantToDTO(string name, string lastName, string years)
