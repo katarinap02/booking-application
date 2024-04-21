@@ -1,6 +1,6 @@
 ﻿using BookingApp.Model;
 using BookingApp.Services;
-using BookingApp.View.ViewModel;
+using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

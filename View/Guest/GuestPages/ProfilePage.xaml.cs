@@ -1,4 +1,4 @@
-﻿using BookingApp.ViewModel;
+﻿using BookingApp.WPF.ViewModel;
 using BookingApp.Repository;
 using System;
 using System.Collections.Generic;

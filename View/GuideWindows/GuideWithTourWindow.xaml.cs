@@ -1,11 +1,11 @@
-﻿using BookingApp.ViewModel;
-using BookingApp.Model;
+﻿using BookingApp.Model;
 using BookingApp.Repository;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Windows;
 using System.Windows.Media;
+using BookingApp.WPF.ViewModel;
 
 namespace BookingApp.View.GuideWindows
 {

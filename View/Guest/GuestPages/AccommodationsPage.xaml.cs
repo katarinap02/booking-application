@@ -17,8 +17,8 @@ using BookingApp.Observer;
 using BookingApp.Model;
 using System.Security.Cryptography;
 using BookingApp.Services;
-using BookingApp.View.ViewModel;
-using BookingApp.ViewModel;
+using BookingApp.WPF.ViewModel;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 
 namespace BookingApp.View.GuestPages
 {

@@ -7,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
-using BookingApp.View.ViewModel;
 using System.Windows;
-using BookingApp.ViewModel;
+using BookingApp.WPF.ViewModel;
+using BookingApp.WPF.ViewModel.HostGuestViewModel;
 
 namespace BookingApp.Services
 {

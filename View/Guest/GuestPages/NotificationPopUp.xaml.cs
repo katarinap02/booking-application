@@ -1,5 +1,5 @@
 ﻿using BookingApp.Model;
-using BookingApp.ViewModel;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;

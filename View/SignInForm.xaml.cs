@@ -2,7 +2,7 @@
 using BookingApp.Repository;
 using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;
-using BookingApp.ViewModel;
+using BookingApp.WPF.ViewModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;

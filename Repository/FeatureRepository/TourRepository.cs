@@ -1,4 +1,4 @@
-﻿using BookingApp.ViewModel;
+﻿using BookingApp.WPF.ViewModel;
 using BookingApp.Model;
 using BookingApp.Serializer;
 using System;

@@ -13,7 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BookingApp.View.ViewModel;
+using BookingApp.WPF.ViewModel.HostGuestViewModel;
 
 namespace BookingApp.View.GuestWindows
 {

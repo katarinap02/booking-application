@@ -4,7 +4,7 @@ using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using BookingApp.View.ViewModel;
+using BookingApp.WPF.ViewModel.HostGuestViewModel;
 
 namespace BookingApp.Repository
 {

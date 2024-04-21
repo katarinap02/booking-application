@@ -14,8 +14,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BookingApp.View.ViewModel;
 using BookingApp.Model;
+using BookingApp.WPF.ViewModel.HostGuestViewModel;
 
 namespace BookingApp.View.HostPages
 {

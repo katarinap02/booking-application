@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         
-        xmlns:local="clr-namespace:BookingApp.View.TouristWindows" xmlns:dto="clr-namespace:BookingApp.ViewModel" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:local="clr-namespace:BookingApp.View.TouristWindows" xmlns:dto="clr-namespace:BookingApp.WPF.ViewModel" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="TouristWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
     <Window.Resources>
