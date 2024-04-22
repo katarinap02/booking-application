@@ -30,10 +30,6 @@
     <None Remove="Resources\Images\urgent.png" />
     <None Remove="Resources\Images\video-camera.png" />
     <None Remove="Resources\Images\view.png" />
-    <None Remove="View\TouristWindows\notificationtourist.png" />
-    <None Remove="View\TouristWindows\pdf.png" />
-    <None Remove="View\TouristWindows\searchtourist.png" />
-    <None Remove="View\TouristWindows\user.png" />
     <None Remove="WPF\Resources\Images\empty.png" />
     <None Remove="WPF\Resources\Images\minus.png" />
     <None Remove="WPF\Resources\Images\plus.png" />
