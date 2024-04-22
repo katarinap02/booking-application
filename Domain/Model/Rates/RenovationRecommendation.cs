@@ -15,12 +15,12 @@ namespace BookingApp.Domain.Model.Rates
         public string Comment;
        
         public RenovationRecommendation() { }
-        RenovationRecommendation(int id, RecommendationLevel level, string comment)
+        public  RenovationRecommendation(RecommendationLevel level, string comment)
         {
-            Id = id;
+
             Level = level;
             Comment = comment;
-           
+
         }
 
         public void FromCSV(string[] values)
