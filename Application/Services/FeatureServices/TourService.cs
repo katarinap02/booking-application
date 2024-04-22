@@ -8,47 +8,49 @@ using System.Linq;
 using System.Net;
 using System.Text;
 using System.Threading.Tasks;
-using BookingApp.Application.Services;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Serializer;
 using System.Windows;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Repository.FeatureRepository;
+using BookingApp.Repository.ReservationRepository;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 
 namespace BookingApp.Application.Services.FeatureServices
 {
     public class TourService
     {
-        private readonly TourRepository tourRepository;
-        private readonly TourParticipantRepository tourparticipantRepository;
-        private readonly TourReservationRepository tourReservationRepository;
-        private readonly VoucherService voucherService;
-        private readonly TourReservationService tourReservationService;
+        private readonly ITourRepository _tourRepository;
 
-        private TouristService touristService;
-        public TourService()
+        private readonly TourParticipantService _tourParticipantService;
+        private readonly VoucherService _voucherService;
+        private readonly TourReservationService _tourReservationService;
+
+        private TouristService _touristService;
+        public TourService(ITourRepository tourRepository)
         {
-            tourRepository = new TourRepository();
-            tourparticipantRepository = new TourParticipantRepository();
-            tourReservationRepository = new TourReservationRepository();
-            voucherService = new VoucherService();
-            touristService = new TouristService();
-            tourReservationService = new TourReservationService();
+            _tourRepository = tourRepository;
+            _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
+            _touristService = new TouristService(Injector.Injector.CreateInstance<ITouristRepository>());
+            _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
+            _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
         }
 
         public List<TourViewModel> GetAllTours() // izmeniti posto ne vraca sve vec samo one koje nisu zavrsene! BITNO!!!
         {
-            return ToTourViewModel(tourRepository.GetAll());
+            return ToTourViewModel(_tourRepository.GetAll());
         }
 
         public int FindMaxNumberOfParticipants()
         {
-            return tourRepository.FindMaxNumberOfParticipants();
+            return _tourRepository.FindMaxNumberOfParticipants();
         }
 
         public int FindMaxNumberOfParticipants(List<TourViewModel> tours)
         {
-            return tourRepository.FindMaxNumberOfParticipants(ToTour(tours));
+            return _tourRepository.FindMaxNumberOfParticipants(ToTour(tours));
         }
 
         public List<TourViewModel> ToTourViewModel(List<Tour> Tours)
@@ -73,41 +75,41 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public List<TourViewModel>? SearchTours(Tour searchCriteria)
         {
-            return ToTourViewModel(tourRepository.SearchTours(searchCriteria));
+            return ToTourViewModel(_tourRepository.SearchTours(searchCriteria));
         }
 
         public int ToursCount()
         {
-            return tourRepository.ToursCount();
+            return _tourRepository.ToursCount();
         }
 
         public Tour UpdateAvailablePlaces(TourViewModel tour, int reducer)
         {
-            return tourRepository.UpdateAvailablePlaces(tour.ToTour(), reducer);
+            return _tourRepository.UpdateAvailablePlaces(tour.ToTour(), reducer);
         }
 
         public List<TourViewModel> FindMyTours(int id)
         {
-            Tourist tourist = touristService.GetTouristById(id);
-            return ToTourViewModel(tourReservationRepository.FindMyTours(id, tourist.Name, tourist.LastName));
+            Tourist tourist = _touristService.GetTouristById(id);
+            return ToTourViewModel(_tourReservationService.FindMyTours(id, tourist.Name, tourist.LastName));
         }
 
         public List<TourViewModel> FindMyEndedTours(int id)
         {
-            Tourist tourist = touristService.GetTouristById(id);
-            return ToTourViewModel(tourReservationRepository.FindMyEndedTours(id, tourist.Name, tourist.LastName));
+            Tourist tourist = _touristService.GetTouristById(id);
+            return ToTourViewModel(_tourReservationService.FindMyEndedTours(id, tourist.Name, tourist.LastName));
         }
 
 
         public List<string> GetParticipantsThatJoinedNow(TouristNotification notification)
         {
             // moram naci rezervacije
-            List<TourReservation> reservations = tourReservationRepository.FindReservationsByUserIdAndTourId(notification.TourId, notification.TouristId);
+            List<TourReservation> reservations = _tourReservationService.FindReservationsByUserIdAndTourId(notification.TourId, notification.TouristId);
 
             List<string> nowJoinedParticipantNames = new List<string>();
             foreach (var reservation in reservations)
             {
-                List<TourParticipant> joinedTourParticipants = tourparticipantRepository.GetAllJoinedParticipantsByReservation(reservation.Id);
+                List<TourParticipant> joinedTourParticipants = _tourParticipantService.GetAllJoinedParticipantsByReservation(reservation.Id);
                 foreach(var participant in joinedTourParticipants)
                 {
                     // ako se sad prikljucio onda cemo prikazati u notifitikaciji
@@ -122,17 +124,17 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public List<TourViewModel> GetTourByCityWithAvailablePlaces(string city)
         {
-            return ToTourViewModel(tourRepository.GetTourByCityWithAvailablePlaces(city));
+            return ToTourViewModel(_tourRepository.GetTourByCityWithAvailablePlaces(city));
         }
 
         public List<string> GetCheckpointsByTour(int tourId)
         {
-            return tourRepository.GetCheckpointsByTour(tourId);
+            return _tourRepository.GetCheckpointsByTour(tourId);
         }
 
         public List<Tour> findToursToCancel(int guideId) //izmeniti referencu!
         {
-            List<Tour> tours = tourRepository.findToursByGuideId(guideId);
+            List<Tour> tours = _tourRepository.findToursByGuideId(guideId);
             foreach (Tour tour in tours.ToList())
             {
                 TimeSpan difference = tour.Date - DateTime.Now;
@@ -146,17 +148,17 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public void grantVoucher(string reason, DateOnly expireDate, int tour_id, int guide_id)
         {
-            List<TourReservation> Reservations = tourReservationRepository.GetReservationsByTour(tour_id);
+            List<TourReservation> Reservations = _tourReservationService.GetReservationsByTour(tour_id);
             foreach (TourReservation reservation in Reservations)
             {
                 Voucher voucher = new Voucher(0, reservation.TouristId, guide_id, false, reason, expireDate);
-                voucherService.Add(voucher);
+                _voucherService.Add(voucher);
             }
         }
 
         public void cancelTour(int tour_id, int guide_id)
         {
-            Tour tour = tourRepository.GetTourById(tour_id);
+            Tour tour = _tourRepository.GetTourById(tour_id);
             if (tour == null) return;
             tour.Status = TourStatus.Canceled;
 
@@ -164,7 +166,7 @@ namespace BookingApp.Application.Services.FeatureServices
             DateOnly expireDate = new DateOnly(DateTime.Now.Year + 1, DateTime.Now.Month, DateTime.Now.Day);
             grantVoucher(reason, expireDate, tour_id, guide_id);
             MessageBox.Show(reason);
-            tourRepository.save(tour);
+            _tourRepository.save(tour);
         }
 
         public List<int> GetAgeStatistic(int id)
@@ -172,7 +174,7 @@ namespace BookingApp.Application.Services.FeatureServices
             int below18 = 0;
             int above18 = 0;
             int above50 = 0;
-            List<TourParticipant> participants = tourReservationService.GetJoinedParticipantsByTour(id);
+            List<TourParticipant> participants = _tourReservationService.GetJoinedParticipantsByTour(id);
 
             foreach (TourParticipant participant in participants)
             {
@@ -195,13 +197,13 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public Tour GetMostPopularTourForGuide(int guide_id)
         {
-            List<Tour> tours = tourRepository.findToursByGuideId(guide_id);
+            List<Tour> tours = _tourRepository.findToursByGuideId(guide_id);
             Tour mostPopularTour = null;
             int maxParticipants = 0;
 
             foreach (Tour tour in tours)
             {
-                int numberOfParticipants = tourReservationService.GetNumberOfJoinedParticipants(tour.Id);
+                int numberOfParticipants = _tourReservationService.GetNumberOfJoinedParticipants(tour.Id);
 
                 if (numberOfParticipants > maxParticipants)
                 {
@@ -215,7 +217,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public Tour GetMostPopularTourForGuideInYear(int guide_id, int year)
         {
-            List<Tour> tours = tourRepository.findToursByGuideId(guide_id);
+            List<Tour> tours = _tourRepository.findToursByGuideId(guide_id);
 
             Tour mostPopularTourInYear = null;
             int maxParticipantsInYear = 0;
@@ -224,7 +226,7 @@ namespace BookingApp.Application.Services.FeatureServices
             {
                 if (tour.Date.Year == year)
                 {
-                    int numberOfParticipants = tourReservationService.GetNumberOfJoinedParticipants(tour.Id);
+                    int numberOfParticipants = _tourReservationService.GetNumberOfJoinedParticipants(tour.Id);
 
                     if (numberOfParticipants > maxParticipantsInYear)
                     {
@@ -239,7 +241,12 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public List<Tour> findFinnishedToursByGuide(int guide_id)
         {
-            return tourRepository.findFinnishedToursByGuide(guide_id);
+            return _tourRepository.findFinnishedToursByGuide(guide_id);
+        }
+
+        public bool isTourFinished(int tourId)
+        {
+            return _tourRepository.isTourFinished(tourId);
         }
 
     }

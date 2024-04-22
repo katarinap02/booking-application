@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Repository.FeatureRepository;
 using BookingApp.Repository;
 using BookingApp.WPF.ViewModel;
 using System;
@@ -6,16 +7,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 
 namespace BookingApp.Application.Services.FeatureServices
 {
     public class TouristNotificationService
     {
-        private readonly TouristNotificationRepository _touristNotificationRepository;
+        private readonly ITouristNotificationRepository _touristNotificationRepository;
 
-        public TouristNotificationService()
+        public TouristNotificationService(ITouristNotificationRepository touristNotificationRepository)
         {
-            _touristNotificationRepository = new TouristNotificationRepository();
+            _touristNotificationRepository = touristNotificationRepository;
         }
 
         public List<TouristNotificationViewModel> GetMyNotifications(int touristId)

@@ -1,5 +1,6 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.View.TouristWindows;
 using System;
 using System.Collections.Generic;
@@ -193,7 +194,7 @@ namespace BookingApp.WPF.ViewModel
 
         public VoucherViewModel()
         {
-            _voucherService = new VoucherService();
+            _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
             Vouchers = new ObservableCollection<VoucherViewModel>();
         }
         public VoucherViewModel(Voucher voucher)

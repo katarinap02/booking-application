@@ -11,6 +11,7 @@ using Microsoft.Win32;
 using System.Windows.Media.Imaging;
 using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Repository.FeatureRepository;
 
 namespace BookingApp.View
 {

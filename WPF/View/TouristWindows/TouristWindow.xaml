@@ -121,7 +121,7 @@
                                 Orientation="Horizontal">
                         <Image
                                Width="75"
-                               Source="/Resources/Images/user.png"
+                               Source="/WPF/Resources/Images/user.png"
                                HorizontalAlignment="Left"/>
                         <Label Content="{Binding UserName}"
                                VerticalAlignment="Center"

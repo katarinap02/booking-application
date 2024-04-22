@@ -1,5 +1,6 @@
 ﻿using BookingApp.Application.Services.RateServices;
 using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.WPF.ViewModel;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
@@ -271,7 +272,7 @@ namespace BookingApp.WPF.ViewModel
             string absolutePath = uri.LocalPath;
             absolutePath = absolutePath.Replace("\\", "/");
 
-            string rootDirectory = "/Resources/Images/";
+            string rootDirectory = "/WPF/Resources/Images/";
             int index = absolutePath.IndexOf(rootDirectory);
             if (index >= 0)
             {
@@ -325,7 +326,7 @@ namespace BookingApp.WPF.ViewModel
 
         public GuideRateViewModel()
         {
-            _guideRateService = new GuideRateService();
+            _guideRateService = new GuideRateService(Injector.Injector.CreateInstance<IGuideRateRepository>());
 
             imagePreviews = new ObservableCollection<BitmapImage>();
             SelectKnowledgeRatingCommand = new WPF.ViewModel.RelayCommand(ExecuteSelectKnowledgeRating);

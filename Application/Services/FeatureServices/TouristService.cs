@@ -8,18 +8,18 @@ using System.Threading.Tasks;
 using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
-using BookingApp.Repository;
 using BookingApp.Repository.FeatureRepository;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 
 namespace BookingApp.Application.Services.FeatureServices
 {
     public class TouristService
     {
-        private readonly TouristRepository _touristRepository;
+        private readonly ITouristRepository _touristRepository;
 
-        public TouristService()
+        public TouristService(ITouristRepository touristRepository)
         {
-            _touristRepository = new TouristRepository();
+            _touristRepository = touristRepository;
         }
 
         public TourParticipantViewModel ToTourParticipantViewModel(Tourist tourist)

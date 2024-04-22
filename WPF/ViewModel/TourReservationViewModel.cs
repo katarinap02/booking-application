@@ -1,6 +1,8 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
 using BookingApp.View.TouristWindows;
 using System;
@@ -21,7 +23,7 @@ namespace BookingApp.WPF.ViewModel
         private readonly TourParticipantService _tourParticipantService;
         private readonly TourReservationService _tourReservationService;
         private readonly VoucherService _voucherService;
-        private readonly TourService _touristService;
+        private readonly TourService _tourService;
 
         public List<TourParticipantViewModel> TourParticipantDTOs { get; set; }
         public List<TourParticipantViewModel> TourParticipantsListBox { get; set; }
@@ -352,7 +354,7 @@ namespace BookingApp.WPF.ViewModel
         {
             try
             {
-                _touristService.UpdateAvailablePlaces(SelectedTour, TourParticipantDTOs.Count);
+                _tourService.UpdateAvailablePlaces(SelectedTour, TourParticipantDTOs.Count);
             }
             catch (ArgumentNullException)
             {
@@ -362,10 +364,10 @@ namespace BookingApp.WPF.ViewModel
 
         public TourReservationViewModel()
         {
-            _tourParticipantService = new TourParticipantService();
-            _tourReservationService = new TourReservationService();
-            _touristService = new TourService();
-            _voucherService = new VoucherService();
+            _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
+            _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
+            _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
+            _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
 
             TourParticipantDTOs = new List<TourParticipantViewModel>();
             TourParticipantsListBox = new List<TourParticipantViewModel>();

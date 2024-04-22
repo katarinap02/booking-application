@@ -1,8 +1,12 @@
 
 
 using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
+using BookingApp.Repository.ReservationRepository;
 using BookingApp.WPF.ViewModel;
 
 using System;
@@ -15,12 +19,12 @@ namespace BookingApp.Application.Services.ReservationServices
 {
     public class TourReservationService
     {
-        private static readonly TourReservationRepository _tourReservationRepository = new TourReservationRepository();
-        private static readonly TourParticipantService _tourParticipantService = new TourParticipantService();
-        private readonly TouristService _touristService;
-        public TourReservationService()
+        private readonly ITourReservationRepository _tourReservationRepository;
+        private static readonly TourParticipantService _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
+        private static readonly TouristService _touristService = new TouristService(Injector.Injector.CreateInstance<ITouristRepository>());
+        public TourReservationService(ITourReservationRepository tourReservationRepository)
         {
-            _touristService = new TouristService();
+            _tourReservationRepository = tourReservationRepository;
         }
 
         public int NextReservationId()
@@ -55,6 +59,21 @@ namespace BookingApp.Application.Services.ReservationServices
                 return null;
             }
             return ToTouReservationViewModel(_tourReservationRepository.FindReservationByTouristIdAndTourId(userId, tourId));
+        }
+
+        public List<TourReservation> FindReservationsByUserIdAndTourId(int tourId, int userId)
+        {
+            return _tourReservationRepository.FindReservationsByUserIdAndTourId(tourId, userId);
+        }
+
+        public List<Tour> FindMyTours(int reservationId, string name, string lastName)
+        {
+            return _tourReservationRepository.FindMyTours(reservationId, name, lastName);
+        }
+
+        public List<Tour> FindMyEndedTours(int reservationId, string name, string lastName)
+        {
+            return _tourReservationRepository.FindMyEndedTours(reservationId, name, lastName);
         }
 
         public void addParticipant(TourParticipantViewModel tourParticipantViewModel, TourReservationViewModel reservation)

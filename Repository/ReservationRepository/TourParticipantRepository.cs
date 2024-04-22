@@ -1,5 +1,7 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.Repository.FeatureRepository;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
@@ -7,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Repository
+namespace BookingApp.Repository.ReservationRepository
 {
-    public class TourParticipantRepository
+    public class TourParticipantRepository : ITourParticipantRepository
     {
         private const string FilePath = "../../../Resources/Data/tour_participants.csv";
 
@@ -50,12 +52,12 @@ namespace BookingApp.Repository
             return _tourParticipants.Find(tp => tp.Id == id);
         }
 
-        public TourParticipant SaveParticipant(string name, string lastName, string years)
+        public TourParticipant SaveParticipant(string name, string lastName, string age)
         {
             TourParticipant tourParticipant = new TourParticipant();
             tourParticipant.Name = name;
             tourParticipant.LastName = lastName;
-            tourParticipant.Years = Convert.ToInt32(years);
+            tourParticipant.Years = Convert.ToInt32(age);
             tourParticipant.Id = NextId();
 
             return tourParticipant;
@@ -79,8 +81,6 @@ namespace BookingApp.Repository
 
             return tourParticipantIds;
         }
-
-        
 
         public List<TourParticipant> GetAllParticipantsByReservation(int reservationId)
         {
