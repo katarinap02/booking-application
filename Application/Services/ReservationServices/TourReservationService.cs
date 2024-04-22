@@ -37,28 +37,18 @@ namespace BookingApp.Application.Services.ReservationServices
             _tourReservationRepository.saveReservation(selectedTour.ToTour(), userId);
         }
 
-        public TourParticipantViewModel FindTouristById(int touristId)
+        public Tourist FindTouristById(int touristId)
         {
             return _touristService.FindTouristById(touristId);
         }
 
-        public TourReservationViewModel ToTouReservationViewModel(TourReservation reservation)
-        {
-            TourReservationViewModel tourReservationViewModel = new TourReservationViewModel();
-            tourReservationViewModel.Id = reservation.Id;
-            tourReservationViewModel.TourId = reservation.TourId;
-            tourReservationViewModel.TouristId = reservation.TouristId;
-            tourReservationViewModel.ParticipantIds = reservation.ParticipantIds;
-            return tourReservationViewModel;
-        }
-
-        public TourReservationViewModel FindReservationByTOuristIdAndTourId(int userId, int tourId)
+        public TourReservation FindReservationByTOuristIdAndTourId(int userId, int tourId)
         {
             if(_tourReservationRepository.FindReservationByTouristIdAndTourId(userId, tourId) == null)
             {
                 return null;
             }
-            return ToTouReservationViewModel(_tourReservationRepository.FindReservationByTouristIdAndTourId(userId, tourId));
+            return _tourReservationRepository.FindReservationByTouristIdAndTourId(userId, tourId);
         }
 
         public List<TourReservation> FindReservationsByUserIdAndTourId(int tourId, int userId)

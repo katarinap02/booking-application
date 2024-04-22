@@ -38,9 +38,9 @@ namespace BookingApp.Application.Services.FeatureServices
             _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
         }
 
-        public List<TourViewModel> GetAllTours() // izmeniti posto ne vraca sve vec samo one koje nisu zavrsene! BITNO!!!
+        public List<Tour> GetAllTours()
         {
-            return ToTourViewModel(_tourRepository.GetAll());
+            return _tourRepository.GetAll();
         }
 
         public int FindMaxNumberOfParticipants()
@@ -48,34 +48,14 @@ namespace BookingApp.Application.Services.FeatureServices
             return _tourRepository.FindMaxNumberOfParticipants();
         }
 
-        public int FindMaxNumberOfParticipants(List<TourViewModel> tours)
+        public int FindMaxNumberOfParticipants(List<Tour> tours)
         {
-            return _tourRepository.FindMaxNumberOfParticipants(ToTour(tours));
+            return _tourRepository.FindMaxNumberOfParticipants(tours);
         }
 
-        public List<TourViewModel> ToTourViewModel(List<Tour> Tours)
+        public List<Tour>? SearchTours(Tour searchCriteria)
         {
-            // creating list from Tour to TourViewModel
-            List<TourViewModel> ToursViewModel = new List<TourViewModel>();
-            foreach (Tour tour in Tours)
-            {
-                ToursViewModel.Add(new TourViewModel(tour));
-            }
-            return ToursViewModel;
-        }
-
-        public List<Tour> ToTour(List<TourViewModel> toursViewModel)
-        {
-            List<Tour> tours = new List<Tour>();
-            foreach(TourViewModel tourViewModel in toursViewModel){
-                tours.Add(tourViewModel.ToTour());
-            }
-            return tours;
-        }
-
-        public List<TourViewModel>? SearchTours(Tour searchCriteria)
-        {
-            return ToTourViewModel(_tourRepository.SearchTours(searchCriteria));
+            return _tourRepository.SearchTours(searchCriteria);
         }
 
         public int ToursCount()
@@ -88,16 +68,16 @@ namespace BookingApp.Application.Services.FeatureServices
             return _tourRepository.UpdateAvailablePlaces(tour.ToTour(), reducer);
         }
 
-        public List<TourViewModel> FindMyTours(int id)
+        public List<Tour> FindMyTours(int id)
         {
             Tourist tourist = _touristService.GetTouristById(id);
-            return ToTourViewModel(_tourReservationService.FindMyTours(id, tourist.Name, tourist.LastName));
+            return _tourReservationService.FindMyTours(id, tourist.Name, tourist.LastName);
         }
 
-        public List<TourViewModel> FindMyEndedTours(int id)
+        public List<Tour> FindMyEndedTours(int id)
         {
             Tourist tourist = _touristService.GetTouristById(id);
-            return ToTourViewModel(_tourReservationService.FindMyEndedTours(id, tourist.Name, tourist.LastName));
+            return _tourReservationService.FindMyEndedTours(id, tourist.Name, tourist.LastName);
         }
 
 
@@ -122,9 +102,9 @@ namespace BookingApp.Application.Services.FeatureServices
             return nowJoinedParticipantNames;
         }
 
-        public List<TourViewModel> GetTourByCityWithAvailablePlaces(string city)
+        public List<Tour> GetTourByCityWithAvailablePlaces(string city)
         {
-            return ToTourViewModel(_tourRepository.GetTourByCityWithAvailablePlaces(city));
+            return _tourRepository.GetTourByCityWithAvailablePlaces(city);
         }
 
         public List<string> GetCheckpointsByTour(int tourId)

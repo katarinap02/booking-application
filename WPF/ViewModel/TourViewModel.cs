@@ -569,7 +569,7 @@ namespace BookingApp.WPF.ViewModel
 
             Tour tour = new Tour("", CitySearch, CountrySearch, "", LanguageSearch, int.Parse(PeopleSearch),
                                 new List<string>(), new DateTime(), float.Parse(DurationSearch), new List<string>());
-            List<TourViewModel>? foundTours = _tourService.SearchTours(tour);
+            List<TourViewModel>? foundTours = ToTourViewModel(_tourService.SearchTours(tour));
             return foundTours;
         }
 
@@ -624,13 +624,31 @@ namespace BookingApp.WPF.ViewModel
             }
             else
             {
-                List<TourViewModel> allTours = _tourService.GetAllTours();
+                List<TourViewModel> allTours = ToTourViewModel(_tourService.GetAllTours());
                 foreach (TourViewModel tour in allTours)
                     Tours.Add(tour);
             }
-
+        }
+        public List<TourViewModel> ToTourViewModel(List<Tour> Tours)
+        {
+            // creating list from Tour to TourViewModel
+            List<TourViewModel> ToursViewModel = new List<TourViewModel>();
+            foreach (Tour tour in Tours)
+            {
+                ToursViewModel.Add(new TourViewModel(tour));
+            }
+            return ToursViewModel;
         }
 
+        public List<Tour> ToTour(List<TourViewModel> toursViewModel)
+        {
+            List<Tour> tours = new List<Tour>();
+            foreach (TourViewModel tourViewModel in toursViewModel)
+            {
+                tours.Add(tourViewModel.ToTour());
+            }
+            return tours;
+        }
         //**********************************************
 
         // ******************* ZA MY TOURS PAGE
@@ -638,7 +656,7 @@ namespace BookingApp.WPF.ViewModel
         public void RefreshMyTours()
         {
             Tours.Clear();
-            List<TourViewModel> tours = _tourService.FindMyTours(UserId);
+            List<TourViewModel> tours = ToTourViewModel(_tourService.FindMyTours(UserId));
             foreach (var tour in tours)
             {
                 Tours.Add(tour);
@@ -647,7 +665,7 @@ namespace BookingApp.WPF.ViewModel
         public void RefreshEndedTours()
         {
             Tours.Clear();
-            List<TourViewModel> tours = _tourService.FindMyEndedTours(UserId);
+            List<TourViewModel> tours = ToTourViewModel(_tourService.FindMyEndedTours(UserId));
             foreach (var tour in tours)
             {
                 Tours.Add(tour);
@@ -702,7 +720,7 @@ namespace BookingApp.WPF.ViewModel
         public void RefreshToursByCity()
         {
             Tours.Clear();
-            List<TourViewModel> tours = _tourService.GetTourByCityWithAvailablePlaces(SelectedTour.City);
+            List<TourViewModel> tours = ToTourViewModel(_tourService.GetTourByCityWithAvailablePlaces(SelectedTour.City));
             foreach (var tour in tours)
             {
                 Tours.Add(tour);
@@ -721,7 +739,7 @@ namespace BookingApp.WPF.ViewModel
                 CloseButtonalignmentNumberOfParticipants = HorizontalAlignment.Center;
                 ConfirmButtonVisibilityNumberOfParticipants = Visibility.Collapsed;
                 MessageBox.Show("No more places for the selected tour, please select another one!");
-                AvailablePlaces = _tourService.FindMaxNumberOfParticipants(Tours.ToList());
+                AvailablePlaces = _tourService.FindMaxNumberOfParticipants(ToTour(Tours.ToList()));
                 // returnujemo big window size, widht, height
                 return (800, 600);
             }

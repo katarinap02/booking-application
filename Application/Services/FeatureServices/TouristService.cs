@@ -22,18 +22,9 @@ namespace BookingApp.Application.Services.FeatureServices
             _touristRepository = touristRepository;
         }
 
-        public TourParticipantViewModel ToTourParticipantViewModel(Tourist tourist)
+        public Tourist FindTouristById(int touristId)
         {
-            TourParticipantViewModel viewModel = new TourParticipantViewModel();
-            viewModel.Name = tourist.Name;
-            viewModel.LastName = tourist.LastName;
-            viewModel.Years = tourist.Age;
-            return viewModel;
-        }
-
-        public TourParticipantViewModel FindTouristById(int touristId)
-        {
-            return ToTourParticipantViewModel(_touristRepository.FindTouristById(touristId));
+            return _touristRepository.FindTouristById(touristId);
         }
         public Tourist GetTouristById(int touristId)
         {

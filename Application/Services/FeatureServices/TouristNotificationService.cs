@@ -20,20 +20,9 @@ namespace BookingApp.Application.Services.FeatureServices
             _touristNotificationRepository = touristNotificationRepository;
         }
 
-        public List<TouristNotificationViewModel> GetMyNotifications(int touristId)
+        public List<TouristNotification> GetMyNotifications(int touristId)
         {
-            return ToTouristNotificationViewModel(_touristNotificationRepository.GetMyNotifications(touristId));
+            return _touristNotificationRepository.GetMyNotifications(touristId);
         }
-
-        public List<TouristNotificationViewModel> ToTouristNotificationViewModel(List<TouristNotification> touristNotifications)
-        {
-            List<TouristNotificationViewModel> NotificaionViewModel = new List<TouristNotificationViewModel>();
-            foreach (TouristNotification notification in touristNotifications)
-            {
-                NotificaionViewModel.Add(new TouristNotificationViewModel(notification));
-            }
-            return NotificaionViewModel;
-        }
-
     }
 }

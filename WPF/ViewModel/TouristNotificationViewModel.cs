@@ -190,10 +190,20 @@ namespace BookingApp.WPF.ViewModel
 
         public void InitializeTouristNotificationWindow()
         {
-            foreach (var notification in _touristNotificationService.GetMyNotifications(UserId))
+            foreach (var notification in ToTouristNotificationViewModel(_touristNotificationService.GetMyNotifications(UserId)))
             {
                 touristNotificationViewModels.Add(notification);
             }
+        }
+
+        private List<TouristNotificationViewModel> ToTouristNotificationViewModel(List<TouristNotification> touristNotifications)
+        {
+            List<TouristNotificationViewModel> NotificaionViewModel = new List<TouristNotificationViewModel>();
+            foreach (TouristNotification notification in touristNotifications)
+            {
+                NotificaionViewModel.Add(new TouristNotificationViewModel(notification));
+            }
+            return NotificaionViewModel;
         }
 
         public void InitializeAddedTouristsWindow()

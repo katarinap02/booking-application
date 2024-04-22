@@ -165,7 +165,7 @@ namespace BookingApp.WPF.ViewModel
         {
             _voucherService.RefreshVouchers();
             Vouchers.Clear();
-            List<VoucherViewModel> vouchers = _voucherService.FindVouchersByUser(UserId);
+            List<VoucherViewModel> vouchers = ToVoucherViewModel(_voucherService.FindVouchersByUser(UserId));
             foreach (var voucher in vouchers)
             {
                 Vouchers.Add(voucher);
@@ -190,6 +190,16 @@ namespace BookingApp.WPF.ViewModel
         {
             TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow(UserId);
             touristNotificationWindow.ShowDialog();
+        }
+
+        public List<VoucherViewModel> ToVoucherViewModel(List<Voucher> Vouchers)
+        {
+            List<VoucherViewModel> VouchersViewModel = new List<VoucherViewModel>();
+            foreach (Voucher voucher in Vouchers)
+            {
+                VouchersViewModel.Add(new VoucherViewModel(voucher));
+            }
+            return VouchersViewModel;
         }
 
         public VoucherViewModel()
