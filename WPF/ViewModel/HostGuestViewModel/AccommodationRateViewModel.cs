@@ -161,6 +161,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private int recommendationId;
+        public int RecommendationId
+        {
+            get { return recommendationId; }
+            set
+            {
+                if (recommendationId != value)
+                {
+                    recommendationId = value;
+                    OnPropertyChanged("RecommendationId");
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
         public PathConverter PathConverter { get; set; }
@@ -190,7 +204,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
             else
                 OnePicture = "../../../Resources/Images/no_image.jpg";
-
+            RecommendationId = ar.ReservationId;
 
         }
 
@@ -203,11 +217,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             correctness = ar.Correctness;
             additionalComment = ar.AdditionalComment;
             onePicture = ar.OnePicture;
+            RecommendationId = ar.ReservationId;
         }
 
         public AccommodationRate ToAccommodationRate()
         {
-            AccommodationRate accommodationRate = new AccommodationRate(reservationId, guestId, hostId, cleanliness, correctness, additionalComment);
+            AccommodationRate accommodationRate = new AccommodationRate(reservationId, guestId, hostId, cleanliness, correctness, additionalComment, recommendationId);
             accommodationRate.Images = images;
             return accommodationRate;
         }

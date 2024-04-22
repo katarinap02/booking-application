@@ -137,7 +137,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="WPF\ViewModel\HostGuestViewModel\GuestViewModels\" />
     <Folder Include="WPF\ViewModel\HostGuestViewModel\HostViewModels\Commands\" />
   </ItemGroup>
 

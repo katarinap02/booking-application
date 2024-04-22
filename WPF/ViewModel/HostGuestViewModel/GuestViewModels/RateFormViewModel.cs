@@ -7,6 +7,7 @@ using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.View.GuestPages;
+using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using Microsoft.Win32;
 using System;
@@ -60,9 +61,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public void Save_Click(object sender, RoutedEventArgs e)
         {
-            AccommodationRate.ReservationId = SelectedReservation.Id;
-            AccommodationRate.GuestId = User.Id;
-            AccommodationRate.HostId = AccommodationService.GetById(SelectedReservation.AccommodationId).HostId;
+            CreateRate();
             AccommodationRateService.Add(AccommodationRate.ToAccommodationRate());
             AccommodationRate rate = AccommodationRate.ToAccommodationRate();
             Host host = HostService.GetById(rate.HostId);
@@ -70,6 +69,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             HostService.BecomeSuperHost(host);
             MessageBox.Show("Rate added");
 
+        }
+
+        private void CreateRate()
+        {
+            AccommodationRate.ReservationId = SelectedReservation.Id;
+            AccommodationRate.GuestId = User.Id;
+            AccommodationRate.HostId = AccommodationService.GetById(SelectedReservation.AccommodationId).HostId;
+            AccommodationRate.RecommendationId = -1;
+            
         }
 
         public void AddPicture_Click(object sender, RoutedEventArgs e)
@@ -131,6 +139,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             {
                 Images.Add(image);
             }
+        }
+
+        internal void Recommend_Click(object sender, RoutedEventArgs e)
+        {
+            CreateRate();
+            Frame.Content = new RecommendationPage(User, Frame, SelectedReservation, SelectedAccommodation, AccommodationRate);
         }
     }
 }

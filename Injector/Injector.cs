@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.Repository.RateRepository;
 
 namespace BookingApp.Injector
 {
@@ -21,6 +22,7 @@ namespace BookingApp.Injector
             { typeof(IAccommodationReservationRepository), new AccommodationReservationRepository() },
             { typeof(IDelayRequestRepository), new DelayRequestRepository() },
             { typeof(IReservationCancellationRepository), new ReservationCancellationRepository() },
+            { typeof(IRenovationRecommendationRepository), new RenovationRecommendationRepository() }
             /*{ typeof(IUserService), new UserService() },*/
             // Add more implementations here
             
