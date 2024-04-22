@@ -14,6 +14,7 @@ namespace BookingApp.Domain.Model.Rates
         public RecommendationLevel Level;
         public string Comment;
        
+        public RenovationRecommendation() { }
         RenovationRecommendation(int id, RecommendationLevel level, string comment)
         {
             Id = id;
