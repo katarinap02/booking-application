@@ -11,13 +11,17 @@ namespace BookingApp.Domain.Model.Rates
     public class RenovationRecommendation : ISerializable
     {
         public int Id;
+        public int ReservationId;
+        public int AccommodationId;
+
         public RecommendationLevel Level;
         public string Comment;
        
         public RenovationRecommendation() { }
-        public  RenovationRecommendation(RecommendationLevel level, string comment)
+        public  RenovationRecommendation(int reservationId, int accommodationId, RecommendationLevel level, string comment)
         {
-
+            ReservationId = reservationId;
+            AccommodationId = accommodationId;
             Level = level;
             Comment = comment;
 
@@ -26,8 +30,10 @@ namespace BookingApp.Domain.Model.Rates
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            Level = ConvertToLevel(values[1]);
-            Comment = values[2];
+            ReservationId = Convert.ToInt32(values[1]);
+            AccommodationId = Convert.ToInt32(values[2]);
+            Level = ConvertToLevel(values[3]);
+            Comment = values[4];
         }
 
         private RecommendationLevel ConvertToLevel(string v)
@@ -46,7 +52,7 @@ namespace BookingApp.Domain.Model.Rates
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), ConvertToString(Level), Comment };
+            string[] csvValues = { Id.ToString(), ReservationId.ToString(), AccommodationId.ToString(), ConvertToString(Level), Comment };
             return csvValues;
         }
 

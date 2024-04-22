@@ -14,7 +14,7 @@ namespace BookingApp.Repository.RateRepository
 {
     public class RenovationRecommendationRepository : IRenovationRecommendationRepository
     {
-        private const string FilePath = "../../../Resources/Data/recommendations.csv";
+        private const string FilePath = "../../../Resources/Data/renovation_recommendations.csv";
         private readonly Serializer<RenovationRecommendation> _serializer;
         private List<RenovationRecommendation> _recommendations;
 

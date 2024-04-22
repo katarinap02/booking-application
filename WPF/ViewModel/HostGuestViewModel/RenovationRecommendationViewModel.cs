@@ -24,6 +24,34 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private int reservationId;
+        public int ReservationId
+        {
+            get { return reservationId; }
+            set
+            {
+                if (reservationId != value)
+                {
+                    reservationId = value;
+                    OnPropertyChanged("ReservationId");
+                }
+            }
+        }
+
+        private int accommodationId;
+        public int AccommodationId
+        {
+            get { return accommodationId; }
+            set
+            {
+                if (accommodationId != value)
+                {
+                    accommodationId = value;
+                    OnPropertyChanged("AccommodationId");
+                }
+            }
+        }
+
         private string comment;
         public string Comment
         {
@@ -63,13 +91,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public RenovationRecommendationViewModel(RenovationRecommendation ren)
         {
             Id = ren.Id;
+            ReservationId = ren.ReservationId;
+            AccommodationId = ren.AccommodationId;
             Comment = ren.Comment;
             Level = ren.Level;
         }
 
         public RenovationRecommendation ToRecommendation()
         {
-            RenovationRecommendation r = new RenovationRecommendation(level, comment);
+            RenovationRecommendation r = new RenovationRecommendation(reservationId, accommodationId, level, comment);
             r.Id = Id;
             return r;
         }
