@@ -152,8 +152,4 @@
     <EditorConfigFiles Remove="E:\FTN\3ev\sims\project\sims-ra-2024-group-1-team-b\Services\.editorconfig" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="WPF\ViewModel\HostGuestViewModel\HostViewModels\Commands\" />
-  </ItemGroup>
-
 </Project>

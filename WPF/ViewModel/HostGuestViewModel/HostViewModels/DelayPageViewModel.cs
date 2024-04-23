@@ -43,6 +43,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public User User { get; set; }
 
+        public MyICommand ApproveCommand { get; set; }
+
+        public MyICommand RejectCommand { get; set; }
+
         public DelayPageViewModel(User user)
         {
             Delays = new ObservableCollection<DelayRequestViewModel>();
@@ -54,6 +58,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             Delay = new DelayRequestViewModel();
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             User = user;
+            ApproveCommand = new MyICommand(Approve);
+            RejectCommand = new MyICommand(Reject);
             Update();
             UpdateNotifications();
 
@@ -102,7 +108,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             return message;
         }
 
-        public void Approve(object sender, RoutedEventArgs e)
+        public void Approve()
         {
             if (SelectedDelay != null)
             {
@@ -132,7 +138,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
 
 
-        public void Reject(object sender, RoutedEventArgs e)
+        public void Reject()
         {
             if (SelectedDelay != null)
             {

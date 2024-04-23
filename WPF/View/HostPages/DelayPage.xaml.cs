@@ -31,13 +31,5 @@ namespace BookingApp.View.HostPages
             DelayPageViewModel = new DelayPageViewModel(user);
             DataContext = DelayPageViewModel;
         }
-        private void Approve_Click(object sender, RoutedEventArgs e)
-        {
-            DelayPageViewModel.Approve(sender, e);
-        }
-        private void Reject_Click(object sender, RoutedEventArgs e)
-        {
-            DelayPageViewModel?.Reject(sender, e);
-        }
     }
 }

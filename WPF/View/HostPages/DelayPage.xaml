@@ -76,9 +76,9 @@
                 
             </Label>
             <StackPanel Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                <Button Content="Approve" Click="Approve_Click" FontSize="15" Width="90" Height="40" Margin="0 0 75 0">
+                <Button Content="Approve" Command="{Binding ApproveCommand}" FontSize="15" Width="90" Height="40" Margin="0 0 75 0">
                 </Button>
-                <Button Content="Reject" Click="Reject_Click"  FontSize="15" Width="90" Height="40" Margin="75 0 0 0">
+                <Button Content="Reject" Command="{Binding RejectCommand}"  FontSize="15" Width="90" Height="40" Margin="75 0 0 0">
                     
                 </Button>
             </StackPanel>
