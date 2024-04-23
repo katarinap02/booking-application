@@ -18,16 +18,17 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public AccommodationViewModel SelectedAccommodation { get; set; }
 
         public User User { get; set; }
-
+        public Guest Guest { get; set; }
         public Frame Frame { get; set; }
 
 
 
-        public ReservationSuccessfulViewModel(AccommodationViewModel selectedAccommodation, User user, Frame frame)
+        public ReservationSuccessfulViewModel(AccommodationViewModel selectedAccommodation, User user, Frame frame, Guest guest)
         {
             SelectedAccommodation = selectedAccommodation;
             User = user;
             Frame = frame;
+            Guest = guest;
 
         }
 

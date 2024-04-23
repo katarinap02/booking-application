@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using BookingApp.Domain.Model.Features;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BookingApp.View.GuestPages
 {
@@ -34,10 +35,11 @@ namespace BookingApp.View.GuestPages
         public CalendarDateRange SelectedDateRange { get; set; }
         public User User { get; set; }
 
+        public Guest Guest { get; set; }
         public Frame Frame { get; set; }
 
         public int GuestNumber { get; set; }
-        public ReservationSuccessfulPage(AccommodationReservationViewModel reservation, AccommodationViewModel selectedAccommodation, CalendarDateRange selectedDateRange, int guestNumber, User user, Frame frame)
+        public ReservationSuccessfulPage(AccommodationReservationViewModel reservation, AccommodationViewModel selectedAccommodation, CalendarDateRange selectedDateRange, int guestNumber, User user, Frame frame, Guest guest)
         {
             InitializeComponent();
 
@@ -47,9 +49,10 @@ namespace BookingApp.View.GuestPages
             this.GuestNumber = guestNumber;
             this.User = user;
             this.Frame = frame;
+            Guest = guest;
             Reservation = reservation;
 
-            ViewModel = new ReservationSuccessfulViewModel(SelectedAccommodation, User, Frame);
+            ViewModel = new ReservationSuccessfulViewModel(SelectedAccommodation, User, Frame, Guest);
             DataContext = Reservation;
 
           
