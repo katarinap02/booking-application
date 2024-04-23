@@ -1,5 +1,7 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Observer;
 using BookingApp.Repository;
 using System;
@@ -13,33 +15,33 @@ namespace BookingApp.Application.Services.FeatureServices
 {
     public class HostService
     {
-        private readonly HostRepository hostRepository;
-        public Subject hostSubject;
-        private readonly AccommodationRateRepository accommodationRateRepository;
+        private readonly IHostRepository HostRepository;
+        public Subject HostSubject;
+        private readonly IAccommodationRateRepository AccommodationRateRepository;
 
         public HostService()
         {
-            hostRepository = new HostRepository();
-            hostSubject = new Subject();
-            accommodationRateRepository = new AccommodationRateRepository();
+            HostRepository = new HostRepository();
+            HostSubject = new Subject();
+            AccommodationRateRepository = new AccommodationRateRepository();
         }
 
-        public HostService(HostRepository hostRepository, AccommodationRateRepository accommodationRateRepository)
+        public HostService(IHostRepository hostRepository, IAccommodationRateRepository accommodationRateRepository)
         {
-            this.hostRepository = hostRepository;
-            hostSubject = new Subject();
-            this.accommodationRateRepository = accommodationRateRepository;
+            this.HostRepository = hostRepository;
+            HostSubject = new Subject();
+            this.AccommodationRateRepository = accommodationRateRepository;
         }
 
         public Host GetByUsername(string username)
         {
 
-            return hostRepository.GetByUsername(username);
+            return HostRepository.GetByUsername(username);
         }
 
         public Host GetById(int hostId)
         {
-            return hostRepository.GetById(hostId);
+            return HostRepository.GetById(hostId);
         }
 
         public void BecomeSuperHost(Host host)
@@ -47,7 +49,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
             int counter = 0;
             double gradeSum = 0;
-            foreach (AccommodationRate rate in accommodationRateRepository.GetAll())
+            foreach (AccommodationRate rate in AccommodationRateRepository.GetAll())
             {
                 if (rate.HostId == host.Id)
                 {
@@ -61,14 +63,14 @@ namespace BookingApp.Application.Services.FeatureServices
             host.RateCount = counter;
 
             host.IsSuperHost = isSuperHost(counter, gradeSum, average);
-            hostRepository.Update(host);
+            HostRepository.Update(host);
 
             return;
         }
 
         public bool isSuperHost(int counter, double gradeSum, double average)
         {
-            if (counter < 50)
+            if (counter < 10)
             {
                 return false;
             }

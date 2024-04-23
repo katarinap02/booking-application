@@ -1,5 +1,7 @@
 ﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Repository;
+using BookingApp.Repository.FeatureRepository;
 using BookingApp.WPF.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -11,26 +13,16 @@ namespace BookingApp.Application.Services.FeatureServices
 {
     public class VoucherService
     {
-        private readonly VoucherRepository _voucherRepository;
+        private readonly IVoucherRepository _voucherRepository;
 
-        public VoucherService()
+        public VoucherService(IVoucherRepository voucherRepository)
         {
-            _voucherRepository = new VoucherRepository();
+            _voucherRepository = voucherRepository;
         }
 
-        public List<VoucherViewModel> ToVoucherViewModel(List<Voucher> Vouchers)
+        public List<Voucher> FindVouchersByUser(int id)
         {
-            List<VoucherViewModel> VouchersViewModel = new List<VoucherViewModel>();
-            foreach (Voucher voucher in Vouchers)
-            {
-                VouchersViewModel.Add(new VoucherViewModel(voucher));
-            }
-            return VouchersViewModel;
-        }
-
-        public List<VoucherViewModel> FindVouchersByUser(int id)
-        {
-            return ToVoucherViewModel(_voucherRepository.FindVouchersByUser(id));
+            return _voucherRepository.FindVouchersByUser(id);
         }
 
         public bool HasVoucher(int userId)

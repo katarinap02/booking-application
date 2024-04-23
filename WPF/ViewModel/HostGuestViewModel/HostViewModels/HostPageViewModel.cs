@@ -22,25 +22,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        
-
         public Frame HostFrame { get; set; }
 
         public Menu LeftDock { get; set; }
         public User User { get; set; }
 
         public StackPanel RatingPanel { get; set; }
-
-
-        public ObservableCollection<AccommodationReservationViewModel> Accommodations { get; set; }
-        public AccommodationRepository accommodationRepository { get; set; }
-        public AccommodationReservationRepository accommodationReservationRepository { get; set; }
-
+        
         public HostPageViewModel(User user, Frame frame, Menu dock, StackPanel panel)
         {
-            Accommodations = new ObservableCollection<AccommodationReservationViewModel>();
-            accommodationRepository = new AccommodationRepository();
-            accommodationReservationRepository = new AccommodationReservationRepository();
 
             HostFrame = frame;
             LeftDock = dock;
@@ -49,8 +39,6 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
             Update();
 
-
-
         }
 
         public void Update()
@@ -58,23 +46,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
             FirstPage firstPage = new FirstPage(User, HostFrame, LeftDock, RatingPanel);
 
-            //  Accommodations.Clear();
-            //   foreach (AccommodationReservation accommodation in accommodationReservationRepository.GetGuestForRate())
-            // {
-            //     Accommodations.Add(new AccommodationReservationViewModel(accommodation));
-
-            // }
-           // FirstPage firstPage = new FirstPage(User);
-
             HostFrame.Navigate(firstPage);
         }
-
-        // private void RegisterAccommodation_Click(object sender, RoutedEventArgs e)
-        // {
-        //     RegisterAccommodationWindow registerWindow = new RegisterAccommodationWindow(accommodationRepository, User);
-
-        //    registerWindow.ShowDialog();
-        // }
 
         public void HomeButton_Click(object sender, RoutedEventArgs e)
         {
@@ -114,25 +87,6 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             LeftDock.Visibility = Visibility.Collapsed;
             RatingPanel.Visibility = Visibility.Collapsed;
         }
-
-
-
-        //  private void Rate_Click(object sender, RoutedEventArgs e)
-        //   {
-        //    if (SelectedAccommodation != null)
-        //    {
-        //       RateGuestWindow rateGuestWindow = new RateGuestWindow(SelectedAccommodation);
-        //       rateGuestWindow.ShowDialog();
-        //   }
-        //   else
-        //    {
-        //      MessageBox.Show("Select guest to rate.");
-        //   }
-
-        //    Update();
-        // }
-
-
 
         public void More_Click(object sender, RoutedEventArgs e)
         {

@@ -1,6 +1,8 @@
 ﻿using BookingApp.Domain.Model;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
+using BookingApp.Repository.ReservationRepository;
 using BookingApp.WPF.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -12,11 +14,13 @@ namespace BookingApp.Application.Services.ReservationServices
 {
     public class TourParticipantService
     {
-        private static readonly TourParticipantRepository _tourParticipantRepository = new TourParticipantRepository();
-        private static readonly TourReservationService _tourReservationService = new TourReservationService();
+        private readonly ITourParticipantRepository _tourParticipantRepository;
+        private readonly TourReservationService _tourReservationService;
 
-        public TourParticipantService()
+        public TourParticipantService(ITourParticipantRepository tourParticipantRepository)
         {
+            _tourParticipantRepository = tourParticipantRepository;
+            _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
         }
 
         public TourParticipantViewModel saveParticipantToDTO(string name, string lastName, string years)
@@ -59,6 +63,5 @@ namespace BookingApp.Application.Services.ReservationServices
             }
             return participant.JoinedCheckpointIndex;
         }
-
     }
 }

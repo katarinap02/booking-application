@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Repository.FeatureRepository;
 
 namespace BookingApp.View.GuideWindows
 {

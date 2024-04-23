@@ -1,6 +1,9 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
+using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
 using BookingApp.View.TouristWindows;
 using System;
@@ -21,7 +24,7 @@ namespace BookingApp.WPF.ViewModel
         private readonly TourParticipantService _tourParticipantService;
         private readonly TourReservationService _tourReservationService;
         private readonly VoucherService _voucherService;
-        private readonly TourService _touristService;
+        private readonly TourService _tourService;
 
         public List<TourParticipantViewModel> TourParticipantDTOs { get; set; }
         public List<TourParticipantViewModel> TourParticipantsListBox { get; set; }
@@ -296,12 +299,20 @@ namespace BookingApp.WPF.ViewModel
                 return;
             }
             int reservationId = _tourReservationService.NextReservationId();
-            TourParticipantDTOs.Add(_tourReservationService.FindTouristById(UserId));
+            TourParticipantDTOs.Add(ToTourParticipantViewModel(_tourReservationService.FindTouristById(UserId)));
             TourParticipantDTOs.Reverse();
             foreach (TourParticipantViewModel tp in TourParticipantDTOs)
             {
                 _tourParticipantService.saveParticipant(tp, reservationId);
             }
+        }
+        public TourParticipantViewModel ToTourParticipantViewModel(Tourist tourist)
+        {
+            TourParticipantViewModel viewModel = new TourParticipantViewModel();
+            viewModel.Name = tourist.Name;
+            viewModel.LastName = tourist.LastName;
+            viewModel.Years = tourist.Age;
+            return viewModel;
         }
 
         private void saveReservation()
@@ -325,7 +336,7 @@ namespace BookingApp.WPF.ViewModel
             else
                 //ako postoji vec rezervacija za tu turu
             {
-                TourReservationViewModel reservation = _tourReservationService.FindReservationByTOuristIdAndTourId(UserId, SelectedTour.Id);
+                TourReservationViewModel reservation = ToTourReservationViewModel(_tourReservationService.FindReservationByTOuristIdAndTourId(UserId, SelectedTour.Id));
                 // ovo znaci da vec ima rezervacija
                 if (reservation != null)
                 {
@@ -352,20 +363,33 @@ namespace BookingApp.WPF.ViewModel
         {
             try
             {
-                _touristService.UpdateAvailablePlaces(SelectedTour, TourParticipantDTOs.Count);
+                _tourService.UpdateAvailablePlaces(SelectedTour, TourParticipantDTOs.Count);
             }
             catch (ArgumentNullException)
             {
                 System.Windows.MessageBox.Show("something wrong happened");
             }
         }
+        private TourReservationViewModel ToTourReservationViewModel(TourReservation reservation)
+        {
+            TourReservationViewModel tourReservationViewModel = new TourReservationViewModel();
+            if(reservation != null)
+            {
+                tourReservationViewModel.Id = reservation.Id;
+                tourReservationViewModel.TourId = reservation.TourId;
+                tourReservationViewModel.TouristId = reservation.TouristId;
+                tourReservationViewModel.ParticipantIds = reservation.ParticipantIds;
+                return tourReservationViewModel;
+            }
+            return null;
+        }
 
         public TourReservationViewModel()
         {
-            _tourParticipantService = new TourParticipantService();
-            _tourReservationService = new TourReservationService();
-            _touristService = new TourService();
-            _voucherService = new VoucherService();
+            _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
+            _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
+            _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
+            _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
 
             TourParticipantDTOs = new List<TourParticipantViewModel>();
             TourParticipantsListBox = new List<TourParticipantViewModel>();

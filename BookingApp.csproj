@@ -30,10 +30,11 @@
     <None Remove="Resources\Images\urgent.png" />
     <None Remove="Resources\Images\video-camera.png" />
     <None Remove="Resources\Images\view.png" />
-    <None Remove="View\TouristWindows\notificationtourist.png" />
-    <None Remove="View\TouristWindows\pdf.png" />
-    <None Remove="View\TouristWindows\searchtourist.png" />
-    <None Remove="View\TouristWindows\user.png" />
+    <None Remove="WPF\Resources\Images\empty.png" />
+    <None Remove="WPF\Resources\Images\minus.png" />
+    <None Remove="WPF\Resources\Images\plus.png" />
+    <None Remove="WPF\Resources\Images\rome1.jpg" />
+    <None Remove="WPF\Resources\Images\search.png" />
 
   </ItemGroup>
 
@@ -64,6 +65,9 @@
     <Content Include="WPF\Resources\Images\edit.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="WPF\Resources\Images\empty.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="WPF\Resources\Images\example.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -79,6 +83,9 @@
     <Content Include="WPF\Resources\Images\menu_item1.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="WPF\Resources\Images\minus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="WPF\Resources\Images\notification.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -88,7 +95,16 @@
     <Content Include="WPF\Resources\Images\paris1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="WPF\Resources\Images\plus.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="WPF\Resources\Images\red_dot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WPF\Resources\Images\rome1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WPF\Resources\Images\search.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="WPF\Resources\Images\star.png">

@@ -1,5 +1,7 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.TouristWindows;
 using System;
 using System.Collections.Generic;
@@ -14,7 +16,7 @@ namespace BookingApp.WPF.ViewModel
     public class TouristNotificationViewModel : INotifyPropertyChanged
     {
         private readonly TouristNotificationService _touristNotificationService;
-        private readonly TourService _touristService;
+        private readonly TourService _tourService;
         public ObservableCollection<string> tourists { get; set; }
         public ObservableCollection<TouristNotificationViewModel> touristNotificationViewModels { get; set; }
         private int _id;
@@ -188,16 +190,26 @@ namespace BookingApp.WPF.ViewModel
 
         public void InitializeTouristNotificationWindow()
         {
-            foreach (var notification in _touristNotificationService.GetMyNotifications(UserId))
+            foreach (var notification in ToTouristNotificationViewModel(_touristNotificationService.GetMyNotifications(UserId)))
             {
                 touristNotificationViewModels.Add(notification);
             }
         }
 
+        private List<TouristNotificationViewModel> ToTouristNotificationViewModel(List<TouristNotification> touristNotifications)
+        {
+            List<TouristNotificationViewModel> NotificaionViewModel = new List<TouristNotificationViewModel>();
+            foreach (TouristNotification notification in touristNotifications)
+            {
+                NotificaionViewModel.Add(new TouristNotificationViewModel(notification));
+            }
+            return NotificaionViewModel;
+        }
+
         public void InitializeAddedTouristsWindow()
         {
-            CurrentCheckpointName = _touristService.GetCheckpointsByTour(SelectedNotification.TourId)[CurrentCheckpoint];
-            foreach (var tourist in _touristService.GetParticipantsThatJoinedNow(SelectedNotification.ToTouristNotification()))
+            CurrentCheckpointName = _tourService.GetCheckpointsByTour(SelectedNotification.TourId)[CurrentCheckpoint];
+            foreach (var tourist in _tourService.GetParticipantsThatJoinedNow(SelectedNotification.ToTouristNotification()))
             {
                 tourists.Add(tourist);
             }
@@ -212,8 +224,8 @@ namespace BookingApp.WPF.ViewModel
 
         public TouristNotificationViewModel()
         {
-            _touristNotificationService = new TouristNotificationService();
-            _touristService = new TourService();
+            _touristNotificationService = new TouristNotificationService(Injector.Injector.CreateInstance<ITouristNotificationRepository>());
+            _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
 
             touristNotificationViewModels = new ObservableCollection<TouristNotificationViewModel>();
             tourists = new ObservableCollection<string>();

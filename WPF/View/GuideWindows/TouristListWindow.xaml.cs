@@ -5,6 +5,7 @@ using System.Windows;
 using System.Windows.Controls;
 using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Repository.ReservationRepository;
 
 namespace BookingApp.View.GuideWindows
 {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookingApp.Domain.Model.Features
 {
-    public enum NotificationType { RateTour, TourCanceled, GuideQuit, JoinedTour }
+    public enum NotificationType { RateTour, TourCanceled, GuideQuit, JoinedTour, RequestAccepted }
     public class TouristNotification : ISerializable, IEquatable<TouristNotification>
     {
         public int Id;
@@ -18,6 +18,7 @@ namespace BookingApp.Domain.Model.Features
         public NotificationType NotificationType;
         public string TourName;
         public int CurrentCheckpoint;
+        public string Description;
 
         public TouristNotification() { }
 
@@ -31,6 +32,17 @@ namespace BookingApp.Domain.Model.Features
             GuideName = guideName;
             CurrentCheckpoint = currentCheckpoint;
         }
+        public TouristNotification(int id, int touristId, int tourId, NotificationType type, string tourName, string guideName, int currentCheckpoint, string description)
+        {
+            Id = id;
+            TouristId = touristId;
+            TourId = tourId;
+            NotificationType = type;
+            TourName = tourName;
+            GuideName = guideName;
+            CurrentCheckpoint = currentCheckpoint;
+            Description = description;
+        }
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
@@ -40,6 +52,7 @@ namespace BookingApp.Domain.Model.Features
             TourName = values[4];
             GuideName = values[5];
             CurrentCheckpoint = Convert.ToInt32(values[6]);
+            Description = values[7];
 
         }
 
@@ -61,11 +74,15 @@ namespace BookingApp.Domain.Model.Features
             {
                 NotificationType = NotificationType.JoinedTour;
             }
+            else if (csv_values.Equals("RequestAccepted"))
+            {
+                NotificationType = NotificationType.RequestAccepted;
+            }
         }
 
         public string[] ToCSV()
         {
-            string[] csValues = { Id.ToString(), TouristId.ToString(), TourId.ToString(), NotificationType.ToString(), TourName, GuideName, CurrentCheckpoint.ToString() };
+            string[] csValues = { Id.ToString(), TouristId.ToString(), TourId.ToString(), NotificationType.ToString(), TourName, GuideName, CurrentCheckpoint.ToString(), Description };
             return csValues;
         }
 

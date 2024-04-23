@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Media;
 using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Repository.FeatureRepository;
 
 namespace BookingApp.View.GuideWindows
 {

@@ -1,5 +1,6 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.View.TouristWindows;
 using System;
 using System.Collections.Generic;
@@ -164,7 +165,7 @@ namespace BookingApp.WPF.ViewModel
         {
             _voucherService.RefreshVouchers();
             Vouchers.Clear();
-            List<VoucherViewModel> vouchers = _voucherService.FindVouchersByUser(UserId);
+            List<VoucherViewModel> vouchers = ToVoucherViewModel(_voucherService.FindVouchersByUser(UserId));
             foreach (var voucher in vouchers)
             {
                 Vouchers.Add(voucher);
@@ -191,9 +192,19 @@ namespace BookingApp.WPF.ViewModel
             touristNotificationWindow.ShowDialog();
         }
 
+        public List<VoucherViewModel> ToVoucherViewModel(List<Voucher> Vouchers)
+        {
+            List<VoucherViewModel> VouchersViewModel = new List<VoucherViewModel>();
+            foreach (Voucher voucher in Vouchers)
+            {
+                VouchersViewModel.Add(new VoucherViewModel(voucher));
+            }
+            return VouchersViewModel;
+        }
+
         public VoucherViewModel()
         {
-            _voucherService = new VoucherService();
+            _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
             Vouchers = new ObservableCollection<VoucherViewModel>();
         }
         public VoucherViewModel(Voucher voucher)

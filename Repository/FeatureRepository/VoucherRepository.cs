@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
@@ -6,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Repository
+namespace BookingApp.Repository.FeatureRepository
 {
-    public class VoucherRepository
+    public class VoucherRepository : IVoucherRepository
     {
         private const string FilePath = "../../../Resources/Data/vouchers.csv";
 

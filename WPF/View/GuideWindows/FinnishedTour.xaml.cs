@@ -12,6 +12,7 @@ using BookingApp.Application.Services;
 using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 
 namespace BookingApp.View.GuideWindows
 {
@@ -26,7 +27,7 @@ namespace BookingApp.View.GuideWindows
         {
             InitializeComponent();
             DataContext = this;
-            TourService = new TourService();
+            TourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
             Guide = guide;
             SelectedTour = new TourViewModel();
             TourViewModels = new ObservableCollection<TourViewModel>();

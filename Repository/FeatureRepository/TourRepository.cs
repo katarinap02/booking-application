@@ -8,10 +8,12 @@ using System.Threading.Tasks;
 using System.Windows;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Repository.ReservationRepository;
 
-namespace BookingApp.Repository
+namespace BookingApp.Repository.FeatureRepository
 {
-    public class TourRepository
+    public class TourRepository : ITourRepository
     {
         private const string FilePath = "../../../Resources/Data/tours.csv";
 

@@ -7,6 +7,8 @@ using LiveCharts.Wpf;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Windows;
+using BookingApp.Repository.FeatureRepository;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 
 namespace BookingApp.View.GuideWindows
 {
@@ -20,7 +22,7 @@ namespace BookingApp.View.GuideWindows
         {
             InitializeComponent();
             _tourRepository = new TourRepository();
-            _tourService = new TourService();
+            _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
             UpdateAgeStatistics(tourId);            
             DataContext = this;
         }

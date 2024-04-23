@@ -46,9 +46,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             Accommodations = new ObservableCollection<AccommodationRateViewModel>();
             accommodationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             accommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
-            guestRateService = new GuestRateService();
+            guestRateService = new GuestRateService(Injector.Injector.CreateInstance<IGuestRateRepository>());
             userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
-            hostService = new HostService();
+            hostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
             host = hostService.GetByUsername(user.Username);
             Update();
         }

@@ -2,6 +2,7 @@
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
@@ -45,7 +46,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             DelayRequestService = new DelayRequestService(Injector.Injector.CreateInstance<IDelayRequestRepository>());
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
-            HostService = new HostService();
+            HostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
             AccommodationReservation reservation = AccommodationReservationService.GetById(SelectedRequest.ReservationId);
             Accommodation = new AccommodationViewModel(AccommodationService.GetById(reservation.AccommodationId));
             HostUsername = HostService.GetById(SelectedRequest.HostId).Username;

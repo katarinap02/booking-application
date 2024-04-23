@@ -10,6 +10,10 @@ using System.Windows;
 using System.Windows.Controls;
 using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
+using BookingApp.Repository.FeatureRepository;
+using BookingApp.Repository.ReservationRepository;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 
 namespace BookingApp.View.GuideWindows
 {
@@ -26,8 +30,8 @@ namespace BookingApp.View.GuideWindows
         {
             _tourRepository = new TourRepository();
             _tourReservationRepository = new TourReservationRepository();
-            _tourService = new TourService();
-            _tourReservationService = new TourReservationService();
+            _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
+            _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
             Guide = guide;
             FirstTime = true;
             InitializeComponent();

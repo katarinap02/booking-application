@@ -1,5 +1,7 @@
 ﻿using BookingApp.Application.Services.RateServices;
 using BookingApp.Application.Services.ReservationServices;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
 using BookingApp.WPF.ViewModel;
 using System;
@@ -23,8 +25,8 @@ namespace BookingApp.View.GuideWindows
 
         public ReviewsWindow(int tour_id)
         {
-            _guideRateService = new GuideRateService(); 
-             _tourParticipantService = new TourParticipantService();
+            _guideRateService = new GuideRateService(Injector.Injector.CreateInstance<IGuideRateRepository>()); 
+             _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
             InitializeComponent();
             DataContext = this;
             getData(tour_id);

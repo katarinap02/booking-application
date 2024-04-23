@@ -1,8 +1,12 @@
 
 using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Rates;
-using BookingApp.Repository;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.Repository.RateRepository;
 using BookingApp.WPF.ViewModel;
 using System;
 using System.Collections.Generic;
@@ -12,40 +16,41 @@ using System.Threading.Tasks;
 
 namespace BookingApp.Application.Services.RateServices
 {
-    class GuideRateService
+    public class GuideRateService
     {
-        private readonly GuideRateRepository guideRateRepository;
-        private readonly TourReservationRepository tourReservationRepository;
-        private readonly TourRepository tourRepository;
+        private readonly IGuideRateRepository _guideRateRepository;
 
-        private TouristService touristService;
-        public GuideRateService()
+        private readonly TourReservationService _tourReservationService;
+        private readonly TourService _tourService;
+        private TouristService _touristService;
+
+        public GuideRateService(IGuideRateRepository guideRateRepository)
         {
-            guideRateRepository = new GuideRateRepository();
-            tourReservationRepository = new TourReservationRepository();
-            tourRepository = new TourRepository();
+            _guideRateRepository = guideRateRepository;
 
-            touristService = new TouristService();
+            _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
+            _touristService = new TouristService(Injector.Injector.CreateInstance<ITouristRepository>());
+            _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
         }
 
         public void SaveRate(GuideRateViewModel rate)
         {
-            guideRateRepository.Add(rate.toGuideRate());
+            _guideRateRepository.Add(rate.toGuideRate());
         }
 
         public bool IsRated(int tourId)
         {
-            return guideRateRepository.IsRated(tourId);
+            return _guideRateRepository.IsRated(tourId);
         }
 
         public bool CanBeRated(int tourId, int userId)
         {
             // is tour finished
-            if (tourRepository.isTourFinished(tourId))
+            if (_tourService.isTourFinished(tourId))
             {
                 // is my tour
-                Tourist tourist = touristService.GetTouristById(userId);
-                return tourReservationRepository.FindMyEndedTours(userId, tourist.Name, tourist.LastName).Any(t => t.Id == tourId);
+                Tourist tourist = _touristService.GetTouristById(userId);
+                return _tourReservationService.FindMyEndedTours(userId, tourist.Name, tourist.LastName).Any(t => t.Id == tourId);
             }
             return false;
         }
@@ -53,7 +58,7 @@ namespace BookingApp.Application.Services.RateServices
         public List<GuideRateViewModel> getRatesByTour(int tour_id)
         {
             List<GuideRateViewModel> rates = new List<GuideRateViewModel>();
-            List<GuideRate> guideRates = guideRateRepository.getRatesForTour(tour_id);
+            List<GuideRate> guideRates = _guideRateRepository.getRatesForTour(tour_id);
             foreach (var guideRate in guideRates)
             {
                 rates.Add(new GuideRateViewModel(guideRate));
@@ -64,7 +69,7 @@ namespace BookingApp.Application.Services.RateServices
         
         public void markAsInvalid(int id)
         {
-            guideRateRepository.markAsInvalid(id);
+            _guideRateRepository.markAsInvalid(id);
         }
 
     }
