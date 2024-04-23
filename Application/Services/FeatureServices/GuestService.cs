@@ -45,16 +45,30 @@ namespace BookingApp.Application.Services.FeatureServices
             if (guest.IsSuperGuest)
                 CheckDueDate(guest);
 
+            Update(guest);
+
         }
 
         private void CheckDueDate(Guest guest)
         {
             if(guest.EndDate == DateTime.Now)
             {
-                guest.IsSuperGuest = false;
-                guest.BonusPoints = 0;
-                guest.StartDate = DateTime.MinValue;
-                guest.EndDate = DateTime.MinValue;
+                if(GetYearlyReservations(guest) >= 10)
+                {
+                    guest.YearlyReservations = GetYearlyReservations(guest);
+                    guest.IsSuperGuest = true;
+                    guest.StartDate = DateTime.Now;
+                    guest.EndDate = DateTime.Now.AddYears(1);
+                    guest.BonusPoints = 5;
+                }
+                else
+                {
+                    guest.IsSuperGuest = false;
+                    guest.BonusPoints = 0;
+                    guest.StartDate = DateTime.MinValue;
+                    guest.EndDate = DateTime.MinValue;
+                }
+             
             }
         }
 

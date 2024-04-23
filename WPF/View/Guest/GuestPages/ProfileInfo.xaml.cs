@@ -20,6 +20,7 @@ using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Application.Services.FeatureServices;
 
 namespace BookingApp.View.GuestPages
 {
@@ -30,7 +31,7 @@ namespace BookingApp.View.GuestPages
     {
       
         public User User { get; set; }
-       
+        
         public AccommodationReservationViewModel SelectedReservation { get; set; }
         public Frame Frame {  get; set; }   
 
