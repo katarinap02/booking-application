@@ -20,12 +20,15 @@ namespace BookingApp.Domain.Model.Rates
 
         public List<string> Images { get; set; }
 
+        public int RecommendationId { get; set; }
+
         public AccommodationRate()
         {
             Images = new List<string>();
+            RecommendationId = -1;
         }
 
-        public AccommodationRate(int reservationId, int guestId, int hostId, int cleanliness, int correctness, string additionalComment)
+        public AccommodationRate(int reservationId, int guestId, int hostId, int cleanliness, int correctness, string additionalComment, int recommendationId)
         {
             ReservationId = reservationId;
             GuestId = guestId;
@@ -34,7 +37,7 @@ namespace BookingApp.Domain.Model.Rates
             Correctness = correctness;
             AdditionalComment = additionalComment;
             Images = new List<string>();
-
+            RecommendationId = recommendationId;
         }
 
         public void FromCSV(string[] values)
@@ -46,6 +49,7 @@ namespace BookingApp.Domain.Model.Rates
             Correctness = Convert.ToInt32(values[4]);
             AdditionalComment = values[5];
             Images = MakeListPictures(values[6]);
+            RecommendationId = Convert.ToInt32(values[7]);
 
 
         }
@@ -53,7 +57,7 @@ namespace BookingApp.Domain.Model.Rates
         public string[] ToCSV()
         {
             string[] csvValues = { ReservationId.ToString(), GuestId.ToString(), HostId.ToString(), Cleanliness.ToString(), Correctness.ToString(),
-            AdditionalComment, MakeStringFromPictures(Images)};
+            AdditionalComment, MakeStringFromPictures(Images), RecommendationId.ToString()};
             return csvValues;
         }
 

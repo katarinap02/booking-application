@@ -1,0 +1,52 @@
+﻿<Page x:Class="BookingApp.WPF.View.Guest.GuestPages.RecommendationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestPages"
+            xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="798" d:DesignWidth="1085"
+      Title="RateAccommodationForm">
+
+    <Grid>
+        <Grid>
+
+
+            <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,549,5">
+                <Grid>
+                    <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="24,99,24,534">Welcome to the accommodation rating page. To create a review, fill the cleanliness and correctness rate fields, as well as the comment field.</TextBlock>
+                    <TextBlock TextWrapping="Wrap" FontSize="23" TextAlignment="Center" FontWeight="Bold" Margin="0,255,0,461">Optional: You can leave your accommodation pictures and reccommend renovation.</TextBlock>
+                    <Label Content="Accommodation" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="136,434,-136,312"/>
+                    <Label Content="Host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="218,648,218,98"/>
+                    <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
+                        <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="59,-2,63,2"/>
+                    </Border>
+
+                    <controls:AccommodationCardSmaller DataContext="{Binding SelectedAccommodation}" Width="500" Margin="11,168,11,-168"></controls:AccommodationCardSmaller>
+                </Grid>
+            </Border>
+            <Border Width="526" Height="517" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="549,1,10,280">
+
+                <Grid>
+                    <Label Content="Recommendation:" FontSize="20" HorizontalAlignment="Left" Margin="44,37,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Recommendation.Comment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="177" Margin="44,79,0,0"/>
+                    <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="367,454,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}" Click="Save_Click"/>
+                    <Label Content="Urgency level:" FontSize="20" HorizontalAlignment="Left" Margin="44,276,0,0" VerticalAlignment="Top"/>
+
+                    <ComboBox x:Name="levelComboBox" Height="40" Width="450" Margin="36,318,36,155" SelectedValuePath="Tag" SelectedValue="{Binding Recommendation.Level, Mode=TwoWay}">
+                        <ComboBoxItem Content="Level 1 - It would be nice to renovate some small things, but everything works fine without it." Tag="LEVEL1"></ComboBoxItem>
+                        <ComboBoxItem Content="Level 2 - There are minor complaints about the accommodation which, if addressed, would make it perfect." Tag="LEVEL2"></ComboBoxItem>
+                        <ComboBoxItem Content="Level 3 - Several things that really bothered should be renovated." Tag="LEVEL3"></ComboBoxItem>
+                        <ComboBoxItem Content="Level 4 - There are many bad things and renovation is really necessary." Tag="LEVEL4"></ComboBoxItem>
+                        <ComboBoxItem Content="Level 5 - The accommodation is in very bad condition and it's not worth renting it at all unless it's renovated." Tag="LEVEL5"></ComboBoxItem>
+                    </ComboBox>
+
+                </Grid>
+            </Border>
+
+
+        </Grid>
+    </Grid>
+
+</Page>

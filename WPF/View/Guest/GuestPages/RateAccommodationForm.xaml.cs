@@ -60,6 +60,9 @@ namespace BookingApp.View.GuestPages
             
         }
 
-       
+        private void Recommend_Click(object sender, RoutedEventArgs e)
+        {
+            ViewModel.Recommend_Click(sender, e);
+        }
     }
 }

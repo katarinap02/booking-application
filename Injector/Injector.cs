@@ -25,6 +25,7 @@ namespace BookingApp.Injector
             { typeof(IAccommodationReservationRepository), new AccommodationReservationRepository() },
             { typeof(IDelayRequestRepository), new DelayRequestRepository() },
             { typeof(IReservationCancellationRepository), new ReservationCancellationRepository() },
+
             { typeof(IGuestRateRepository), new GuestRateRepository() },
             { typeof(IHostRepository), new HostRepository() },
 
@@ -35,6 +36,8 @@ namespace BookingApp.Injector
             { typeof(ITourReservationRepository), new TourReservationRepository() },
             { typeof(IVoucherRepository), new VoucherRepository() },
             { typeof(IGuideRateRepository), new GuideRateRepository() }
+            { typeof(IRenovationRecommendationRepository), new RenovationRecommendationRepository() }
+
             /*{ typeof(IUserService), new UserService() },*/
             // Add more implementations here
             
