@@ -47,7 +47,7 @@
                 </Style>
             </Label.Style>
         </Label>
-        <Label x:Name="bonusPointsLabel" FontSize="16" Foreground="Orange" Margin="560,554,1290,383">
+        <Label x:Name="bonusPointsLabel" FontSize="16" Foreground="Orange" Margin="500,554,1290,383">
             <Label.Style>
                 <Style TargetType="Label">
                     <Setter Property="Content" Value="{x:Null}"/>
