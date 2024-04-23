@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 
 namespace BookingApp.View.GuestPages
 {
@@ -29,12 +30,14 @@ namespace BookingApp.View.GuestPages
 
         public Frame Frame { get; set; }    
         
+        public HomePageViewModel ViewModel { get; set; }
         public HomePage(User user, Frame frame)
         {
             InitializeComponent();
             this.User = user;
-            DataContext = this;
             this.Frame = frame;
+            ViewModel = new HomePageViewModel(User, Frame);
+            DataContext = ViewModel;
             
         }
 

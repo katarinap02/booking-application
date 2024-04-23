@@ -28,6 +28,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public User User { get; set; }
         public AccommodationReservationService AccommodationReservationService { get; set; }
 
+        public Guest Guest { get; set; }
+
+        public GuestService GuestService { get; set; }
         public AccommodationService AccommodationService { get; set; }
         public AccommodationReservationViewModel SelectedReservation { get; set; }
         public Frame Frame { get; set; }
@@ -42,23 +45,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             Status = "guest";
+            GuestService = new GuestService(Injector.Injector.CreateInstance<IGuestRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+            Guest = GuestService.GetById(User.Id);
+            GuestService.CalculateGuestStats(Guest);
             TotalReservations = GetTotalReservations(AccommodationReservationService);
-            TotalYearReservations = GetTotalReservationsYear(AccommodationReservationService);
+          
         }
 
-
-
-        private int GetTotalReservationsYear(AccommodationReservationService accommodationReservationService)
-        {
-            int number = 0;
-            foreach (AccommodationReservation reservation in accommodationReservationService.GetAll())
-            {
-                if (reservation.GuestId == User.Id && reservation.StartDate.Year == DateTime.Now.Year)
-                    number++;
-            }
-
-            return number;
-        }
 
         private int GetTotalReservations(AccommodationReservationService accommodationReservationService)
         {

@@ -27,6 +27,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public AccommodationService AccommodationService { get; set; }
         public User User { get; set; }
 
+        public Guest Guest { get; set; }
+
+        public GuestService GuestService { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
 
@@ -64,6 +67,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             CalendarConfigurator = new CalendarConfigurator(ReservationCalendar);
 
             CalendarConfigurator.ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
+            GuestService = new GuestService(Injector.Injector.CreateInstance<IGuestRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+            Guest = GuestService.GetById(User.Id);
+            GuestService.CalculateGuestStats(Guest);
 
         }
 
@@ -117,6 +123,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                 SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
                 AccommodationService.Update(SelectedAccommodation.ToAccommodation());
                 AccommodationReservationService.Add(Reservation);
+                if(Guest.BonusPoints > 0)
+                {
+                    Guest.BonusPoints--;
+                }
+               
                 Frame.Content = new ReservationSuccessfulPage(new AccommodationReservationViewModel(Reservation), SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
 
 

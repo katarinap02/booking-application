@@ -17,6 +17,7 @@ using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using BookingApp.Domain.Model.Features;
+using System.Security.Cryptography.X509Certificates;
 
 namespace BookingApp.View.GuestPages
 {
@@ -49,12 +50,12 @@ namespace BookingApp.View.GuestPages
             this.Frame = frame;
             Reservation = reservation;
 
-            ViewModel = new ReservationSuccessfulViewModel(SelectedAccommodation, User, Frame);
-            DataContext = Reservation;
+            ViewModel = new ReservationSuccessfulViewModel(SelectedAccommodation, User, Frame, Reservation);
+             DataContext = ViewModel;
 
-          
-            
-            
+
+
+
         }
 
 
