@@ -25,7 +25,7 @@ namespace BookingApp.WPF.View.HostPages.RatePages
     /// <summary>
     /// Interaction logic for RateDisplayPage.xaml
     /// </summary>
-    public partial class RateDisplayPage : Page, IObserver
+    public partial class RateDisplayPage : Page
     {
         
         public RateDisplayPage(User user)
@@ -33,11 +33,6 @@ namespace BookingApp.WPF.View.HostPages.RatePages
             InitializeComponent();
             DataContext = new RateDisplayPageViewModel(user);
             
-        }
-
-        public void Update()
-        {
-           
         }
 
         private void RateGuest_RequestNavigate(object sender, RequestNavigateEventArgs e)
