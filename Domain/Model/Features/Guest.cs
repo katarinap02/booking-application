@@ -10,6 +10,7 @@ namespace BookingApp.Domain.Model.Features
 {
     public class Guest : User, ISerializable
     {
+       
         public int YearlyReservations { get; set; }
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }
