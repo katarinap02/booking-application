@@ -13,5 +13,55 @@
         <controls:ReservationDetailsCard x:Name="reservationDetailsCard" Margin="0,291,799,291"></controls:ReservationDetailsCard>
         <Button Content="Home page" HorizontalAlignment="Left" Margin="1340,356,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="72" Width="203" Click="HomePage_Click"/>
         <Button Content="Your profile" HorizontalAlignment="Left" Margin="1340,495,0,0" VerticalAlignment="Top" Style="{StaticResource ResourceKey=ButtonStyleN}" Height="72" Width="203" Click="ProfilePage_Click"/>
+        <Image VerticalAlignment="Top" HorizontalAlignment="Left" Margin="743,316,0,0" Width="40" Height="40">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="{x:Null}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
+                            <Setter Property="Source" Value="../../../Resources/Images/star.png"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
+                            <Setter Property="Source" Value="{x:Null}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+
+
+        </Image>
+
+        <Label FontSize="20" Foreground="Orange" Margin="365,550,1360,383">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Content" Value="{x:Null}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
+                            <Setter Property="Content" Value="Bonus points:"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
+                            <Setter Property="Content" Value="{x:Null}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+
+                </Style>
+            </Label.Style>
+        </Label>
+        <Label x:Name="bonusPointsLabel" FontSize="16" Foreground="Orange" Margin="560,554,1290,383">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Setter Property="Content" Value="{x:Null}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
+                            <Setter Property="Content" Value="{Binding Guest.BonusPoints}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
+                            <Setter Property="Content" Value="{x:Null}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+
+                </Style>
+            </Label.Style>
+        </Label>
     </Grid>
 </Page>

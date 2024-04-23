@@ -35,11 +35,10 @@ namespace BookingApp.View.GuestPages
         public CalendarDateRange SelectedDateRange { get; set; }
         public User User { get; set; }
 
-        public Guest Guest { get; set; }
         public Frame Frame { get; set; }
 
         public int GuestNumber { get; set; }
-        public ReservationSuccessfulPage(AccommodationReservationViewModel reservation, AccommodationViewModel selectedAccommodation, CalendarDateRange selectedDateRange, int guestNumber, User user, Frame frame, Guest guest)
+        public ReservationSuccessfulPage(AccommodationReservationViewModel reservation, AccommodationViewModel selectedAccommodation, CalendarDateRange selectedDateRange, int guestNumber, User user, Frame frame)
         {
             InitializeComponent();
 
@@ -49,15 +48,14 @@ namespace BookingApp.View.GuestPages
             this.GuestNumber = guestNumber;
             this.User = user;
             this.Frame = frame;
-            Guest = guest;
             Reservation = reservation;
 
-            ViewModel = new ReservationSuccessfulViewModel(SelectedAccommodation, User, Frame, Guest);
-            DataContext = Reservation;
+            ViewModel = new ReservationSuccessfulViewModel(SelectedAccommodation, User, Frame, Reservation);
+             DataContext = ViewModel;
 
-          
-            
-            
+
+
+
         }
 
 

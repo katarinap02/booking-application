@@ -128,7 +128,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                     Guest.BonusPoints--;
                 }
                
-                Frame.Content = new ReservationSuccessfulPage(new AccommodationReservationViewModel(Reservation), SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame, Guest);
+                Frame.Content = new ReservationSuccessfulPage(new AccommodationReservationViewModel(Reservation), SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
 
 
 
