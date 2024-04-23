@@ -19,6 +19,8 @@
                 <Label x:Name="lblDateRange" Content="{Binding DateRangeString}" FontSize="16" FontWeight="Bold" Margin="104,178,-104,-61" Grid.Row="1"></Label>
                 <Label x:Name="lblNumberOfPeople" Content="{Binding NumberOfPeople}" FontSize="16" FontWeight="Bold" Margin="226,203,-226,-87" Grid.Row="1"/>
                 <Label x:Name="lblNumberOfDays" Content="{Binding NumberOfDays}" FontSize="16" FontWeight="Bold" Margin="207,229,-207,-113" Grid.Row="1"/>
+                
+
             </Grid>
 
         </Border>

@@ -34,6 +34,56 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                 <Label x:Name="statusLabel" Content="{Binding Status}" FontSize="23" Margin="105,75,739,670"/>
                 <Label x:Name="totalReservationsLabel" Content="{Binding TotalReservations}" FontSize="23" Margin="295,106,547,641"></Label>
                 <Label x:Name="totalReservationsYearLabel" Content="{Binding Guest.YearlyReservations}" FontSize="23" Margin="410,137,528,603"></Label>
+
+                <Image VerticalAlignment="Top" HorizontalAlignment="Left" Margin="995,10,0,0" Width="50" Height="50">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Source" Value="{x:Null}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
+                                    <Setter Property="Source" Value="../../../Resources/Images/star.png"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
+                                    <Setter Property="Source" Value="{x:Null}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                    
+
+                </Image>
+                <Label FontSize="23" Foreground="Orange" Margin="20,200,895,536">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Setter Property="Content" Value="{x:Null}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
+                                    <Setter Property="Content" Value="Bonus points:"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
+                                    <Setter Property="Content" Value="{x:Null}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <Label x:Name="bonusPointsLabel" FontSize="23" Foreground="Orange" Margin="170,200,847,536">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Setter Property="Content" Value="{x:Null}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
+                                    <Setter Property="Content" Value="{Binding Guest.BonusPoints}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
+                                    <Setter Property="Content" Value="{x:Null}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+
+                        </Style>
+                    </Label.Style>
+                </Label>
             </Grid>
         </Border>
     </Grid>

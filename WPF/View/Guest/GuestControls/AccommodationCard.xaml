@@ -147,7 +147,7 @@
                                 <DataTrigger Binding="{Binding IsSuperHost}" Value="True">
                                     <Setter Property="Source" Value="../../../Resources/Images/star.png"/>
                                 </DataTrigger>
-                                <DataTrigger Binding="{Binding IsSUperHost}" Value="False">
+                                <DataTrigger Binding="{Binding IsSuperHost}" Value="False">
                                     <Setter Property="Source" Value="{x:Null}"/>
                                 </DataTrigger>
                             </Style.Triggers>
