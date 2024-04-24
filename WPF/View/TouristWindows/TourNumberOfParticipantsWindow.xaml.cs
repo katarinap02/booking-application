@@ -25,12 +25,12 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class TourNumberOfParticipantsWindow : Window
     {
-        public TourViewModel Tour {  get; set; }
+        public TourNumberOfParticipantsViewModel Tour {  get; set; }
 
         public TourNumberOfParticipantsWindow(TourViewModel selectedTour, int userId)
         {
             InitializeComponent();
-            Tour = new TourViewModel();
+            Tour = new TourNumberOfParticipantsViewModel();
             DataContext = Tour;
             Tour.SelectedTour = selectedTour;
             Tour.AvailablePlaces = selectedTour.AvailablePlaces;

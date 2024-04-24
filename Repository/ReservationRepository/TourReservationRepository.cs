@@ -94,6 +94,7 @@ namespace BookingApp.Repository.ReservationRepository
 
         public List<Tour> FindToursForUserByReservation(int id, string touristName, string touristLastName)
         {
+            _tourReservations = GetAll(); // ovo da bi procitao nov sadrzaj iz csv-a
             List<TourReservation> tourReservations = _tourReservations.FindAll(res => res.TouristId == id);
 
             List<Tour> tours = new List<Tour>();

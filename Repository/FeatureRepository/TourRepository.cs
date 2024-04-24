@@ -147,6 +147,7 @@ namespace BookingApp.Repository.FeatureRepository
 
         public Tour? GetTourById(int id)
         {
+            _tours = GetAll(); // ovo da bi procitao nov sadrzaj iz csv-a
             return _tours.Find(t => t.Id == id);
         }
 
