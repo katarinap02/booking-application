@@ -14,14 +14,13 @@ namespace BookingApp.View.GuideWindows
 {
     public partial class TourStatsWindow : Window
     {
-        private readonly TourRepository _tourRepository;
+       
         private readonly TourService _tourService;
         public SeriesCollection series { get; set; }
 
         public TourStatsWindow(int tourId)
         {
             InitializeComponent();
-            _tourRepository = new TourRepository();
             _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
             UpdateAgeStatistics(tourId);            
             DataContext = this;

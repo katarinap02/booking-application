@@ -35,6 +35,9 @@
     <None Remove="WPF\Resources\Images\plus.png" />
     <None Remove="WPF\Resources\Images\rome1.jpg" />
     <None Remove="WPF\Resources\Images\search.png" />
+    <None Remove="WPF\Resources\LoginImages\icon.png" />
+    <None Remove="WPF\Resources\LoginImages\key.png" />
+    <None Remove="WPF\Resources\LoginImages\login_background.jpg" />
 
   </ItemGroup>
 
@@ -126,6 +129,12 @@
     <Content Include="WPF\Resources\Images\view.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="WPF\Resources\LoginImages\icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WPF\Resources\LoginImages\key.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
@@ -137,6 +146,10 @@
   </ItemGroup>
 
   <ItemGroup>
+
+    <Content Include="WPF\Resources\LoginImages\login_background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
 
     <Resource Include="WPF\View\Guest\GuestThemes\DarkTheme.xaml" />
     <Resource Include="WPF\View\Guest\GuestThemes\LightTheme.xaml">
@@ -150,6 +163,10 @@
 
   <ItemGroup>
     <EditorConfigFiles Remove="E:\FTN\3ev\sims\project\sims-ra-2024-group-1-team-b\Services\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="WPF\ViewModel\GuideViewModel\" />
   </ItemGroup>
 
 </Project>
