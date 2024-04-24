@@ -4,10 +4,14 @@
              xmlns:local="clr-namespace:BookingApp"
              StartupUri="WPF/View/SignInForm.xaml">
     <Application.Resources>
+        
+        <!-- Teodorini stilovi tj resource dictionary
+            <ResourceDictionary Source="/WPF/View/GuideTestWindows/Styles/GuideUIcolors.xaml"></ResourceDictionary>
+        -->
+
+        
 
         <!-- Natasini stilovi-->
-
-
         <SolidColorBrush x:Key="ButtonTextN" Color="#F4F4ED"/> 
         <SolidColorBrush x:Key="BackgroundColorN" Color="#F4F4ED"/> 
         <SolidColorBrush x:Key="AccentColorN" Color="#6665DD"/>
