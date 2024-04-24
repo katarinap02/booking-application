@@ -150,6 +150,7 @@ namespace BookingApp.Repository.ReservationRepository
 
         public bool IsUserJoined(int reservationId, string touristName, string touristLastName)
         {
+            _tourParticipants = GetAll(); // ovo da bi procitao nov sadrzaj iz csv-a
             List<TourParticipant> tourParticipants = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
             foreach(TourParticipant tp in tourParticipants){
                 if(tp.Name.Equals(touristName) && tp.LastName.Equals(touristLastName) && tp.HasJoinedTour == true)

@@ -23,7 +23,6 @@ namespace BookingApp.WPF.ViewModel
         public UserService _userService {  get; set; }
 
         public ObservableCollection<TourViewModel> Tours { get; set; }
-        public ObservableCollection<Checkpoint> CheckpointWithColors { get; set; }
 
         private int id;
         public int Id
@@ -340,7 +339,6 @@ namespace BookingApp.WPF.ViewModel
         }
 
         private int _maximumValuePeoples;
-
         public int MaximumValuePeoples
         {
             get
@@ -404,108 +402,6 @@ namespace BookingApp.WPF.ViewModel
                 {
                     _username = value;
                     OnPropertyChanged(nameof(UserName));
-                }
-            }
-        }
-
-        private Visibility _pdfPanel;
-        public Visibility PdfPanel
-        {
-            get
-            {
-                return _pdfPanel;
-            }
-            set
-            {
-                if (_pdfPanel != value)
-                {
-                    _pdfPanel = value;
-                    OnPropertyChanged(nameof(PdfPanel));
-                }
-            }
-        }
-
-        private SolidColorBrush _availablePlacesColor;
-        public SolidColorBrush AvailablePlacesColor
-        {
-            get
-            {
-                return _availablePlacesColor;
-            }
-            set
-            {
-                if (value != _availablePlacesColor)
-                {
-                    _availablePlacesColor = value;
-                    OnPropertyChanged(nameof(AvailablePlacesColor));
-                }
-            }
-        }
-
-        private HorizontalAlignment _closeButtonAlignmentNumberOfParticipants;
-        public HorizontalAlignment CloseButtonalignmentNumberOfParticipants
-        {
-            get
-            {
-                return _closeButtonAlignmentNumberOfParticipants;
-            }
-            set
-            {
-                if (_closeButtonAlignmentNumberOfParticipants != value)
-                {
-                    _closeButtonAlignmentNumberOfParticipants = value;
-                    OnPropertyChanged(nameof(CloseButtonalignmentNumberOfParticipants));
-                }
-            }
-        }
-
-        private Visibility _confirmButtonVisibilityNumberOfParticipants;
-        public Visibility ConfirmButtonVisibilityNumberOfParticipants
-        {
-            get
-            {
-                return _confirmButtonVisibilityNumberOfParticipants;
-            }
-            set
-            {
-                if (_confirmButtonVisibilityNumberOfParticipants != value)
-                {
-                    _confirmButtonVisibilityNumberOfParticipants = value;
-                    OnPropertyChanged(nameof(ConfirmButtonVisibilityNumberOfParticipants));
-                }
-            }
-        }
-
-        private int _insertedNumberOfParticipants;
-        public int InsertedNumberOfParticipants
-        {
-            get
-            {
-                return _insertedNumberOfParticipants;
-            }
-            set
-            {
-                if (value != _insertedNumberOfParticipants)
-                {
-                    _insertedNumberOfParticipants = value;
-                    OnPropertyChanged(nameof(InsertedNumberOfParticipants));
-                }
-            }
-        }
-
-        private Visibility _dataTabVisibility;
-        public Visibility DataTabVisibility
-        {
-            get
-            {
-                return _dataTabVisibility;
-            }
-            set
-            {
-                if (_dataTabVisibility != value)
-                {
-                    _dataTabVisibility = value;
-                    OnPropertyChanged(nameof(DataTabVisibility));
                 }
             }
         }
@@ -639,16 +535,6 @@ namespace BookingApp.WPF.ViewModel
             }
             return ToursViewModel;
         }
-
-        public List<Tour> ToTour(List<TourViewModel> toursViewModel)
-        {
-            List<Tour> tours = new List<Tour>();
-            foreach (TourViewModel tourViewModel in toursViewModel)
-            {
-                tours.Add(tourViewModel.ToTour());
-            }
-            return tours;
-        }
         //**********************************************
 
         // ******************* ZA MY TOURS PAGE
@@ -677,101 +563,6 @@ namespace BookingApp.WPF.ViewModel
             return _guideRateService.IsRated(SelectedTour.Id);
         }
 
-
-
-        //*********************** TOUR DETAILS
-
-        public void TourDetailsWindowInitialization(bool IsMyTour)
-        {
-
-            SolidColorBrush activeColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#56707a"));
-            SolidColorBrush inactiveColor = Brushes.Gray;
-            CheckpointWithColors.Clear();
-            foreach (var checkpoint in SelectedTour.Checkpoints)
-            {
-                CheckpointWithColors.Add(new Checkpoint { Name = checkpoint, IndicatorColor = inactiveColor });
-            }
-
-            PdfPanel = IsMyTour ? Visibility.Visible : PdfPanel;
-
-            int checkpointIndex = SelectedTour.CurrentCheckpoint;
-            for (int i = 0; i < SelectedTour.Checkpoints.Count; i++)
-            {
-                if (i == checkpointIndex)
-                {
-                    CheckpointWithColors[i].IndicatorColor = activeColor;
-                }
-                else
-                {
-                    CheckpointWithColors[i].IndicatorColor = inactiveColor;
-                }
-            }
-            // images
-            if (SelectedTour.Pictures != null)
-            {
-                for (int i = 0; i < SelectedTour.Pictures.Count; i++)
-                {
-                    SelectedTour.Pictures[i] = "../../" + SelectedTour.Pictures[i];
-                }
-            }
-        }
-
-        //********************TourNumberOfParticipantsWindow
-        public void RefreshToursByCity()
-        {
-            Tours.Clear();
-            List<TourViewModel> tours = ToTourViewModel(_tourService.GetTourByCityWithAvailablePlaces(SelectedTour.City));
-            foreach (var tour in tours)
-            {
-                Tours.Add(tour);
-            }
-        }
-
-        public (int, int) InitializeNumberOfParticipantsWindow()
-        {
-            if (SelectedTour.AvailablePlaces == 0)
-            {
-                AvailablePlacesColor = Brushes.Red;
-                if (Tours.Count > 0)
-                {
-                    DataTabVisibility = Visibility.Visible;
-                }
-                CloseButtonalignmentNumberOfParticipants = HorizontalAlignment.Center;
-                ConfirmButtonVisibilityNumberOfParticipants = Visibility.Collapsed;
-                MessageBox.Show("No more places for the selected tour, please select another one!");
-                AvailablePlaces = _tourService.FindMaxNumberOfParticipants(ToTour(Tours.ToList()));
-                // returnujemo big window size, widht, height
-                return (800, 600);
-            }
-            AvailablePlacesColor = Brushes.Green;
-
-            DataTabVisibility = Visibility.Collapsed;
-            CloseButtonalignmentNumberOfParticipants = HorizontalAlignment.Left;
-            ConfirmButtonVisibilityNumberOfParticipants = Visibility.Visible;
-            // small
-            return (600, 220);
-        }
-        public void ConfirmNumberOfParticipants()
-        {
-            if (InsertedNumberOfParticipants > SelectedTour.AvailablePlaces)
-            {
-                MessageBox.Show("Not enough places for the reservation");
-                return;
-            }
-            if (InsertedNumberOfParticipants == 0)
-                InsertedNumberOfParticipants = 1;
-            TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants, UserId);
-            tourReservationWindow.ShowDialog();
-        }
-
-        public void BookNumberOfParticipants()
-        {
-            if (InsertedNumberOfParticipants == 0)
-                InsertedNumberOfParticipants = 1;
-            TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants, UserId);
-            tourReservationWindow.ShowDialog();
-        }
-
         public TourViewModel()
         {
             _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
@@ -779,7 +570,6 @@ namespace BookingApp.WPF.ViewModel
             _guideRateService = new GuideRateService(Injector.Injector.CreateInstance<IGuideRateRepository>());
             _userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
             Tours = new ObservableCollection<TourViewModel>();
-            CheckpointWithColors = new ObservableCollection<Checkpoint>();
         }
 
         public TourViewModel(Tour tour)
@@ -812,29 +602,5 @@ namespace BookingApp.WPF.ViewModel
             return tour;
         }
 
-    }
-
-    //************ OVO JE ZA TOUR DETAILS
-    public class Checkpoint : INotifyPropertyChanged
-    {
-        private string name;
-        public string Name
-        {
-            get { return name; }
-            set { name = value; NotifyPropertyChanged(nameof(Name)); }
-        }
-
-        private Brush indicatorColor;
-        public Brush IndicatorColor
-        {
-            get { return indicatorColor; }
-            set { indicatorColor = value; NotifyPropertyChanged(nameof(IndicatorColor)); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
     }
 }

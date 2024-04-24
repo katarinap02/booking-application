@@ -23,11 +23,11 @@ namespace BookingApp.View.TouristWindows
     /// </summary>
     public partial class TourDetailsWindow : Window
     {
-        public TourViewModel Tour { get; set; }
+        public TourDetailsViewModel Tour { get; set; }
         public TourDetailsWindow(TourViewModel selectedTour, bool isMyTour)
         {
             InitializeComponent();
-            Tour = new TourViewModel();
+            Tour = new TourDetailsViewModel();
             Tour.SelectedTour = selectedTour;
             DataContext = Tour;
             Tour.PdfPanel = Visibility.Collapsed;
