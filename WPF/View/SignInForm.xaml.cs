@@ -100,8 +100,7 @@ namespace BookingApp.View
                         {
                             if (user.Username == "test") // prostor za testiranje prozora
                             {
-                                LoginTestWindow loginTestWindow = new LoginTestWindow();
-                                loginTestWindow.Show();
+                                MessageBox.Show("Treba dodati");
                             }
                             else
                             {
