@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        
+        xmlns:Menu="clr-namespace:BookingApp.Utilities"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows" xmlns:dto="clr-namespace:BookingApp.WPF.ViewModel" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="TouristWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
@@ -131,49 +131,67 @@
                     </StackPanel>
                 </Grid>
             </Border>
-            
-            <Button Content="All Tours"
-                    x:Name="AllToursButton"
-                    Style="{StaticResource RoundedButtonStyle2}"
-                    Height="70"
-                    FontSize="36"
-                    Margin="15"
-                    Click="AllToursButton_Click"/>
-            <Button Content="My Tours"
-                    x:Name="MyToursButton"
-                    Style="{StaticResource RoundedButtonStyle2}"
-                    Height="70"
-                    FontSize="36"
-                    Margin="15"
-                    Click="MyToursButton_Click"/>
-            <Button Content="Ended Tours"
-                    x:Name="EndedToursButton"
-                    Style="{StaticResource RoundedButtonStyle2}"
-                    Height="70"
-                    FontSize="36"
-                    Margin="15"
-                    Click="EndedToursButton_Click"/>
-            <Button Content="Requested Tours"
-                    x:Name="RequestedToursButton"
-                    Style="{StaticResource RoundedButtonStyle2}"
-                    Height="70"
-                    FontSize="36"
-                    Margin="15"/>
-            <Button Content="Vouchers"
-                    x:Name="VouchersButton"
-                    Style="{StaticResource RoundedButtonStyle2}"
-                    Height="70"
-                    FontSize="36"
-                    Margin="15"
-                    Click="VouchersButton_Click"/>
-            <Button Content="Log out"
-                    x:Name="LogOutButton"
-                    Style="{StaticResource RoundedButtonStyle2}"
-                    Height="70"
-                    FontSize="36"
-                    Margin="15"
-                    Click="LogoutButton_Click"/>
+            <DockPanel >
+                <StackPanel DockPanel.Dock="Top">
+                    <Menu:Btn   x:Name="AllToursButton"
+                                    Style="{StaticResource MenuBtnStyle}"
+                                    FontSize="45"
+                                    Foreground="WhiteSmoke"
+                                    Click="AllToursButton_Click"
+                                    IsChecked="True">
+                            <TextBlock Text="All Tours"
+                                       VerticalAlignment="Center"
+                                       Margin="20,0,0,0"/>
+                    </Menu:Btn>
+
+                    <Menu:Btn x:Name="MyToursButton"
+                                Style="{StaticResource MenuBtnStyle}"
+                                FontSize="45"
+                                Foreground="WhiteSmoke"
+                                Click="MyToursButton_Click">
+                        <TextBlock Text="My Tours"
+                                       VerticalAlignment="Center"
+                                       Margin="20,0,0,0"/>
+                    </Menu:Btn>
+                    <Menu:Btn x:Name="EndedToursButton"
+                                Style="{StaticResource MenuBtnStyle}"
+                                FontSize="45"
+                                Foreground="WhiteSmoke"
+                                Click="EndedToursButton_Click">
+                        <TextBlock Text="Ended Tours"
+                                       VerticalAlignment="Center"
+                                       Margin="20, 0, 0, 0"/>
+                    </Menu:Btn>
+                    <Menu:Btn x:Name="RequestedToursButton"
+                            Style="{StaticResource MenuBtnStyle}"
+                            Foreground="WhiteSmoke"
+                            FontSize="40">
+                        <TextBlock Text="Requested Tours"
+                                   VerticalAlignment="Center"
+                                   Margin="20, 0, 0, 0"/>
+                    </Menu:Btn>
+                    <Menu:Btn x:Name="VouchersButton"
+                            Style="{StaticResource MenuBtnStyle}"
+                            FontSize="45"
+                            Foreground="WhiteSmoke"
+                            Click="VouchersButton_Click">
+                        <TextBlock Text="Vouchers"
+                                   VerticalAlignment="Center"
+                                   Margin="20, 0, 0, 0"/>
+                    </Menu:Btn>
+                </StackPanel>
+                    <Menu:Btn x:Name="LogOutButton"
+                            DockPanel.Dock="Bottom"
+                            Style="{StaticResource MenuBtnStyle}"
+                            Foreground="WhiteSmoke"
+                            FontSize="36"
+                            Click="LogoutButton_Click">
+                        <TextBlock Text="Log Out"
+                                   VerticalAlignment="Center"
+                                   Margin="20, 0, 0, 0"/>
+                    </Menu:Btn>
+            </DockPanel>
         </StackPanel>
-        <Frame x:Name="MainFrame" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="MainFrame" Content="{Binding MainFrameContent}" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
