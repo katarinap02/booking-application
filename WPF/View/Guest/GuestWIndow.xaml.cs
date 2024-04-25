@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.View.Guest.GuestPages;
 
 namespace BookingApp.View
 {
@@ -71,6 +72,7 @@ namespace BookingApp.View
 
         private void AboutClick(object sender, RoutedEventArgs e)
         {
+            Main.Content = new AboutPage();
 
         }
 

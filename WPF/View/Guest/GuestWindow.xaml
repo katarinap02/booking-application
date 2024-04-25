@@ -54,9 +54,9 @@
                 <!--<Button Content="Dark theme" HorizontalAlignment="Left" Margin="1215,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="DarkTheme_Click"/>-->
                 <!--<Button Content="Light theme" HorizontalAlignment="Left" Margin="1362,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="LightTheme_Click"/>-->
                 <Button Content="Log out" Style="{StaticResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1791,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105" Click="LogOut_Click"/>
-                <ToggleButton x:Name="notificationsButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Width="50" Height="50" Background="{StaticResource AccentColorN}" Margin="1500, -991, -85, 0">
+                <ToggleButton x:Name="notificationsButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Width="45" Height="45" Background="{StaticResource AccentColorN}" Margin="1722,5,152,982">
                     <ToggleButton.Content>
-                        <Image Source="{StaticResource Bell}" Height="35" Width="30"/>
+                        <Image Source="{StaticResource Bell}" Height="30" Width="30"/>
                     </ToggleButton.Content>
                 </ToggleButton>
             </Grid>
