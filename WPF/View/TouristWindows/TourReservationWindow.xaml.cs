@@ -53,13 +53,6 @@ namespace BookingApp.View.TouristWindows
                 Close();
         }
 
-        private void AddParticipantButton_Click(object sender, RoutedEventArgs e)
-        {
-            TourReservation.AddParticipant();
-        }
-
-
-
         private void removeParticipant_Click(object sender, RoutedEventArgs e)
         {
             TourReservation.RemoveParticipant();

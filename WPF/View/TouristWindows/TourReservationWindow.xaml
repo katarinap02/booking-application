@@ -72,7 +72,8 @@
                             HorizontalAlignment="Left"
                             Width="120"
                             Height="50"
-                            FontSize="20"/>
+                            FontSize="20"
+                            AllowTextInput="False"/>
 
         <Label Content="available places:"
                Grid.Column="2"
@@ -125,8 +126,8 @@
                        HorizontalContentAlignment="Left"
                        VerticalContentAlignment="Center"/>
 
-                <TextBox x:Name="name"
-                         Text="{Binding Name}"
+                <TextBox x:Name="nameTextBox"
+                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Column="1"
                          Grid.Row="1"
                          Grid.ColumnSpan="2"
@@ -134,14 +135,31 @@
                          Width="100"
                          Height="25"/>
 
-                <TextBox x:Name="lastName"
-                         Text="{Binding LastName}"
+                <Label Content="{Binding ElementName=nameTextBox, Path=(Validation.Errors)[0].ErrorContent }"
+                       Foreground="Red"
+                       Grid.Row="1"
+                       Grid.RowSpan="2"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontSize="10" Grid.ColumnSpan="2" Margin="96,0,0,0"/>
+
+                <TextBox x:Name="lastNameTextBox"
+                         Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Column="1"
                          Grid.Row="2"
                          Grid.ColumnSpan="2"
                          HorizontalAlignment="Left"
                          Width="100"
                          Height="25"/>
+
+                <Label Content="{Binding ElementName=lastNameTextBox, Path=(Validation.Errors)[0].ErrorContent }"
+                       Foreground="Red"
+                       Grid.Row="2"
+                       Grid.RowSpan="2"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontSize="9.8" Grid.ColumnSpan="2" Margin="96,0,0,0"/>
+                
                 <xctk:IntegerUpDown x:Name="years"
                                     Text="{Binding Age}"
                                     Grid.Column="1"
@@ -149,7 +167,9 @@
                                     TextAlignment="Justify"
                                     Height="30"
                                     Increment="1"
-                                    Minimum="1"/>
+                                    Minimum="1"
+                                    DefaultValue="0"
+                                    AllowTextInput="False"/>
 
                 <Button x:Name="AddButton"
                         Grid.Row="1"
@@ -157,20 +177,9 @@
                         Grid.RowSpan="3"
                         Width="50"
                         Height="50"
-                        Click="AddParticipantButton_Click" Margin="60, 0, 0, 0">
-                    <Button.Template>
-                        <ControlTemplate TargetType="Button">
-                            <Border CornerRadius="25" Background="LightBlue" Padding="10">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="../../Resources/Images/add.png"
-                                           Height="auto"
-                                           Width="auto"
-                                           HorizontalAlignment="Center"/>
-                                </StackPanel>
-                            </Border>
-                        </ControlTemplate>
-                    </Button.Template>
-                </Button>
+                        Content="Add"
+                        Command="{Binding AddParticipantCommand}" Margin="60, 0, 0, 0"/>
+
             </Grid>
         </GroupBox>
 
