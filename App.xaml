@@ -8,6 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Styles/GuideUIcolors.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Styles/GuideUIbuttons.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/Styles/TouristUIdictionary.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/Styles/GuestUIdictionary.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/Styles/GeneralUIdictionary.xaml"></ResourceDictionary> <!-- Napravili asistenti sa simsa za login i comment window -->
