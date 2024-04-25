@@ -12,7 +12,9 @@ namespace BookingApp.WPF.ViewModel
         private readonly Action<object> _execute;
         private readonly Func<object, bool> _canExecute;
 
-        public event EventHandler CanExecuteChanged
+        private EventHandler _canExecuteChanged;
+
+        public event EventHandler? CanExecuteChanged
         {
             add { CommandManager.RequerySuggested += value; }
             remove { CommandManager.RequerySuggested -= value; }
@@ -24,12 +26,18 @@ namespace BookingApp.WPF.ViewModel
             _canExecute = canExecute;
         }
 
-        public bool CanExecute(object parameter)
+        public void RaiseCanExecuteChanged()
+        {
+            var handler = _canExecuteChanged;
+            handler?.Invoke(this, EventArgs.Empty);
+        }
+
+        public bool CanExecute(object? parameter)
         {
             return _canExecute == null || _canExecute(parameter);
         }
 
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
             _execute(parameter);
         }

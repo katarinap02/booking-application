@@ -7,19 +7,23 @@ using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
 using BookingApp.View.TouristWindows;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 using System.Xml.Linq;
 using Xceed.Wpf.Toolkit;
 
 namespace BookingApp.WPF.ViewModel
 {
-    public class TourReservationViewModel : INotifyPropertyChanged
+    public class TourReservationViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
         private readonly TourParticipantService _tourParticipantService;
         private readonly TourReservationService _tourReservationService;
@@ -28,6 +32,10 @@ namespace BookingApp.WPF.ViewModel
 
         public List<TourParticipantViewModel> TourParticipantDTOs { get; set; }
         public List<TourParticipantViewModel> TourParticipantsListBox { get; set; }
+
+        public RelayCommand AddParticipantCommand {  get; set; }
+
+        Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
         private int _id;
         public int Id
@@ -169,6 +177,8 @@ namespace BookingApp.WPF.ViewModel
         }
 
         private string _name;
+
+        [Required(ErrorMessage = "Name is Required")]
         public string Name
         {
             get
@@ -177,6 +187,7 @@ namespace BookingApp.WPF.ViewModel
             }
             set
             {
+                Validate(nameof(Name), value);
                 if (_name != value)
                 {
                     _name = value;
@@ -186,6 +197,8 @@ namespace BookingApp.WPF.ViewModel
         }
 
         private string _lastName;
+
+        [Required(ErrorMessage = "Last name is Required")]
         public string LastName
         {
             get
@@ -194,6 +207,7 @@ namespace BookingApp.WPF.ViewModel
             }
             set
             {
+                Validate(nameof(LastName), value);
                 if (_lastName != value)
                 {
                     _lastName = value;
@@ -203,6 +217,8 @@ namespace BookingApp.WPF.ViewModel
         }
 
         private string _age;
+
+        [Required(ErrorMessage = "Age is Required")]
         public string Age
         {
             get
@@ -211,6 +227,7 @@ namespace BookingApp.WPF.ViewModel
             }
             set
             {
+                Validate(nameof(Age), value);
                 if (_age != value)
                 {
                     _age = value;
@@ -236,11 +253,45 @@ namespace BookingApp.WPF.ViewModel
             }
         }
 
+        public bool HasErrors => Errors.Count > 0;
+
         public event PropertyChangedEventHandler? PropertyChanged;
+
+        public event EventHandler<DataErrorsChangedEventArgs>? ErrorsChanged;
+        public IEnumerable GetErrors(string? propertyName)
+        {
+            if (Errors.ContainsKey(propertyName))
+            {
+                return Errors[propertyName];
+            }
+
+            return Enumerable.Empty<string>();
+        }
 
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void Validate(string propertyName, object propertyValue)
+        {
+            var results = new List<System.ComponentModel.DataAnnotations.ValidationResult>();
+
+            Validator.TryValidateProperty(propertyValue, new ValidationContext(this) { MemberName = propertyName }, results);
+
+            if (results.Any())
+            {
+                Errors.Add(propertyName, results.Select(r => r.ErrorMessage).ToList());
+                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            }
+            else
+            {
+                Errors.Remove(propertyName);
+                ErrorsChanged?.Invoke(this, new DataErrorsChangedEventArgs(propertyName));
+            }
+
+            AddParticipantCommand.RaiseCanExecuteChanged();
+
         }
 
         private void SetupForNextParticipantInput()
@@ -253,7 +304,7 @@ namespace BookingApp.WPF.ViewModel
             Age = "0";
         }
 
-        public void AddParticipant()
+        private void ExecuteAddParticipant(object obj)
         {
             if (!AllFieldsFilled(Age, Name, LastName))
             {
@@ -268,6 +319,11 @@ namespace BookingApp.WPF.ViewModel
 
                 SetupForNextParticipantInput();
             }
+        }
+
+        private bool CanAddParticipant(object obj)
+        {
+            return Validator.TryValidateObject(this, new ValidationContext(this), null);
         }
 
         private bool AllFieldsFilled(string years, string name, string lastName)
@@ -334,8 +390,8 @@ namespace BookingApp.WPF.ViewModel
                 return false;
             }
             else
-                //ako postoji vec rezervacija za tu turu
             {
+                //ako postoji vec rezervacija za tu turu
                 TourReservationViewModel reservation = ToTourReservationViewModel(_tourReservationService.FindReservationByTOuristIdAndTourId(UserId, SelectedTour.Id));
                 // ovo znaci da vec ima rezervacija
                 if (reservation != null)
@@ -369,6 +425,7 @@ namespace BookingApp.WPF.ViewModel
             {
                 System.Windows.MessageBox.Show("something wrong happened");
             }
+            TourParticipantDTOs.Clear();
         }
         private TourReservationViewModel ToTourReservationViewModel(TourReservation reservation)
         {
@@ -384,12 +441,19 @@ namespace BookingApp.WPF.ViewModel
             return null;
         }
 
+        public void Close()
+        {
+
+        }
+
         public TourReservationViewModel()
         {
             _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
             _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
             _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
             _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
+
+            AddParticipantCommand = new RelayCommand(ExecuteAddParticipant, CanAddParticipant);
 
             TourParticipantDTOs = new List<TourParticipantViewModel>();
             TourParticipantsListBox = new List<TourParticipantViewModel>();
