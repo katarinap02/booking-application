@@ -17,7 +17,7 @@
                     
                 </LinearGradientBrush>
             </Menu.Background>
-            <MenuItem x:Name="MoreItem" Margin="10 10 0 5">
+            <MenuItem x:Name="MoreItem" Margin="10 5 0 5">
                 <MenuItem.Header>
                     <Button BorderThickness="0" Click="More_Click" Style="{StaticResource ButtonStyleWindowHost}">
                         <Image Source="../Resources/Images/menu_item1.png" Width="25" Height="23"/>

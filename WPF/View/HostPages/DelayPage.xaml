@@ -130,9 +130,8 @@ ScrollViewer.VerticalScrollBarVisibility="Auto"
 SelectedItem="{Binding SelectedDelay}"
 SelectionMode="Single">
             <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
-                        <Setter Property="Background" Value="#EBEBEB" />
-                    <Setter Property="Padding" Value="0" />
+                    <Style TargetType="ListViewItem">
+                        <Setter Property="Padding" Value="0" />
                     <Setter Property="Margin" Value="0,5,5,5" />
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                 </Style>
@@ -140,12 +139,16 @@ SelectionMode="Single">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border
-            BorderBrush="Gray"
-            BorderThickness="1"
+            BorderBrush="#A0CCED"
+            BorderThickness="4"
             CornerRadius="5">
                         <Grid Height="Auto" >
-                            
-                            <Grid.RowDefinitions>
+                                <Grid.Background>
+                                    <LinearGradientBrush StartPoint="0,2" EndPoint="1,1">
+                                        <GradientStop Color="White" Offset="0.1"/>
+                                    </LinearGradientBrush>
+                                </Grid.Background>
+                                <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
