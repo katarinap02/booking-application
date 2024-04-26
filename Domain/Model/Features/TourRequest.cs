@@ -27,6 +27,8 @@ namespace BookingApp.Domain.Model.Features
         public DateTime AcceptedDate { get; set; }
         public int GuideId { get; set; }
 
+        public TourRequest() { }
+
         public TourRequest(string description, string language, List<int> ids, DateTime startDate, DateTime endDate, string city, string country) { // kada se pravi zahtev
             City = city;
             Country = country;
