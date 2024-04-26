@@ -107,7 +107,7 @@ namespace BookingApp.Domain.Model.Features
             string dateFormat = "M/d/yyyy h:mm:ss tt";
             if (DateTime.TryParseExact(values[8], dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
             {
-                Date = parsedDate.Date;
+                Date = parsedDate;
             }
 
 
