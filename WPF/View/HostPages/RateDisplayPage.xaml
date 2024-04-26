@@ -1,4 +1,4 @@
-﻿<Page x:Class="BookingApp.WPF.View.HostPages.RatePages.RateDisplayPage"
+﻿<Page x:Class="BookingApp.WPF.View.HostPages.RateDisplayPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -9,6 +9,12 @@
       Title="RateDisplayPage">
 
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,2" EndPoint="1,1">
+                <GradientStop Color="#47D2E8" Offset="0.1"/>
+                <GradientStop Color="#FFD7F2" Offset="0.9"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="*" />

@@ -8,7 +8,19 @@
       d:DesignHeight="705" d:DesignWidth="1024"
       Title="FirstPage">
 
+    <Page.Resources>
+        <ResourceDictionary>
+            
+        </ResourceDictionary>
+    </Page.Resources>
+
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,2" EndPoint="1,1">
+                <GradientStop Color="#47D2E8" Offset="0.1"/>
+                <GradientStop Color="#FFD7F2" Offset="0.9"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="*" />

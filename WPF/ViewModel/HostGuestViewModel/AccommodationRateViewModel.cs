@@ -200,10 +200,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             accommodationName = ac.Name;
             PathConverter = new PathConverter();
             if (ar.Images.Count != 0)
-                OnePicture = PathConverter.ConvertToRelativePath(ar.Images[0]);
+                OnePicture = PathConverter.ConvertToRelativePathSecond(ar.Images[0]);
 
             else
-                OnePicture = "../../../Resources/Images/no_image.jpg";
+                OnePicture = "../../Resources/Images/no_image.jpg";
             RecommendationId = ar.ReservationId;
 
         }

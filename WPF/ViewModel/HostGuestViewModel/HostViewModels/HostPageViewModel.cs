@@ -1,7 +1,6 @@
 ﻿using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.View.GuestWindows;
-using BookingApp.View.HostPages.RatePages;
 using BookingApp.View.HostPages;
 using BookingApp.View.HostWindows;
 using System;
@@ -15,6 +14,7 @@ using System.Windows;
 using System.Windows.Controls;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.View.HostPages;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {

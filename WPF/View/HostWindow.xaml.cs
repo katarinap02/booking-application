@@ -2,7 +2,6 @@
 using BookingApp.Repository;
 using BookingApp.View.GuestWindows;
 using BookingApp.View.HostPages;
-using BookingApp.View.HostPages.RatePages;
 using BookingApp.View.HostWindows;
 using System;
 using System.Collections.Generic;

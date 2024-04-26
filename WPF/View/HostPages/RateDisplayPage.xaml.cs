@@ -20,7 +20,7 @@ using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels;
 using BookingApp.Domain.Model.Features;
 
-namespace BookingApp.WPF.View.HostPages.RatePages
+namespace BookingApp.WPF.View.HostPages
 {
     /// <summary>
     /// Interaction logic for RateDisplayPage.xaml
