@@ -19,10 +19,11 @@
 
         <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="218,92,1031,162" Width="671" Height="736">
             <Grid>
-                <Label Content="Reservation" FontSize="55" Margin="172,98,-37,233" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
-                <Label Content="Please choose days and number of" FontSize="35" Margin="65,197,-212,141"/>
-                <Label Content="people for your reservation." FontSize="35" Margin="108,240,-37,100"/>
-                <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Margin="6,240,-6,-240"/>
+                <Label Content="Reservation" FontSize="55" Margin="158,16,-24,315" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+                <TextBlock FontSize="35" TextWrapping="Wrap" TextAlignment="Center" Margin="31,101,31,315">Please choose days and number od people for your reservation.</TextBlock>
+
+                <Label Content="Accommodation" FontSize="40" Margin="168,470,-34,-75" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+                <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Margin="6,258,-6,-258"/>
             </Grid>
         </Border>
         <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="981,92,268,339" Width="671" Height="559">

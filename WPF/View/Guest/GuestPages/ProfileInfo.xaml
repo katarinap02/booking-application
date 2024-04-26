@@ -13,7 +13,7 @@
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
 
-                <ListBox Name="ReservationListBox" Height="377" Margin="26,380,21,33"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+                <ListBox Name="ReservationListBox" Height="377" Margin="26,304,21,109"  ScrollViewer.VerticalScrollBarVisibility="Auto"
 ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColorN}" SelectedItem="{Binding SelectedReservation}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -30,7 +30,7 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                 </ListBox>
                 <Label Content="{Binding User.Username}" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="408,10,442,735"/>
                 <TextBlock TextWrapping="Wrap" FontSize="23" Margin="26,81,276,470">Status:<LineBreak/>Total reservation number:<LineBreak/>Reservation number in the past year:<LineBreak/>Ratng:<LineBreak/></TextBlock>
-                <Label Content="Reservations" FontSize="30" Style="{StaticResource HeaderStyleN}" Margin="26,320,830,415"/>
+                <Label Content="Reservations" FontSize="30" Style="{StaticResource HeaderStyleN}" Margin="26,254,830,481"/>
                 <Label x:Name="statusLabel" Content="{Binding Status}" FontSize="23" Margin="105,75,739,670"/>
                 <Label x:Name="totalReservationsLabel" Content="{Binding TotalReservations}" FontSize="23" Margin="295,106,547,641"></Label>
                 <Label x:Name="totalReservationsYearLabel" Content="{Binding Guest.YearlyReservations}" FontSize="23" Margin="410,137,528,603"></Label>

@@ -43,6 +43,9 @@ namespace BookingApp.View.GuestPages
             SelectedAccommodation = selectedAccommodation;
             ViewModel = new ReservationFinishViewModel(SelectedAccommodation, User, Frame, this);
             
+            txtStartDate.DisplayDateStart = DateTime.Now;
+            txtEndDate.DisplayDateStart = DateTime.Now;
+
             DataContext = this;
           
            
