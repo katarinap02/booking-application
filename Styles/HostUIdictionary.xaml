@@ -10,6 +10,7 @@
         <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
         <Setter Property="Background" Value="{StaticResource ButtonColor}" />
         <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
 
     </Style>
 
@@ -17,7 +18,14 @@
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Background" Value="White" />
         <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+    </Style>
 
+    <Style x:Key="TitleStyleHost" TargetType="Label">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Comic Sans MS"/>
+        <Setter Property="FontSize" Value="32"/>
+        <Setter Property="Margin" Value="0 16 0 0"/>
     </Style>
 
 </ResourceDictionary>

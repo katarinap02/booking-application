@@ -7,6 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="705" d:DesignWidth="1024"
       Title="DelayPage">
+    <Page.Resources>
+        
+    </Page.Resources>
 
     <Grid>
         <Grid.Background>
@@ -30,7 +33,7 @@
     VerticalAlignment="Center"
     HorizontalAlignment="Center"
     Content="Delay request"
-    FontSize="32"
+    Style="{StaticResource TitleStyleHost}"
      />
 
         

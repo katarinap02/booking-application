@@ -36,7 +36,7 @@
         VerticalAlignment="Center"
         HorizontalAlignment="Center"
         Content="Welcome"
-        FontSize="32"
+        Style="{StaticResource TitleStyleHost}"
          />
 
         <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal" Margin="137,0,0,0" Width="167">
@@ -71,7 +71,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,50,0,0" HorizontalAlignment="Right" Grid.Row="0" Width="146">
             <TextBlock Text="average of rates:" FontSize="13" VerticalAlignment="Center" Margin="5,0,0,0" />
-            <TextBlock x:Name="AverageBox" Padding="0 2 0 0" Text="{Binding hostViewModel.RateAverage}" Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
+            <TextBlock x:Name="AverageBox" Padding="0 2 0 0" Text="{Binding hostViewModel.FormattedNumber}" Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
         </StackPanel>
 
 

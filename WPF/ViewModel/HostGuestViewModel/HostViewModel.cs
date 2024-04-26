@@ -100,6 +100,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private string formattedNumber;
+        public string FormattedNumber
+        {
+            get { return formattedNumber; }
+            set
+            {
+                if (formattedNumber != value)
+                {
+
+                    formattedNumber = value;
+                    OnPropertyChanged("FormattedNumber");
+                }
+            }
+        }
+
         public HostViewModel() { }
 
         public HostViewModel(Host host)
@@ -109,6 +124,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             isSuperHost = host.IsSuperHost;
             rateAverage = host.RateAverage;
             rateCount = host.RateCount;
+            formattedNumber = host.RateAverage.ToString("0.00"); // Rounds to 2 decimal places
+           
         }
 
         public Host ToHost()

@@ -30,7 +30,7 @@
             VerticalAlignment="Center"
             HorizontalAlignment="Center"
             Content="Guest Ratings"
-            FontSize="32"
+            Style="{StaticResource TitleStyleHost}"
              />
 
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="5 0 35 0" HorizontalAlignment="Right">

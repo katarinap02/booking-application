@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:local="clr-namespace:BookingApp.View.HostPages"
       mc:Ignorable="d" 
       d:DesignHeight="705" d:DesignWidth="1024"
@@ -43,7 +44,9 @@
         VerticalAlignment="Center"
         HorizontalContentAlignment="Center"
         Content="Accommodation Registration"
-        FontSize="28"
+        FontSize="32"
+        Style="{StaticResource TitleStyleHost}"
+            Margin="0 0 0 0"
      />
         <StackPanel Grid.Row ="1" Grid.Column="1" Orientation="Horizontal">
             <Label
@@ -87,19 +90,19 @@
                x:Name="GuestNmLabel" 
                Content="Maximum guest number" Height="29" Width="142" 
     />
-            <TextBox x:Name ="textBoxGuestNm" Text="{Binding Path= accommodationDTO.MaxGuestNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="50"/>
+            <xctk:IntegerUpDown x:Name ="textBoxGuestNm" Text="{Binding Path= accommodationDTO.MaxGuestNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="50"/>
 
             <Label
            x:Name="MinDaysLabel" 
            Content="Minimum reservation days" Height="29" Width="153" Margin="30 0 0 0"
 />
-            <TextBox x:Name ="textBoxMinDays" Text="{Binding Path= accommodationDTO.MinReservationDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="50"/>
+            <xctk:IntegerUpDown x:Name ="textBoxMinDays" Text="{Binding Path= accommodationDTO.MinReservationDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="50"/>
 
             <Label
            x:Name="LimitLabel" 
            Content="Cancelling reservation limit" Height="29" Width="157" Margin="30 0 0 0"
 />
-            <TextBox x:Name ="textBoxLimit" Text="{Binding Path= accommodationDTO.ReservationDaysLimit, UpdateSourceTrigger=PropertyChanged,  ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="50"/>
+            <xctk:IntegerUpDown x:Name ="textBoxLimit" Text="{Binding Path= accommodationDTO.ReservationDaysLimit, UpdateSourceTrigger=PropertyChanged,  ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="50"/>
         </StackPanel>
         <StackPanel Grid.Row ="5" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,70" Grid.RowSpan="2">
             <Label

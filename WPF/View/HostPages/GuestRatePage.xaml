@@ -29,7 +29,7 @@
     VerticalAlignment="Center"
     HorizontalAlignment="Center"
     Content="Guest ratings"
-    FontSize="32"
+    Style="{StaticResource TitleStyleHost}"
      />
 
 
