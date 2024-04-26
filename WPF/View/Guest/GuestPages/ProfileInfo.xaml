@@ -28,9 +28,10 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Label Content="{Binding User.Username}" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="408,10,442,735"/>
-                <TextBlock TextWrapping="Wrap" FontSize="23" Margin="26,81,276,470">Status:<LineBreak/>Total reservation number:<LineBreak/>Reservation number in the past year:<LineBreak/>Ratng:<LineBreak/></TextBlock>
+                <Label Content="{Binding User.Username}" Style="{StaticResource HeaderStyleN}" FontSize="40" Margin="420,10,442,735" Height="100" FontStyle="Italic"/>
+                <TextBlock TextWrapping="Wrap"  FontSize="23" Margin="26,81,276,470">Status:<LineBreak/>Total reservation number:<LineBreak/>Reservation number in the past year:<LineBreak/>Ratng:<LineBreak/></TextBlock>
                 <Label Content="Reservations" FontSize="30" Style="{StaticResource HeaderStyleN}" Margin="26,254,830,481"/>
+
                 <Label x:Name="statusLabel" Content="{Binding Status}" FontSize="23" Margin="105,75,739,670"/>
                 <Label x:Name="totalReservationsLabel" Content="{Binding TotalReservations}" FontSize="23" Margin="295,106,547,641"></Label>
                 <Label x:Name="totalReservationsYearLabel" Content="{Binding Guest.YearlyReservations}" FontSize="23" Margin="410,137,528,603"></Label>
@@ -49,7 +50,7 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                             </Style.Triggers>
                         </Style>
                     </Image.Style>
-                    
+
 
                 </Image>
                 <Label FontSize="23" Foreground="Orange" Margin="20,200,895,536">
@@ -84,6 +85,12 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                         </Style>
                     </Label.Style>
                 </Label>
+                <Button FontSize="20" Content="Reservation report" Style="{StaticResource ButtonStyleN}" Margin="825,258,21,495"/>
+                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2"  Margin="881,75,21,569">
+                    <Grid>
+                        <Image HorizontalAlignment="Left" VerticalAlignment="Center" Width="281" Height="170" Source="../../../Resources/Images/Unknown_person.jpg"/>
+                    </Grid>
+                </Border>
             </Grid>
         </Border>
     </Grid>

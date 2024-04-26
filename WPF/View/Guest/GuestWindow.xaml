@@ -38,7 +38,7 @@
     <Grid>
         <Viewbox Stretch="Uniform">
             <Grid Margin="10,0,0,0">
-                <Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="1920" Fill="{StaticResource AccentColorN}" Margin="-9,0,0,0"/>
+                <Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="1929" Fill="{StaticResource AccentColorN}" Margin="-9,0,0,0"/>
 
                 <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
                     <Button x:Name="HomeButton" Content="Home" Width="150" Style="{StaticResource ButtonStyleN}" Click="HomeClick"/>
