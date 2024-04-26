@@ -26,6 +26,7 @@ namespace BookingApp.Domain.Model.Features
         public DateTime EndDate { get; set; }
         public DateTime AcceptedDate { get; set; }
         public int GuideId { get; set; }
+        public DateTime DateRequested { get; set; }
 
         public TourRequest() { }
 
@@ -40,6 +41,7 @@ namespace BookingApp.Domain.Model.Features
             Language = language;
             GuideId = -1;
             AcceptedDate = DateTime.MinValue;
+            DateRequested = DateTime.Now;
         }
 
         public TourRequest(TourRequest tourRequest) 
@@ -55,6 +57,7 @@ namespace BookingApp.Domain.Model.Features
             EndDate = tourRequest.EndDate;
             AcceptedDate = tourRequest.AcceptedDate;            
             GuideId = tourRequest.GuideId;
+            DateRequested = tourRequest.DateRequested;
         }
 
         public string[] ToCSV()
@@ -66,7 +69,7 @@ namespace BookingApp.Domain.Model.Features
             }
 
             string[] CSVvalues = { Id.ToString(), Status.ToString(), City, Country, Description, Language, 
-                                   StartDate.ToString(), EndDate.ToString(), AcceptedDate.ToString(), GuideId.ToString(), idString};
+                                   StartDate.ToString(), EndDate.ToString(), AcceptedDate.ToString(), GuideId.ToString(), idString, DateRequested.ToString()};
 
             return CSVvalues;
         }
@@ -89,6 +92,7 @@ namespace BookingApp.Domain.Model.Features
                 List<string> participantIds = ids.Split(",").ToList();
                 ParticipantIds = participantIds.Select(int.Parse).ToList();
             }
+            DateRequested = ParseDate(values[11]);
 
         }
 
