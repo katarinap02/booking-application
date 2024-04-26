@@ -1,0 +1,87 @@
+﻿<Window x:Class="BookingApp.WPF.View.TouristWindows.TourNoAvailablePlacesWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.View.TouristWindows"
+        mc:Ignorable="d"
+        Title="TourNoAvailablePlacesWindow" Height="620" Width="950">
+    <Grid Background="{StaticResource WindowBackgroundColor1}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+
+        <Label Content="Tour Reservation"
+           Grid.Row="1"
+           FontSize="40"
+           FontWeight="DemiBold"
+           Grid.ColumnSpan="3"
+           HorizontalAlignment="Center"
+           VerticalAlignment="Center"/>
+        <StackPanel Grid.Column="0"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="3"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <Image Source="/WPF/Resources/Images/warning.png"/>
+            <Label Content="No available places for this tour"
+                   FontWeight="Medium"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   FontSize="25"/>
+        </StackPanel>
+        <Line X1="0" Y1="0" X2="950" Y2="0" Stroke="#303030" StrokeThickness="2"
+              Grid.ColumnSpan="3"
+              Grid.Row="5"/>
+        <Label Content="Tours in same city"
+               Grid.ColumnSpan="3"
+               FontWeight="Medium"
+               FontSize="25"
+               HorizontalAlignment="Center"
+               Grid.Row="5"/>
+
+        <Button Content="Close" Click="CloseButton_Click"
+                x:Name="CloseButton"
+                HorizontalAlignment="Center"
+                Grid.Row="8" Grid.Column="1" Width="80"
+                Style="{StaticResource EnlargeButtonStyle}"/>
+        <DataGrid ItemsSource="{Binding Tours}"
+                      SelectedItem="{Binding Path=SelectedTour}"
+                      Visibility="{Binding DataTabVisibility}"
+                      Style="{StaticResource CoolDataGridStyle}"
+                      IsReadOnly="True"
+                      SelectionMode="Single"
+                      AutoGenerateColumns="False" HeadersVisibility="Column"
+                      FontSize="13" Grid.Row="6" Grid.Column="1">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="180"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="180"/>
+                <DataGridTextColumn Header="City" Binding="{Binding City}" Width="200"/>
+                <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="100"/>
+                <DataGridTextColumn Header="Available places" Binding="{Binding AvailablePlaces}" Width="110"/>
+                <DataGridTemplateColumn Header="Book">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Book a tour" Click="BookButton_Click" Width="110" Margin="1, 5, 1, 5" Height="28"
+                                    Style="{StaticResource EnlargeButtonStyle1}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+</Window>

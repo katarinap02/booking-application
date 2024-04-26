@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         mc:Ignorable="d"
-        Title="TourDetailsWindow" Height="600" Width="800" WindowStartupLocation="CenterScreen">
+        Title="TourDetailsWindow" Height="680" Width="800" WindowStartupLocation="CenterScreen">
     
-    <Grid Background="{StaticResource TouristBackgroundColor1Linear}">
+    <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="2*"/>
@@ -15,6 +15,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="85"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="20"/>
 
@@ -26,9 +27,11 @@
                HorizontalAlignment="Center"/>
         <StackPanel Grid.ColumnSpan="2" Grid.Row="1">
             <StackPanel x:Name="PdfPanel" Visibility="{Binding PdfPanel}">
-                <Button Click="PdfButton_Click" Width="150">
+                <Button Click="PdfButton_Click" Width="190"
+                        Height="40"
+                        Style="{StaticResource EnlargeButtonStyle1}">
                     <StackPanel Orientation="Horizontal" Margin="-10,0,0,0">
-                        <Image Height="30" Width="39" Source="/Resources/Images/pdf.png"/>
+                        <Image Height="30" Width="39" Source="/WPF/Resources/Images/pdf.png"/>
                         <Label Content="Export reservation" FontSize="16"/>
                     </StackPanel>
                 </Button>
@@ -46,31 +49,35 @@
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
+                    <RowDefinition Height="55"/>
                     <RowDefinition Height="50"/>
                     <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="125"/>
+                    <RowDefinition Height="140"/>
                 </Grid.RowDefinitions>
 
-                <ItemsControl ItemsSource="{Binding SelectedTour.Pictures}" Grid.Column="1" Grid.RowSpan="6">
-                    <ItemsControl.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <StackPanel Orientation="Horizontal"/>
-                        </ItemsPanelTemplate>
-                    </ItemsControl.ItemsPanel>
-                    <ItemsControl.ItemTemplate>
-                        <DataTemplate>
-                            <Image Source="{Binding}" Width="200" Height="200" Margin="5"/>
-                        </DataTemplate>
-                    </ItemsControl.ItemTemplate>
-                </ItemsControl>
+                <ScrollViewer VerticalScrollBarVisibility="Auto"
+                              Grid.Column="1"
+                              Grid.RowSpan="6">
+                    <ItemsControl ItemsSource="{Binding SelectedTour.Pictures}">
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <Image Source="{Binding}" Width="200" Height="200" Margin="5"/>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+                    </ItemsControl>
+                </ScrollViewer>
 
                 <Label Content="Name:"
                        Style="{StaticResource CustomLabelStyle2}"
                        Grid.Column="3"
                        VerticalAlignment="Center"/>
                 <Label Content="{Binding SelectedTour.Name}"
-                       Style="{StaticResource CustomLabelStyle1}"
+                       Style="{StaticResource TourDetailsLabel1}"
                        Grid.Column="4"/>
                 <Label Content="Country:"
                        Style="{StaticResource CustomLabelStyle2}"
@@ -78,7 +85,7 @@
                        Grid.Row="1"
                        VerticalAlignment="Center"/>
                 <Label Content="{Binding SelectedTour.Country}"
-                       Style="{StaticResource CustomLabelStyle1}"
+                       Style="{StaticResource TourDetailsLabel1}"
                        Grid.Column="4"
                        Grid.Row="1"/>
                 <Label Content="City:"
@@ -87,7 +94,7 @@
                        Grid.Row="2"
                        VerticalAlignment="Center"/>
                 <Label Content="{Binding SelectedTour.City}"
-                       Style="{StaticResource CustomLabelStyle1}"
+                       Style="{StaticResource TourDetailsLabel1}"
                        Grid.Column="4"
                        Grid.Row="2"/>
                 <Label Content="Language:"
@@ -96,7 +103,7 @@
                        Grid.Row="3"
                        VerticalAlignment="Center"/>
                 <Label Content="{Binding SelectedTour.Language}"
-                       Style="{StaticResource CustomLabelStyle1}"
+                       Style="{StaticResource TourDetailsLabel1}"
                        Grid.Column="4"
                        Grid.Row="3"/>
                 <Label Content="Date:"
@@ -105,7 +112,7 @@
                        Grid.Row="4"
                        VerticalAlignment="Center"/>
                 <Label Content="{Binding SelectedTour.Date}"
-                       Style="{StaticResource CustomLabelStyle1}"
+                       Style="{StaticResource TourDetailsLabel1}"
                        Grid.Column="4"
                        Grid.Row="4"/>
                 <Label Content="Status:"
@@ -114,7 +121,7 @@
                        Grid.Row="5"
                        VerticalAlignment="Center"/>
                 <Label Content="{Binding SelectedTour.Status}"
-                       Style="{StaticResource CustomLabelStyle1}"
+                       Style="{StaticResource TourDetailsLabel1}"
                        Grid.Column="4"
                        Grid.Row="5"/>
                 <Label Content="Keypoints:"
@@ -126,7 +133,7 @@
                               Grid.Column="4"
                               Grid.Row="6"
                               Margin="4, 16"
-                              Style="{StaticResource CustomScrollViewerStyle}">
+                              Style="{StaticResource KeypointsStyle1}">
                     <ItemsControl ItemsSource="{Binding CheckpointWithColors}">
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
@@ -149,6 +156,6 @@
                 FontSize="19"
                 Grid.Column="1"
                 Width="90"
-                Grid.Row="2"/>
+                Grid.Row="3"/>
     </Grid>
 </Window>

@@ -9,13 +9,42 @@
       d:DesignHeight="720" d:DesignWidth="945"
       Title="AllToursPage">
 
-    <Grid>
-        <Grid.Background>
-            <LinearGradientBrush StartPoint="0,0" EndPoint="1,0">
-                <GradientStop Color="#3e3f40" Offset="0.001"/>
-                <GradientStop Color="#A6CEDA" Offset="0.015"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+    <Page.Resources>
+        <!-- Style for the GroupBox -->
+        <Style x:Key="GroupBoxStyle" TargetType="GroupBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Border BorderBrush="#303030" BorderThickness="1.5" CornerRadius="4">
+   
+                            <!-- ContentPresenter for the actual content -->
+                            <ContentPresenter Margin="0"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="GroupBoxStyle2" TargetType="GroupBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Grid>
+                            <!-- Blur the background -->
+                            <Border Background="{TemplateBinding Background}">
+                                <Border.Effect>
+                                    <BlurEffect Radius="10"/>
+                                </Border.Effect>
+                            </Border>
+                            <!-- ContentPresenter for the actual content -->
+                            <ContentPresenter Margin="0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Background="{StaticResource FrameBackgroundColor1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="200"/>
@@ -31,6 +60,7 @@
 
         <Label Content="All Tours"
                FontSize="50"
+               FontWeight="DemiBold"
                Grid.ColumnSpan="9"
                Grid.Row="0"
                HorizontalAlignment="Center"/>
@@ -40,8 +70,8 @@
                 Click="NotificationButton_Click"/>
 
         <GroupBox Grid.Row="1"
-              Grid.Column="1"
-              Header="Search">
+                  Grid.Column="1"
+                  Style="{StaticResource GroupBoxStyle}">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="25"/>

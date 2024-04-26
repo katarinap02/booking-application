@@ -10,6 +10,7 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Repository.ReservationRepository;
+using System.Net;
 
 namespace BookingApp.Repository.FeatureRepository
 {
@@ -37,6 +38,11 @@ namespace BookingApp.Repository.FeatureRepository
         }
 
         public List<Tour> GetAll() 
+        {
+            return _serializer.FromCSV(FilePath);
+        }
+
+        public List<Tour> GetAllNotFinished()
         {
             return _serializer.FromCSV(FilePath).FindAll(t => t.Status != TourStatus.Finnished);
         }
@@ -90,7 +96,7 @@ namespace BookingApp.Repository.FeatureRepository
 
         public List<Tour>? SearchTours(Tour searchCriteria)
         {
-            List<Tour> filteredTours = GetAll();
+            List<Tour> filteredTours = GetAllNotFinished();
 
             if (!string.IsNullOrEmpty(searchCriteria.Country.ToLower()))
             {
@@ -117,6 +123,7 @@ namespace BookingApp.Repository.FeatureRepository
 
         public List<Tour> GetTourByCityWithAvailablePlaces(string city)
         {
+            _tours = GetAllNotFinished();
             return _tours.FindAll(tour => tour.City.ToLower().Equals(city.ToLower()) && tour.Status != TourStatus.Finnished).Where(tour => tour.AvailablePlaces > 0).ToList();
         }
 

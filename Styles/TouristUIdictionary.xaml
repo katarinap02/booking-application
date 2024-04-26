@@ -7,6 +7,45 @@
         <GradientStop Offset="1" Color="#A6CEDA" />
         <GradientStop Offset="0" Color="#8AB9C5" />
     </LinearGradientBrush>
+
+    <!--Menu Colors-->
+    <Color x:Key="MenuColor1">#136685</Color>
+    <Color x:Key="MenuColor2">#0c3f52</Color>
+    <Color x:Key="MenuColor3">#06232e</Color>
+    <LinearGradientBrush x:Key="MenuBackgroundColor1" StartPoint="0,2" EndPoint="1,1">
+        <GradientStop Offset="0.1" Color="{StaticResource MenuColor2}" />
+        <GradientStop Offset="3" Color="{StaticResource MenuColor1}" />
+    </LinearGradientBrush>
+
+    <!--Frame Colors-->
+    <Color x:Key="FrameColor1">#BFB517</Color>
+    <Color x:Key="FrameColor2">#BFA417</Color>
+
+    <SolidColorBrush x:Key="ButtonColor1" Color="#DB375A"/>
+    <Color x:Key="ButtonColor1Press">#9E2C49</Color>
+    <Color x:Key="ButtonColor1C">#DB375A</Color>
+
+    <SolidColorBrush x:Key="ButtonColor2" Color="#C23050"/>
+    <Color x:Key="ButtonColor2Press">#9E2C49</Color>
+    <Color x:Key="ButtonColor2C">#C23050</Color>
+
+    <LinearGradientBrush x:Key="FrameBackgroundColor1" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="1.3" Color="{StaticResource FrameColor2}" />
+        <GradientStop Offset="0.2" Color="{StaticResource FrameColor1}" />
+        <GradientStop Offset="-0.1" Color="{StaticResource MenuColor2}" />
+    </LinearGradientBrush>
+    
+    <!--Window Colors-->
+    <Color x:Key="WindowColor1">#BFB517</Color>
+    <Color x:Key="WindowColor2">#9E9513</Color>
+    <RadialGradientBrush x:Key="WindowBackgroundColor1">
+        <GradientStop Offset="1.1" Color="{StaticResource WindowColor2}" />
+        <GradientStop Offset="0.5" Color="{StaticResource WindowColor1}" />
+    </RadialGradientBrush>
+   
+
+
+
     <SolidColorBrush x:Key="TouristBackgroundColor2" Color="#4CB9DA"/>
     <SolidColorBrush x:Key="TouristGroundColor1" Color="#58DBD0"/>
     <SolidColorBrush x:Key="TouristGroundColor2" Color="#42BC87"/>
@@ -28,7 +67,7 @@
 
                         <Border.Background>
                             <SolidColorBrush x:Name="BorderBackground"
-                                         Color="#272B2F" />
+                                         Color="{StaticResource MenuColor2}" />
                         </Border.Background>
 
                         <Grid>
@@ -66,8 +105,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                 Storyboard.TargetProperty="Color"
-                                                From="#272B2F"
-                                                To="#3E434A"
+                                                From="{StaticResource MenuColor2}"
+                                                To="{StaticResource MenuColor1}"
                                                 Duration="0:0:0.3" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -81,8 +120,8 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="BorderBackground"
                                                 Storyboard.TargetProperty="Color"
-                                                From="#3E434A"
-                                                To="#272B2F"
+                                                From="{StaticResource MenuColor1}"
+                                                To="{StaticResource MenuColor2}"
                                                 Duration="0:0:0.3" />
                                 </Storyboard>
                             </BeginStoryboard>
@@ -94,7 +133,7 @@
 
                             <Setter Property="Background"
                                 TargetName="border"
-                                Value="#212529" />
+                                Value="#06232e" />
 
                             <Setter Property="Visibility"
                                 TargetName="Indicator"
@@ -200,7 +239,7 @@
     </Style>
 
     <Style x:Key="SearchButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="#4C5FD9"/>
+        <Setter Property="Background" Value="{StaticResource ButtonColor1}"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="5"/>
@@ -224,7 +263,7 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="ButtonBorder" 
                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                        To="#3F51B8" Duration="0:0:0.2"/>
+                                        To="{StaticResource ButtonColor1Press}" Duration="0:0:0.2"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -233,7 +272,7 @@
                                 <Storyboard>
                                     <ColorAnimation Storyboard.TargetName="ButtonBorder" 
                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                        To="#4C5FD9" Duration="0:0:0.2"/>
+                                        To="{StaticResource ButtonColor1C}" Duration="0:0:0.2"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -247,8 +286,8 @@
     </Style>
 
     <Style x:Key="EnlargeButtonStyle" TargetType="Button">
-        <Setter Property="Background" Value="#4C5FD9"/>
-        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="{StaticResource ButtonColor1}"/>
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -277,7 +316,7 @@
                                          To="1.1" Duration="0:0:0.2"/>
                                     <ColorAnimation Storyboard.TargetName="ButtonBorder" 
                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                        To="#3F51B5" Duration="0:0:0.2"/>
+                                        To="{StaticResource ButtonColor1Press}" Duration="0:0:0.2"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -292,7 +331,7 @@
                                          To="1" Duration="0:0:0.2"/>
                                     <ColorAnimation Storyboard.TargetName="ButtonBorder"
                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                        To="#4C5FD9" Duration="0:0:0.2"/>
+                                        To="{StaticResource ButtonColor1C}" Duration="0:0:0.2"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -303,7 +342,7 @@
     </Style>
 
     <Style x:Key="EnlargeButtonStyle1" TargetType="Button">
-        <Setter Property="Background" Value="{StaticResource TouristTextColor2}"/>
+        <Setter Property="Background" Value="{StaticResource ButtonColor2}"/>
         <Setter Property="Foreground" Value="White"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="BorderThickness" Value="0"/>
@@ -333,7 +372,7 @@
                                          To="1.1" Duration="0:0:0.2"/>
                                     <ColorAnimation Storyboard.TargetName="ButtonBorder" 
                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                        To="#4C5FD9" Duration="0:0:0.2"/>
+                                        To="{StaticResource ButtonColor2Press}" Duration="0:0:0.2"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -348,7 +387,7 @@
                                          To="1" Duration="0:0:0.2"/>
                                     <ColorAnimation Storyboard.TargetName="ButtonBorder" 
                                         Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                        To="#4C8BD9" Duration="0:0:0.2"/>
+                                        To="{StaticResource ButtonColor2C}" Duration="0:0:0.2"/>
                                 </Storyboard>
                             </BeginStoryboard>
                         </EventTrigger>
@@ -478,9 +517,14 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CustomLabelStyle1" TargetType="Label">
+    <!--Tour Details Colors-->
+    <SolidColorBrush x:Key="TourDetailsColor1" Color="#E6D81C"/>
+    <Color x:Key="TourDetailsColor1C">#E6D81C</Color>
+    <Color x:Key="TourDetailsColor1Pressed">#E3E0AF</Color>
+    
+    <Style x:Key="TourDetailsLabel1" TargetType="Label">
         <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="Background" Value="#a0b3ba"/>
+        <Setter Property="Background" Value="{StaticResource TourDetailsColor1}"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Padding" Value="5"/>
@@ -505,7 +549,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="border" 
                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                    To="#c8dde6" Duration="0:0:0.2"/>
+                                                    To="{StaticResource TourDetailsColor1Pressed}" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
@@ -514,7 +558,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="border" 
                                                     Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                                    To="#a0b3ba" Duration="0:0:0.2"/>
+                                                    To="{StaticResource TourDetailsColor1C}" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
@@ -525,9 +569,9 @@
         </Setter>
     </Style>
 
-    <Style x:Key="CustomScrollViewerStyle" TargetType="ScrollViewer">
+    <Style x:Key="KeypointsStyle1" TargetType="ScrollViewer">
         <Setter Property="Foreground" Value="Black"/>
-        <Setter Property="Background" Value="#a0b3ba"/>
+        <Setter Property="Background" Value="{StaticResource TourDetailsColor1}"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontSize" Value="20"/>
         <Setter Property="Padding" Value="5"/>
@@ -553,7 +597,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="border" 
                                             Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="#c8dde6" Duration="0:0:0.2"/>
+                                            To="{StaticResource TourDetailsColor1Pressed}" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
@@ -562,7 +606,7 @@
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="border" 
                                             Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="#a0b3ba" Duration="0:0:0.2"/>
+                                            To="{StaticResource TourDetailsColor1C}" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
@@ -576,7 +620,7 @@
     <Style x:Key="CustomLabelStyle2" TargetType="Label">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
-        <Setter Property="FontSize" Value="18"/>
+        <Setter Property="FontSize" Value="20"/>
         <Setter Property="Padding" Value="5"/>
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="BorderBrush" Value="Gray"/>
@@ -601,15 +645,15 @@
 
 
     <Style x:Key="CoolDataGridStyle" TargetType="DataGrid">
-        <Setter Property="AlternatingRowBackground" Value="#F0F0F0" />
+        <Setter Property="AlternatingRowBackground" Value="#E8E6A5" />
         <Setter Property="AutoGenerateColumns" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />
         <Setter Property="ColumnHeaderStyle">
             <Setter.Value>
                 <Style TargetType="DataGridColumnHeader">
-                    <Setter Property="Background" Value="#333333"/>
-                    <Setter Property="Foreground" Value="#e1e1e3"/>
+                    <Setter Property="Background" Value="#40282D"/>
+                    <Setter Property="Foreground" Value="WhiteSmoke"/>
                     <Setter Property="FontWeight" Value="Bold"/>
                 </Style>
             </Setter.Value>
@@ -624,7 +668,7 @@
     </Style>
 
     <Style x:Key="CoolDataGridStyle1" TargetType="DataGrid">
-        <Setter Property="AlternatingRowBackground" Value="#F0F0F0" />
+        <Setter Property="AlternatingRowBackground" Value="#E8E6A5" />
         <Setter Property="AutoGenerateColumns" Value="False" />
         <Setter Property="HorizontalAlignment" Value="Stretch" />
         <Setter Property="VerticalAlignment" Value="Stretch" />

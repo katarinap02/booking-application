@@ -36,18 +36,9 @@ namespace BookingApp.View.TouristWindows
             Tour.AvailablePlaces = selectedTour.AvailablePlaces;
             Tour.UserId = userId;
 
-            Tour.RefreshToursByCity();
-
-
-            InitializeWindow();
+            Tour.InitializeNumberOfParticipantsWindow();
 
         }
-
-        private void InitializeWindow()
-        {
-             (this.Width, this.Height) = Tour.InitializeNumberOfParticipantsWindow();
-        }
-
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
@@ -60,11 +51,5 @@ namespace BookingApp.View.TouristWindows
             Close();
         }
 
-
-        private void BookButton_Click(object sender, RoutedEventArgs e)
-        {
-            Tour.BookNumberOfParticipants();
-            Close();
-        }
     }
 }

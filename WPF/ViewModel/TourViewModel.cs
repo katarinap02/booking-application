@@ -13,6 +13,7 @@ using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Repository;
 using BookingApp.View.TouristWindows;
+using BookingApp.WPF.View.TouristWindows;
 
 namespace BookingApp.WPF.ViewModel
 {
@@ -429,8 +430,16 @@ namespace BookingApp.WPF.ViewModel
         //******************************* ZA ALLTOURS PAGE
         public void BookButton(TourViewModel selectedTour)
         {
-            TourNumberOfParticipantsWindow tourNumberOfParticipantsWindow = new TourNumberOfParticipantsWindow(selectedTour, UserId);
-            tourNumberOfParticipantsWindow.ShowDialog();
+            if(selectedTour.availablePlaces > 0)
+            {
+                TourNumberOfParticipantsWindow tourNumberOfParticipantsWindow = new TourNumberOfParticipantsWindow(selectedTour, UserId);
+                tourNumberOfParticipantsWindow.ShowDialog();
+            }
+            else
+            {
+                TourNoAvailablePlacesWindow tourNoAvailablePlacesWindow = new TourNoAvailablePlacesWindow(selectedTour, UserId);
+                tourNoAvailablePlacesWindow.ShowDialog();
+            }
 
             if (Tours.Count != _tourService.ToursCount())
                 RefreshAllToursDataGrid(true);
