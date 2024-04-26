@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel;
+using BookingApp.Domain.Model.Features;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -63,6 +64,81 @@ namespace BookingApp.View.TouristWindows
         private void VouchersButton_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new VouchersPage(Tour.getUserId(Tour.UserName));
+        }
+
+        private void AllTours_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void AllTours_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MainFrame.Content = new AllToursPage(Tour.getUserId(Tour.UserName));
+            AllToursButton.IsChecked = true;
+        }
+
+        private void MyTours_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void MyTours_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MainFrame.Content = new MyToursPage(Tour.SelectedTour, Tour.getUserId(Tour.UserName));
+            MyToursButton.IsChecked = true;
+        }
+
+        private void EndedTours_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void EndedTours_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MainFrame.Content = new EndedToursPage(Tour.getUserId(Tour.UserName));
+            EndedToursButton.IsChecked = true;
+        }
+
+        private void RequestedTours_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void RequestedTours_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            // ovo jos moram implementirati
+        }
+
+        private void Vouchers_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Vouchers_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            MainFrame.Content = new VouchersPage(Tour.getUserId(Tour.UserName));
+            VouchersButton.IsChecked = true;
+        }
+
+        private void Logout_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Logout_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Notifications_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Notifications_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow(Tour.UserId);
+            touristNotificationWindow.ShowDialog();
         }
     }
 }

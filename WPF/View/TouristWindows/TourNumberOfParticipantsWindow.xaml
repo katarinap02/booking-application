@@ -10,6 +10,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -28,7 +30,7 @@
                Grid.Row="1"
                FontSize="40"
                FontWeight="DemiBold"
-               Grid.ColumnSpan="3"
+               Grid.ColumnSpan="5"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"/>
 
@@ -36,7 +38,7 @@
                Grid.Row="3"
                HorizontalAlignment="Center"
                VerticalAlignment="Center"
-               Grid.ColumnSpan="3"
+               Grid.ColumnSpan="5"
                FontSize="20" Margin="-50, 0, 0, 0"/>
         <xctk:IntegerUpDown x:Name="NumberOfParticipants"
                             Text="{Binding InsertedNumberOfParticipants}"
@@ -53,20 +55,28 @@
 
         <Label Grid.Column="1"
                Grid.Row="4"
+               Grid.ColumnSpan="2"
                Content="available places:"
-               Margin="214, 0, 0, 0"/>
+               Margin="220, 0, 0, 0"/>
         <Label x:Name="availablePlaces"
                Content="{Binding SelectedTour.AvailablePlaces}"
                Foreground="{Binding AvailablePlacesColor}"
                Grid.Row="4"
-               Grid.Column="1" Grid.ColumnSpan="2" Margin="305,0,0,0"/>
+               Grid.Column="1" Grid.ColumnSpan="2" Margin="310,0,0,0"/>
         <Button Content="Confirm"
                 Click="ConfirmButton_Click"
                 x:Name="ConfirmButton"
-                Grid.Column="1"
+                Grid.Column="2"
                 Grid.Row="7" Width="80"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Right"
                 Style="{StaticResource EnlargeButtonStyle}"/>
-        
+        <Button Content="Close"
+                Click="CloseButton_Click"
+                x:Name="CloseButton"
+                Grid.Column="2"
+                Grid.Row="7" Width="80"
+                HorizontalAlignment="Left"
+                Style="{StaticResource EnlargeButtonStyle}"/>
+
     </Grid>
 </Window>

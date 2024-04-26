@@ -54,5 +54,6 @@ namespace BookingApp.View.TouristWindows
         {
             Tour.NotificationButton();
         }
+
     }
 }

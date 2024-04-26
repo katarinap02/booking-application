@@ -4,10 +4,10 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
+      xmlns:cmd="clr-namespace:BookingApp.WPF.ViewModel.Commands"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="945"
       Title="EndedToursPage">
-
     <Grid Background="{StaticResource FrameBackgroundColor1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>

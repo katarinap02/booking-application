@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.WPF.View.TouristWindows"
         mc:Ignorable="d"
-        Title="TourNoAvailablePlacesWindow" Height="620" Width="950">
+        Title="TourNoAvailablePlacesWindow" Height="620" Width="950"
+        WindowStartupLocation="CenterScreen">
     <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -61,7 +62,6 @@
                 Style="{StaticResource EnlargeButtonStyle}"/>
         <DataGrid ItemsSource="{Binding Tours}"
                       SelectedItem="{Binding Path=SelectedTour}"
-                      Visibility="{Binding DataTabVisibility}"
                       Style="{StaticResource CoolDataGridStyle}"
                       IsReadOnly="True"
                       SelectionMode="Single"

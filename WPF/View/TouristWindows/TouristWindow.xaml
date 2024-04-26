@@ -4,11 +4,21 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Menu="clr-namespace:BookingApp.Utilities"
+        xmlns:cmd="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows" xmlns:dto="clr-namespace:BookingApp.WPF.ViewModel" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="TouristWindow" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
         Background="Transparent">
+    <Window.CommandBindings>
+        <CommandBinding Command="cmd:RoutedCommands.AllToursTab" CanExecute="AllTours_CanExecute" Executed="AllTours_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.MyToursTab" CanExecute="MyTours_CanExecute" Executed="MyTours_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.EndedToursTab" CanExecute="EndedTours_CanExecute" Executed="EndedTours_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.RequestedToursTab" CanExecute="RequestedTours_CanExecute" Executed="RequestedTours_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.VouchersTab" CanExecute="Vouchers_CanExecute" Executed="Vouchers_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.Logout" CanExecute="Logout_CanExecute" Executed="Logout_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.Notifications" CanExecute="Notifications_CanExecute" Executed="Notifications_Executed"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="335"/>

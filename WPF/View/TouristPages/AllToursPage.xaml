@@ -4,11 +4,16 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
+      xmlns:cmd="clr-namespace:BookingApp.WPF.ViewModel.Commands"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="945"
       Title="AllToursPage">
-
+    <Page.CommandBindings>
+        <CommandBinding Command="cmd:RoutedCommands.CountrySearch" CanExecute="CountrySearch_CanExecute" Executed="CountrySearch_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.Search" CanExecute="Search_CanExecute" Executed="Search_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.Reset" CanExecute="Reset_CanExecute" Executed="Reset_Executed"/>
+    </Page.CommandBindings>
     <Page.Resources>
         <!-- Style for the GroupBox -->
         <Style x:Key="GroupBoxStyle" TargetType="GroupBox">

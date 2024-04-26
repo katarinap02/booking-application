@@ -50,6 +50,5 @@ namespace BookingApp.View.TouristWindows
             Tour.ConfirmNumberOfParticipants();
             Close();
         }
-
     }
 }
