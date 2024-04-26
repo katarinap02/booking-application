@@ -10,6 +10,7 @@
       Title="ProfileInfo">
 
     <Grid>
+        <Label Content="Are you sure you want to cancel the reservation?" FontSize="33" Style="{StaticResource HeaderStyleN}" Margin="143,63,143,675"/>
         <controls:ReservationDetailsCard Margin="0,143,0,247"></controls:ReservationDetailsCard>
         <Button Content="Cancel reservation" HorizontalAlignment="Left" Margin="221,602,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Width="287" Height="47" Click="CancelReservation_Click"/>
         <Button Content="Give up" HorizontalAlignment="Left" Margin="572,602,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Width="287" Height="47"/>
