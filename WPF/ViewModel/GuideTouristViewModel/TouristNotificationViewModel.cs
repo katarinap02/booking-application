@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.WPF.ViewModel
+namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
     public class TouristNotificationViewModel : INotifyPropertyChanged
     {
@@ -140,7 +140,7 @@ namespace BookingApp.WPF.ViewModel
             }
             set
             {
-                if( value != _currentCheckpointName )
+                if (value != _currentCheckpointName)
                 {
                     _currentCheckpointName = value;
                     OnPropertyChanged(nameof(CurrentCheckpointName));

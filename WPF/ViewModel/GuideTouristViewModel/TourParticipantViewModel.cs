@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.WPF.ViewModel
+namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
     public class TourParticipantViewModel : INotifyPropertyChanged
     {

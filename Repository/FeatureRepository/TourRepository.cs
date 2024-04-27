@@ -264,7 +264,9 @@ namespace BookingApp.Repository.FeatureRepository
 
         public List<string> GetCheckpointsByTour(int tourId)
         {
-            return _tours.Find(t => t.Id == tourId).Checkpoints;
+            if(_tours.Find(t => t.Id == tourId) != null)
+                return _tours.Find(t => t.Id == tourId).Checkpoints;
+            return null;
         }
     }
 }

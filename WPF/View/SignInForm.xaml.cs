@@ -4,7 +4,7 @@ using BookingApp.Repository.FeatureRepository;
 using BookingApp.View.GuideTestWindows;
 using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;
-using BookingApp.WPF.ViewModel;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;

@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.WPF.ViewModel
+namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
     public class TouristViewModel : INotifyPropertyChanged
     {
@@ -19,7 +19,7 @@ namespace BookingApp.WPF.ViewModel
             }
             set
             {
-                if(value != _id)
+                if (value != _id)
                 {
                     _id = value;
                     OnPropertyChanged(nameof(Id));
@@ -36,7 +36,7 @@ namespace BookingApp.WPF.ViewModel
             }
             set
             {
-                if(value != _name)
+                if (value != _name)
                 {
                     _name = value;
                     OnPropertyChanged(nameof(Name));
@@ -53,7 +53,7 @@ namespace BookingApp.WPF.ViewModel
             }
             set
             {
-                if(value != _lastName)
+                if (value != _lastName)
                 {
                     _lastName = value;
                     OnPropertyChanged(nameof(LastName));
@@ -70,7 +70,7 @@ namespace BookingApp.WPF.ViewModel
             }
             set
             {
-                if( value != _age)
+                if (value != _age)
                 {
                     _age = value;
                     OnPropertyChanged(nameof(Age));
@@ -87,7 +87,7 @@ namespace BookingApp.WPF.ViewModel
             }
             set
             {
-                if( _userName != value)
+                if (_userName != value)
                 {
                     _userName = value;
                     OnPropertyChanged(nameof(UserName));
@@ -104,7 +104,7 @@ namespace BookingApp.WPF.ViewModel
             }
             set
             {
-                if(_password != value)
+                if (_password != value)
                 {
                     _password = value;
                     OnPropertyChanged(nameof(Password));

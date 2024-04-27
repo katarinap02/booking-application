@@ -1,7 +1,6 @@
 ﻿using BookingApp.Application.Services.RateServices;
 using BookingApp.Domain.Model.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
-using BookingApp.WPF.ViewModel;
 using GalaSoft.MvvmLight.Command;
 using Microsoft.Win32;
 using System;
@@ -18,7 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
-namespace BookingApp.WPF.ViewModel
+namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
     public class GuideRateViewModel : INotifyPropertyChanged
     {
@@ -263,7 +262,7 @@ namespace BookingApp.WPF.ViewModel
         public void Submit(GuideRateViewModel rate)
         {
             Pictures = imagePreviews.Select(image => GetAbsolutePath(image.UriSource)).ToList();
-            rate.IsValid= true;
+            rate.IsValid = true;
             _guideRateService.SaveRate(rate);
         }
 
@@ -329,9 +328,9 @@ namespace BookingApp.WPF.ViewModel
             _guideRateService = new GuideRateService(Injector.Injector.CreateInstance<IGuideRateRepository>());
 
             imagePreviews = new ObservableCollection<BitmapImage>();
-            SelectKnowledgeRatingCommand = new WPF.ViewModel.RelayCommand(ExecuteSelectKnowledgeRating);
-            SelectLanguageRatingCommand = new WPF.ViewModel.RelayCommand(ExecuteSelectLanguageRating);
-            SelectInterestRatingCommand = new WPF.ViewModel.RelayCommand(ExecuteSelectInterestRating);
+            SelectKnowledgeRatingCommand = new RelayCommand(ExecuteSelectKnowledgeRating);
+            SelectLanguageRatingCommand = new RelayCommand(ExecuteSelectLanguageRating);
+            SelectInterestRatingCommand = new RelayCommand(ExecuteSelectInterestRating);
             DeletePreviewImageCommand = new RelayCommand<BitmapImage>(DeleteImagePreview);
         }
         public GuideRateViewModel(GuideRate guideRate)

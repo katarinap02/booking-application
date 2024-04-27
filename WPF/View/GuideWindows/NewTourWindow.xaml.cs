@@ -9,9 +9,9 @@ using System.Windows;
 using System.Windows.Controls;
 using Microsoft.Win32;
 using System.Windows.Media.Imaging;
-using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Repository.FeatureRepository;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 
 namespace BookingApp.View
 {

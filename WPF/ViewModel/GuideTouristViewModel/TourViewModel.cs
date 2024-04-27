@@ -15,13 +15,13 @@ using BookingApp.Repository;
 using BookingApp.View.TouristWindows;
 using BookingApp.WPF.View.TouristWindows;
 
-namespace BookingApp.WPF.ViewModel
+namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
     public class TourViewModel : INotifyPropertyChanged
     {
-        public TourService _tourService {  get; set; }
-        public GuideRateService _guideRateService {  get; set; }
-        public UserService _userService {  get; set; }
+        public TourService _tourService { get; set; }
+        public GuideRateService _guideRateService { get; set; }
+        public UserService _userService { get; set; }
 
         public ObservableCollection<TourViewModel> Tours { get; set; }
 
@@ -430,7 +430,7 @@ namespace BookingApp.WPF.ViewModel
         //******************************* ZA ALLTOURS PAGE
         public void BookButton(TourViewModel selectedTour)
         {
-            if(selectedTour.availablePlaces > 0)
+            if (selectedTour.availablePlaces > 0)
             {
                 TourNumberOfParticipantsWindow tourNumberOfParticipantsWindow = new TourNumberOfParticipantsWindow(selectedTour, UserId);
                 tourNumberOfParticipantsWindow.ShowDialog();

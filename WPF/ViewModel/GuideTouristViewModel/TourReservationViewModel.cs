@@ -21,7 +21,7 @@ using System.Windows.Input;
 using System.Xml.Linq;
 using Xceed.Wpf.Toolkit;
 
-namespace BookingApp.WPF.ViewModel
+namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
     public class TourReservationViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
@@ -33,7 +33,7 @@ namespace BookingApp.WPF.ViewModel
         public List<TourParticipantViewModel> TourParticipantDTOs { get; set; }
         public List<TourParticipantViewModel> TourParticipantsListBox { get; set; }
 
-        public RelayCommand AddParticipantCommand {  get; set; }
+        public RelayCommand AddParticipantCommand { get; set; }
 
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
@@ -430,7 +430,7 @@ namespace BookingApp.WPF.ViewModel
         private TourReservationViewModel ToTourReservationViewModel(TourReservation reservation)
         {
             TourReservationViewModel tourReservationViewModel = new TourReservationViewModel();
-            if(reservation != null)
+            if (reservation != null)
             {
                 tourReservationViewModel.Id = reservation.Id;
                 tourReservationViewModel.TourId = reservation.TourId;

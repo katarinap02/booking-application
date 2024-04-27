@@ -1,5 +1,6 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace BookingApp.Repository.FeatureRepository
 {
-    public class TourRequestRepository
+    public class TourRequestRepository : ITourRequestRepository
     {
         private const string FilePath = "../../../Resources/Data/tour_requests.csv";
         private readonly Serializer<TourRequest> _serializer;
@@ -46,43 +47,6 @@ namespace BookingApp.Repository.FeatureRepository
             _tourRequests.Insert(index, request);
             _serializer.ToCSV(FilePath, _tourRequests);
         }
-            
-        public void AcceptRequest(TourRequest request, int GuideId, DateTime acceptedDate) // za servis
-        {
-            TourRequest tourRequest = GetById(request.Id);
-            tourRequest.Status = TourRequestStatus.Accepted;
-            tourRequest.AcceptedDate = acceptedDate;
-            tourRequest.GuideId = GuideId;
-            UpdateRequest(tourRequest);
-        }
-
-        public List<TourRequest> filterRequests(TourRequest searchCriteria) // service prebaciti
-        {
-            List<TourRequest> tourRequests = GetAllPending();
-            List<TourRequest> filteredRequests = new List<TourRequest>();
-
-            if (!string.IsNullOrEmpty(searchCriteria.City))
-            {
-                filteredRequests = tourRequests.FindAll(x => x.City.ToLower().Contains(searchCriteria.City.ToLower())).ToList();
-            }
-            else if (!string.IsNullOrEmpty(searchCriteria.Country))
-            {
-                filteredRequests = filteredRequests.FindAll(x => x.Country.ToLower().Contains(searchCriteria.Country.ToLower())).ToList();
-            }
-            else if (!string.IsNullOrEmpty(searchCriteria.Language))
-            {
-                filteredRequests = filteredRequests.FindAll(x => x.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();
-            }
-            else if (searchCriteria.StartDate != null && searchCriteria.EndDate != null)
-            {
-                filteredRequests = filteredRequests.FindAll(x => x.StartDate >= searchCriteria.StartDate).ToList();
-                filteredRequests = filteredRequests.FindAll(x => x.EndDate <= searchCriteria.EndDate).ToList();
-            }
-
-
-            return filteredRequests;
-        }
-
 
     }
 }

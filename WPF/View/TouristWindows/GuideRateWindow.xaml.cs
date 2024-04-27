@@ -14,7 +14,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.Globalization;
-using BookingApp.WPF.ViewModel;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 
 namespace BookingApp.View.TouristWindows
 {

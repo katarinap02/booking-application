@@ -1,4 +1,4 @@
-﻿using BookingApp.WPF.ViewModel;
+﻿using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

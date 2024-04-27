@@ -1,5 +1,4 @@
-﻿using BookingApp.WPF.ViewModel;
-using BookingApp.Domain.Model;
+﻿using BookingApp.Domain.Model;
 using BookingApp.Application.Services;
 using BookingApp.Repository;
 using System;
@@ -17,6 +16,7 @@ using BookingApp.Repository.FeatureRepository;
 using BookingApp.Repository.ReservationRepository;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 
 namespace BookingApp.Application.Services.FeatureServices
 {

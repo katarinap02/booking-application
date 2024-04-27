@@ -3,7 +3,7 @@ using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
-using BookingApp.WPF.ViewModel;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;

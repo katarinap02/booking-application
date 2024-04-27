@@ -7,8 +7,7 @@ using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
 using BookingApp.Repository.ReservationRepository;
-using BookingApp.WPF.ViewModel;
-
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;

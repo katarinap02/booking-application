@@ -12,7 +12,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace BookingApp.WPF.ViewModel
+namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
     public class TouristMenuViewModel : INotifyPropertyChanged
     {
@@ -77,7 +77,7 @@ namespace BookingApp.WPF.ViewModel
             }
             set
             {
-                if(value != _mainFrameContent)
+                if (value != _mainFrameContent)
                 {
                     _mainFrameContent = value;
                     OnPropertyChanged(nameof(MainFrameContent));

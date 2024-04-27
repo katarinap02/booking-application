@@ -13,7 +13,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace BookingApp.WPF.ViewModel
+namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
     public class TourNumberOfParticipantsViewModel : INotifyPropertyChanged
     {

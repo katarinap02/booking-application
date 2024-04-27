@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Repository.FeatureRepository;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 
 namespace BookingApp.View.GuideWindows
 {

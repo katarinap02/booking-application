@@ -8,11 +8,10 @@ using System.Threading.Tasks;
 using System.Windows;
 
 using BookingApp.Application.Services;
-
-using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 
 namespace BookingApp.View.GuideWindows
 {
