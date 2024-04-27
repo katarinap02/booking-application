@@ -162,8 +162,4 @@
     <Resource Include="WPF\Resources\Images\user.png" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="WPF\ViewModel\GuideViewModel\" />
-  </ItemGroup>
-
 </Project>
