@@ -5,15 +5,19 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="TourNumberOfParticipantsWindow" Height="800" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
+        Title="TourNumberOfParticipantsWindow" Height="280" Width="800" WindowStartupLocation="CenterScreen">
+    <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="266.6"/>
             <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="*"/>
@@ -21,10 +25,21 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
-        <Label Content="Insert number of participants:"
+
+        <Label Content="Tour Reservation"
                Grid.Row="1"
-               Grid.Column="1"
-               FontSize="20" Grid.ColumnSpan="3" Margin="-50, 0, 0, 0"/>
+               FontSize="40"
+               FontWeight="DemiBold"
+               Grid.ColumnSpan="5"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"/>
+
+        <Label Content="Insert number of participants:"
+               Grid.Row="3"
+               HorizontalAlignment="Center"
+               VerticalAlignment="Center"
+               Grid.ColumnSpan="5"
+               FontSize="20" Margin="-50, 0, 0, 0"/>
         <xctk:IntegerUpDown x:Name="NumberOfParticipants"
                             Text="{Binding InsertedNumberOfParticipants}"
                             Minimum="1"
@@ -32,58 +47,36 @@
                             DefaultValue="1"
                             AllowTextInput="False"
                             Maximum="{Binding AvailablePlaces}"
-                            Grid.Row="1"
-                            Grid.Column="1"
+                            Grid.Row="3"
+                            Grid.Column="2"
                             HorizontalAlignment="Left"
-                            Height="30" Grid.ColumnSpan="2" Margin="225,5,0,5" Width="54"/>
+                            VerticalAlignment="Center"
+                            Height="30" Width="54" Grid.ColumnSpan="2" Margin="242,0,0,0"/>
 
         <Label Grid.Column="1"
-               Grid.Row="2"
+               Grid.Row="4"
+               Grid.ColumnSpan="2"
                Content="available places:"
-               Margin="120, 0, 0, 0"/>
+               Margin="220, 0, 0, 0"/>
         <Label x:Name="availablePlaces"
                Content="{Binding SelectedTour.AvailablePlaces}"
                Foreground="{Binding AvailablePlacesColor}"
-               Grid.Row="2"
-               Grid.Column="1" Grid.ColumnSpan="2" Margin="216,0,-50,0"/>
-        <Button Content="Close" Click="CloseButton_Click"
-                x:Name="CloseButton"
-                HorizontalAlignment="{Binding CloseButtonalignmentNumberOfParticipants}"
-                Grid.Row="5" Grid.Column="1" Width="60"/>
-        <Button Content="Confirm" Click="ConfirmButton_Click"
+               Grid.Row="4"
+               Grid.Column="1" Grid.ColumnSpan="2" Margin="310,0,0,0"/>
+        <Button Content="Confirm"
+                Click="ConfirmButton_Click"
                 x:Name="ConfirmButton"
-                Visibility="{Binding ConfirmButtonVisibilityNumberOfParticipants}"
-                Grid.Column="1"
-                Grid.Row="5" Width="60"
-                HorizontalAlignment="Right"/>
-        <TabControl
-            x:Name="OtherToursTabControl"
-            Grid.Column="0"
-            Grid.ColumnSpan="3"
-            Grid.Row="3">
-            <TabItem Header="Other Tours In Same City" x:Name="OtherToursTabItem" FontSize="20"
-                     Visibility="{Binding DataTabVisibility}"
-                     HorizontalAlignment="Center">
-                <DataGrid ItemsSource="{Binding Tours}"
-                          SelectedItem="{Binding Path=SelectedTour}"
-                          IsReadOnly="True"
-                          SelectionMode="Single"
-                          AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="13" Grid.Row="2" Grid.Column="1">
-                    <DataGrid.Columns>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="180"/>
-                        <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="180"/>
-                        <DataGridTextColumn Header="City" Binding="{Binding City}" Width="200"/>
-                        <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="100"/>
-                        <DataGridTemplateColumn Header="Book">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <Button Content="Book a tour" Click="BookButton_Click" Width="110" Margin="1, 5, 1, 5" Height="22"/>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-                    </DataGrid.Columns>
-                </DataGrid>
-            </TabItem>
-        </TabControl>
+                Grid.Column="2"
+                Grid.Row="7" Width="80"
+                HorizontalAlignment="Right"
+                Style="{StaticResource EnlargeButtonStyle}"/>
+        <Button Content="Close"
+                Click="CloseButton_Click"
+                x:Name="CloseButton"
+                Grid.Column="2"
+                Grid.Row="7" Width="80"
+                HorizontalAlignment="Left"
+                Style="{StaticResource EnlargeButtonStyle}"/>
+
     </Grid>
 </Window>

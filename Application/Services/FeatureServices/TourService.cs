@@ -40,7 +40,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public List<Tour> GetAllTours()
         {
-            return _tourRepository.GetAll();
+            return _tourRepository.GetAllNotFinished();
         }
 
         public int FindMaxNumberOfParticipants()

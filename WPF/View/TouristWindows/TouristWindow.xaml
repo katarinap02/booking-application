@@ -4,115 +4,28 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:Menu="clr-namespace:BookingApp.Utilities"
+        xmlns:cmd="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows" xmlns:dto="clr-namespace:BookingApp.WPF.ViewModel" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="TouristWindow" Height="720" Width="1280" WindowStartupLocation="CenterScreen">
-    <Window.Resources>
-        <!-- Style for buttons -->
-        <Style x:Key="RoundedButtonStyle" TargetType="Button">
-            <Setter Property="Background" Value="#4C5FD9"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="5"
-                                Padding="{TemplateBinding Padding}"
-                                SnapsToDevicePixels="True">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect ShadowDepth="2" Direction="270" Opacity="0.5"/>
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#1976D2"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="RoundedButtonStyle2" TargetType="Button">
-            <Setter Property="Background" Value="#4C5FD9"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Border Background="{TemplateBinding Background}"
-                        BorderBrush="{TemplateBinding BorderBrush}"
-                        BorderThickness="{TemplateBinding BorderThickness}"
-                        CornerRadius="20"
-                        Padding="{TemplateBinding Padding}"
-                        SnapsToDevicePixels="True">
-                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </Border>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect ShadowDepth="2" Direction="270" Opacity="0.6"/>
-                    <!-- Increased ShadowDepth and Opacity -->
-                </Setter.Value>
-            </Setter>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#0D5BAC"/>
-                    <Setter Property="Effect">
-                        <Setter.Value>
-                            <DropShadowEffect ShadowDepth="5" Direction="270" Opacity="0.5"/>
-                            <!-- Changed Effect on MouseOver -->
-                        </Setter.Value>
-                    </Setter>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style x:Key="NotificationButtonStyle" TargetType="Button">
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="Button">
-                        <Grid>
-                            <Border x:Name="Border"
-                                Background="{TemplateBinding Background}"
-                                BorderBrush="{TemplateBinding BorderBrush}"
-                                BorderThickness="{TemplateBinding BorderThickness}"
-                                CornerRadius="5"
-                                SnapsToDevicePixels="True">
-                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </Border>
-                        </Grid>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-            <Setter Property="Effect">
-                <Setter.Value>
-                    <DropShadowEffect ShadowDepth="2" Direction="270" Opacity="0.5"/>
-                </Setter.Value>
-            </Setter>
-        </Style>
-
-    </Window.Resources>
+        Title="TouristWindow" Height="720" Width="1280"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent">
+    <Window.CommandBindings>
+        <CommandBinding Command="cmd:RoutedCommands.AllToursTab" CanExecute="AllTours_CanExecute" Executed="AllTours_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.MyToursTab" CanExecute="MyTours_CanExecute" Executed="MyTours_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.EndedToursTab" CanExecute="EndedTours_CanExecute" Executed="EndedTours_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.RequestedToursTab" CanExecute="RequestedTours_CanExecute" Executed="RequestedTours_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.VouchersTab" CanExecute="Vouchers_CanExecute" Executed="Vouchers_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.Logout" CanExecute="Logout_CanExecute" Executed="Logout_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.Notifications" CanExecute="Notifications_CanExecute" Executed="Notifications_Executed"/>
+    </Window.CommandBindings>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="335"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-
-        <StackPanel Grid.Column="0" Background="{StaticResource TouristBackgroundColor2}">
-            <Border BorderBrush="Black" BorderThickness="0,0,0,2">
-                <Grid Height="80">
+        <StackPanel Grid.Column="0" Background="{StaticResource MenuBackgroundColor1}">
+            <Grid Height="80">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="75"/>
@@ -120,76 +33,75 @@
                     <StackPanel Grid.Column="0"
                                 Orientation="Horizontal">
                         <Image
-                               Width="75"
-                               Source="/WPF/Resources/Images/user.png"
-                               HorizontalAlignment="Left"/>
+                                Width="75"
+                                Source="/WPF/Resources/Images/user.png"
+                                HorizontalAlignment="Left"/>
                         <Label Content="{Binding UserName}"
-                               VerticalAlignment="Center"
-                               FontWeight="Bold"
-                               FontSize="24"/>
+                                VerticalAlignment="Center"
+                                FontWeight="Bold"
+                                FontSize="24"/>
 
                     </StackPanel>
                 </Grid>
-            </Border>
-            <DockPanel >
+                <DockPanel >
                 <StackPanel DockPanel.Dock="Top">
                     <Menu:Btn   x:Name="AllToursButton"
-                                    Style="{StaticResource MenuBtnStyle}"
-                                    FontSize="45"
-                                    Foreground="WhiteSmoke"
-                                    Click="AllToursButton_Click"
-                                    IsChecked="True">
-                            <TextBlock Text="All Tours"
-                                       VerticalAlignment="Center"
-                                       Margin="20,0,0,0"/>
+                                Style="{StaticResource MenuBtnStyle}"
+                                FontSize="45"
+                                Foreground="WhiteSmoke"
+                                Click="AllToursButton_Click"
+                                IsChecked="True">
+                        <TextBlock Text="All Tours"
+                                    VerticalAlignment="Center"
+                                    Margin="20,0,0,0"/>
                     </Menu:Btn>
 
                     <Menu:Btn x:Name="MyToursButton"
-                                Style="{StaticResource MenuBtnStyle}"
-                                FontSize="45"
-                                Foreground="WhiteSmoke"
-                                Click="MyToursButton_Click">
-                        <TextBlock Text="My Tours"
-                                       VerticalAlignment="Center"
-                                       Margin="20,0,0,0"/>
-                    </Menu:Btn>
-                    <Menu:Btn x:Name="EndedToursButton"
-                                Style="{StaticResource MenuBtnStyle}"
-                                FontSize="45"
-                                Foreground="WhiteSmoke"
-                                Click="EndedToursButton_Click">
-                        <TextBlock Text="Ended Tours"
-                                       VerticalAlignment="Center"
-                                       Margin="20, 0, 0, 0"/>
-                    </Menu:Btn>
-                    <Menu:Btn x:Name="RequestedToursButton"
-                            Style="{StaticResource MenuBtnStyle}"
-                            Foreground="WhiteSmoke"
-                            FontSize="40">
-                        <TextBlock Text="Requested Tours"
-                                   VerticalAlignment="Center"
-                                   Margin="20, 0, 0, 0"/>
-                    </Menu:Btn>
-                    <Menu:Btn x:Name="VouchersButton"
                             Style="{StaticResource MenuBtnStyle}"
                             FontSize="45"
                             Foreground="WhiteSmoke"
-                            Click="VouchersButton_Click">
+                            Click="MyToursButton_Click">
+                        <TextBlock Text="My Tours"
+                                    VerticalAlignment="Center"
+                                    Margin="20,0,0,0"/>
+                    </Menu:Btn>
+                    <Menu:Btn x:Name="EndedToursButton"
+                            Style="{StaticResource MenuBtnStyle}"
+                            FontSize="45"
+                            Foreground="WhiteSmoke"
+                            Click="EndedToursButton_Click">
+                        <TextBlock Text="Ended Tours"
+                                    VerticalAlignment="Center"
+                                    Margin="20, 0, 0, 0"/>
+                    </Menu:Btn>
+                    <Menu:Btn x:Name="RequestedToursButton"
+                        Style="{StaticResource MenuBtnStyle}"
+                        Foreground="WhiteSmoke"
+                        FontSize="40">
+                        <TextBlock Text="Requested Tours"
+                                VerticalAlignment="Center"
+                                Margin="20, 0, 0, 0"/>
+                    </Menu:Btn>
+                    <Menu:Btn x:Name="VouchersButton"
+                        Style="{StaticResource MenuBtnStyle}"
+                        FontSize="45"
+                        Foreground="WhiteSmoke"
+                        Click="VouchersButton_Click">
                         <TextBlock Text="Vouchers"
-                                   VerticalAlignment="Center"
-                                   Margin="20, 0, 0, 0"/>
+                                VerticalAlignment="Center"
+                                Margin="20, 0, 0, 0"/>
                     </Menu:Btn>
                 </StackPanel>
-                    <Menu:Btn x:Name="LogOutButton"
-                            DockPanel.Dock="Bottom"
-                            Style="{StaticResource MenuBtnStyle}"
-                            Foreground="WhiteSmoke"
-                            FontSize="36"
-                            Click="LogoutButton_Click">
-                        <TextBlock Text="Log Out"
-                                   VerticalAlignment="Center"
-                                   Margin="20, 0, 0, 0"/>
-                    </Menu:Btn>
+                <Menu:Btn x:Name="LogOutButton"
+                        DockPanel.Dock="Bottom"
+                        Style="{StaticResource MenuBtnStyle}"
+                        Foreground="WhiteSmoke"
+                        FontSize="36"
+                        Click="LogoutButton_Click">
+                    <TextBlock Text="Log Out"
+                                VerticalAlignment="Center"
+                                Margin="20, 0, 0, 0"/>
+                </Menu:Btn>
             </DockPanel>
         </StackPanel>
         <Frame x:Name="MainFrame" Content="{Binding MainFrameContent}" Grid.Column="1" NavigationUIVisibility="Hidden"/>

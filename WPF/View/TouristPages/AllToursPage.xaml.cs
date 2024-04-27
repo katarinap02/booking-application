@@ -63,5 +63,35 @@ namespace BookingApp.View.TouristWindows
         {
             Tour.NotificationButton();
         }
+
+        private void CountrySearch_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CountrySearch_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CountrySearch.Focus();
+        }
+
+        private void Search_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Search_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Tour.SearchButton();
+        }
+
+        private void Reset_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Reset_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Tour.ResetButton();
+        }
     }
 }

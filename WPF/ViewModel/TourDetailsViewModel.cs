@@ -59,9 +59,9 @@ namespace BookingApp.WPF.ViewModel
 
         public void TourDetailsWindowInitialization(bool IsMyTour)
         {
-
-            SolidColorBrush activeColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#56707a"));
-            SolidColorBrush inactiveColor = Brushes.Gray;
+            PdfPanel = Visibility.Collapsed;
+            SolidColorBrush activeColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4F4A09"));
+            SolidColorBrush inactiveColor = Brushes.LightGray;
             CheckpointWithColors.Clear();
             foreach (var checkpoint in SelectedTour.Checkpoints)
             {
