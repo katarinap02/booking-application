@@ -26,6 +26,9 @@ namespace BookingApp.View.GuideWindows
         private readonly TourReservationService _tourReservationService;
         private User Guide {  get; set; }
         private bool FirstTime {  get; set; }
+        public string tourLabelString { get; set; }
+        public string participantLabelString { get; set; }
+
         public MostVisitedTourWindow(User guide)
         {
             _tourRepository = new TourRepository();
@@ -64,14 +67,14 @@ namespace BookingApp.View.GuideWindows
             }
             else if (mostVisitedTourAllTime != null)
             {
-                tourNameLabel.Content = mostVisitedTourAllTime.Name;
+                tourLabelString = mostVisitedTourAllTime.Name;
                 int participantCount = _tourReservationService.GetNumberOfJoinedParticipants(mostVisitedTourAllTime.Id);
-                participantsLabel.Content = $"Participants: {participantCount}";
+                participantLabelString = $"Participants: {participantCount}";
             }
             else
             {
-                tourNameLabel.Content = "No data available";
-                participantsLabel.Content = "";
+                tourLabelString = "No data available";
+                participantLabelString = "";
             }
         }
 
@@ -81,14 +84,14 @@ namespace BookingApp.View.GuideWindows
 
             if (mostVisitedTourPreviousYears != null)
             {
-                tourNameLabel.Content = mostVisitedTourPreviousYears.Name;
+                tourLabelString = mostVisitedTourPreviousYears.Name;
                 int participantCount = _tourReservationService.GetNumberOfJoinedParticipants(mostVisitedTourPreviousYears.Id);
-                participantsLabel.Content = $"Participants: {participantCount}";
+                participantLabelString = $"Participants: {participantCount}";
             }
             else
             {
-                tourNameLabel.Content = "No data available";
-                participantsLabel.Content = "";
+                tourLabelString = "No data available";
+                participantLabelString = "";
             }
         }
 
