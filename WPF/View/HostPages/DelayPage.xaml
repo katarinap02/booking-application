@@ -59,6 +59,7 @@
             Grid.Column="1"
             Margin="5,0,0,0"
             VerticalAlignment="Center"
+            Style="{StaticResource LableStyleHost}"
             Content="Request processing"
             HorizontalAlignment="Center"
             FontSize="24"
@@ -66,23 +67,23 @@
              />
             <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/red_dot.png" Width="20" Height="25"/>
-                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Text="reserved" FontSize="15">
+                <Label VerticalAlignment="Center" Style="{StaticResource LableStyleHost}" Margin="10 0 0 0" Content="reserved" >
                 
-                </TextBlock>
+                </Label>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="7 0 0 0">
                 <Image Source="../../Resources/Images/blue_square.png" Width="16" Height="20"/>
-                <TextBlock VerticalAlignment="Center" Margin="10 0 0 0" Text="not reserved" FontSize="15">
-                </TextBlock>
+                <Label VerticalAlignment="Center" Margin="10 0 0 0" Content="not reserved"  Style="{StaticResource LableStyleHost}">
+                </Label>
             </StackPanel>
 
 
             <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="5 0 0 0">
-                <TextBlock Text="Explanation" FontSize="15" VerticalAlignment="Top" Margin="5,0,0,0" />
-                <TextBox x:Name="ExplanationTextBox" Width="380" Height="118" Margin="15 0 0 0"  Text="{Binding Path= Delay.Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"> </TextBox>
+                <Label Content="Explanation" Style="{StaticResource LableStyleHost}" VerticalAlignment="Top" Margin="0,0,0,0" />
+                <TextBox x:Name="ExplanationTextBox" Width="380" Height="118" Margin="15 0 0 0" FontSize="15" FontFamily="Comic Sans MS"  Text="{Binding Path= Delay.Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"> </TextBox>
             </StackPanel>
 
-            <Label Content="Enter an explanation only with request rejection." FontSize="15" Grid.Row="5" VerticalAlignment="Bottom">
+            <Label Content="Enter an explanation only with request rejection." Style="{StaticResource LableStyleHost}" Grid.Row="5" VerticalAlignment="Bottom">
                 
             </Label>
             <StackPanel Grid.Row="6" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
@@ -92,15 +93,15 @@
                     
                 </Button>
             </StackPanel>
-            <Label Content="Request Cancellings:" Grid.Row="7" VerticalAlignment="Center" FontSize="17">
+            <Label Content="Request Cancellings:" Grid.Row="7" VerticalAlignment="Center" Style="{StaticResource LableStyleHost}">
                 
             </Label>
 
-            <ListBox x:Name="NotificationListBox" Background="Transparent" Width="260" Height="150" Margin="220,25,31,50" Grid.RowSpan="2" Grid.Row="7" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Notifications}">
+            <ListBox x:Name="NotificationListBox" Background="Transparent" Width="290" Height="150" Margin="170,25,31,50" Grid.RowSpan="2" Grid.Row="7" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Notifications}">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="Gray" BorderThickness="1" Margin="0,0,0,5">
-                            <TextBlock  Text="{Binding}" Padding="5"/>
+                            <TextBlock FontFamily="Segoe UI" FontSize="13" Text="{Binding}" Padding="5"/>
                         </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -116,7 +117,7 @@
         </Grid>
 
         <StackPanel Grid.Row="1">
-            <Label Content="select request" FontSize="15"  VerticalAlignment="Center" FontWeight="Bold" Margin="25 10 0 0">
+            <Label Content="select request" Style="{StaticResource LableStyleHost}" VerticalAlignment="Center" FontWeight="Bold" Margin="25 10 0 0">
                 
             </Label>
         <ListView
@@ -134,7 +135,8 @@ SelectionMode="Single">
                         <Setter Property="Padding" Value="0" />
                     <Setter Property="Margin" Value="0,5,5,5" />
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                </Style>
+                        <Setter Property="FontFamily" Value="Segoe UI"/>
+                    </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -161,7 +163,9 @@ SelectionMode="Single">
                                 <TextBlock FontWeight="Bold"
                                 Margin="5,0,0,0"
                                 Text="{Binding GuestUsername}" 
+                                Style="{StaticResource TextBoxStyleHost}"
                                 VerticalAlignment="Center"/>
+                                
                             </StackPanel>
 
                             <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="15 0 0 0">
@@ -169,13 +173,15 @@ SelectionMode="Single">
                                 <TextBlock FontWeight="Bold"
                                 Margin="5,0,0,0"
                                 Text="{Binding ReservationName}" 
+                                 Style="{StaticResource TextBoxStyleHost}"
                                 VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="2"  Margin="15 0 0 0">
                                 <Label Content="last date:" FontSize="13" VerticalAlignment="Center" />
                                 <TextBlock FontWeight="Bold"
                                 Margin="5,0,0,0"
-                                Text="{Binding DateLastString}" 
+                                Text="{Binding DateLastString}"
+                                 Style="{StaticResource TextBoxStyleHost}"
                                 VerticalAlignment="Center"/>
                                 
                             </StackPanel>
@@ -184,6 +190,7 @@ SelectionMode="Single">
                                     <TextBlock FontWeight="Bold"
                                     Margin="5,0,0,0"
                                     Text="{Binding DateString}" 
+                                     Style="{StaticResource TextBoxStyleHost}"
                                     VerticalAlignment="Center"/>
 
                                     <Image VerticalAlignment="Center" Margin="20 0 0 0" Width="20">

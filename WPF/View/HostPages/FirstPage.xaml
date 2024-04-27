@@ -42,9 +42,9 @@
         <StackPanel Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Left" Orientation="Horizontal" Margin="137,0,0,0" Width="167">
             <Label
                 x:Name="SuperHostLabel"
-                Margin="5,0,0,20"
+                Margin="0,0,0,20"
                 Content="Super host"
-                FontSize="15"
+                Style="{StaticResource LableStyleHost}"
                  />
             <Image VerticalAlignment="Center" Margin="10 0 0 20" Width="20">
                 <Image.Style>
@@ -65,13 +65,13 @@
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,20,0,0" HorizontalAlignment="Right"  Grid.Row="0" Width="146">
-            <TextBlock Text="count of rates:" FontSize="13" VerticalAlignment="Center" Margin="5,0,0,0" />
-            <TextBlock x:Name="CountBox" Padding="0 2 0 0" Text="{Binding hostViewModel.RateCount}"  Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
+            <TextBlock Text="count of rates:" Style="{StaticResource TextBlockStyleMSHost}" VerticalAlignment="Center" Margin="0,0,0,0" />
+            <TextBlock x:Name="CountBox" Style="{StaticResource TextBlockStyleMSHost}" Padding="0 2 0 0" Text="{Binding hostViewModel.RateCount}"  Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
         </StackPanel>
 
         <StackPanel Orientation="Horizontal" Grid.Column="1" Margin="0,50,0,0" HorizontalAlignment="Right" Grid.Row="0" Width="146">
-            <TextBlock Text="average of rates:" FontSize="13" VerticalAlignment="Center" Margin="5,0,0,0" />
-            <TextBlock x:Name="AverageBox" Padding="0 2 0 0" Text="{Binding hostViewModel.FormattedNumber}" Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
+            <TextBlock Text="average of rates:" Style="{StaticResource TextBlockStyleMSHost}" VerticalAlignment="Center" Margin="0,0,0,0" />
+            <TextBlock x:Name="AverageBox" Style="{StaticResource TextBlockStyleMSHost}" Padding="0 2 0 0" Text="{Binding hostViewModel.FormattedNumber}" Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
         </StackPanel>
 
 
@@ -96,6 +96,7 @@
                 VerticalAlignment="Center"
                 Content="To do"
                 HorizontalAlignment="Center"
+                Style="{StaticResource LableStyleHost}"
                 FontSize="24"
                 FontWeight="Bold"
                  />
@@ -128,26 +129,27 @@
                 Grid.Row="4"
                 VerticalAlignment="Bottom"
                 Content="Locations:"
+                Style="{StaticResource LableStyleHost}"
                 FontSize="18"
                 Margin="5 0 0 0"
                  />
             <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="5 0 0 0">
-                <Image Source="../../Resources/Images/down_right_arrow.png" Width="20" Height="25"/>
-                <TextBlock Text="most popular:" FontSize="13" VerticalAlignment="Center" Margin="5,0,0,0" />
-                <TextBlock x:Name="PopularTextBox" Width="93" Height="20" Margin="10 0 0 0" FontSize="13" />
+                <Image Source="../../Resources/Images/red_dot.png" Width="20" Height="20"/>
+                <TextBlock Text="most popular:"  VerticalAlignment="Center" FontSize="15" Margin="6,0,0,0" />
+                <TextBlock x:Name="PopularTextBox" Width="93" FontSize="15" Height="20" Margin="10 0 0 0"  />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/down_right_arrow.png" Width="20" Height="25"/>
-                <TextBlock Text="register accommodation" FontSize="13" VerticalAlignment="Center" Margin="5,0,0,0" />
+                <TextBlock Text="register accommodation" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="5 0 0 0">
-                <Image Source="../../Resources/Images/down_right_arrow.png" Width="20" Height="25"/>
-                <TextBlock Text="least popular:" FontSize="13" VerticalAlignment="Center" Margin="5,0,0,0" />
-                <TextBlock x:Name="LeastPopularTextBox" Width="93" Height="20" Margin="10 0 0 0" FontSize="13"/>
+                <Image Source="../../Resources/Images/blue_square.png" Width="18" Height="18"/>
+                <TextBlock Text="least popular:"  VerticalAlignment="Center" FontSize="15" Margin="7,0,0,0" />
+                <TextBlock x:Name="LeastPopularTextBox" Width="93" Height="20" FontSize="15" Margin="10 0 0 0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="8" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/down_right_arrow.png" Width="20" Height="25"/>
-                <TextBlock Text="close accommodation" FontSize="13" VerticalAlignment="Center" Margin="5,0,0,0" />
+                <TextBlock Text="close accommodation" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0" />
             </StackPanel>
         </Grid>
 
@@ -167,6 +169,7 @@
                     <Setter Property="Padding" Value="0" />
                     <Setter Property="Margin" Value="0,5,5,5" />
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                    <Setter Property="FontFamily" Value="Segoe UI"/>
                 </Style>
             </ListView.ItemContainerStyle>
             <ListView.ItemTemplate>
@@ -215,6 +218,7 @@
                         Grid.Column="1"
                         Margin="5,10,5,5"
                         FontSize="20"
+                        FontFamily="Comic Sans MS"
                         FontWeight="Bold"
                         Text="{Binding Name}"
                         HorizontalAlignment="Center"
@@ -225,7 +229,8 @@
                                 <Label Content="id:" FontSize="13" VerticalAlignment="Center" />
                                 <TextBlock FontWeight="Bold"
                                     Margin="5,0,0,0"
-                                    Text="{Binding Id}" 
+                                    Text="{Binding Id}"
+                                     Style="{StaticResource TextBlockStyleHost}"
                                     VerticalAlignment="Center"/>
                             </StackPanel>
 
@@ -233,19 +238,22 @@
                                 <Label Content="type:" FontSize="13" VerticalAlignment="Center" />
                                 <TextBlock FontWeight="Bold"
                                     Margin="5,0,0,0"
-                                    Text="{Binding Type}" 
+                                    Text="{Binding Type}"
+                                     Style="{StaticResource TextBlockStyleHost}"
                                     VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="3" Grid.Column="1" Margin="15 0 0 0">
                                 <Label Content="location:" FontSize="13" VerticalAlignment="Center" />
                                 <TextBlock FontWeight="Bold"
                                     Margin="5,0,0,0"
+                                     Style="{StaticResource TextBlockStyleHost}"
                                     Text="{Binding City}" 
                                     VerticalAlignment="Center"/>
                                 <TextBlock FontWeight="Bold" Text="," VerticalAlignment="Center"/>
                                 <TextBlock FontWeight="Bold"
                                     Margin="1,0,0,0"
                                     Text="{Binding Country}" 
+                                     Style="{StaticResource TextBlockStyleHost}"
                                     VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Margin="15 0 0 0">
@@ -253,6 +261,7 @@
                                 <TextBlock
                                     Margin="5,0,0,0"
                                     Text="{Binding MaxGuestNumber}" 
+                                    Style="{StaticResource TextBlockStyleHost}"
                                     VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="5" Grid.Column="1" Margin="15 0 0 0">
@@ -260,6 +269,7 @@
                                 <TextBlock
                                     Margin="5,0,0,0"
                                     Text="{Binding MinReservationDays}" 
+                                     Style="{StaticResource TextBlockStyleHost}"
                                     VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Margin="15 0 0 0">
@@ -267,10 +277,11 @@
                                 <TextBlock
                                     Margin="5,0,0,0"
                                     Text="{Binding ReservationDaysLimit}" 
+                                     Style="{StaticResource TextBlockStyleHost}"
                                     VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0 0 5 0" Grid.Column="2">
-                                <TextBlock VerticalAlignment="Center"  HorizontalAlignment="Right" Margin="10 0 0 0">
+                                <TextBlock VerticalAlignment="Center"  Style="{StaticResource TextBlockStyleHost}"  HorizontalAlignment="Right" Margin="10 0 0 0">
                                     <Hyperlink Style="{StaticResource HyperlinkStyle}" RequestNavigate="Statistic_RequestNavigate" >
                                         statistic
                                     </Hyperlink>

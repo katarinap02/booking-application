@@ -51,63 +51,73 @@
         <StackPanel Grid.Row ="1" Grid.Column="1" Orientation="Horizontal">
             <Label
                x:Name="NameLabel" 
-               Content="Name*" Height="29" Width="46"
+               Style="{StaticResource LableTextStyleMSHost}"
+               Content="Name*" Height="29" Width="51"
             />
-            <TextBox x:Name ="textBoxName" Text="{Binding Path= accommodationDTO.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="748"/>
+            <TextBox x:Name ="textBoxName" Text="{Binding Path= accommodationDTO.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="742"/>
         </StackPanel>
 
         <StackPanel Grid.Row ="2" Grid.Column="1" Orientation="Horizontal">
             <Label
                x:Name="CityLabel"
-               Content="City*" Height="29" Width="46"/>
+               Style="{StaticResource LableTextStyleMSHost}"
+               Content="City*" Height="29" Width="49"/>
             <TextBox x:Name ="textBoxCity" Text="{Binding Path= accommodationDTO.City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="281"/>
             <Label
                 x:Name="CountryLabel"
-                Content="Country*" Height="29" Width="60"
+                Style="{StaticResource LableTextStyleMSHost}"
+                Content="Country*" Height="29" Width="65"
                 Margin="75 0 0 0"/>
-            <TextBox x:Name ="textBoxCountry" Text="{Binding Path= accommodationDTO.Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="263"/>
+            <TextBox x:Name ="textBoxCountry" Text="{Binding Path= accommodationDTO.Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="258"/>
         </StackPanel>
 
         <StackPanel Grid.Row ="3" Grid.Column="1" Orientation="Horizontal" Margin="0 0 100 0" HorizontalAlignment="Left" >
             <RadioButton x:Name="radioButtonApartment" GroupName="TypeButton" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="True"></RadioButton>
             <Label
                 x:Name="ApartmentLabel"
-                Content="Apartment" Height="29" Width="66"
+                Style="{StaticResource LableTextStyleMSHost}"
+                Content="Apartment" Height="29" Width="76"
                 Margin="3 0 50 0"/>
             <RadioButton x:Name="radioButtonHouse" GroupName="TypeButton"  VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding accommodationDTO.IsCheckedHouse}"></RadioButton>
             <Label
                 x:Name="HouseLabel"
-                Content="House" Height="29" Width="45"
+                Style="{StaticResource LableTextStyleMSHost}"
+                Content="House" Height="29" Width="49"
                 Margin="3 0 50 0"/>
             <RadioButton x:Name="radioButtonCottage"  GroupName="TypeButton" IsChecked="{Binding accommodationDTO.IsCheckedCottage}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
             <Label
                 x:Name="CottageLabel"
-                Content="Cottage" Height="29" Width="54"
+                Style="{StaticResource LableTextStyleMSHost}"
+                Content="Cottage" Height="29" Width="60"
                 Margin="3 0 0 0"/>
         </StackPanel>
         <StackPanel Grid.Row ="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,85" Grid.RowSpan="2" Width="800">
             <Label
                x:Name="GuestNmLabel" 
-               Content="Maximum guest number" Height="29" Width="142" 
+                Style="{StaticResource LableTextStyleMSHost}"
+               Content="Maximum guest number" Height="29" Width="153" 
     />
             <xctk:IntegerUpDown x:Name ="textBoxGuestNm" Text="{Binding Path= accommodationDTO.MaxGuestNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="50"/>
 
             <Label
            x:Name="MinDaysLabel" 
-           Content="Minimum reservation days" Height="29" Width="153" Margin="30 0 0 0"
+                Style="{StaticResource LableTextStyleMSHost}"
+           Content="Minimum reservation days" Height="29" Width="170" Margin="8 0 0 0"
 />
             <xctk:IntegerUpDown x:Name ="textBoxMinDays" Text="{Binding Path= accommodationDTO.MinReservationDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="50"/>
 
             <Label
            x:Name="LimitLabel" 
-           Content="Cancelling reservation limit" Height="29" Width="157" Margin="30 0 0 0"
+                Style="{StaticResource LableTextStyleMSHost}"
+           Content="Cancelling reservation limit" Height="29" Width="175" Margin="8 0 0 0"
 />
             <xctk:IntegerUpDown x:Name ="textBoxLimit" Text="{Binding Path= accommodationDTO.ReservationDaysLimit, UpdateSourceTrigger=PropertyChanged,  ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="50"/>
         </StackPanel>
         <StackPanel Grid.Row ="5" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,70" Grid.RowSpan="2">
             <Label
        x:Name="PictureLabel" 
-       Content="Pictures" Height="29" Width="57" VerticalAlignment="Top" Margin="0 19 0 0"
+                Style="{StaticResource LableTextStyleMSHost}"
+       Content="Pictures" Height="29" Width="60" VerticalAlignment="Top" Margin="0 19 0 0"
     />
             <ListBox Name="txtPictureUrls" ItemsSource="{Binding Pictures, UpdateSourceTrigger=PropertyChanged}" Height="70" Width="593" Margin="5, 0, 5,0">
                 <ListBox.ItemTemplate>
