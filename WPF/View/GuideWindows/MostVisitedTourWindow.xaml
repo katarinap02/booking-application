@@ -14,11 +14,11 @@
 		</ComboBox>
 
 		<!-- Display tour name -->
-        <Label Content="{Binding tourLabelString}" Margin="0,50,0,0" FontSize="20" FontWeight="Bold" x:Name="tourNameLabel"
+        <Label Content="{Binding TourName, UpdateSourceTrigger=Explicit}" Margin="0,50,0,0" FontSize="20" FontWeight="Bold" x:Name="tourNameLabel"
                    VerticalAlignment="Top"/>
 
 		<!-- Display number of participants -->
-		<Label x:Name="participantsLabel" Content="{Binding participantLabelString}" Margin="0,80,0,0" FontSize="16"
+        <Label x:Name="participantsLabel" Content="{Binding ParticipantCount, UpdateSourceTrigger=Explicit}" Margin="0,80,0,0" FontSize="16"
                    VerticalAlignment="Top"/>
 	</Grid>
 </Window>

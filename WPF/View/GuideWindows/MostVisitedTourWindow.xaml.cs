@@ -14,29 +14,52 @@ using BookingApp.Repository.FeatureRepository;
 using BookingApp.Repository.ReservationRepository;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using System.ComponentModel;
+using System.Windows.Data;
 
 namespace BookingApp.View.GuideWindows
 {
     public partial class MostVisitedTourWindow: Window
     {
 
-        private readonly TourRepository _tourRepository;
-        private readonly TourReservationRepository _tourReservationRepository;
         private readonly TourService _tourService;
         private readonly TourReservationService _tourReservationService;
         private User Guide {  get; set; }
         private bool FirstTime {  get; set; }
-        public string tourLabelString { get; set; }
-        public string participantLabelString { get; set; }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private string _tourName;
+        public string TourName
+        {
+            get { return _tourName; }
+            set
+            {
+                _tourName = value;
+                OnPropertyChanged(nameof(TourName));
+            }
+        }
+
+        private string _participantCount;
+        public string ParticipantCount
+        {
+            get { return _participantCount; }
+            set
+            {
+                _participantCount = value;
+                OnPropertyChanged(nameof(ParticipantCount));
+            }
+        }
+
 
         public MostVisitedTourWindow(User guide)
         {
-            _tourRepository = new TourRepository();
-            _tourReservationRepository = new TourReservationRepository();
             _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
             _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
             Guide = guide;
             FirstTime = true;
+            TourName = "Tour name";
+            ParticipantCount = "Number of participants";
             InitializeComponent();
             DataContext = this;
         }
@@ -67,15 +90,25 @@ namespace BookingApp.View.GuideWindows
             }
             else if (mostVisitedTourAllTime != null)
             {
-                tourLabelString = mostVisitedTourAllTime.Name;
+                TourName = mostVisitedTourAllTime.Name;
                 int participantCount = _tourReservationService.GetNumberOfJoinedParticipants(mostVisitedTourAllTime.Id);
-                participantLabelString = $"Participants: {participantCount}";
+                ParticipantCount = $"Participants: {participantCount}";
             }
             else
             {
-                tourLabelString = "No data available";
-                participantLabelString = "";
+                TourName = "No data available";
+                ParticipantCount = "";
             }
+
+            RaisePropertyChanged(nameof(TourName));
+            RaisePropertyChanged(nameof(ParticipantCount));
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                RaisePropertyChanged(nameof(TourName));
+                RaisePropertyChanged(nameof(ParticipantCount));
+            });
+
+
         }
 
         private void ShowMostVisitedTourPreviousYears(int year)
@@ -84,15 +117,45 @@ namespace BookingApp.View.GuideWindows
 
             if (mostVisitedTourPreviousYears != null)
             {
-                tourLabelString = mostVisitedTourPreviousYears.Name;
+                TourName = mostVisitedTourPreviousYears.Name;
                 int participantCount = _tourReservationService.GetNumberOfJoinedParticipants(mostVisitedTourPreviousYears.Id);
-                participantLabelString = $"Participants: {participantCount}";
+                ParticipantCount = $"Participants: {participantCount}";
             }
             else
             {
-                tourLabelString = "No data available";
-                participantLabelString = "";
+                TourName = "No data available";
+                ParticipantCount = "";
             }
+
+            RaisePropertyChanged(nameof(TourName));
+            RaisePropertyChanged(nameof(ParticipantCount));
+            System.Windows.Application.Current.Dispatcher.Invoke(() =>
+            {
+                RaisePropertyChanged(nameof(TourName));
+                RaisePropertyChanged(nameof(ParticipantCount));
+            });
+
+
+        }
+
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private void UpdateBindings()
+        {
+            // Call UpdateSource on each binding
+            foreach (var bindingExpression in BindingOperations.GetSourceUpdatingBindings(this))
+            {
+                bindingExpression.UpdateSource();
+            }
+        }
+
+        private void RaisePropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }
