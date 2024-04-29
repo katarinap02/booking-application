@@ -1,5 +1,6 @@
-﻿using BookingApp.WPF.ViewModel.HostGuestViewModel;
+﻿using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels;
+using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,15 +18,15 @@ using System.Windows.Shapes;
 namespace BookingApp.WPF.View.HostWindows
 {
     /// <summary>
-    /// Interaction logic for ScheduleReservationWindow.xaml
+    /// Interaction logic for ScheduleRenovationWindow.xaml
     /// </summary>
-    public partial class ScheduleReservationWindow : Window
+    public partial class ScheduleRenovationWindow : Window
     {
         public ScheduleRenovationWindowViewModel ScheduleRenovationWindowViewModel { get; set; }
-        public ScheduleReservationWindow(AccommodationViewModel selectedAccommodation, DateTime startDateRange, DateTime endDateRange)
+        public ScheduleRenovationWindow(AccommodationViewModel selectedAccommodation, User user, RenovationViewModel renovation)
         {
             InitializeComponent();
-            ScheduleRenovationWindowViewModel = new ScheduleRenovationWindowViewModel(selectedAccommodation, startDateRange, endDateRange);
+            ScheduleRenovationWindowViewModel = new ScheduleRenovationWindowViewModel(selectedAccommodation, user, renovation);
             DataContext = ScheduleRenovationWindowViewModel;
         }
     }

@@ -3,6 +3,9 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Observer;
+using BookingApp.View;
+using BookingApp.WPF.View.HostWindows;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,15 +23,27 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
         public AccommodationService accommodationService { get; set; }
 
-        public AccommodationReservationViewModel SelectedAccommodation { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
+
+        public RenovationViewModel Renovation { get; set; }
 
         public User User { get; set; }
+
+        public MyICommand ScheduleCommand { get; set; }
         public ScheduleRenovationPageViewModel(User user)
         {
             Accommodations = new ObservableCollection<AccommodationViewModel>();
             accommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             User = user;
+            ScheduleCommand = new MyICommand(ScheduleWindow);
+            Renovation = new RenovationViewModel();
             Update();
+        }
+
+        private void ScheduleWindow()
+        {
+            ScheduleRenovationWindow window = new ScheduleRenovationWindow(SelectedAccommodation, User, Renovation);
+            window.ShowDialog();
         }
 
         public void Update()

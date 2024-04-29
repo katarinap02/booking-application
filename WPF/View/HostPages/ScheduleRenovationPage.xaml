@@ -56,19 +56,18 @@
               />
             <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="10 0 0 0">
                 <Label Content="start date:" HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource LableStyleHost}"/>
-                <DatePicker x:Name="StartDatePicker" HorizontalAlignment="Center" VerticalAlignment="Center"  FontFamily="Comic Sans MS" FontSize="14" Margin="15 0 0 0"/>
+                <DatePicker x:Name="StartDatePicker" HorizontalAlignment="Center" VerticalAlignment="Center"  Text="{Binding Path= Renovation.StartDateRange, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"  FontFamily="Comic Sans MS" FontSize="14" Margin="15 0 0 0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="10 0 0 0">
                 <Label Content="end date:" HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource LableStyleHost}"/>
-                <DatePicker x:Name="EndDatePicker" HorizontalAlignment="Center" VerticalAlignment="Center"  FontFamily="Comic Sans MS" FontSize="14" Margin="15 0 0 0"/>
+                <DatePicker x:Name="EndDatePicker" HorizontalAlignment="Center" VerticalAlignment="Center"  Text="{Binding Path= Renovation.EndDateRange, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"  FontFamily="Comic Sans MS" FontSize="14" Margin="15 0 0 0"/>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="10 0 0 0">
                 <Label Content="expected duration:" HorizontalAlignment="Center" VerticalAlignment="Center"  Style="{StaticResource LableStyleHost}"/>
-                <xctk:IntegerUpDown x:Name ="textBoxRenovation" Text="{Binding Path= accommodationDTO.MaxGuestNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="28" VerticalAlignment="Center" Margin="10,0,59,0" Width="90"/>
+                <xctk:IntegerUpDown x:Name ="textBoxRenovation" Text="{Binding Path= Renovation.Duration, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="28" VerticalAlignment="Center" Margin="10,0,59,0" Width="90"/>
             </StackPanel>
             <StackPanel Grid.Row="5" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                <Button Content="Schedule renovation" Style="{StaticResource ButtonStyleHost}" Width="180" Height="45" Margin="0 0 0 0">
-                </Button>
+                <Button Content="Schedule renovation" Command="{Binding ScheduleCommand}" Style="{StaticResource ButtonStyleHost}" Width="180" Height="45"/>
 
             </StackPanel>
         </Grid>

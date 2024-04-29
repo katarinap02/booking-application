@@ -90,6 +90,36 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private DateTime startDateRange;
+        public DateTime StartDateRange
+        {
+            get { return startDateRange; }
+            set
+            {
+                if (startDateRange != value)
+                {
+
+                    startDateRange = value;
+                    OnPropertyChanged("StartDateRange");
+                }
+            }
+        }
+
+        private DateTime endDateRange;
+        public DateTime EndDateRange
+        {
+            get { return endDateRange; }
+            set
+            {
+                if (endDateRange != value)
+                {
+
+                    endDateRange = value;
+                    OnPropertyChanged("EndDateRange");
+                }
+            }
+        }
+
         private int duration;
         public int Duration
         {

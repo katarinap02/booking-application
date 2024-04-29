@@ -22,7 +22,7 @@ namespace BookingApp.WPF.View.HostPages
     /// </summary>
     public partial class ScheduleRenovationPage : Page
     {
-        ScheduleRenovationPageViewModel ScheduleRenovationPageViewModel { get; set; }
+        public ScheduleRenovationPageViewModel ScheduleRenovationPageViewModel { get; set; }
         public ScheduleRenovationPage(User user)
         {
             InitializeComponent();
