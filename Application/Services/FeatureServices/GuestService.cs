@@ -53,9 +53,8 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             if(guest.EndDate == DateTime.Now)
             {
-                if(GetYearlyReservations(guest) >= 10)
+                if(guest.YearlyReservations >= 10)
                 {
-                    guest.YearlyReservations = GetYearlyReservations(guest);
                     guest.IsSuperGuest = true;
                     guest.StartDate = DateTime.Now;
                     guest.EndDate = DateTime.Now.AddYears(1);
