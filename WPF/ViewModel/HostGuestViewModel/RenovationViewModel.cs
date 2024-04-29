@@ -1,11 +1,15 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 {
@@ -22,6 +26,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
                 {
                     id = value;
                     OnPropertyChanged("Id");
+                }
+            }
+        }
+
+        private int hostId;
+        public int HostId
+        {
+            get { return hostId; }
+            set
+            {
+                if (hostId != value)
+                {
+                    hostId = value;
+                    OnPropertyChanged("HostId");
                 }
             }
         }
@@ -73,7 +91,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         }
 
         private int duration;
-        public int uration
+        public int Duration
         {
             get { return duration; }
             set
@@ -86,10 +104,43 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private string description;
+        public string Description
+        {
+            get { return description; }
+            set
+            {
+                if (description != value)
+                {
+                    description = value;
+                    OnPropertyChanged("Description");
+                }
+            }
+        }
+
         private AccommodationService accommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
 
         public string DateString => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
+        public string AccommodationName => accommodationService.GetById(AccommodationId).Name;
 
+        public AccommodationType Type => accommodationService.GetById(AccommodationId).Type;
+
+        public string Location => accommodationService.GetById(AccommodationId).City + " " + accommodationService.GetById(AccommodationId).Country;
+
+
+        public RenovationViewModel() { }
+
+        public RenovationViewModel(Renovation ra)
+        {
+            id = ra.Id;
+            hostId = ra.HostId;
+            accommodationId = ra.AccommodationId;
+            startDate = ra.StartDate;
+            endDate = ra.EndDate;
+            duration = ra.Duration;
+            description = ra.Description;
+
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -98,7 +149,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-
+        public Renovation ToReservation()
+        {
+            Renovation ra = new Renovation(accommodationId, hostId, startDate, endDate, duration, description);
+            return ra;
+        }
     }
 
 

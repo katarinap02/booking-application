@@ -16,11 +16,15 @@ namespace BookingApp.Domain.Model.Reservations
     {
         public int Id;
 
+        public int HostId;
+
         public int AccommodationId;
 
         public DateTime StartDate;
 
         public DateTime EndDate;
+
+        public string Description;
 
         public string DateRange => StartDate.ToString() + "-" + EndDate.ToString();
 
@@ -28,22 +32,26 @@ namespace BookingApp.Domain.Model.Reservations
 
         public Renovation() { }
 
-        public Renovation(int accommodationId, DateTime startDate, DateTime endDate, int duration)
+        public Renovation(int accommodationId, int hostId, DateTime startDate, DateTime endDate, int duration, string description)
         {
             AccommodationId = accommodationId;
             StartDate = startDate;
             EndDate = endDate;
             Duration = duration;
+            HostId = hostId;
+            Description = description;
         }
 
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            AccommodationId = Convert.ToInt32(values[1]);
-            string[] dateParts = values[2].Split('-');
+            HostId = Convert.ToInt32(values[1]);
+            AccommodationId = Convert.ToInt32(values[2]);
+            string[] dateParts = values[3].Split('-');
             StartDate = DateTime.Parse(dateParts[0]);
             EndDate = DateTime.Parse(dateParts[1]);
             Duration = Convert.ToInt32(values[4]);
+            Description = Convert.ToString(values[5]);  
         }
 
         public string[] ToCSV()
@@ -51,9 +59,11 @@ namespace BookingApp.Domain.Model.Reservations
             string[] csvValues =
             {
                 Id.ToString(),
+                HostId.ToString(),
                 AccommodationId.ToString(),
                 DateRange,
-                Duration.ToString()
+                Duration.ToString(),
+                Description
 
             };
             return csvValues;
