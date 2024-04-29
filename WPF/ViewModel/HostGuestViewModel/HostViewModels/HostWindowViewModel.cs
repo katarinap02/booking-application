@@ -1,8 +1,6 @@
 ﻿using BookingApp.Observer;
 using BookingApp.Repository;
-using BookingApp.View.GuestWindows;
 using BookingApp.View.HostPages;
-using BookingApp.View.HostWindows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -18,7 +16,7 @@ using BookingApp.WPF.View.HostPages;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
-    public class HostPageViewModel : INotifyPropertyChanged, IObserver
+    public class HostWindowViewModel : INotifyPropertyChanged, IObserver
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -28,15 +26,17 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public User User { get; set; }
 
         public StackPanel RatingPanel { get; set; }
+
+        public StackPanel RenovationPanel { get; set; } 
         
-        public HostPageViewModel(User user, Frame frame, Menu dock, StackPanel panel)
+        public HostWindowViewModel(User user, Frame frame, Menu dock, StackPanel panel, StackPanel panelR)
         {
 
             HostFrame = frame;
             LeftDock = dock;
             User = user;
             RatingPanel = panel;
-
+            RenovationPanel = panelR;
             Update();
 
         }
@@ -55,6 +55,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             HostFrame.Navigate(firstPage);
             LeftDock.Visibility = Visibility.Collapsed;
             RatingPanel.Visibility = Visibility.Collapsed;
+            RenovationPanel.Visibility = Visibility.Collapsed;
         }
 
         public void RegisterButton_Click(object sender, RoutedEventArgs e)
@@ -70,6 +71,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             HostFrame.Navigate(page);
             LeftDock.Visibility = Visibility.Collapsed;
             RatingPanel.Visibility = Visibility.Collapsed;
+            RenovationPanel.Visibility = Visibility.Collapsed;
         }
 
         public void RateGuest_Click(object sender, RoutedEventArgs e)
@@ -78,6 +80,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             HostFrame.Navigate(page);
             LeftDock.Visibility = Visibility.Collapsed;
             RatingPanel.Visibility = Visibility.Collapsed;
+            RenovationPanel.Visibility = Visibility.Collapsed;
         }
 
         public void Delay_Click(object sender, RoutedEventArgs e)
@@ -86,6 +89,16 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             HostFrame.Navigate(page);
             LeftDock.Visibility = Visibility.Collapsed;
             RatingPanel.Visibility = Visibility.Collapsed;
+            RenovationPanel.Visibility = Visibility.Collapsed;
+        }
+
+        public void ScheduleRenovation_Click(object sender, RoutedEventArgs e)
+        {
+            ScheduleRenovationPage page = new ScheduleRenovationPage(User);
+            HostFrame.Navigate(page);
+            LeftDock.Visibility = Visibility.Collapsed;
+            RatingPanel.Visibility = Visibility.Collapsed;
+            RenovationPanel.Visibility = Visibility.Collapsed;
         }
 
         public void More_Click(object sender, RoutedEventArgs e)
@@ -112,6 +125,17 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             }
         }
 
+        public void Renovation_Click(object sender, RoutedEventArgs e)
+        {
+            if (RenovationPanel.Visibility == Visibility.Visible)
+            {
+                RenovationPanel.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                RenovationPanel.Visibility = Visibility.Visible;
+            }
+        }
 
     }
 }

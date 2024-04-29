@@ -2,6 +2,7 @@
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Observer;
 using BookingApp.Repository;
 
@@ -174,7 +175,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
 
 
-        private HostService hostService = new HostService();
+        private HostService hostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
         private AccommodationService accommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
         private UserService userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
 

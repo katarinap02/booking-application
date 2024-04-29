@@ -123,11 +123,34 @@
                 </StackPanel>
                 <MenuItem Margin="10 35 10 0">
                     <MenuItem.Header>
-                        <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Content="Renovation" FontSize="15" Width="180" Height="25">
+                        <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Click="Renovation_Click" Content="Renovation" FontSize="15" Width="180" Height="25">
 
                         </Button>
                     </MenuItem.Header>
                 </MenuItem>
+                <StackPanel x:Name="RenovationPanel" Visibility="Collapsed" Margin="45 0 0 0">
+                    <MenuItem Margin="25 7 10 0">
+                        <MenuItem.Header>
+                            <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}"  Content="previous" FontSize="13" Width="100" Height="25">
+
+                            </Button>
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <MenuItem Margin="25 7 10 0">
+                        <MenuItem.Header>
+                            <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Content="scheduled"  FontSize="13" Width="100" Height="25">
+
+                            </Button>
+                        </MenuItem.Header>
+                    </MenuItem>
+                    <MenuItem Margin="25 7 10 0">
+                        <MenuItem.Header>
+                            <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Content="schedule" Click="Schedule_Click" FontSize="13" Width="100" Height="25">
+
+                            </Button>
+                        </MenuItem.Header>
+                    </MenuItem>
+                </StackPanel>
                 <MenuItem Margin="10 35 10 0">
                     <MenuItem.Header>
                         <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Content="Forum" FontSize="15" Width="180" Height="25">

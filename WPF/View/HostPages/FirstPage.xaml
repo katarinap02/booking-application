@@ -8,12 +8,6 @@
       d:DesignHeight="705" d:DesignWidth="1024"
       Title="FirstPage">
 
-    <Page.Resources>
-        <ResourceDictionary>
-            
-        </ResourceDictionary>
-    </Page.Resources>
-
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,2" EndPoint="1,1">

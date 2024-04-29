@@ -154,13 +154,14 @@
 
         </Grid>
 
-        <StackPanel Grid.Row="1">
-            <Label Content="select guest" Style="{StaticResource LableStyleHost}" VerticalAlignment="Center" FontWeight="Bold" Margin="25 10 0 0">
+       
+            <Label Content="select guest" Style="{StaticResource LableStyleHost}" VerticalAlignment="Top" Grid.Row="1" FontWeight="Bold" Margin="25 10 0 0">
 
-            </Label>
-            <ListView
+                </Label>
+        <ListView
                 x:Name="AccommodationsListView"
-                Margin="25,10,30,40"
+                Margin="25,50,0,30"
+            Grid.Row="1"
                 Padding="0"
                 Background="Transparent"
                 BorderThickness="0"
@@ -168,74 +169,74 @@
                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                 SelectedItem="{Binding SelectedAccommodation}"
                 SelectionMode="Single">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Padding" Value="0" />
-                        <Setter Property="Margin" Value="0,5,5,5" />
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0,5,5,5" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border
             BorderBrush="#A0CCED"
             BorderThickness="4"
             CornerRadius="5">
-                            <Grid Height="Auto" >
-                                <Grid.Background>
-                                    <LinearGradientBrush StartPoint="0,2" EndPoint="1,1">
-                                        <GradientStop Color="White" Offset="0.1"/>
-                                    </LinearGradientBrush>
-                                </Grid.Background>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
+                        <Grid Height="Auto" >
+                            <Grid.Background>
+                                <LinearGradientBrush StartPoint="0,2" EndPoint="1,1">
+                                    <GradientStop Color="White" Offset="0.1"/>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
 
-                                </Grid.RowDefinitions>
+                            </Grid.RowDefinitions>
 
-                                <Image
+                            <Image
                                     Grid.Row="0"
                                     Grid.RowSpan="4"
                                     Grid.Column="0"
                                     Height="100"
                                     Margin="10"
                                     VerticalAlignment="Center">
-                                    <Image.Style>
-                                        <Style TargetType="Image">
-                                            <Setter Property="Source" Value="{Binding OnePicture}" />
-                                        </Style>
-                                    </Image.Style>
-                                </Image>
-                                
-                                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="15 15 0 0">
-                                    <Label Content="guest username:" FontSize="13" VerticalAlignment="Center" />
-                                    <TextBlock FontWeight="Bold"
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Source" Value="{Binding OnePicture}" />
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="15 15 0 0">
+                                <Label Content="guest username:" FontSize="13" VerticalAlignment="Center" />
+                                <TextBlock FontWeight="Bold"
                                 Margin="5,0,0,0"
                                 Text="{Binding GuestUsername}" 
                                 VerticalAlignment="Center"/>
-                                </StackPanel>
+                            </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1"  Margin="15 0 0 0">
-                                    <Label Content="accommodation:" FontSize="13" VerticalAlignment="Center" />
-                                    <TextBlock FontWeight="Bold"
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1"  Margin="15 0 0 0">
+                                <Label Content="accommodation:" FontSize="13" VerticalAlignment="Center" />
+                                <TextBlock FontWeight="Bold"
                                 Margin="5,0,0,0"
                                 Text="{Binding AccommodationName}" 
                                 VerticalAlignment="Center"/>
-                                </StackPanel>
+                            </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1"  Margin="15 0 0 15">
-                                    <Label Content="new date:" FontSize="13" VerticalAlignment="Center" />
-                                    <TextBlock FontWeight="Bold"
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1"  Margin="15 0 0 15">
+                                <Label Content="new date:" FontSize="13" VerticalAlignment="Center" />
+                                <TextBlock FontWeight="Bold"
                                     Margin="5,0,0,0"
                                     Text="{Binding DateString}" 
                                     VerticalAlignment="Center"/>
-                                </StackPanel>
+                            </StackPanel>
 
 
 
@@ -244,11 +245,10 @@
 
 
 
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>
