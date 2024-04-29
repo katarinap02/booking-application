@@ -127,7 +127,7 @@ namespace BookingApp.Repository.FeatureRepository
             return _tours.FindAll(tour => tour.City.ToLower().Equals(city.ToLower()) && tour.Status != TourStatus.Finnished).Where(tour => tour.AvailablePlaces > 0).ToList();
         }
 
-        public List<Tour>? findToursNeedingGuide()
+        public List<Tour>? findToursNeedingGuide() // prebaciti
         {
             List<Tour> allTours = GetAll();
             List<Tour> ret = new List<Tour>();
@@ -141,7 +141,7 @@ namespace BookingApp.Repository.FeatureRepository
             return ret;
         }
 
-        public Tour? UpdateAvailablePlaces(Tour tour, int reducer)
+        public Tour? UpdateAvailablePlaces(Tour tour, int reducer) // prebaciti
         {
             Tour? oldTour = GetTourById(tour.Id);
             if (oldTour == null)
@@ -163,7 +163,7 @@ namespace BookingApp.Repository.FeatureRepository
             return _tours.Count();
         }
 
-        public int FindMaxNumberOfParticipants()
+        public int FindMaxNumberOfParticipants() // prebaciti
         {
             List<Tour> allTours = GetAll();
             if(allTours.Count != 0)
@@ -197,7 +197,7 @@ namespace BookingApp.Repository.FeatureRepository
             tour.currentCheckpoint++;
             _serializer.ToCSV(FilePath, _tours);
         }
-        public List<Tour> findToursByGuideId(int guideId)
+        public List<Tour> findToursByGuideId(int guideId) 
         {
             List<Tour> tours = _serializer.FromCSV(FilePath);
             return tours.FindAll(t => t.GuideId == guideId);
@@ -220,7 +220,7 @@ namespace BookingApp.Repository.FeatureRepository
             return tours;
         }
 
-        public bool isTourFinished(int tourId)
+        public bool isTourFinished(int tourId) // prebaciti
         {
             var tour = GetTourById(tourId);
             if (tour != null)
@@ -232,7 +232,7 @@ namespace BookingApp.Repository.FeatureRepository
             return false;
         }
 
-        public int FindMaxNumberOfParticipants(List<Tour> tours)
+        public int FindMaxNumberOfParticipants(List<Tour> tours) // prebaciti
         {
             if(tours.Count != 0)
             {
@@ -249,7 +249,7 @@ namespace BookingApp.Repository.FeatureRepository
             return 0;
         }
 
-        private int MaxNumberOfParticipants(List<Tour> tours)
+        private int MaxNumberOfParticipants(List<Tour> tours) // prebaciti
         {
             int maxTourists = tours[0].MaxTourists;
             foreach (Tour tour in tours)
