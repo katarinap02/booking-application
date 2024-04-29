@@ -53,6 +53,10 @@ namespace BookingApp.Repository.FeatureRepository
             _serializer.ToCSV(FilePath, _tours);
         }
 
+        public void Save()
+        {
+            _serializer.ToCSV(FilePath, _tours);
+        }
 
         public int NextPersonalId()
         {
@@ -141,17 +145,6 @@ namespace BookingApp.Repository.FeatureRepository
             return ret;
         }
 
-        public Tour? UpdateAvailablePlaces(Tour tour, int reducer) // prebaciti
-        {
-            Tour? oldTour = GetTourById(tour.Id);
-            if (oldTour == null)
-                return null;
-
-            oldTour.AvailablePlaces -= reducer;
-            _serializer.ToCSV(FilePath, _tours);
-            return oldTour;
-        }
-
         public Tour? GetTourById(int id)
         {
             _tours = GetAll(); // ovo da bi procitao nov sadrzaj iz csv-a
@@ -162,17 +155,6 @@ namespace BookingApp.Repository.FeatureRepository
         {
             return _tours.Count();
         }
-
-        public int FindMaxNumberOfParticipants() // prebaciti
-        {
-            List<Tour> allTours = GetAll();
-            if(allTours.Count != 0)
-            {
-                return MaxNumberOfParticipants(allTours);
-            }
-            return 0;
-        }
-
 
         public void finnishTour(int id)
         {
@@ -220,7 +202,7 @@ namespace BookingApp.Repository.FeatureRepository
             return tours;
         }
 
-        public bool isTourFinished(int tourId) // prebaciti
+        public bool isTourFinished(int tourId)
         {
             var tour = GetTourById(tourId);
             if (tour != null)
@@ -230,36 +212,6 @@ namespace BookingApp.Repository.FeatureRepository
                 return false;
             }
             return false;
-        }
-
-        public int FindMaxNumberOfParticipants(List<Tour> tours) // prebaciti
-        {
-            if(tours.Count != 0)
-            {
-                int availablePlaces = tours[0].AvailablePlaces;
-                foreach (Tour tour in tours)
-                {
-                    if (tour.AvailablePlaces > availablePlaces)
-                    {
-                        availablePlaces = tour.AvailablePlaces;
-                    }
-                }
-                return availablePlaces;
-            }
-            return 0;
-        }
-
-        private int MaxNumberOfParticipants(List<Tour> tours) // prebaciti
-        {
-            int maxTourists = tours[0].MaxTourists;
-            foreach (Tour tour in tours)
-            {
-                if (tour.MaxTourists > maxTourists)
-                {
-                    maxTourists = tour.MaxTourists;
-                }
-            }
-            return maxTourists;
         }
 
         public List<string> GetCheckpointsByTour(int tourId)

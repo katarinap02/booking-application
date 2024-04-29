@@ -34,6 +34,11 @@ namespace BookingApp.Application.Services.ReservationServices
             _tourParticipantRepository.SaveParticipant(tourParticipantViewModel.ToTourParticipant(), reservationId);
         }
 
+        public bool IsUserJoined(int reservationId, string touristName, string touristLastName)
+        {
+            return _tourParticipantRepository.IsUserJoined(reservationId, touristName, touristLastName);
+        }
+
         public List<TourParticipant> GetAllJoinedParticipantsByReservation(int reservationId)
         {
             List<TourParticipant> tourParticipants = _tourParticipantRepository.GetAllParticipantsByReservation(reservationId);
