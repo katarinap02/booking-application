@@ -10,16 +10,16 @@ namespace BookingApp.Domain.RepositoryInterfaces.Features
     public interface ITourRepository
     {
         List<Tour> GetAll();
+        List<Tour> GetAllNotFinished();
         void Add(Tour tour);
+        void Save();
         int NextPersonalId();
         int NextId();
         List<Tour>? SearchTours(Tour searchCriteria);
         List<Tour> GetTourByCityWithAvailablePlaces(string city);
         List<Tour>? findToursNeedingGuide();
-        Tour? UpdateAvailablePlaces(Tour tour, int reducer);
         Tour? GetTourById(int id);
         int ToursCount();
-        int FindMaxNumberOfParticipants();
         void finnishTour(int id);
         void activateTour(int id);
         void nextCheckpoint(int id);
@@ -27,7 +27,6 @@ namespace BookingApp.Domain.RepositoryInterfaces.Features
         void save(Tour tour);
         List<Tour> findFinnishedToursByGuide(int guide_id);
         bool isTourFinished(int tourId);
-        int FindMaxNumberOfParticipants(List<Tour> tours);
         List<string> GetCheckpointsByTour(int tourId);
     }
 }

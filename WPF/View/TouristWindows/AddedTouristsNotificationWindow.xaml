@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         mc:Ignorable="d"
         Title="AddedTouristsNotificationWindow" Height="425" Width="480" WindowStartupLocation="CenterScreen">
-    <Grid Background="{StaticResource TouristBackgroundColor1}">
+    <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
@@ -50,7 +50,7 @@
                FontSize="15"
                VerticalAlignment="Bottom"/>
         <ScrollViewer VerticalScrollBarVisibility="Auto"
-                      Style="{StaticResource CustomScrollViewerStyle}"
+                      Style="{StaticResource KeypointsStyle1}"
                       Grid.Column="1"
                       Grid.Row="3"
                       Margin="140, 0">

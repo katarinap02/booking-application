@@ -93,6 +93,7 @@ namespace BookingApp.Repository.ReservationRepository
             return tourParticipants;
         }
 
+        /*
         public List<TourParticipant> GetAllJoinedParticipantsByReservation(int reservationId) //za brisanje 
         {
             List<TourParticipant> tourParticipants = GetAllParticipantsByReservation(reservationId);
@@ -105,7 +106,7 @@ namespace BookingApp.Repository.ReservationRepository
             }
 
             return tourParticipants;
-        }
+        }*/
 
         public List<TourParticipant> GetAllNotJoinedParticipantsByReservation(int reservationId)
         {
@@ -121,7 +122,7 @@ namespace BookingApp.Repository.ReservationRepository
             return tourParticipants;
         }
         
-        public void JoinTour(int participant_id, int current_checkpoint_index)
+        public void JoinTour(int participant_id, int current_checkpoint_index) // prebaciti
         {
             TourParticipant tourParticipant = GetById(participant_id);
             tourParticipant.HasJoinedTour = true;
@@ -137,7 +138,7 @@ namespace BookingApp.Repository.ReservationRepository
             _tourRepository = new TourRepository();
         }
         
-        private void SendNotification(int reservation_id, int checkpoint)
+        private void SendNotification(int reservation_id, int checkpoint) // prebaciti
         {
             InitialiseRepos();
             _notificationRepository = new TouristNotificationRepository();
@@ -148,8 +149,9 @@ namespace BookingApp.Repository.ReservationRepository
             _notificationRepository.Add(notification);
         }
 
-        public bool IsUserJoined(int reservationId, string touristName, string touristLastName)
+        public bool IsUserJoined(int reservationId, string touristName, string touristLastName) // prebaciti mozda
         {
+            _tourParticipants = GetAll(); // ovo da bi procitao nov sadrzaj iz csv-a
             List<TourParticipant> tourParticipants = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
             foreach(TourParticipant tp in tourParticipants){
                 if(tp.Name.Equals(touristName) && tp.LastName.Equals(touristLastName) && tp.HasJoinedTour == true)

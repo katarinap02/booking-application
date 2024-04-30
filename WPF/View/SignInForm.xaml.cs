@@ -4,7 +4,7 @@ using BookingApp.Repository.FeatureRepository;
 using BookingApp.View.GuideTestWindows;
 using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;
-using BookingApp.WPF.ViewModel;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -52,6 +52,24 @@ namespace BookingApp.View
 
         }
 
+        private void Window_MouseDown(object sender, System.Windows.Input.MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == System.Windows.Input.MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
+        private void Minimise_Buton_Click(object sender, RoutedEventArgs e)
+        {
+            WindowState = WindowState.Minimized;
+        }
+
+        private void Close_Buton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
         private void SignIn(object sender, RoutedEventArgs e)
         {
             User user = _repository.GetByUsername(Username);
@@ -82,8 +100,7 @@ namespace BookingApp.View
                         {
                             if (user.Username == "test") // prostor za testiranje prozora
                             {
-                                LoginTestWindow loginTestWindow = new LoginTestWindow();
-                                loginTestWindow.Show();
+                                MessageBox.Show("Treba dodati");
                             }
                             else
                             {

@@ -1,0 +1,691 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+    <SolidColorBrush x:Key="TouristBackgroundColor1" Color="#A6CEDA"/>
+    <LinearGradientBrush x:Key="TouristBackgroundColor1Linear" StartPoint="0,1" EndPoint="0,0">
+        <GradientStop Offset="1" Color="#A6CEDA" />
+        <GradientStop Offset="0" Color="#8AB9C5" />
+    </LinearGradientBrush>
+
+    <!--Menu Colors-->
+    <Color x:Key="MenuColor1">#136685</Color>
+    <Color x:Key="MenuColor2">#0c3f52</Color>
+    <Color x:Key="MenuColor3">#06232e</Color>
+    <LinearGradientBrush x:Key="MenuBackgroundColor1" StartPoint="0,2" EndPoint="1,1">
+        <GradientStop Offset="0.1" Color="{StaticResource MenuColor2}" />
+        <GradientStop Offset="3" Color="{StaticResource MenuColor1}" />
+    </LinearGradientBrush>
+
+    <!--Frame Colors-->
+    <Color x:Key="FrameColor1">#BFB517</Color>
+    <Color x:Key="FrameColor2">#BFA417</Color>
+
+    <SolidColorBrush x:Key="ButtonColor1" Color="#DB375A"/>
+    <Color x:Key="ButtonColor1Press">#9E2C49</Color>
+    <Color x:Key="ButtonColor1C">#DB375A</Color>
+
+    <SolidColorBrush x:Key="ButtonColor2" Color="#C23050"/>
+    <Color x:Key="ButtonColor2Press">#9E2C49</Color>
+    <Color x:Key="ButtonColor2C">#C23050</Color>
+
+    <LinearGradientBrush x:Key="FrameBackgroundColor1" StartPoint="0,0" EndPoint="1,0">
+        <GradientStop Offset="1.3" Color="{StaticResource FrameColor2}" />
+        <GradientStop Offset="0.18" Color="{StaticResource FrameColor1}" />
+        <GradientStop Offset="-0.0" Color="{StaticResource MenuColor2}" />
+    </LinearGradientBrush>
+    
+    <!--Window Colors-->
+    <Color x:Key="WindowColor1">#BFB517</Color>
+    <Color x:Key="WindowColor2">#9E9513</Color>
+    <RadialGradientBrush x:Key="WindowBackgroundColor1">
+        <GradientStop Offset="1.1" Color="{StaticResource WindowColor2}" />
+        <GradientStop Offset="0.5" Color="{StaticResource WindowColor1}" />
+    </RadialGradientBrush>
+   
+
+
+
+    <SolidColorBrush x:Key="TouristBackgroundColor2" Color="#4CB9DA"/>
+    <SolidColorBrush x:Key="TouristGroundColor1" Color="#58DBD0"/>
+    <SolidColorBrush x:Key="TouristGroundColor2" Color="#42BC87"/>
+    <SolidColorBrush x:Key="TouristTextColor1" Color="#4C5FD9"/>
+    <SolidColorBrush x:Key="TouristTextColor2" Color="#4C8BD9"/>
+
+
+    <Style x:Key="MenuBtnStyle"
+       TargetType="RadioButton">
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+
+                    <Border x:Name="border"
+                        Height="90"
+                        Width="500"
+                        BorderThickness="0">
+
+                        <Border.Background>
+                            <SolidColorBrush x:Name="BorderBackground"
+                                         Color="{StaticResource MenuColor2}" />
+                        </Border.Background>
+
+                        <Grid>
+
+                            <Border x:Name="Indicator"
+                                Height="35"
+                                Width="4"
+                                HorizontalAlignment="Left"
+                                VerticalAlignment="Center"
+                                Background="#FFFFFF"
+                                Visibility="Collapsed"
+                                CornerRadius="2" />
+
+                            <ContentPresenter />
+
+                        </Grid>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver"
+                             Value="True">
+
+                            <Setter Property="Visibility"
+                                TargetName="Indicator"
+                                Value="Visible" />
+
+                        </Trigger>
+
+                        <EventTrigger RoutedEvent="Border.MouseEnter"
+                                  SourceName="border">
+
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                Storyboard.TargetProperty="Color"
+                                                From="{StaticResource MenuColor2}"
+                                                To="{StaticResource MenuColor1}"
+                                                Duration="0:0:0.3" />
+                                </Storyboard>
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <EventTrigger RoutedEvent="Border.MouseLeave"
+                                  SourceName="border">
+
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="BorderBackground"
+                                                Storyboard.TargetProperty="Color"
+                                                From="{StaticResource MenuColor1}"
+                                                To="{StaticResource MenuColor2}"
+                                                Duration="0:0:0.3" />
+                                </Storyboard>
+                            </BeginStoryboard>
+
+                        </EventTrigger>
+
+                        <Trigger Property="IsChecked"
+                             Value="True">
+
+                            <Setter Property="Background"
+                                TargetName="border"
+                                Value="#06232e" />
+
+                            <Setter Property="Visibility"
+                                TargetName="Indicator"
+                                Value="Visible" />
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+    <Style x:Key="TooltipStyle" TargetType="ToggleButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ToggleButton">
+                    <Grid>
+                        <Border x:Name="SwitchBackground" Background="LightGray" CornerRadius="15"/>
+                        <Ellipse x:Name="SwitchThumb" Fill="White" Width="25" Height="25" HorizontalAlignment="Left">
+                            <Ellipse.RenderTransform>
+                                <TranslateTransform X="0"/>
+                            </Ellipse.RenderTransform>
+                        </Ellipse>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsChecked" Value="True">
+                            <Setter TargetName="SwitchBackground" Property="Background" Value="Green"/>
+                            <Setter TargetName="SwitchThumb" Property="Margin" Value="17,0,0,0"/>
+                        </Trigger>
+                        <Trigger Property="IsChecked" Value="False">
+                            <Setter TargetName="SwitchBackground" Property="Background" Value="LightGray"/>
+                            <Setter TargetName="SwitchThumb" Property="Margin" Value="3,0,0,0"/>
+                        </Trigger>
+                        <EventTrigger RoutedEvent="ToggleButton.Checked">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="SwitchThumb" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)" To="15" Duration="0:0:0.3">
+                                        <DoubleAnimation.EasingFunction>
+                                            <CircleEase/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="ToggleButton.Unchecked">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="SwitchThumb" Storyboard.TargetProperty="RenderTransform.(TranslateTransform.X)" To="0" Duration="0:0:0.3">
+                                        <DoubleAnimation.EasingFunction>
+                                            <CircleEase/>
+                                        </DoubleAnimation.EasingFunction>
+                                    </DoubleAnimation>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="Page">
+        <Setter Property="Background" Value="White" />
+
+    </Style>
+
+    <Style TargetType="Button" x:Key="NotificationIconButton">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border x:Name="border" Background="Transparent" CornerRadius="50" Width="40" Height="40">
+                            <Border.RenderTransform>
+                                <ScaleTransform ScaleX="1" ScaleY="1"/>
+                            </Border.RenderTransform>
+                            <Image Source="/WPF/Resources/Images/notificationtourist.png" Width="45" Height="45" Stretch="Uniform"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="border" Property="Opacity" Value="0.7"/>
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleX)"
+                                             From="1" To="1.2" Duration="0:0:0.1" AutoReverse="True" RepeatBehavior="2x"/>
+                                        <DoubleAnimation Storyboard.TargetName="border" Storyboard.TargetProperty="(Border.RenderTransform).(ScaleTransform.ScaleY)"
+                                             From="1" To="1.2" Duration="0:0:0.1" AutoReverse="True" RepeatBehavior="2x"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="border" Property="Opacity" Value="1"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SearchButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ButtonColor1}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Grid>
+                        <Border x:Name="ButtonBorder"
+                    Background="{TemplateBinding Background}"
+                    BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="5"
+                    Padding="{TemplateBinding Padding}"
+                    SnapsToDevicePixels="True">
+                            <Image Source="/WPF/Resources/Images/searchtourist.png" Stretch="Uniform" Margin="0"/>
+                        </Border>
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="ButtonBorder" 
+                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                        To="{StaticResource ButtonColor1Press}" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <ColorAnimation Storyboard.TargetName="ButtonBorder" 
+                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                        To="{StaticResource ButtonColor1C}" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter Property="Opacity" Value="0.5"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="EnlargeButtonStyle" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ButtonColor1}"/>
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="5"
+                Padding="{TemplateBinding Padding}"
+                SnapsToDevicePixels="True">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                         To="1.1" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                         To="1.1" Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="ButtonBorder" 
+                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                        To="{StaticResource ButtonColor1Press}" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                         To="1" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                         To="1" Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="ButtonBorder"
+                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                        To="{StaticResource ButtonColor1C}" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="EnlargeButtonStyle1" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource ButtonColor2}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="5"
+                Padding="{TemplateBinding Padding}"
+                SnapsToDevicePixels="True">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                         To="1.1" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                         To="1.1" Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="ButtonBorder" 
+                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                        To="{StaticResource ButtonColor2Press}" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                         To="1" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                         To="1" Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="ButtonBorder" 
+                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                        To="{StaticResource ButtonColor2C}" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="EnlargeButtonStyleForNotification" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource TouristTextColor2}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="5"
+                Padding="{TemplateBinding Padding}"
+                SnapsToDevicePixels="True">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding NotificationType}" Value="JoinedTour">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                         To="1.1" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                         To="1.1" Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="ButtonBorder" 
+                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                        To="#4C5FD9" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                         To="1" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                         Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                         To="1" Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="ButtonBorder" 
+                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                        To="#4C8BD9" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="EnlargeButtonStyleForRate" TargetType="Button">
+        <Setter Property="Background" Value="{StaticResource TouristTextColor2}"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="Visibility" Value="Collapsed"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border x:Name="ButtonBorder"
+        Background="{TemplateBinding Background}"
+        BorderBrush="{TemplateBinding BorderBrush}"
+        BorderThickness="{TemplateBinding BorderThickness}"
+        CornerRadius="5"
+        Padding="{TemplateBinding Padding}"
+        SnapsToDevicePixels="True">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding }" Value="JoinedTour">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <EventTrigger RoutedEvent="MouseEnter">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                 To="1.1" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                 To="1.1" Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="ButtonBorder" 
+                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                To="#4C5FD9" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                        <EventTrigger RoutedEvent="MouseLeave">
+                            <BeginStoryboard>
+                                <Storyboard>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleX)"
+                                 To="1" Duration="0:0:0.2"/>
+                                    <DoubleAnimation Storyboard.TargetName="ButtonBorder" 
+                                 Storyboard.TargetProperty="(UIElement.RenderTransform).(ScaleTransform.ScaleY)"
+                                 To="1" Duration="0:0:0.2"/>
+                                    <ColorAnimation Storyboard.TargetName="ButtonBorder" 
+                                Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                To="#4C8BD9" Duration="0:0:0.2"/>
+                                </Storyboard>
+                            </BeginStoryboard>
+                        </EventTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <!--Tour Details Colors-->
+    <SolidColorBrush x:Key="TourDetailsColor1" Color="#E6D81C"/>
+    <Color x:Key="TourDetailsColor1C">#E6D81C</Color>
+    <Color x:Key="TourDetailsColor1Pressed">#E3E0AF</Color>
+    
+    <Style x:Key="TourDetailsLabel1" TargetType="Label">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="{StaticResource TourDetailsColor1}"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="5"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Label">
+                    <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
+                                      VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+                                      Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border" 
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    To="{StaticResource TourDetailsColor1Pressed}" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border" 
+                                                    Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                    To="{StaticResource TourDetailsColor1C}" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="KeypointsStyle1" TargetType="ScrollViewer">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="{StaticResource TourDetailsColor1}"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Margin" Value="4"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Top"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollViewer">
+                    <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" 
+                BorderBrush="{TemplateBinding BorderBrush}" 
+                Background="{TemplateBinding Background}">
+                        <ScrollContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
+                                    VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+                                    Margin="{TemplateBinding Padding}" 
+                                    ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Trigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border" 
+                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                            To="{StaticResource TourDetailsColor1Pressed}" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.EnterActions>
+                            <Trigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <ColorAnimation Storyboard.TargetName="border" 
+                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                            To="{StaticResource TourDetailsColor1C}" Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </Trigger.ExitActions>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CustomLabelStyle2" TargetType="Label">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="20"/>
+        <Setter Property="Padding" Value="5"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="BorderBrush" Value="Gray"/>
+        <Setter Property="Margin" Value="8"/>
+        <Setter Property="HorizontalAlignment" Value="Left"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Label">
+                    <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" 
+                        BorderBrush="{TemplateBinding BorderBrush}" 
+                        Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
+                                      VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+                                      Margin="{TemplateBinding Padding}"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
+
+    <Style x:Key="CoolDataGridStyle" TargetType="DataGrid">
+        <Setter Property="AlternatingRowBackground" Value="#E8E6A5" />
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="ColumnHeaderStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#40282D"/>
+                    <Setter Property="Foreground" Value="WhiteSmoke"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CellStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CoolDataGridStyle1" TargetType="DataGrid">
+        <Setter Property="AlternatingRowBackground" Value="#E8E6A5" />
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="ColumnHeaderStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="Foreground" Value="Transparent"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CellStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

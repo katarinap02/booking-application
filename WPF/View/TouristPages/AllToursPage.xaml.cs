@@ -17,7 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BookingApp.WPF.ViewModel;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -62,6 +62,36 @@ namespace BookingApp.View.TouristWindows
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
         {
             Tour.NotificationButton();
+        }
+
+        private void CountrySearch_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CountrySearch_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CountrySearch.Focus();
+        }
+
+        private void Search_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Search_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Tour.SearchButton();
+        }
+
+        private void Reset_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Reset_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Tour.ResetButton();
         }
     }
 }

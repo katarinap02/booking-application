@@ -16,7 +16,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BookingApp.WPF.ViewModel;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -52,13 +52,6 @@ namespace BookingApp.View.TouristWindows
             if(TourReservation.Book())
                 Close();
         }
-
-        private void AddParticipantButton_Click(object sender, RoutedEventArgs e)
-        {
-            TourReservation.AddParticipant();
-        }
-
-
 
         private void removeParticipant_Click(object sender, RoutedEventArgs e)
         {

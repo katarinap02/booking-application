@@ -8,6 +8,12 @@
       d:DesignHeight="705" d:DesignWidth="1024"
       Title="GuestRatePage">
     <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,2" EndPoint="1,1">
+                <GradientStop Color="#47D2E8" Offset="0.1"/>
+                <GradientStop Color="#FFD7F2" Offset="0.9"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="70" />
             <RowDefinition Height="*" />
@@ -23,7 +29,7 @@
     VerticalAlignment="Center"
     HorizontalAlignment="Center"
     Content="Guest ratings"
-    FontSize="32"
+    Style="{StaticResource TitleStyleHost}"
      />
 
 
@@ -50,85 +56,96 @@
             Content="Rating"
             HorizontalAlignment="Center"
             FontSize="24"
+            Style="{StaticResource LableStyleHost}"
             
              />
             <StackPanel Grid.Row ="1" Grid.Column="1" Orientation="Horizontal" Margin="50 0 0 0" HorizontalAlignment="Left" >
                 <Label
                 x:Name="CleanlinessLabel"
-                    FontSize="15"
+                Style="{StaticResource LableStyleHost}"
                 Content="cleanliness" Height="29" 
                 Margin="3 0 35 0"/>
                 <RadioButton x:Name="radioButtonCleanliness1" GroupName="TypeButton" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="True"></RadioButton>
                 <Label
                     x:Name="Cleanliness1Label"
                     Content="1" Height="29" 
+                    Style="{StaticResource LableStyleHost}"
                     Margin="3 0 10 0"/>
                 <RadioButton x:Name="radioButtonCleanliness2" GroupName="TypeButton"  VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding guestRateViewModel.IsChecked2}"></RadioButton>
                 <Label
                     x:Name="Cleanliness2Label"
+                    Style="{StaticResource LableStyleHost}"
                     Content="2" Height="29" 
                     Margin="3 0 10 0"/>
                 <RadioButton x:Name="radioButtonCleanliness3"  GroupName="TypeButton" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding guestRateViewModel.IsChecked3}" ></RadioButton>
                 <Label
                     x:Name="Cleanliness3eLabel"
                     Content="3" Height="29"
+                    Style="{StaticResource LableStyleHost}"
                     Margin="3 0 10 0"/>
                 <RadioButton x:Name="radioButtonCleanliness4"  GroupName="TypeButton" IsChecked="{Binding guestRateViewModel.IsChecked4}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
                 <Label
                     x:Name="Cleanliness4eLabel"
                     Content="4" Height="29" 
+                    Style="{StaticResource LableStyleHost}"
                     Margin="3 0 10 0"/>
                 <RadioButton x:Name="radioButtonCleanliness5" GroupName="TypeButton" IsChecked="{Binding guestRateViewModel.IsChecked5}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
                 <Label
                 x:Name="Cleanliness5eLabel"
                 Content="5" Height="29" 
+                    Style="{StaticResource LableStyleHost}"
                 Margin="3 0 5 0"/>
                         </StackPanel>
             <StackPanel Grid.Row ="3" Grid.Column="1" Orientation="Horizontal" Margin="50 0 0 0" HorizontalAlignment="Left" >
                 <Label
                  x:Name="RulesLabel"
-                     FontSize="15"
+                 Style="{StaticResource LableStyleHost}"
                  Content="rules following" Height="29" 
                  Margin="3 0 9 0"/>
                 <RadioButton x:Name="radioButtonRuless1" GroupName="TypeButtonRules" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="True"></RadioButton>
                 <Label
          x:Name="Rules1Label"
          Content="1" Height="29" 
+                    Style="{StaticResource LableStyleHost}"
          Margin="3 0 10 0"/>
                 <RadioButton x:Name="radioButtonRules2" GroupName="TypeButtonRules"  VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding guestRateViewModel.IsCheckedRules2}"></RadioButton>
                 <Label
          x:Name="Rules2Label"
          Content="2" Height="29" 
+                    Style="{StaticResource LableStyleHost}"
          Margin="3 0 10 0"/>
                 <RadioButton x:Name="radioButtonRules3"  GroupName="TypeButtonRules" IsChecked="{Binding guestRateViewModel.IsCheckedRules3}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
                 <Label
          x:Name="Rules3eLabel"
          Content="3" Height="29"
+                    Style="{StaticResource LableStyleHost}"
          Margin="3 0 10 0"/>
                 <RadioButton x:Name="radioButtonRules4"  GroupName="TypeButtonRules" IsChecked="{Binding guestRateViewModel.IsCheckedRules4}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
                 <Label
          x:Name="Rules4eLabel"
          Content="4" Height="29" 
+                    Style="{StaticResource LableStyleHost}"
          Margin="3 0 10 0"/>
                 <RadioButton x:Name="radioButtonRules5" GroupName="TypeButtonRules" IsChecked="{Binding guestRateViewModel.IsCheckedRules5}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
                 <Label
      x:Name="Ruless5eLabel"
      Content="5" Height="29" 
+                    Style="{StaticResource LableStyleHost}"
      Margin="3 0 5 0"/>
             </StackPanel>
 
 
             <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="50 0 0 0">
                 <StackPanel>
-                    <TextBlock Text="additional" FontSize="15" VerticalAlignment="Top" Margin="5,0,0,0" />
-                    <TextBlock Text="comment" FontSize="15" VerticalAlignment="Top" Margin="5,0,0,0" />
+                    <TextBlock Text="additional" Style="{StaticResource TextBlockHost}" VerticalAlignment="Top" Margin="5,0,0,0" />
+                    <TextBlock Text="comment" Style="{StaticResource TextBlockHost}" FontSize="15" VerticalAlignment="Top" Margin="5,0,0,0" />
                 </StackPanel>
-                <TextBox x:Name="CommentTextBox" Width="360" Height="118" Margin="15 0 0 0"  Text="{Binding Path= guestRateViewModel.AdditionalComment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+                <TextBox x:Name="CommentTextBox" Style="{StaticResource TextBoxStyleHost}" Width="360" Height="118" Margin="15 0 0 0"  Text="{Binding Path= guestRateViewModel.AdditionalComment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
             </StackPanel>
 
             
             <StackPanel Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                <Button Content="Rate guest" Click="Save_Click" FontSize="15" Width="110" Height="45" Margin="0 0 0 0">
+                <Button Content="Rate guest" Style="{StaticResource ButtonStyleHost}" Command="{Binding SaveCommand}" FontSize="15" Width="110" Height="45" Margin="0 0 0 0">
                 </Button>
                 
             </StackPanel>
@@ -137,13 +154,14 @@
 
         </Grid>
 
-        <StackPanel Grid.Row="1">
-            <Label Content="select guest" FontSize="15"  VerticalAlignment="Center" FontWeight="Bold" Margin="25 10 0 0">
+       
+            <Label Content="select guest" Style="{StaticResource LableStyleHost}" VerticalAlignment="Top" Grid.Row="1" FontWeight="Bold" Margin="25 10 0 0">
 
-            </Label>
-            <ListView
+                </Label>
+        <ListView
                 x:Name="AccommodationsListView"
-                Margin="25,10,30,40"
+                Margin="25,50,0,30"
+            Grid.Row="1"
                 Padding="0"
                 Background="Transparent"
                 BorderThickness="0"
@@ -151,70 +169,74 @@
                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                 SelectedItem="{Binding SelectedAccommodation}"
                 SelectionMode="Single">
-                <ListView.ItemContainerStyle>
-                    <Style TargetType="ListViewItem">
-                        <Setter Property="Background" Value="White" />
-                        <Setter Property="Padding" Value="0" />
-                        <Setter Property="Margin" Value="0,5,5,5" />
-                        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-                    </Style>
-                </ListView.ItemContainerStyle>
-                <ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Border
-            BorderBrush="Gray"
-            BorderThickness="1"
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Padding" Value="0" />
+                    <Setter Property="Margin" Value="0,5,5,5" />
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+                </Style>
+            </ListView.ItemContainerStyle>
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border
+            BorderBrush="#A0CCED"
+            BorderThickness="4"
             CornerRadius="5">
-                            <Grid Height="Auto" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="150" />
-                                    <ColumnDefinition Width="*" />
-                                </Grid.ColumnDefinitions>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
-                                    <RowDefinition Height="*" />
+                        <Grid Height="Auto" >
+                            <Grid.Background>
+                                <LinearGradientBrush StartPoint="0,2" EndPoint="1,1">
+                                    <GradientStop Color="White" Offset="0.1"/>
+                                </LinearGradientBrush>
+                            </Grid.Background>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
+                                <RowDefinition Height="*" />
 
-                                </Grid.RowDefinitions>
+                            </Grid.RowDefinitions>
 
-                                <Image
+                            <Image
                                     Grid.Row="0"
                                     Grid.RowSpan="4"
                                     Grid.Column="0"
                                     Height="100"
                                     Margin="10"
                                     VerticalAlignment="Center">
-                                    <Image.Style>
-                                        <Style TargetType="Image">
-                                            <Setter Property="Source" Value="{Binding OnePicture}" />
-                                        </Style>
-                                    </Image.Style>
-                                </Image>
-                                
-                                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="15 15 0 0">
-                                    <Label Content="guest username:" FontSize="13" VerticalAlignment="Center" />
-                                    <TextBlock FontWeight="Bold"
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Source" Value="{Binding OnePicture}" />
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+
+                            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="15 15 0 0">
+                                <Label Content="guest username:" FontSize="13" VerticalAlignment="Center" />
+                                <TextBlock FontWeight="Bold"
                                 Margin="5,0,0,0"
                                 Text="{Binding GuestUsername}" 
                                 VerticalAlignment="Center"/>
-                                </StackPanel>
+                            </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1"  Margin="15 0 0 0">
-                                    <Label Content="accommodation:" FontSize="13" VerticalAlignment="Center" />
-                                    <TextBlock FontWeight="Bold"
+                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1"  Margin="15 0 0 0">
+                                <Label Content="accommodation:" FontSize="13" VerticalAlignment="Center" />
+                                <TextBlock FontWeight="Bold"
                                 Margin="5,0,0,0"
                                 Text="{Binding AccommodationName}" 
                                 VerticalAlignment="Center"/>
-                                </StackPanel>
+                            </StackPanel>
 
-                                <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1"  Margin="15 0 0 15">
-                                    <Label Content="new date:" FontSize="13" VerticalAlignment="Center" />
-                                    <TextBlock FontWeight="Bold"
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1"  Margin="15 0 0 15">
+                                <Label Content="new date:" FontSize="13" VerticalAlignment="Center" />
+                                <TextBlock FontWeight="Bold"
                                     Margin="5,0,0,0"
                                     Text="{Binding DateString}" 
                                     VerticalAlignment="Center"/>
-                                </StackPanel>
+                            </StackPanel>
 
 
 
@@ -223,11 +245,10 @@
 
 
 
-                            </Grid>
-                        </Border>
-                    </DataTemplate>
-                </ListView.ItemTemplate>
-            </ListView>
-        </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </Grid>
 </Page>

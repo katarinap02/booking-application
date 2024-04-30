@@ -12,7 +12,6 @@ namespace BookingApp.View.GuideTestWindows
         public RandomTest()
         {
             InitializeComponent();
-            //AnimatePaperCircle();
         }
 
         

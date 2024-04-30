@@ -1,5 +1,4 @@
-﻿using BookingApp.WPF.ViewModel;
-using BookingApp.Domain.Model;
+﻿using BookingApp.Domain.Model;
 using BookingApp.Application.Services;
 using BookingApp.Repository;
 using System;
@@ -17,6 +16,7 @@ using BookingApp.Repository.FeatureRepository;
 using BookingApp.Repository.ReservationRepository;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 
 namespace BookingApp.Application.Services.FeatureServices
 {
@@ -40,17 +40,21 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public List<Tour> GetAllTours()
         {
-            return _tourRepository.GetAll();
+            return _tourRepository.GetAllNotFinished();
+        }
+        public Tour GetTourById(int tourId)
+        {
+            return _tourRepository.GetTourById(tourId);
         }
 
         public int FindMaxNumberOfParticipants()
         {
-            return _tourRepository.FindMaxNumberOfParticipants();
-        }
-
-        public int FindMaxNumberOfParticipants(List<Tour> tours)
-        {
-            return _tourRepository.FindMaxNumberOfParticipants(tours);
+            List<Tour> allTours = _tourRepository.GetAll();
+            if (allTours.Count != 0)
+            {
+                return MaxNumberOfParticipants(allTours);
+            }
+            return 0;
         }
 
         public List<Tour>? SearchTours(Tour searchCriteria)
@@ -65,19 +69,38 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public Tour UpdateAvailablePlaces(TourViewModel tour, int reducer)
         {
-            return _tourRepository.UpdateAvailablePlaces(tour.ToTour(), reducer);
+            Tour? oldTour = _tourRepository.GetTourById(tour.Id);
+            if (oldTour == null)
+                return null;
+
+            oldTour.AvailablePlaces -= reducer;
+            _tourRepository.Save();
+            return oldTour;
         }
 
-        public List<Tour> FindMyTours(int id)
+        private int MaxNumberOfParticipants(List<Tour> tours)
         {
-            Tourist tourist = _touristService.GetTouristById(id);
-            return _tourReservationService.FindMyTours(id, tourist.Name, tourist.LastName);
+            int maxTourists = tours[0].MaxTourists;
+            foreach (Tour tour in tours)
+            {
+                if (tour.MaxTourists > maxTourists)
+                {
+                    maxTourists = tour.MaxTourists;
+                }
+            }
+            return maxTourists;
         }
 
-        public List<Tour> FindMyEndedTours(int id)
+        public List<Tour> FindMyTours(int touristId)
         {
-            Tourist tourist = _touristService.GetTouristById(id);
-            return _tourReservationService.FindMyEndedTours(id, tourist.Name, tourist.LastName);
+            Tourist tourist = _touristService.GetTouristById(touristId);
+            return _tourReservationService.FindMyTours(touristId, tourist.Name, tourist.LastName);
+        }
+
+        public List<Tour> FindMyEndedTours(int touristId)
+        {
+            Tourist tourist = _touristService.GetTouristById(touristId);
+            return _tourReservationService.FindMyEndedTours(touristId, tourist.Name, tourist.LastName);
         }
 
 

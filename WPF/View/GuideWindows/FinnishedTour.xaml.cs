@@ -8,68 +8,25 @@ using System.Threading.Tasks;
 using System.Windows;
 
 using BookingApp.Application.Services;
-
-using BookingApp.WPF.ViewModel;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using System.ComponentModel;
+using BookingApp.WPF.ViewModel.GuideViewModel;
 
 namespace BookingApp.View.GuideWindows
 {
     public partial class FinnishedTour : Window
     {
-        private readonly TourService TourService;
-        public User Guide { get; set; }
-        public TourViewModel SelectedTour { get; set; }
-        public ObservableCollection<TourViewModel> TourViewModels;
+        FinnishedTourWindowViewModel viewModel { get; set; }
 
         public FinnishedTour(User guide)
         {
             InitializeComponent();
-            DataContext = this;
-            TourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
-            Guide = guide;
-            SelectedTour = new TourViewModel();
-            TourViewModels = new ObservableCollection<TourViewModel>();
-            getGridData();
+            viewModel = new FinnishedTourWindowViewModel(guide);
+            DataContext = viewModel;
         }
-
-        public void getGridData()
-        {
-            List<Tour> tours = TourService.findFinnishedToursByGuide(Guide.Id);
-            foreach (Tour tour in tours)
-            {
-                TourViewModels.Add(new TourViewModel(tour));
-            }
-            ToursDataGrid.ItemsSource = TourViewModels;
-        }
-
-        private void Stats_Click(object sender, RoutedEventArgs e)
-        {
-            if(ToursDataGrid.SelectedItem != null)
-            {
-                SelectedTour = (TourViewModel)ToursDataGrid.SelectedItem;
-                TourStatsWindow tourStatsWindow1 = new TourStatsWindow(SelectedTour.Id);
-                tourStatsWindow1.Show(); //puca ovde
-            }
-            else
-            {
-                MessageBox.Show("No tour is selected!");
-            }
-        }
-
-        private void Review_Click(object sender, RoutedEventArgs e)
-        {
-            if (ToursDataGrid.SelectedItem != null)
-            {
-                SelectedTour = (TourViewModel)ToursDataGrid.SelectedItem;
-                ReviewsWindow reviewsWindow = new ReviewsWindow(SelectedTour.Id);
-                reviewsWindow.Show();
-            }
-            else
-            {
-                MessageBox.Show("No tour is selected!");
-            }
-        }
+        
     }
 }

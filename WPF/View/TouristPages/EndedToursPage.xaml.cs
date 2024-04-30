@@ -16,7 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using BookingApp.WPF.ViewModel;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -54,5 +54,6 @@ namespace BookingApp.View.TouristWindows
         {
             Tour.NotificationButton();
         }
+
     }
 }

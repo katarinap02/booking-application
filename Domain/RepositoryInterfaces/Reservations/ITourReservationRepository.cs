@@ -17,9 +17,7 @@ namespace BookingApp.Domain.RepositoryInterfaces.Reservations
         List<TourParticipant> GetNotJoinedReservations(int tour_id);
         TourReservation GetById(int reservation_id);
         void saveReservation(Tour selectedTour, int userId);
-        List<Tour> FindMyTours(int id, string touristName, string touristLastName);
-        List<Tour> FindToursForUserByReservation(int id, string touristName, string touristLastName);
-        List<Tour> FindMyEndedTours(int id, string touristName, string touristLastName);
+        List<TourReservation> FindReservationsByTouristId(int id);
         List<TourReservation> FindReservationsByUserIdAndTourId(int tourId, int userId);
         int getTouristParticipantID(int tour_id);
         TourReservation FindReservationByTouristIdAndTourId(int userId, int tourId);

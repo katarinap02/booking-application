@@ -20,7 +20,6 @@ namespace BookingApp.Repository.ReservationRepository
 
         private List<TourReservation> _tourReservations;
         private static readonly TourParticipantRepository _tourparticipantRepository = new TourParticipantRepository();
-        private static readonly TourRepository _tourRepository = new TourRepository();
 
         public TourReservationRepository()
         {
@@ -87,35 +86,12 @@ namespace BookingApp.Repository.ReservationRepository
             Add(tourReservation);
         }
 
-        public List<Tour> FindMyTours(int id, string touristName, string touristLastName)
+        public List<TourReservation> FindReservationsByTouristId(int id)
         {
-            return FindToursForUserByReservation(id, touristName, touristLastName).FindAll(t => t.Status != TourStatus.Finnished);
-        }
-
-        public List<Tour> FindToursForUserByReservation(int id, string touristName, string touristLastName)
-        {
+            _tourReservations = GetAll(); // ovo da bi procitao nov sadrzaj iz csv-a
             List<TourReservation> tourReservations = _tourReservations.FindAll(res => res.TouristId == id);
 
-            List<Tour> tours = new List<Tour>();
-
-
-            foreach (TourReservation tourReservation in tourReservations)
-            {
-                
-                // daj mi turu koja je sa tim tourId-jem, ali mora bar jedan participant da se prikljucio turi
-                if (_tourRepository.GetTourById(tourReservation.TourId) != null && _tourparticipantRepository.IsUserJoined(tourReservation.Id, touristName, touristLastName))
-                {
-                    tours.Add(_tourRepository.GetTourById(tourReservation.TourId));
-                }
-
-            }
-            return tours;
-        }
-
-
-        public List<Tour> FindMyEndedTours(int id, string touristName, string touristLastName)
-        {
-            return FindToursForUserByReservation(id, touristName, touristLastName).FindAll(t => t.Status == TourStatus.Finnished);
+            return tourReservations;
         }
 
         public List<TourReservation> FindReservationsByUserIdAndTourId(int tourId, int userId)

@@ -1,9 +1,6 @@
 ﻿using BookingApp.Observer;
 using BookingApp.Repository;
-using BookingApp.View.GuestWindows;
 using BookingApp.View.HostPages;
-using BookingApp.View.HostPages.RatePages;
-using BookingApp.View.HostWindows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -30,13 +27,13 @@ namespace BookingApp.View
     public partial class HostWindow : Window
     {
         
-        public HostPageViewModel hostPageViewModel { get; set; }
+        public HostWindowViewModel hostPageViewModel { get; set; }
 
         public HostWindow(User user)
         {
 
             InitializeComponent();
-            hostPageViewModel = new HostPageViewModel(user, HostFrame, LeftDock, RatingPanel);
+            hostPageViewModel = new HostWindowViewModel(user, HostFrame, LeftDock, RatingPanel, RenovationPanel);
             DataContext = hostPageViewModel;
 
         }
@@ -80,6 +77,16 @@ namespace BookingApp.View
         private void RateGuest_Click(object sender, RoutedEventArgs e)
         {
             hostPageViewModel.RateGuest_Click(sender, e);
+        }
+
+        private void Renovation_Click(object sender, RoutedEventArgs e)
+        {
+            hostPageViewModel.Renovation_Click(sender, e);
+        }
+
+        private void Schedule_Click(object sender, RoutedEventArgs e)
+        {
+            hostPageViewModel.ScheduleRenovation_Click(sender, e);
         }
     }
 }

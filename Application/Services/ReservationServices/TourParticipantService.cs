@@ -3,7 +3,7 @@ using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
 using BookingApp.Repository.ReservationRepository;
-using BookingApp.WPF.ViewModel;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -32,6 +32,11 @@ namespace BookingApp.Application.Services.ReservationServices
         public void saveParticipant(TourParticipantViewModel tourParticipantViewModel, int reservationId)
         {
             _tourParticipantRepository.SaveParticipant(tourParticipantViewModel.ToTourParticipant(), reservationId);
+        }
+
+        public bool IsUserJoined(int reservationId, string touristName, string touristLastName)
+        {
+            return _tourParticipantRepository.IsUserJoined(reservationId, touristName, touristLastName);
         }
 
         public List<TourParticipant> GetAllJoinedParticipantsByReservation(int reservationId)

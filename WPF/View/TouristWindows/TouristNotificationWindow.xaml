@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         mc:Ignorable="d"
         Title="TouristNotificationWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
-    <Grid>
+    <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
             <ColumnDefinition Width="*"/>
@@ -33,14 +33,14 @@
                   CanUserAddRows="False"
                   Style="{StaticResource CoolDataGridStyle1}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding}"/>
+                <DataGridTextColumn Binding="{Binding}" />
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Details"
                                     Click="DetailsButton_Click" Width="78" Height="28"
                                     FontSize="18"
-                                    Style="{StaticResource EnlargeButtonStyleForNotification}">
+                                    Style="{StaticResource EnlargeButtonStyle1}">
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

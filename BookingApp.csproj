@@ -35,7 +35,13 @@
     <None Remove="WPF\Resources\Images\plus.png" />
     <None Remove="WPF\Resources\Images\rome1.jpg" />
     <None Remove="WPF\Resources\Images\search.png" />
+
     <None Remove="WPF\Resources\Images\Unknown_person.jpg" />
+
+    <None Remove="WPF\Resources\LoginImages\icon.png" />
+    <None Remove="WPF\Resources\LoginImages\key.png" />
+    <None Remove="WPF\Resources\LoginImages\login_background.jpg" />
+
 
   </ItemGroup>
 
@@ -131,17 +137,28 @@
     <Content Include="WPF\Resources\Images\view.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="WPF\Resources\LoginImages\icon.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WPF\Resources\LoginImages\key.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0" />
     <PackageReference Include="LiveCharts" Version="0.9.7" />
     <PackageReference Include="LiveCharts.WinForms" Version="0.9.7.1" />
+    <PackageReference Include="MVVMLight.Messaging" Version="1.0.0" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
   </ItemGroup>
 
   <ItemGroup>
+
+    <Content Include="WPF\Resources\LoginImages\login_background.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
 
     <Resource Include="WPF\View\Guest\GuestThemes\DarkTheme.xaml" />
     <Resource Include="WPF\View\Guest\GuestThemes\LightTheme.xaml">
@@ -151,14 +168,6 @@
     <Resource Include="WPF\Resources\Images\pdf.png" />
     <Resource Include="WPF\Resources\Images\searchtourist.png" />
     <Resource Include="WPF\Resources\Images\user.png" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <EditorConfigFiles Remove="E:\FTN\3ev\sims\project\sims-ra-2024-group-1-team-b\Services\.editorconfig" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="WPF\ViewModel\HostGuestViewModel\HostViewModels\Commands\" />
   </ItemGroup>
 
 </Project>

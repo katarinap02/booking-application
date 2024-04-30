@@ -53,34 +53,42 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             if(guest.EndDate == DateTime.Now)
             {
-                if(GetYearlyReservations(guest) >= 10)
+                if(guest.YearlyReservations >= 10)
                 {
-                    guest.YearlyReservations = GetYearlyReservations(guest);
-                    guest.IsSuperGuest = true;
-                    guest.StartDate = DateTime.Now;
-                    guest.EndDate = DateTime.Now.AddYears(1);
-                    guest.BonusPoints = 5;
+                    ActivateSuperGuest(guest);
                 }
                 else
                 {
-                    guest.IsSuperGuest = false;
-                    guest.BonusPoints = 0;
-                    guest.StartDate = DateTime.MinValue;
-                    guest.EndDate = DateTime.MinValue;
+                    DeactivateSuperGuest(guest);
+                    
                 }
              
             }
+        }
+
+        private void DeactivateSuperGuest(Guest guest)
+        {
+            guest.IsSuperGuest = false;
+            guest.BonusPoints = 0;
+            guest.StartDate = DateTime.MinValue;
+            guest.EndDate = DateTime.MinValue;
         }
 
         private void BecomeSuperGuest(Guest guest)
         {
             if(guest.YearlyReservations >= 10)
             {
-                guest.IsSuperGuest = true;
-                guest.StartDate = DateTime.Now;
-                guest.EndDate = DateTime.Now.AddYears(1);
-                guest.BonusPoints = 5;
+                ActivateSuperGuest(guest);
+                
             }    
+        }
+
+        private void ActivateSuperGuest(Guest guest)
+        {
+            guest.IsSuperGuest = true;
+            guest.StartDate = DateTime.Now;
+            guest.EndDate = DateTime.Now.AddYears(1);
+            guest.BonusPoints = 5;
         }
 
         private int GetYearlyReservations(Guest guest)
