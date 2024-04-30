@@ -61,8 +61,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             {
                 Accommodation SelectedAccommodation = FindAccommodation();
                 SelectedDateRange = new CalendarDateRange(SelectedRenovation.StartDate, SelectedRenovation.EndDate);
-                DeleteUnabledDates(SelectedAccommodation);
-                RenovationService.Delete(SelectedRenovation.ToRenovation());
+                DateTime todayPlus5Days = DateTime.Today.AddDays(5);
+                if (SelectedRenovation.StartDate > todayPlus5Days)
+                {
+                    DeleteUnabledDates(SelectedAccommodation);
+                }
+                RenovationService.CancelRenovation(SelectedRenovation.ToRenovation());
             }
             Update();
         }
