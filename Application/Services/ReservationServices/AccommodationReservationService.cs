@@ -109,7 +109,7 @@ namespace BookingApp.Application.Services.ReservationServices
             }
         }
 
-        internal void DelayReservation(CalendarDateRange selectedDateRange, DelayRequest delayRequest, DelayRequestService delayRequestService, AccommodationService accommodationService, AccommodationReservationViewModel selectedReservation)
+        public DelayRequest DelayReservation(CalendarDateRange selectedDateRange, DelayRequest delayRequest, DelayRequestService delayRequestService, AccommodationService accommodationService, AccommodationReservationViewModel selectedReservation)
         {
             delayRequest.GuestId = selectedReservation.GuestId;
             Accommodation tmpAccommodation = accommodationService.GetById(selectedReservation.AccommodationId);
@@ -120,7 +120,8 @@ namespace BookingApp.Application.Services.ReservationServices
             delayRequest.StartLastDate = selectedReservation.StartDate;
             delayRequest.EndLastDate = selectedReservation.EndDate;
             delayRequestService.Add(delayRequest);
-            MessageBox.Show("Request sent");
+            return delayRequest;
+                       
         }
     }
 }
