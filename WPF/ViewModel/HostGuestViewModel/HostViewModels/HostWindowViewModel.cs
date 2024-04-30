@@ -101,6 +101,24 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             RenovationPanel.Visibility = Visibility.Collapsed;
         }
 
+        public void ScheduledRenovation_Click(object sender, RoutedEventArgs e)
+        {
+            RenovationDisplayPage page = new RenovationDisplayPage(User);
+            HostFrame.Navigate(page);
+            LeftDock.Visibility = Visibility.Collapsed;
+            RatingPanel.Visibility = Visibility.Collapsed;
+            RenovationPanel.Visibility = Visibility.Collapsed;
+        }
+
+        public void PreviousRenovation_Click(object sender, RoutedEventArgs e)
+        {
+            PreviousRenovationDisplayPage page = new PreviousRenovationDisplayPage(User);
+            HostFrame.Navigate(page);
+            LeftDock.Visibility = Visibility.Collapsed;
+            RatingPanel.Visibility = Visibility.Collapsed;
+            RenovationPanel.Visibility = Visibility.Collapsed;
+        }
+
         public void More_Click(object sender, RoutedEventArgs e)
         {
             if (LeftDock.Visibility == Visibility.Visible)

@@ -5,13 +5,19 @@
     <SolidColorBrush x:Key="BackgroundColor" Color="#B3829F"/>
     <SolidColorBrush x:Key="AddedColor" Color="#6665DD"/>
     <SolidColorBrush x:Key="TextColor" Color="#FFF4FF"/>
+    <SolidColorBrush x:Key="ButtonEnableColor" Color="#697A87"/>
 
     <Style x:Key="ButtonStyleHost" TargetType="Button">
         <Setter Property="Foreground" Value="{StaticResource TextColor}"/>
         <Setter Property="Background" Value="{StaticResource ButtonColor}" />
         <Setter Property="FontSize" Value="15"/>
         <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
-
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Cursor" Value="Arrow" />
+            </Trigger>
+        </Style.Triggers>
+        
     </Style>
 
     <Style x:Key="ButtonStyleWindowHost" TargetType="Button">

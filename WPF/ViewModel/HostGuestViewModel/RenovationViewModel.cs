@@ -2,6 +2,7 @@
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.WPF.View.Guest.GuestTools;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +11,7 @@ using System.Diagnostics.Metrics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Xml.Linq;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel
@@ -149,16 +151,35 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private string onePicture;
+        public string OnePicture
+        {
+            get { return onePicture; }
+            set
+            {
+                if (onePicture != value)
+                {
+
+                    onePicture = value;
+                    OnPropertyChanged("OnePicture");
+                }
+            }
+        }
+
         private AccommodationService accommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
 
-        public string DateString => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
+        public string DateString => StartDate.ToString("MM/dd/yyyy") + " - " + EndDate.ToString("MM/dd/yyyy");
         public string AccommodationName => accommodationService.GetById(AccommodationId).Name;
 
         public AccommodationType Type => accommodationService.GetById(AccommodationId).Type;
 
-        public string Location => accommodationService.GetById(AccommodationId).City + " " + accommodationService.GetById(AccommodationId).Country;
+        public string Location => accommodationService.GetById(AccommodationId).City + ", " + accommodationService.GetById(AccommodationId).Country;
 
+        public Accommodation acc => accommodationService.GetById(AccommodationId);
 
+        public string DurationString => Duration.ToString() + " days";
+
+        public PathConverter PathConverter { get; set; }
         public RenovationViewModel() {
             StartDateRange = new DateTime(2024, 1, 1);
             EndDateRange = new DateTime(2024, 1, 1);
@@ -174,6 +195,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             endDate = ra.EndDate;
             duration = ra.Duration;
             description = ra.Description;
+            PathConverter = new PathConverter();
+            if (acc.Pictures.Count != 0)
+                OnePicture = PathConverter.ConvertToRelativePathSecond(acc.Pictures[0]);
+
+            else
+                OnePicture = "../../Resources/Images/no_image.jpg";
 
         }
 

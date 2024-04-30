@@ -88,5 +88,15 @@ namespace BookingApp.View
         {
             hostPageViewModel.ScheduleRenovation_Click(sender, e);
         }
+
+        private void Scheduled_Click(object sender, RoutedEventArgs e)
+        {
+            hostPageViewModel.ScheduledRenovation_Click(sender, e);
+        }
+
+        private void Previous_Click(object sender, RoutedEventArgs e)
+        {
+            hostPageViewModel.PreviousRenovation_Click(sender, e);
+        }
     }
 }
