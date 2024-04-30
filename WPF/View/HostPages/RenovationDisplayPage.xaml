@@ -39,7 +39,7 @@
             </StackPanel>
             <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal">
             <Button Style="{StaticResource ButtonStyleHost}" Content="Schedule renovation" FontSize="15" Width="160" Height="40" VerticalAlignment="Top"/>
-                <Button Style="{StaticResource ButtonStyleHost}" BorderThickness="2" Content="Cancel renovation" FontSize="15" Margin="20 0 0 0" Width="160" Height="40" VerticalAlignment="Top"/>
+                <Button Style="{StaticResource ButtonStyleHost}" Command="{Binding DeleteCommand}" BorderThickness="2" Content="Cancel renovation" FontSize="15" Margin="20 0 0 0" Width="160" Height="40" VerticalAlignment="Top"/>
             </StackPanel>
         </StackPanel>
         <ListView
@@ -52,6 +52,7 @@ Background="Transparent"
 BorderThickness="0"
 ItemsSource="{Binding Renovations}"
 ScrollViewer.VerticalScrollBarVisibility="Auto"
+SelectedItem="{Binding SelectedRenovation}"
 SelectionMode="Single">
             <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">

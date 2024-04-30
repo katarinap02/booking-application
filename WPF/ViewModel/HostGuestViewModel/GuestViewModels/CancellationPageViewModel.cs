@@ -35,10 +35,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public void CancelReservation_Click(object sender, RoutedEventArgs e)
         {
-
-
             AccommodationReservationService.CancelReservation(AccommodationService, ReservationCancellationService, SelectedReservation);
-
 
         }
 

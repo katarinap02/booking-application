@@ -214,6 +214,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public Renovation ToRenovation()
         {
             Renovation ra = new Renovation(accommodationId, hostId, startDate, endDate, duration, description);
+            ra.Id = id;
             return ra;
         }
     }
