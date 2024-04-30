@@ -159,7 +159,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
-        private List<TourParticipantViewModel> _participantsListBox = new List<TourParticipantViewModel>();
+        private List<TourParticipantViewModel> _participantsListBox;
         public List<TourParticipantViewModel> ParticipantsListBox
         {
             get

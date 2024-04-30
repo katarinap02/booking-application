@@ -24,7 +24,7 @@
         <Label Content="My Tours"
                FontSize="50"
                FontWeight="DemiBold"
-               Grid.ColumnSpan="9"
+               Grid.ColumnSpan="3"
                Grid.Row="0"
                HorizontalAlignment="Center"/>
         <Button Style="{StaticResource NotificationIconButton}"

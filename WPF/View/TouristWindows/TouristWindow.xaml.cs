@@ -18,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.View.TouristPages;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 
 namespace BookingApp.View.TouristWindows
@@ -60,6 +61,10 @@ namespace BookingApp.View.TouristWindows
         private void EndedToursButton_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new EndedToursPage(Tour.getUserId(Tour.UserName));
+        }
+        private void RequestedToursButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new RequestedToursPage(Tour.getUserId(Tour.UserName));
         }
         private void VouchersButton_Click(object sender, RoutedEventArgs e)
         {

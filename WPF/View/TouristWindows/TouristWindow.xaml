@@ -77,7 +77,8 @@
                     <Menu:Btn x:Name="RequestedToursButton"
                         Style="{StaticResource MenuBtnStyle}"
                         Foreground="WhiteSmoke"
-                        FontSize="40">
+                        FontSize="40"
+                        Click="RequestedToursButton_Click">
                         <TextBlock Text="Requested Tours"
                                 VerticalAlignment="Center"
                                 Margin="20, 0, 0, 0"/>
