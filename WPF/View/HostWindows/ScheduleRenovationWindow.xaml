@@ -36,7 +36,7 @@ FontSize="20"
 Style="{StaticResource TitleStyleHost}"
  />
 
-        <Calendar x:Name="ReservationCalendar" VerticalAlignment="Center" DisplayDateStart="{Binding Renovation.StartDateRange}" DisplayDateEnd="{Binding Renovation.EndDateRange}" HorizontalAlignment="Center" Height="184" BorderThickness="2"  Background="White" SelectionMode="SingleRange"  Grid.Row="1" Grid.ColumnSpan="2" >
+        <Calendar x:Name="RenovationCalendar" VerticalAlignment="Center" DisplayDateStart="{Binding Renovation.StartDateRange}" DisplayDateEnd="{Binding Renovation.EndDateRange}"  HorizontalAlignment="Center" Height="184" BorderThickness="2" SelectedDatesChanged="ReservationCalendar_SelectedDatesChanged"  Background="White" SelectionMode="SingleRange"  Grid.Row="1" Grid.ColumnSpan="2" >
             <Calendar.LayoutTransform>
                 <ScaleTransform ScaleX="1.9" ScaleY="1.3"/>
             </Calendar.LayoutTransform>
@@ -51,6 +51,6 @@ Style="{StaticResource TitleStyleHost}"
             <TextBlock Text="days to select:"  Style="{StaticResource TextBlockHost}" VerticalAlignment="Center" Margin="5,0,0,0" />
             <TextBox x:Name="DaysTextBox" Style="{StaticResource TextBoxStyleHost}" Text="{Binding Path= Renovation.Duration, UpdateSourceTrigger=PropertyChanged}" Width="40" Height="20" Margin="5 0 0 0" ></TextBox>
         </StackPanel>
-        <Button x:Name="ScheduleButton" Content="Schedule" HorizontalAlignment="Center" Height="35" Width="110" Grid.Row="4" Margin="60 0 0 0" Grid.Column="2" VerticalAlignment="Center" Style="{StaticResource ResourceKey=ButtonStyleHost}"/>
+        <Button x:Name="ScheduleButton" Command="{Binding RenovationCommand}" Click="Close_Click" IsEnabled="False" Content="Schedule" HorizontalAlignment="Center" Height="35" Width="110" Grid.Row="4" Margin="60 0 0 0" Grid.Column="2" VerticalAlignment="Center" Style="{StaticResource ResourceKey=ButtonStyleHost}"/>
     </Grid>
 </Window>

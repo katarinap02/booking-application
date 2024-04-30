@@ -4,6 +4,7 @@ using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.Linq;
@@ -158,7 +159,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public string Location => accommodationService.GetById(AccommodationId).City + " " + accommodationService.GetById(AccommodationId).Country;
 
 
-        public RenovationViewModel() { }
+        public RenovationViewModel() {
+            StartDateRange = new DateTime(2024, 1, 1);
+            EndDateRange = new DateTime(2024, 1, 1);
+
+        }
 
         public RenovationViewModel(Renovation ra)
         {
@@ -179,7 +184,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public Renovation ToReservation()
+        public Renovation ToRenovation()
         {
             Renovation ra = new Renovation(accommodationId, hostId, startDate, endDate, duration, description);
             return ra;
