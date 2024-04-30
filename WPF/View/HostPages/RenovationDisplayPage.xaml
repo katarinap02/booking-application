@@ -106,19 +106,30 @@ SelectionMode="Single">
                                 </Image.Style>
                             </Image>
 
-
-                            <TextBlock
-                            Grid.Row="0"
-                            Grid.Column="1"
+                            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
+                                <TextBlock    
                             Margin="5,10,5,0"
                             FontSize="17"
                             FontFamily="Comic Sans MS"
                             FontWeight="Bold"
-                            Text="{Binding AccommodationName}"
-                            HorizontalAlignment="Center"
-                                    VerticalAlignment="Bottom">
-
-                            </TextBlock>
+                            Text="{Binding AccommodationName}" >
+                                </TextBlock>
+                                <Image HorizontalAlignment="Right" Margin="7 10 5 0" Height="20">
+                                    <Image.Style>
+                                        <Style TargetType="Image">
+                                            <Setter Property="Source" Value="../../Resources/Images/lock.png" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsPossible}" Value="False">
+                                                    <Setter Property="Visibility" Value="Visible" />
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsPossible}" Value="True">
+                                                    <Setter Property="Visibility" Value="Hidden" />
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Image.Style>
+                                </Image>
+                            </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="15 0 0 0">
                                 <Label Content="id:" FontSize="13" VerticalAlignment="Center" />
                                 <TextBlock FontWeight="Bold"

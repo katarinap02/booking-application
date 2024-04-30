@@ -166,6 +166,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private bool isPossible;
+        public bool IsPossible
+        {
+            get { return isPossible; }
+            set
+            {
+                if (isPossible != value)
+                {
+
+                    isPossible = value;
+                    OnPropertyChanged("IsPossible");
+                }
+            }
+        }
+
         private AccommodationService accommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
 
         public string DateString => StartDate.ToString("MM/dd/yyyy") + " - " + EndDate.ToString("MM/dd/yyyy");
@@ -179,10 +194,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
         public string DurationString => Duration.ToString() + " days";
 
+        DateTime todayPlus5Days = DateTime.Today.AddDays(5);
+
         public PathConverter PathConverter { get; set; }
         public RenovationViewModel() {
             StartDateRange = new DateTime(2024, 1, 1);
             EndDateRange = new DateTime(2024, 1, 1);
+            IsPossible = false;
 
         }
 
@@ -196,6 +214,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             duration = ra.Duration;
             description = ra.Description;
             PathConverter = new PathConverter();
+            if(startDate > todayPlus5Days)
+            {
+                IsPossible = true;
+            }
             if (acc.Pictures.Count != 0)
                 OnePicture = PathConverter.ConvertToRelativePathSecond(acc.Pictures[0]);
 
