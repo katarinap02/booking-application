@@ -10,11 +10,11 @@
       Title="RateAccommodationPage">
 
     <Grid>
-        
+
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                
-                <ListBox Name="ReservationListBox" Width="716" Height="377" Margin="172,63,172,349"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+
+                <ListBox Name="ReservationListBox" Margin="20,34,44,276"  ScrollViewer.VerticalScrollBarVisibility="Auto" Width="1010"
 ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColorN}" SelectedItem="{Binding SelectedReservation}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
@@ -27,13 +27,13 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <Button Style="{StaticResource ButtonStyleN}" Content="Rate" Width="100" Height="50" Margin="480,654,480,85" Click="Rate_Click"/>
-                
+
             </Grid>
-            
-            
+
+
         </Border>
-        
+
 
     </Grid>
-    
+
 </Page>

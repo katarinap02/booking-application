@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
       xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       mc:Ignorable="d" 
       d:DesignHeight="990" d:DesignWidth="1920"
       Title="ReservationInfoPage">
@@ -13,23 +14,26 @@
 
         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="269,85,980,161" Width="671" Background="White">
             <Grid>
-                <Label Content="Reservation" FontSize="55" Margin="158,122,-24,209" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+                <Label Content="Reservation" FontSize="55" Margin="158,16,-24,315" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
 
-                <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Height="323" Width="663" Margin="10,204,-6,204"><Run Text="Welcome to the reservation page."/><LineBreak/><Run Text="Please enter required information."/></TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Height="323" Width="663" Margin="-2,98,6,318"><Run Text="Welcome to the reservation page."/><LineBreak/><Run Text="Please enter required information."/></TextBlock>
 
-                <Label Content="Accommodation" FontSize="40" Margin="168,406,-34,-75" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
-                <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Margin="6,240,-6,-240"/>
+                <Label Content="Accommodation" FontSize="40" Margin="168,470,-34,-75" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+                <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Margin="6,258,-6,-258"/>
 
             </Grid>
         </Border>
         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="980,85,269,161" Width="671" Background="White">
             <Grid Margin="2,-58,-2,58">
                 <Label Content="Number of days" FontSize="30" Margin="105,238,-105,-238"/>
-                <TextBox x:Name="txtDayNumber" TextWrapping="Wrap" Margin="352,251,160,444"/>
+                <!--<TextBox x:Name="txtDayNumber" TextWrapping="Wrap" Margin="352,251,160,444"/>-->
+                <xctk:IntegerUpDown Name="txtDayNumber" Margin="352,251,160,444"/>
                 <Label Content="Start date " Margin="136,319,-136,-319" FontSize="30"/>
-                <TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>
+                <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
+                <DatePicker x:Name="txtStartDate" Margin="352,329,160,366"/>
                 <Label Content="End date" FontSize="30" HorizontalAlignment="Left" Margin="136,417,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
-                <TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>
+                <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
+                <DatePicker x:Name="txtEndDate" Margin="352,424,160,273"/>
                 <Button x:Name="ContinueButton" Content="Continue" HorizontalAlignment="Center" Margin="0,545,0,0" VerticalAlignment="Top" Click="Continue_Click" Width="200" Height="50" Style="{StaticResource ButtonStyleN}"/>
             </Grid>
         </Border>

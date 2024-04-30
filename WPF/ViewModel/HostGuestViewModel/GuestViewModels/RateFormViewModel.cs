@@ -67,7 +67,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Host host = HostService.GetById(rate.HostId);
             //MessageBox.Show(host.Id.ToString());
             HostService.BecomeSuperHost(host);
-            MessageBox.Show("Rate added");
+            Frame.Content = new RateAccommodationSuccessfulPage(User, Frame, SelectedAccommodation, host.Username);
 
         }
 

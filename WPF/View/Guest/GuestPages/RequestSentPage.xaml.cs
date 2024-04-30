@@ -1,4 +1,6 @@
 ﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Reservations;
+using BookingApp.View.GuestPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using System;
@@ -16,39 +18,34 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookingApp.View.GuestPages
+namespace BookingApp.WPF.View.Guest.GuestPages
 {
     /// <summary>
-    /// Interaction logic for RequestDetailsPage.xaml
+    /// Interaction logic for RequestSentPage.xaml
     /// </summary>
-    public partial class RequestDetailsPage : Page
+    public partial class RequestSentPage : Page
     {
         public User User { get; set; }
         public Frame Frame { get; set; }
-
-        public RequestDetailsViewModel ViewModel { get; set; }
-
-        public DelayRequestViewModel SelectedRequest { get; set; }
-        public RequestDetailsPage(DelayRequestViewModel selectedRequest, User user, Frame frame)
+        public RequestSentViewModel ViewModel { get; set; }
+        public RequestSentPage(User user, Frame frame, DelayRequestViewModel requestViewModel)
         {
             InitializeComponent();
             User = user;
             Frame = frame;
-            SelectedRequest = selectedRequest;
-            ViewModel = new RequestDetailsViewModel(SelectedRequest, this);
-            
+            ViewModel = new RequestSentViewModel(requestViewModel);
             DataContext = ViewModel;
-        }
-
-        private void AllRequests_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Content = new RequestsPage(User, Frame);
-
         }
 
         private void Profile_Click(object sender, RoutedEventArgs e)
         {
             Frame.Content = new ProfileInfo(User, Frame);
+
+        }
+
+        private void AllRequests_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new RequestsPage(User, Frame);
         }
     }
 }

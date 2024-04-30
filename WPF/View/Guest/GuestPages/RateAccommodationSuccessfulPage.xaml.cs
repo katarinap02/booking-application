@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model.Features;
+using BookingApp.View.GuestPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using System;
@@ -16,34 +17,34 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookingApp.View.GuestPages
+namespace BookingApp.WPF.View.Guest.GuestPages
 {
     /// <summary>
-    /// Interaction logic for RequestDetailsPage.xaml
+    /// Interaction logic for RateAccommodationSuccessfulPage.xaml
     /// </summary>
-    public partial class RequestDetailsPage : Page
+    public partial class RateAccommodationSuccessfulPage : Page
     {
         public User User { get; set; }
         public Frame Frame { get; set; }
 
-        public RequestDetailsViewModel ViewModel { get; set; }
+        public AccommodationViewModel SelectedAccommodation {  get; set; }
+        public string HostUsername { get; set; }
 
-        public DelayRequestViewModel SelectedRequest { get; set; }
-        public RequestDetailsPage(DelayRequestViewModel selectedRequest, User user, Frame frame)
+        public RateAccommodationSuccessfulViewModel ViewModel { get; set; }
+        public RateAccommodationSuccessfulPage(User user, Frame frame, AccommodationViewModel selectedAccommodation, string username)
         {
             InitializeComponent();
             User = user;
             Frame = frame;
-            SelectedRequest = selectedRequest;
-            ViewModel = new RequestDetailsViewModel(SelectedRequest, this);
-            
+            SelectedAccommodation = selectedAccommodation;
+            HostUsername = username;
+            ViewModel = new RateAccommodationSuccessfulViewModel(SelectedAccommodation, HostUsername);
             DataContext = ViewModel;
         }
 
-        private void AllRequests_Click(object sender, RoutedEventArgs e)
+        private void RateAnother_Click(object sender, RoutedEventArgs e)
         {
-            Frame.Content = new RequestsPage(User, Frame);
-
+            Frame.Content = new RateAccommodationPage(User, Frame);
         }
 
         private void Profile_Click(object sender, RoutedEventArgs e)

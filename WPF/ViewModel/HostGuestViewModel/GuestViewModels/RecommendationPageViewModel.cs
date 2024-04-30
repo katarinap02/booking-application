@@ -1,7 +1,11 @@
-﻿using BookingApp.Application.Services.RateServices;
+﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Application.Services.RateServices;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.WPF.View.Guest.GuestPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +25,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public AccommodationRateViewModel AccommodationRate { get; }
 
         public RenovationRecommendationService RenovationRecommendationService { get; set;  }
-
+        public HostService HostService { get; set; }
         public AccommodationRateService AccommodationRateService { get; set; }
         public RenovationRecommendationViewModel Recommendation {  get; set; }
         public RecommendationPageViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, AccommodationViewModel selectedAccommodation, AccommodationRateViewModel accommodationRate)
@@ -33,6 +37,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             AccommodationRate = accommodationRate;
             Recommendation = new RenovationRecommendationViewModel();
             AccommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+            HostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
             RenovationRecommendationService = new RenovationRecommendationService(Injector.Injector.CreateInstance<IRenovationRecommendationRepository>());
         }
 
@@ -43,7 +48,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             RenovationRecommendationService.Add(Recommendation.ToRecommendation());
             AccommodationRate.RecommendationId = RenovationRecommendationService.GetAll().Last().Id;
             AccommodationRateService.Add(AccommodationRate.ToAccommodationRate());
-            MessageBox.Show("Rate with accommodation added");
+            AccommodationRate rate = AccommodationRate.ToAccommodationRate();
+            Host host = HostService.GetById(rate.HostId);
+            Frame.Content = new RateAccommodationSuccessfulPage(User, Frame, SelectedAccommodation, host.Username);
         }
     }
 }

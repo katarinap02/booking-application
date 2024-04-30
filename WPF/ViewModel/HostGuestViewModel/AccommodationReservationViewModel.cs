@@ -183,7 +183,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public string HostUsername => GetHostUsername(hostService, accommodationService.GetById(AccommodationId).HostId);
         public string DateRangeString => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
 
-        public string DateString => StartDate.ToString("MM/dd/yyyy") + " - " + EndDate.ToString("MM/dd/yyyy");
+        //public string DateString => StartDate.ToString("MM/dd/yyyy") + " - " + EndDate.ToString("MM/dd/yyyy");
 
         public string GuestUsername => userService.GetById(GuestId).Username;
 

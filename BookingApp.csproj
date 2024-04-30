@@ -35,9 +35,13 @@
     <None Remove="WPF\Resources\Images\plus.png" />
     <None Remove="WPF\Resources\Images\rome1.jpg" />
     <None Remove="WPF\Resources\Images\search.png" />
+
+    <None Remove="WPF\Resources\Images\Unknown_person.jpg" />
+
     <None Remove="WPF\Resources\LoginImages\icon.png" />
     <None Remove="WPF\Resources\LoginImages\key.png" />
     <None Remove="WPF\Resources\LoginImages\login_background.jpg" />
+
 
   </ItemGroup>
 
@@ -115,6 +119,10 @@
     </Content>
 
     <Content Include="WPF\Resources\Images\taj_mahal1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+    <Content Include="WPF\Resources\Images\Unknown_person.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
 

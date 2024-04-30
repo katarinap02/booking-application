@@ -1,6 +1,6 @@
 ﻿using BookingApp.Domain.Model.Features;
+using BookingApp.View.GuestPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
-using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,33 +16,23 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookingApp.View.GuestPages
+namespace BookingApp.WPF.View.Guest.GuestPages
 {
     /// <summary>
-    /// Interaction logic for RequestDetailsPage.xaml
+    /// Interaction logic for CancelReservationSuccesfulPage.xaml
     /// </summary>
-    public partial class RequestDetailsPage : Page
+    public partial class CancelReservationSuccessfulPage : Page
     {
         public User User { get; set; }
         public Frame Frame { get; set; }
-
-        public RequestDetailsViewModel ViewModel { get; set; }
-
-        public DelayRequestViewModel SelectedRequest { get; set; }
-        public RequestDetailsPage(DelayRequestViewModel selectedRequest, User user, Frame frame)
+        public AccommodationReservationViewModel Reservation { get; set; }
+        public CancelReservationSuccessfulPage(User user, Frame frame, AccommodationReservationViewModel reservation)
         {
             InitializeComponent();
+            Reservation = reservation;
             User = user;
             Frame = frame;
-            SelectedRequest = selectedRequest;
-            ViewModel = new RequestDetailsViewModel(SelectedRequest, this);
-            
-            DataContext = ViewModel;
-        }
-
-        private void AllRequests_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Content = new RequestsPage(User, Frame);
+            DataContext = this;
 
         }
 

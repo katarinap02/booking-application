@@ -16,6 +16,7 @@ using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.View.Guest.GuestPages;
 
 namespace BookingApp.View.GuestPages
 {
@@ -30,7 +31,7 @@ namespace BookingApp.View.GuestPages
     {
        
 
-        public AccommodationReservationViewModel SelectedReservation { get; set; }
+        public AccommodationReservationViewModel  Reservation { get; set; }
 
         public CancellationPageViewModel ViewModel { get; set; }
         public User User { get; set; }  
@@ -39,17 +40,19 @@ namespace BookingApp.View.GuestPages
         {
             InitializeComponent();
             
-            this.SelectedReservation = selectedReservation;
+            this.Reservation = selectedReservation;
             this.User = user;
             this.Frame = frame;
-            ViewModel = new CancellationPageViewModel(SelectedReservation);
-            DataContext = SelectedReservation;
+            ViewModel = new CancellationPageViewModel(Reservation);
+            DataContext = this;
 
         }
 
         private void CancelReservation_Click(object sender, RoutedEventArgs e)
         {
+            Frame.Content = new CancelReservationSuccessfulPage(User, Frame, Reservation);
             ViewModel.CancelReservation_Click(sender, e);
+            
 
         }
     }
