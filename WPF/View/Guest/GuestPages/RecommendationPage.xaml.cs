@@ -47,6 +47,7 @@ namespace BookingApp.WPF.View.Guest.GuestPages
         private void Save_Click(object sender, RoutedEventArgs e)
         {
             ViewModel.Save_Click(sender, e);
+
         }
     }
 }

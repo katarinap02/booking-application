@@ -8,40 +8,31 @@
       mc:Ignorable="d" 
       d:DesignHeight="798" d:DesignWidth="1085"
       Title="RateAccommodationForm">
-    
+
     <Grid>
         <Grid>
 
 
             <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,549,5">
                 <Grid>
-                    <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="24,99,24,534">Welcome to the accommodation rating page. To create a review, fill the cleanliness and correctness rate fields, as well as the comment field.</TextBlock>
-                    <TextBlock TextWrapping="Wrap" FontSize="23" TextAlignment="Center" FontWeight="Bold" Margin="0,255,0,461">Optional: You can leave your accommodation pictures and reccommend renovation.</TextBlock>
+                    <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="24,28,24,605">Welcome to the accommodation rating page. To create a review, fill the cleanliness and correctness rate fields, as well as the comment field.</TextBlock>
+                    <TextBlock TextWrapping="Wrap" FontSize="23" TextAlignment="Center" FontWeight="Bold" Margin="1,184,-1,532">Optional: You can leave your accommodation pictures and reccommend renovation.</TextBlock>
                     <Label Content="Accommodation" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="136,434,-136,312"/>
                     <Label Content="Host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="218,648,218,98"/>
                     <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
                         <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="59,-2,63,2"/>
                     </Border>
 
-                    <controls:AccommodationCardSmaller DataContext="{Binding SelectedAccommodation}" Width="500" Margin="11,168,11,-168"></controls:AccommodationCardSmaller>
+                    <controls:AccommodationCardSmaller DataContext="{Binding SelectedAccommodation}" Width="500" Margin="12,168,10,-168"></controls:AccommodationCardSmaller>
                 </Grid>
             </Border>
             <Border Width="526" Height="517" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="549,1,10,280">
 
                 <Grid>
-                    <Label Content="Cleanliness:" FontSize="20" HorizontalAlignment="Left" Margin="88,51,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Correctness:" FontSize="20" HorizontalAlignment="Left" Margin="308,51,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Cleanliness:" FontSize="20" HorizontalAlignment="Left" Margin="88,33,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Correctness:" FontSize="20" HorizontalAlignment="Left" Margin="310,33,0,0" VerticalAlignment="Top"/>
 
-                    <ComboBox HorizontalAlignment="Left" Margin="88,88,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding AccommodationRate.Cleanliness, Mode=TwoWay}">
-
-                        <ComboBoxItem Content="5" Tag="5"></ComboBoxItem>
-                        <ComboBoxItem Content="4" Tag="4"></ComboBoxItem>
-                        <ComboBoxItem Content="3" Tag="3"></ComboBoxItem>
-                        <ComboBoxItem Content="2" Tag="2"></ComboBoxItem>
-                        <ComboBoxItem Content="1" Tag="1"></ComboBoxItem>
-                    </ComboBox>
-
-                    <ComboBox HorizontalAlignment="Left" Margin="306,88,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding AccommodationRate.Correctness, Mode=TwoWay}">
+                    <ComboBox HorizontalAlignment="Left" Margin="88,72,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding AccommodationRate.Cleanliness, Mode=TwoWay}">
 
                         <ComboBoxItem Content="5" Tag="5"></ComboBoxItem>
                         <ComboBoxItem Content="4" Tag="4"></ComboBoxItem>
@@ -49,13 +40,22 @@
                         <ComboBoxItem Content="2" Tag="2"></ComboBoxItem>
                         <ComboBoxItem Content="1" Tag="1"></ComboBoxItem>
                     </ComboBox>
-                    <Label Content="Comment:" FontSize="20" HorizontalAlignment="Left" Margin="36,157,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding AccommodationRate.AdditionalComment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" Width="412" Height="100"/>
 
-                    <Button FontSize="15" Click="AddPicture_Click" Content="Add picture" HorizontalAlignment="Left" Margin="55,334,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}"/>
-                    <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="44,456,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="29" Width="208" Click="Recommend_Click"/>
-                    <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="367,454,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}" Click="Save_Click"/>
-                    <ListBox x:Name="pictureListBox" Margin="194,334,55,84" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Images}"/>
+                    <ComboBox HorizontalAlignment="Left" Margin="308,70,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding AccommodationRate.Correctness, Mode=TwoWay}">
+
+                        <ComboBoxItem Content="5" Tag="5"></ComboBoxItem>
+                        <ComboBoxItem Content="4" Tag="4"></ComboBoxItem>
+                        <ComboBoxItem Content="3" Tag="3"></ComboBoxItem>
+                        <ComboBoxItem Content="2" Tag="2"></ComboBoxItem>
+                        <ComboBoxItem Content="1" Tag="1"></ComboBoxItem>
+                    </ComboBox>
+                    <Label Content="Comment:" FontSize="20" HorizontalAlignment="Left" Margin="55,115,0,0" VerticalAlignment="Top"/>
+                    <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding AccommodationRate.AdditionalComment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="100" Margin="0,152,0,0"/>
+
+                    <Button FontSize="15" Click="AddPicture_Click" Content="Add picture" HorizontalAlignment="Left" Margin="55,261,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}"/>
+                    <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="55,375,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="29" Width="208" Click="Recommend_Click"/>
+                    <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="369,456,0,0" VerticalAlignment="Top" Height="30" Width="121" Style="{StaticResource ButtonStyleN}" Click="Save_Click"/>
+                    <ListBox x:Name="pictureListBox" Margin="186,261,55,157" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Images}"/>
 
                 </Grid>
             </Border>
@@ -63,5 +63,5 @@
 
         </Grid>
     </Grid>
-        
+
 </Page>

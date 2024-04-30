@@ -15,8 +15,7 @@
 
             <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,549,5">
                 <Grid>
-                    <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="24,99,24,534">Welcome to the accommodation rating page. To create a review, fill the cleanliness and correctness rate fields, as well as the comment field.</TextBlock>
-                    <TextBlock TextWrapping="Wrap" FontSize="23" TextAlignment="Center" FontWeight="Bold" Margin="0,255,0,461">Optional: You can leave your accommodation pictures and reccommend renovation.</TextBlock>
+                    <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="23,75,25,558">It is necessary to fill in information about what should be renovated. After that, choose the level of urgency.</TextBlock>
                     <Label Content="Accommodation" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="136,434,-136,312"/>
                     <Label Content="Host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="218,648,218,98"/>
                     <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
