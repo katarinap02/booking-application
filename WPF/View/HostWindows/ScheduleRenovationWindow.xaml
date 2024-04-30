@@ -36,7 +36,7 @@ FontSize="20"
 Style="{StaticResource TitleStyleHost}"
  />
 
-        <Calendar x:Name="ReservationCalendar" VerticalAlignment="Center" HorizontalAlignment="Center" Height="184" BorderThickness="2"  Background="White" SelectionMode="SingleRange"  Grid.Row="1" Grid.ColumnSpan="2" >
+        <Calendar x:Name="ReservationCalendar" VerticalAlignment="Center" DisplayDateStart="{Binding Renovation.StartDateRange}" DisplayDateEnd="{Binding Renovation.EndDateRange}" HorizontalAlignment="Center" Height="184" BorderThickness="2"  Background="White" SelectionMode="SingleRange"  Grid.Row="1" Grid.ColumnSpan="2" >
             <Calendar.LayoutTransform>
                 <ScaleTransform ScaleX="1.9" ScaleY="1.3"/>
             </Calendar.LayoutTransform>

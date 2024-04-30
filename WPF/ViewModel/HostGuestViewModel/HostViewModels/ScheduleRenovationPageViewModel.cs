@@ -42,8 +42,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         private void ScheduleWindow()
         {
+            if(SelectedAccommodation != null) { 
             ScheduleRenovationWindow window = new ScheduleRenovationWindow(SelectedAccommodation, User, Renovation);
             window.ShowDialog();
+            }
         }
 
         public void Update()

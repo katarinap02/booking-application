@@ -13,12 +13,6 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public User User { get; set; }
 
-        public  DateTime StartDateRange { get; set; }
-
-        public DateTime EndDateRange { get; set; }   
-
-        public int Duration { get; set; }
-
         public RenovationViewModel Renovation { get; set; }
 
         public ScheduleRenovationWindowViewModel(AccommodationViewModel selectedAccommodation, User user, RenovationViewModel renovation)
@@ -26,6 +20,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             User = user;
             SelectedAccommodation = selectedAccommodation;
             Renovation = renovation;
+            User = user;
+            SelectedAccommodation = selectedAccommodation;
+            Renovation.HostId = user.Id;
+            Renovation.AccommodationId = selectedAccommodation.Id;
+
         }
     }
 }
