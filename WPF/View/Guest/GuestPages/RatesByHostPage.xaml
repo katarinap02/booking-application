@@ -12,8 +12,11 @@
     <Grid>
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
             <Grid>
+                <TextBlock TextWrapping="Wrap" FontSize="25" Margin="187,114,187,629">
+On this page, you can see how you were rated by the hosts.</TextBlock>
 
-                <ListBox Name="ReservationListBox" Margin="61,160,61,160"  ScrollViewer.VerticalScrollBarVisibility="Auto"
+
+                <ListBox Name="ReservationListBox" Margin="30,235,30,27"  ScrollViewer.VerticalScrollBarVisibility="Auto"
 ItemsSource="{Binding GuestRates}" Background="{StaticResource BackgroundColorN}" SelectedItem="{Binding SelectedReservation}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
