@@ -37,26 +37,6 @@ namespace BookingApp.View.TouristWindows
 
         }
 
-        private void TextBox_GotFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-            if (textBox != null && textBox.Text == "Leave a comment...")
-            {
-                textBox.Text = "";
-                textBox.Foreground = Brushes.Black;
-            }
-        }
-
-        private void TextBox_LostFocus(object sender, RoutedEventArgs e)
-        {
-            TextBox textBox = sender as TextBox;
-            if (textBox != null && string.IsNullOrWhiteSpace(textBox.Text))
-            {
-                textBox.Text = "Leave a comment...";
-                textBox.Foreground = Brushes.Gray;
-            }
-        }
-
         private void Addimage_Click(object sender, RoutedEventArgs e)
         {
             GuideRate.AddImage();
@@ -72,6 +52,15 @@ namespace BookingApp.View.TouristWindows
             GuideRate.Submit(GuideRate);
             Close();
         }
-        
+
+        private void CommentTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            PlaceholderTextBlock.Visibility = string.IsNullOrEmpty(CommentTextBox.Text) ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        private void PlaceholderTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            CommentTextBox.Focus();
+        }
     }
 }

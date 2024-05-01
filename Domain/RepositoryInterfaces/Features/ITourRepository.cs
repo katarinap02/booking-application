@@ -10,7 +10,7 @@ namespace BookingApp.Domain.RepositoryInterfaces.Features
     public interface ITourRepository
     {
         List<Tour> GetAll();
-        List<Tour> GetAllNotFinished();
+        List<Tour> GetAllNotFinishedAndNotCancelled();
         void Add(Tour tour);
         void Save();
         int NextPersonalId();

@@ -113,13 +113,16 @@
                    FontWeight="DemiBold"
                    Grid.Row="1" 
                    FontSize="16"/>
-                <TextBox x:Name="CountrySearch" 
-                     Text="{Binding CountrySearch, Mode=TwoWay}"
-                     Grid.Column="2" 
-                     Width="150" 
-                     Height="35" 
-                     Grid.Row="1"
-                     FontSize="20"/>
+                <ComboBox x:Name="CountrySearch" 
+                         SelectedItem="{Binding CountrySearch, Mode=TwoWay}"
+                         ItemsSource="{Binding CountriesSearch}"
+                         SelectedIndex="0"
+                         Grid.Column="2" 
+                         Width="150" 
+                         Height="35" 
+                         Grid.Row="1"
+                         FontSize="20"
+                         SelectionChanged="CountrySearch_SelectionChanged"/>
 
                 <Label Grid.Column="3" 
                    HorizontalAlignment="Right" 
@@ -129,13 +132,19 @@
                    FontWeight="DemiBold"
                    Grid.Row="1" 
                    FontSize="16" />
-                <TextBox x:Name="CitySearch"
-                     Text="{Binding CitySearch, Mode=TwoWay}"
+                <ComboBox x:Name="CitySearch"
+                     SelectedItem="{Binding CitySearch, Mode=TwoWay}"
+                     ItemsSource="{Binding CitiesSearch}"
+                     SelectedIndex="0"
                      Grid.Column="4" 
-                     Grid.Row="1" 
-                     Width="150" 
+                     Grid.Row="1"
+                     Grid.ColumnSpan="2"
+                     HorizontalAlignment="Left"
+                     Width="200" 
                      Height="35"
-                     FontSize="20"/>
+                     FontSize="20"
+                     VirtualizingPanel.IsVirtualizing="True"
+                     VirtualizingPanel.VirtualizationMode="Recycling"/>
 
                 <Label 
                    VerticalAlignment="Top"
@@ -172,14 +181,15 @@
                    FontWeight="DemiBold"
                    Grid.Row="1" 
                    FontSize="16"/>
-                <TextBox x:Name="LanguageSearch" 
-                     Text="{Binding LanguageSearch, Mode=TwoWay}"
+                <ComboBox x:Name="LanguageSearch" 
+                     SelectedItem="{Binding LanguageSearch, Mode=TwoWay}"
                      Grid.Column="6" 
                      Grid.Row="1"
                      Height="35"
                      HorizontalAlignment="Left"
                      Width="150"
-                     FontSize="20"/>
+                     FontSize="20"
+                     ItemsSource="{Binding Languages}"/>
 
                 <Label Grid.Column="3"
                        Grid.ColumnSpan="3"

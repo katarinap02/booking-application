@@ -4,15 +4,20 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.TouristWindows;
+using BookingApp.WPF.View.TouristWindows;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Diagnostics.Metrics;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Xml.Linq;
@@ -27,7 +32,12 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         public List<TourParticipantViewModel> TourParticipantDTOs { get; set; }
         public List<TourParticipantViewModel> TourParticipantsListBox { get; set; }
 
+        public ObservableCollection<string> Countries { get; set; }
+        public ObservableCollection<string> Languages { get; set; }
+        public ObservableCollection<string> Cities { get; set; }
+
         public ICommand SelectTourRequestType { get; set; }
+        public ICommand CloseWindowCommand { get; set; }
         public RelayCommand AddParticipantCommand { get; set; }
 
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
@@ -96,6 +106,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 if (_country != value)
                 {
                     _country = value;
+                    LoadCitiesFromCSV();
                     OnPropertyChanged(nameof(Country));
                 }
             }
@@ -198,6 +209,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 if (_selectedStartDate != value)
                 {
                     _selectedStartDate = value;
+                    MinDateEnd = SelectedStartDate.AddDays(1);
+                    IsEndDateEnabled = true;
+                    SelectedEndDate = MinDateEnd;
+                    OnPropertyChanged(nameof(MinDateEnd));
+                    OnPropertyChanged(nameof(SelectedEndDate));
                     OnPropertyChanged(nameof(SelectedStartDate));
                 }
             }
@@ -289,10 +305,9 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
-        private string _age;
+        private int _age;
 
-        [Required(ErrorMessage = "Age is Required")]
-        public string Age
+        public int Age
         {
             get
             {
@@ -300,7 +315,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
             set
             {
-                Validate(nameof(Age), value);
                 if (_age != value)
                 {
                     _age = value;
@@ -398,18 +412,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         private void ExecuteAddParticipant(object obj)
         {
-            if (!AllFieldsFilled(Age, Name, LastName))
-            {
-                System.Windows.MessageBox.Show("All fields must be filled");
-            }
-            else
-            {
-                TourParticipantViewModel tourParticipantViewModel = _tourParticipantService.saveParticipantToDTO(Name, LastName, Age);
-                TourParticipantDTOs.Add(tourParticipantViewModel);
-                TourParticipantsListBox.Add(tourParticipantViewModel);
+            TourParticipantViewModel tourParticipantViewModel = _tourParticipantService.saveParticipantToDTO(Name, LastName, Age);
+            TourParticipantDTOs.Add(tourParticipantViewModel);
+            TourParticipantsListBox.Add(tourParticipantViewModel);
 
-                SetupForNextParticipantInput();
-            }
+            SetupForNextParticipantInput();
         }
         private void SetupForNextParticipantInput()
         {
@@ -418,17 +425,73 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
             Name = string.Empty;
             LastName = string.Empty;
-            Age = "0";
+            Age = 1;
         }
 
-        private bool AllFieldsFilled(string years, string name, string lastName)
+        public void InitializeTourRequestWindow()
         {
-            if (years == string.Empty || name == string.Empty || lastName == string.Empty)
-            {
-                return false;
-            }
+            LoadCountriesFromCSV();
+            LoadLanguagesFromCSV();
 
-            return true;
+            SelectedStartDate = DateTime.Now.AddDays(3);
+
+            MinDateStart = DateTime.Now.AddDays(3);
+            IsEndDateEnabled = false;
+        }
+
+        private void LoadLanguagesFromCSV()
+        {
+            string csvFilePath = "../../../Resources/Data/languages.csv";
+
+            using (var reader = new StreamReader(csvFilePath))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    Languages.Add(values[0]);
+                }
+            }
+        }
+
+        private void LoadCitiesFromCSV()
+        {
+            Cities.Clear();
+
+            string csvFilePath = "../../../Resources/Data/european_cities_and_countries.csv";
+
+            using (var reader = new StreamReader(csvFilePath))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    if (values[1].Equals(Country))
+                        Cities.Add(values[0]);
+                }
+            }
+            City = Cities[0];
+        }
+
+        private void LoadCountriesFromCSV()
+        {
+            string csvFilePath = "../../../Resources/Data/european_countries.csv";
+
+            using (var reader = new StreamReader(csvFilePath))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    Countries.Add(values[0]);
+                }
+            }
+        }
+
+        private void ExecuteCloseWindow(object obj)
+        {
+            Messenger.Default.Send(new CloseWindowMessage());
+
         }
 
         public TourRequestViewModel()
@@ -437,8 +500,13 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
 
             TourRequests = new ObservableCollection<TourRequestViewModel>();
+            Countries = new ObservableCollection<string>();
+            Languages = new ObservableCollection<string>();
+            Cities = new ObservableCollection<string>();
+
             SelectTourRequestType = new RelayCommand(ExecuteSelectTourRequestType);
             AddParticipantCommand = new RelayCommand(ExecuteAddParticipant, CanAddParticipant);
+            CloseWindowCommand = new RelayCommand(ExecuteCloseWindow);
 
             TourParticipantDTOs = new List<TourParticipantViewModel>();
             TourParticipantsListBox = new List<TourParticipantViewModel>();

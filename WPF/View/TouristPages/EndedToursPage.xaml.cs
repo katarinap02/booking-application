@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.Domain.Model.Features;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -39,6 +40,11 @@ namespace BookingApp.View.TouristWindows
             Tour.RefreshEndedTours();
         }
 
+        private void NotificationButton_Click(object sender, RoutedEventArgs e)
+        {
+            Tour.NotificationButton();
+        }
+
         private void RateButton_Click(object sender, RoutedEventArgs e)
         {
             if (Tour.IsRated())
@@ -48,12 +54,7 @@ namespace BookingApp.View.TouristWindows
             }
             GuideRateWindow guideRateWindow = new GuideRateWindow(Tour.SelectedTour, Tour.UserId);
             guideRateWindow.ShowDialog();
-        }
 
-        private void NotificationButton_Click(object sender, RoutedEventArgs e)
-        {
-            Tour.NotificationButton();
         }
-
     }
 }

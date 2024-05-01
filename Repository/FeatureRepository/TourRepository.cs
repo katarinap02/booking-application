@@ -42,9 +42,9 @@ namespace BookingApp.Repository.FeatureRepository
             return _serializer.FromCSV(FilePath);
         }
 
-        public List<Tour> GetAllNotFinished()
+        public List<Tour> GetAllNotFinishedAndNotCancelled()
         {
-            return _serializer.FromCSV(FilePath).FindAll(t => t.Status != TourStatus.Finnished);
+            return _serializer.FromCSV(FilePath).FindAll(t => t.Status != TourStatus.Finnished && t.Status != TourStatus.Canceled);
         }
 
         public void Add(Tour tour)
@@ -100,7 +100,7 @@ namespace BookingApp.Repository.FeatureRepository
 
         public List<Tour>? SearchTours(Tour searchCriteria)
         {
-            List<Tour> filteredTours = GetAllNotFinished();
+            List<Tour> filteredTours = GetAllNotFinishedAndNotCancelled();
 
             if (!string.IsNullOrEmpty(searchCriteria.Country.ToLower()))
             {
@@ -127,7 +127,7 @@ namespace BookingApp.Repository.FeatureRepository
 
         public List<Tour> GetTourByCityWithAvailablePlaces(string city)
         {
-            _tours = GetAllNotFinished();
+            _tours = GetAllNotFinishedAndNotCancelled();
             return _tours.FindAll(tour => tour.City.ToLower().Equals(city.ToLower()) && tour.Status != TourStatus.Finnished).Where(tour => tour.AvailablePlaces > 0).ToList();
         }
 

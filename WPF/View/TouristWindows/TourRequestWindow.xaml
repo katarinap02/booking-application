@@ -6,8 +6,11 @@
         xmlns:local="clr-namespace:BookingApp.WPF.View.TouristWindows"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="TourRequestWindow" Height="800" Width="800" WindowStartupLocation="CenterScreen">
+        Title="TourRequestWindow" Height="744" Width="800" WindowStartupLocation="CenterScreen">
+
     <Window.Resources>
+        <local:ValidationErrorsConverter x:Key="ValidationErrorsConverter"/>
+        
         <Style x:Key="RadioButtonStyle" TargetType="RadioButton">
             <Setter Property="Margin" Value="5" />
             <Setter Property="Background" Value="Transparent"></Setter>
@@ -86,6 +89,7 @@
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="150"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="35"></RowDefinition>
             <RowDefinition Height="20"></RowDefinition>
         </Grid.RowDefinitions>
@@ -96,6 +100,15 @@
             FontSize="30"
             Grid.ColumnSpan="6"
                Grid.Row="1"></Label>
+        <StackPanel Grid.Column="4"
+                    Grid.Row="3" Orientation="Horizontal"
+                    HorizontalAlignment="Right">
+            <Image Source="/WPF/Resources/Images/play_button.png"/>
+            <Label Content="Tutorial"
+                   FontSize="18"
+                   FontWeight="DemiBold"
+                   VerticalContentAlignment="Center"/>
+        </StackPanel>
         <StackPanel Grid.ColumnSpan="6"
                     Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
             <RadioButton x:Name="Basic" Style="{StaticResource RadioButtonStyle}"
@@ -105,39 +118,62 @@
                          Content="Complex Tour" GroupName="RequestType" Width="150" Height="40"
                          Command="{Binding SelectTourRequestType}" CommandParameter="Complex"></RadioButton>
         </StackPanel>
-        <Label Content="Location:"
+        <Label Content="Country:"
                Grid.Column="1"
                Grid.Row="3"
                VerticalAlignment="Center"></Label>
-        <TextBox Grid.Column="2"
-                 Grid.Row="3"
-                 VerticalAlignment="Center"
-                 Height="30"></TextBox>
-        <Label Content="Description:"
+        <ComboBox x:Name="CountryComboBox"
+                  Grid.Column="2"
+                  Grid.Row="3"
+                  VerticalAlignment="Center"
+                  Height="30"
+                  SelectedIndex="0"
+                  SelectedItem="{Binding Country, Mode=TwoWay}"
+                  ItemsSource="{Binding Countries}">
+        </ComboBox>
+        <Label Content="City:"
                Grid.Column="1"
                Grid.Row="4"
                VerticalAlignment="Center"></Label>
+        <ComboBox Grid.Column="2"
+                 Grid.Row="4"
+                 SelectedIndex="0"
+                 SelectedItem="{Binding City, Mode=TwoWay}"
+                 ItemsSource="{Binding Cities}"
+                 VerticalAlignment="Center"
+                 Height="30"
+                 VirtualizingPanel.IsVirtualizing="True"
+                 VirtualizingPanel.VirtualizationMode="Recycling"></ComboBox>
+        <Label Content="Description:"
+               Grid.Column="1"
+               Grid.Row="5"
+               VerticalAlignment="Center"></Label>
         <TextBox Grid.Column="2"
                  Grid.RowSpan="2"
-                 Grid.Row="4"
+                 Grid.Row="5"
                  Height="78"
                  VerticalAlignment="Top"
                  Margin="0, 6, 0, 0"></TextBox>
         <Label Content="Language:"
                Grid.Column="1"
-               Grid.Row="6"
+               Grid.Row="7"
                VerticalAlignment="Center"></Label>
-        <TextBox Grid.Column="2"
-                 Grid.Row="6"
+        <ComboBox x:Name="LanguageComboBox"
+                 Grid.Column="2"
+                 Grid.Row="7"
                  VerticalAlignment="Center"
-                 Height="30"></TextBox>
+                 Height="30"
+                 SelectedIndex="0"
+                 SelectedItem="{Binding Language, Mode=TwoWay}"
+                 ItemsSource="{Binding Languages}"
+                 VirtualizingPanel.IsVirtualizing="True"></ComboBox>
         <Label Content="Number Of Participants:"
                Grid.Column="1"
-               Grid.Row="7"
+               Grid.Row="8"
                VerticalAlignment="Center"></Label>
         <xctk:IntegerUpDown x:Name="Participants"
                             Text="{Binding ParticipantCount}"
-                            Grid.Row="7"
+                            Grid.Row="8"
                             Grid.Column="2"
                             Increment="1"
                             Minimum="1"
@@ -150,19 +186,19 @@
                             AllowTextInput="False"/>
         <Label Content="Date range:"
                Grid.Column="1"
-               Grid.Row="8"
+               Grid.Row="9"
                VerticalAlignment="Center"></Label>
         <DatePicker Grid.Column="2"
-                    SelectedDate="{Binding SelectedStartDate}"
-                    DisplayDateStart="{Binding MinDateStart}"
-                    Grid.Row="8"></DatePicker>
-        <DatePicker Grid.Column="2"
-                    IsEnabled="{Binding IsEndDateEnabled}"
-                    SelectedDate="{Binding SelectedEndDate}"
-                    DisplayDateStart="{Binding MinDateEnd}"
+                    SelectedDate="{Binding SelectedStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    DisplayDateStart="{Binding MinDateStart, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Grid.Row="9"></DatePicker>
+        <DatePicker Grid.Column="2"
+                    IsEnabled="{Binding IsEndDateEnabled, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    SelectedDate="{Binding SelectedEndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    DisplayDateStart="{Binding MinDateEnd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+                    Grid.Row="10"></DatePicker>
         <GroupBox x:Name="ParticipantInformationGroupBox"
-          Grid.Row="10" 
+          Grid.Row="11" 
           Grid.Column="1" 
           Grid.ColumnSpan="2"
           Grid.RowSpan="2"
@@ -206,13 +242,13 @@
                  Width="110"
                  Height="25"/>
 
-                <Label Content="{Binding ElementName=NameTextBox, Path=(Validation.Errors)[0].ErrorContent }"
+                <Label Content="{Binding ElementName=NameTextBox, Path=(Validation.Errors).Count, Converter={StaticResource ValidationErrorsConverter}, ConverterParameter={x:Reference NameTextBox} }"
                Foreground="Red"
-               Grid.Row="2"
+               Grid.Row="1"
                Grid.RowSpan="2"
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
-               FontSize="10" Grid.ColumnSpan="2" Margin="96,0,0,0"/>
+               FontSize="10" Grid.ColumnSpan="3" Margin="115,0,0,0"/>
 
                 <TextBox x:Name="LastNameTextBox"
                  Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
@@ -223,7 +259,7 @@
                  Width="110"
                  Height="25"/>
 
-                <Label Content="{Binding ElementName=LastNameTextBox, Path=(Validation.Errors)[0].ErrorContent }"
+                <Label Content="{Binding ElementName=LastNameTextBox, Path=(Validation.Errors).Count, Converter={StaticResource ValidationErrorsConverter}, ConverterParameter={x:Reference LastNameTextBox} }"
                Foreground="Red"
                Grid.Column="1"
                Grid.Row="2"
@@ -231,9 +267,9 @@
                VerticalAlignment="Center"
                HorizontalAlignment="Left"
                FontSize="9.8" Grid.ColumnSpan="2" Margin="96,0,0,0"/>
-
                 <xctk:IntegerUpDown x:Name="years"
                             Text="{Binding Age}"
+                            DefaultValue="1"
                             Grid.Column="2"
                             Grid.Row="3"
                             Width="60"
@@ -242,7 +278,6 @@
                             Height="30"
                             Increment="1"
                             Minimum="1"
-                            DefaultValue="0"
                             AllowTextInput="False"/>
 
                 <Button x:Name="AddButton" Style="{StaticResource EnlargeButtonStyle}"
@@ -259,34 +294,35 @@
         <Image Source="/WPF/Resources/Images/arrow-to-line-right.png"
                Grid.Column="3"
                Grid.Row="11"
-               VerticalAlignment="Top"
+               VerticalAlignment="Center"
                Width="65"></Image>
 
         <Label Content="Participants"
                FontWeight="Bold"
-               Grid.Row="5"
+               Grid.Row="4"
                Grid.Column="4"
                VerticalAlignment="Bottom"/>
         <ListBox x:Name="ParticipantsListBox"
                  ItemsSource="{Binding ParticipantsListBox}"
                  SelectedItem="{Binding SelectedParticipant}"
-                 Grid.Row="6"
+                 Grid.Row="5"
                  Grid.Column="4"
-                 Grid.RowSpan="6"
+                 Grid.RowSpan="8"
                  Margin="0,0,0,10"/>
         <Button Style="{StaticResource EnlargeButtonStyle}"
                 Grid.Column="4"
-                Grid.Row="13"
+                Grid.Row="14"
                 HorizontalAlignment="Right"
                 FontSize="19"
                 Width="75"
                 Content="Confirm"></Button>
         <Button Style="{StaticResource EnlargeButtonStyle}"
                 Grid.Column="4"
-                Grid.Row="13"
+                Grid.Row="14"
                 FontSize="19"
                 HorizontalAlignment="Right"
                 Width="70"
-                Content="Cancel" Margin="0, 0, 100, 0"></Button>
+                Content="Cancel" Command="{Binding CloseWindowCommand}"
+                Margin="0, 0, 100, 0"></Button>
     </Grid>
 </Window>
