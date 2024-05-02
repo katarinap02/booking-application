@@ -93,7 +93,7 @@ namespace BookingApp.Application.Services.FeatureServices
             return monthly_requests;
         }
 
-        public string GetMostRequestedLanguageLastYear()
+        public string GetLanguageSuggestion()
         {
             List<TourRequest> requestsLastYear = _tourRequestRepository.GetAllForYear(DateTime.Now.Year-1);
 
@@ -146,7 +146,7 @@ namespace BookingApp.Application.Services.FeatureServices
             return _tourRequestRepository.GetRequestsBetweenDates(startDate, endDate);
         }
 
-        public string GetMostRequestedLocationLastYear()
+        public string GetLocationSuggestion()
         {
             List<TourRequest> requestsLastYear = GetRequestsForLastYear();
 
