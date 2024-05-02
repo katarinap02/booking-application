@@ -13,6 +13,7 @@ using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using System.Windows.Media;
 
 namespace BookingApp.Application.Services.ReservationServices
 {
@@ -122,6 +123,50 @@ namespace BookingApp.Application.Services.ReservationServices
             delayRequestService.Add(delayRequest);
             return delayRequest;
                        
+        }
+
+        public int getNumOfReservationsByYear(int accId,int year)
+        {
+            int num = 0;
+            foreach(AccommodationReservation ar in  AccommodationReservationRepository.GetAll())
+            {
+                
+                if(ar.AccommodationId == accId && ar.StartDate.Year== year)
+                {
+                    num++;
+                }
+            }
+
+            return num;
+        }
+
+        public int getNumOfReservationsByMonth(int accId, int month)
+        {
+            int num = 0;
+            foreach (AccommodationReservation ar in AccommodationReservationRepository.GetAll())
+            {
+
+                if (ar.AccommodationId == accId && ar.StartDate.Month == month)
+                {
+                    num++;
+                }
+            }
+
+            return num;
+        }
+
+        public List<int> getAllYearsForAcc(int accId)
+        {
+            List<int> list = new List<int>();
+            foreach(AccommodationReservation ar in AccommodationReservationRepository.GetAll())
+            {
+                if (ar.AccommodationId == accId)
+                {
+                    list.Add(ar.StartDate.Year);
+                }
+            }
+
+            return list;
         }
     }
 }
