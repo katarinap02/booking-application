@@ -33,6 +33,11 @@ namespace BookingApp.Repository.FeatureRepository
             return GetAll().FindAll(x => x.Status == TourRequestStatus.Pending);
         }
 
+        public List<TourRequest> GetAllForYear(int year)
+        {
+            return GetAll().FindAll(x => x.DateRequested.Year == year);
+        }     
+
         public TourRequest GetById(int id) // ostaje u repo
         {
             return _tourRequests.Find(x => x.Id == id);
@@ -47,6 +52,13 @@ namespace BookingApp.Repository.FeatureRepository
             _tourRequests.Insert(index, request);
             _serializer.ToCSV(FilePath, _tourRequests);
         }
+
+        public List<TourRequest> GetRequestsBetweenDates(DateTime startDate, DateTime endDate)
+        {
+            List<TourRequest> requests = GetAll();
+            return requests.Where(request => request.DateRequested >= startDate && request.DateRequested <= endDate).ToList();
+        }
+
 
     }
 }
