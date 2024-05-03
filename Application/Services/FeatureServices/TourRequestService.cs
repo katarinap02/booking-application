@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BookingApp.Application.Services.FeatureServices
 {
@@ -29,29 +30,30 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             List<TourRequest> tourRequests = _tourRequestRepository.GetAllPending();
             List<TourRequest> filteredRequests = new List<TourRequest>();
-
+            
             if (!string.IsNullOrEmpty(searchCriteria.City))
             {
+                MessageBox.Show("usao", "City");
                 filteredRequests = tourRequests.FindAll(x => x.City.ToLower().Contains(searchCriteria.City.ToLower())).ToList();
             }
             else if (!string.IsNullOrEmpty(searchCriteria.Country))
             {
+                MessageBox.Show("usao", "Country");
                 filteredRequests = filteredRequests.FindAll(x => x.Country.ToLower().Contains(searchCriteria.Country.ToLower())).ToList();
             }
             else if (!string.IsNullOrEmpty(searchCriteria.Language))
             {
+                MessageBox.Show("usao", "Language");
+                MessageBox.Show(searchCriteria.Language.ToLower());
                 filteredRequests = filteredRequests.FindAll(x => x.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();
+                MessageBox.Show(filteredRequests.Count().ToString());
             }
-            else if (searchCriteria.StartDate != null)
+            else if (searchCriteria.StartDate != null && searchCriteria.EndDate != null)
             {
-                filteredRequests = filteredRequests.FindAll(x => x.StartDate >= searchCriteria.StartDate).ToList();
+                MessageBox.Show("usao", "datumi");
+                filteredRequests = tourRequests.FindAll(x => x.StartDate >= searchCriteria.StartDate && x.EndDate <= searchCriteria.EndDate).ToList();
             }
-            else if (searchCriteria.EndDate != null) 
-            {
-                filteredRequests = filteredRequests.FindAll(x => x.EndDate <= searchCriteria.EndDate).ToList();
-            }
-
-
+            
             return filteredRequests;
         }
 

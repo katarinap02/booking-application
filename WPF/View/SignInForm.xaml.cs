@@ -4,6 +4,7 @@ using BookingApp.Repository.FeatureRepository;
 using BookingApp.View.GuideTestWindows;
 using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;
+using BookingApp.WPF.View.GuideTestWindows;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -100,7 +101,8 @@ namespace BookingApp.View
                         {
                             if (user.Username == "test") // prostor za testiranje prozora
                             {
-                                MessageBox.Show("Treba dodati");
+                                RequestTest requestTest = new RequestTest();
+                                requestTest.Show();
                             }
                             else
                             {
