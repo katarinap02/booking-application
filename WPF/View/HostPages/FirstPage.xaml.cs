@@ -29,10 +29,10 @@ namespace BookingApp.View.HostPages
     {   
 
         public FirstPageViewModel firstPageViewModel {  get; set; }
-        public FirstPage(User user, Frame frame, Menu dock, StackPanel panel)
+        public FirstPage(User user)
         {
             InitializeComponent();
-            firstPageViewModel = new FirstPageViewModel(user, frame, dock, panel);
+            firstPageViewModel = new FirstPageViewModel(user);
             DataContext = firstPageViewModel;
             
         }
@@ -56,14 +56,6 @@ namespace BookingApp.View.HostPages
 
         }
 
-        private void Displacement_Click(object sender, RoutedEventArgs e)
-        {
-            firstPageViewModel.Delay_Navigate(sender, e);
-        }
-
-        private void RateGuest_Click(object sender, RoutedEventArgs e)
-        {
-            firstPageViewModel.RateGuest_Navigate(sender, e);
-        }
+        
     }
 }

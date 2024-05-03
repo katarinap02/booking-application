@@ -41,17 +41,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public HostViewModel hostViewModel { get; set; }
 
-        public FirstPageViewModel(User user, Frame frame, Menu dock, StackPanel panel)
+        public FirstPageViewModel(User user)
 
          {
                 hostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
                 host = hostService.GetByUsername(user.Username);
                 hostService.BecomeSuperHost(host);
                 hostViewModel = new HostViewModel(host);
-                HostFrame = frame;
-                LeftDock = dock;
                 User = user;
-                RatingPanel = panel;
                 Accommodations = new ObservableCollection<AccommodationViewModel>();
                 accommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
                 Update();
@@ -73,7 +70,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 }
           }
 
-         public void RateGuest_Navigate(object sender, RoutedEventArgs e)
+     /*    public void RateGuest_Navigate(object sender, RoutedEventArgs e)
             {
                 GuestRatePage page = new GuestRatePage(User);
                 HostFrame.Navigate(page);
@@ -88,7 +85,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 LeftDock.Visibility = Visibility.Collapsed;
                 RatingPanel.Visibility = Visibility.Collapsed;
             }
-        
+        */
 
     }
 }
