@@ -25,14 +25,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public MenuViewModel menuViewModel { get; set; }
 
-        public Frame HostFrame { get; set; }
-
-        public Menu LeftDock { get; set; }
         public User User { get; set; }
-
-        public StackPanel RatingPanel { get; set; }
-
-        public StackPanel RenovationPanel { get; set; }
 
         public RelayCommand NavigateToRegisterPageCommand { get; set; }
 
@@ -55,6 +48,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public RelayCommand NavigateToScheduledPageCommand {  get; set; }
 
         public RelayCommand NavigateToSchedulePageCommand { get; set; }
+
+        public RelayCommand GoBackCommand {  get; set; }
         public NavigationService NavService { get; set; }
 
 
@@ -73,7 +68,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToHomePageCommand(object obj)
         {
             CloseMenu();
-            FirstPage page = new FirstPage(User);
+            FirstPage page = new FirstPage(User, NavService);
             this.NavService.Navigate(page);
         }
 
@@ -132,6 +127,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             NavigateToPreviousPageCommand = new RelayCommand(Execute_NavigateToPreviousPageCommand, CanExecute_NavigateCommand);
             NavigateToScheduledPageCommand = new RelayCommand(Execute_NavigateToScheduledPageCommand, CanExecute_NavigateCommand);
             NavigateToSchedulePageCommand = new RelayCommand(Execute_NavigateToSchedulePageCommand, CanExecute_NavigateCommand);
+            GoBackCommand = new RelayCommand(BackCommand, CanExecute_NavigateCommand);
             this.OpenMenuCommand = new RelayCommand(
                                         execute => this.menuViewModel.IsMenuOpened = !this.menuViewModel.IsMenuOpened, CanExecute_NavigateCommand);
             this.OpenRatingCommand = new RelayCommand(
@@ -144,10 +140,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         }
        
-
+        public void BackCommand(object obj)
+        {
+            if(NavService.CanGoBack)
+                NavService.GoBack();
+        }
         public void Update()
         {
-            FirstPage page = new FirstPage(User);
+            FirstPage page = new FirstPage(User, NavService);
             this.NavService.Navigate(page);
         }
 

@@ -8,6 +8,7 @@
         Title="HostWindow" Height="768" Width="1024"
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
+    
 
     <DockPanel>
         <Menu DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="1.4">
@@ -15,7 +16,7 @@
                 <LinearGradientBrush >
 
                     <GradientStop Color="#A0CCED" Offset="0.1"/>
-                    
+
                 </LinearGradientBrush>
             </Menu.Background>
             <MenuItem x:Name="MoreItem" Margin="10 5 0 5">
@@ -28,7 +29,7 @@
             </MenuItem>
             <MenuItem x:Name="BackItem" >
                 <MenuItem.Header>
-                    <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}">
+                    <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding GoBackCommand}">
                         <Image Source="../Resources/Images/back_arrow.png" Width="25" Height="25"/>
                     </Button>
                 </MenuItem.Header>
@@ -62,12 +63,12 @@
                 </MenuItem.Header>
             </MenuItem>
 
-            
+
             <MenuItem Width="94">
                 <MenuItem.Header >
                     <Button  Height="30" Click="Close_Click" Style="{StaticResource ButtonStyleWindowHost}">
                         <StackPanel Orientation="Horizontal" Height="24">
-                            
+
                             <TextBlock  Text="Log out" FontSize="15" VerticalAlignment="Center" Margin="2,0,2,0" />
                         </StackPanel>
                     </Button>
@@ -88,7 +89,7 @@
                     </Style.Triggers>
                 </Style>
             </Menu.Style>
-            <StackPanel>
+            <StackPanel Height="698" >
                 <MenuItem Margin="10 15 10 0">
                     <MenuItem.Header>
                         <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Content="Home" Command="{Binding NavigateToHomePageCommand}" FontSize="15" Width="180" Height="25">
@@ -169,21 +170,21 @@
                     </StackPanel.Style>
                     <MenuItem Margin="25 7 10 0">
                         <MenuItem.Header>
-                                <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}"  Content="previous" FontSize="13" Command="{Binding NavigateToPreviousPageCommand}" Width="100" Height="25">
+                            <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}"  Content="previous" FontSize="13" Command="{Binding NavigateToPreviousPageCommand}" Width="100" Height="25">
 
                             </Button>
                         </MenuItem.Header>
                     </MenuItem>
                     <MenuItem Margin="25 7 10 0">
                         <MenuItem.Header>
-                                <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Content="scheduled" Command="{Binding NavigateToScheduledPageCommand}"  FontSize="13" Width="100" Height="25">
+                            <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Content="scheduled" Command="{Binding NavigateToScheduledPageCommand}"  FontSize="13" Width="100" Height="25">
 
                             </Button>
                         </MenuItem.Header>
                     </MenuItem>
                     <MenuItem Margin="25 7 10 0">
                         <MenuItem.Header>
-                                <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Content="schedule" Command="{Binding NavigateToSchedulePageCommand}" FontSize="13" Width="100" Height="25">
+                            <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Content="schedule" Command="{Binding NavigateToSchedulePageCommand}" FontSize="13" Width="100" Height="25">
 
                             </Button>
                         </MenuItem.Header>
@@ -199,11 +200,24 @@
             </StackPanel>
         </Menu>
         <Grid>
-            <Frame
-    x:Name="HostFrame"
-    NavigationUIVisibility="Hidden"
-    Source="../View/HostPages/FirstPage.xaml" Height="705" VerticalAlignment="Center" />
+            <Frame DockPanel.Dock="Right"
+x:Name="HostFrame"
+NavigationUIVisibility="Hidden"
+Source="../View/HostPages/FirstPage.xaml" Height="705" VerticalAlignment="Center" />
+            <Rectangle  DockPanel.Dock="Right" Fill="#80000000">
+                <Rectangle.Style>
+                    <Style TargetType="Rectangle">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Path=menuViewModel.IsMenuOpened}" Value="False">
+                                <Setter Property="Visibility" Value="Hidden">
+                                </Setter>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Rectangle.Style>
+            </Rectangle>
         </Grid>
+
     </DockPanel>
 
 </Window>

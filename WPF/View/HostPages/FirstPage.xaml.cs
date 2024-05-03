@@ -29,31 +29,12 @@ namespace BookingApp.View.HostPages
     {   
 
         public FirstPageViewModel firstPageViewModel {  get; set; }
-        public FirstPage(User user)
+        public FirstPage(User user, NavigationService navigationService)
         {
             InitializeComponent();
-            firstPageViewModel = new FirstPageViewModel(user);
+            firstPageViewModel = new FirstPageViewModel(user, navigationService);
             DataContext = firstPageViewModel;
             
-        }
-
-        private void Displacement_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            
-            
-        }
-        private void Forums_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-
-        }
-        private void RateGuest_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-            
-            
-        }
-        private void Statistic_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-
         }
 
         
