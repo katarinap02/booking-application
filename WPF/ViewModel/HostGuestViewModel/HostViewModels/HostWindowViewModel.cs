@@ -82,7 +82,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToRatingsPageCommand(object obj)
         {
             CloseMenu();
-            RateDisplayPage page = new RateDisplayPage(User);
+            RateDisplayPage page = new RateDisplayPage(User, NavService);
             this.NavService.Navigate(page);
         }
 
@@ -96,14 +96,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToPreviousPageCommand(object obj)
         {
             CloseMenu();
-            PreviousRenovationDisplayPage page = new PreviousRenovationDisplayPage(User);
+            PreviousRenovationDisplayPage page = new PreviousRenovationDisplayPage(User, NavService);
             this.NavService.Navigate(page);
         }
 
         private void Execute_NavigateToScheduledPageCommand(object obj)
         {
             CloseMenu();
-            RenovationDisplayPage page = new RenovationDisplayPage(User);
+            RenovationDisplayPage page = new RenovationDisplayPage(User, NavService);
             this.NavService.Navigate(page);
         }
 

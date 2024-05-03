@@ -23,9 +23,9 @@ namespace BookingApp.WPF.View.HostPages
     public partial class PreviousRenovationDisplayPage : Page
     {
         PreviousRenovationDisplayPageViewModel ViewModel;
-        public PreviousRenovationDisplayPage(User user)
+        public PreviousRenovationDisplayPage(User user, NavigationService navigationService)
         {
-            ViewModel = new PreviousRenovationDisplayPageViewModel(user);
+            ViewModel = new PreviousRenovationDisplayPageViewModel(user, navigationService);
             InitializeComponent();
             DataContext = ViewModel;
         }

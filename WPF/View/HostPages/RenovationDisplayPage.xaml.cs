@@ -24,9 +24,9 @@ namespace BookingApp.WPF.View.HostPages
     {
 
         RenovationDisplayPageViewModel ViewModel;
-        public RenovationDisplayPage(User user)
+        public RenovationDisplayPage(User user, NavigationService navigationService)
         {
-            ViewModel = new RenovationDisplayPageViewModel(user);
+            ViewModel = new RenovationDisplayPageViewModel(user, navigationService);
             InitializeComponent();
             DataContext = ViewModel;
         }

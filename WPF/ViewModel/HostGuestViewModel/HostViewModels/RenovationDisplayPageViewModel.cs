@@ -5,6 +5,7 @@ using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
+using BookingApp.WPF.View.HostPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using System;
 using System.Collections.Generic;
@@ -14,6 +15,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -30,12 +32,37 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public CalendarDateRange SelectedDateRange { get; set; }
 
+        public RelayCommand NavigateToSchedulePageCommand { get; set; }
+
+        public RelayCommand NavigateToPreviousPageCommand { get; set; }
+
         public User User;
 
+        public NavigationService NavService { get; set; }
+
         public MyICommand DeleteCommand { get; set; }
-        public RenovationDisplayPageViewModel(User user) {
+
+        private bool CanExecute_NavigateCommand(object obj)
+        {
+            return true;
+        }
+
+        private void Execute_NavigateToSchedulePageCommand(object obj)
+        {
+            ScheduleRenovationPage page = new ScheduleRenovationPage(User);
+            this.NavService.Navigate(page);
+        }
+        private void Execute_NavigateToPreviousPageCommand(object obj)
+        {
+            PreviousRenovationDisplayPage page = new PreviousRenovationDisplayPage(User, NavService);
+            this.NavService.Navigate(page);
+        }
+        public RenovationDisplayPageViewModel(User user, NavigationService navService) {
             Renovations = new ObservableCollection<RenovationViewModel>();
             User = user;
+            NavService = navService;
+            NavigateToSchedulePageCommand = new RelayCommand(Execute_NavigateToSchedulePageCommand, CanExecute_NavigateCommand);
+            NavigateToPreviousPageCommand = new RelayCommand(Execute_NavigateToPreviousPageCommand, CanExecute_NavigateCommand);
             RenovationService = new RenovationService(Injector.Injector.CreateInstance<IRenovationRepository>());
             DeleteCommand = new MyICommand(DeleteReservation);
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());

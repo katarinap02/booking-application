@@ -36,10 +36,10 @@
         <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="5 10 5 0">
             <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal" Margin="15 0 570 0">
                 <Button Style="{StaticResource ButtonStyleHost}" IsEnabled="False" Content="Previous" FontSize="15" Width="110" Height="40" VerticalAlignment="Top"/>
-                <Button Style="{StaticResource ButtonStyleHost}" Content="Scheduled" FontSize="15" Margin="20 0 0 0" Width="110" Height="40" VerticalAlignment="Top"/>
+                <Button Style="{StaticResource ButtonStyleHost}" Command="{Binding NavigateToScheduledPageCommand}" Content="Scheduled" FontSize="15" Margin="20 0 0 0" Width="110" Height="40" VerticalAlignment="Top"/>
             </StackPanel>
             <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal">
-                <Button Style="{StaticResource ButtonStyleHost}" Content="Schedule renovation" FontSize="15" Width="160" Height="40" VerticalAlignment="Top"/>
+                <Button Style="{StaticResource ButtonStyleHost}" Content="Schedule renovation" Command="{Binding NavigateToSchedulePageCommand}" FontSize="15" Width="160" Height="40" VerticalAlignment="Top"/>
             </StackPanel>
         </StackPanel>
         <ListView
