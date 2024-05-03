@@ -4,6 +4,7 @@ using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.View.GuestPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -28,6 +30,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public int NumberOfPeople { get; set; }
         public int NumberOfDays { get; set; }
 
+        public RequestDetailsPage Page { get; set; }
         public string RequestHeader { get; set; }
         public AccommodationViewModel Accommodation { get; set; }
 
@@ -39,7 +42,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public string Comment { get; set; }
         public ComboBox RequestStatusBox { get; set; }
-        public RequestDetailsViewModel(DelayRequestViewModel selectedRequest)
+        public RequestDetailsViewModel(DelayRequestViewModel selectedRequest, RequestDetailsPage page)
         {
 
             SelectedRequest = selectedRequest;
@@ -50,12 +53,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             AccommodationReservation reservation = AccommodationReservationService.GetById(SelectedRequest.ReservationId);
             Accommodation = new AccommodationViewModel(AccommodationService.GetById(reservation.AccommodationId));
             HostUsername = HostService.GetById(SelectedRequest.HostId).Username;
-            OldDateRange = selectedRequest.StartLastDate.ToString("MM/dd/yyyy") + " -> " + selectedRequest.EndLastDate.ToString("MM/dd/yyyy");
+            OldDateRange = SelectedRequest.StartLastDate.ToString("MM/dd/yyyy") + " -> " + selectedRequest.EndLastDate.ToString("MM/dd/yyyy");
             NewDateRange = SelectedRequest.StartDate.ToString("MM/dd/yyyy") + " -> " + SelectedRequest.EndDate.ToString("MM/dd/yyyy");
             NumberOfPeople = reservation.NumberOfPeople;
             Comment = SelectedRequest.Comment;
             NumberOfDays = (reservation.EndDate - reservation.StartDate).Days + 1;
+            Page = page;
             RequestHeader = CreateRequestHeader(SelectedRequest);
+
 
 
 
@@ -65,13 +70,35 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             if (selectedRequest.Status == RequestStatus.PENDING)
             {
                 Comment = "Waiting for host's response...";
+                Page.requestHeader.Foreground = Brushes.Orange;
+                Page.commentTxtBlock.Foreground = Brushes.Gray;
                 return "Your request is pending.";
+               
             }
 
             else if (selectedRequest.Status == RequestStatus.APPROVED)
+            {
+                if(Comment == "")
+                {
+                    Comment = "No comment";
+                    Page.commentTxtBlock.Foreground = Brushes.Gray;
+                }
+                Page.requestHeader.Foreground = Brushes.LimeGreen;
                 return "Your request is approved.";
+            }
+                
             else
+            {
+                if (Comment == "")
+                {
+                    Comment = "No comment";
+                    Page.commentTxtBlock.Foreground = Brushes.Gray;
+                }
+                Page.requestHeader.Foreground = Brushes.Red;
+
                 return "Your request is rejected";
+            }
+                
         }
     }
 }

@@ -35,5 +35,14 @@ namespace BookingApp.Application.Services.ReservationServices
         {
             RenovationRepository.Delete(selectedRenovation);
         }
+
+        public void CancelRenovation(Renovation selectedRenovation)
+        {
+            DateTime todayPlus5Days = DateTime.Today.AddDays(5);
+            if(selectedRenovation.StartDate >  todayPlus5Days)
+            {
+                Delete(selectedRenovation);
+            }
+        }
     }
 }

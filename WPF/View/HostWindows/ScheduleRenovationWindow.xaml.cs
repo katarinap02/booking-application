@@ -23,11 +23,37 @@ namespace BookingApp.WPF.View.HostWindows
     public partial class ScheduleRenovationWindow : Window
     {
         public ScheduleRenovationWindowViewModel ScheduleRenovationWindowViewModel { get; set; }
+
+        public RenovationViewModel RenovationViewModel { get; set; }
         public ScheduleRenovationWindow(AccommodationViewModel selectedAccommodation, User user, RenovationViewModel renovation)
         {
             InitializeComponent();
-            ScheduleRenovationWindowViewModel = new ScheduleRenovationWindowViewModel(selectedAccommodation, user, renovation);
+            RenovationViewModel = renovation;
+            ScheduleRenovationWindowViewModel = new ScheduleRenovationWindowViewModel(selectedAccommodation, user, renovation, RenovationCalendar);
+
             DataContext = ScheduleRenovationWindowViewModel;
+        }
+
+        private void ReservationCalendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Calendar calendar = (Calendar)sender;
+            int selectedDatesCount = calendar.SelectedDates.Count;
+            if(selectedDatesCount == RenovationViewModel.Duration)
+            {
+                ScheduleButton.IsEnabled = true;
+            }
+            else
+            {
+                ScheduleButton.IsEnabled = false;
+            }
+
+            ScheduleRenovationWindowViewModel.WriteFirstAndLast(calendar);
+
+        }
+
+        private void Close_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

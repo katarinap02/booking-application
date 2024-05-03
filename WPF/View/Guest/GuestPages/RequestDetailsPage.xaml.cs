@@ -35,11 +35,20 @@ namespace BookingApp.View.GuestPages
             User = user;
             Frame = frame;
             SelectedRequest = selectedRequest;
-            ViewModel = new RequestDetailsViewModel(SelectedRequest);
+            ViewModel = new RequestDetailsViewModel(SelectedRequest, this);
             
             DataContext = ViewModel;
         }
 
-        
+        private void AllRequests_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new RequestsPage(User, Frame);
+
+        }
+
+        private void Profile_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new ProfileInfo(User, Frame);
+        }
     }
 }

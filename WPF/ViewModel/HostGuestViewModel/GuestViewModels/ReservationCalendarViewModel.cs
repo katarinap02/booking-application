@@ -82,9 +82,6 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
             SelectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
 
-
-
-
         }
 
         public void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)

@@ -17,7 +17,6 @@ namespace BookingApp.Domain.RepositoryInterfaces.Features
         int NextId();
         List<Tour>? SearchTours(Tour searchCriteria);
         List<Tour> GetTourByCityWithAvailablePlaces(string city);
-        List<Tour>? findToursNeedingGuide();
         Tour? GetTourById(int id);
         int ToursCount();
         void finnishTour(int id);

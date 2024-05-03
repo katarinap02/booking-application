@@ -14,10 +14,12 @@ namespace BookingApp.Application.Services.ReservationServices
     public class DelayRequestService
     {
         private readonly IDelayRequestRepository DelayRequestRepository;
+        private readonly IAccommodationReservationRepository AccommodationReservationRepository;
 
         public DelayRequestService(IDelayRequestRepository delayRequest)
         {
             this.DelayRequestRepository = delayRequest;
+            AccommodationReservationRepository = new AccommodationReservationRepository();
         }
 
         public List<DelayRequest> GetAll()
@@ -38,6 +40,51 @@ namespace BookingApp.Application.Services.ReservationServices
         public DelayRequest Update(DelayRequest delayRequest)
         {
             return DelayRequestRepository.Update(delayRequest);
+        }
+
+        public int getNumOfDelaysByYear(int accId, int year)
+        {
+            int num = 0;
+            foreach (DelayRequest ar in DelayRequestRepository.GetAll())
+            {
+                AccommodationReservation arr = AccommodationReservationRepository.GetById(ar.ReservationId);
+                if (arr.AccommodationId == accId && ar.RepliedDate.Year == year)
+                {
+                    num++;
+                }
+            }
+
+            return num;
+        }
+
+        public int getNumOfnDelaysByMonth(int accId, int month)
+        {
+            int num = 0;
+            foreach (DelayRequest ar in DelayRequestRepository.GetAll())
+            {
+                AccommodationReservation arr = AccommodationReservationRepository.GetById(ar.ReservationId);
+                if (arr.AccommodationId == accId && ar.RepliedDate.Month == month)
+                {
+                    num++;
+                }
+            }
+
+            return num;
+        }
+
+        public List<int> getAllYearsForAcc(int accId)
+        {
+            List<int> list = new List<int>();
+            foreach (DelayRequest ar in DelayRequestRepository.GetAll())
+            {
+                AccommodationReservation arr = AccommodationReservationRepository.GetById(ar.ReservationId);
+                if (arr.AccommodationId == accId)
+                {
+                    list.Add(ar.RepliedDate.Year);
+                }
+            }
+
+            return list;
         }
 
 

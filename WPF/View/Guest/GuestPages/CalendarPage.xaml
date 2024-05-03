@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       mc:Ignorable="d" 
       d:DesignHeight="990" d:DesignWidth="1920"
@@ -19,10 +20,11 @@
 
         <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="218,92,1031,162" Width="671" Height="736">
             <Grid>
-                <Label Content="Reservation" FontSize="55" Margin="172,98,-37,233" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
-                <Label Content="Please choose days and number of" FontSize="35" Margin="65,197,-212,141"/>
-                <Label Content="people for your reservation." FontSize="35" Margin="108,240,-37,100"/>
-                <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Margin="6,240,-6,-240"/>
+                <Label Content="Reservation" FontSize="55" Margin="158,16,-24,315" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+                <TextBlock FontSize="35" TextWrapping="Wrap" TextAlignment="Center" Margin="31,101,31,315">Please choose days and number od people for your reservation.</TextBlock>
+
+                <Label Content="Accommodation" FontSize="40" Margin="168,470,-34,-75" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+                <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Margin="6,258,-6,-258"/>
             </Grid>
         </Border>
         <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="981,92,268,339" Width="671" Height="559">
@@ -33,14 +35,15 @@
                     </Calendar.LayoutTransform>
 
                 </Calendar>
-                <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,443,0,0" VerticalAlignment="Top" Click="SelectDate_Click" Width="198" Height="55" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
+                <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,403,0,0" VerticalAlignment="Top" Click="SelectDate_Click" Width="198" Height="55" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
 
             </Grid>
         </Border>
         <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="30, 30, 30, 30" Margin="981,665,268,162" Width="671" Height="163">
             <Grid x:Name="PeopleNumberSection">
                 <Label Content="Number of people: " HorizontalAlignment="Left" Margin="148,22,0,0" VerticalAlignment="Top" Height="52" Width="264" FontSize="30"/>
-                <TextBox x:Name="txtGuestNumber" HorizontalAlignment="Left" Margin="439,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" Height="40"/>
+                <!--<TextBox x:Name="txtGuestNumber" HorizontalAlignment="Left" Margin="439,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" Height="40"/>-->
+                <xctk:IntegerUpDown Name="txtGuestNumber" Margin="439,28,73,85" />
                 <Button x:Name="finishReservation" Content="Reserve" HorizontalAlignment="Center" Margin="0,79,0,0" VerticalAlignment="Top" Width="140" Click="Reserve_Click" Height="50" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
 
             </Grid>

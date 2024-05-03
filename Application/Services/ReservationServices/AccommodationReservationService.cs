@@ -13,6 +13,7 @@ using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using System.Windows.Media;
 
 namespace BookingApp.Application.Services.ReservationServices
 {
@@ -109,7 +110,7 @@ namespace BookingApp.Application.Services.ReservationServices
             }
         }
 
-        internal void DelayReservation(CalendarDateRange selectedDateRange, DelayRequest delayRequest, DelayRequestService delayRequestService, AccommodationService accommodationService, AccommodationReservationViewModel selectedReservation)
+        public DelayRequest DelayReservation(CalendarDateRange selectedDateRange, DelayRequest delayRequest, DelayRequestService delayRequestService, AccommodationService accommodationService, AccommodationReservationViewModel selectedReservation)
         {
             delayRequest.GuestId = selectedReservation.GuestId;
             Accommodation tmpAccommodation = accommodationService.GetById(selectedReservation.AccommodationId);
@@ -120,7 +121,52 @@ namespace BookingApp.Application.Services.ReservationServices
             delayRequest.StartLastDate = selectedReservation.StartDate;
             delayRequest.EndLastDate = selectedReservation.EndDate;
             delayRequestService.Add(delayRequest);
-            MessageBox.Show("Request sent");
+            return delayRequest;
+                       
+        }
+
+        public int getNumOfReservationsByYear(int accId,int year)
+        {
+            int num = 0;
+            foreach(AccommodationReservation ar in  AccommodationReservationRepository.GetAll())
+            {
+                
+                if(ar.AccommodationId == accId && ar.StartDate.Year== year)
+                {
+                    num++;
+                }
+            }
+
+            return num;
+        }
+
+        public int getNumOfReservationsByMonth(int accId, int month)
+        {
+            int num = 0;
+            foreach (AccommodationReservation ar in AccommodationReservationRepository.GetAll())
+            {
+
+                if (ar.AccommodationId == accId && ar.StartDate.Month == month)
+                {
+                    num++;
+                }
+            }
+
+            return num;
+        }
+
+        public List<int> getAllYearsForAcc(int accId)
+        {
+            List<int> list = new List<int>();
+            foreach(AccommodationReservation ar in AccommodationReservationRepository.GetAll())
+            {
+                if (ar.AccommodationId == accId)
+                {
+                    list.Add(ar.StartDate.Year);
+                }
+            }
+
+            return list;
         }
     }
 }

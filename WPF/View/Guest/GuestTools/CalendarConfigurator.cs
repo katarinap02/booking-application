@@ -1,4 +1,5 @@
-﻿using BookingApp.WPF.ViewModel.HostGuestViewModel;
+﻿using BookingApp.WPF.View.HostWindows;
+using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,15 +16,17 @@ namespace BookingApp.WPF.View.Guest.GuestTools
         public Calendar ReservationCalendar { get; set; }
 
         public UnavailableDateMarker UnavailableDateMarker { get; set; }
+
         public CalendarConfigurator(Calendar reservationCalendar)
         {
 
             ReservationCalendar = reservationCalendar;
             UnavailableDateMarker = new UnavailableDateMarker(ReservationCalendar);
+            
 
         }
 
-        public void ConfigureCalendar(AccommodationViewModel selectedAccommodation, DateTime start, DateTime end, int dayNumber)
+        public void ConfigureCalendar(AccommodationViewModel selectedAccommodation, DateTime start, DateTime end, int dayNumber, bool isHost = false)
         {
             CalendarDateRange chosenDateRange = new CalendarDateRange(start, end);
             ReservationCalendar.SelectionMode = CalendarSelectionMode.SingleRange;
@@ -38,7 +41,10 @@ namespace BookingApp.WPF.View.Guest.GuestTools
             if (IsDateRangeAvailable(ReservationCalendar) == false)
             {
                 MessageBox.Show("All dates in the chosen date range are unavailable. All available dates will be shown now.");
-                ShowReccommendedDates(selectedAccommodation, dayNumber);
+                if (!isHost)
+                {
+                    ShowReccommendedDates(selectedAccommodation, dayNumber);
+                }
             }
 
 

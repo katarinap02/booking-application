@@ -1,0 +1,34 @@
+﻿<Page x:Class="BookingApp.WPF.View.Guest.GuestPages.AboutPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestPages"
+      mc:Ignorable="d" 
+      d:DesignHeight="990" d:DesignWidth="1920"
+      Title="AboutPage">
+
+    <Grid>
+        <Label FontSize="40" Style="{StaticResource HeaderStyleN}" Margin="114,138,-114,-138">About the app</Label>
+        <TextBlock TextWrapping="Wrap" Margin="119,200,1247,697" FontSize="20" TextAlignment="Justify">
+            Welcome to our booking app, where simplicity meets satisfaction. We've simplified the reservation process, ensuring your journey from browsing to booking is effortless.
+            
+        </TextBlock>
+        <Label FontSize="30" Style="{StaticResource HeaderStyleN}" Margin="119,391,-119,-391" Content="Developers"/>
+        <TextBlock FontSize="20" Margin="119,435,-109,-435" TextWrapping="Wrap">
+    <Run Text="• Katarina Petrovic, RA 17/2021"/>
+    <LineBreak/>
+    <Run Text="• Natasa Radmilovic, RA 20/2021"/>
+    <LineBreak/>
+    <Run Text="• Teodora Becejac, RA 37/2021"/>
+    <LineBreak/>
+    <Run Text="• Akos Kis, RA 11/2021"/>
+        </TextBlock>
+
+        <TextBlock TextWrapping="Wrap" Margin="119,560,1247,216" FontSize="20" TextAlignment="Justify">
+   Our team of developers comprises talented students who are passionate about creating innovative solutions. With a blend of academic knowledge and practical skills, they bring fresh perspectives to our project. Each developer is motivated, enthusiastic, and committed to delivering high-quality results. Together, they collaborate seamlessly, leveraging their diverse experiences to drive innovation and success.
+
+        </TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="119,287,1247,610" FontSize="20" TextAlignment="Justify"><Run Text="Discover a wide range of accommodations tailored to your preferences and budget, and book with confidence. Our user-friendly interface makes finding the perfect place easy."/></TextBlock>
+    </Grid>
+</Page>

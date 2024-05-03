@@ -89,6 +89,11 @@ namespace BookingApp.Application.Services.ReservationServices
             return tours;
         }
 
+        public TourReservation GetById(int id)
+        {
+            return _tourReservationRepository.GetById(id);
+        }
+
         public void addParticipant(TourParticipantViewModel tourParticipantViewModel, TourReservationViewModel reservation)
         {
             _tourReservationRepository.addParticipant(tourParticipantViewModel.ToTourParticipant(), reservation.ToTourReservation());
