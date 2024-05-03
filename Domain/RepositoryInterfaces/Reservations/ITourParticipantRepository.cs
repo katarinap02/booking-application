@@ -13,7 +13,7 @@ namespace BookingApp.Domain.RepositoryInterfaces.Reservations
         void Add(TourParticipant tourParticipant);
         int NextId();
         TourParticipant GetById(int id);
-        TourParticipant SaveParticipant(string name, string lastName, string age);
+        TourParticipant SaveParticipant(string name, string lastName, int age);
         void SaveParticipant(TourParticipant tourParticipant, int reservationId);
         List<int> GetAllIdsByReservation(int reservationId);
         List<TourParticipant> GetAllParticipantsByReservation(int reservationId);

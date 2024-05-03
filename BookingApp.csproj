@@ -30,13 +30,15 @@
     <None Remove="Resources\Images\urgent.png" />
     <None Remove="Resources\Images\video-camera.png" />
     <None Remove="Resources\Images\view.png" />
+    <None Remove="WPF\Resources\Images\arrow-to-line-right.png" />
     <None Remove="WPF\Resources\Images\empty.png" />
     <None Remove="WPF\Resources\Images\lock.png" />
     <None Remove="WPF\Resources\Images\minus.png" />
+    <None Remove="WPF\Resources\Images\play_button.png" />
     <None Remove="WPF\Resources\Images\plus.png" />
     <None Remove="WPF\Resources\Images\rome1.jpg" />
     <None Remove="WPF\Resources\Images\search.png" />
-
+    <None Remove="WPF\Resources\Images\user_white.png" />
     <None Remove="WPF\Resources\Images\Unknown_person.jpg" />
 
     <None Remove="WPF\Resources\LoginImages\icon.png" />
@@ -163,6 +165,14 @@
     <Content Include="WPF\Resources\LoginImages\login_background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+
+    <Resource Include="WPF\Resources\Images\arrow-to-line-right.png" />
+
+    <Resource Include="WPF\Resources\Images\play_button.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
+    <Resource Include="WPF\Resources\Images\user_white.png" />
 
     <Resource Include="WPF\View\Guest\GuestThemes\DarkTheme.xaml" />
     <Resource Include="WPF\View\Guest\GuestThemes\LightTheme.xaml">

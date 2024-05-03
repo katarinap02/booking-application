@@ -40,7 +40,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public List<Tour> GetAllTours()
         {
-            return _tourRepository.GetAllNotFinished();
+            return _tourRepository.GetAllNotFinishedAndNotCancelled();
         }
         public Tour GetTourById(int tourId)
         {

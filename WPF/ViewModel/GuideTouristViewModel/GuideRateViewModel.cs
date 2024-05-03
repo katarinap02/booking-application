@@ -294,7 +294,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             Knowledge = 1;
             Language = 1;
             TourInterest = 1;
-            AdditionalComment = "Leave a comment...";
             return false;
         }
 

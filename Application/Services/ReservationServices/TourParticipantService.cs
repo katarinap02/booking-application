@@ -34,9 +34,9 @@ namespace BookingApp.Application.Services.ReservationServices
             _tourParticipantRepository = tourParticipantRepository;
         }
 
-        public TourParticipantViewModel saveParticipantToDTO(string name, string lastName, string years)
+        public TourParticipantViewModel saveParticipantToDTO(string name, string lastName, int age)
         {
-            TourParticipantViewModel tourParticipantViewModel = new TourParticipantViewModel(_tourParticipantRepository.SaveParticipant(name, lastName, years));
+            TourParticipantViewModel tourParticipantViewModel = new TourParticipantViewModel(_tourParticipantRepository.SaveParticipant(name, lastName, age));
             return tourParticipantViewModel;
         }
 

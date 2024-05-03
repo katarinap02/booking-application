@@ -18,7 +18,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.View.TouristPages;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using GalaSoft.MvvmLight.Messaging;
+using BookingApp.WPF.View.TouristWindows;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -37,14 +40,21 @@ namespace BookingApp.View.TouristWindows
 
             Tour.UserName = username;
 
+            Messenger.Default.Register<LogoutMessage>(this, LogoutWindow);
+
             MainFrame.Content = new AllToursPage(Tour.getUserId(Tour.UserName));
 
         }
 
-
-        private void LogoutButton_Click(object sender, RoutedEventArgs e)
+        private void LogoutWindow(LogoutMessage message)
         {
-            Close();
+            this.Close();
+        }
+
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Messenger.Default.Unregister(this);
         }
 
         private void AllToursButton_Click(object sender, RoutedEventArgs e)
@@ -60,6 +70,10 @@ namespace BookingApp.View.TouristWindows
         private void EndedToursButton_Click(object sender, RoutedEventArgs e)
         {
             MainFrame.Content = new EndedToursPage(Tour.getUserId(Tour.UserName));
+        }
+        private void RequestedToursButton_Click(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Content = new RequestedToursPage(Tour.getUserId(Tour.UserName));
         }
         private void VouchersButton_Click(object sender, RoutedEventArgs e)
         {
@@ -106,7 +120,8 @@ namespace BookingApp.View.TouristWindows
 
         private void RequestedTours_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            // ovo jos moram implementirati
+            MainFrame.Content = new RequestedToursPage(Tour.getUserId(Tour.UserName));
+            RequestedToursButton.IsChecked = true;
         }
 
         private void Vouchers_CanExecute(object sender, CanExecuteRoutedEventArgs e)

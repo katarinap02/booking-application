@@ -52,12 +52,12 @@ namespace BookingApp.Repository.ReservationRepository
             return _tourParticipants.Find(tp => tp.Id == id);
         }
 
-        public TourParticipant SaveParticipant(string name, string lastName, string age)
+        public TourParticipant SaveParticipant(string name, string lastName, int age)
         {
             TourParticipant tourParticipant = new TourParticipant();
             tourParticipant.Name = name;
             tourParticipant.LastName = lastName;
-            tourParticipant.Years = Convert.ToInt32(age);
+            tourParticipant.Years = age;
             tourParticipant.Id = NextId();
 
             return tourParticipant;

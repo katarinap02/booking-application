@@ -5,9 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
       xmlns:cmd="clr-namespace:BookingApp.WPF.ViewModel.Commands"
+      xmlns:viewModel="clr-namespace:BookingApp.WPF.ViewModel"
+      xmlns:guideTouristViewModel="clr-namespace:BookingApp.WPF.ViewModel.GuideTouristViewModel"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="945"
       Title="EndedToursPage">
+    <Page.DataContext>
+        <guideTouristViewModel:TourViewModel/>
+    </Page.DataContext>
     <Grid Background="{StaticResource FrameBackgroundColor1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
@@ -48,7 +53,8 @@
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Rate" Click="RateButton_Click" Height="30"
+                            <Button Content="Rate" Height="30"
+                                    Click="RateButton_Click"
                                     Width="80"
                                     Style="{StaticResource EnlargeButtonStyle}"/>
                         </DataTemplate>

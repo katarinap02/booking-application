@@ -55,6 +55,16 @@ namespace BookingApp.Application.Services.FeatureServices
             return filteredRequests;
         }
 
+        public void SaveRequest(TourRequest tourRequest)
+        {
+            _tourRequestRepository.Add(tourRequest);
+        }
+
+        public int NextReservationId()
+        {
+            return _tourRequestRepository.NextId();
+        }
+    
         public List<int> GetYearlyStatistic()
         {
             List<TourRequest> requests = _tourRequestRepository.GetAll();
@@ -191,7 +201,5 @@ namespace BookingApp.Application.Services.FeatureServices
 
             return mostRequestedLocation;
         }
-
-
     }
 }
