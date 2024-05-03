@@ -121,8 +121,7 @@
                          Width="150" 
                          Height="35" 
                          Grid.Row="1"
-                         FontSize="20"
-                         SelectionChanged="CountrySearch_SelectionChanged"/>
+                         FontSize="20"/>
 
                 <Label Grid.Column="3" 
                    HorizontalAlignment="Right" 

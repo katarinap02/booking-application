@@ -33,6 +33,26 @@ namespace BookingApp.Repository.FeatureRepository
             return GetAll().FindAll(x => x.Status == TourRequestStatus.Pending);
         }
 
+        public void Add(TourRequest tourRequest)
+        {
+            tourRequest.Id = NextId();
+            _tourRequests.Add(tourRequest);
+            _serializer.ToCSV(FilePath, _tourRequests);
+        }
+
+        public void Save()
+        {
+            _serializer.ToCSV(FilePath, _tourRequests);
+        }
+
+        public int NextId()
+        {
+            _tourRequests = GetAll();
+            if(_tourRequests.Count < 1)
+                return 1;
+            return _tourRequests.Max(r => r.Id) + 1;
+        }
+
         public TourRequest GetById(int id) // ostaje u repo
         {
             return _tourRequests.Find(x => x.Id == id);

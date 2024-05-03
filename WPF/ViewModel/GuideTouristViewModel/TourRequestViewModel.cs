@@ -1,6 +1,7 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.TouristWindows;
@@ -26,8 +27,10 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
     public class TourRequestViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
-        private TourRequestService _tourRequestService;
+        private readonly TourRequestService _tourRequestService;
+        private readonly TourReservationService _tourReservationService;
         private readonly TourParticipantService _tourParticipantService;
+        private readonly RequestedTourParticipantService _requestedTourParticipantService;
         public ObservableCollection<TourRequestViewModel> TourRequests { get; set; }
         public List<TourParticipantViewModel> TourParticipantDTOs { get; set; }
         public List<TourParticipantViewModel> TourParticipantsListBox { get; set; }
@@ -42,20 +45,60 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
-        private List<TourParticipantViewModel> _participantsListBox;
-        public List<TourParticipantViewModel> ParticipantsListBox
+        private ICommand _removeParticipantCommand;
+        public ICommand RemoveParticipantCommand
         {
             get
             {
-                return _participantsListBox;
+                if (_removeParticipantCommand == null)
+                {
+                    _removeParticipantCommand = new RelayCommand(
+                        param => RemoveParticipant(param),
+                        param => CanRemoveParticipant());
+                }
+                return _removeParticipantCommand;
             }
+        }
+
+        private ICommand _saveToCsvCommand;
+        public ICommand SaveToCsvCommand
+        {
+            get
+            {
+                if (_saveToCsvCommand == null)
+                {
+                    _saveToCsvCommand = new RelayCommand(
+                        param => SaveToCsv(),
+                        param => true); // Always allow the command to be executed
+                }
+                return _saveToCsvCommand;
+            }
+        }
+
+        private void RemoveParticipant(object participant)
+        {
+            TourParticipantDTOs.Remove(participant as TourParticipantViewModel);
+            TourParticipantsListBox.Remove(participant as TourParticipantViewModel);
+            ParticipantsListBox.Clear();
+            foreach (var p in TourParticipantsListBox)
+            {
+                ParticipantsListBox.Add(p);
+            }
+        }
+
+        private bool CanRemoveParticipant()
+        {
+            return ParticipantsListBox.Count > 0;
+        }
+
+        private ObservableCollection<TourParticipantViewModel> _participantsListBox;
+        public ObservableCollection<TourParticipantViewModel> ParticipantsListBox
+        {
+            get { return _participantsListBox; }
             set
             {
-                if (value != _participantsListBox)
-                {
-                    _participantsListBox = value;
-                    OnPropertyChanged(nameof(ParticipantsListBox));
-                }
+                _participantsListBox = value;
+                OnPropertyChanged("ParticipantsListBox");
             }
         }
 
@@ -420,12 +463,66 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         }
         private void SetupForNextParticipantInput()
         {
-            ParticipantsListBox = null;
-            ParticipantsListBox = TourParticipantsListBox;
+            ParticipantsListBox.Clear();
+            foreach (var participant in TourParticipantsListBox)
+            {
+                ParticipantsListBox.Add(participant);
+            }
 
             Name = string.Empty;
             LastName = string.Empty;
             Age = 1;
+        }
+
+        private void SaveToCsv()
+        {
+            if (ParticipantCount - 1 != ParticipantsListBox.Count)
+            {
+                Messenger.Default.Send(new NotificationMessage("Number of participants does not match the number of participants entered\nNote: Number of participants includes you"));
+                return;
+            }
+            // saving participants
+            List<int> participantIds = SaveParticipants();
+
+            // saving request
+
+            TourRequest request = new TourRequest(Description, Language, participantIds,
+                                                  SelectedStartDate, SelectedEndDate, City, Country);
+            _tourRequestService.SaveRequest(request);
+
+            Messenger.Default.Send(new CloseWindowMessage());
+        }
+
+        private List<int> SaveParticipants()
+        {
+            TourParticipantDTOs.Add(ToTourParticipantViewModel(_tourReservationService.FindTouristById(UserId)));
+            TourParticipantDTOs.Reverse();
+            int TourRequestdId = _tourRequestService.NextReservationId();
+
+            List<int> participantIds = new List<int>();
+            foreach(TourParticipantViewModel tp in TourParticipantDTOs)
+            {
+                participantIds.Add(_requestedTourParticipantService.NextParticipantId());
+                _requestedTourParticipantService.SaveRequestedTourParticipant(ToRequestedTourParticipant(tp), TourRequestdId);
+            }
+            return participantIds;
+        }
+
+        private RequestedTourParticipant ToRequestedTourParticipant(TourParticipantViewModel tpViewModel)
+        {
+            RequestedTourParticipant requestedTourParticipant = new RequestedTourParticipant();
+            requestedTourParticipant.Name = tpViewModel.Name;
+            requestedTourParticipant.LastName = tpViewModel.LastName;
+            requestedTourParticipant.Years = tpViewModel.Years;
+            return requestedTourParticipant;
+        }
+        public TourParticipantViewModel ToTourParticipantViewModel(Tourist tourist)
+        {
+            TourParticipantViewModel viewModel = new TourParticipantViewModel();
+            viewModel.Name = tourist.Name;
+            viewModel.LastName = tourist.LastName;
+            viewModel.Years = tourist.Age;
+            return viewModel;
         }
 
         public void InitializeTourRequestWindow()
@@ -435,6 +532,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
             SelectedStartDate = DateTime.Now.AddDays(3);
 
+            ParticipantCount = 1;
             MinDateStart = DateTime.Now.AddDays(3);
             IsEndDateEnabled = false;
         }
@@ -498,6 +596,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             _tourRequestService = new TourRequestService(Injector.Injector.CreateInstance<ITourRequestRepository>());
             _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
+            _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
+            _requestedTourParticipantService = new RequestedTourParticipantService(Injector.Injector.CreateInstance<IRequestedTourParticipantRepository>());
 
             TourRequests = new ObservableCollection<TourRequestViewModel>();
             Countries = new ObservableCollection<string>();
@@ -510,6 +610,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
             TourParticipantDTOs = new List<TourParticipantViewModel>();
             TourParticipantsListBox = new List<TourParticipantViewModel>();
+            ParticipantsListBox = new ObservableCollection<TourParticipantViewModel>();
         }
         public void NotificationButton()
         {

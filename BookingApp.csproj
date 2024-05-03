@@ -30,6 +30,7 @@
     <None Remove="Resources\Images\urgent.png" />
     <None Remove="Resources\Images\video-camera.png" />
     <None Remove="Resources\Images\view.png" />
+    <None Remove="WPF\Resources\Images\arrow-to-line-right.png" />
     <None Remove="WPF\Resources\Images\empty.png" />
     <None Remove="WPF\Resources\Images\minus.png" />
     <None Remove="WPF\Resources\Images\play_button.png" />
@@ -153,6 +154,8 @@
     <Content Include="WPF\Resources\LoginImages\login_background.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+
+    <Resource Include="WPF\Resources\Images\arrow-to-line-right.png" />
 
     <Resource Include="WPF\Resources\Images\play_button.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

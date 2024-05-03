@@ -25,13 +25,17 @@ namespace BookingApp.WPF.View.TouristWindows
     public partial class TourRequestWindow : Window
     {
         public TourRequestViewModel TourRequest {  get; set; }
-        public TourRequestWindow()
+        public TourRequestWindow(int userId)
         {
             InitializeComponent();
             TourRequest = new TourRequestViewModel();
             DataContext = TourRequest;
-
+            TourRequest.UserId = userId;
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
+            Messenger.Default.Register<NotificationMessage>(this, message =>
+            {
+                MessageBox.Show(message.Notification, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            });
 
             TourRequest.InitializeTourRequestWindow();
         }
@@ -45,6 +49,10 @@ namespace BookingApp.WPF.View.TouristWindows
         {
             base.OnClosed(e);
             Messenger.Default.Unregister(this);
+        }
+        private void Window_Unloaded(object sender, RoutedEventArgs e)
+        {
+            Messenger.Default.Unregister<NotificationMessage>(this);
         }
     }
 }

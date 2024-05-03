@@ -40,7 +40,7 @@ namespace BookingApp.WPF.View.TouristPages
 
         private void RequestTour_OnClick(object sender, RoutedEventArgs e)
         {
-            TourRequestWindow tourRequestWindow = new TourRequestWindow();
+            TourRequestWindow tourRequestWindow = new TourRequestWindow(TourRequest.UserId);
             tourRequestWindow.ShowDialog();
         }
     }

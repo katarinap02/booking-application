@@ -85,8 +85,9 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="50"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="150"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
             <RowDefinition Height="30"></RowDefinition>
@@ -152,6 +153,7 @@
                  Grid.RowSpan="2"
                  Grid.Row="5"
                  Height="78"
+                 Text="{Binding Description, Mode=TwoWay}"
                  VerticalAlignment="Top"
                  Margin="0, 6, 0, 0"></TextBox>
         <Label Content="Language:"
@@ -172,7 +174,7 @@
                Grid.Row="8"
                VerticalAlignment="Center"></Label>
         <xctk:IntegerUpDown x:Name="Participants"
-                            Text="{Binding ParticipantCount}"
+                            Text="{Binding ParticipantCount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             Grid.Row="8"
                             Grid.Column="2"
                             Increment="1"
@@ -191,12 +193,16 @@
         <DatePicker Grid.Column="2"
                     SelectedDate="{Binding SelectedStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     DisplayDateStart="{Binding MinDateStart, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    Grid.Row="9"></DatePicker>
+                    Grid.Row="9"
+                    FontSize="14"
+                    Height="25"></DatePicker>
         <DatePicker Grid.Column="2"
                     IsEnabled="{Binding IsEndDateEnabled, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     SelectedDate="{Binding SelectedEndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     DisplayDateStart="{Binding MinDateEnd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    Grid.Row="10"></DatePicker>
+                    Grid.Row="10"
+                    FontSize="14"
+                    Height="25"></DatePicker>
         <GroupBox x:Name="ParticipantInformationGroupBox"
           Grid.Row="11" 
           Grid.Column="1" 
@@ -293,7 +299,7 @@
         </GroupBox>
         <Image Source="/WPF/Resources/Images/arrow-to-line-right.png"
                Grid.Column="3"
-               Grid.Row="11"
+               Grid.Row="12"
                VerticalAlignment="Center"
                Width="65"></Image>
 
@@ -308,14 +314,32 @@
                  Grid.Row="5"
                  Grid.Column="4"
                  Grid.RowSpan="8"
-                 Margin="0,0,0,10"/>
+                 FontSize="20"
+                 Margin="0,0,0,10">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="{Binding}" Grid.Column="0"/>
+                        <Button Content="Remove" 
+                                Command="{Binding DataContext.RemoveParticipantCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
+                                CommandParameter="{Binding}"
+                                Grid.Column="1"/>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
         <Button Style="{StaticResource EnlargeButtonStyle}"
                 Grid.Column="4"
                 Grid.Row="14"
                 HorizontalAlignment="Right"
                 FontSize="19"
                 Width="75"
-                Content="Confirm"></Button>
+                Content="Confirm"
+                Command="{Binding SaveToCsvCommand}"></Button>
         <Button Style="{StaticResource EnlargeButtonStyle}"
                 Grid.Column="4"
                 Grid.Row="14"

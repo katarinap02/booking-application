@@ -7,14 +7,11 @@ using System.Threading.Tasks;
 
 namespace BookingApp.Domain.RepositoryInterfaces.Features
 {
-    public interface ITourRequestRepository
+    public interface IRequestedTourParticipantRepository
     {
-        List<TourRequest> GetAll();
-        List<TourRequest> GetAllPending();
-        void Add(TourRequest tourRequest);
+        List<RequestedTourParticipant> GetAll();
+        void Add(RequestedTourParticipant requestedTourParticipant);
         void Save();
         int NextId();
-        TourRequest GetById(int id);
-        void UpdateRequest(TourRequest request);
     }
 }
