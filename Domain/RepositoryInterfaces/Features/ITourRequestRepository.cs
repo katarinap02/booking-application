@@ -15,6 +15,7 @@ namespace BookingApp.Domain.RepositoryInterfaces.Features
         void Save();
         int NextId();
         TourRequest GetById(int id);
+        List<TourRequest> GetByTouristId(int touristId);
         void UpdateRequest(TourRequest request);
         public List<TourRequest> GetAllForYear(int year);
         public List<TourRequest> GetRequestsBetweenDates(DateTime startDate, DateTime endDate);

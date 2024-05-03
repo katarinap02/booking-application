@@ -201,5 +201,55 @@ namespace BookingApp.Application.Services.FeatureServices
 
             return mostRequestedLocation;
         }
+        public double GetAcceptedRequestPercentage(int touristId, int? year = null)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId);
+            if (year.HasValue)
+            {
+                requests = requests.Where(r => r.AcceptedDate.Year == year.Value).ToList();
+            }
+
+            var totalRequests = requests.Count;
+            var acceptedRequests = requests.Count(r => r.Status == TourRequestStatus.Accepted);
+
+            return (double)acceptedRequests / totalRequests * 100;
+        }
+
+        public double GetDeclinedRequestPercentage(int touristId, int? year = null)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId);
+            if (year.HasValue)
+            {
+                requests = requests.Where(r => r.AcceptedDate.Year == year.Value).ToList();
+            }
+
+            var totalRequests = requests.Count;
+            var invalidRequests = requests.Count(r => r.Status == TourRequestStatus.Invalid);
+
+            return (double)invalidRequests / totalRequests * 100;
+        }
+        public double GetAverageNumberOfPeopleInAcceptedRequests(int touristId, int? year = null)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId)
+                .Where(r => r.Status == TourRequestStatus.Accepted);
+            if (year.HasValue)
+            {
+                requests = requests.Where(r => r.DateRequested.Year == year.Value).ToList();
+            }
+
+            return requests.Average(r => r.ParticipantIds.Count);
+        }
+        public Dictionary<string, int> GetRequestCountByLanguage(int touristId)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId);
+            return requests.GroupBy(r => r.Language)
+                .ToDictionary(g => g.Key, g => g.Count());
+        }
+        public Dictionary<string, int> GetRequestCountByLocation(int touristId)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId);
+            return requests.GroupBy(r => r.City)
+                .ToDictionary(g => g.Key, g => g.Count());
+        }
     }
 }

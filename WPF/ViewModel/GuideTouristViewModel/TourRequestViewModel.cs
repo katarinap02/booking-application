@@ -41,6 +41,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         public ICommand SelectTourRequestType { get; set; }
         public ICommand CloseWindowCommand { get; set; }
+        public ICommand StatisticsCommand { get; set; }
         public RelayCommand AddParticipantCommand { get; set; }
 
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
@@ -486,7 +487,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
             // saving request
 
-            TourRequest request = new TourRequest(Description, Language, participantIds,
+            TourRequest request = new TourRequest(UserId, Description, Language, participantIds,
                                                   SelectedStartDate, SelectedEndDate, City, Country);
             _tourRequestService.SaveRequest(request);
 
