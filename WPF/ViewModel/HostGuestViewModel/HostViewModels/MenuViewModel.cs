@@ -1,4 +1,8 @@
-﻿using System;
+﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -51,6 +55,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         }
     }
 
-        public MenuViewModel() { }
+        private string searchHost;
+        public string SearchHost
+        {
+            get { return searchHost; }
+            set
+            {
+                searchHost = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public MenuViewModel(Host host) {
+            searchHost = host.Search;
+        }
     }
 }

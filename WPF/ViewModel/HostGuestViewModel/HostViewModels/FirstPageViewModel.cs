@@ -73,7 +73,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 hostViewModel = new HostViewModel(host);
                 User = user;
                 NavService = navService;
-                menuViewModel = new MenuViewModel();
+                menuViewModel = new MenuViewModel(host);
                 Accommodations = new ObservableCollection<AccommodationViewModel>();
                 accommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
                 NavigateToRateGuestPageCommand = new RelayCommand(Execute_NavigateToGuestRatePageCommand, CanExecute_NavigateCommand);
@@ -89,7 +89,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 Accommodations.Clear();
                 foreach (Accommodation accommodation in accommodationService.GetAll())
                 {
-                    if (accommodation.HostId == host.Id)
+                if (accommodation.HostId == host.Id && accommodation.Name.ToLower().Contains(menuViewModel.SearchHost.ToLower())) 
                     {
                         Accommodations.Add(new AccommodationViewModel(accommodation));
                     }

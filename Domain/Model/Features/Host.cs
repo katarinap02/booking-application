@@ -12,9 +12,11 @@ namespace BookingApp.Domain.Model.Features
         public bool IsSuperHost;
         public double RateAverage;
         public int RateCount;
+        public string Search;
         public Host()
         {
             Type = UserType.host;
+            Search = "";
         }
 
         public Host(string username, string password, bool SuperHost, double rate, int count)
@@ -29,7 +31,7 @@ namespace BookingApp.Domain.Model.Features
 
         public override string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), Username, Password, IsSuperHost.ToString(), RateCount.ToString(), RateAverage.ToString() };
+            string[] csvValues = { Id.ToString(), Username, Password, IsSuperHost.ToString(), RateCount.ToString(), RateAverage.ToString(), Search };
             return csvValues;
         }
 
@@ -41,6 +43,7 @@ namespace BookingApp.Domain.Model.Features
             IsSuperHost = Convert.ToBoolean(values[3]);
             RateCount = Convert.ToInt32(values[4]);
             RateAverage = Convert.ToDouble(values[5]);
+            Search = values[6];
 
 
         }

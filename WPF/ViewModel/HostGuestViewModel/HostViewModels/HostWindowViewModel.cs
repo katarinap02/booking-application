@@ -16,6 +16,9 @@ using BookingApp.WPF.View.HostPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using System.Windows.Navigation;
 using System.Runtime.CompilerServices;
+using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -26,6 +29,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public MenuViewModel menuViewModel { get; set; }
 
         public User User { get; set; }
+
+        public Host host { get; set; }
+
+        public HostService hostService { get; set; }
+
+        public RelayCommand SearchCommand {  get; set; }
 
         public RelayCommand NavigateToRegisterPageCommand { get; set; }
 
@@ -51,6 +60,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public RelayCommand GoBackCommand {  get; set; }
         public NavigationService NavService { get; set; }
+
+        FirstPage FirstPage {  get; set; }
+
+        PreviousRenovationDisplayPageViewModel PreviousPage {  get; set; }
+
+        RenovationDisplayPageViewModel RenovationPage { get; set; }
+
+        RateDisplayPageViewModel RatePage { get; set; }
 
 
         private bool CanExecute_NavigateCommand(object obj)
@@ -118,7 +135,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public HostWindowViewModel(User user, NavigationService navService)
         {
-            menuViewModel = new MenuViewModel();
+            hostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
+            host = hostService.GetByUsername(user.Username);
+            hostService.BecomeSuperHost(host);
+            menuViewModel = new MenuViewModel(host);
             NavigateToRegisterPageCommand = new RelayCommand(Execute_NavigateToRegisterPageCommand ,CanExecute_NavigateCommand);
             NavigateToHomePageCommand = new RelayCommand(Execute_NavigateToHomePageCommand, CanExecute_NavigateCommand);
             NavigateToDelayPageCommand = new RelayCommand(Execute_NavigateToDelayPageCommand, CanExecute_NavigateCommand);
@@ -128,6 +148,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             NavigateToScheduledPageCommand = new RelayCommand(Execute_NavigateToScheduledPageCommand, CanExecute_NavigateCommand);
             NavigateToSchedulePageCommand = new RelayCommand(Execute_NavigateToSchedulePageCommand, CanExecute_NavigateCommand);
             GoBackCommand = new RelayCommand(BackCommand, CanExecute_NavigateCommand);
+            SearchCommand = new RelayCommand(SearchClick, CanExecute_NavigateCommand);
             this.OpenMenuCommand = new RelayCommand(
                                         execute => this.menuViewModel.IsMenuOpened = !this.menuViewModel.IsMenuOpened, CanExecute_NavigateCommand);
             this.OpenRatingCommand = new RelayCommand(
@@ -140,6 +161,28 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         }
        
+        public void SearchClick(object obj)
+        {
+            hostService.SearchHost(host, menuViewModel.SearchHost);
+            if(NavService.Content is FirstPage)
+            {
+                Update();
+            }
+            else if (NavService.Content is RateDisplayPage)
+            {
+                Execute_NavigateToRatingsPageCommand(obj);
+            }
+            else if (NavService.Content is PreviousRenovationDisplayPage)
+            {
+                Execute_NavigateToPreviousPageCommand(obj);
+            }
+            else if (NavService.Content is RenovationDisplayPage)
+            {
+                Execute_NavigateToScheduledPageCommand(obj);
+            }
+
+
+        }
         public void BackCommand(object obj)
         {
             if(NavService.CanGoBack)
