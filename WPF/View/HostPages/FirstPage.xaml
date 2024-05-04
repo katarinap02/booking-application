@@ -276,7 +276,7 @@
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0 0 5 0" Grid.Column="2">
                                 <TextBlock VerticalAlignment="Center"  Style="{StaticResource TextBlockStyleHost}"  HorizontalAlignment="Right" Margin="10 0 0 0">
-                                    <Hyperlink Style="{StaticResource HyperlinkStyle}" >
+                                    <Hyperlink Style="{StaticResource HyperlinkStyle}" Command="{Binding DataContext.NavigateToStatisticPageCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" >
                                         statistic
                                     </Hyperlink>
                                 </TextBlock>

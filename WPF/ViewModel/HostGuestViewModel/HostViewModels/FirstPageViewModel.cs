@@ -17,6 +17,9 @@ using System.Windows;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using System.Windows.Navigation;
+using BookingApp.WPF.View.HostPages;
+using GalaSoft.MvvmLight.Command;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -36,6 +39,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public RelayCommand NavigateToRateGuestPageCommand { get; set; }
 
         public RelayCommand NavigateToDelayPageCommand { get; set; }
+
+        public MyICommand<AccommodationViewModel> NavigateToStatisticPageCommand { get; set; }
         public User User { get; set; }
 
         public NavigationService NavService { get; set; }
@@ -59,6 +64,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             this.NavService.Navigate(page);
         }
 
+        private void Execute_NavigateToStatisticPageCommand(AccommodationViewModel acc)
+        {
+            CloseMenu();
+            StatisticYearsPage page = new StatisticYearsPage(User, acc);
+            this.NavService.Navigate(page);
+        }
+
         private bool CanExecute_NavigateCommand(object obj)
         {
             return true;
@@ -78,6 +90,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 accommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
                 NavigateToRateGuestPageCommand = new RelayCommand(Execute_NavigateToGuestRatePageCommand, CanExecute_NavigateCommand);
                 NavigateToDelayPageCommand = new RelayCommand(Execute_NavigateToDelayPageCommand, CanExecute_NavigateCommand);
+                NavigateToStatisticPageCommand = new MyICommand<AccommodationViewModel>(Execute_NavigateToStatisticPageCommand);
                 Update();
 
          }
