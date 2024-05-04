@@ -52,7 +52,15 @@
                 <ComboBox x:Name="YearComboBox" Width="60" Height="30">
                     
                 </ComboBox>
-        </StackPanel>
+                
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1">
+            <Label x:Name="BusyLabel" VerticalAlignment="Center" Style="{StaticResource LableStyleHost}" Margin="15 0 10 0 ">
+                Most busy in :
+            </Label>
+                <TextBox x:Name="BusyTextBox" Text="{Binding MostBusyYear}" VerticalAlignment="Center" Background="Transparent" Width="Auto" Height="Auto"   Style="{StaticResource TextBoxStyleMSHost}"/>
+            </StackPanel>
+            
             <Border  Grid.Row="1" Grid.Column="0" BorderBrush="#A0CCED" BorderThickness="4" Margin="75,10,171,80">
                 <StackPanel VerticalAlignment="Center" HorizontalAlignment="Center" Margin="0 10 60 10">
                     <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="15 0 0 0">

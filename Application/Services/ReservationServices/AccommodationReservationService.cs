@@ -181,5 +181,29 @@ namespace BookingApp.Application.Services.ReservationServices
             }
                 return list;
         }
+
+        public int GetMostBusyYearForAcc(int accId)
+        {
+            int busyYear = 0;
+            int daysInYear = 365;
+            int daysInYearLast = 365;
+            foreach (int year in GetAllYearsForAcc(accId))
+            {
+                if (year % 4 == 0)
+                    daysInYear = 366;
+                else daysInYear = 365;
+
+                if (busyYear % 4 == 0)
+                    daysInYearLast = 366;
+                else daysInYearLast = 365;
+
+                
+
+                if (((double)GetNumOfReservationsByYear(accId, year) / daysInYear) > ((double)GetNumOfReservationsByYear(accId, busyYear) / daysInYearLast))
+                    busyYear = year;
+                
+            }
+            return busyYear;
+        }
     }
 }

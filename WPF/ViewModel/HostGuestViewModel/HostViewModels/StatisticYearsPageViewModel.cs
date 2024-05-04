@@ -28,6 +28,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public string[] Years { get; set; }
 
+        public int MostBusyYear { get; set; }
+
         public List<int> YearsList { get; set; }
 
         public Func<int, string> NumOfReservations {  get; set; }
@@ -61,6 +63,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             NumOfReservations = value => value.ToString("N");
             NumOfCancellations = value => value.ToString("N");
             NumOfRecommendation = value => value.ToString("N");
+            MostBusyYear = AccommodationReservationService.GetMostBusyYearForAcc(acc.Id);
         }
 
         private void AddYChart()
