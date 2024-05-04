@@ -3,7 +3,8 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BookingApp.WPF.View.HostPages"
+      xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:local="clr-namespace:BookingApp.WPF.View.HostPages" 
       mc:Ignorable="d" 
       d:DesignHeight="705" d:DesignWidth="1024"
       Title="StatisticYearsPage">
@@ -111,6 +112,20 @@
                     </StackPanel>
                 </StackPanel>
             </Border>
+        
+
+        <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="15 10 30 10" LegendLocation ="Top"  Grid.Column="1" Grid.Row="1">
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Labels="{Binding Years}">
+                        
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis LabelFormatter="{Binding NumOfReservations}" >
+
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+            </lvc:CartesianChart>
         </Grid>
     </Grid>
 </Page>

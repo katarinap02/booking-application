@@ -140,6 +140,8 @@ namespace BookingApp.Application.Services.ReservationServices
             return num;
         }
 
+        
+
         public int getNumOfReservationsByMonth(int accId, int month)
         {
             int num = 0;
@@ -157,16 +159,27 @@ namespace BookingApp.Application.Services.ReservationServices
 
         public List<int> getAllYearsForAcc(int accId)
         {
-            List<int> list = new List<int>();
-            foreach(AccommodationReservation ar in AccommodationReservationRepository.GetAll())
+            HashSet<int> uniqueYears = new HashSet<int>(); // Using HashSet to store unique years
+
+            foreach (AccommodationReservation ar in AccommodationReservationRepository.GetAll())
             {
                 if (ar.AccommodationId == accId)
                 {
-                    list.Add(ar.StartDate.Year);
+                    uniqueYears.Add(ar.StartDate.Year); // Add the year to the HashSet
                 }
             }
 
-            return list;
+            
+            return uniqueYears.ToList();
+        }
+        public List<int> getAllReservationsForYears(int accId)
+        {
+            List<int> list = new List<int>();
+            foreach (int year in getAllYearsForAcc(accId))
+            {
+                list.Add(getNumOfReservationsByYear(accId, year));
+            }
+                return list;
         }
     }
 }
