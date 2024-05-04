@@ -43,10 +43,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public RelayCommand NavigateToRateGuestPageCommand { get; set; }
 
-        public GuestRateService guestRateService
-        {
-            get; set;
-        }
+        public GuestRateService guestRateService { get; set; }
+
+        public MenuViewModel menuViewModel { get; set; }
 
         private void Execute_NavigateToGuestRatePageCommand(object obj)
         {
@@ -69,6 +68,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             hostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
             host = hostService.GetByUsername(user.Username);
             User = user;
+            menuViewModel = new MenuViewModel(host);
             NavigateToRateGuestPageCommand = new RelayCommand(Execute_NavigateToGuestRatePageCommand, CanExecute_NavigateCommand);
             NavService = navService;
             Update();
@@ -87,8 +87,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 {
                     if (guestRate.ReservationId == accommodationRate.ReservationId && accommodationRate.HostId == host.Id)
                     {
-                        Accommodations.Add(new AccommodationRateViewModel(accommodationRate, accommodationReservation, user));
+                        AccommodationRateViewModel ar = new AccommodationRateViewModel(accommodationRate, accommodationReservation, user);
+                        if(ar.AccommodationName.ToLower().Contains(menuViewModel.SearchHost.ToLower())) {
+                            Accommodations.Add(ar);
+                        }
                         break;
+
                     }
                 }
 

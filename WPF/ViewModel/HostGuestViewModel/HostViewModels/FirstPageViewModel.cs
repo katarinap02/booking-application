@@ -27,9 +27,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
         public AccommodationService accommodationService { get; set; }
 
-        public HostService hostService { get; set; }
-
         public AccommodationReservationViewModel SelectedAccommodation { get; set; }
+
+        public HostService hostService { get; set; }
 
         public Host host { get; set; }
 

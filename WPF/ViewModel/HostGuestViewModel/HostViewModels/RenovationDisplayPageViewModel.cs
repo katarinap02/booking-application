@@ -3,6 +3,7 @@ using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.WPF.View.HostPages;
@@ -38,6 +39,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public User User;
 
+        public HostService hostService { get; set; }
+
+        public Host host { get; set; }
+
+        public MenuViewModel menuViewModel { get; set; }
+
         public NavigationService NavService { get; set; }
 
         public MyICommand DeleteCommand { get; set; }
@@ -65,6 +72,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             NavigateToPreviousPageCommand = new RelayCommand(Execute_NavigateToPreviousPageCommand, CanExecute_NavigateCommand);
             RenovationService = new RenovationService(Injector.Injector.CreateInstance<IRenovationRepository>());
             DeleteCommand = new MyICommand(DeleteReservation);
+            hostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
+            host = hostService.GetByUsername(user.Username);
+            hostService.BecomeSuperHost(host);
+            menuViewModel = new MenuViewModel(host);
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             Update();
         }
@@ -77,7 +88,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             {
                 if(renovation.HostId == User.Id && (renovation.StartDate > today))
                 {
-                    Renovations.Add(new RenovationViewModel(renovation));
+                    RenovationViewModel rv = new RenovationViewModel(renovation);
+                    if(rv.AccommodationName.ToLower().Contains(menuViewModel.SearchHost.ToLower())) 
+                    Renovations.Add(rv);
                 }
             }
         }
