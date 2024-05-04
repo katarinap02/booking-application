@@ -35,7 +35,7 @@ namespace BookingApp.Application.Services.RateServices
             return RenovationRecommendationRepository.GetById(id);
         }
 
-        public int getNumOfDelaysByYear(int accId, int year)
+        public int GetNumOfRecommendationsByYear(int accId, int year)
         {
             int num = 0;
             foreach (RenovationRecommendation ar in RenovationRecommendationRepository.GetAll())
@@ -50,7 +50,7 @@ namespace BookingApp.Application.Services.RateServices
             return num;
         }
 
-        public int getNumOfnDelaysByMonth(int accId, int month)
+        public int GetNumOfnRecommendationsByMonth(int accId, int month)
         {
             int num = 0;
             foreach (RenovationRecommendation ar in RenovationRecommendationRepository.GetAll())
@@ -65,19 +65,29 @@ namespace BookingApp.Application.Services.RateServices
             return num;
         }
 
-        public List<int> getAllYearsForAcc(int accId)
+        public List<int> GetAllYearsForAcc(int accId)
         {
-            List<int> list = new List<int>();
+            HashSet<int> uniqueYears = new HashSet<int>(); 
+
             foreach (RenovationRecommendation ar in RenovationRecommendationRepository.GetAll())
             {
-                
                 if (ar.AccommodationId == accId)
                 {
-                    list.Add(ar.Date.Year);
+                    uniqueYears.Add(ar.Date.Year); 
                 }
             }
+            return uniqueYears.ToList();
+        }
 
+        public List<int> GetAllRecommendationsForYears(int accId)
+        {
+            List<int> list = new List<int>();
+            foreach (int year in GetAllYearsForAcc(accId))
+            {
+                list.Add(GetNumOfRecommendationsByYear(accId, year));
+            }
             return list;
         }
+
     }
 }

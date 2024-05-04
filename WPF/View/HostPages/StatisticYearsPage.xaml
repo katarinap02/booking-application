@@ -114,7 +114,7 @@
             </Border>
         
 
-        <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="15 10 30 10" LegendLocation ="Top"  Grid.Column="1" Grid.Row="1">
+        <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="15 10 30 30" LegendLocation ="Top"  Grid.Column="1" Grid.Row="1">
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis Labels="{Binding Years}">
                         
@@ -126,6 +126,47 @@
                     </lvc:Axis>
                 </lvc:CartesianChart.AxisY>
             </lvc:CartesianChart>
+
+            <lvc:CartesianChart Series="{Binding SeriesCollectionCancel}" Margin="15 10 30 30" LegendLocation ="Top"  Grid.Column="0" Grid.Row="2">
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Labels="{Binding Years}">
+
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis LabelFormatter="{Binding NumOfCancellations}" >
+
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.Resources>
+                    <Style TargetType="lvc:DefaultLegend">
+                        <Setter Property="VerticalAlignment" Value="Top"/>
+                        <Setter Property="Orientation" Value="Vertical"/>
+                    </Style>
+                </lvc:CartesianChart.Resources>
+
+            </lvc:CartesianChart>
+            <lvc:CartesianChart Series="{Binding SeriesCollectionRecommendation}" Margin="15 10 50 30" LegendLocation ="Top"  Grid.Column="1" Grid.Row="2">
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Labels="{Binding Years}">
+
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis LabelFormatter="{Binding NumOfRecommendation}" >
+
+                    </lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.Resources>
+                    <Style TargetType="lvc:DefaultLegend">
+                        <Setter Property="VerticalAlignment" Value="Top"/>
+                        <Setter Property="Orientation" Value="Vertical"/>
+                    </Style>
+                </lvc:CartesianChart.Resources>
+
+            </lvc:CartesianChart>
+
+
         </Grid>
     </Grid>
 </Page>

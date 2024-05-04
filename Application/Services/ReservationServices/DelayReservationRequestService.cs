@@ -42,7 +42,7 @@ namespace BookingApp.Application.Services.ReservationServices
             return DelayRequestRepository.Update(delayRequest);
         }
 
-        public int getNumOfDelaysByYear(int accId, int year)
+        public int GetNumOfDelaysByYear(int accId, int year)
         {
             int num = 0;
             foreach (DelayRequest ar in DelayRequestRepository.GetAll())
@@ -57,7 +57,7 @@ namespace BookingApp.Application.Services.ReservationServices
             return num;
         }
 
-        public int getNumOfnDelaysByMonth(int accId, int month)
+        public int GetNumOfnDelaysByMonth(int accId, int month)
         {
             int num = 0;
             foreach (DelayRequest ar in DelayRequestRepository.GetAll())
@@ -72,18 +72,28 @@ namespace BookingApp.Application.Services.ReservationServices
             return num;
         }
 
-        public List<int> getAllYearsForAcc(int accId)
+        public List<int> GetAllYearsForAcc(int accId)
         {
-            List<int> list = new List<int>();
+            HashSet<int> uniqueYears = new HashSet<int>(); 
+
             foreach (DelayRequest ar in DelayRequestRepository.GetAll())
             {
                 AccommodationReservation arr = AccommodationReservationRepository.GetById(ar.ReservationId);
                 if (arr.AccommodationId == accId)
                 {
-                    list.Add(ar.RepliedDate.Year);
+                    uniqueYears.Add(ar.RepliedDate.Year); 
                 }
             }
+            return uniqueYears.ToList();
+        }
 
+        public List<int> GetAllDelaysForYears(int accId)
+        {
+            List<int> list = new List<int>();
+            foreach (int year in GetAllYearsForAcc(accId))
+            {
+                list.Add(GetNumOfDelaysByYear(accId, year));
+            }
             return list;
         }
 

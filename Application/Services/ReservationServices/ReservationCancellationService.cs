@@ -30,7 +30,7 @@ namespace BookingApp.Application.Services.ReservationServices
             return ReservationCancellationRepository.Add(cancellation);
         }
 
-        public int getNumOfCancelationByYear(int accId, int year)
+        public int GetNumOfCancelationByYear(int accId, int year)
         {
             int num = 0;
             foreach (ReservationCancellation ar in ReservationCancellationRepository.GetAll())
@@ -45,7 +45,7 @@ namespace BookingApp.Application.Services.ReservationServices
             return num;
         }
 
-        public int getNumOfnCancellationsByMonth(int accId, int month)
+        public int GetNumOfnCancellationsByMonth(int accId, int month)
         {
             int num = 0;
             foreach (ReservationCancellation ar in ReservationCancellationRepository.GetAll())
@@ -60,18 +60,30 @@ namespace BookingApp.Application.Services.ReservationServices
             return num;
         }
 
-        public List<int> getAllYearsForAcc(int accId)
+        public List<int> GetAllYearsForAcc(int accId)
         {
-            List<int> list = new List<int>();
+            HashSet<int> uniqueYears = new HashSet<int>(); // Using HashSet to store unique years
+
             foreach (ReservationCancellation ar in ReservationCancellationRepository.GetAll())
             {
                 AccommodationReservation arr = AccommodationReservationRepository.GetById(ar.ReservationId);
                 if (arr.AccommodationId == accId)
                 {
-                    list.Add(ar.CancellationDate.Year);
+                    uniqueYears.Add(ar.CancellationDate.Year); // Add the year to the HashSet
                 }
             }
 
+            return uniqueYears.ToList();
+        }
+
+
+        public List<int> GetAllCancellationsForYears(int accId)
+        {
+            List<int> list = new List<int>();
+            foreach (int year in GetAllYearsForAcc(accId))
+            {
+                list.Add(GetNumOfCancelationByYear(accId, year));
+            }
             return list;
         }
     }
