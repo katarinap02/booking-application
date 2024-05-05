@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model.Features;
+using BookingApp.View.HostPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels;
 using System;
@@ -23,10 +24,23 @@ namespace BookingApp.WPF.View.HostPages
     /// </summary>
     public partial class StatisticYearsPage : Page
     {
-        public StatisticYearsPage(User user, AccommodationViewModel acc)
+        public StatisticYearsPageViewModel StatisticYearsPageViewModel { get; set; }
+        public StatisticYearsPage(User user, AccommodationViewModel acc, NavigationService navService)
         {
             InitializeComponent();
-            DataContext = new StatisticYearsPageViewModel(user, acc);
+            StatisticYearsPageViewModel = new StatisticYearsPageViewModel(user, acc, navService);
+            DataContext = StatisticYearsPageViewModel;
+            
+        }
+
+        private void YearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            
+            if (YearComboBox.SelectedItem != ItemAll)
+            {
+                StatisticYearsPageViewModel.NavigatePage();
+            }
+            
         }
     }
 }

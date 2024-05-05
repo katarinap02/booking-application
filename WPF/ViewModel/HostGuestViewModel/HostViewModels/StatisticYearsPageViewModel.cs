@@ -3,22 +3,45 @@ using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.Observer;
+using BookingApp.View.HostPages;
+using BookingApp.WPF.View.HostPages;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
-    public class StatisticYearsPageViewModel
+    public class StatisticYearsPageViewModel: INotifyPropertyChanged
     {
+        private string selectedYear;
+        public string SelectedYear
+        {
+            get { return selectedYear; }
+            set
+            {
+                if (selectedYear != value)
+                {
+
+                    selectedYear = value;
+                    OnPropertyChanged("SelectedYear");
+                }
+            }
+        }
         public AccommodationViewModel AccommodationViewModel { get; set; }
+
+        public NavigationService NavService { get; set; }
+
+        public HostViewModel HostViewModel { get; set; }
 
         public SeriesCollection SeriesCollection { get; set; }
 
@@ -47,24 +70,30 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public RenovationRecommendationService RenovationRecommendationService { get; set; }
 
         public User User { get; set; }
-        public StatisticYearsPageViewModel(User user, AccommodationViewModel acc) {
+        public StatisticYearsPageViewModel(User user, AccommodationViewModel acc, NavigationService navService) {
             AccommodationViewModel = acc;
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             ReservationCancellationService = new ReservationCancellationService(Injector.Injector.CreateInstance<IReservationCancellationRepository>());
             DelayRequestService = new DelayRequestService(Injector.Injector.CreateInstance<IDelayRequestRepository>());
             RenovationRecommendationService = new RenovationRecommendationService(Injector.Injector.CreateInstance<IRenovationRecommendationRepository>());
             User = user;
+            SelectedYear = "All";
+            NavService = navService;
             YearsList = AccommodationReservationService.GetAllYearsForAcc(acc.Id);
             SeriesCollection = new SeriesCollection();
             SeriesCollectionCancel = new SeriesCollection();
             SeriesCollectionRecommendation = new SeriesCollection();
+            HostViewModel = new HostViewModel();
             AddYChart();
             Years = YearsList.Select(i => i.ToString()).ToArray();
             NumOfReservations = value => value.ToString("N");
             NumOfCancellations = value => value.ToString("N");
             NumOfRecommendation = value => value.ToString("N");
             MostBusyYear = AccommodationReservationService.GetMostBusyYearForAcc(acc.Id);
+
         }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         private void AddYChart()
         {
@@ -94,8 +123,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         }
 
-       
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
-        
+        public void NavigatePage()
+        {
+                StatisticMonthsPage page = new StatisticMonthsPage(User, AccommodationViewModel, selectedYear);
+                this.NavService.Navigate(page);
+             
+            
+        }
+
+
     }
 }

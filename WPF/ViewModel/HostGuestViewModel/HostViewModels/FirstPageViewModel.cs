@@ -67,7 +67,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToStatisticPageCommand(AccommodationViewModel acc)
         {
             CloseMenu();
-            StatisticYearsPage page = new StatisticYearsPage(User, acc);
+            StatisticYearsPage page = new StatisticYearsPage(User, acc, NavService);
             this.NavService.Navigate(page);
         }
 
