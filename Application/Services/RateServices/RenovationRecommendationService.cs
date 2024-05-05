@@ -50,13 +50,13 @@ namespace BookingApp.Application.Services.RateServices
             return num;
         }
 
-        public int GetNumOfRecommendationsByMonth(int accId, int month)
+        public int GetNumOfRecommendationsByMonth(int accId, int month, int year)
         {
             int num = 0;
             foreach (RenovationRecommendation ar in RenovationRecommendationRepository.GetAll())
             {
                 
-                if (ar.AccommodationId == accId && ar.Date.Month == month)
+                if (ar.AccommodationId == accId && ar.Date.Month == month && ar.Date.Year == year)
                 {
                     num++;
                 }
@@ -110,7 +110,7 @@ namespace BookingApp.Application.Services.RateServices
             List<int> list = new List<int>();
             foreach (int month in GetAllMonthsForAcc(accId, year))
             {
-                list.Add(GetNumOfRecommendationsByMonth(accId, month));
+                list.Add(GetNumOfRecommendationsByMonth(accId, month, year));
             }
             return list;
         }

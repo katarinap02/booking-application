@@ -10,11 +10,31 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Globalization;
+using System.ComponentModel;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
+using BookingApp.WPF.View.HostPages;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
-    public class StatisticMonthsPageViewModel
-    { 
+    public class StatisticMonthsPageViewModel: INotifyPropertyChanged
+    {
+
+        private string selectedYear;
+        public string SelectedYear
+        {
+            set
+            {
+                if (selectedYear != value)
+                {
+
+                    selectedYear = value;
+                    OnPropertyChanged("SelectedYear");
+                }
+            }
+            get { return selectedYear; }
+        }
     public AccommodationViewModel AccommodationViewModel { get; set; }
 
     public SeriesCollection SeriesCollection { get; set; }
@@ -24,7 +44,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
     public SeriesCollection SeriesCollectionRecommendation { get; set; }
 
     public int Year;
-
+    public NavigationService NavService { get; set; }
     public string[] Months { get; set; }
 
     public string[] MonthsC { get; set; }
@@ -35,13 +55,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
     public string[] AllMonths { get; set; }
 
-     public int MostBusyYear { get; set; }
+     public string MostBusyMonth { get; set; }
 
     public Func<int, string> NumOfReservations { get; set; }
 
     public Func<int, string> NumOfCancellations { get; set; }
 
     public Func<int, string> NumOfRecommendation { get; set; }
+
+    public MyICommand SelectionChangedCommand { get; set; }
 
     public AccommodationReservationService AccommodationReservationService { get; set; }
 
@@ -52,7 +74,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
     public RenovationRecommendationService RenovationRecommendationService { get; set; }
 
     public User User { get; set; }
-    public StatisticMonthsPageViewModel(User user, AccommodationViewModel acc, string yearString)
+    public StatisticMonthsPageViewModel(User user, AccommodationViewModel acc, string yearString, NavigationService navService)
     {
         AccommodationViewModel = acc;
         AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
@@ -60,22 +82,24 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         DelayRequestService = new DelayRequestService(Injector.Injector.CreateInstance<IDelayRequestRepository>());
         RenovationRecommendationService = new RenovationRecommendationService(Injector.Injector.CreateInstance<IRenovationRecommendationRepository>());
         User = user;
-        //Year = Convert.ToInt32(yearString);
-        Year = 2024;
+        NavService = navService;
+        Year = Convert.ToInt32(yearString);
         SeriesCollection = new SeriesCollection();
         SeriesCollectionCancel = new SeriesCollection();
         SeriesCollectionRecommendation = new SeriesCollection();
         AddYChart();
-        Months = AccommodationReservationService.GetAllMonthsForAcc(acc.Id, Year).Select(i => i.ToString()).ToArray();
-        MonthsD = DelayRequestService.GetAllMonthsForAcc(acc.Id, Year).Select(i => i.ToString()).ToArray();
-        MonthsR = RenovationRecommendationService.GetAllMonthsForAcc(acc.Id, Year).Select(i => i.ToString()).ToArray();
-        MonthsC = ReservationCancellationService.GetAllMonthsForAcc(acc.Id, Year).Select(i => i.ToString()).ToArray();
+        SelectedYear = yearString;
+        Months = AccommodationReservationService.GetAllMonthsForAcc(acc.Id, Year).Select(i => GetMonthName(i)).ToArray();
+        MonthsD = DelayRequestService.GetAllMonthsForAcc(acc.Id, Year).Select(i => GetMonthName(i)).ToArray();
+        MonthsR = RenovationRecommendationService.GetAllMonthsForAcc(acc.Id, Year).Select(i => GetMonthName(i)).ToArray();
+        MonthsC = ReservationCancellationService.GetAllMonthsForAcc(acc.Id, Year).Select(i => GetMonthName(i)).ToArray();
         AllMonths = MonthsC.Concat(MonthsD).ToArray();
         NumOfReservations = value => value.ToString("N");
         NumOfCancellations = value => value.ToString("N");
         NumOfRecommendation = value => value.ToString("N");
-        MostBusyYear = AccommodationReservationService.GetMostBusyYearForAcc(acc.Id);
-    }
+        MostBusyMonth = GetMonthName(AccommodationReservationService.GetMostBusyMonth(acc.Id, Year));
+        SelectionChangedCommand = new MyICommand(NavigatePage);
+        }
 
     private void AddYChart()
     {
@@ -104,10 +128,44 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         });
 
 
+
     }
+        public string GetMonthName(int monthNumber)
+        {
+            if (monthNumber < 1 || monthNumber > 12)
+            {
+                return "Invalid Month";
+            }
+
+            CultureInfo cultureInfo = CultureInfo.CurrentCulture;
+            return cultureInfo.DateTimeFormat.GetMonthName(monthNumber);
+        }
+
+        public event PropertyChangedEventHandler? PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public void NavigatePage()
+        {
+
+            if (SelectedYear != "All")
+            {
+                StatisticMonthsPage page = new StatisticMonthsPage(User, AccommodationViewModel, SelectedYear, NavService);
+                this.NavService.Navigate(page);
+            }
+            else
+            {
+                StatisticYearsPage page = new StatisticYearsPage(User, AccommodationViewModel, NavService);
+                this.NavService.Navigate(page);
+            }
+
+        }
 
 
 
 
-}
+    }
 }

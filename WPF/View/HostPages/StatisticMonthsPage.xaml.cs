@@ -23,10 +23,10 @@ namespace BookingApp.WPF.View.HostPages
     /// </summary>
     public partial class StatisticMonthsPage : Page
     {
-        public StatisticMonthsPage(User user, AccommodationViewModel acc, string year)
+        public StatisticMonthsPage(User user, AccommodationViewModel acc, string year, NavigationService navigationService)
         {
             InitializeComponent();
-            DataContext = new StatisticMonthsPageViewModel(user, acc, year);
+            DataContext = new StatisticMonthsPageViewModel(user, acc, year, navigationService);
         }
     }
 }

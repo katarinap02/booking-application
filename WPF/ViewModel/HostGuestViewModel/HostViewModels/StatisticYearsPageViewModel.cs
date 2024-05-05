@@ -6,6 +6,7 @@ using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.View.HostPages;
 using BookingApp.WPF.View.HostPages;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
@@ -23,10 +24,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
     public class StatisticYearsPageViewModel: INotifyPropertyChanged
     {
+
         private string selectedYear;
         public string SelectedYear
         {
-            get { return selectedYear; }
             set
             {
                 if (selectedYear != value)
@@ -36,7 +37,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                     OnPropertyChanged("SelectedYear");
                 }
             }
+            get { return selectedYear; }
         }
+
+        public MyICommand SelectionChangedCommand { get; set; }
         public AccommodationViewModel AccommodationViewModel { get; set; }
 
         public NavigationService NavService { get; set; }
@@ -51,9 +55,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public string[] Years { get; set; }
 
-        public int MostBusyYear { get; set; }
+        public string[] YearsR {  get; set; }
 
-        public List<int> YearsList { get; set; }
+        public string[] YearsC { get; set; }
+
+        public string[] YearsD { get; set; }
+
+        public string[] AllYears { get; set; }
+
+        public int MostBusyYear { get; set; }
 
         public Func<int, string> NumOfReservations {  get; set; }
 
@@ -79,17 +89,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             User = user;
             SelectedYear = "All";
             NavService = navService;
-            YearsList = AccommodationReservationService.GetAllYearsForAcc(acc.Id);
             SeriesCollection = new SeriesCollection();
             SeriesCollectionCancel = new SeriesCollection();
             SeriesCollectionRecommendation = new SeriesCollection();
             HostViewModel = new HostViewModel();
             AddYChart();
-            Years = YearsList.Select(i => i.ToString()).ToArray();
+            Years = AccommodationReservationService.GetAllYearsForAcc(acc.Id).Select(i => i.ToString()).ToArray();
+            YearsD = DelayRequestService.GetAllYearsForAcc(acc.Id).Select(i => i.ToString()).ToArray();
+            YearsC = ReservationCancellationService.GetAllYearsForAcc(acc.Id).Select(i => i.ToString()).ToArray();
+            YearsR = RenovationRecommendationService.GetAllYearsForAcc(acc.Id).Select(i => i.ToString()).ToArray();
+            AllYears = YearsC.Concat(YearsD).ToArray();
             NumOfReservations = value => value.ToString("N");
             NumOfCancellations = value => value.ToString("N");
             NumOfRecommendation = value => value.ToString("N");
             MostBusyYear = AccommodationReservationService.GetMostBusyYearForAcc(acc.Id);
+            SelectionChangedCommand = new MyICommand(NavigatePage);
 
         }
 
@@ -130,8 +144,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public void NavigatePage()
         {
-                StatisticMonthsPage page = new StatisticMonthsPage(User, AccommodationViewModel, SelectedYear);
+            
+                if(SelectedYear != "All")
+            {
+                StatisticMonthsPage page = new StatisticMonthsPage(User, AccommodationViewModel, SelectedYear, NavService);
                 this.NavService.Navigate(page);
+            }
+               
              
             
         }

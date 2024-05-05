@@ -59,13 +59,13 @@ namespace BookingApp.Application.Services.ReservationServices
             return num;
         }
 
-        public int GetNumOfDelaysByMonth(int accId, int month)
+        public int GetNumOfDelaysByMonth(int accId, int month, int year)
         {
             int num = 0;
             foreach (DelayRequest ar in DelayRequestRepository.GetAll())
             {
                 AccommodationReservation arr = AccommodationReservationRepository.GetById(ar.ReservationId);
-                if (arr.AccommodationId == accId && ar.RepliedDate.Month == month)
+                if (arr.AccommodationId == accId && ar.RepliedDate.Month == month && ar.RepliedDate.Year == year)
                 {
                     num++;
                 }
@@ -121,7 +121,7 @@ namespace BookingApp.Application.Services.ReservationServices
             List<int> list = new List<int>();
             foreach (int month in GetAllMonthsForAcc(accId, year))
             {
-                list.Add(GetNumOfDelaysByMonth(accId, month));
+                list.Add(GetNumOfDelaysByMonth(accId, month, year));
             }
             return list;
         }

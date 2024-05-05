@@ -206,6 +206,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         }
 
 
+
+
         private List<CalendarDateRange> unavailableDates = new List<CalendarDateRange>();
         public List<CalendarDateRange> UnavailableDates
         {

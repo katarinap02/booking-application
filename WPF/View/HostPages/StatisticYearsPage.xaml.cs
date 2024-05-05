@@ -33,14 +33,9 @@ namespace BookingApp.WPF.View.HostPages
             
         }
 
-        private void YearComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void YearComboBox_Selected(object sender, RoutedEventArgs e)
         {
-            
-            if (YearComboBox.SelectedItem != ItemAll)
-            {
-                StatisticYearsPageViewModel.NavigatePage();
-            }
-            
+
         }
     }
 }

@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
       xmlns:local="clr-namespace:BookingApp.WPF.View.HostPages"
       mc:Ignorable="d" 
       d:DesignHeight="705" d:DesignWidth="1024"
@@ -49,7 +51,16 @@ Style="{StaticResource TextBlockStyleMSHost}"
                 <Label x:Name="YearLabel" VerticalAlignment="Center" Style="{StaticResource LableStyleHost}" Margin="15 0 10 0 ">
                     Year
                 </Label>
-                <ComboBox x:Name="YearComboBox" Width="60" Height="30">
+                <ComboBox x:Name="YearComboBox" SelectedValuePath="Tag" Width="60" Height="30" SelectedValue="{Binding SelectedYear, UpdateSourceTrigger=PropertyChanged}" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <cmd:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <ComboBoxItem x:Name="Item1" Content="2024"  Tag="2024"></ComboBoxItem>
+                    <ComboBoxItem x:Name="Item2" Content="2025"  Tag="2025"></ComboBoxItem>
+                    <ComboBoxItem x:Name="Item3" Content="2026"  Tag="2026"></ComboBoxItem>
+                    <ComboBoxItem x:Name="ItemAll" Content="All" Tag="All"></ComboBoxItem>
 
                 </ComboBox>
 
@@ -58,7 +69,7 @@ Style="{StaticResource TextBlockStyleMSHost}"
                 <Label x:Name="BusyLabel" VerticalAlignment="Center" Style="{StaticResource LableStyleHost}" Margin="15 0 10 0 ">
                     Most busy in :
                 </Label>
-                <TextBox x:Name="BusyTextBox" Text="{Binding MostBusyYear}" VerticalAlignment="Center" Background="Transparent" Width="Auto" Height="Auto"   Style="{StaticResource TextBoxStyleMSHost}"/>
+                <TextBox x:Name="BusyTextBox" Text="{Binding MostBusyMonth}" VerticalAlignment="Center" Background="Transparent" Width="Auto" Height="Auto"   Style="{StaticResource TextBoxStyleMSHost}"/>
             </StackPanel>
 
             <Border  Grid.Row="1" Grid.Column="0" BorderBrush="#A0CCED" BorderThickness="4" Margin="75,10,171,80">

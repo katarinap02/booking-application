@@ -45,13 +45,13 @@ namespace BookingApp.Application.Services.ReservationServices
             return num;
         }
 
-        public int GetNumOfCancellationsByMonth(int accId, int month)
+        public int GetNumOfCancellationsByMonth(int accId, int month, int year)
         {
             int num = 0;
             foreach (ReservationCancellation ar in ReservationCancellationRepository.GetAll())
             {
                 AccommodationReservation arr = AccommodationReservationRepository.GetById(ar.ReservationId);
-                if (arr.AccommodationId == accId && ar.CancellationDate.Month == month)
+                if (arr.AccommodationId == accId && ar.CancellationDate.Month == month && ar.CancellationDate.Year == year)
                 {
                     num++;
                 }
@@ -109,7 +109,7 @@ namespace BookingApp.Application.Services.ReservationServices
             List<int> list = new List<int>();
             foreach (int month in GetAllMonthsForAcc(accId, year))
             {
-                list.Add(GetNumOfCancellationsByMonth(accId, month));
+                list.Add(GetNumOfCancellationsByMonth(accId, month, year));
             }
             return list;
         }

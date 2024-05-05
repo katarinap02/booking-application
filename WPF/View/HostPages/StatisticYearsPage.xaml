@@ -4,6 +4,8 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+      xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+      xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
       xmlns:local="clr-namespace:BookingApp.WPF.View.HostPages" 
       mc:Ignorable="d" 
       d:DesignHeight="705" d:DesignWidth="1024"
@@ -51,7 +53,12 @@
                 <Label x:Name="YearLabel" VerticalAlignment="Center" Style="{StaticResource LableStyleHost}" Margin="15 0 10 0 ">
                 Year
             </Label>
-                <ComboBox x:Name="YearComboBox" Width="60" Height="30" Text="{Binding SelectedYear, UpdateSourceTrigger=PropertyChanged}" SelectionChanged="YearComboBox_SelectionChanged" >
+                <ComboBox x:Name="YearComboBox" SelectedValuePath="Tag" Width="60" Height="30" SelectedValue="{Binding SelectedYear, UpdateSourceTrigger=PropertyChanged}" >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <cmd:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
                     <ComboBoxItem x:Name="Item1" Content="2024"  Tag="2024"></ComboBoxItem>
                     <ComboBoxItem x:Name="Item2" Content="2025"  Tag="2025"></ComboBoxItem>
                     <ComboBoxItem x:Name="Item3" Content="2026"  Tag="2026"></ComboBoxItem>
@@ -143,7 +150,7 @@
 
             <lvc:CartesianChart Series="{Binding SeriesCollectionCancel}" Margin="15 10 30 30" LegendLocation ="Top"  Grid.Column="0" Grid.Row="2">
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Labels="{Binding Years}">
+                    <lvc:Axis Labels="{Binding AllYears}">
 
                     </lvc:Axis>
                 </lvc:CartesianChart.AxisX>
@@ -162,7 +169,7 @@
             </lvc:CartesianChart>
             <lvc:CartesianChart Series="{Binding SeriesCollectionRecommendation}" Margin="15 10 50 30" LegendLocation ="Top"  Grid.Column="1" Grid.Row="2">
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Labels="{Binding Years}">
+                    <lvc:Axis Labels="{Binding YearsR}">
 
                     </lvc:Axis>
                 </lvc:CartesianChart.AxisX>
