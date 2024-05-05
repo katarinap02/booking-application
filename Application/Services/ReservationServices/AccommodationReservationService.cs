@@ -172,6 +172,22 @@ namespace BookingApp.Application.Services.ReservationServices
             
             return uniqueYears.ToList();
         }
+        public List<int> GetAllMonthsForAcc(int accId, int year)
+        {
+            HashSet<int> uniqueMonths = new HashSet<int>(); // Using HashSet to store unique years
+
+            foreach (AccommodationReservation ar in AccommodationReservationRepository.GetAll())
+            {
+                if (ar.AccommodationId == accId && ar.StartDate.Year == year)
+                {
+                    uniqueMonths.Add(ar.StartDate.Month); // Add the year to the HashSet
+                }
+            }
+
+
+            return uniqueMonths.ToList();
+        }
+
         public List<int> GetAllReservationsForYears(int accId)
         {
             List<int> list = new List<int>();
@@ -180,6 +196,16 @@ namespace BookingApp.Application.Services.ReservationServices
                 list.Add(GetNumOfReservationsByYear(accId, year));
             }
                 return list;
+        }
+
+        public List<int> GetAllReservationsForMonths(int accId, int year)
+        {
+            List<int> list = new List<int>();
+            foreach (int month in GetAllMonthsForAcc(accId, year))
+            {
+                list.Add(GetNumOfReservationsByMonth(accId, month));
+            }
+            return list;
         }
 
         public int GetMostBusyYearForAcc(int accId)

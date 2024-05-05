@@ -130,7 +130,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public void NavigatePage()
         {
-                StatisticMonthsPage page = new StatisticMonthsPage(User, AccommodationViewModel, selectedYear);
+                StatisticMonthsPage page = new StatisticMonthsPage(User, AccommodationViewModel, SelectedYear);
                 this.NavService.Navigate(page);
              
             

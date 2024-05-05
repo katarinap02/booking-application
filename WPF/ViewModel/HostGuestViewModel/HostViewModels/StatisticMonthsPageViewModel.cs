@@ -23,11 +23,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
     public SeriesCollection SeriesCollectionRecommendation { get; set; }
 
+    public int Year;
+
     public string[] Months { get; set; }
 
-    public int MostBusyYear { get; set; }
+    public string[] MonthsC { get; set; }
 
-    public List<int> YearsList { get; set; }
+    public string[] MonthsR { get; set; }
+
+    public string[] MonthsD { get; set; }
+
+    public string[] AllMonths { get; set; }
+
+     public int MostBusyYear { get; set; }
 
     public Func<int, string> NumOfReservations { get; set; }
 
@@ -52,12 +60,17 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         DelayRequestService = new DelayRequestService(Injector.Injector.CreateInstance<IDelayRequestRepository>());
         RenovationRecommendationService = new RenovationRecommendationService(Injector.Injector.CreateInstance<IRenovationRecommendationRepository>());
         User = user;
-        YearsList = AccommodationReservationService.GetAllYearsForAcc(acc.Id);
+        //Year = Convert.ToInt32(yearString);
+        Year = 2024;
         SeriesCollection = new SeriesCollection();
         SeriesCollectionCancel = new SeriesCollection();
         SeriesCollectionRecommendation = new SeriesCollection();
         AddYChart();
-        Months = YearsList.Select(i => i.ToString()).ToArray();
+        Months = AccommodationReservationService.GetAllMonthsForAcc(acc.Id, Year).Select(i => i.ToString()).ToArray();
+        MonthsD = DelayRequestService.GetAllMonthsForAcc(acc.Id, Year).Select(i => i.ToString()).ToArray();
+        MonthsR = RenovationRecommendationService.GetAllMonthsForAcc(acc.Id, Year).Select(i => i.ToString()).ToArray();
+        MonthsC = ReservationCancellationService.GetAllMonthsForAcc(acc.Id, Year).Select(i => i.ToString()).ToArray();
+        AllMonths = MonthsC.Concat(MonthsD).ToArray();
         NumOfReservations = value => value.ToString("N");
         NumOfCancellations = value => value.ToString("N");
         NumOfRecommendation = value => value.ToString("N");
@@ -69,25 +82,25 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         SeriesCollection.Add(new LineSeries
         { 
             Title = "Number of reservations",
-            Values = new ChartValues<int>(AccommodationReservationService.GetAllReservationsForYears(AccommodationViewModel.Id))
+            Values = new ChartValues<int>(AccommodationReservationService.GetAllReservationsForMonths(AccommodationViewModel.Id, Year))
         });
 
         SeriesCollectionCancel.Add(new ColumnSeries
         {
             Title = "Number of reservation's delay",
-            Values = new ChartValues<int>(DelayRequestService.GetAllDelaysForYears(AccommodationViewModel.Id))
+            Values = new ChartValues<int>(DelayRequestService.GetAllDelaysForMonths(AccommodationViewModel.Id, Year))
         });
 
         SeriesCollectionCancel.Add(new ColumnSeries
         {
             Title = "Number of cancelling reservations",
-            Values = new ChartValues<int>(ReservationCancellationService.GetAllCancellationsForYears(AccommodationViewModel.Id))
+            Values = new ChartValues<int>(ReservationCancellationService.GetAllCancellationsForMonths(AccommodationViewModel.Id, Year))
         });
 
         SeriesCollectionRecommendation.Add(new ColumnSeries
         {
             Title = "Number of renovation recommendation",
-            Values = new ChartValues<int>(RenovationRecommendationService.GetAllRecommendationsForYears(AccommodationViewModel.Id))
+            Values = new ChartValues<int>(RenovationRecommendationService.GetAllRecommendationForMonths(AccommodationViewModel.Id, Year))
         });
 
 

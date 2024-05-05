@@ -45,7 +45,7 @@ namespace BookingApp.Application.Services.ReservationServices
             return num;
         }
 
-        public int GetNumOfnCancellationsByMonth(int accId, int month)
+        public int GetNumOfCancellationsByMonth(int accId, int month)
         {
             int num = 0;
             foreach (ReservationCancellation ar in ReservationCancellationRepository.GetAll())
@@ -76,6 +76,23 @@ namespace BookingApp.Application.Services.ReservationServices
             return uniqueYears.ToList();
         }
 
+        public List<int> GetAllMonthsForAcc(int accId, int year)
+        {
+            HashSet<int> uniqueMonths = new HashSet<int>(); // Using HashSet to store unique years
+
+            foreach (ReservationCancellation ar in ReservationCancellationRepository.GetAll())
+            {
+                AccommodationReservation arr = AccommodationReservationRepository.GetById(ar.ReservationId);
+                if (arr.AccommodationId == accId && ar.CancellationDate.Year == year)
+                {
+                    uniqueMonths.Add(ar.CancellationDate.Month); // Add the year to the HashSet
+                }
+            }
+
+
+            return uniqueMonths.ToList();
+        }
+
 
         public List<int> GetAllCancellationsForYears(int accId)
         {
@@ -83,6 +100,16 @@ namespace BookingApp.Application.Services.ReservationServices
             foreach (int year in GetAllYearsForAcc(accId))
             {
                 list.Add(GetNumOfCancelationByYear(accId, year));
+            }
+            return list;
+        }
+
+        public List<int> GetAllCancellationsForMonths(int accId, int year)
+        {
+            List<int> list = new List<int>();
+            foreach (int month in GetAllMonthsForAcc(accId, year))
+            {
+                list.Add(GetNumOfCancellationsByMonth(accId, month));
             }
             return list;
         }

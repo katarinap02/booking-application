@@ -124,7 +124,7 @@ Style="{StaticResource TextBlockStyleMSHost}"
 
             <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="15 10 30 30" LegendLocation ="Top"  Grid.Column="1" Grid.Row="1">
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Labels="{Binding Years}">
+                    <lvc:Axis Labels="{Binding Months}">
 
                     </lvc:Axis>
                 </lvc:CartesianChart.AxisX>
@@ -137,7 +137,7 @@ Style="{StaticResource TextBlockStyleMSHost}"
 
             <lvc:CartesianChart Series="{Binding SeriesCollectionCancel}" Margin="15 10 30 30" LegendLocation ="Top"  Grid.Column="0" Grid.Row="2">
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Labels="{Binding Years}">
+                    <lvc:Axis Labels="{Binding AllMonths}">
 
                     </lvc:Axis>
                 </lvc:CartesianChart.AxisX>
@@ -156,7 +156,7 @@ Style="{StaticResource TextBlockStyleMSHost}"
             </lvc:CartesianChart>
             <lvc:CartesianChart Series="{Binding SeriesCollectionRecommendation}" Margin="15 10 50 30" LegendLocation ="Top"  Grid.Column="1" Grid.Row="2">
                 <lvc:CartesianChart.AxisX>
-                    <lvc:Axis Labels="{Binding Months}">
+                    <lvc:Axis Labels="{Binding MonthsR}">
 
                     </lvc:Axis>
                 </lvc:CartesianChart.AxisX>
