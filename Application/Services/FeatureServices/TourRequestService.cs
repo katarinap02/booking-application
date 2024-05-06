@@ -65,6 +65,10 @@ namespace BookingApp.Application.Services.FeatureServices
             return _tourRequestRepository.NextId();
         }
     
+        public List<TourRequest> GetRequestsByTouristId(int touristId)
+        {
+            return _tourRequestRepository.GetByTouristId(touristId);
+        }
         public List<int> GetYearlyStatistic()
         {
             List<TourRequest> requests = _tourRequestRepository.GetAll();
@@ -201,42 +205,55 @@ namespace BookingApp.Application.Services.FeatureServices
 
             return mostRequestedLocation;
         }
-        public double GetAcceptedRequestPercentage(int touristId, int? year = null)
+        public double GetAcceptedRequestPercentage(int touristId, int? year = 0)
         {
             var requests = _tourRequestRepository.GetByTouristId(touristId);
-            if (year.HasValue)
+            if (year != 0)
             {
-                requests = requests.Where(r => r.AcceptedDate.Year == year.Value).ToList();
+                foreach(var req in requests)
+                {
+                    var p = req.DateRequested.Year;
+                }
+                requests = requests.Where(r => r.DateRequested.Year == year.Value).ToList();
             }
 
             var totalRequests = requests.Count;
             var acceptedRequests = requests.Count(r => r.Status == TourRequestStatus.Accepted);
-
+            if(acceptedRequests == 0)
+            {
+                return 0;
+            }
             return (double)acceptedRequests / totalRequests * 100;
         }
 
-        public double GetDeclinedRequestPercentage(int touristId, int? year = null)
+        public double GetRejectedRequestPercentage(int touristId, int? year = 0)
         {
             var requests = _tourRequestRepository.GetByTouristId(touristId);
-            if (year.HasValue)
-            {
-                requests = requests.Where(r => r.AcceptedDate.Year == year.Value).ToList();
-            }
-
-            var totalRequests = requests.Count;
-            var invalidRequests = requests.Count(r => r.Status == TourRequestStatus.Invalid);
-
-            return (double)invalidRequests / totalRequests * 100;
-        }
-        public double GetAverageNumberOfPeopleInAcceptedRequests(int touristId, int? year = null)
-        {
-            var requests = _tourRequestRepository.GetByTouristId(touristId)
-                .Where(r => r.Status == TourRequestStatus.Accepted);
-            if (year.HasValue)
+            if (year != 0)
             {
                 requests = requests.Where(r => r.DateRequested.Year == year.Value).ToList();
             }
 
+            var totalRequests = requests.Count;
+            var rejectedRequests = requests.Count(r => r.Status == TourRequestStatus.Invalid);
+            if(rejectedRequests == 0)
+            {
+                return 0;
+            }
+            return (double)rejectedRequests / totalRequests * 100;
+        }
+        public double GetAverageNumberOfPeopleInAcceptedRequests(int touristId, int? year = 0)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId)
+                .Where(r => r.Status == TourRequestStatus.Accepted);
+            if (year != 0)
+            {
+                requests = requests.Where(r => r.DateRequested.Year == year.Value).ToList();
+            }
+            if(requests.Count() == 0)
+            {
+                return 0;
+            }
             return requests.Average(r => r.ParticipantIds.Count);
         }
         public Dictionary<string, int> GetRequestCountByLanguage(int touristId)
@@ -245,7 +262,7 @@ namespace BookingApp.Application.Services.FeatureServices
             return requests.GroupBy(r => r.Language)
                 .ToDictionary(g => g.Key, g => g.Count());
         }
-        public Dictionary<string, int> GetRequestCountByLocation(int touristId)
+        public Dictionary<string, int> GetRequestCountByCity(int touristId)
         {
             var requests = _tourRequestRepository.GetByTouristId(touristId);
             return requests.GroupBy(r => r.City)

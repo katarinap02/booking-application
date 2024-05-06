@@ -31,6 +31,8 @@ namespace BookingApp.WPF.View.TouristPages
             TourRequest = new TourRequestViewModel();
             DataContext = TourRequest;
             TourRequest.UserId = userId;
+
+            TourRequest.InitializeRequestedToursPage();
         }
 
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
