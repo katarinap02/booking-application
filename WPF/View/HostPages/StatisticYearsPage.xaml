@@ -59,6 +59,7 @@
                             <cmd:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True"/>
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
+                    <ComboBoxItem x:Name="Item0" Content="2023"  Tag="2023"></ComboBoxItem>
                     <ComboBoxItem x:Name="Item1" Content="2024"  Tag="2024"></ComboBoxItem>
                     <ComboBoxItem x:Name="Item2" Content="2025"  Tag="2025"></ComboBoxItem>
                     <ComboBoxItem x:Name="Item3" Content="2026"  Tag="2026"></ComboBoxItem>
