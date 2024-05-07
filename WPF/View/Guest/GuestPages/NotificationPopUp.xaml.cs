@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,7 +24,9 @@ namespace BookingApp.View.GuestPages
     public partial class NotificationPopUp : Page
     {
         public User User { get; set; }
+        
         public NotificationViewModel ViewModel { get; set; }
+        public RequestDetailsViewModel Request { get; set; }
         public NotificationPopUp(User user)
         {
             InitializeComponent();
@@ -32,6 +35,13 @@ namespace BookingApp.View.GuestPages
             DataContext = ViewModel;
             ViewModel.Update();
            // MessageBox.Show(ViewModel.Notifications[0]);
+        }
+
+        private void Details_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            string notification = button.DataContext as string;
+            
         }
 
 

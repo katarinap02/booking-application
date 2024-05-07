@@ -62,7 +62,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             string message = hostUsername + " has rejected your request.\n";
             AccommodationReservation reservation = AccommodationReservationService.GetById(request.ReservationId);
             string dateRange = reservation.StartDate.ToString("MM/dd/yyyy") + " -> " + reservation.EndDate.ToString("MM/dd/yyyy");
-            message += "Reservation: " + dateRange + "\n";
+            message += "Reservation " + reservation.Id.ToString() + ": " + dateRange + "\n";
             message += "Time: " + request.RepliedDate.ToString();
             return message;
         }
@@ -77,5 +77,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             message += "Time: " + request.RepliedDate.ToString();
             return message;
         }
+
+       
+       
     }
 }
