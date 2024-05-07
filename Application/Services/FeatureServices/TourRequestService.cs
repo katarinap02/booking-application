@@ -36,19 +36,19 @@ namespace BookingApp.Application.Services.FeatureServices
                 MessageBox.Show("usao", "City");
                 filteredRequests = tourRequests.FindAll(x => x.City.ToLower().Contains(searchCriteria.City.ToLower())).ToList();
             }
-            else if (!string.IsNullOrEmpty(searchCriteria.Country))
+            if (!string.IsNullOrEmpty(searchCriteria.Country))
             {
                 MessageBox.Show("usao", "Country");
                 filteredRequests = filteredRequests.FindAll(x => x.Country.ToLower().Contains(searchCriteria.Country.ToLower())).ToList();
             }
-            else if (!string.IsNullOrEmpty(searchCriteria.Language))
+            if (!string.IsNullOrEmpty(searchCriteria.Language))
             {
                 MessageBox.Show("usao", "Language");
                 MessageBox.Show(searchCriteria.Language.ToLower());
                 filteredRequests = filteredRequests.FindAll(x => x.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();
                 MessageBox.Show(filteredRequests.Count().ToString());
             }
-            else if (searchCriteria.StartDate != null && searchCriteria.EndDate != null)
+            if (searchCriteria.StartDate != null && searchCriteria.EndDate != null)
             {
                 MessageBox.Show("usao", "datumi");
                 filteredRequests = tourRequests.FindAll(x => x.StartDate >= searchCriteria.StartDate && x.EndDate <= searchCriteria.EndDate).ToList();
