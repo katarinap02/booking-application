@@ -62,7 +62,7 @@ namespace BookingApp.View.GuestPages
             {
                 HintLabel.Content = "Problem with choosing dates";
                 Hint.Text = "It is neccessary to choose the same number of days you entered on the previous page.";
-                Hint.Visibility = Visibility.Collapsed;
+                Hint.Visibility = Visibility.Hidden;
 
 
             }

@@ -91,6 +91,14 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                         <Image HorizontalAlignment="Left" VerticalAlignment="Center" Width="281" Height="170" Source="../../../Resources/Images/Unknown_person.jpg"/>
                     </Grid>
                 </Border>
+                <ToggleButton Height="50" Background="White" BorderBrush="White" Margin="26,682,720,59" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
+                    <Label x:Name="HintLabel" Content="Problem with reservation cancellation" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
+                </ToggleButton>
+                <TextBlock x:Name="Hint" FontSize="16" Foreground="Green" TextAlignment="Justify" TextWrapping="Wrap" Margin="58,732,100,14">
+    Reservation cancellation is possible no later than 24 hours before the start date, unless the host specified the limit differently. If it exists, the limit can be seen in accommodation details.
+                </TextBlock>
+
+
             </Grid>
         </Border>
     </Grid>

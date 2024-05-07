@@ -22,6 +22,12 @@
                     <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
                         <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="59,-2,63,2"/>
                     </Border>
+                    <ToggleButton Height="50" Background="White" BorderBrush="White" Margin="131,272,129,467" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
+                        <Label x:Name="HintLabel" Content="Problem with creating a review" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
+                    </ToggleButton>
+                    <TextBlock x:Name="Hint" FontSize="16" Foreground="Green" Height="150" TextAlignment="Center" TextWrapping="Wrap" Margin="118,327,116,312">
+    Please enter rates for cleanliness and correctness. To recommend a renovation, you need to enter all mandatory values and then click on the "Recommend renovation" button."
+                    </TextBlock>
 
                     <controls:AccommodationCardSmaller DataContext="{Binding SelectedAccommodation}" Width="500" Margin="12,168,10,-168"></controls:AccommodationCardSmaller>
                 </Grid>

@@ -48,7 +48,7 @@ namespace BookingApp.View.GuestPages
             ViewModel = new ReservationsToRateViewModel(User, Frame, SelectedReservation);
            
             DataContext = ViewModel;
-           
+            Hint.Visibility = Visibility.Hidden;
             ViewModel.Update();
 
         }
@@ -60,6 +60,16 @@ namespace BookingApp.View.GuestPages
         {
             
             ViewModel.Rate_Click(sender, e);
+        }
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Hint.Visibility = Visibility.Visible;
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Hint.Visibility = Visibility.Hidden;
         }
     }
 }

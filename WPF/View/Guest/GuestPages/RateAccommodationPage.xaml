@@ -27,6 +27,12 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <Button Style="{StaticResource ButtonStyleN}" Content="Rate" Width="100" Height="50" Margin="480,654,480,85" Click="Rate_Click"/>
+                <ToggleButton Height="50" Background="White" BorderBrush="White" Margin="20,545,726,194" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
+                    <Label x:Name="HintLabel" Content="Problem with accommodation rating" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
+                </ToggleButton>
+                <TextBlock x:Name="Hint" FontSize="16" Foreground="Green" TextAlignment="Justify" TextWrapping="Wrap" Margin="657,545,-222,201">
+                Please select one of the accommodations above.
+                </TextBlock>
 
             </Grid>
 
