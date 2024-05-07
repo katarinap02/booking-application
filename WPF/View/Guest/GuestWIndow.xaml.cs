@@ -57,7 +57,7 @@ namespace BookingApp.View
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             NotificationFrame.Visibility = Visibility.Visible;
-            NotificationFrame.Content = new NotificationPopUp(User);
+            NotificationFrame.Content = new NotificationPopUp(User, Main);
         }
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)

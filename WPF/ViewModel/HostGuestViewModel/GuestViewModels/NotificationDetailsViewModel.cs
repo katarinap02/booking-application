@@ -5,7 +5,7 @@ using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.GuestPages;
-using BookingApp.WPF.ViewModel.HostGuestViewModel;
+using BookingApp.WPF.View.Guest.GuestPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,10 +16,8 @@ using System.Windows.Media;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
-    public class RequestDetailsViewModel
+    public class NotificationDetailsViewModel
     {
-
-
         public DelayRequestViewModel SelectedRequest { get; set; }
 
         public HostService HostService { get; set; }
@@ -30,7 +28,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public int NumberOfPeople { get; set; }
         public int NumberOfDays { get; set; }
 
-        public RequestDetailsPage Page { get; set; }
+        public NotificationDetailsPage Page { get; set; }
         public string RequestHeader { get; set; }
         public AccommodationViewModel Accommodation { get; set; }
 
@@ -43,8 +41,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public string Comment { get; set; }
         public ComboBox RequestStatusBox { get; set; }
 
-       
-        public RequestDetailsViewModel(DelayRequestViewModel selectedRequest, RequestDetailsPage page)
+
+        public NotificationDetailsViewModel(DelayRequestViewModel selectedRequest, NotificationDetailsPage page)
         {
 
             SelectedRequest = selectedRequest;
@@ -75,12 +73,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                 Page.requestHeader.Foreground = Brushes.Orange;
                 Page.commentTxtBlock.Foreground = Brushes.Gray;
                 return "Your request is pending.";
-               
+
             }
 
             else if (selectedRequest.Status == RequestStatus.APPROVED)
             {
-                if(Comment == "")
+                if (Comment == "")
                 {
                     Comment = "No comment";
                     Page.commentTxtBlock.Foreground = Brushes.Gray;
@@ -88,7 +86,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                 Page.requestHeader.Foreground = Brushes.LimeGreen;
                 return "Your request is approved.";
             }
-                
+
             else
             {
                 if (Comment == "")
@@ -100,7 +98,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
                 return "Your request is rejected";
             }
-                
+
         }
     }
 }
