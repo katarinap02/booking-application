@@ -58,11 +58,19 @@ namespace BookingApp.View.GuestPages
             ViewModel = new ReservationCalendarViewModel(SelectedAccommodation, DayNumber, User, StartDate, EndDate, Frame, this);
             DataContext = ViewModel;
 
+            if(PeopleNumberSection.IsEnabled == false)
+            {
+                HintLabel.Content = "Problem with choosing dates";
+                Hint.Text = "It is neccessary to choose the same number of days you entered on the previous page.";
+                Hint.Visibility = Visibility.Collapsed;
+
+
+            }
             // finishReservation.IsEnabled = false;
-          
+
 
             // continueLabel.Visibility = Visibility.Hidden;
-             
+
         }
 
        
@@ -89,6 +97,14 @@ namespace BookingApp.View.GuestPages
 
         }
 
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Hint.Visibility = Visibility.Visible;
+        }
 
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Hint.Visibility = Visibility.Hidden;
+        }
     }
 }

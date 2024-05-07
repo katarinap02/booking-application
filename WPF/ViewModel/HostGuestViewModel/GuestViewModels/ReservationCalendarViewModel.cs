@@ -81,6 +81,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Page.PeopleNumberSection.IsEnabled = true;
             SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
             SelectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
+            Page.HintLabel.Content = "Problem with guest number input";
+            Page.Hint.Text = "Number of guests cannot be larger than specified maximal number of guests.";
+            Page.Hint.Visibility = Visibility.Collapsed;
 
         }
 
