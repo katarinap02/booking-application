@@ -53,7 +53,8 @@ namespace BookingApp.View.GuestPages
         private void Details_Click(object sender, RoutedEventArgs e)
         {
             Button button = sender as Button;
-            SelectedRate = button.DataContext as GuestRateViewModel;
+            RateDetailsViewModel tmpSelectedRate = button.DataContext as RateDetailsViewModel;
+            SelectedRate = tmpSelectedRate.SelectedRate;
             Frame.Content = new RateDetailsPage(SelectedRate, User, Frame);
 
         }

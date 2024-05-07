@@ -216,6 +216,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
                 }
             }
         }
+
+
         public GuestRateViewModel() { }
 
         public GuestRateViewModel(GuestRate gr)

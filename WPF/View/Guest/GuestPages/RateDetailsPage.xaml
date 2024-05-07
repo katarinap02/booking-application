@@ -34,7 +34,7 @@
 
                 <TextBlock FontSize="30" Height="80" TextAlignment="Center" Margin="10,271,-10,440">
                     <TextBlock.Text>
-                        <MultiBinding StringFormat="{}Rules following: {0}">
+                        <MultiBinding StringFormat="{}Rules-following: {0}">
                             <Binding Path="SelectedRate.RulesFollowing"/>
 
                         </MultiBinding>
