@@ -1,5 +1,6 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.View.GuestPages;
+using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
@@ -26,19 +27,23 @@ namespace BookingApp.WPF.View.Guest.GuestPages
         public User User { get; set; }
         public Frame Frame { get; set; }
         public AccommodationReservationViewModel Reservation { get; set; }
+        public GuestICommand BackToProfileCommand { get; set; }
         public CancelReservationSuccessfulPage(User user, Frame frame, AccommodationReservationViewModel reservation)
         {
             InitializeComponent();
             Reservation = reservation;
             User = user;
             Frame = frame;
+            BackToProfileCommand = new GuestICommand(OnBackToProfile);
             DataContext = this;
 
         }
 
-        private void Profile_Click(object sender, RoutedEventArgs e)
+        private void OnBackToProfile()
         {
             Frame.Content = new ProfileInfo(User, Frame);
         }
+
+      
     }
 }

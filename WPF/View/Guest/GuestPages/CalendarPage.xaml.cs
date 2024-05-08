@@ -73,17 +73,7 @@ namespace BookingApp.View.GuestPages
 
         }
 
-       
-
-        private void SelectDate_Click(object sender, RoutedEventArgs e)
-        {
-
-            ViewModel.SelectDate_Click(sender, e);
-
-
-
-
-        }
+        
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -91,11 +81,7 @@ namespace BookingApp.View.GuestPages
            ViewModel.Calendar_SelectedDatesChanged(sender, e);
         }
 
-        private void Reserve_Click(object sender, RoutedEventArgs e)
-        {
-           ViewModel.Reserve_Click(sender, e);
-
-        }
+     
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {

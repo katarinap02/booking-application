@@ -88,13 +88,13 @@ namespace BookingApp.Application.Services.ReservationServices
             return false;
         }
 
-        internal void CancelReservation(AccommodationService accommodationService, ReservationCancellationService cancellationService, AccommodationReservationViewModel reservation)
+        public void CancelReservation(AccommodationService accommodationService, ReservationCancellationService cancellationService, AccommodationReservationViewModel reservation)
         {
             int daysBefore = (reservation.StartDate - DateTime.Today).Days;
             int dayLimit = accommodationService.GetById(reservation.AccommodationId).ReservationDaysLimit;
             if (daysBefore < dayLimit)
             {
-                MessageBox.Show("It is too late to cancel reservation");
+               // MessageBox.Show("It is too late to cancel reservation");
             }
             else
             {
@@ -106,7 +106,7 @@ namespace BookingApp.Application.Services.ReservationServices
                         DelayRequestService.Delete(request);
                 AccommodationReservationRepository.Delete(reservation);
                 accommodationService.FreeDateRange(accommodation, reservation);
-                MessageBox.Show("Reservation cancelled");
+                //MessageBox.Show("Reservation cancelled");
             }
         }
 
