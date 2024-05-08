@@ -13,6 +13,7 @@ using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using System.Windows.Media;
 
 namespace BookingApp.Application.Services.ReservationServices
 {
@@ -122,6 +123,127 @@ namespace BookingApp.Application.Services.ReservationServices
             delayRequestService.Add(delayRequest);
             return delayRequest;
                        
+        }
+
+        public int GetNumOfReservationsByYear(int accId,int year)
+        {
+            int num = 0;
+            foreach(AccommodationReservation ar in  AccommodationReservationRepository.GetAll())
+            {
+                
+                if(ar.AccommodationId == accId && ar.StartDate.Year== year)
+                {
+                    num++;
+                }
+            }
+
+            return num;
+        }
+
+        
+
+        public int GetNumOfReservationsByMonth(int accId, int month, int year)
+        {
+            int num = 0;
+            foreach (AccommodationReservation ar in AccommodationReservationRepository.GetAll())
+            {
+
+                if (ar.AccommodationId == accId && ar.StartDate.Month == month && ar.StartDate.Year == year)
+                {
+                    num++;
+                }
+            }
+
+            return num;
+        }
+
+        public List<int> GetAllYearsForAcc(int accId)
+        {
+            HashSet<int> uniqueYears = new HashSet<int>(); // Using HashSet to store unique years
+
+            foreach (AccommodationReservation ar in AccommodationReservationRepository.GetAll())
+            {
+                if (ar.AccommodationId == accId)
+                {
+                    uniqueYears.Add(ar.StartDate.Year); // Add the year to the HashSet
+                }
+            }
+
+            
+            return uniqueYears.ToList();
+        }
+        public List<int> GetAllMonthsForAcc(int accId, int year)
+        {
+            HashSet<int> uniqueMonths = new HashSet<int>(); // Using HashSet to store unique years
+
+            foreach (AccommodationReservation ar in AccommodationReservationRepository.GetAll())
+            {
+                if (ar.AccommodationId == accId && ar.StartDate.Year == year)
+                {
+                    uniqueMonths.Add(ar.StartDate.Month); // Add the year to the HashSet
+                }
+            }
+
+
+            return uniqueMonths.ToList();
+        }
+
+        public List<int> GetAllReservationsForYears(int accId)
+        {
+            List<int> list = new List<int>();
+            foreach (int year in GetAllYearsForAcc(accId))
+            {
+                list.Add(GetNumOfReservationsByYear(accId, year));
+            }
+                return list;
+        }
+
+        public List<int> GetAllReservationsForMonths(int accId, int year)
+        {
+            List<int> list = new List<int>();
+            foreach (int month in GetAllMonthsForAcc(accId, year))
+            {
+                list.Add(GetNumOfReservationsByMonth(accId, month, year));
+            }
+            return list;
+        }
+
+        public int GetMostBusyYearForAcc(int accId)
+        {
+            int busyYear = 0;
+            int daysInYear = 365;
+            int daysInYearLast = 365;
+            foreach (int year in GetAllYearsForAcc(accId))
+            {
+                if (year % 4 == 0)
+                    daysInYear = 366;
+                else daysInYear = 365;
+
+                if (busyYear % 4 == 0)
+                    daysInYearLast = 366;
+                else daysInYearLast = 365;
+
+                
+
+                if (((double)GetNumOfReservationsByYear(accId, year) / daysInYear) > ((double)GetNumOfReservationsByYear(accId, busyYear) / daysInYearLast))
+                    busyYear = year;
+                
+            }
+            return busyYear;
+        }
+
+        public int GetMostBusyMonth(int accId, int year)
+        {
+            int busyMonth = 0;
+            foreach (int month in GetAllMonthsForAcc(accId, year))
+            {
+                if(busyMonth == 0)
+                    busyMonth = month;
+                if((double)GetNumOfReservationsByMonth(accId, month, year) / DateTime.DaysInMonth(year, month) > (double)GetNumOfReservationsByMonth(accId, busyMonth, year) / DateTime.DaysInMonth(year, busyMonth))
+                    busyMonth = month;
+            }
+
+            return busyMonth;
         }
     }
 }

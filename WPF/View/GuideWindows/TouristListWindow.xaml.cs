@@ -6,13 +6,15 @@ using System.Windows.Controls;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Repository.ReservationRepository;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.Application.Services.ReservationServices;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 
 namespace BookingApp.View.GuideWindows
 {
     public partial class TouristListWindow : Window
     {
         private readonly TourReservationRepository _tourReservationRepository;
-        private readonly TourParticipantRepository _tourParticipantRepository;
+        private readonly TourParticipantService _tourParticipantService;
         public List<TourParticipant> tourParticipants { get; set; }
         public ObservableCollection<TourParticipantViewModel> tourParticipantDTOs { get; set; }
         public TourParticipantViewModel SelectedParticipant { get; set; }
@@ -23,7 +25,7 @@ namespace BookingApp.View.GuideWindows
             InitializeComponent();
             DataContext = this;
             _tourReservationRepository = new TourReservationRepository();
-            _tourParticipantRepository = new TourParticipantRepository();
+            _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
 
             prepareData(tour_id);            
             
@@ -44,7 +46,7 @@ namespace BookingApp.View.GuideWindows
         {
             if (dataGrid.SelectedItem != null && SelectedParticipant != null)
             {
-                _tourParticipantRepository.JoinTour(SelectedParticipant.Id, CheckpointNumber);
+                _tourParticipantService.JoinTour(SelectedParticipant.Id, CheckpointNumber);
                 Close();
                 MessageBox.Show("Tourist " + SelectedParticipant.Name +" "+ SelectedParticipant.LastName + " joined");
             }

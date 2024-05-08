@@ -13,6 +13,12 @@ using System.Windows.Controls;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.View.HostPages;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
+using System.Windows.Navigation;
+using System.Runtime.CompilerServices;
+using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -20,121 +26,179 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
-        public Frame HostFrame { get; set; }
+        public MenuViewModel menuViewModel { get; set; }
 
-        public Menu LeftDock { get; set; }
         public User User { get; set; }
 
-        public StackPanel RatingPanel { get; set; }
+        public Host host { get; set; }
 
-        public StackPanel RenovationPanel { get; set; } 
-        
-        public HostWindowViewModel(User user, Frame frame, Menu dock, StackPanel panel, StackPanel panelR)
+        public HostService hostService { get; set; }
+
+        public RelayCommand SearchCommand {  get; set; }
+
+        public RelayCommand NavigateToRegisterPageCommand { get; set; }
+
+        public RelayCommand NavigateToHomePageCommand { get; set; }
+
+        public RelayCommand NavigateToDelayPageCommand { get; set; }
+
+        public RelayCommand NavigateToGuestRatingsPageCommand {  get; set; }
+
+        public RelayCommand NavigateToRateGuestPageCommand {  get; set; }
+
+        public RelayCommand OpenMenuCommand { get; set; }
+
+        public RelayCommand OpenRatingCommand { get; set; }
+
+        public RelayCommand OpenRenovationCommand { get; set; }
+
+        public RelayCommand NavigateToPreviousPageCommand {  get; set; }
+
+        public RelayCommand NavigateToScheduledPageCommand {  get; set; }
+
+        public RelayCommand NavigateToSchedulePageCommand { get; set; }
+
+        public RelayCommand GoBackCommand {  get; set; }
+        public NavigationService NavService { get; set; }
+
+        FirstPage FirstPage {  get; set; }
+
+        PreviousRenovationDisplayPageViewModel PreviousPage {  get; set; }
+
+        RenovationDisplayPageViewModel RenovationPage { get; set; }
+
+        RateDisplayPageViewModel RatePage { get; set; }
+
+
+        private bool CanExecute_NavigateCommand(object obj)
         {
+            return true;
+        }
 
-            HostFrame = frame;
-            LeftDock = dock;
+        private void Execute_NavigateToRegisterPageCommand(object obj)
+        {
+            RegisterAccommodationPage page = new RegisterAccommodationPage(User);
+            CloseMenu();
+            this.NavService.Navigate(page);
+        }
+
+        private void Execute_NavigateToHomePageCommand(object obj)
+        {
+            CloseMenu();
+            FirstPage page = new FirstPage(User, NavService);
+            this.NavService.Navigate(page);
+        }
+
+        private void Execute_NavigateToDelayPageCommand(object obj)
+        {
+            CloseMenu();
+            DelayPage page = new DelayPage(User);
+            this.NavService.Navigate(page);
+        }
+
+        private void Execute_NavigateToRatingsPageCommand(object obj)
+        {
+            CloseMenu();
+            RateDisplayPage page = new RateDisplayPage(User, NavService);
+            this.NavService.Navigate(page);
+        }
+
+        private void Execute_NavigateToGuestRatePageCommand(object obj)
+        {
+            CloseMenu();
+            GuestRatePage page = new GuestRatePage(User);
+            this.NavService.Navigate(page);
+        }
+
+        private void Execute_NavigateToPreviousPageCommand(object obj)
+        {
+            CloseMenu();
+            PreviousRenovationDisplayPage page = new PreviousRenovationDisplayPage(User, NavService);
+            this.NavService.Navigate(page);
+        }
+
+        private void Execute_NavigateToScheduledPageCommand(object obj)
+        {
+            CloseMenu();
+            RenovationDisplayPage page = new RenovationDisplayPage(User, NavService);
+            this.NavService.Navigate(page);
+        }
+
+        private void Execute_NavigateToSchedulePageCommand(object obj)
+        {
+            CloseMenu();
+            ScheduleRenovationPage page = new ScheduleRenovationPage(User);
+            this.NavService.Navigate(page);
+        }
+
+
+
+        public HostWindowViewModel(User user, NavigationService navService)
+        {
+            hostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
+            host = hostService.GetByUsername(user.Username);
+            hostService.BecomeSuperHost(host);
+            menuViewModel = new MenuViewModel(host);
+            NavigateToRegisterPageCommand = new RelayCommand(Execute_NavigateToRegisterPageCommand ,CanExecute_NavigateCommand);
+            NavigateToHomePageCommand = new RelayCommand(Execute_NavigateToHomePageCommand, CanExecute_NavigateCommand);
+            NavigateToDelayPageCommand = new RelayCommand(Execute_NavigateToDelayPageCommand, CanExecute_NavigateCommand);
+            NavigateToGuestRatingsPageCommand = new RelayCommand(Execute_NavigateToRatingsPageCommand, CanExecute_NavigateCommand);
+            NavigateToRateGuestPageCommand = new RelayCommand(Execute_NavigateToGuestRatePageCommand, CanExecute_NavigateCommand);
+            NavigateToPreviousPageCommand = new RelayCommand(Execute_NavigateToPreviousPageCommand, CanExecute_NavigateCommand);
+            NavigateToScheduledPageCommand = new RelayCommand(Execute_NavigateToScheduledPageCommand, CanExecute_NavigateCommand);
+            NavigateToSchedulePageCommand = new RelayCommand(Execute_NavigateToSchedulePageCommand, CanExecute_NavigateCommand);
+            GoBackCommand = new RelayCommand(BackCommand, CanExecute_NavigateCommand);
+            SearchCommand = new RelayCommand(SearchClick, CanExecute_NavigateCommand);
+            this.OpenMenuCommand = new RelayCommand(
+                                        execute => this.menuViewModel.IsMenuOpened = !this.menuViewModel.IsMenuOpened, CanExecute_NavigateCommand);
+            this.OpenRatingCommand = new RelayCommand(
+                                       execute => this.menuViewModel.IsRatingOpened = !this.menuViewModel.IsRatingOpened, CanExecute_NavigateCommand);
+            this.OpenRenovationCommand = new RelayCommand(
+                                       execute => this.menuViewModel.IsRenovationOpened = !this.menuViewModel.IsRenovationOpened, CanExecute_NavigateCommand);
             User = user;
-            RatingPanel = panel;
-            RenovationPanel = panelR;
+            NavService = navService;
             Update();
 
         }
+       
+        public void SearchClick(object obj)
+        {
+            hostService.SearchHost(host, menuViewModel.SearchHost);
+            if(NavService.Content is FirstPage)
+            {
+                Update();
+            }
+            else if (NavService.Content is RateDisplayPage)
+            {
+                Execute_NavigateToRatingsPageCommand(obj);
+            }
+            else if (NavService.Content is PreviousRenovationDisplayPage)
+            {
+                Execute_NavigateToPreviousPageCommand(obj);
+            }
+            else if (NavService.Content is RenovationDisplayPage)
+            {
+                Execute_NavigateToScheduledPageCommand(obj);
+            }
 
+
+        }
+        public void BackCommand(object obj)
+        {
+            if(NavService.CanGoBack)
+                NavService.GoBack();
+        }
         public void Update()
         {
-
-            FirstPage firstPage = new FirstPage(User, HostFrame, LeftDock, RatingPanel);
-
-            HostFrame.Navigate(firstPage);
+            FirstPage page = new FirstPage(User, NavService);
+            this.NavService.Navigate(page);
         }
 
-        public void HomeButton_Click(object sender, RoutedEventArgs e)
+        private void CloseMenu()
         {
-            FirstPage firstPage = new FirstPage(User, HostFrame, LeftDock, RatingPanel);
-            HostFrame.Navigate(firstPage);
-            LeftDock.Visibility = Visibility.Collapsed;
-            RatingPanel.Visibility = Visibility.Collapsed;
-            RenovationPanel.Visibility = Visibility.Collapsed;
-        }
-
-        public void RegisterButton_Click(object sender, RoutedEventArgs e)
-        {
-            RegisterAccommodationPage page = new RegisterAccommodationPage(User);
-            HostFrame.Navigate(page);
-            LeftDock.Visibility = Visibility.Collapsed;
-            RatingPanel.Visibility = Visibility.Collapsed;
-        }
-        public void GuestRatings_Click(object sender, RoutedEventArgs e)
-        {
-            RateDisplayPage page = new RateDisplayPage(User);
-            HostFrame.Navigate(page);
-            LeftDock.Visibility = Visibility.Collapsed;
-            RatingPanel.Visibility = Visibility.Collapsed;
-            RenovationPanel.Visibility = Visibility.Collapsed;
-        }
-
-        public void RateGuest_Click(object sender, RoutedEventArgs e)
-        {
-            GuestRatePage page = new GuestRatePage(User);
-            HostFrame.Navigate(page);
-            LeftDock.Visibility = Visibility.Collapsed;
-            RatingPanel.Visibility = Visibility.Collapsed;
-            RenovationPanel.Visibility = Visibility.Collapsed;
-        }
-
-        public void Delay_Click(object sender, RoutedEventArgs e)
-        {
-            DelayPage page = new DelayPage(User);
-            HostFrame.Navigate(page);
-            LeftDock.Visibility = Visibility.Collapsed;
-            RatingPanel.Visibility = Visibility.Collapsed;
-            RenovationPanel.Visibility = Visibility.Collapsed;
-        }
-
-        public void ScheduleRenovation_Click(object sender, RoutedEventArgs e)
-        {
-            ScheduleRenovationPage page = new ScheduleRenovationPage(User);
-            HostFrame.Navigate(page);
-            LeftDock.Visibility = Visibility.Collapsed;
-            RatingPanel.Visibility = Visibility.Collapsed;
-            RenovationPanel.Visibility = Visibility.Collapsed;
-        }
-
-        public void More_Click(object sender, RoutedEventArgs e)
-        {
-            if (LeftDock.Visibility == Visibility.Visible)
-            {
-                LeftDock.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                LeftDock.Visibility = Visibility.Visible;
-            }
-        }
-
-        public void Rating_Click(object sender, RoutedEventArgs e)
-        {
-            if (RatingPanel.Visibility == Visibility.Visible)
-            {
-                RatingPanel.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                RatingPanel.Visibility = Visibility.Visible;
-            }
-        }
-
-        public void Renovation_Click(object sender, RoutedEventArgs e)
-        {
-            if (RenovationPanel.Visibility == Visibility.Visible)
-            {
-                RenovationPanel.Visibility = Visibility.Collapsed;
-            }
-            else
-            {
-                RenovationPanel.Visibility = Visibility.Visible;
-            }
+            menuViewModel.IsMenuOpened = false;
+            menuViewModel.IsRatingOpened = false;
+            menuViewModel.IsRenovationOpened = false;
         }
 
     }

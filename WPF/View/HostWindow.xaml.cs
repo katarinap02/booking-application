@@ -33,60 +33,15 @@ namespace BookingApp.View
         {
 
             InitializeComponent();
-            hostPageViewModel = new HostWindowViewModel(user, HostFrame, LeftDock, RatingPanel, RenovationPanel);
-            DataContext = hostPageViewModel;
+            hostPageViewModel = new HostWindowViewModel(user, this.HostFrame.NavigationService);
+            this.DataContext = hostPageViewModel;
 
-        }
-
-
-        private void HomeButton_Click(object sender, RoutedEventArgs e)
-        {
-            hostPageViewModel.HomeButton_Click(sender, e);
-        }
-
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
-        {
-            hostPageViewModel.RegisterButton_Click(sender, e);
-        }
-        private void GuestRatings_Click(object sender, RoutedEventArgs e)
-        {
-            hostPageViewModel.GuestRatings_Click(sender, e);
-        }
-
-        private void Delay_Click(object sender, RoutedEventArgs e)
-        {
-            hostPageViewModel.Delay_Click(sender, e); 
         }
 
         private void Close_Click(object sender, RoutedEventArgs e)
         {
             Close();
         }
-        
 
-        private void More_Click(object sender, RoutedEventArgs e)
-        {
-            hostPageViewModel.More_Click(sender, e);
-        }
-
-        private void Rating_Click(object sender, RoutedEventArgs e)
-        {
-            hostPageViewModel.Rating_Click(sender, e);
-        }
-
-        private void RateGuest_Click(object sender, RoutedEventArgs e)
-        {
-            hostPageViewModel.RateGuest_Click(sender, e);
-        }
-
-        private void Renovation_Click(object sender, RoutedEventArgs e)
-        {
-            hostPageViewModel.Renovation_Click(sender, e);
-        }
-
-        private void Schedule_Click(object sender, RoutedEventArgs e)
-        {
-            hostPageViewModel.ScheduleRenovation_Click(sender, e);
-        }
     }
 }

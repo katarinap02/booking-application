@@ -170,15 +170,20 @@
                Grid.Column="3"
                Grid.Row="5"
                FontSize="16"/>
-        <TextBox Grid.Column="3"
+        <TextBox x:Name="CommentTextBox"
+                 Grid.Column="3"
                  Grid.Row="6"
                  Grid.RowSpan="2"
-                 GotFocus="TextBox_GotFocus"
-                 LostFocus="TextBox_LostFocus"
+                 TextChanged="CommentTextBox_TextChanged"
                  Text="{Binding AdditionalComment}"
-                 Foreground="Gray"
+                 Foreground="Black"
                  TextWrapping="Wrap"/>
-
+        <TextBlock x:Name="PlaceholderTextBlock" Text="Leave a comment here..."
+                   Grid.Column="3"
+                   Grid.Row="6"
+                   Cursor="IBeam"
+                   MouseDown="PlaceholderTextBlock_MouseDown"
+                   Foreground="Gray" Margin="5,0,236,19"/>
         <GroupBox Grid.Row="9"
                   Grid.RowSpan="2"
                   Grid.Column="1"

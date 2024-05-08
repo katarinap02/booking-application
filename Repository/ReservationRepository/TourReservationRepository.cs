@@ -112,7 +112,7 @@ namespace BookingApp.Repository.ReservationRepository
 
         public void addParticipant(TourParticipant participant, TourReservation reservation)
         {
-            TourParticipant participantRepo = _tourparticipantRepository.SaveParticipant(participant.Name, participant.LastName, participant.Years.ToString());
+            TourParticipant participantRepo = _tourparticipantRepository.SaveParticipant(participant.Name, participant.LastName, participant.Years);
             participantRepo.Id = _tourparticipantRepository.NextId();
             participantRepo.ReservationId = reservation.Id;
             _tourparticipantRepository.Add(participantRepo);

@@ -40,7 +40,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public List<Tour> GetAllTours()
         {
-            return _tourRepository.GetAllNotFinished();
+            return _tourRepository.GetAllNotFinishedAndNotCancelled();
         }
         public Tour GetTourById(int tourId)
         {
@@ -216,6 +216,20 @@ namespace BookingApp.Application.Services.FeatureServices
             }
 
             return mostPopularTour;
+        }
+
+        public List<Tour>? findToursNeedingGuide() 
+        {
+            List<Tour> allTours = _tourRepository.GetAll();
+            List<Tour> ret = new List<Tour>();
+            foreach (Tour tour in allTours)
+            {
+                if (tour.Date.Date == DateTime.Now.Date && tour.Status == TourStatus.inPreparation)
+                {
+                    ret.Add(tour);
+                }
+            }
+            return ret;
         }
 
         public Tour GetMostPopularTourForGuideInYear(int guide_id, int year)

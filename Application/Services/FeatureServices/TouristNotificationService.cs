@@ -24,5 +24,10 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             return _touristNotificationRepository.GetMyNotifications(touristId);
         }
+
+        public void Add(TouristNotification touristNotification)
+        {
+            _touristNotificationRepository.Add(touristNotification);
+        }
     }
 }

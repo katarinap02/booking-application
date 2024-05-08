@@ -159,7 +159,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
-        private List<TourParticipantViewModel> _participantsListBox = new List<TourParticipantViewModel>();
+        private List<TourParticipantViewModel> _participantsListBox;
         public List<TourParticipantViewModel> ParticipantsListBox
         {
             get
@@ -216,10 +216,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
-        private string _age;
-
-        [Required(ErrorMessage = "Age is Required")]
-        public string Age
+        private int _age;
+        public int Age
         {
             get
             {
@@ -301,7 +299,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
             Name = string.Empty;
             LastName = string.Empty;
-            Age = "0";
+            Age = 1;
         }
 
         private void ExecuteAddParticipant(object obj)
@@ -326,9 +324,9 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             return Validator.TryValidateObject(this, new ValidationContext(this), null);
         }
 
-        private bool AllFieldsFilled(string years, string name, string lastName)
+        private bool AllFieldsFilled(int age, string name, string lastName)
         {
-            if (years == string.Empty || name == string.Empty || lastName == string.Empty)
+            if (age == 0 || name == string.Empty || lastName == string.Empty)
             {
                 return false;
             }

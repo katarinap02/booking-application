@@ -68,6 +68,12 @@ namespace BookingApp.Application.Services.FeatureServices
             return;
         }
 
+        public void SearchHost(Host host, string search)
+        {
+            host.Search = search;
+            HostRepository.Update(host);
+        }
+
         public bool isSuperHost(int counter, double gradeSum, double average)
         {
             if (counter < 10)

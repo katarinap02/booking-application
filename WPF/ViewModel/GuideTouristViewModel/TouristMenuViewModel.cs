@@ -2,6 +2,8 @@
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.View.TouristWindows;
+using BookingApp.WPF.View.TouristWindows;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -17,6 +19,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
     public class TouristMenuViewModel : INotifyPropertyChanged
     {
         public UserService _userService { get; set; }
+
+        public ICommand LogoutCommand { get; set; }
         private string _username;
         public string UserName
         {
@@ -85,6 +89,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
+        private void ExecuteLogoutCommand(object obj)
+        {
+            Messenger.Default.Send(new LogoutMessage());
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -100,6 +109,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         public TouristMenuViewModel()
         {
             _userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
+
+            LogoutCommand = new RelayCommand(ExecuteLogoutCommand);
 
         }
     }

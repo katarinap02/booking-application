@@ -28,10 +28,10 @@ namespace BookingApp.WPF.View.HostPages
     public partial class RateDisplayPage : Page
     {
         
-        public RateDisplayPage(User user)
+        public RateDisplayPage(User user, NavigationService navigationService)
         {
             InitializeComponent();
-            DataContext = new RateDisplayPageViewModel(user);
+            DataContext = new RateDisplayPageViewModel(user, navigationService);
             
         }
 

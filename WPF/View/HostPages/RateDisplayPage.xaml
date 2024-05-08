@@ -36,7 +36,7 @@
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="5 0 35 0" HorizontalAlignment="Right">
             <Image Source="../../../Resources/Images/notification.png" Width="20" Height="25"/>
             <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">
-                <Hyperlink Style="{StaticResource HyperlinkStyle}"  RequestNavigate="RateGuest_RequestNavigate" >
+                <Hyperlink Style="{StaticResource HyperlinkStyle}" Command="{Binding NavigateToRateGuestPageCommand}"  RequestNavigate="RateGuest_RequestNavigate" >
                     Rate guest
                 </Hyperlink>
             </TextBlock>
