@@ -94,7 +94,8 @@ namespace BookingApp.Application.Services.ReservationServices
             int dayLimit = accommodationService.GetById(reservation.AccommodationId).ReservationDaysLimit;
             if (daysBefore < dayLimit)
             {
-               // MessageBox.Show("It is too late to cancel reservation");
+                MessageBox.Show("It is too late to cancel reservation");
+               
             }
             else
             {
