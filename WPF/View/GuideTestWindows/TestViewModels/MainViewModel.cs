@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
@@ -65,37 +66,40 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         }
 
         //--> Commands
-        public ICommand ShowHomeViewCommand { get; }
-        public ICommand ShowCustomerViewCommand { get; }
+        public ICommand ShowTodaysToursCommand { get; }
+        public ICommand ShowMyToursCommand { get; }
 
         public MainViewModel()
         {
             //CurrentUserAccount = new UserAccountModel();
 
             //Initialize commands
-            ShowHomeViewCommand = new ViewModelCommand(ExecuteShowMyToursViewCommand); // verovatno treba izmena
+            ShowTodaysToursCommand = new ViewModelCommand(ExecuteShowTodaysToursViewCommand);
 
-            ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowTodaysToursViewCommand);
+            ShowMyToursCommand = new ViewModelCommand(ExecuteShowMyToursViewCommand);
 
             //Default view
-            ExecuteShowMyToursViewCommand(null);
-
+            CurrentChildView = new TodaysToursViewModel();
+            Caption = "Todays Tours";
+            Icon = IconChar.CalendarDay;
 
         }
-
+        
         private void ExecuteShowTodaysToursViewCommand(object obj)
         {
-            CurrentChildView = new TodaysToursViewModel();
-            Caption = "Customers";
-            Icon = IconChar.UserGroup; // za svaki izmeniti Ikonu
+            CurrentChildView = new TodaysToursViewModel(); // breakpoint
+            Caption = "Todays Tours";
+            Icon = IconChar.CalendarDay; // za svaki izmeniti Ikonu
+            MessageBox.Show("ExecuteShowTodaysToursViewCommand");
         }
 
         private void ExecuteShowMyToursViewCommand(object obj)
         {
-            CurrentChildView = new MyToursViewModel();
-            Caption = "Dashboard";
-            Icon = IconChar.Home;
+            CurrentChildView = new MyToursViewModel(); // breakpoint
+            Caption = "My Tours";
+            Icon = IconChar.Route;
+            MessageBox.Show("ExecuteShowMyToursViewCommand");
         }
-    }
+    } 
 
 }
