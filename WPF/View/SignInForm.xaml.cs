@@ -102,10 +102,10 @@ namespace BookingApp.View
                             if (user.Username == "test") // prostor za testiranje prozora
                             {
                                 
-                                /*RandomTest randomTest = new RandomTest();
-                                randomTest.Show();*/
-                                GridTest gridtest = new GridTest();
-                                gridtest.ShowDialog();
+                                RandomTest randomTest = new RandomTest();
+                                randomTest.Show();
+                                /*GridTest gridtest = new GridTest();
+                                gridtest.ShowDialog();*/
                             }
                             else
                             {

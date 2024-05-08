@@ -8,15 +8,17 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Shapes;
 using BookingApp.Application;
-
+using BookingApp.WPF.View.GuideTestWindows.TestViewModels;
 
 namespace BookingApp.View.GuideTestWindows
 {
     public partial class RandomTest : Window
     {
+        public MainViewModel mainViewModel { get; set; }
         public RandomTest()
         {
             InitializeComponent();
+            DataContext = mainViewModel;
         }
 
         [DllImport("user32.dll")]
