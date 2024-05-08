@@ -6,6 +6,7 @@ using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.WPF.View.Guest.GuestPages;
+using BookingApp.WPF.ViewModel.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public HostService HostService { get; set; }
         public AccommodationRateService AccommodationRateService { get; set; }
         public RenovationRecommendationViewModel Recommendation {  get; set; }
+
+        // KOMANDE
+        public GuestICommand SaveRateCommand { get; set; }
         public RecommendationPageViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, AccommodationViewModel selectedAccommodation, AccommodationRateViewModel accommodationRate)
         {
             User = user;
@@ -39,9 +43,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             AccommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             HostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
             RenovationRecommendationService = new RenovationRecommendationService(Injector.Injector.CreateInstance<IRenovationRecommendationRepository>());
+            SaveRateCommand = new GuestICommand(OnSaveRate);
         }
 
-        public void Save_Click(object sender, RoutedEventArgs e)
+        private void OnSaveRate()
         {
             Recommendation.ReservationId = SelectedReservation.Id;
             Recommendation.AccommodationId = SelectedAccommodation.Id;
@@ -52,5 +57,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Host host = HostService.GetById(rate.HostId);
             Frame.Content = new RateAccommodationSuccessfulPage(User, Frame, SelectedAccommodation, host.Username);
         }
+
+      
     }
 }

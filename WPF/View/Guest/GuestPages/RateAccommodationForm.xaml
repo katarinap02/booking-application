@@ -81,9 +81,9 @@
                     <Label Content="Comment:" FontSize="20" HorizontalAlignment="Left" Margin="55,115,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding AccommodationRate.AdditionalComment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="100" Margin="0,152,0,0"/>
 
-                    <Button FontSize="15" Click="AddPicture_Click" Content="Add picture" HorizontalAlignment="Left" Margin="55,261,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}"/>
-                    <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="55,375,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="29" Width="208" Click="Recommend_Click"/>
-                    <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="369,456,0,0" VerticalAlignment="Top" Height="30" Width="121" Style="{StaticResource ButtonStyleN}" Click="Save_Click"/>
+                    <Button FontSize="15" Command="{Binding AddPicturesCommand}" Content="Add picture" HorizontalAlignment="Left" Margin="55,261,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}"/>
+                    <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="55,375,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="29" Width="208" Command="{Binding RecommendCommand}"/>
+                    <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="369,456,0,0" VerticalAlignment="Top" Height="30" Width="121" Style="{StaticResource ButtonStyleN}" Command="{Binding SaveRateCommand}"/>
                     <ListBox x:Name="pictureListBox" Margin="186,261,55,157" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Images}"/>
 
                 </Grid>
