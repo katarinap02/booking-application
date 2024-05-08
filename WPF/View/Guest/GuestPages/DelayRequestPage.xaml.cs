@@ -57,11 +57,6 @@ namespace BookingApp.View.GuestPages
             
         }
 
-        private void SelectDate_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.SelectDate_Click(sender, e);
-
-        }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
