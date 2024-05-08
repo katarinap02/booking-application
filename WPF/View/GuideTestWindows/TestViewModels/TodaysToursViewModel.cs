@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 {
-    internal class TodaysToursViewModel : ViewModelBase
+    public class TodaysToursViewModel : ViewModelBase
     {
     }
 }
