@@ -29,8 +29,8 @@ namespace BookingApp.Application.Services.FeatureServices
         public List<TourRequest> filterRequests(TourRequest searchCriteria)
         {
             List<TourRequest> tourRequests = _tourRequestRepository.GetAllPending();
-            List<TourRequest> filteredRequests = new List<TourRequest>();
-            
+            List<TourRequest> filteredRequests = tourRequests;
+
             if (!string.IsNullOrEmpty(searchCriteria.City))
             {
                 MessageBox.Show("usao", "City");
@@ -45,15 +45,18 @@ namespace BookingApp.Application.Services.FeatureServices
             {
                 MessageBox.Show("usao", "Language");
                 MessageBox.Show(searchCriteria.Language.ToLower());
+                MessageBox.Show(filteredRequests.Count().ToString());
                 filteredRequests = filteredRequests.FindAll(x => x.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();
                 MessageBox.Show(filteredRequests.Count().ToString());
             }
+            /*
             if (searchCriteria.StartDate != null && searchCriteria.EndDate != null)
             {
                 MessageBox.Show("usao", "datumi");
                 filteredRequests = tourRequests.FindAll(x => x.StartDate >= searchCriteria.StartDate && x.EndDate <= searchCriteria.EndDate).ToList();
-            }
-            
+            }*/
+            MessageBox.Show(filteredRequests.Count().ToString());
+            MessageBox.Show(filteredRequests[0].Language);
             return filteredRequests;
         }
 
