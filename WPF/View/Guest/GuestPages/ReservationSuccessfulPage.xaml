@@ -12,8 +12,8 @@
     <Grid>
         <Label FontSize="50" Content="You have successfully created a reservation!" Style="{StaticResource HeaderStyleN}" Margin="445,161,377,751"/>
         <controls:ReservationDetailsCard x:Name="reservationDetailsCard" Margin="0,291,799,291"></controls:ReservationDetailsCard>
-        <Button Content="Home page" HorizontalAlignment="Left" Margin="1340,386,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="72" Width="203" Click="HomePage_Click"/>
-        <Button Content="Your profile" HorizontalAlignment="Left" Margin="1340,495,0,0" VerticalAlignment="Top" Style="{StaticResource ResourceKey=ButtonStyleN}" Height="72" Width="203" Click="ProfilePage_Click"/>
+        <Button Content="Home page" HorizontalAlignment="Left" Margin="1340,386,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="72" Width="203" Command="{Binding GoHomeCommand}"/>
+        <Button Content="Your profile" HorizontalAlignment="Left" Margin="1340,495,0,0" VerticalAlignment="Top" Style="{StaticResource ResourceKey=ButtonStyleN}" Height="72" Width="203" Command="{Binding ProfileCommand}"/>
         <Image VerticalAlignment="Top" HorizontalAlignment="Left" Margin="743,316,0,0" Width="40" Height="40">
             <Image.Style>
                 <Style TargetType="Image">

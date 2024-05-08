@@ -67,7 +67,7 @@
                         </Calendar.LayoutTransform>
 
                     </Calendar>
-                    <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,568,0,0" VerticalAlignment="Top" Click="SelectDate_Click" Width="198" Height="55" Style="{StaticResource ResourceKey=ButtonStyleN}" RenderTransformOrigin="0.505,0.945"/>
+                    <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,568,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{StaticResource ResourceKey=ButtonStyleN}" RenderTransformOrigin="0.505,0.945"/>
                 </Grid>
             </Border>
 

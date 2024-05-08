@@ -51,38 +51,8 @@ namespace BookingApp.View.GuestPages
            
           
         }
-       
+      
 
-       
-
-        private void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-           
-           ViewModel.SearchButton_Click(sender, e); 
-            
-
-
-        }
-
-
-       
-
-        private void ReserveButton_Click(object sender, RoutedEventArgs e) {
-
-           
-            
-           ViewModel.ReserveButton_Click(sender, e);
-            
-
-
-        }
-
-        private void DetailsButton_Click(object sender, RoutedEventArgs e)
-        {
-
-
-
-        }
 
     }
 }

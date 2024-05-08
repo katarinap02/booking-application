@@ -8,6 +8,7 @@ using BookingApp.Injector;
 using BookingApp.Observer;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.View.Guest.GuestTools;
+using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -88,7 +90,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             }
         }
 
+        // KOMANDE
 
+        public GuestICommand SearchCommand { get; set; }
+
+        public GuestICommand<object> ReserveCommand { get; set; }
 
         public ShowAccommodationsViewModel(User user, Frame frame, AccommodationsPage accommodationsPage)
         {
@@ -106,6 +112,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             AccommodationSearcher = new AccommodationSearcher(AccommodationService);
             CitiesSearch = new ObservableCollection<string>();
             CountriesSearch = new ObservableCollection<string>();
+            SearchCommand = new GuestICommand(OnSearch);
+            ReserveCommand = new GuestICommand<object>(OnReserve);
             CountriesSearch.Add("");
             LoadCountriesFromCSV();
            
@@ -113,6 +121,25 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         }
 
+        private void OnReserve(object sender)
+        {
+            Button button = sender as Button;
+            SelectedAccommodation = button.DataContext as AccommodationViewModel;
+            Frame.Content = new ReservationInfoPage(SelectedAccommodation, User, Frame);
+        }
+
+        private void OnSearch()
+        {
+            List<string> queries = new List<string>();
+            queries.Add(AccommodationsPage.txtSearchName.Text); //nameQuery
+            queries.Add(CitySearch); //cityQuery
+            queries.Add(CountrySearch); //countryQuery
+            queries.Add(AccommodationsPage.txtSearchType.Text); //typeQuery
+            queries.Add(AccommodationsPage.txtSearchGuestNumber.Text); //guestQuery
+            queries.Add(AccommodationsPage.txtSearchReservationDays.Text); //reservationQuery
+
+            AccommodationsPage.AccommodationListBox.ItemsSource = AccommodationSearcher.SearchAccommodations(queries);
+        }
 
         public void Update()
         {
@@ -154,13 +181,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             }
         }
 
-        public void ReserveButton_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            SelectedAccommodation = button.DataContext as AccommodationViewModel;
-            Frame.Content = new ReservationInfoPage(SelectedAccommodation, User, Frame);
-
-        }
+     
 
         private void LoadCountriesFromCSV()
         {
@@ -199,19 +220,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             CitySearch = CountriesSearch[0];
         }
 
-        public void SearchButton_Click(object sender, RoutedEventArgs e)
-        {
-            List<string> queries = new List<string>();
-            queries.Add(AccommodationsPage.txtSearchName.Text); //nameQuery
-            queries.Add(CitySearch); //cityQuery
-            queries.Add(CountrySearch); //countryQuery
-            queries.Add(AccommodationsPage.txtSearchType.Text); //typeQuery
-            queries.Add(AccommodationsPage.txtSearchGuestNumber.Text); //guestQuery
-            queries.Add(AccommodationsPage.txtSearchReservationDays.Text); //reservationQuery
-
-            AccommodationsPage.AccommodationListBox.ItemsSource = AccommodationSearcher.SearchAccommodations(queries);
-
-        }
+      
 
 
     }

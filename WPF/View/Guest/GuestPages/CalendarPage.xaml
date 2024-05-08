@@ -60,7 +60,7 @@
                     </Calendar.LayoutTransform>
 
                 </Calendar>
-                <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,403,0,0" VerticalAlignment="Top" Click="SelectDate_Click" Width="198" Height="55" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
+                <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,403,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
 
             </Grid>
         </Border>
@@ -69,7 +69,7 @@
                 <Label Content="Number of people: " HorizontalAlignment="Left" Margin="148,22,0,0" VerticalAlignment="Top" Height="52" Width="264" FontSize="30"/>
                 <!--<TextBox x:Name="txtGuestNumber" HorizontalAlignment="Left" Margin="439,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" Height="40"/>-->
                 <xctk:IntegerUpDown Name="txtGuestNumber" Margin="439,28,73,85" />
-                <Button x:Name="finishReservation" Content="Reserve" HorizontalAlignment="Center" Margin="0,79,0,0" VerticalAlignment="Top" Width="140" Click="Reserve_Click" Height="50" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
+                <Button x:Name="finishReservation" Content="Reserve" HorizontalAlignment="Center" Margin="0,79,0,0" VerticalAlignment="Top" Width="140" Command="{Binding FinishReservationCommand}" Height="50" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
 
             </Grid>
         </Border>

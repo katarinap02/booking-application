@@ -12,6 +12,7 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.WPF.ViewModel.Commands;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -26,6 +27,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public GuestService GuestService { get; set; }
         public Frame Frame { get; set; }
 
+        // KOMANDE
+        public GuestICommand GoHomeCommand { get; set; }
+        public GuestICommand ProfileCommand { get; set; }
 
 
         public ReservationSuccessfulViewModel(AccommodationViewModel selectedAccommodation, User user, Frame frame, AccommodationReservationViewModel reservation)
@@ -37,19 +41,23 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Guest = GuestService.GetById(User.Id);
             GuestService.CalculateGuestStats(Guest);
             Reservation = reservation;
+            GoHomeCommand = new GuestICommand(OnGoHome);
+            ProfileCommand = new GuestICommand(OnProfile);
 
 
         }
 
-        public void HomePage_Click(object sender, RoutedEventArgs e)
+        private void OnProfile()
+        {
+            Frame.Content = new ProfilePage(User, Frame);
+        }
+
+        private void OnGoHome()
         {
             Frame.Content = new HomePage(User, Frame);
         }
 
-        public void ProfilePage_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Content = new ProfilePage(User, Frame);
-        }
+     
 
     }
 }

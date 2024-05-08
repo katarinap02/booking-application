@@ -48,27 +48,6 @@ namespace BookingApp.View.GuestPages
             ViewModel.Update();
         }
 
-       
-
-        public void Cancel_Click(object sender, RoutedEventArgs e) { 
-
-            Button button = sender as Button;
-            SelectedReservation = button.DataContext as AccommodationReservationViewModel;
-            Frame.Content = new CancelReservationPage(SelectedReservation, User, Frame);
-
-        
-        
-        
-        }
-
-        public void Delay_Click(object sender, RoutedEventArgs e)
-        {
-            Button button = sender as Button;
-            SelectedReservation = button.DataContext as AccommodationReservationViewModel;
-            Frame.Content = new DelayRequestPage(SelectedReservation, User, Frame);
-
-        }
-
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             Hint.Visibility = Visibility.Visible;

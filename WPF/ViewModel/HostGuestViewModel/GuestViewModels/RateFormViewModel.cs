@@ -8,6 +8,7 @@ using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.View.Guest.GuestPages;
+using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using Microsoft.Win32;
 using System;
@@ -43,6 +44,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public RateAccommodationForm Page { get; set; }
 
+        // KOMANDE
+        public GuestICommand AddPicturesCommand { get; set; }
+        public GuestICommand SaveRateCommand { get; set; }
+        public GuestICommand RecommendCommand { get; set; }
+
         public RateFormViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, RateAccommodationForm page)
         {
             Images = new ObservableCollection<string>();
@@ -55,11 +61,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Page = page;
             SelectedReservation = selectedReservation;
             SelectedAccommodation = new AccommodationViewModel(AccommodationService.GetById(SelectedReservation.AccommodationId));
+            AddPicturesCommand = new GuestICommand(OnAddPictures);
+            SaveRateCommand = new GuestICommand(OnSaveRate);
+            RecommendCommand = new GuestICommand(OnRecommend);
 
 
         }
 
-        public void Save_Click(object sender, RoutedEventArgs e)
+        private void OnRecommend()
+        {
+            CreateRate();
+            Frame.Content = new RecommendationPage(User, Frame, SelectedReservation, SelectedAccommodation, AccommodationRate);
+        }
+
+        private void OnSaveRate()
         {
             CreateRate();
             AccommodationRateService.Add(AccommodationRate.ToAccommodationRate());
@@ -68,19 +83,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             //MessageBox.Show(host.Id.ToString());
             HostService.BecomeSuperHost(host);
             Frame.Content = new RateAccommodationSuccessfulPage(User, Frame, SelectedAccommodation, host.Username);
-
         }
 
-        private void CreateRate()
-        {
-            AccommodationRate.ReservationId = SelectedReservation.Id;
-            AccommodationRate.GuestId = User.Id;
-            AccommodationRate.HostId = AccommodationService.GetById(SelectedReservation.AccommodationId).HostId;
-            AccommodationRate.RecommendationId = -1;
-            
-        }
-
-        public void AddPicture_Click(object sender, RoutedEventArgs e)
+        private void OnAddPictures()
         {
             OpenFileDialog openFileDialog = new OpenFileDialog();
             openFileDialog.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.gif;*.bmp|All files (*.*)|*.*";
@@ -103,9 +108,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                     MessageBox.Show($"Error loading image: {ex.Message}");
                 }
             }
-
-
         }
+
+       
+        private void CreateRate()
+        {
+            AccommodationRate.ReservationId = SelectedReservation.Id;
+            AccommodationRate.GuestId = User.Id;
+            AccommodationRate.HostId = AccommodationService.GetById(SelectedReservation.AccommodationId).HostId;
+            AccommodationRate.RecommendationId = -1;
+            
+        }
+
+    
         public string ConvertToRelativePath(string input)
         {
             int index = input.IndexOf("Resources");
@@ -141,10 +156,6 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             }
         }
 
-        internal void Recommend_Click(object sender, RoutedEventArgs e)
-        {
-            CreateRate();
-            Frame.Content = new RecommendationPage(User, Frame, SelectedReservation, SelectedAccommodation, AccommodationRate);
-        }
+       
     }
 }

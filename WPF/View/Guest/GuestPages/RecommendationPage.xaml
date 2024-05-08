@@ -30,7 +30,7 @@
                 <Grid>
                     <Label Content="Recommendation:" FontSize="20" HorizontalAlignment="Left" Margin="44,37,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Recommendation.Comment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="177" Margin="44,79,0,0"/>
-                    <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="367,454,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}" Click="Save_Click"/>
+                    <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="367,454,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}" Command="{Binding SaveRateCommand}"/>
                     <Label Content="Urgency level:" FontSize="20" HorizontalAlignment="Left" Margin="44,276,0,0" VerticalAlignment="Top"/>
 
                     <ComboBox x:Name="levelComboBox" Height="40" Width="450" Margin="36,318,36,155" SelectedValuePath="Tag" SelectedValue="{Binding Recommendation.Level, Mode=TwoWay}">

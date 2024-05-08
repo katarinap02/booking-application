@@ -4,6 +4,7 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.GuestPages;
+using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public AccommodationReservationViewModel Reservation { get; set; }
 
+        // KOMANDE
+        public GuestICommand ContinueCommand { get; set; }
         public ReservationFinishViewModel(AccommodationViewModel selectedAccommodation, User user, Frame frame, ReservationInfoPage reservationInfoPage)
         {
 
@@ -40,24 +43,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             User = user;
             Frame = frame;
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+            ContinueCommand = new GuestICommand(OnContinue);
 
         }
 
-        public void Continue_Click(object sender, RoutedEventArgs e)
+        private void OnContinue()
         {
-
-
-
-
             DayNumber = Convert.ToInt32(ReservationInfoPage.txtDayNumber.Text);
             DateTime start = Convert.ToDateTime(ReservationInfoPage.txtStartDate.Text);
             DateTime end = Convert.ToDateTime(ReservationInfoPage.txtEndDate.Text);
 
 
             Frame.Content = new CalendarPage(SelectedAccommodation, DayNumber, User, start, end, Frame);
-
-
         }
+
+      
 
         private bool ValidateDayNumber(int dayNumber)
         {

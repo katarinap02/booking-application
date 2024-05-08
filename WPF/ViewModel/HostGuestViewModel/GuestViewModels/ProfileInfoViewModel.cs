@@ -7,6 +7,7 @@ using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.View.GuestPages;
+using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
@@ -37,6 +38,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public string Status { get; set; }
         public int TotalReservations { get; set; }
         public int TotalYearReservations { get; set; }
+
+        // KOMANDE
+        public GuestICommand<object> DelayCommand { get; set; }
+        public GuestICommand<object> CancelCommand { get; set; }
         public ProfileInfoViewModel(User user, Frame frame)
         {
             Frame = frame;
@@ -49,9 +54,24 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Guest = GuestService.GetById(User.Id);
             GuestService.CalculateGuestStats(Guest);
             TotalReservations = GetTotalReservations(AccommodationReservationService);
+            DelayCommand = new GuestICommand<object>(OnDelay);
+            CancelCommand = new GuestICommand<object>(OnCancel);
           
         }
 
+        private void OnCancel(object sender)
+        {
+            Button button = sender as Button;
+            SelectedReservation = button.DataContext as AccommodationReservationViewModel;
+            Frame.Content = new CancelReservationPage(SelectedReservation, User, Frame);
+        }
+
+        private void OnDelay(object sender)
+        {
+            Button button = sender as Button;
+            SelectedReservation = button.DataContext as AccommodationReservationViewModel;
+            Frame.Content = new DelayRequestPage(SelectedReservation, User, Frame);
+        }
 
         private int GetTotalReservations(AccommodationReservationService accommodationReservationService)
         {

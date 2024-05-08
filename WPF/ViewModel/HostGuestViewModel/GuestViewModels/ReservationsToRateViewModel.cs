@@ -9,6 +9,7 @@ using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.View.GuestPages;
+using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
@@ -34,6 +35,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public Frame Frame { get; set; }
 
+        // KOMANDE
+        public GuestICommand RateCommand { get; set; }
+
         public ReservationsToRateViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation)
         {
 
@@ -45,9 +49,16 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             SelectedReservation = selectedReservation;
+            RateCommand = new GuestICommand(OnRate);
 
 
         }
+
+        private void OnRate()
+        {
+            Frame.Content = new RateAccommodationForm(User, SelectedReservation, Frame);
+        }
+
         public void Update()
         {
             Reservations.Clear();
@@ -87,10 +98,6 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                 return false;
         }
 
-        public void Rate_Click(object sender, RoutedEventArgs e)
-        {
-
-            Frame.Content = new RateAccommodationForm(User, SelectedReservation, Frame);
-        }
+      
     }
 }

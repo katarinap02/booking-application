@@ -38,18 +38,10 @@ namespace BookingApp.WPF.View.Guest.GuestPages
             Frame = frame;
             SelectedAccommodation = selectedAccommodation;
             HostUsername = username;
-            ViewModel = new RateAccommodationSuccessfulViewModel(SelectedAccommodation, HostUsername);
+            ViewModel = new RateAccommodationSuccessfulViewModel(SelectedAccommodation, HostUsername, User, Frame);
             DataContext = ViewModel;
         }
 
-        private void RateAnother_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Content = new RateAccommodationPage(User, Frame);
-        }
-
-        private void Profile_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Content = new ProfileInfo(User, Frame);
-        }
+    
     }
 }

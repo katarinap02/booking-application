@@ -17,6 +17,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
+using BookingApp.WPF.ViewModel.Commands;
+using BookingApp.WPF.View.Guest.GuestPages;
 
 namespace BookingApp.View.GuestPages
 {
@@ -31,30 +33,22 @@ namespace BookingApp.View.GuestPages
         public Frame Frame { get; set; }    
         
         public HomePageViewModel ViewModel { get; set; }
+
+        //KOMANDE
+       
         public HomePage(User user, Frame frame)
         {
             InitializeComponent();
             this.User = user;
             this.Frame = frame;
             ViewModel = new HomePageViewModel(User, Frame);
+            
             DataContext = ViewModel;
             
         }
 
-        private void ReserveButton_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Content = new AccommodationsPage(User, Frame);
-            
-        }
+       
 
-        private void AboutButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void HelpButton_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+      
     }
 }
