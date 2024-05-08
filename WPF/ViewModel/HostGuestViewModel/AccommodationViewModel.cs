@@ -294,6 +294,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             return Math.Round(v, 2);
         }
 
+
+
         public AccommodationViewModel(Accommodation accommodation)
         {
             id = accommodation.Id;
