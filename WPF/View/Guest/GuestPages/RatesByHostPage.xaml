@@ -22,6 +22,7 @@ ItemsSource="{Binding GuestRates}" Background="{StaticResource BackgroundColorN}
                         <DataTemplate>
                             <Grid>
                                 <controls:GuestRateCard/>
+                                <Button Content="Details" Click="Details_Click" Style="{StaticResource ButtonStyleN}" Width="100" Height="50" Margin="800, 0, 0, 0"/>
 
                             </Grid>
                         </DataTemplate>

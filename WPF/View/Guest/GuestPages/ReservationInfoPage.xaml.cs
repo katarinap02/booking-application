@@ -45,6 +45,7 @@ namespace BookingApp.View.GuestPages
             
             txtStartDate.DisplayDateStart = DateTime.Now;
             txtEndDate.DisplayDateStart = DateTime.Now;
+            Hint.Visibility = Visibility.Hidden;
 
             DataContext = this;
           
@@ -63,6 +64,15 @@ namespace BookingApp.View.GuestPages
 
         }
 
-       
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Hint.Visibility = Visibility.Visible;
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Hint.Visibility = Visibility.Hidden;
+
+        }
     }
 }

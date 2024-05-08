@@ -18,6 +18,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.ViewModel.HostGuestViewModel;
+using BookingApp.WPF.View.Guest.GuestPages;
 
 namespace BookingApp.View.GuestPages
 {
@@ -35,7 +37,7 @@ namespace BookingApp.View.GuestPages
       
         public Frame Frame { get; set; }
 
-        
+        public GuestRateViewModel SelectedRate { get; set; }
 
         public RatesByHostPage(User user, Frame frame)
         {
@@ -48,6 +50,14 @@ namespace BookingApp.View.GuestPages
 
         }
         
+        private void Details_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            RateDetailsViewModel tmpSelectedRate = button.DataContext as RateDetailsViewModel;
+            SelectedRate = tmpSelectedRate.SelectedRate;
+            Frame.Content = new RateDetailsPage(SelectedRate, User, Frame);
+
+        }
         
     }
 }

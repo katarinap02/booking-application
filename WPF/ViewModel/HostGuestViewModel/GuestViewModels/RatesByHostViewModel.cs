@@ -18,7 +18,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
     public class RatesByHostViewModel : IObserver
     {
-        public ObservableCollection<GuestRateViewModel> GuestRates { get; set; }
+        public ObservableCollection<RateDetailsViewModel> GuestRates { get; set; }
 
         public GuestRateService GuestRateService { get; set; }
 
@@ -31,7 +31,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         {
             User = user;
             Frame = frame;
-            GuestRates = new ObservableCollection<GuestRateViewModel>();
+            GuestRates = new ObservableCollection<RateDetailsViewModel>();
             GuestRateService = new GuestRateService(Injector.Injector.CreateInstance<IGuestRateRepository>());
             AccommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
         }
@@ -40,7 +40,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             GuestRates.Clear();
             foreach (GuestRate rate in GuestRateService.GetAll())
                 if (IsHostRated(rate) && rate.UserId == User.Id)
-                    GuestRates.Add(new GuestRateViewModel(rate));
+                    GuestRates.Add(new RateDetailsViewModel(new GuestRateViewModel(rate)));
         }
 
         private bool IsHostRated(GuestRate rate)

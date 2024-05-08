@@ -180,6 +180,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         private UserService userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
 
         public string AccommodationDetails => Name + ", " + City + ", " + Country;
+        public string Location => City + ", " + Country;
+        public string FirstPicture => "../" + OnePicture;
         public string HostUsername => GetHostUsername(hostService, accommodationService.GetById(AccommodationId).HostId);
         public string DateRangeString => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
 

@@ -1,4 +1,7 @@
 ﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Reservations;
+using BookingApp.WPF.View.Guest.GuestPages;
+using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using System;
 using System.Collections.Generic;
@@ -23,15 +26,31 @@ namespace BookingApp.View.GuestPages
     public partial class NotificationPopUp : Page
     {
         public User User { get; set; }
+        
+       
+        public Frame Frame { get; set; }
         public NotificationViewModel ViewModel { get; set; }
-        public NotificationPopUp(User user)
+        public RequestDetailsViewModel Request { get; set; }
+        public NotificationPopUp(User user, Frame frame)
         {
             InitializeComponent();
             User = user;
             ViewModel = new NotificationViewModel(User);
             DataContext = ViewModel;
             ViewModel.Update();
-           // MessageBox.Show(ViewModel.Notifications[0]);
+            Frame = frame;
+            // MessageBox.Show(ViewModel.Notifications[0]);
+        }
+
+        private void Details_Click(object sender, RoutedEventArgs e)
+        {
+            Button button = sender as Button;
+            string notification = button.DataContext as string;
+            DelayRequestViewModel request = ViewModel.GetRequest(notification);
+            
+            Frame.Content = new NotificationDetailsPage(request, User, Frame);
+
+            
         }
 
 

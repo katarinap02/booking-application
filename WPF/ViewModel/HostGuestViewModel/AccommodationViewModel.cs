@@ -287,7 +287,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
 
         private AccommodationRateService accommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
-         public string Rate => accommodationRateService.GetAverageRate(Id).ToString();
+        public string Rate => Round(accommodationRateService.GetAverageRate(Id)).ToString();
+
+        private double Round(double v)
+        {
+            return Math.Round(v, 2);
+        }
 
         public AccommodationViewModel(Accommodation accommodation)
         {

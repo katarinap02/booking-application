@@ -13,10 +13,25 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <Label Content="{Binding RulesFollowing}" Margin="65,20,852,-54" Grid.RowSpan="2"/>
-                <Label Content="{Binding Cleanliness}" Margin="192,22,725,-56" Grid.RowSpan="2"/>
-                <Label Content="{Binding AdditionalComment}" Margin="411,20,36,-54" Grid.RowSpan="2"/>
+                <TextBlock FontWeight="Bold" FontSize="23" Height="40" Grid.RowSpan="2" Margin="50,5,0,15">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}{0}, Reservation: {1}">
+                            <Binding Path="HostUsername"/>
+                            <Binding Path="DateRange"/>
 
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
+
+                <TextBlock FontSize="23" Height="40" Margin="50,40,0,-20" Grid.RowSpan="2">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Cleanliness: {0}, Rules-following: {1}">
+                            <Binding Path="SelectedRate.Cleanliness"/>
+                            <Binding Path="SelectedRate.RulesFollowing"/>
+
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
             </Grid>
 
         </Border>
