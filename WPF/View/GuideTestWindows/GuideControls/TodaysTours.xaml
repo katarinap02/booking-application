@@ -7,6 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Image Source="/WPF/Resources/LoginImages/icon.png"></Image>
+        <Label Content="AAAAAAAAAAAAAAAAAAAAAAAAAAAA" Foreground="HotPink" VerticalAlignment="Center" HorizontalAlignment="Center" >            
+        </Label>
+        <Image Source="/WPF/Resources/LoginImages/key.png" Height="150" VerticalAlignment="Bottom"></Image>
     </Grid>
 </UserControl>
