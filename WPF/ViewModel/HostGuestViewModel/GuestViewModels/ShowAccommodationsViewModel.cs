@@ -13,6 +13,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,8 +22,13 @@ using System.Windows.Controls;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
-    public class ShowAccommodationsViewModel : IObserver
+    public class ShowAccommodationsViewModel : IObserver, INotifyPropertyChanged
     {
+        public event PropertyChangedEventHandler? PropertyChanged;
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
 
 
@@ -44,6 +50,44 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
 
 
+        public ObservableCollection<string> CountriesSearch { get; set; }
+        public ObservableCollection<string> CitiesSearch { get; set; }
+
+        private string citySearch;
+        public string CitySearch
+        {
+            get
+            {
+                return citySearch;
+            }
+            set
+            {
+                if (value != citySearch)
+                {
+                    citySearch = value ?? string.Empty;
+                    OnPropertyChanged(nameof(CitySearch));
+                }
+            }
+        }
+
+        private string countrySearch;
+        public string CountrySearch
+        {
+            get
+            {
+                return countrySearch;
+            }
+            set
+            {
+                if (value != countrySearch)
+                {
+                    countrySearch = value ?? string.Empty;
+                    LoadCitiesFromCSV();
+                    OnPropertyChanged(nameof(CountrySearch));
+                }
+            }
+        }
+
 
 
         public ShowAccommodationsViewModel(User user, Frame frame, AccommodationsPage accommodationsPage)
@@ -60,6 +104,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             HostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
             AccommodationsPage = accommodationsPage;
             AccommodationSearcher = new AccommodationSearcher(AccommodationService);
+            CitiesSearch = new ObservableCollection<string>();
+            CountriesSearch = new ObservableCollection<string>();
+            CountriesSearch.Add("");
+            LoadCountriesFromCSV();
+           
+         
 
         }
 
@@ -112,12 +162,49 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         }
 
+        private void LoadCountriesFromCSV()
+        {
+          
+            
+            string csvFilePath = "../../../Resources/Data/european_countries.csv";
+
+            using (var reader = new StreamReader(csvFilePath))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    CountriesSearch.Add(values[0]);
+                }
+            }
+          
+        }
+
+        private void LoadCitiesFromCSV()
+        {
+            CitiesSearch.Clear();
+            CitiesSearch.Add("");
+            string csvFilePath = "../../../Resources/Data/european_cities_and_countries.csv";
+
+            using (var reader = new StreamReader(csvFilePath))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    if (values[1].Equals(CountrySearch))
+                        CitiesSearch.Add(values[0]);
+                }
+            }
+            CitySearch = CountriesSearch[0];
+        }
+
         public void SearchButton_Click(object sender, RoutedEventArgs e)
         {
             List<string> queries = new List<string>();
             queries.Add(AccommodationsPage.txtSearchName.Text); //nameQuery
-            queries.Add(AccommodationsPage.txtSearchCity.Text); //cityQuery
-            queries.Add(AccommodationsPage.txtSearchCountry.Text); //countryQuery
+            queries.Add(CitySearch); //cityQuery
+            queries.Add(CountrySearch); //countryQuery
             queries.Add(AccommodationsPage.txtSearchType.Text); //typeQuery
             queries.Add(AccommodationsPage.txtSearchGuestNumber.Text); //guestQuery
             queries.Add(AccommodationsPage.txtSearchReservationDays.Text); //reservationQuery
