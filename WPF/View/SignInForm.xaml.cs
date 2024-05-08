@@ -4,7 +4,7 @@ using BookingApp.Repository.FeatureRepository;
 using BookingApp.View.GuideTestWindows;
 using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;
-using BookingApp.WPF.View.GuideTestWindows;
+using BookingApp.WPF.View.GuideTestWindows.GuideControls;
 using BookingApp.WPF.ViewModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
@@ -106,6 +106,8 @@ namespace BookingApp.View
                                 randomTest.Show();
                                 /*GridTest gridtest = new GridTest();
                                 gridtest.ShowDialog();*/
+                                
+                                
                             }
                             else
                             {
