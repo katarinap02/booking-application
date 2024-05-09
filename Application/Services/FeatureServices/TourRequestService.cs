@@ -12,6 +12,7 @@ namespace BookingApp.Application.Services.FeatureServices
     public class TourRequestService
     {
         private readonly ITourRequestRepository _tourRequestRepository;
+        private static readonly TourService _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
 
         public TourRequestService(ITourRequestRepository tourRequestRepository)
         {
@@ -29,31 +30,34 @@ namespace BookingApp.Application.Services.FeatureServices
         public List<TourRequest> filterRequests(TourRequest searchCriteria)
         {
             List<TourRequest> tourRequests = _tourRequestRepository.GetAllPending();
-            List<TourRequest> filteredRequests = new List<TourRequest>();
-            
+            List<TourRequest> filteredRequests = tourRequests;
+
             if (!string.IsNullOrEmpty(searchCriteria.City))
             {
                 MessageBox.Show("usao", "City");
                 filteredRequests = tourRequests.FindAll(x => x.City.ToLower().Contains(searchCriteria.City.ToLower())).ToList();
             }
-            else if (!string.IsNullOrEmpty(searchCriteria.Country))
+            if (!string.IsNullOrEmpty(searchCriteria.Country))
             {
                 MessageBox.Show("usao", "Country");
                 filteredRequests = filteredRequests.FindAll(x => x.Country.ToLower().Contains(searchCriteria.Country.ToLower())).ToList();
             }
-            else if (!string.IsNullOrEmpty(searchCriteria.Language))
+            if (!string.IsNullOrEmpty(searchCriteria.Language))
             {
                 MessageBox.Show("usao", "Language");
                 MessageBox.Show(searchCriteria.Language.ToLower());
+                MessageBox.Show(filteredRequests.Count().ToString());
                 filteredRequests = filteredRequests.FindAll(x => x.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();
                 MessageBox.Show(filteredRequests.Count().ToString());
             }
-            else if (searchCriteria.StartDate != null && searchCriteria.EndDate != null)
+            /*
+            if (searchCriteria.StartDate != null && searchCriteria.EndDate != null)
             {
                 MessageBox.Show("usao", "datumi");
                 filteredRequests = tourRequests.FindAll(x => x.StartDate >= searchCriteria.StartDate && x.EndDate <= searchCriteria.EndDate).ToList();
-            }
-            
+            }*/
+            MessageBox.Show(filteredRequests.Count().ToString());
+            MessageBox.Show(filteredRequests[0].Language);
             return filteredRequests;
         }
 
@@ -203,5 +207,17 @@ namespace BookingApp.Application.Services.FeatureServices
 
             return mostRequestedLocation;
         }
-    }
+
+        public void CreateTourByStatistics(Tour tour, string parameter) // parameter ce biti ili lokacija ili jezik (tura se pravi ili spram jezika ili spram lokacije)
+                                                                        // slobodno dodati jos prosledjenih vrednosti
+        {
+            _tourService.Add(tour);
+            SendNotifications();
+        }
+
+        public void SendNotifications()
+        {
+            // PROSIRITI
+        }
+    }    
 }
