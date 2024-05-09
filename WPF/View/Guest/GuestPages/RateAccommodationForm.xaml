@@ -62,7 +62,7 @@
                     <Label Content="Cleanliness:" FontSize="20" HorizontalAlignment="Left" Margin="88,33,0,0" VerticalAlignment="Top"/>
                     <Label Content="Correctness:" FontSize="20" HorizontalAlignment="Left" Margin="310,33,0,0" VerticalAlignment="Top"/>
 
-                    <ComboBox HorizontalAlignment="Left" Margin="88,72,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding AccommodationRate.Cleanliness, Mode=TwoWay}">
+                    <ComboBox HorizontalAlignment="Left" Margin="88,72,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding Cleanliness, Mode=TwoWay}">
 
                         <ComboBoxItem Content="5" Tag="5"></ComboBoxItem>
                         <ComboBoxItem Content="4" Tag="4"></ComboBoxItem>
@@ -71,7 +71,7 @@
                         <ComboBoxItem Content="1" Tag="1"></ComboBoxItem>
                     </ComboBox>
 
-                    <ComboBox HorizontalAlignment="Left" Margin="308,70,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding AccommodationRate.Correctness, Mode=TwoWay}">
+                    <ComboBox HorizontalAlignment="Left" Margin="308,70,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding Correctness, Mode=TwoWay}">
 
                         <ComboBoxItem Content="5" Tag="5"></ComboBoxItem>
                         <ComboBoxItem Content="4" Tag="4"></ComboBoxItem>
@@ -80,7 +80,7 @@
                         <ComboBoxItem Content="1" Tag="1"></ComboBoxItem>
                     </ComboBox>
                     <Label Content="Comment:" FontSize="20" HorizontalAlignment="Left" Margin="55,115,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding AccommodationRate.AdditionalComment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="100" Margin="0,152,0,0"/>
+                    <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="100" Margin="0,152,0,0"/>
 
                     <Button FontSize="15" Command="{Binding AddPicturesCommand}" Content="Add picture" HorizontalAlignment="Left" Margin="55,261,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}"/>
                     <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="55,375,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="29" Width="208" Command="{Binding RecommendCommand}"/>

@@ -55,8 +55,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             GuestService.CalculateGuestStats(Guest);
             TotalReservations = GetTotalReservations(AccommodationReservationService);
             DelayCommand = new GuestICommand<object>(OnDelay);
-            CancelCommand = new GuestICommand<object>(OnCancel);
+            CancelCommand = new GuestICommand<object>(OnCancel, CanCancel);
           
+        }
+
+        private bool CanCancel(object sender)
+        {
+            return true;
         }
 
         private void OnCancel(object sender)

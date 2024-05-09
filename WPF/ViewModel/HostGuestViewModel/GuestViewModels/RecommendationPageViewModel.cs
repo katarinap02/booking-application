@@ -9,6 +9,7 @@ using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,7 +18,7 @@ using System.Windows.Controls;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
-    public class RecommendationPageViewModel
+    public class RecommendationPageViewModel : INotifyPropertyChanged
     {
         public User User { get; }
         public Frame Frame { get; }
@@ -29,6 +30,30 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public HostService HostService { get; set; }
         public AccommodationRateService AccommodationRateService { get; set; }
         public RenovationRecommendationViewModel Recommendation {  get; set; }
+        private string comment;
+        public string Comment
+        {
+            get { return comment; }
+            set
+            {
+                if (comment != value)
+                {
+
+                    comment = value;
+                    OnPropertyChanged("Comment");
+
+                }
+
+                SaveRateCommand.RaiseCanExecuteChanged();
+               
+            }
+        }
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         // KOMANDE
         public GuestICommand SaveRateCommand { get; set; }
@@ -43,11 +68,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             AccommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             HostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
             RenovationRecommendationService = new RenovationRecommendationService(Injector.Injector.CreateInstance<IRenovationRecommendationRepository>());
-            SaveRateCommand = new GuestICommand(OnSaveRate);
+            SaveRateCommand = new GuestICommand(OnSaveRate, CanSaveRate);
+        }
+
+        private bool CanSaveRate()
+        {
+            if (string.IsNullOrEmpty(Comment))
+                return false;
+            else
+                return true;
         }
 
         private void OnSaveRate()
         {
+            Recommendation.Comment = Comment;
             Recommendation.ReservationId = SelectedReservation.Id;
             Recommendation.AccommodationId = SelectedAccommodation.Id;
             RenovationRecommendationService.Add(Recommendation.ToRecommendation());

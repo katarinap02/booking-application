@@ -32,7 +32,7 @@ namespace BookingApp.View.GuestPages
       
         public User User { get; set; }
 
-        public AccommodationReservationViewModel SelectedReservation {  get; set; }
+        //public AccommodationReservationViewModel SelectedReservation {  get; set; }
         
         
         public Frame Frame {  get; set; }   
@@ -45,7 +45,7 @@ namespace BookingApp.View.GuestPages
             this.User = user;
             this.Frame = frame;
 
-            ViewModel = new ReservationsToRateViewModel(User, Frame, SelectedReservation);
+            ViewModel = new ReservationsToRateViewModel(User, Frame);
            
             DataContext = ViewModel;
             Hint.Visibility = Visibility.Hidden;
