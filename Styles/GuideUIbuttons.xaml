@@ -116,4 +116,81 @@
     </Style>
 
 
+
+
+
+    <Style x:Key="CustomTextBoxStyle" TargetType="TextBox">
+        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontWeight" Value="Medium"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="CaretBrush" Value="LightGray"/>
+        <Setter Property="BorderBrush" Value="AliceBlue"/>
+        <Setter Property="BorderThickness" Value="0,0,0,1"/>
+        <Setter Property="Height" Value="28"/>
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="Margin" Value="0,5,0,15"/>
+        <Setter Property="Padding" Value="5, 0, 0, 0"/>
+
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="TextBox">
+                    <Grid>
+                        <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"/>
+                        <!-- Placeholder Text -->
+                        <TextBlock x:Name="PlaceholderTextBlock"
+                                   Text="{TemplateBinding Tag}"
+                                   Foreground="Gray"
+                                   VerticalAlignment="Center"
+                                   Padding="5, 0,0,0">
+                            <TextBlock.RenderTransform>
+                                <TranslateTransform Y="0" x:Name="PlaceholderTransform"/>
+                            </TextBlock.RenderTransform>
+                        </TextBlock>
+                        <ScrollViewer x:Name="PART_ContentHost" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <!-- Move placeholder up when TextBox is focused and empty -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused" Value="True"/>
+                                <Condition Property="Text" Value=""/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PlaceholderTransform"
+                                                         Storyboard.TargetProperty="Y"
+                                                         To="-25"
+                                                         Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                        </MultiTrigger>
+                        <!-- Move placeholder down when TextBox loses focus or has text entered -->
+                        <MultiTrigger>
+                            <MultiTrigger.Conditions>
+                                <Condition Property="IsKeyboardFocused" Value="False"/>
+                                <Condition Property="Text" Value="{x:Null}"/>
+                            </MultiTrigger.Conditions>
+                            <MultiTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation Storyboard.TargetName="PlaceholderTransform"
+                                                         Storyboard.TargetProperty="Y"
+                                                         To="0"
+                                                         Duration="0:0:0.2"/>
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </MultiTrigger.EnterActions>
+                        </MultiTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+
+    </Style>
+
 </ResourceDictionary>
