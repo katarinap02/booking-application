@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,6 +21,31 @@ namespace BookingApp.WPF.View.GuideTestWindows
 
             // Bind the test data to the DataGrid
             testic.ItemsSource = testData;
+
+            listTest.ItemsSource = new ObservableCollection<string>
+            {
+                "Item 1",
+                "Item 2",
+                "Item 3",
+                "Item 4",
+                "Item 1",
+                "Item 2",
+                "Item 3",
+                "Item 4",
+                "Item 1",
+                "Item 2",
+                "Item 3",
+                "Item 4",
+                "Item 1",
+                "Item 2",
+                "Item 3",
+                "Item 4",
+                "Item 1",
+                "Item 2",
+                "Item 3",
+                "Item 4",
+                "Item 5"
+            };
         }
     }
 
