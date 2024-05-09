@@ -13,11 +13,14 @@ namespace BookingApp.Domain.Model.Rates
         public int Id;
         public int ReservationId;
         public int AccommodationId;
+        public DateTime Date;
 
         public RecommendationLevel Level;
         public string Comment;
        
-        public RenovationRecommendation() { }
+        public RenovationRecommendation() {
+            Date = DateTime.Now;
+        }
         public  RenovationRecommendation(int reservationId, int accommodationId, RecommendationLevel level, string comment)
         {
             ReservationId = reservationId;
@@ -34,6 +37,7 @@ namespace BookingApp.Domain.Model.Rates
             AccommodationId = Convert.ToInt32(values[2]);
             Level = ConvertToLevel(values[3]);
             Comment = values[4];
+            Date = Convert.ToDateTime(values[5]);
         }
 
         private RecommendationLevel ConvertToLevel(string v)
@@ -52,7 +56,7 @@ namespace BookingApp.Domain.Model.Rates
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), ReservationId.ToString(), AccommodationId.ToString(), ConvertToString(Level), Comment };
+            string[] csvValues = { Id.ToString(), ReservationId.ToString(), AccommodationId.ToString(), ConvertToString(Level), Comment, Date.ToString() };
             return csvValues;
         }
 

@@ -13,13 +13,12 @@ namespace BookingApp.Domain.RepositoryInterfaces.Reservations
         void Add(TourParticipant tourParticipant);
         int NextId();
         TourParticipant GetById(int id);
-        TourParticipant SaveParticipant(string name, string lastName, string age);
+        TourParticipant SaveParticipant(string name, string lastName, int age);
         void SaveParticipant(TourParticipant tourParticipant, int reservationId);
         List<int> GetAllIdsByReservation(int reservationId);
         List<TourParticipant> GetAllParticipantsByReservation(int reservationId);
-        /*List<TourParticipant> GetAllJoinedParticipantsByReservation(int reservationId);*/
         List<TourParticipant> GetAllNotJoinedParticipantsByReservation(int reservationId);
-        void JoinTour(int participant_id, int current_checkpoint_index);
         bool IsUserJoined(int reservationId, string touristName, string touristLastName);
+        void Update(TourParticipant tourParticipant);
     }
 }

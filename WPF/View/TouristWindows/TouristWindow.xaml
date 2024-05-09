@@ -34,75 +34,82 @@
                                 Orientation="Horizontal">
                         <Image
                                 Width="75"
-                                Source="/WPF/Resources/Images/user.png"
+                                Source="/WPF/Resources/Images/user_white.png"
                                 HorizontalAlignment="Left"/>
                         <Label Content="{Binding UserName}"
                                 VerticalAlignment="Center"
                                 FontWeight="Bold"
+                                Foreground="WhiteSmoke"
                                 FontSize="24"/>
 
                     </StackPanel>
                 </Grid>
-                <DockPanel >
-                <StackPanel DockPanel.Dock="Top">
+                <Grid Height="615">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="460"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="120"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
                     <Menu:Btn   x:Name="AllToursButton"
-                                Style="{StaticResource MenuBtnStyle}"
-                                FontSize="45"
-                                Foreground="WhiteSmoke"
-                                Click="AllToursButton_Click"
-                                IsChecked="True">
+                                        Style="{StaticResource MenuBtnStyle}"
+                                        FontSize="45"
+                                        Foreground="WhiteSmoke"
+                                        Click="AllToursButton_Click"
+                                        IsChecked="True">
                         <TextBlock Text="All Tours"
-                                    VerticalAlignment="Center"
-                                    Margin="20,0,0,0"/>
+                                            VerticalAlignment="Center"
+                                            Margin="20,0,0,0"/>
                     </Menu:Btn>
 
                     <Menu:Btn x:Name="MyToursButton"
-                            Style="{StaticResource MenuBtnStyle}"
-                            FontSize="45"
-                            Foreground="WhiteSmoke"
-                            Click="MyToursButton_Click">
+                                    Style="{StaticResource MenuBtnStyle}"
+                                    FontSize="45"
+                                    Foreground="WhiteSmoke"
+                                    Click="MyToursButton_Click">
                         <TextBlock Text="My Tours"
-                                    VerticalAlignment="Center"
-                                    Margin="20,0,0,0"/>
+                                            VerticalAlignment="Center"
+                                            Margin="20,0,0,0"/>
                     </Menu:Btn>
                     <Menu:Btn x:Name="EndedToursButton"
-                            Style="{StaticResource MenuBtnStyle}"
-                            FontSize="45"
-                            Foreground="WhiteSmoke"
-                            Click="EndedToursButton_Click">
+                                    Style="{StaticResource MenuBtnStyle}"
+                                    FontSize="45"
+                                    Foreground="WhiteSmoke"
+                                    Click="EndedToursButton_Click">
                         <TextBlock Text="Ended Tours"
-                                    VerticalAlignment="Center"
-                                    Margin="20, 0, 0, 0"/>
+                                            VerticalAlignment="Center"
+                                            Margin="20, 0, 0, 0"/>
                     </Menu:Btn>
                     <Menu:Btn x:Name="RequestedToursButton"
-                        Style="{StaticResource MenuBtnStyle}"
-                        Foreground="WhiteSmoke"
-                        FontSize="40">
+                                Style="{StaticResource MenuBtnStyle}"
+                                Foreground="WhiteSmoke"
+                                FontSize="40"
+                                Click="RequestedToursButton_Click">
                         <TextBlock Text="Requested Tours"
-                                VerticalAlignment="Center"
-                                Margin="20, 0, 0, 0"/>
+                                        VerticalAlignment="Center"
+                                        Margin="20, 0, 0, 0"/>
                     </Menu:Btn>
                     <Menu:Btn x:Name="VouchersButton"
-                        Style="{StaticResource MenuBtnStyle}"
-                        FontSize="45"
-                        Foreground="WhiteSmoke"
-                        Click="VouchersButton_Click">
+                                Style="{StaticResource MenuBtnStyle}"
+                                FontSize="45"
+                                Foreground="WhiteSmoke"
+                                Click="VouchersButton_Click">
                         <TextBlock Text="Vouchers"
-                                VerticalAlignment="Center"
-                                Margin="20, 0, 0, 0"/>
+                                        VerticalAlignment="Center"
+                                        Margin="20, 0, 0, 0"/>
                     </Menu:Btn>
                 </StackPanel>
                 <Menu:Btn x:Name="LogOutButton"
-                        DockPanel.Dock="Bottom"
+                        Grid.Row="2"
                         Style="{StaticResource MenuBtnStyle}"
                         Foreground="WhiteSmoke"
                         FontSize="36"
-                        Click="LogoutButton_Click">
+                        Command="{Binding LogoutCommand}">
                     <TextBlock Text="Log Out"
                                 VerticalAlignment="Center"
                                 Margin="20, 0, 0, 0"/>
                 </Menu:Btn>
-            </DockPanel>
+            </Grid>
         </StackPanel>
         <Frame x:Name="MainFrame" Content="{Binding MainFrameContent}" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>

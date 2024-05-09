@@ -43,22 +43,10 @@ namespace BookingApp.View.GuestPages
             this.Reservation = selectedReservation;
             this.User = user;
             this.Frame = frame;
-            ViewModel = new CancellationPageViewModel(Reservation);
+            ViewModel = new CancellationPageViewModel(Reservation, User, Frame);
             DataContext = this;
 
         }
 
-        private void CancelReservation_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Content = new CancelReservationSuccessfulPage(User, Frame, Reservation);
-            ViewModel.CancelReservation_Click(sender, e);
-            
-
-        }
-
-        private void GiveUp_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Content = new ProfileInfo(User, Frame);
-        }
     }
 }

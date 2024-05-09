@@ -48,22 +48,7 @@ namespace BookingApp.View.GuestPages
 
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-           ViewModel.Save_Click(sender, e);
-
-        }
-
-        private void AddPicture_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.AddPicture_Click(sender, e);
-            
-        }
-
-        private void Recommend_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.Recommend_Click(sender, e);
-        }
+     
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {

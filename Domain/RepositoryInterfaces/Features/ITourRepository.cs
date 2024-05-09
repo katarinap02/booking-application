@@ -10,14 +10,13 @@ namespace BookingApp.Domain.RepositoryInterfaces.Features
     public interface ITourRepository
     {
         List<Tour> GetAll();
-        List<Tour> GetAllNotFinished();
+        List<Tour> GetAllNotFinishedAndNotCancelled();
         void Add(Tour tour);
         void Save();
         int NextPersonalId();
         int NextId();
         List<Tour>? SearchTours(Tour searchCriteria);
         List<Tour> GetTourByCityWithAvailablePlaces(string city);
-        List<Tour>? findToursNeedingGuide();
         Tour? GetTourById(int id);
         int ToursCount();
         void finnishTour(int id);

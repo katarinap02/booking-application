@@ -16,6 +16,7 @@ using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.WPF.View.Guest.GuestPages;
+using BookingApp.WPF.ViewModel.Commands;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -45,7 +46,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public Button reserveButton { get; set; }
 
-        
+        // KOMANDE
+        public GuestICommand SelectDatesCommand { get; set; }
         public DelayRequestPageViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, DelayRequestPage page)
         {
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
@@ -61,12 +63,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             DelayRequestService = new DelayRequestService(Injector.Injector.CreateInstance<IDelayRequestRepository>());
             CalendarConfigurator = new CalendarConfigurator(ReservationCalendar);
             CalendarConfigurator.ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
+            SelectDatesCommand = new GuestICommand(OnSelectDates);
            
             User = user;
             Frame = frame;
         }
 
-
+        private void OnSelectDates()
+        {
+            SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
+            SelectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
+            DelayRequest request = AccommodationReservationService.DelayReservation(SelectedDateRange, DelayRequest, DelayRequestService, AccommodationService, SelectedReservation);
+            DelayRequestViewModel viewModel = new DelayRequestViewModel(request);
+            Frame.Content = new RequestSentPage(User, Frame, viewModel);
+        }
 
         public void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -82,16 +92,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Mouse.Capture(null);
         }
 
-        public void SelectDate_Click(object sender, RoutedEventArgs e)
-        {
-
-            SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
-            SelectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
-            DelayRequest request = AccommodationReservationService.DelayReservation(SelectedDateRange, DelayRequest, DelayRequestService, AccommodationService, SelectedReservation);
-            DelayRequestViewModel viewModel = new DelayRequestViewModel(request);
-            Frame.Content = new RequestSentPage(User, Frame, viewModel);
-
-        }
+     
 
     }
 }

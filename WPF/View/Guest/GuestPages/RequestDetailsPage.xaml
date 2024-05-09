@@ -37,8 +37,8 @@
                     </Grid>
                 </Border>
 
-                <Button Content="All requests" Style="{StaticResource ButtonStyleN}" Width="170" Height="50" Margin="540, 470, 0, 0" Click="AllRequests_Click"/>
-                <Button Content="Profile" Style="{StaticResource ButtonStyleN}" Width="170" Height="50" Margin="540, 600, 0, 0" Click="Profile_Click"/>
+                <Button Content="All requests" Style="{StaticResource ButtonStyleN}" Width="170" Height="50" Margin="540, 470, 0, 0" Command="{Binding AllRequestsCommand}"/>
+                <Button Content="Profile" Style="{StaticResource ButtonStyleN}" Width="170" Height="50" Margin="540, 600, 0, 0" Command="{Binding ProfileCommand}"/>
 
             </Grid>
         </Border>

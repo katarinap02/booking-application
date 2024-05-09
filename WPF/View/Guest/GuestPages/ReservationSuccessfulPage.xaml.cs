@@ -59,18 +59,6 @@ namespace BookingApp.View.GuestPages
         }
 
 
-        private void HomePage_Click(object sender, RoutedEventArgs e)
-        {
-
-            ViewModel.HomePage_Click(sender, e);
-
-        }
-
-        private void ProfilePage_Click(object sender, RoutedEventArgs e)
-        {
-
-            ViewModel.ProfilePage_Click(sender, e);
-
-        }
+     
     }
 }

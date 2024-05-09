@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.RateServices;
@@ -23,6 +25,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         public GuideRateService _guideRateService { get; set; }
         public UserService _userService { get; set; }
 
+        public ObservableCollection<string> CountriesSearch { get; set; }
+        public ObservableCollection<string> CitiesSearch { get; set; }
+        public ObservableCollection<string> Languages { get; set; }
+
+        public ICommand RateCommand { get; set; }
         public ObservableCollection<TourViewModel> Tours { get; set; }
 
         private int id;
@@ -317,6 +324,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 if (value != _countrySearch)
                 {
                     _countrySearch = value ?? string.Empty;
+                    LoadCitiesFromCSV();
                     OnPropertyChanged(nameof(CountrySearch));
                 }
             }
@@ -425,6 +433,59 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         public void initializeAllTours()
         {
             MaximumValuePeoples = _tourService.FindMaxNumberOfParticipants();
+            Languages.Add("");
+            CountriesSearch.Add("");
+            LoadCountriesFromCSV();
+            LoadLanguagesFromCSV();
+        }
+
+        private void LoadLanguagesFromCSV()
+        {
+            string csvFilePath = "../../../Resources/Data/languages.csv";
+
+            using (var reader = new StreamReader(csvFilePath))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    Languages.Add(values[0]);
+                }
+            }
+        }
+
+        private void LoadCountriesFromCSV()
+        {
+            string csvFilePath = "../../../Resources/Data/european_countries.csv";
+
+            using (var reader = new StreamReader(csvFilePath))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    CountriesSearch.Add(values[0]);
+                }
+            }
+        }
+
+        private void LoadCitiesFromCSV()
+        {
+            CitiesSearch.Clear();
+            CitiesSearch.Add("");
+            string csvFilePath = "../../../Resources/Data/european_cities_and_countries.csv";
+
+            using (var reader = new StreamReader(csvFilePath))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    if (values[1].Equals(CountrySearch))
+                        CitiesSearch.Add(values[0]);
+                }
+            }
+            CitySearch = CitiesSearch[0];
         }
 
         //******************************* ZA ALLTOURS PAGE
@@ -572,6 +633,22 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             return _guideRateService.IsRated(SelectedTour.Id);
         }
 
+        private void ExecuteRateCommand(object obj)
+        {
+            GuideRateWindow guideRateWindow = new GuideRateWindow(SelectedTour, UserId);
+            guideRateWindow.ShowDialog();
+        }
+
+        private bool CanExecuteRateCommand(object obj)
+        {
+            if (IsRated())
+            {
+                MessageBox.Show("This tour is already rated");
+                return false;
+            }
+            return true;
+        }
+
         public TourViewModel()
         {
             _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
@@ -579,6 +656,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             _guideRateService = new GuideRateService(Injector.Injector.CreateInstance<IGuideRateRepository>());
             _userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
             Tours = new ObservableCollection<TourViewModel>();
+
+            CountriesSearch = new ObservableCollection<string>();
+            CitiesSearch = new ObservableCollection<string>();
+            Languages = new ObservableCollection<string>();
+            RateCommand = new RelayCommand(ExecuteRateCommand, CanExecuteRateCommand);
         }
 
         public TourViewModel(Tour tour)

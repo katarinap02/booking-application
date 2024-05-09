@@ -16,6 +16,10 @@ using BookingApp.View.HostPages;
 using System.Windows;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
+using System.Windows.Navigation;
+using BookingApp.WPF.View.HostPages;
+using GalaSoft.MvvmLight.Command;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -26,34 +30,67 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
         public AccommodationService accommodationService { get; set; }
 
-        public HostService hostService { get; set; }
-
         public AccommodationReservationViewModel SelectedAccommodation { get; set; }
+
+        public HostService hostService { get; set; }
 
         public Host host { get; set; }
 
-        public Frame HostFrame { get; set; }
+        public RelayCommand NavigateToRateGuestPageCommand { get; set; }
 
-        public Menu LeftDock { get; set; }
+        public RelayCommand NavigateToDelayPageCommand { get; set; }
+
+        public MyICommand<AccommodationViewModel> NavigateToStatisticPageCommand { get; set; }
         public User User { get; set; }
 
-        public StackPanel RatingPanel { get; set; }
+        public NavigationService NavService { get; set; }
 
         public HostViewModel hostViewModel { get; set; }
 
-        public FirstPageViewModel(User user, Frame frame, Menu dock, StackPanel panel)
+        public MenuViewModel menuViewModel { get; set; }
+
+
+        private void Execute_NavigateToGuestRatePageCommand(object obj)
+        {
+            CloseMenu();
+            GuestRatePage page = new GuestRatePage(User);
+            this.NavService.Navigate(page);
+        }
+
+        private void Execute_NavigateToDelayPageCommand(object obj)
+        {
+            CloseMenu();
+            DelayPage page = new DelayPage(User);
+            this.NavService.Navigate(page);
+        }
+
+        private void Execute_NavigateToStatisticPageCommand(AccommodationViewModel acc)
+        {
+            CloseMenu();
+            StatisticYearsPage page = new StatisticYearsPage(User, acc, NavService);
+            this.NavService.Navigate(page);
+        }
+
+        private bool CanExecute_NavigateCommand(object obj)
+        {
+            return true;
+        }
+
+        public FirstPageViewModel(User user, NavigationService navService)
 
          {
                 hostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
                 host = hostService.GetByUsername(user.Username);
                 hostService.BecomeSuperHost(host);
                 hostViewModel = new HostViewModel(host);
-                HostFrame = frame;
-                LeftDock = dock;
                 User = user;
-                RatingPanel = panel;
+                NavService = navService;
+                menuViewModel = new MenuViewModel(host);
                 Accommodations = new ObservableCollection<AccommodationViewModel>();
                 accommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
+                NavigateToRateGuestPageCommand = new RelayCommand(Execute_NavigateToGuestRatePageCommand, CanExecute_NavigateCommand);
+                NavigateToDelayPageCommand = new RelayCommand(Execute_NavigateToDelayPageCommand, CanExecute_NavigateCommand);
+                NavigateToStatisticPageCommand = new MyICommand<AccommodationViewModel>(Execute_NavigateToStatisticPageCommand);
                 Update();
 
          }
@@ -65,7 +102,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 Accommodations.Clear();
                 foreach (Accommodation accommodation in accommodationService.GetAll())
                 {
-                    if (accommodation.HostId == host.Id)
+                if (accommodation.HostId == host.Id && accommodation.Name.ToLower().Contains(menuViewModel.SearchHost.ToLower())) 
                     {
                         Accommodations.Add(new AccommodationViewModel(accommodation));
                     }
@@ -73,22 +110,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 }
           }
 
-         public void RateGuest_Navigate(object sender, RoutedEventArgs e)
-            {
-                GuestRatePage page = new GuestRatePage(User);
-                HostFrame.Navigate(page);
-                LeftDock.Visibility = Visibility.Collapsed;
-                RatingPanel.Visibility = Visibility.Collapsed;
-            }
+        private void CloseMenu()
+        {
+            menuViewModel.IsMenuOpened = false;
+            menuViewModel.IsRatingOpened = false;
+            menuViewModel.IsRenovationOpened = false;
+        }
 
-            public void Delay_Navigate(object sender, RoutedEventArgs e)
-            {
-                DelayPage page = new DelayPage(User);
-                HostFrame.Navigate(page);
-                LeftDock.Visibility = Visibility.Collapsed;
-                RatingPanel.Visibility = Visibility.Collapsed;
-            }
-        
+
 
     }
 }

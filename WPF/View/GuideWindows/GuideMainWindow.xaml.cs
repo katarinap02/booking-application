@@ -9,6 +9,8 @@ using System.Windows.Controls;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Repository.FeatureRepository;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 
 namespace BookingApp.View.GuideWindows
 {
@@ -17,12 +19,12 @@ namespace BookingApp.View.GuideWindows
         public List<Tour> TodaysTours;
         public User Guide { get; set; }
         public List<TourViewModel> TodayDTOs;
-        private readonly TourRepository tourRepository;
+        private readonly TourService tourService;
         public TourViewModel SelectedTour { get; set; }
 
         public GuideMainWindow(User user)
         {
-            tourRepository = new TourRepository();
+            tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
             Guide = user;
             
             DataContext = this;
@@ -33,7 +35,7 @@ namespace BookingApp.View.GuideWindows
         }
 
         public void GetGridData() {
-            TodaysTours = tourRepository.findToursNeedingGuide();
+            TodaysTours = tourService.findToursNeedingGuide();
             TodayDTOs = new List<TourViewModel>();
 
             foreach (Tour tour in TodaysTours)
