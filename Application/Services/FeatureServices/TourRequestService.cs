@@ -12,6 +12,7 @@ namespace BookingApp.Application.Services.FeatureServices
     public class TourRequestService
     {
         private readonly ITourRequestRepository _tourRequestRepository;
+        private static readonly TourService _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
 
         public TourRequestService(ITourRequestRepository tourRequestRepository)
         {
@@ -206,5 +207,17 @@ namespace BookingApp.Application.Services.FeatureServices
 
             return mostRequestedLocation;
         }
-    }
+
+        public void CreateTourByStatistics(Tour tour, string parameter) // parameter ce biti ili lokacija ili jezik (tura se pravi ili spram jezika ili spram lokacije)
+                                                                        // slobodno dodati jos prosledjenih vrednosti
+        {
+            _tourService.Add(tour);
+            SendNotifications();
+        }
+
+        public void SendNotifications()
+        {
+            // PROSIRITI
+        }
+    }    
 }
