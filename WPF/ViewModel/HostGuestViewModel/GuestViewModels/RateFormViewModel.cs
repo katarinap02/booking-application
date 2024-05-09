@@ -211,7 +211,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
                     string imageUrl = selectedFileName;
 
-                    imageUrl = ConvertToRelativePath(imageUrl);
+                    imageUrl = convertToRelativePath(imageUrl);
                     AddPicture(imageUrl);
 
 
@@ -237,7 +237,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         }
 
     
-        public string ConvertToRelativePath(string input)
+        public string convertToRelativePath(string input)
         {
             int index = input.IndexOf("Resources");
             if (index != -1)
@@ -266,12 +266,30 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public void Update()
         {
             Images.Clear();
-            foreach (string image in AccommodationRate.Images)
+            foreach (string picture in AccommodationRate.Images)
             {
-                Images.Add(image);
+                string pictureNew = ConvertToRelativePath(picture);
+                Images.Add(pictureNew);
             }
         }
 
-       
+        public string ConvertToRelativePath(string inputPath)
+        {
+
+            string pattern = @"\\";
+
+
+            string replacedPath = Regex.Replace(inputPath, pattern, "/");
+
+
+            if (replacedPath.StartsWith("Resources/Images/"))
+            {
+                replacedPath = "../../../" + replacedPath;
+            }
+
+            return replacedPath;
+        }
+
+
     }
 }
