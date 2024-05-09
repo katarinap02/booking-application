@@ -10,6 +10,7 @@ using BookingApp.View.GuestPages;
 using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Security.RightsManagement;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -114,6 +116,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public GuestICommand SaveRateCommand { get; set; }
         public GuestICommand RecommendCommand { get; set; }
 
+        public GuestICommand<string> XCommand { get; set; }
+
         public RateFormViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, RateAccommodationForm page)
         {
             Images = new ObservableCollection<string>();
@@ -129,9 +133,43 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             AddPicturesCommand = new GuestICommand(OnAddPictures);
             SaveRateCommand = new GuestICommand(OnSaveRate, CanSaveOrRecommend);
             RecommendCommand = new GuestICommand(OnRecommend, CanSaveOrRecommend);
+            XCommand = new GuestICommand<string>(DeletePicture);
             
 
 
+        }
+        public void DeletePicture(string pictureUrl)
+        {
+            if (!string.IsNullOrEmpty(pictureUrl))
+            {
+                string newUrl = ConvertToAbsolutePath(pictureUrl);
+                foreach (string url in AccommodationRate.Images)
+                {
+                    if (newUrl.Contains(url))
+                    {
+                        AccommodationRate.Images.Remove(url);
+                        break;
+                    }
+
+                }
+            }
+
+            Update();
+        }
+        public string ConvertToAbsolutePath(string relativePath)
+        {
+            string pattern = "/";
+
+
+            string replacedPath = Regex.Replace(relativePath, pattern, "\\");
+
+
+            if (replacedPath.StartsWith("..\\..\\Resources/Images/"))
+            {
+                replacedPath = replacedPath.Replace("..\\..\\", "");
+            }
+
+            return replacedPath;
         }
 
         private bool CanSaveOrRecommend()

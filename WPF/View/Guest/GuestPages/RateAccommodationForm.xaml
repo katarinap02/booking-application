@@ -85,7 +85,23 @@
                     <Button FontSize="15" Command="{Binding AddPicturesCommand}" Content="Add picture" HorizontalAlignment="Left" Margin="55,261,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}"/>
                     <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="55,375,0,0" VerticalAlignment="Top" Style="{StaticResource ButtonStyleN}" Height="29" Width="208" Command="{Binding RecommendCommand}"/>
                     <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="369,456,0,0" VerticalAlignment="Top" Height="30" Width="121" Style="{StaticResource ButtonStyleN}" Command="{Binding SaveRateCommand}"/>
-                    <ListBox x:Name="pictureListBox" Margin="186,261,55,157" ScrollViewer.VerticalScrollBarVisibility="Auto" ItemsSource="{Binding Images}"/>
+                    <ListBox x:Name="pictureListBox" Margin="186,261,55,157" ScrollViewer.VerticalScrollBarVisibility="Auto"  ItemsSource="{Binding Images, UpdateSourceTrigger=PropertyChanged}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid>
+                                    <Image Source="{Binding}" Width="65" Height="65" Margin="0, 0, 7, 0"/>
+                                    <Button Content="X" Width="20" Height="20" FontSize="12" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0" Style="{StaticResource ButtonStyleN}"
+        Command="{Binding DataContext.XCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+        CommandParameter="{Binding}"/>
+                                </Grid>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <WrapPanel Orientation="Horizontal"/>
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                    </ListBox>
 
                 </Grid>
             </Border>
