@@ -55,5 +55,10 @@ namespace BookingApp.View.GuestPages
             
 
         }
+
+        private void GiveUp_Click(object sender, RoutedEventArgs e)
+        {
+            Frame.Content = new ProfileInfo(User, Frame);
+        }
     }
 }
