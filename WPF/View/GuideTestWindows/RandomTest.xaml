@@ -4,7 +4,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:viewModel ="clr-namespace:BookingApp.WPF.View.GuideTestWindows.TestViewModels"
         xmlns:cont ="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls" 
-        Title="Paper Plane Animation" Width="1000" Height="600"        
+        Title="Main Window" Width="1100" Height="600"        
         >
 
     <Window.DataContext>
@@ -19,9 +19,21 @@
         <DataTemplate DataType="{x:Type viewModel:TodaysToursViewModel}">
             <cont:TodaysTours/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:UserInfoViewModel}">
+            <cont:UserInfo/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:TourRequestsViewModel}">
+            <cont:TourRequests/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:TakePartInViewModel}">
+            <cont:TakePart/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:StatisticsViewModel}">
+            <cont:Statistics/>
+        </DataTemplate>
     </Window.Resources>
 
-    <Border CornerRadius="10"                    
+    <Border CornerRadius="10"   
             BorderThickness="1">
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -46,7 +58,15 @@
                         <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
                     </LinearGradientBrush>
                 </Border.Background>
-                <StackPanel>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                
+                
+                <StackPanel Grid.Row="0">
 
                     <!--Logo-->
                     <StackPanel Orientation="Horizontal"
@@ -66,22 +86,25 @@
                     <!--Menu Buttons-->
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color1}"
+                                 Command="{Binding UserInfoCommand}"
                                  >
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="UserAlt" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="User info" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
+                    
                     <RadioButton Style="{StaticResource menuButton}"
                                  Tag="{StaticResource color2}"
                                  IsChecked="True"
-                                 Click="test_click"
+                                 Command="{Binding ShowTodaysToursCommand}"
                                  >
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="CalendarDay" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Today's tours" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
+                    
                     <RadioButton Style="{StaticResource menuButton}"
                             Tag="{StaticResource color3}"
                                  Command="{Binding MyToursCommand}"
@@ -91,39 +114,50 @@
                             <TextBlock Text="My tours" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
+                    
                     <RadioButton Style="{StaticResource menuButton}"
-                             Tag="{StaticResource color4}">
+                             Tag="{StaticResource color4}"
+                                 Command="{Binding RequestsCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="EnvelopeOpenText" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Tour requests" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
+                    
                     <RadioButton Style="{StaticResource menuButton}"
-                            Tag="{StaticResource color10}">
+                            Tag="{StaticResource color10}"
+                                 Command="{Binding TakePartCommand}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="Signature" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Take part in a tour" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
+                    
                     <RadioButton Style="{StaticResource menuButton}"
-                            Tag="{StaticResource color6}">
-                        <StackPanel Orientation="Horizontal">
+                            Tag="{StaticResource color6}"
+                                 Command="{Binding StatsCommand}">
+                        <StackPanel Orientation="Horizontal"
+                                    >
                             <fa:IconImage Icon="ChartPie" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Statistics" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
 
-                    <Border Height="85"/>
+                    
+                </StackPanel>
 
                     <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color7}">
+                                 Grid.Row="1"
+                                 Command="{Binding LogOutCommand}"
+                        Tag="{StaticResource color7}">
                         <StackPanel Orientation="Horizontal">
                             <fa:IconImage Icon="SignOutAlt" Style="{StaticResource menuButtonIcon}"/>
                             <TextBlock Text="Log out" Style="{StaticResource menuButtonText}"/>
                         </StackPanel>
                     </RadioButton>
-                </StackPanel>
-                
+
+                </Grid>
+
             </Border>
 
             <!--Main Section-->
