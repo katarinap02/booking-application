@@ -38,13 +38,12 @@ namespace BookingApp.WPF.View.Guest.GuestTools
             UnavailableDateMarker.BlackOutUnavailableDates(selectedAccommodation.UnavailableDates, dayNumber, chosenDateRange);
 
 
-            if (IsDateRangeAvailable(ReservationCalendar) == false)
+            if (IsDateRangeAvailable(ReservationCalendar) == false && !isHost)
             {
                 MessageBox.Show("All dates in the chosen date range are unavailable. All available dates will be shown now.");
-                if (!isHost)
-                {
+                
                     ShowReccommendedDates(selectedAccommodation, dayNumber);
-                }
+               
             }
 
 

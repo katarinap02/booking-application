@@ -24,7 +24,7 @@ namespace BookingApp.WPF.View.Guest.GuestTools
             List<CalendarDateRange> unavailableDateRanges = new List<CalendarDateRange>();
             foreach (CalendarDateRange unavailableDateRange in unavailableDates)
             {
-                if (unavailableDateRange.Start >= chosenDateRange.Start && unavailableDateRange.End <= chosenDateRange.End)
+                if (unavailableDateRange.Start >= chosenDateRange.Start || unavailableDateRange.End <= chosenDateRange.End)
                 {
                     ReservationCalendar.BlackoutDates.Add(unavailableDateRange);
                     unavailableDateRanges.Add(unavailableDateRange);
