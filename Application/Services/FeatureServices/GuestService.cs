@@ -41,8 +41,7 @@ namespace BookingApp.Application.Services.FeatureServices
             guest.YearlyReservations = GetYearlyReservations(guest);
             if(!guest.IsSuperGuest)
                 BecomeSuperGuest(guest);
-
-            if (guest.IsSuperGuest)
+            else
                 CheckDueDate(guest);
 
             Update(guest);
