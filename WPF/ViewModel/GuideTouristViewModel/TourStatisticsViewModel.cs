@@ -1,5 +1,7 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.WPF.View.TouristWindows;
+using GalaSoft.MvvmLight.Messaging;
 using LiveCharts;
 using System;
 using System.Collections.Generic;
@@ -7,6 +9,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Windows.Controls.DataVisualization.Charting;
 using System.Windows.Controls.DataVisualization.Charting.Compatible;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
@@ -20,6 +23,25 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         public string[] Languages { get; set; }
         public string[] Cities { get; set; }
+
+        private ICommand _close;
+        public ICommand Close
+        {
+            get
+            {
+                if(_close == null)
+                {
+                    _close = new RelayCommand(param => CloseWindow());
+                }
+                return _close;
+            }
+        }
+
+        private void CloseWindow()
+        {
+            Messenger.Default.Send(new CloseWindowMessage());
+        }
+
 
         private int _userId;
         public int UserId

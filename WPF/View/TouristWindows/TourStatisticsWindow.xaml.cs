@@ -1,5 +1,6 @@
 ﻿using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using BookingApp.WPF.ViewModel.GuideViewModel;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Globalization;
@@ -30,8 +31,21 @@ namespace BookingApp.WPF.View.TouristWindows
             DataContext = TourStatisticsViewModel;
             TourStatisticsViewModel.InitializeTourStatistics();
 
+            Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
+
+        }
+
+        private void CloseWindow(CloseWindowMessage messsage)
+        {
+            Close();
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Messenger.Default.Unregister(this);
         }
     }
+
     public class YearConverter : IValueConverter
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
