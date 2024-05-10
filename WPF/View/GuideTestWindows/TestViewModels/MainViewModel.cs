@@ -14,20 +14,17 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 {
     public class MainViewModel : ViewModelBase
     {
-        //Fields        
         private ViewModelBase _currentChildView;
         private string _caption;
         private IconChar _icon;
 
-
-        //Properties
-
+        #region Polja
 
         public ViewModelBase CurrentChildView
         {
             get
             {
-                return _currentChildView;
+                return _currentChildView;                
             }
 
             set
@@ -64,42 +61,84 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
                 OnPropertyChanged(nameof(Icon));
             }
         }
+        #endregion
 
-        //--> Commands
+
         public ICommand ShowTodaysToursCommand { get; }
-        public ICommand ShowMyToursCommand { get; }
+        public ICommand MyToursCommand { get; }
+        public ICommand UserInfoCommand { get; }
+        public ICommand TakePartCommand { get; }
+        public ICommand StatsCommand { get; }
+        public ICommand LogOutCommand { get; }
+        public ICommand RequestsCommand { get; }
 
         public MainViewModel()
         {
-            //CurrentUserAccount = new UserAccountModel();
-
-            //Initialize commands
+            
             ShowTodaysToursCommand = new ViewModelCommand(ExecuteShowTodaysToursViewCommand);
+            MyToursCommand = new ViewModelCommand(ExecuteShowMyToursViewCommand);
+            UserInfoCommand = new ViewModelCommand(ExecuteShowUserInfoCommand);
+            TakePartCommand = new ViewModelCommand(ExecuteShowTakePartInViewCommand);
+            StatsCommand = new ViewModelCommand(ExecuteShowStatisticsViewCommand);
+            LogOutCommand = new ViewModelCommand(ExecuteShowLogoutViewCommand);
+            RequestsCommand = new ViewModelCommand(ExecuteShowTourRequestsViewCommand);
 
-            ShowMyToursCommand = new ViewModelCommand(ExecuteShowMyToursViewCommand);
-
-            //Default view
             CurrentChildView = new TodaysToursViewModel();
             Caption = "Todays Tours";
             Icon = IconChar.CalendarDay;
 
         }
-        
+
+        #region ImplementacijaKomandi
+
+        private void ExecuteShowTourRequestsViewCommand(object obj)
+        {
+            CurrentChildView = new TourRequestsViewModel();
+            Caption = "Tour Requests";
+            Icon = IconChar.EnvelopeOpenText;
+        }
+
         private void ExecuteShowTodaysToursViewCommand(object obj)
         {
-            CurrentChildView = new TodaysToursViewModel(); // breakpoint
+            CurrentChildView = new TodaysToursViewModel(); 
             Caption = "Todays Tours";
-            Icon = IconChar.CalendarDay; // za svaki izmeniti Ikonu
-            MessageBox.Show("ExecuteShowTodaysToursViewCommand");
+            Icon = IconChar.CalendarDay; 
         }
 
         private void ExecuteShowMyToursViewCommand(object obj)
         {
-            CurrentChildView = new MyToursViewModel(); // breakpoint
+            CurrentChildView = new MyToursViewModel(); 
             Caption = "My Tours";
             Icon = IconChar.Route;
-            MessageBox.Show("ExecuteShowMyToursViewCommand");
         }
-    } 
+
+        private void ExecuteShowUserInfoCommand(object obj)
+        {
+            CurrentChildView = new UserInfoViewModel();
+            Caption = "User information";
+            Icon = IconChar.Route;
+        }
+
+        private void ExecuteShowTakePartInViewCommand(object obj)
+        {
+            CurrentChildView = new TakePartInViewModel();
+            Caption = "Take Part in a Tour";
+            Icon = IconChar.Signature;
+        }
+
+        private void ExecuteShowStatisticsViewCommand(object obj)
+        {
+            CurrentChildView = new StatisticsViewModel();
+            Caption = "Statistics";
+            Icon = IconChar.ChartPie;
+        }
+
+        private void ExecuteShowLogoutViewCommand(object obj)
+        {
+            // Implement logout functionality here
+        }
+
+        #endregion
+    }
 
 }
