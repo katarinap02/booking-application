@@ -66,11 +66,15 @@ namespace BookingApp.Application.Services.FeatureServices
             _tourRequestRepository.Add(tourRequest);
         }
 
-        public int NextReservationId()
+        public int NextRequestId()
         {
             return _tourRequestRepository.NextId();
         }
     
+        public List<TourRequest> GetRequestsByTouristId(int touristId)
+        {
+            return _tourRequestRepository.GetByTouristId(touristId);
+        }
         public List<int> GetYearlyStatistic()
         {
             List<TourRequest> requests = _tourRequestRepository.GetAll();
@@ -207,6 +211,69 @@ namespace BookingApp.Application.Services.FeatureServices
 
             return mostRequestedLocation;
         }
+        public double GetAcceptedRequestPercentage(int touristId, int? year = 0)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId);
+            if (year != 0)
+            {
+                foreach(var req in requests)
+                {
+                    var p = req.DateRequested.Year;
+                }
+                requests = requests.Where(r => r.DateRequested.Year == year.Value).ToList();
+            }
+
+            var totalRequests = requests.Count;
+            var acceptedRequests = requests.Count(r => r.Status == TourRequestStatus.Accepted);
+            if(acceptedRequests == 0)
+            {
+                return 0;
+            }
+            return (double)acceptedRequests / totalRequests * 100;
+        }
+
+        public double GetRejectedRequestPercentage(int touristId, int? year = 0)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId);
+            if (year != 0)
+            {
+                requests = requests.Where(r => r.DateRequested.Year == year.Value).ToList();
+            }
+
+            var totalRequests = requests.Count;
+            var rejectedRequests = requests.Count(r => r.Status == TourRequestStatus.Invalid);
+            if(rejectedRequests == 0)
+            {
+                return 0;
+            }
+            return (double)rejectedRequests / totalRequests * 100;
+        }
+        public double GetAverageNumberOfPeopleInAcceptedRequests(int touristId, int? year = 0)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId)
+                .Where(r => r.Status == TourRequestStatus.Accepted);
+            if (year != 0)
+            {
+                requests = requests.Where(r => r.DateRequested.Year == year.Value).ToList();
+            }
+            if(requests.Count() == 0)
+            {
+                return 0;
+            }
+            return requests.Average(r => r.ParticipantIds.Count);
+        }
+        public Dictionary<string, int> GetRequestCountByLanguage(int touristId)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId);
+            return requests.GroupBy(r => r.Language)
+                .ToDictionary(g => g.Key, g => g.Count());
+        }
+        public Dictionary<string, int> GetRequestCountByCity(int touristId)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId);
+            return requests.GroupBy(r => r.City)
+                .ToDictionary(g => g.Key, g => g.Count());
+        }
 
         public void CreateTourByStatistics(Tour tour, string parameter) // parameter ce biti ili lokacija ili jezik (tura se pravi ili spram jezika ili spram lokacije)
                                                                         // slobodno dodati jos prosledjenih vrednosti
@@ -219,5 +286,5 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             // PROSIRITI
         }
-    }    
+    }
 }

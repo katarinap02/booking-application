@@ -45,6 +45,12 @@ namespace BookingApp.Repository.FeatureRepository
             _serializer.ToCSV(FilePath, _tourRequests);
         }
 
+        public List<TourRequest> GetByTouristId(int touristId)
+        {
+            _tourRequests = GetAll();
+           return _tourRequests.FindAll(r => r.TouristId == touristId);
+        }
+
         public int NextId()
         {
             _tourRequests = GetAll();

@@ -90,7 +90,8 @@
                 Height="40"     
                 FontSize="20"
                 Content="Statistics about requests" 
-                Margin="0,0,150,0"/>
+                Margin="0,0,150,0"
+                Command="{Binding StatisticsCommand}"/>
     </Grid>
 </Page>
   
