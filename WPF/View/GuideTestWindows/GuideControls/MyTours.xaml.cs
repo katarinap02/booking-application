@@ -1,6 +1,7 @@
 ﻿using BookingApp.WPF.View.GuideTestWindows.TestViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,11 +22,11 @@ namespace BookingApp.WPF.View.GuideTestWindows.GuideControls
     /// </summary>
     public partial class MyTours : UserControl
     {
-        public MyToursViewModel ViewModel { get; set; }
+        
         public MyTours()
         {
+            
             InitializeComponent();
-            DataContext = ViewModel;
         }
     }
 }
