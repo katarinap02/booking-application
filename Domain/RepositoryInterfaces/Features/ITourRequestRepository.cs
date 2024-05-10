@@ -11,6 +11,7 @@ namespace BookingApp.Domain.RepositoryInterfaces.Features
     {
         List<TourRequest> GetAll();
         List<TourRequest> GetAllPending();
+        List<TourRequest> GetAllPendingOrInvalid();
         void Add(TourRequest tourRequest);
         void Save();
         int NextId();

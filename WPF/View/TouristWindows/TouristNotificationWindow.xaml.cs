@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.View.TouristWindows;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -36,14 +38,13 @@ namespace BookingApp.View.TouristWindows
 
         }
 
-        private void DetailsButton_Click(object sender, RoutedEventArgs e)
-        {
-            TouristNotification.DetailsButton();
-        }
-
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
+        }
+        private void DetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            TouristNotification.ExecuteDetailsButton();
         }
     }
 }

@@ -22,9 +22,8 @@ namespace BookingApp.Domain.Model.Features
 
         public TouristNotification() { }
 
-        public TouristNotification(int id, int touristId, int tourId, NotificationType type, string tourName, string guideName, int currentCheckpoint)
+        public TouristNotification(int touristId, int tourId, NotificationType type, string tourName, string guideName, int currentCheckpoint)
         {
-            Id = id;
             TouristId = touristId;
             TourId = tourId;
             NotificationType = type;
