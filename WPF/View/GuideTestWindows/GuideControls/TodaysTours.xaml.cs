@@ -1,6 +1,7 @@
 ﻿using BookingApp.WPF.View.GuideTestWindows.TestViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,16 +17,20 @@ using System.Windows.Shapes;
 
 namespace BookingApp.WPF.View.GuideTestWindows.GuideControls
 {
-    /// <summary>
-    /// Interaction logic for TodaysTours.xaml
-    /// </summary>
+    
     public partial class TodaysTours : UserControl
     {
-        public TodaysToursViewModel TodaysToursVM { get; set; }
+        public ObservableCollection<CheckpointViewModel> CheckpointsWithColors { get; set; }
         public TodaysTours()
         {
+            DataContext = this;
+            CheckpointsWithColors = new ObservableCollection<CheckpointViewModel>
+            {
+                new CheckpointViewModel { Name = "Checkpoint 1", IndicatorColor = Brushes.LightGray },
+                new CheckpointViewModel { Name = "Checkpoint 2", IndicatorColor = Brushes.LightGray },
+                new CheckpointViewModel { Name = "Checkpoint 3", IndicatorColor = Brushes.LightGray }
+            };
             InitializeComponent();
-            DataContext = TodaysToursVM;
         }
     }
 }
