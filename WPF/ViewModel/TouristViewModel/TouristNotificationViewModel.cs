@@ -3,6 +3,7 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.TouristWindows;
+using BookingApp.WPF.View.TouristWindows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -10,6 +11,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
@@ -19,6 +21,27 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         private readonly TourService _tourService;
         public ObservableCollection<string> tourists { get; set; }
         public ObservableCollection<TouristNotificationViewModel> touristNotificationViewModels { get; set; }
+
+        public void ExecuteDetailsButton()
+        {
+            switch (SelectedNotification.NotificationType)
+            {
+                case NotificationType.JoinedTour:
+                    AddedTouristsNotificationWindow addedTouristsNotificationWindow = new AddedTouristsNotificationWindow(SelectedNotification);
+                    addedTouristsNotificationWindow.ShowDialog();
+                    break;
+                case NotificationType.RequestAccepted:
+                    CreatedTourDetailsWindow createdTourDetailsWindow = new CreatedTourDetailsWindow(SelectedNotification);
+                    createdTourDetailsWindow.ShowDialog();
+                    break;
+                case NotificationType.GuideQuit:
+                    break;
+                default:
+                    break;
+            }
+
+        }
+
         private int _id;
         public int Id
         {
@@ -32,6 +55,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 }
             }
         }
+
         private int _touristId;
         public int TouristId
         {
@@ -215,13 +239,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
 
         }
-
-        public void DetailsButton()
-        {
-            AddedTouristsNotificationWindow addedTouristsNotificationWindow = new AddedTouristsNotificationWindow(SelectedNotification);
-            addedTouristsNotificationWindow.ShowDialog();
-        }
-
         public TouristNotificationViewModel()
         {
             _touristNotificationService = new TouristNotificationService(Injector.Injector.CreateInstance<ITouristNotificationRepository>());
@@ -243,7 +260,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         public TouristNotification ToTouristNotification()
         {
-            TouristNotification touristNotification = new TouristNotification(Id, TouristId, TourId, NotificationType, TourName, GuideName, CurrentCheckpoint);
+            TouristNotification touristNotification = new TouristNotification(TouristId, TourId, NotificationType, TourName, GuideName, CurrentCheckpoint);
             touristNotification.Id = Id;
             touristNotification.TourId = TourId;
             touristNotification.TouristId = TouristId;
@@ -270,6 +287,9 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                     break;
                 case NotificationType.GuideQuit:
                     return $"Guide quit :: Guide - {GuideName}";
+                case NotificationType.RequestAccepted:
+                    type = "A new tour has been created";
+                    break;
                 default:
                     type = "";
                     break;

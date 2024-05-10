@@ -13,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 
 namespace BookingApp.View.TouristWindows
@@ -31,7 +32,7 @@ namespace BookingApp.View.TouristWindows
             TouristNotification = new TouristNotificationViewModel();
             DataContext = TouristNotification;
             TouristNotification.SelectedNotification = selectedNotification;
-
+            TouristNotification.CurrentCheckpoint = selectedNotification.CurrentCheckpoint;
             TouristNotification.InitializeAddedTouristsWindow();
         }
 

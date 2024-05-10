@@ -24,11 +24,11 @@ namespace BookingApp.WPF.View.TouristWindows
     /// </summary>
     public partial class TourRequestWindow : Window
     {
-        public TourRequestViewModel TourRequest {  get; set; }
+        public TourRequestWindowViewModel TourRequest {  get; set; }
         public TourRequestWindow(int userId)
         {
             InitializeComponent();
-            TourRequest = new TourRequestViewModel();
+            TourRequest = new TourRequestWindowViewModel();
             DataContext = TourRequest;
             TourRequest.UserId = userId;
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
@@ -53,6 +53,24 @@ namespace BookingApp.WPF.View.TouristWindows
         private void Window_Unloaded(object sender, RoutedEventArgs e)
         {
             Messenger.Default.Unregister<NotificationMessage>(this);
+        }
+
+        private void DatePicker_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void DatePicker_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            e.Handled = true;
+        }
+
+        private void Integer_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!int.TryParse(e.Text, out _))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

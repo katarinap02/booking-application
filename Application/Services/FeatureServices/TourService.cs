@@ -47,6 +47,11 @@ namespace BookingApp.Application.Services.FeatureServices
             return _tourRepository.GetTourById(tourId);
         }
 
+        public void Add(Tour tour)
+        {
+            _tourRepository.Add(tour);
+        }
+
         public int FindMaxNumberOfParticipants()
         {
             List<Tour> allTours = _tourRepository.GetAll();
