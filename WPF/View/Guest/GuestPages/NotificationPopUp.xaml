@@ -15,7 +15,10 @@
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="1" Margin="0,0,0,5" CornerRadius="10">
-                            <TextBlock Text="{Binding}" Padding="5"/>
+                            <TextBlock Text="{Binding}" Padding="5">
+                            <Button Style="{StaticResource ButtonStyleN}" Width="40" Height="20" FontSize="10" Content="Details" Margin="10, 0, 0, 0" Click="Details_Click"/>     
+                            </TextBlock>
+                           
                         </Border>
                     </DataTemplate>
                 </ListBox.ItemTemplate>

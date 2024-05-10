@@ -40,15 +40,6 @@ namespace BookingApp.View.GuestPages
             DataContext = ViewModel;
         }
 
-        private void AllRequests_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Content = new RequestsPage(User, Frame);
-
-        }
-
-        private void Profile_Click(object sender, RoutedEventArgs e)
-        {
-            Frame.Content = new ProfileInfo(User, Frame);
-        }
+        
     }
 }

@@ -21,8 +21,8 @@
                 <controls:AccommodationCardSmaller DataContext="{Binding Accommodation}" Width="500" Margin="0,-94,508,105"></controls:AccommodationCardSmaller>
 
 
-                <Button Content="Rate another accommodation" Style="{StaticResource ButtonStyleN}" Margin="633,265,54,464" Click="RateAnother_Click"/>
-                <Button Content="Profile" Style="{StaticResource ButtonStyleN}" Margin="633,346,54,387" Click="Profile_Click"/>
+                <Button Content="Rate another accommodation" Style="{StaticResource ButtonStyleN}" Margin="633,265,54,464" Command="{Binding RateAnotherCommand}"/>
+                <Button Content="Profile" Style="{StaticResource ButtonStyleN}" Margin="633,346,54,387" Command="{Binding ProfileCommand}"/>
 
             </Grid>
         </Border>

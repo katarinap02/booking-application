@@ -66,5 +66,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
             AccommodationRepository.Update(accommodation);
         }
+
+        
     }
 }

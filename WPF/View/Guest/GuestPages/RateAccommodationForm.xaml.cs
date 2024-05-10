@@ -43,26 +43,21 @@ namespace BookingApp.View.GuestPages
           
             this.Frame = frame;
             ViewModel = new RateFormViewModel(User, Frame, SelectedReservation, this);
-            
+            Hint.Visibility = Visibility.Hidden;
             DataContext = ViewModel;
 
         }
 
-        private void Save_Click(object sender, RoutedEventArgs e)
-        {
-           ViewModel.Save_Click(sender, e);
+     
 
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Hint.Visibility = Visibility.Visible;
         }
 
-        private void AddPicture_Click(object sender, RoutedEventArgs e)
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            ViewModel.AddPicture_Click(sender, e);
-            
-        }
-
-        private void Recommend_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.Recommend_Click(sender, e);
+            Hint.Visibility = Visibility.Hidden;
         }
     }
 }

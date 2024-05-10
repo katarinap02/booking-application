@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.ViewModel.Commands;
 
 namespace BookingApp.View.GuestPages
 {
@@ -35,6 +36,7 @@ namespace BookingApp.View.GuestPages
         public Frame Frame { get; set; }
 
        
+       
         public ReservationInfoPage(AccommodationViewModel selectedAccommodation, User user, Frame frame)
         {
             InitializeComponent();
@@ -45,6 +47,8 @@ namespace BookingApp.View.GuestPages
             
             txtStartDate.DisplayDateStart = DateTime.Now;
             txtEndDate.DisplayDateStart = DateTime.Now;
+            Hint.Visibility = Visibility.Hidden;
+          
 
             DataContext = this;
           
@@ -53,16 +57,17 @@ namespace BookingApp.View.GuestPages
            
         }
 
-        private void Continue_Click(object sender, RoutedEventArgs e)
+       
+
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            
-
-           
-           ViewModel.Continue_Click(sender, e);
-
-
+            Hint.Visibility = Visibility.Visible;
         }
 
-       
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Hint.Visibility = Visibility.Hidden;
+
+        }
     }
 }

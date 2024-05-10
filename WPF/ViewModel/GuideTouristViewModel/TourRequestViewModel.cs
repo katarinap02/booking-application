@@ -1,13 +1,19 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
-using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.TouristWindows;
 using BookingApp.WPF.View.TouristWindows;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 using System.Xml.Linq;
 

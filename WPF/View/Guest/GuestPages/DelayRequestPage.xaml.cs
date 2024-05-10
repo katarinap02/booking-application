@@ -43,9 +43,10 @@ namespace BookingApp.View.GuestPages
             reserveButton.IsEnabled = false;
             ViewModel = new DelayRequestPageViewModel(User, Frame, SelectedReservation, this);
             DataContext = ViewModel;
+            Hint.Visibility = Visibility.Hidden;
 
-           
-          
+
+
         }
 
       
@@ -56,10 +57,15 @@ namespace BookingApp.View.GuestPages
             
         }
 
-        private void SelectDate_Click(object sender, RoutedEventArgs e)
-        {
-            ViewModel.SelectDate_Click(sender, e);
 
+        private void ToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            Hint.Visibility = Visibility.Visible;
+        }
+
+        private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            Hint.Visibility = Visibility.Hidden;
         }
     }
 }

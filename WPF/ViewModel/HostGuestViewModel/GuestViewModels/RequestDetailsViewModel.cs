@@ -1,10 +1,12 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.ReservationServices;
+using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.GuestPages;
+using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
@@ -42,6 +44,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public string Comment { get; set; }
         public ComboBox RequestStatusBox { get; set; }
+
+        // KOMANDE
+        public GuestICommand ProfileCommand { get; set; }
+        public GuestICommand AllRequestsCommand { get; set; }
+       
         public RequestDetailsViewModel(DelayRequestViewModel selectedRequest, RequestDetailsPage page)
         {
 
@@ -60,11 +67,24 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             NumberOfDays = (reservation.EndDate - reservation.StartDate).Days + 1;
             Page = page;
             RequestHeader = CreateRequestHeader(SelectedRequest);
+            ProfileCommand = new GuestICommand(OnProfile);
+            AllRequestsCommand = new GuestICommand(OnAllRequests);
 
 
 
 
         }
+
+        private void OnAllRequests()
+        {
+            Page.Frame.Content = new RequestsPage(Page.User, Page.Frame);
+        }
+
+        private void OnProfile()
+        {
+            Page.Frame.Content = new ProfileInfo(Page.User, Page.Frame);
+        }
+
         private string? CreateRequestHeader(DelayRequestViewModel selectedRequest)
         {
             if (selectedRequest.Status == RequestStatus.PENDING)
