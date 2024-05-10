@@ -48,6 +48,5 @@ namespace BookingApp.View.GuestPages
 
         }
 
-       
     }
 }

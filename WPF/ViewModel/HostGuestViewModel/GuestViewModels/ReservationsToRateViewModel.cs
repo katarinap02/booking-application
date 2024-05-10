@@ -14,6 +14,7 @@ using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,12 +23,12 @@ using System.Windows.Controls;
 using System.Windows.Input;
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
-    public class ReservationsToRateViewModel : IObserver
+    public class ReservationsToRateViewModel : IObserver, INotifyPropertyChanged
     {
         public ObservableCollection<AccommodationReservationViewModel> Reservations { get; set; }
         public User User { get; set; }
 
-        public AccommodationReservationViewModel SelectedReservation { get; set; }
+       
         public AccommodationService AccommodationService { get; set; }
 
         public AccommodationReservationService AccommodationReservationService { get; set; }
@@ -37,8 +38,32 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         // KOMANDE
         public GuestICommand RateCommand { get; set; }
+        private AccommodationReservationViewModel selectedReservation;
+        public AccommodationReservationViewModel SelectedReservation
+        {
+            get { return selectedReservation; }
+            set
+            {
+                if (selectedReservation != value)
+                {
+                    selectedReservation = value;
+                    OnPropertyChanged("SelectedReservation");
 
-        public ReservationsToRateViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation)
+                }
+               
+                RateCommand.RaiseCanExecuteChanged();
+            }
+
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        public ReservationsToRateViewModel(User user, Frame frame)
         {
 
             User = user;
@@ -48,10 +73,18 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             AccommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
-            SelectedReservation = selectedReservation;
-            RateCommand = new GuestICommand(OnRate);
+           // SelectedReservation = selectedReservation;
+            RateCommand = new GuestICommand(OnRate, CanRate);
 
 
+        }
+
+        private bool CanRate()
+        {
+            if (SelectedReservation == null)
+                return false;
+            else
+                return true;
         }
 
         private void OnRate()
@@ -71,6 +104,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
                 }
             }
+            
         }
 
         private bool IsReservationRated(AccommodationReservation reservation)

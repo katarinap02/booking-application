@@ -57,7 +57,13 @@ namespace BookingApp.View.GuestPages
            
         }
 
-       
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ViewModel.ContinueCommand.RaiseCanExecuteChanged();
+        }
+
+
+
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {

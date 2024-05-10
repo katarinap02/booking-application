@@ -5,11 +5,14 @@ using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.WPF.ViewModel.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -22,6 +25,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public string HostUsername { get; set; }
         public AccommodationService AccommodationService { get; set; }
         public string DateRange { get; set; }
+        public GuestICommand BackCommand { get; set; }
+
         public RateDetailsViewModel(GuestRateViewModel selectedRate)
         {
             SelectedRate = selectedRate;
@@ -30,7 +35,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             HostUsername = GetHostUsername(SelectedRate, AccommodationService);
             DateRange = GetReservationDates(SelectedRate, AccommodationReservationService);
+            
         }
+
+      
 
         private string? GetReservationDates(GuestRateViewModel selectedRate, AccommodationReservationService accommodationReservationService)
         {

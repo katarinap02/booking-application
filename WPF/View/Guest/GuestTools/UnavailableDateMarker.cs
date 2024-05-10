@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,7 +25,9 @@ namespace BookingApp.WPF.View.Guest.GuestTools
             List<CalendarDateRange> unavailableDateRanges = new List<CalendarDateRange>();
             foreach (CalendarDateRange unavailableDateRange in unavailableDates)
             {
-                if (unavailableDateRange.Start >= chosenDateRange.Start || unavailableDateRange.End <= chosenDateRange.End)
+
+                if (IsInBetweenDates(unavailableDateRange, chosenDateRange) || IsEndInUnavailableDates(unavailableDateRange, chosenDateRange) || IsStartInUnavailableDates(unavailableDateRange, chosenDateRange))
+
                 {
                     ReservationCalendar.BlackoutDates.Add(unavailableDateRange);
                     unavailableDateRanges.Add(unavailableDateRange);
@@ -40,8 +43,30 @@ namespace BookingApp.WPF.View.Guest.GuestTools
 
         }
 
+        private bool IsStartInUnavailableDates(CalendarDateRange unavailableDateRange, CalendarDateRange chosenDateRange)
+        {
+            if (chosenDateRange.Start >= unavailableDateRange.Start && chosenDateRange.Start <= unavailableDateRange.End)
+                return true;
+            else
+                return false;
+        }
 
+        private bool IsEndInUnavailableDates(CalendarDateRange unavailableDateRange, CalendarDateRange chosenDateRange)
+        {
+            if (chosenDateRange.End >= unavailableDateRange.Start && chosenDateRange.End <= unavailableDateRange.End)
+                return true;
+            else
+                return false;
+        }
 
+        private bool IsInBetweenDates(CalendarDateRange unavailableDateRange, CalendarDateRange chosenDateRange)
+        {
+            if(unavailableDateRange.Start >= chosenDateRange.Start && unavailableDateRange.End <= chosenDateRange.End)
+                    return true;
+            else
+                return false;
+            
 
+        }
     }
 }

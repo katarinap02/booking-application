@@ -48,10 +48,66 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <Label Content="{Binding User.Username}" Style="{StaticResource HeaderStyleN}" FontSize="40" Margin="420,10,442,735" Height="100" FontStyle="Italic"/>
-                <TextBlock TextWrapping="Wrap"  FontSize="23" Margin="26,81,276,470">Status:<LineBreak/>Total reservation number:<LineBreak/>Reservation number in the past year:<LineBreak/>Ratng:<LineBreak/></TextBlock>
+                <TextBlock TextWrapping="Wrap"  FontSize="23" Margin="26,81,276,470"><LineBreak/>Total reservation number:<LineBreak/>Reservation number in the past year:<LineBreak/>Ratng:<LineBreak/></TextBlock>
                 <Label Content="Reservations" FontSize="30" Style="{StaticResource HeaderStyleN}" Margin="26,254,830,481"/>
 
-                <Label x:Name="statusLabel" Content="{Binding Status}" FontSize="23" Margin="105,75,739,670"/>
+                <Label FontSize="23"  Margin="20,70,818,681">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Setter Property="Content" Value="{x:Null}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
+                                    <Setter Property="Content" Value="Status: super-guest"/>
+                                    <Setter Property="Foreground" Value="Orange"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
+                                    <Setter Property="Content" Value="Status: guest"/>
+                                    <Setter Property="Foreground" Value="Black"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+
+                        </Style>
+                    </Label.Style>
+                </Label>
+
+                <Label FontSize="23"  Margin="215,70,640,681">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Setter Property="Content" Value="{x:Null}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
+                                    <Setter Property="Content" Value=", until "/>
+                                    <Setter Property="Foreground" Value="Orange"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
+                                    <Setter Property="Content" Value="{x:Null}"/>
+                                    
+                                </DataTrigger>
+                            </Style.Triggers>
+
+                        </Style>
+                    </Label.Style>
+                </Label>
+
+                <Label FontSize="23"  Margin="285,70,312,681">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Setter Property="Content" Value="{x:Null}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
+                                    <Setter Property="Content" Value="{Binding Guest.EndDate}"/>
+                                    <Setter Property="Foreground" Value="Orange"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
+                                    <Setter Property="Content" Value="{x:Null}"/>
+
+                                </DataTrigger>
+                            </Style.Triggers>
+
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <!--<Label x:Name="statusLabel" Content="{Binding Status}" FontSize="23" Margin="105,75,739,670"/>-->
                 <Label x:Name="totalReservationsLabel" Content="{Binding TotalReservations}" FontSize="23" Margin="295,106,547,641"></Label>
                 <Label x:Name="totalReservationsYearLabel" Content="{Binding Guest.YearlyReservations}" FontSize="23" Margin="410,137,528,603"></Label>
 

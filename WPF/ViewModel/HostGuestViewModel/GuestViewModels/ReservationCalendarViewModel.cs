@@ -16,10 +16,12 @@ using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.WPF.ViewModel.Commands;
+using System.ComponentModel;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
-    public class ReservationCalendarViewModel
+    public class ReservationCalendarViewModel : INotifyPropertyChanged
     {
 
         public CalendarConfigurator CalendarConfigurator { get; set; }
@@ -42,7 +44,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public Frame Frame { get; set; }
         public int DayNumber { get; set; }
 
-        public int GuestNumber { get; set; }
+        
 
         public Calendar ReservationCalendar { get; set; }
 
@@ -52,6 +54,39 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public GuestICommand SelectDatesCommand { get; set; }
         public GuestICommand FinishReservationCommand { get; set; }
+
+        public GuestICommand BackCommand { get; set; }
+
+        public GuestICommand BackToCalendarCommand { get; set; }
+
+        public NavigationService NavigationService { get; set; }
+        private int  guestNumber;
+        public int GuestNumber
+        {
+            get { return guestNumber; }
+            set
+            {
+                if (guestNumber != value)
+                {
+
+                    guestNumber = value;
+                    OnPropertyChanged("GuestNumber");
+                    
+                }
+
+                FinishReservationCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        
+        public event PropertyChangedEventHandler PropertyChanged;
+
+       
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         public ReservationCalendarViewModel(AccommodationViewModel selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end, Frame frame, CalendarPage page)
         {
 
@@ -68,7 +103,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Reservation = new AccommodationReservation();
 
             SelectDatesCommand = new GuestICommand(OnSelectDates);
-            FinishReservationCommand = new GuestICommand(OnFinishReservation);
+            FinishReservationCommand = new GuestICommand(OnFinishReservation, CanFinishReservation);
+            BackCommand = new GuestICommand(OnBack);
+            BackToCalendarCommand = new GuestICommand(OnBackToCalendar);
 
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
@@ -79,39 +116,79 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             GuestService = new GuestService(Injector.Injector.CreateInstance<IGuestRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             Guest = GuestService.GetById(User.Id);
             GuestService.CalculateGuestStats(Guest);
+            NavigationService = Frame.NavigationService;
+            GuestNumber = 1;
 
+           // Page.finishReservation.IsEnabled = false;
+
+        }
+
+        private void OnBackToCalendar()
+        {
+            Page.CalendarSection.IsEnabled = true;
+            Page.PeopleNumberSection.IsEnabled = false;
+        }
+
+        private void OnBack()
+        {
+            NavigationService.GoBack();
+        }
+
+        private bool CanFinishReservation()
+        {
+            ToggleGuestNumberValidator();
+            if (GuestNumber > SelectedAccommodation.MaxGuestNumber || GuestNumber <= 0)
+            {  
+                return false;
+            }
+            else
+            { 
+                return true;
+            }
+        }
+
+        private void ToggleGuestNumberValidator()
+        {
+            if (GuestNumber > SelectedAccommodation.MaxGuestNumber || GuestNumber <= 0)
+            {
+                
+                if (Page.PeopleNumberSection.IsEnabled == true)
+                    Page.guestNumberValidator.Visibility = Visibility.Visible;
+              
+            }
+            else
+            {
+                Page.guestNumberValidator.Visibility = Visibility.Hidden;
+
+                
+            }
         }
 
         private void OnFinishReservation()
         {
-            GuestNumber = Convert.ToInt32(Page.txtGuestNumber.Text);
-            if (GuestNumber > SelectedAccommodation.MaxGuestNumber)
+            //GuestNumber = Convert.ToInt32(Page.txtGuestNumber.Text);
+
+            
+            Reservation = new AccommodationReservation(User.Id, SelectedAccommodation.Id, SelectedDateRange.Start, SelectedDateRange.End, GuestNumber, SelectedAccommodation.Name, SelectedAccommodation.City, SelectedAccommodation.Country);
+            SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
+            AccommodationService.Update(SelectedAccommodation.ToAccommodation());
+            AccommodationReservationService.Add(Reservation);
+            if (Guest.BonusPoints > 0)
             {
-                // finishReservation.IsEnabled = false;
-
+                Guest.BonusPoints--;
             }
-            else
-            {
-                Page.finishReservation.IsEnabled = true;
-                Reservation = new AccommodationReservation(User.Id, SelectedAccommodation.Id, SelectedDateRange.Start, SelectedDateRange.End, GuestNumber, SelectedAccommodation.Name, SelectedAccommodation.City, SelectedAccommodation.Country);
-                SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
-                AccommodationService.Update(SelectedAccommodation.ToAccommodation());
-                AccommodationReservationService.Add(Reservation);
-                if (Guest.BonusPoints > 0)
-                {
-                    Guest.BonusPoints--;
-                }
 
-                Frame.Content = new ReservationSuccessfulPage(new AccommodationReservationViewModel(Reservation), SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
+            Frame.Content = new ReservationSuccessfulPage(new AccommodationReservationViewModel(Reservation), SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
 
 
 
-            }
+            
         }
 
         private void OnSelectDates()
         {
-
+           
+            Page.CalendarSection.IsEnabled = false;
             Page.PeopleNumberSection.IsEnabled = true;
             SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
             SelectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
@@ -132,12 +209,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             if (selectedDatesCount != DayNumber)
             {
                 Page.reserveButton.IsEnabled = false;
-
+                Page.dayNumberValidator.Visibility = Visibility.Visible;
 
             }
             else
             {
                 Page.reserveButton.IsEnabled = true;
+                Page.dayNumberValidator.Visibility = Visibility.Hidden;
 
             }
 

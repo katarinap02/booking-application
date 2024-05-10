@@ -66,10 +66,9 @@ namespace BookingApp.View.GuestPages
 
 
             }
-            // finishReservation.IsEnabled = false;
 
-
-            // continueLabel.Visibility = Visibility.Hidden;
+            guestNumberValidator.Visibility = Visibility.Hidden;
+           
 
         }
 

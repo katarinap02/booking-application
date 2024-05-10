@@ -39,7 +39,7 @@ namespace BookingApp.WPF.View.Guest.GuestPages
             SelectedReservation = selectedReservation;
             SelectedAccommodation = selectedAccommodation;
             AccommodationRate = accommodationRate;
-            ViewModel = new RecommendationPageViewModel(User, Frame, SelectedReservation, SelectedAccommodation, AccommodationRate);
+            ViewModel = new RecommendationPageViewModel(User, Frame, SelectedReservation, SelectedAccommodation, AccommodationRate, this);
             DataContext = ViewModel;
 
         }

@@ -15,6 +15,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics.Metrics;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -35,7 +36,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public AccommodationService AccommodationService { get; set; }
         public AccommodationReservationViewModel SelectedReservation { get; set; }
         public Frame Frame { get; set; }
-        public string Status { get; set; }
+       // public string Status { get; set; }
         public int TotalReservations { get; set; }
         public int TotalYearReservations { get; set; }
 
@@ -49,14 +50,38 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Reservations = new ObservableCollection<AccommodationReservationViewModel>();
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
-            Status = "guest";
+           // Status = "guest";
             GuestService = new GuestService(Injector.Injector.CreateInstance<IGuestRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             Guest = GuestService.GetById(User.Id);
             GuestService.CalculateGuestStats(Guest);
             TotalReservations = GetTotalReservations(AccommodationReservationService);
-            DelayCommand = new GuestICommand<object>(OnDelay);
-            CancelCommand = new GuestICommand<object>(OnCancel);
+            DelayCommand = new GuestICommand<object>(OnDelay, CanDelay);
+            CancelCommand = new GuestICommand<object>(OnCancel, CanCancel);
+            CancelCommand.RaiseCanExecuteChanged();
+            DelayCommand.RaiseCanExecuteChanged();
           
+        }
+
+        private bool CanDelay(object sender)
+        {
+            Button button = sender as Button;
+            AccommodationReservationViewModel reservation = button.DataContext as AccommodationReservationViewModel;
+            if (DateTime.Now > reservation.StartDate)
+                return false;
+            else
+                return true;
+        }
+
+        private bool CanCancel(object sender)
+        {
+            Button button = sender as Button;
+            AccommodationReservationViewModel reservation = button.DataContext as AccommodationReservationViewModel;
+            int daysBefore = (reservation.StartDate - DateTime.Today).Days;
+            int dayLimit = AccommodationService.GetById(reservation.AccommodationId).ReservationDaysLimit;
+            if (daysBefore < dayLimit)
+                return false;
+            else
+                return true;
         }
 
         private void OnCancel(object sender)
@@ -88,14 +113,29 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public void Update()
         {
             Reservations.Clear();
+            List<AccommodationReservationViewModel> tmpReservations = new List<AccommodationReservationViewModel>(); 
+            tmpReservations = SortReservations();
+            foreach (AccommodationReservationViewModel reservation in tmpReservations)
+            {
+                
+                   Reservations.Add(reservation);
+                
+            }
 
+        }
+
+        private List<AccommodationReservationViewModel> SortReservations()
+        {
+            List<AccommodationReservationViewModel> tmpReservations = new List<AccommodationReservationViewModel>();
             foreach (AccommodationReservation reservation in AccommodationReservationService.GetAll())
             {
                 if (reservation.GuestId == User.Id)
                 {
-                    Reservations.Add(new AccommodationReservationViewModel(reservation));
+                    tmpReservations.Add(new AccommodationReservationViewModel(reservation));
                 }
             }
+
+            return tmpReservations.OrderByDescending(reservation => reservation.StartDate).ToList();
         }
     }
 }

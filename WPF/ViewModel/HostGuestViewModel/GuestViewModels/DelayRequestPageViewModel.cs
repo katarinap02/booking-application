@@ -17,6 +17,7 @@ using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -46,8 +47,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public Button reserveButton { get; set; }
 
+        public NavigationService NavigationService { get; set; }
+
         // KOMANDE
         public GuestICommand SelectDatesCommand { get; set; }
+        public GuestICommand BackCommand { get; set; }
+        public DelayRequestPage Page { get; set; }
         public DelayRequestPageViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, DelayRequestPage page)
         {
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
@@ -64,9 +69,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             CalendarConfigurator = new CalendarConfigurator(ReservationCalendar);
             CalendarConfigurator.ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
             SelectDatesCommand = new GuestICommand(OnSelectDates);
+            BackCommand = new GuestICommand(OnBack);
+            Page = page;
+            
            
             User = user;
             Frame = frame;
+
+            NavigationService = Frame.NavigationService;
+        }
+
+        private void OnBack()
+        {
+            NavigationService.GoBack();
         }
 
         private void OnSelectDates()
@@ -85,9 +100,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             int dayNumber = DayNumber;
             int selectedDatesCount = calendar.SelectedDates.Count;
             if (selectedDatesCount != DayNumber)
+            {
                 reserveButton.IsEnabled = false;
+                Page.dayNumberValidator.Visibility = Visibility.Visible;
+            }
             else
-                reserveButton.IsEnabled = true;
+            {
+                reserveButton.IsEnabled = true; 
+                Page.dayNumberValidator.Visibility = Visibility.Hidden;
+            }
 
             Mouse.Capture(null);
         }

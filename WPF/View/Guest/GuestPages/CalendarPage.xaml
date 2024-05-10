@@ -26,11 +26,24 @@
                 </DrawingGroup>
             </DrawingGroup>
             <DrawingImage Drawing="{StaticResource question_mark_in_a_circle_svgrepo_com_xaml}" x:Key="HintIcon"/>
+            <DrawingGroup x:Key="exclamation_mark_svgrepo_com_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,45.311,45.311"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="red">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 22.675 0.02 c -0.006 0 -0.014 0.001 -0.02 0.001 c -0.007 0 -0.013 -0.001 -0.02 -0.001 C 10.135 0.02 0 10.154 0 22.656 c 0 12.5 10.135 22.635 22.635 22.635 c 0.007 0 0.013 0 0.02 0 c 0.006 0 0.014 0 0.02 0 c 12.5 0 22.635 -10.135 22.635 -22.635 C 45.311 10.154 35.176 0.02 22.675 0.02 z M 22.675 38.811 c -0.006 0 -0.014 -0.001 -0.02 -0.001 c -0.007 0 -0.013 0.001 -0.02 0.001 c -2.046 0 -3.705 -1.658 -3.705 -3.705 c 0 -2.045 1.659 -3.703 3.705 -3.703 c 0.007 0 0.013 0 0.02 0 c 0.006 0 0.014 0 0.02 0 c 2.045 0 3.706 1.658 3.706 3.703 C 26.381 37.152 24.723 38.811 22.675 38.811 z M 27.988 10.578 c -0.242 3.697 -1.932 14.692 -1.932 14.692 c 0 1.854 -1.519 3.356 -3.373 3.356 c -0.01 0 -0.02 0 -0.029 0 c -0.009 0 -0.02 0 -0.029 0 c -1.853 0 -3.372 -1.504 -3.372 -3.356 c 0 0 -1.689 -10.995 -1.931 -14.692 C 17.202 8.727 18.62 5.29 22.626 5.29 c 0.01 0 0.02 0.001 0.029 0.001 c 0.009 0 0.019 -0.001 0.029 -0.001 C 26.689 5.29 28.109 8.727 27.988 10.578 z" FillRule="Nonzero"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource exclamation_mark_svgrepo_com_xaml}" x:Key="Warning"/>
         </ResourceDictionary>
 
     </Page.Resources>
     <Grid>
-
+        <Button Content="Back" Style="{StaticResource ButtonStyleN}" Width="100" Height="50" Margin="80,92,1740,848" Command="{Binding BackCommand}"/>
 
         <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="218,92,1031,162" Width="671" Height="736">
             <Grid>
@@ -60,7 +73,24 @@
                     </Calendar.LayoutTransform>
 
                 </Calendar>
-                <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,403,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
+                <TextBlock x:Name="dayNumberValidator" FontSize="20" Foreground="red" Margin="194,396,195,107">
+
+
+                    <TextBlock.Inlines>
+                        <InlineUIContainer>
+                            <Image Source="{StaticResource Warning}" Width="16" Height="16" Margin="2,0,0,0"/>
+                        </InlineUIContainer>
+                        <Run Text="You need to select"/>
+                        <Run Text="{Binding DayNumber}" />
+
+                        <Run Text="days." />
+                    </TextBlock.Inlines>
+
+
+
+                </TextBlock>
+             
+                <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,457,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
 
             </Grid>
         </Border>
@@ -68,8 +98,25 @@
             <Grid x:Name="PeopleNumberSection">
                 <Label Content="Number of people: " HorizontalAlignment="Left" Margin="148,22,0,0" VerticalAlignment="Top" Height="52" Width="264" FontSize="30"/>
                 <!--<TextBox x:Name="txtGuestNumber" HorizontalAlignment="Left" Margin="439,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" Height="40"/>-->
-                <xctk:IntegerUpDown Name="txtGuestNumber" Margin="439,28,73,85" />
-                <Button x:Name="finishReservation" Content="Reserve" HorizontalAlignment="Center" Margin="0,79,0,0" VerticalAlignment="Top" Width="140" Command="{Binding FinishReservationCommand}" Height="50" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
+                <xctk:IntegerUpDown Name="txtGuestNumber" Margin="457,25,55,88" Text="{Binding GuestNumber}" />
+                <Button x:Name="finishReservation" Content="Reserve" HorizontalAlignment="Center" Margin="0,98,0,0" VerticalAlignment="Top" Width="140" FontSize="25" Command="{Binding FinishReservationCommand}" Height="50" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
+                <Button Content="Back" FontSize="23" Style="{StaticResource ButtonStyleN}" Width="80" Height="40" Margin="10,17,557,92" Command="{Binding BackToCalendarCommand}"/>
+                <TextBlock x:Name="guestNumberValidator" FontSize="16" Foreground="red" Margin="439,74,10,37">
+
+
+                    <TextBlock.Inlines>
+                        <InlineUIContainer>
+                            <Image Source="{StaticResource Warning}" Width="16" Height="12" Margin="2,0,0,0"/>
+                        </InlineUIContainer>
+                        <Run Text="Max. guest number is"/>
+                        <Run Text="{Binding SelectedAccommodation.MaxGuestNumber}" />
+
+                        <Run Text="." />
+                    </TextBlock.Inlines>
+
+
+
+                </TextBlock>
 
             </Grid>
         </Border>
