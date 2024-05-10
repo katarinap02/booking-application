@@ -52,6 +52,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         // KOMANDE
         public GuestICommand SelectDatesCommand { get; set; }
         public GuestICommand BackCommand { get; set; }
+        public DelayRequestPage Page { get; set; }
         public DelayRequestPageViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, DelayRequestPage page)
         {
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
@@ -69,6 +70,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             CalendarConfigurator.ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
             SelectDatesCommand = new GuestICommand(OnSelectDates);
             BackCommand = new GuestICommand(OnBack);
+            Page = page;
             
            
             User = user;
@@ -98,9 +100,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             int dayNumber = DayNumber;
             int selectedDatesCount = calendar.SelectedDates.Count;
             if (selectedDatesCount != DayNumber)
+            {
                 reserveButton.IsEnabled = false;
+                Page.dayNumberValidator.Visibility = Visibility.Visible;
+            }
             else
-                reserveButton.IsEnabled = true;
+            {
+                reserveButton.IsEnabled = true; 
+                Page.dayNumberValidator.Visibility = Visibility.Hidden;
+            }
 
             Mouse.Capture(null);
         }

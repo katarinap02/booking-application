@@ -117,6 +117,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Guest = GuestService.GetById(User.Id);
             GuestService.CalculateGuestStats(Guest);
             NavigationService = Frame.NavigationService;
+            GuestNumber = 1;
 
            // Page.finishReservation.IsEnabled = false;
 
@@ -135,17 +136,31 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         private bool CanFinishReservation()
         {
+            ToggleGuestNumberValidator();
             if (GuestNumber > SelectedAccommodation.MaxGuestNumber || GuestNumber <= 0)
-            {
-
-                
+            {  
                 return false;
             }
             else
+            { 
+                return true;
+            }
+        }
+
+        private void ToggleGuestNumberValidator()
+        {
+            if (GuestNumber > SelectedAccommodation.MaxGuestNumber || GuestNumber <= 0)
             {
                 
+                if (Page.PeopleNumberSection.IsEnabled == true)
+                    Page.guestNumberValidator.Visibility = Visibility.Visible;
+              
+            }
+            else
+            {
+                Page.guestNumberValidator.Visibility = Visibility.Hidden;
+
                 
-                return true;
             }
         }
 
@@ -172,7 +187,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         private void OnSelectDates()
         {
-
+           
             Page.CalendarSection.IsEnabled = false;
             Page.PeopleNumberSection.IsEnabled = true;
             SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
@@ -194,12 +209,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             if (selectedDatesCount != DayNumber)
             {
                 Page.reserveButton.IsEnabled = false;
-
+                Page.dayNumberValidator.Visibility = Visibility.Visible;
 
             }
             else
             {
                 Page.reserveButton.IsEnabled = true;
+                Page.dayNumberValidator.Visibility = Visibility.Hidden;
 
             }
 
