@@ -1,5 +1,6 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.WPF.View.HostPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ namespace BookingApp.Application.Services.FeatureServices
     {
         private readonly ITourRequestRepository _tourRequestRepository;
         private static readonly TourService _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
+        private static readonly TouristNotificationService _touristNotificationService = new TouristNotificationService(Injector.Injector.CreateInstance<ITouristNotificationRepository>());
 
         public TourRequestService(ITourRequestRepository tourRequestRepository)
         {
@@ -279,12 +281,28 @@ namespace BookingApp.Application.Services.FeatureServices
                                                                         // slobodno dodati jos prosledjenih vrednosti
         {
             _tourService.Add(tour);
-            SendNotifications();
+            SendNotifications(tour);
         }
 
-        public void SendNotifications()
+        public void SendNotifications(Tour tour)
         {
-            // PROSIRITI
+            var unfulfilledRequests = _tourRequestRepository.GetAllPendingOrInvalid();
+            List<int> notifiedTouristIds = new List<int>();
+            foreach (var request in unfulfilledRequests)
+            {
+                if(notifiedTouristIds.Contains(request.TouristId))
+                {
+                    continue;
+                }
+
+                if(tour.Language == request.Language || tour.City == request.City)
+                {
+                    notifiedTouristIds.Add(request.TouristId);
+                    var Notification = new TouristNotification(request.TouristId, tour.Id, NotificationType.RequestAccepted, tour.Name,
+                        "", 0);
+                    _touristNotificationService.Add(Notification);
+                }
+            }
         }
     }
 }

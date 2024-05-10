@@ -32,6 +32,11 @@ namespace BookingApp.Repository.FeatureRepository
         {
             return GetAll().FindAll(x => x.Status == TourRequestStatus.Pending);
         }
+
+        public List<TourRequest> GetAllPendingOrInvalid()
+        {
+            return GetAll().FindAll(tr => tr.Status == TourRequestStatus.Pending || tr.Status == TourRequestStatus.Invalid);
+        }
         
         public void Add(TourRequest tourRequest)
         {

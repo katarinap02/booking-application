@@ -30,6 +30,7 @@ namespace BookingApp.WPF.View.GuideTestWindows
             DateTime dateTime = new DateTime(2023, 1, 1);
             DateTime dateTime2 = new DateTime(2024, 6, 30);
             TourRequest searchCriteria = new TourRequest(0,"desc", "gli", ints, dateTime, dateTime2, "", "");
+
             List<TourRequest> tourRequests = _tourRequestService.filterRequests(searchCriteria); // kada stavim neku drugu funkciju radi savrseno 
             ObservableCollection<TourRequestDTOViewModel> viewModels = new ObservableCollection<TourRequestDTOViewModel>();
             foreach (var tourRequest in tourRequests)

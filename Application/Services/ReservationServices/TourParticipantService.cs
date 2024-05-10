@@ -94,7 +94,7 @@ namespace BookingApp.Application.Services.ReservationServices
             TourReservation tourReservation = _tourReservationService.GetById(reservation_id);
             Tour tour = _tourService.GetTourById(tourReservation.TourId);
             User user = _userService.GetById(tour.GuideId);
-            TouristNotification notification = new TouristNotification(0, tourReservation.TouristId, tourReservation.TourId, NotificationType.JoinedTour, tour.Name, user.Username, checkpoint);
+            TouristNotification notification = new TouristNotification(tourReservation.TouristId, tourReservation.TourId, NotificationType.JoinedTour, tour.Name, user.Username, checkpoint);
             _touristNotificationService.Add(notification);
         }
     }
