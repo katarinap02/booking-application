@@ -35,7 +35,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public AccommodationService AccommodationService { get; set; }
         public AccommodationReservationViewModel SelectedReservation { get; set; }
         public Frame Frame { get; set; }
-        public string Status { get; set; }
+       // public string Status { get; set; }
         public int TotalReservations { get; set; }
         public int TotalYearReservations { get; set; }
 
@@ -49,7 +49,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Reservations = new ObservableCollection<AccommodationReservationViewModel>();
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
-            Status = "guest";
+           // Status = "guest";
             GuestService = new GuestService(Injector.Injector.CreateInstance<IGuestRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             Guest = GuestService.GetById(User.Id);
             GuestService.CalculateGuestStats(Guest);
