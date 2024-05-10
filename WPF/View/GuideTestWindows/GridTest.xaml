@@ -4,7 +4,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         Title="Grid Test" Width="1000" Height="800" WindowStartupLocation="CenterScreen">
     <Window.Background>
-        <SolidColorBrush Color="DarkBlue">            
+        <SolidColorBrush Color="#200F53">            
         </SolidColorBrush>
     </Window.Background>
     <Grid>
@@ -28,13 +28,14 @@
              Height="300"
              Style="{StaticResource CustomListBoxStyle}"
              x:Name="listTest"
-             SelectionMode="Single">
+             SelectionMode="Single"
+             Width="300">
             <ListBox.ItemContainerStyle>
                 <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomListBoxItemStyle}"/>
             </ListBox.ItemContainerStyle>
         </ListBox>
 
-        <TextBox VerticalAlignment="Bottom" Style="{StaticResource CustomTextBoxStyle}" Tag="Testingggggggg" Width="250" ></TextBox>
+        <TextBox VerticalAlignment="Bottom" Style="{StaticResource CustomTextBoxStyle}" Tag="Enter Tour name:" Width="250" ></TextBox>
 
     </Grid>
 
