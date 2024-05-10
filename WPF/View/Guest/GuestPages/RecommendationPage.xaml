@@ -42,6 +42,10 @@
                         <ComboBoxItem Content="Level 4 - There are many bad things and renovation is really necessary." Tag="LEVEL4"></ComboBoxItem>
                         <ComboBoxItem Content="Level 5 - The accommodation is in very bad condition and it's not worth renting it at all unless it's renovated." Tag="LEVEL5"></ComboBoxItem>
                     </ComboBox>
+                    <TextBlock x:Name="commentValidator" FontSize="12" Foreground="red" Margin="44,255,66,237">
+                       Comment field can't be empty.
+                    
+                    </TextBlock>
 
                 </Grid>
             </Border>

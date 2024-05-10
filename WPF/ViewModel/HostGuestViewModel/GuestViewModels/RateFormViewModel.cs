@@ -186,10 +186,39 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         private bool CanSaveOrRecommend()
         {
+            ToggleCleanlinessValidationMessages();
+            ToggleCorrectnessValidationMessages();
+            ToggleCommentValidationMessages();
+
             if (Cleanliness == 0 || Correctness == 0 || string.IsNullOrEmpty(Comment))
                 return false;
             else
                 return true;
+        }
+
+        private void ToggleCommentValidationMessages()
+        {
+            if (string.IsNullOrEmpty(Comment))
+                Page.commentValidator.Visibility = Visibility.Visible;
+            else
+                Page.commentValidator.Visibility = Visibility.Hidden;
+        }
+
+        private void ToggleCorrectnessValidationMessages()
+        {
+            if (Correctness == 0)
+                Page.correctnessValidator.Visibility = Visibility.Visible;
+            else
+                Page.correctnessValidator.Visibility = Visibility.Hidden;
+        }
+
+        private void ToggleCleanlinessValidationMessages()
+        {
+            if (Cleanliness == 0)
+                Page.cleanlinessValidator.Visibility = Visibility.Visible;
+            else
+                Page.cleanlinessValidator.Visibility = Visibility.Hidden;
+
         }
 
         private void OnRecommend()

@@ -31,6 +31,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public HostService HostService { get; set; }
         public AccommodationRateService AccommodationRateService { get; set; }
         public RenovationRecommendationViewModel Recommendation {  get; set; }
+        public RecommendationPage Page { get; set; }
         private string comment;
         public string Comment
         {
@@ -60,7 +61,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public GuestICommand SaveRateCommand { get; set; }
         public GuestICommand BackCommand { get; set; }
         public NavigationService NavigationService { get; set; }
-        public RecommendationPageViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, AccommodationViewModel selectedAccommodation, AccommodationRateViewModel accommodationRate)
+        public RecommendationPageViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, AccommodationViewModel selectedAccommodation, AccommodationRateViewModel accommodationRate, RecommendationPage page)
         {
             User = user;
             Frame = frame;
@@ -74,6 +75,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             SaveRateCommand = new GuestICommand(OnSaveRate, CanSaveRate);
             BackCommand = new GuestICommand(OnBack);
             NavigationService = Frame.NavigationService;
+            Page = page;
         }
 
         private void OnBack()
@@ -83,10 +85,31 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         private bool CanSaveRate()
         {
+            ToggleCommentValidationMessage();
             if (string.IsNullOrEmpty(Comment))
+            {
+                Page.commentValidator.Visibility = Visibility.Visible;
                 return false;
+            }
             else
+            {
+                Page.commentValidator.Visibility = Visibility.Hidden;
                 return true;
+            }
+        }
+
+        private void ToggleCommentValidationMessage()
+        {
+            if (string.IsNullOrEmpty(Comment))
+            {
+                Page.commentValidator.Visibility = Visibility.Visible;
+              
+            }
+            else
+            {
+                Page.commentValidator.Visibility = Visibility.Hidden;
+               
+            }
         }
 
         private void OnSaveRate()

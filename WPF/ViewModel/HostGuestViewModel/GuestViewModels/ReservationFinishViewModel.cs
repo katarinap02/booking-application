@@ -94,23 +94,49 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         {
             DateTime start;
             DateTime end;
-            if (string.IsNullOrEmpty(ReservationInfoPage.txtStartDate.Text))
-                start = DateTime.MinValue;
-            else
-                start = Convert.ToDateTime(ReservationInfoPage.txtStartDate.Text);
-
-            if (string.IsNullOrEmpty(ReservationInfoPage.txtEndDate.Text))
-                end = DateTime.MinValue;
-            else
-                end = Convert.ToDateTime(ReservationInfoPage.txtEndDate.Text);
-            
+            start = SetUpStart();
+            end = SetUpEnd();
+            ToggleDayNumberValidationMessage();
             if (ValidateDayNumber(DayNumber) && ValidateDateInputs(start, end))
                 return true;
             else
                 return false;
+            
         }
 
-        
+        private void ToggleDayNumberValidationMessage()
+        {
+            if (ValidateDayNumber(DayNumber))
+            {
+                ReservationInfoPage.dayNumberValidator.Visibility = Visibility.Hidden;
+
+            }
+
+
+            else
+            {
+                ReservationInfoPage.dayNumberValidator.Visibility = Visibility.Visible;
+               
+            }
+        }
+
+        private DateTime SetUpEnd()
+        {
+            if (string.IsNullOrEmpty(ReservationInfoPage.txtEndDate.Text))
+                return DateTime.MinValue;
+            else
+                return Convert.ToDateTime(ReservationInfoPage.txtEndDate.Text);
+        }
+
+        private DateTime SetUpStart()
+        {
+            if (string.IsNullOrEmpty(ReservationInfoPage.txtStartDate.Text))
+                return DateTime.MinValue;
+            else
+                return Convert.ToDateTime(ReservationInfoPage.txtStartDate.Text);
+        }
+
+       
 
         private void OnContinue()
         {
@@ -127,29 +153,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         private bool ValidateDayNumber(int dayNumber)
         {
             if (DayNumber < SelectedAccommodation.MinReservationDays)
-            {
-
                 return false;
-            }
+            
             else
-            {
-
                 return true;
-            }
+            
         }
 
         private bool ValidateDateInputs(DateTime start, DateTime end)
         {
             if (start >= end)
-            {
-
                 return false;
-            }
+            
             else
-            {
-
                 return true;
-            }
+            
 
 
         }

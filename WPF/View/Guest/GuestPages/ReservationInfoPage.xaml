@@ -67,7 +67,15 @@
                 <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
                 <DatePicker x:Name="txtEndDate" Margin="352,424,160,273" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
                 <Button x:Name="ContinueButton" Content="Continue" HorizontalAlignment="Center" Margin="0,545,0,0" VerticalAlignment="Top" Command="{Binding ViewModel.ContinueCommand}" Width="200" Height="50" Style="{StaticResource ButtonStyleN}"/>
-                
+                <TextBlock x:Name="dayNumberValidator" FontSize="12" Foreground="red" Margin="352,282,160,440">
+                    <TextBlock.Text>
+                        <MultiBinding StringFormat="{}Enter at least {0} days.">
+                            <Binding Path="SelectedAccommodation.MinReservationDays"/>
+
+                        </MultiBinding>
+                    </TextBlock.Text>
+                    
+                </TextBlock>
  </Grid>
         </Border>
 
