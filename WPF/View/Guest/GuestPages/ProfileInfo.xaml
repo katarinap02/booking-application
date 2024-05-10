@@ -70,13 +70,13 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                     </Label.Style>
                 </Label>
 
-                <Label FontSize="23"  Margin="297,70,640,681">
+                <Label FontSize="23"  Margin="215,70,640,681">
                     <Label.Style>
                         <Style TargetType="Label">
                             <Setter Property="Content" Value="{x:Null}"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
-                                    <Setter Property="Content" Value="- until "/>
+                                    <Setter Property="Content" Value=", until "/>
                                     <Setter Property="Foreground" Value="Orange"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
@@ -89,7 +89,7 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                     </Label.Style>
                 </Label>
 
-                <Label FontSize="23"  Margin="432,70,312,681">
+                <Label FontSize="23"  Margin="285,70,312,681">
                     <Label.Style>
                         <Style TargetType="Label">
                             <Setter Property="Content" Value="{x:Null}"/>

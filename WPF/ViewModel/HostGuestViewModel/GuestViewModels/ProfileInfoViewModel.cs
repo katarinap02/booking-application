@@ -56,12 +56,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             TotalReservations = GetTotalReservations(AccommodationReservationService);
             DelayCommand = new GuestICommand<object>(OnDelay);
             CancelCommand = new GuestICommand<object>(OnCancel, CanCancel);
+            CancelCommand.RaiseCanExecuteChanged();
           
         }
 
         private bool CanCancel(object sender)
         {
-            return true;
+            Button button = sender as Button;
+            AccommodationReservationViewModel reservation = button.DataContext as AccommodationReservationViewModel;
+            int daysBefore = (reservation.StartDate - DateTime.Today).Days;
+            int dayLimit = AccommodationService.GetById(reservation.AccommodationId).ReservationDaysLimit;
+            if (daysBefore < dayLimit)
+                return false;
+            else
+                return true;
         }
 
         private void OnCancel(object sender)
