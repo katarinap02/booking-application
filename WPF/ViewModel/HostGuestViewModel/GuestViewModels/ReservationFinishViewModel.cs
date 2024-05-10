@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -33,6 +34,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         // KOMANDE
         public GuestICommand ContinueCommand { get; set; }
+        public GuestICommand BackCommand { get; set; }
+
+        public NavigationService NavigationService { get; set; }
 
         private int dayNumber;
         public int DayNumber
@@ -75,8 +79,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Frame = frame;
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             ContinueCommand = new GuestICommand(OnContinue, CanContinue);
+            BackCommand = new GuestICommand(OnBack);
+            NavigationService = Frame.NavigationService;
             
 
+        }
+
+        private void OnBack()
+        {
+            NavigationService.GoBack();
         }
 
         private bool CanContinue()

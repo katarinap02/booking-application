@@ -25,6 +25,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -118,6 +119,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public GuestICommand<string> XCommand { get; set; }
 
+        public GuestICommand BackCommand { get; set; }
+        public NavigationService NavigationService { get; set; }
+
         public RateFormViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, RateAccommodationForm page)
         {
             Images = new ObservableCollection<string>();
@@ -134,10 +138,18 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             SaveRateCommand = new GuestICommand(OnSaveRate, CanSaveOrRecommend);
             RecommendCommand = new GuestICommand(OnRecommend, CanSaveOrRecommend);
             XCommand = new GuestICommand<string>(DeletePicture);
+            BackCommand = new GuestICommand(OnBack);
+            NavigationService = Frame.NavigationService;
             
 
 
         }
+
+        private void OnBack()
+        {
+            NavigationService.GoBack();
+        }
+
         public void DeletePicture(string pictureUrl)
         {
             if (!string.IsNullOrEmpty(pictureUrl))

@@ -17,6 +17,7 @@ using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -46,8 +47,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public Button reserveButton { get; set; }
 
+        public NavigationService NavigationService { get; set; }
+
         // KOMANDE
         public GuestICommand SelectDatesCommand { get; set; }
+        public GuestICommand BackCommand { get; set; }
         public DelayRequestPageViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, DelayRequestPage page)
         {
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
@@ -64,9 +68,18 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             CalendarConfigurator = new CalendarConfigurator(ReservationCalendar);
             CalendarConfigurator.ConfigureCalendar(SelectedAccommodation, StartDate, EndDate, DayNumber);
             SelectDatesCommand = new GuestICommand(OnSelectDates);
+            BackCommand = new GuestICommand(OnBack);
+            
            
             User = user;
             Frame = frame;
+
+            NavigationService = Frame.NavigationService;
+        }
+
+        private void OnBack()
+        {
+            NavigationService.GoBack();
         }
 
         private void OnSelectDates()

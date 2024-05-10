@@ -15,6 +15,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using BookingApp.WPF.ViewModel.Commands;
 
 namespace BookingApp.WPF.View.Guest.GuestPages
 {
@@ -29,6 +30,8 @@ namespace BookingApp.WPF.View.Guest.GuestPages
         public NotificationDetailsViewModel ViewModel { get; set; }
 
         public DelayRequestViewModel SelectedRequest { get; set; }
+        
+        public NavigationService NavigationService { get; set; }
         public NotificationDetailsPage(DelayRequestViewModel selectedRequest, User user, Frame frame)
         {
             InitializeComponent();
@@ -38,6 +41,14 @@ namespace BookingApp.WPF.View.Guest.GuestPages
             ViewModel = new NotificationDetailsViewModel(SelectedRequest, this);
 
             DataContext = ViewModel;
+            ViewModel.BackCommand = new GuestICommand(OnBack);
+            NavigationService = Frame.NavigationService;
+            
+        }
+
+        private void OnBack()
+        {
+            NavigationService.GoBack();
         }
     }
 }

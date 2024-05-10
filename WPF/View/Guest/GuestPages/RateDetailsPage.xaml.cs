@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using System;
@@ -28,12 +29,24 @@ namespace BookingApp.WPF.View.Guest.GuestPages
         public GuestRateViewModel SelectedRate { get; set; }
 
         public RateDetailsViewModel ViewModel { get; set; }
+
+       
+
+        public NavigationService NavigationService { get; set; }
         public RateDetailsPage(GuestRateViewModel selectedRate, User user, Frame frame)
         {
             InitializeComponent();
             SelectedRate = selectedRate;
             ViewModel = new RateDetailsViewModel(SelectedRate);
             DataContext = ViewModel;
+            Frame = frame;
+            NavigationService = Frame.NavigationService;
+            ViewModel.BackCommand = new GuestICommand(OnBack);
+        }
+
+        private void OnBack()
+        {
+            NavigationService.GoBack();
         }
     }
 }

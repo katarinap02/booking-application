@@ -6,6 +6,7 @@ using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.View.Guest.GuestPages;
+using BookingApp.WPF.ViewModel.Commands;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +14,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -40,6 +42,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public string Comment { get; set; }
         public ComboBox RequestStatusBox { get; set; }
+        public GuestICommand BackCommand { get; set; }
 
 
         public NotificationDetailsViewModel(DelayRequestViewModel selectedRequest, NotificationDetailsPage page)
@@ -60,6 +63,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             NumberOfDays = (reservation.EndDate - reservation.StartDate).Days + 1;
             Page = page;
             RequestHeader = CreateRequestHeader(SelectedRequest);
+            
 
 
 

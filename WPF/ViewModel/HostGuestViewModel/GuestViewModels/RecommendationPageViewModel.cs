@@ -15,6 +15,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -57,6 +58,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         // KOMANDE
         public GuestICommand SaveRateCommand { get; set; }
+        public GuestICommand BackCommand { get; set; }
+        public NavigationService NavigationService { get; set; }
         public RecommendationPageViewModel(User user, Frame frame, AccommodationReservationViewModel selectedReservation, AccommodationViewModel selectedAccommodation, AccommodationRateViewModel accommodationRate)
         {
             User = user;
@@ -69,6 +72,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             HostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
             RenovationRecommendationService = new RenovationRecommendationService(Injector.Injector.CreateInstance<IRenovationRecommendationRepository>());
             SaveRateCommand = new GuestICommand(OnSaveRate, CanSaveRate);
+            BackCommand = new GuestICommand(OnBack);
+            NavigationService = Frame.NavigationService;
+        }
+
+        private void OnBack()
+        {
+            NavigationService.GoBack();
         }
 
         private bool CanSaveRate()

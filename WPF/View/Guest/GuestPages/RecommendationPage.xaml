@@ -15,6 +15,8 @@
 
             <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,549,5">
                 <Grid>
+                    <Button Content="Back" Style="{StaticResource ButtonStyleN}" FontSize="16" Width="60" Height="25" Margin="10,10,452,754" Command="{Binding BackCommand}"/>
+
                     <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="23,75,25,558">It is necessary to fill in information about what should be renovated. After that, choose the level of urgency.</TextBlock>
                     <Label Content="Accommodation" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="136,434,-136,312"/>
                     <Label Content="Host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="218,648,218,98"/>

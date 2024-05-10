@@ -17,6 +17,7 @@ using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.WPF.ViewModel.Commands;
 using System.ComponentModel;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -54,6 +55,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public GuestICommand SelectDatesCommand { get; set; }
         public GuestICommand FinishReservationCommand { get; set; }
 
+        public GuestICommand BackCommand { get; set; }
+
+        public GuestICommand BackToCalendarCommand { get; set; }
+
+        public NavigationService NavigationService { get; set; }
         private int  guestNumber;
         public int GuestNumber
         {
@@ -98,6 +104,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
             SelectDatesCommand = new GuestICommand(OnSelectDates);
             FinishReservationCommand = new GuestICommand(OnFinishReservation, CanFinishReservation);
+            BackCommand = new GuestICommand(OnBack);
+            BackToCalendarCommand = new GuestICommand(OnBackToCalendar);
 
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
@@ -108,9 +116,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             GuestService = new GuestService(Injector.Injector.CreateInstance<IGuestRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             Guest = GuestService.GetById(User.Id);
             GuestService.CalculateGuestStats(Guest);
+            NavigationService = Frame.NavigationService;
 
            // Page.finishReservation.IsEnabled = false;
 
+        }
+
+        private void OnBackToCalendar()
+        {
+            Page.CalendarSection.IsEnabled = true;
+            Page.PeopleNumberSection.IsEnabled = false;
+        }
+
+        private void OnBack()
+        {
+            NavigationService.GoBack();
         }
 
         private bool CanFinishReservation()
@@ -133,7 +153,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         {
             //GuestNumber = Convert.ToInt32(Page.txtGuestNumber.Text);
 
-           
+            
             Reservation = new AccommodationReservation(User.Id, SelectedAccommodation.Id, SelectedDateRange.Start, SelectedDateRange.End, GuestNumber, SelectedAccommodation.Name, SelectedAccommodation.City, SelectedAccommodation.Country);
             SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
             AccommodationService.Update(SelectedAccommodation.ToAccommodation());
@@ -153,6 +173,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         private void OnSelectDates()
         {
 
+            Page.CalendarSection.IsEnabled = false;
             Page.PeopleNumberSection.IsEnabled = true;
             SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
             SelectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);

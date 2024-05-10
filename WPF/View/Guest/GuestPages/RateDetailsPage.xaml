@@ -12,6 +12,8 @@
     <Grid>
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
+                <Button Content="Back" Style="{StaticResource ButtonStyleN}" FontSize="18" Width="70" Height="30" Margin="10,10,980,751" Command="{Binding BackCommand}" RenderTransformOrigin="0.678,-0.34"/>
+
                 <Label Content="Reservation: " FontSize="40" Width="250" Height="80" Margin="210,44,600,667" Style="{StaticResource HeaderStyleN}"/>
                 <Label Content="{Binding DateRange}" FontSize="40" Height="80" Margin="465,44,29,667" Style="{StaticResource HeaderStyleN}"/>
                 <TextBlock FontSize="30" Height="80" TextAlignment="Center" Margin="10,111,-10,600" FontWeight="Bold">

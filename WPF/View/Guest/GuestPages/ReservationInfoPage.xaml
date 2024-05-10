@@ -31,9 +31,11 @@
     </Page.Resources>
 
     <Grid>
+        <Button Content="Back" Style="{StaticResource ButtonStyleN}" Width="100" Height="50" Margin="80,92,1740,848" Command="{Binding BackCommand}"/>
 
         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="269,85,980,161" Width="671" Background="White">
             <Grid>
+                
                 <Label Content="Reservation" FontSize="55" Margin="158,16,-24,315" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
 
                 <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Height="323" Width="663" Margin="-2,98,6,318"><Run Text="Welcome to the reservation page."/><LineBreak/><Run Text="Please enter required information."/></TextBlock>
@@ -57,7 +59,7 @@
             <Grid Margin="2,-58,-2,58">
                 <Label Content="Number of days" FontSize="30" Margin="105,238,-105,-238"/>
                 <!--<TextBox x:Name="txtDayNumber" TextWrapping="Wrap" Margin="352,251,160,444"/>-->
-                <xctk:IntegerUpDown Name="txtDayNumber" Text="{Binding ViewModel.DayNumber}" Margin="352,251,160,444"/>
+                <xctk:IntegerUpDown Name="txtDayNumber" Text="{Binding ViewModel.DayNumber}" Margin="352,237,160,458"/>
                 <Label Content="Start date " Margin="136,319,-136,-319" FontSize="30"/>
                 <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
                 <DatePicker x:Name="txtStartDate" Margin="352,329,160,366" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
@@ -65,7 +67,7 @@
                 <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
                 <DatePicker x:Name="txtEndDate" Margin="352,424,160,273" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
                 <Button x:Name="ContinueButton" Content="Continue" HorizontalAlignment="Center" Margin="0,545,0,0" VerticalAlignment="Top" Command="{Binding ViewModel.ContinueCommand}" Width="200" Height="50" Style="{StaticResource ButtonStyleN}"/>
-           
+                
  </Grid>
         </Border>
 
