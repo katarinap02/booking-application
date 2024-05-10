@@ -60,7 +60,7 @@ namespace BookingApp.Application.Services.FeatureServices
             _tourRequestRepository.Add(tourRequest);
         }
 
-        public int NextReservationId()
+        public int NextRequestId()
         {
             return _tourRequestRepository.NextId();
         }

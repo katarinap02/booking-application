@@ -44,6 +44,7 @@ namespace BookingApp.WPF.View.TouristPages
         {
             TourRequestWindow tourRequestWindow = new TourRequestWindow(TourRequest.UserId);
             tourRequestWindow.ShowDialog();
+            TourRequest.InitializeRequestedToursPage();
         }
     }
 }

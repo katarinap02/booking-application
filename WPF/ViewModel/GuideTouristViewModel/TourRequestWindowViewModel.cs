@@ -489,7 +489,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             TourParticipantDTOs.Add(ToTourParticipantViewModel(_tourReservationService.FindTouristById(UserId)));
             TourParticipantDTOs.Reverse();
-            int TourRequestdId = _tourRequestService.NextReservationId();
+            int TourRequestdId = _tourRequestService.NextRequestId();
 
             List<int> participantIds = new List<int>();
             foreach (TourParticipantViewModel tp in TourParticipantDTOs)
