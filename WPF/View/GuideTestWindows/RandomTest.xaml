@@ -4,7 +4,7 @@
         xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:viewModel ="clr-namespace:BookingApp.WPF.View.GuideTestWindows.TestViewModels"
         xmlns:cont ="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls" 
-        Title="Main Window" Width="1100" Height="600"        
+        Title="Main Window" Width="1200" Height="700" WindowStartupLocation="CenterScreen"        
         >
 
     <Window.DataContext>
@@ -30,6 +30,12 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:StatisticsViewModel}">
             <cont:Statistics/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:GuideReportViewModel}">
+            <cont:GuideReport/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:GuideAppInformationViewModel}">
+            <cont:AppInformation/>
         </DataTemplate>
     </Window.Resources>
 
@@ -71,10 +77,10 @@
                     <!--Logo-->
                     <StackPanel Orientation="Horizontal"
                                 Height="35"
-                                Margin="15,25,0,40">
+                                Margin="-10,25,0,40">
 
-                        <Image Source="/WPF/Resources/LoginImages/icon.png" Height="30"/>
-                        <TextBlock Text="Test"
+                            <Image Style="{StaticResource CustomLogoStyle}" Width="100" Height="100" Margin="0"/>
+                            <TextBlock Text="Booking App"
                                    Foreground="{StaticResource titleColor2}"
                                    FontSize="20"
                                    FontFamily="Montserrat"
@@ -143,8 +149,27 @@
                         </StackPanel>
                     </RadioButton>
 
-                    
-                </StackPanel>
+                        
+                    <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="{StaticResource color8}"
+                                     Command="{Binding ReportCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="FilePdf" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="PDF report" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                    </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                             Tag="{StaticResource color9}"
+                             Command="{Binding AppInfoCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="InfoCircle" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="Application info" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                        </RadioButton>
+
+
+                    </StackPanel>
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Grid.Row="1"
