@@ -1,6 +1,265 @@
 <Window x:Class="BookingApp.View.GuideTestWindows.RandomTest"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="Paper Plane Animation" Width="800" Height="600">
-     
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:viewModel ="clr-namespace:BookingApp.WPF.View.GuideTestWindows.TestViewModels"
+        xmlns:cont ="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls" 
+        Title="Main Window" Width="1200" Height="700" WindowStartupLocation="CenterScreen"        
+        >
+
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    
+    <Window.Resources>
+        <!-- Dodati ostatak -->
+        <DataTemplate DataType="{x:Type viewModel:MyToursViewModel}">
+            <cont:MyTours></cont:MyTours>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:TodaysToursViewModel}">
+            <cont:TodaysTours/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:UserInfoViewModel}">
+            <cont:UserInfo/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:TourRequestsViewModel}">
+            <cont:TourRequests/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:TakePartInViewModel}">
+            <cont:TakePart/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:StatisticsViewModel}">
+            <cont:Statistics/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:GuideReportViewModel}">
+            <cont:GuideReport/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:GuideAppInformationViewModel}">
+            <cont:AppInformation/>
+        </DataTemplate>
+    </Window.Resources>
+
+    <Border CornerRadius="10"   
+            BorderThickness="1">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"/>
+                <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.5"/>
+                <GradientStop Color="{StaticResource winBorderColor3}" Offset="1"/>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <!--Navigation menu-->
+                <ColumnDefinition Width="250"/>
+                <!--Content section-->
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <!--Navigation Menu-->
+            <Border CornerRadius="10,0,0,10"
+                    Grid.Column="0">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
+                        <GradientStop Color="{StaticResource secondaryBackColor1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource secondaryBackColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                
+                
+                <StackPanel Grid.Row="0">
+
+                    <!--Logo-->
+                    <StackPanel Orientation="Horizontal"
+                                Height="35"
+                                Margin="-10,25,0,40">
+
+                            <Image Style="{StaticResource CustomLogoStyle}" Width="100" Height="100" Margin="0"/>
+                            <TextBlock Text="Booking App"
+                                   Foreground="{StaticResource titleColor2}"
+                                   FontSize="20"
+                                   FontFamily="Montserrat"
+                                   FontWeight="Medium"
+                                   VerticalAlignment="Center"
+                                   Margin="10,0,0,0"/>
+                    </StackPanel>
+
+                    <!--Menu Buttons-->
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color1}"
+                                 Command="{Binding UserInfoCommand}"
+                                 >
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="UserAlt" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="User info" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Tag="{StaticResource color2}"
+                                 IsChecked="True"
+                                 Command="{Binding ShowTodaysToursCommand}"
+                                 >
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="CalendarDay" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Today's tours" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource menuButton}"
+                            Tag="{StaticResource color3}"
+                                 Command="{Binding MyToursCommand}"
+                            >
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Route" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="My tours" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource menuButton}"
+                             Tag="{StaticResource color4}"
+                                 Command="{Binding RequestsCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="EnvelopeOpenText" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Tour requests" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource menuButton}"
+                            Tag="{StaticResource color10}"
+                                 Command="{Binding TakePartCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="Signature" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Take part in a tour" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+                    
+                    <RadioButton Style="{StaticResource menuButton}"
+                            Tag="{StaticResource color6}"
+                                 Command="{Binding StatsCommand}">
+                        <StackPanel Orientation="Horizontal"
+                                    >
+                            <fa:IconImage Icon="ChartPie" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Statistics" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                        
+                    <RadioButton Style="{StaticResource menuButton}"
+                                     Tag="{StaticResource color8}"
+                                     Command="{Binding ReportCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="FilePdf" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="PDF report" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                    </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                             Tag="{StaticResource color9}"
+                             Command="{Binding AppInfoCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="InfoCircle" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="Application info" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                        </RadioButton>
+
+
+                    </StackPanel>
+
+                    <RadioButton Style="{StaticResource menuButton}"
+                                 Grid.Row="1"
+                                 Command="{Binding LogOutCommand}"
+                        Tag="{StaticResource color7}">
+                        <StackPanel Orientation="Horizontal">
+                            <fa:IconImage Icon="SignOutAlt" Style="{StaticResource menuButtonIcon}"/>
+                            <TextBlock Text="Log out" Style="{StaticResource menuButtonText}"/>
+                        </StackPanel>
+                    </RadioButton>
+
+                </Grid>
+
+            </Border>
+
+            <!--Main Section-->
+            <Border CornerRadius="0,10,10,0"
+                    Grid.Column="1">
+                <Border.Background>
+                    <LinearGradientBrush StartPoint="1,1" EndPoint="0,0">
+                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"/>
+                        <GradientStop Color="{StaticResource primaryBackColor2}" Offset="1"/>
+                    </LinearGradientBrush>
+                </Border.Background>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <!--Control bar-->
+                        <RowDefinition Height="25"/>
+                        <!--Header / Caption-->
+                        <RowDefinition Height="35"/>
+                        <!--Content section / Child views-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <!--Control bar-->
+                    <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                Margin="0,0,5,0"
+                                MouseLeftButtonDown="pnlControlBar_MouseLeftButtonDown"
+                                MouseEnter="pnlControlBar_MouseEnter">
+                        
+                    </StackPanel>
+                    <!--Header / Caption-->
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Caption-->
+                        <StackPanel Grid.Column="0"
+                                    Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <fa:IconImage Icon="{Binding Icon}"
+                                          Height="20"
+                                          Width="20"
+                                          Foreground="{StaticResource titleColor2}"
+                                          Margin="35,0,10,0"/>
+
+                            <TextBlock Text="{Binding Caption}"
+                                       Foreground="{StaticResource titleColor2}"
+                                       FontSize="16"
+                                       FontFamily="Montserrat"
+                                       FontWeight="Medium"
+                                       VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                        <!--User options-->
+                        <StackPanel Grid.Column="1"
+                                    Orientation="Horizontal"
+                                    FlowDirection="RightToLeft"
+                                    VerticalAlignment="Center"
+                                    Margin="0,0,10,0">                           
+                            
+                            
+                        </StackPanel>
+
+                    </Grid>
+                    
+                    <!--Content section / Child views-->
+                    <ContentControl Content="{Binding CurrentChildView}"
+                                    Grid.Row="2"
+                                    Margin="25"/>
+
+                </Grid>
+            </Border>
+        </Grid>
+    </Border>
+
+
 </Window>

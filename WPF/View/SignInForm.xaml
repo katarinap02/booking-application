@@ -250,7 +250,7 @@
                     FontFamily="Monospace"
                     Foreground="White"
                     Click="SignIn"
-                    Margin="0, 50, 0,0"
+                    Margin="0, 50, 0,0" Width="151"
                     
                     >
 

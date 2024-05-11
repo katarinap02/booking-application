@@ -7,12 +7,13 @@ using System.Windows.Media;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Repository.FeatureRepository;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.WPF.View.GuideTestWindows.TestViewModels;
 
 namespace BookingApp.View.GuideWindows
 {
     public partial class GuideWithTourWindow : Window
     {
-        private ObservableCollection<Checkpoint> checkpointsWithColors;
+        private ObservableCollection<CheckpointViewModel> checkpointsWithColors;
         private int currentCheckpointIndex;
         private TourRepository tourRepository;
         private GuidedTourRepository guidedTourRepository;
@@ -30,12 +31,12 @@ namespace BookingApp.View.GuideWindows
 
             var checkpoints = tourDTO.Checkpoints;
 
-            checkpointsWithColors = new ObservableCollection<Checkpoint>();
+            checkpointsWithColors = new ObservableCollection<CheckpointViewModel>();
             SolidColorBrush activeColor = Brushes.Green;
             SolidColorBrush inactiveColor = Brushes.Gray;
             foreach (var checkpoint in checkpoints)
             {
-                checkpointsWithColors.Add(new Checkpoint { Name = checkpoint, IndicatorColor = inactiveColor });
+                checkpointsWithColors.Add(new CheckpointViewModel { Name = checkpoint, IndicatorColor = inactiveColor });
             }
 
             Informations.Text = "You are currently on checkpoint number " + (currentCheckpointIndex + 1) + " out of " + (checkpoints.Count);
@@ -127,27 +128,5 @@ namespace BookingApp.View.GuideWindows
         }
 
     }
-
-    public class Checkpoint : INotifyPropertyChanged
-    {
-        private string name;
-        public string Name
-        {
-            get { return name; }
-            set { name = value; NotifyPropertyChanged(nameof(Name)); }
-        }
-
-        private Brush indicatorColor;
-        public Brush IndicatorColor
-        {
-            get { return indicatorColor; }
-            set { indicatorColor = value; NotifyPropertyChanged(nameof(IndicatorColor)); }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-        private void NotifyPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
+    
 }

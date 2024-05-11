@@ -6,6 +6,8 @@ using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;
 using BookingApp.WPF.View.GuideTestWindows;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.WPF.View.GuideTestWindows.GuideControls;
+using BookingApp.WPF.ViewModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -103,6 +105,7 @@ namespace BookingApp.View
                             {
                                 RequestTest requestTest = new RequestTest();
                                 requestTest.Show();
+                                
                             }
                             else
                             {
@@ -119,8 +122,7 @@ namespace BookingApp.View
                         GuestWindow guestWindow = new GuestWindow(user);
                         guestWindow.ShowDialog();
                     }
-                    //Close();
-
+                    //Close(); // obrisati zbog HCI-ja
                 } 
                 else
                 {

@@ -1,0 +1,66 @@
+﻿<UserControl x:Class="BookingApp.WPF.View.GuideTestWindows.GuideControls.AppInformation"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="230"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!-- Content in Column 0 -->
+        <Grid Margin="20">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+
+            <Label Grid.Row="0" FontSize="20" Style="{StaticResource HeaderStyleN}" Foreground="{StaticResource color1}">About the app</Label>
+            <TextBlock Grid.Row="1" TextWrapping="Wrap" FontSize="14" TextAlignment="Justify" Foreground="{StaticResource titleColor1}" Margin="20">
+                Welcome to our booking app, where simplicity meets satisfaction. We've simplified the reservation process, ensuring your journey from browsing to booking is effortless.
+            </TextBlock>
+            <Label Grid.Row="2" FontSize="17" Style="{StaticResource HeaderStyleN}" Content="Developers" Foreground="{StaticResource color1}"/>
+            <TextBlock Grid.Row="3" FontSize="14" TextWrapping="Wrap" Foreground="{StaticResource plainTextColor1}" Margin="10">
+                <Run Text="• Katarina Petrovic, RA 17/2021"/>
+                <LineBreak/>
+                <Run Text="• Natasa Radmilovic, RA 20/2021"/>
+                <LineBreak/>
+                <Run Text="• Teodora Becejac, RA 37/2021"/>
+                <LineBreak/>
+                <Run Text="• Akos Kis, RA 11/2021"/>
+            </TextBlock>
+            <TextBlock Grid.Row="4" TextWrapping="Wrap" FontSize="14" TextAlignment="Justify" Foreground="{StaticResource titleColor1}" Margin="20,0,20,10">
+                Our team of developers comprises talented students who are passionate about creating innovative solutions. With a blend of academic knowledge and practical skills, they bring fresh perspectives to our project. Each developer is motivated, enthusiastic, and committed to delivering high-quality results. Together, they collaborate seamlessly, leveraging their diverse experiences to drive innovation and success.
+            </TextBlock>
+            <TextBlock Grid.Row="5" TextWrapping="Wrap" FontSize="14" TextAlignment="Justify" Foreground="{StaticResource titleColor1}" Margin="20,0,20,10">
+                <Run Text="Discover a wide range of accommodations tailored to your preferences and budget, and book with confidence. Our user-friendly interface makes finding the perfect place easy."/>
+            </TextBlock>
+        </Grid>
+
+        <!-- Content in Column 1 (if any) -->
+        <Border Grid.Column="1" BorderThickness="2" CornerRadius="20">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                    <GradientStop Color="HotPink" Offset="0"></GradientStop>
+                    <GradientStop Color="LightCoral" Offset="0.5"></GradientStop>
+                    <GradientStop Color="Magenta" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+            <StackPanel Orientation="Vertical">
+                <Label FontSize="17" Style="{StaticResource HeaderStyleN}" Content="List of shortcuts" Foreground="{StaticResource color7}" Margin="15"/>
+                <TextBlock Grid.Row="5" TextWrapping="Wrap" FontSize="14" TextAlignment="Justify" Foreground="{StaticResource titleColor1}" Margin="20,0,20,10">
+                <Run Text="Currently, none of the shortcuts are implemented. They will be also acessible by clicking CTRL + / (as in most Integrated Development Environments)."/>
+                </TextBlock>
+            </StackPanel>
+        </Border>
+
+    </Grid>
+</UserControl>
