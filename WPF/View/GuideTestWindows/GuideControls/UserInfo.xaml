@@ -27,14 +27,14 @@
                     <GradientStop Color="#60784DFD" Offset="1"></GradientStop>
                 </LinearGradientBrush>
             </Border.Background>
-            <Grid>
+            <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
                 <TextBlock Grid.Row="0" Margin="10" Style="{StaticResource GuideTextBlockStyle}" FontSize="20" Text="General information"></TextBlock>
                 
-                <Grid Grid.Row="1">
+                <Grid Grid.Row="1" Margin="12">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"></ColumnDefinition>
                         <ColumnDefinition Width="*"></ColumnDefinition>
@@ -48,7 +48,7 @@
                     <!-- Top-left part -->
                     <Grid Grid.Column="0" Grid.Row="0">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="TextBlock 1" Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="Name: " Style="{StaticResource GuideTextBlockStyle}"/>
                             <TextBlock Text="DRAGANA" Style="{StaticResource GuideTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
@@ -56,7 +56,7 @@
                     <!-- Top-center part -->
                     <Grid Grid.Column="1" Grid.Row="0">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="TextBlock 1" Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="Username: " Style="{StaticResource GuideTextBlockStyle}"/>
                             <TextBlock Text="TextBlock 2" Style="{StaticResource GuideTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
@@ -64,15 +64,15 @@
                     <!-- Top-right part -->
                     <Grid Grid.Column="2" Grid.Row="0">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="TextBlock 1" Style="{StaticResource GuideTextBlockStyle}"/>
-                            <TextBlock Text="TextBlock 2" Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="Email: " Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="fjeio" Style="{StaticResource GuideTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
 
                     <!-- Bottom-left part -->
                     <Grid Grid.Column="0" Grid.Row="1">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="TextBlock 1" Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="Surname: " Style="{StaticResource GuideTextBlockStyle}"/>
                             <TextBlock Text="TextBlock 2" Style="{StaticResource GuideTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
@@ -80,7 +80,7 @@
                     <!-- Bottom-center part -->
                     <Grid Grid.Column="1" Grid.Row="1">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="TextBlock 1" Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="Current age: " Style="{StaticResource GuideTextBlockStyle}"/>
                             <TextBlock Text="TextBlock 2" Style="{StaticResource GuideTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
@@ -88,7 +88,7 @@
                     <!-- Bottom-right part -->
                     <Grid Grid.Column="2" Grid.Row="1">
                         <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="TextBlock 1" Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="Phone number: " Style="{StaticResource GuideTextBlockStyle}"/>
                             <TextBlock Text="TextBlock 2" Style="{StaticResource GuideTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
@@ -164,18 +164,18 @@
         </Border>
         
         <!-- Super guide -->
-        <Border Grid.ColumnSpan="2" Grid.Row="2" BorderBrush="LightPink" BorderThickness="1" CornerRadius="20" Margin="3">
+        <Border Grid.ColumnSpan="2" Grid.Row="2" BorderBrush="AliceBlue" BorderThickness="1" CornerRadius="20" Margin="3">
             <Border.Background>
                 <SolidColorBrush Color="#903d0148"></SolidColorBrush>
             </Border.Background>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="15">
-                <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
+                <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                     <fa:IconImage Icon="Crown" Foreground="PaleGoldenrod"></fa:IconImage>
                     <TextBlock Style="{StaticResource GuideTextBlockStyle}" Margin="10,0,0,0" Text="Super guide progress for current year:" FontSize="15" VerticalAlignment="Bottom"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="8">
-                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="Is currently a super guide:"></TextBlock>
-                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Margin="10,0,0,0" Text="Yes/No" FontSize="15" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="Super guide status:"></TextBlock>
+                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Margin="10,0,0,0" Text="Regular guide" FontSize="15" VerticalAlignment="Bottom"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="8">
                     <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="Biggest number of tours for a single language:"></TextBlock>
@@ -189,7 +189,7 @@
         </Border>
         
         <!-- Quitting -->
-        <Border Grid.Column="2" Grid.Row="2" CornerRadius="20" Margin="3" Background="#95490000">
+        <Border Grid.Column="2" Grid.Row="2" CornerRadius="20" Margin="3" BorderThickness="1" BorderBrush="AliceBlue" Background="#95490000">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>
