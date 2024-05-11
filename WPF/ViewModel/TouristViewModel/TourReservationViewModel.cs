@@ -412,6 +412,19 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
             //ako postoji vec rezervacija za tu turu
             TourReservationViewModel reservation = ToTourReservationViewModel(_tourReservationService.FindReservationByTOuristIdAndTourId(UserId, SelectedTour.Id));
+            
+            Save(reservation);
+            // ovo za vaucere
+            if (_voucherService.HasVoucher(UserId))
+            {
+                VoucherWindow voucherWindom = new VoucherWindow(UserId);
+                voucherWindom.ShowDialog();
+            }
+            System.Windows.MessageBox.Show("Tour " + "\"" + SelectedTour.Name + "\"" + " booked!", "Tour booked", MessageBoxButton.OK, MessageBoxImage.Information);
+            return true;
+        }
+        private void Save(TourReservationViewModel reservation)
+        {
             // ovo znaci da vec ima rezervacija
             if (reservation != null)
             {
@@ -423,14 +436,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 saveReservation();
             }
             ReduceNumberOfAvailablePlaces();
-            // ovo za vaucere
-            if (_voucherService.HasVoucher(UserId))
-            {
-                VoucherWindow voucherWindom = new VoucherWindow(UserId);
-                voucherWindom.ShowDialog();
-            }
-            System.Windows.MessageBox.Show("Tour " + "\"" + SelectedTour.Name + "\"" + " booked!", "Tour booked", MessageBoxButton.OK, MessageBoxImage.Information);
-            return true;
         }
 
         private void ReduceNumberOfAvailablePlaces()

@@ -80,7 +80,29 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         public void TourDetailsWindowInitialization(bool IsMyTour)
         {
+            InitializePdfPanel(IsMyTour);
+
+            InitializeCheckpoints();
+
+            InitializePictures();
+        }
+        private void InitializePictures()
+        {
+            if (SelectedTour.Pictures != null)
+            {
+                for (int i = 0; i < SelectedTour.Pictures.Count; i++)
+                {
+                    SelectedTour.Pictures[i] = "../../" + SelectedTour.Pictures[i];
+                }
+            }
+        }
+        private void InitializePdfPanel(bool IsMyTour)
+        {
             PdfPanel = Visibility.Collapsed;
+            PdfPanel = IsMyTour ? Visibility.Visible : PdfPanel;
+        }
+        private void InitializeCheckpoints()
+        {
             SolidColorBrush activeColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4F4A09"));
             SolidColorBrush inactiveColor = Brushes.LightGray;
             CheckpointWithColors.Clear();
@@ -88,8 +110,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             {
                 CheckpointWithColors.Add(new Checkpoint { Name = checkpoint, IndicatorColor = inactiveColor });
             }
-
-            PdfPanel = IsMyTour ? Visibility.Visible : PdfPanel;
 
             int checkpointIndex = SelectedTour.CurrentCheckpoint;
             for (int i = 0; i < SelectedTour.Checkpoints.Count; i++)
@@ -101,14 +121,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 else
                 {
                     CheckpointWithColors[i].IndicatorColor = inactiveColor;
-                }
-            }
-            // images
-            if (SelectedTour.Pictures != null)
-            {
-                for (int i = 0; i < SelectedTour.Pictures.Count; i++)
-                {
-                    SelectedTour.Pictures[i] = "../../" + SelectedTour.Pictures[i];
                 }
             }
         }

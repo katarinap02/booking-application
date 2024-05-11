@@ -90,11 +90,10 @@ namespace BookingApp.Domain.Model.Features
             if (other == null)
                 return false;
 
-            return TourId == other.TourId &&
-                   TouristId == other.TouristId &&
-                   CurrentCheckpoint == other.CurrentCheckpoint &&
-                   NotificationType == other.NotificationType;
+            return (TourId, TouristId, CurrentCheckpoint, NotificationType)
+                .Equals((other.TourId, other.TouristId, other.CurrentCheckpoint, other.NotificationType));
         }
+
         public override bool Equals(object obj)
         {
             if (obj == null || GetType() != obj.GetType())
