@@ -15,6 +15,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.WPF.View.TouristWindows;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -31,6 +33,16 @@ namespace BookingApp.View.TouristWindows
             Tour.SelectedTour = selectedTour;
             DataContext = Tour;
             Tour.TourDetailsWindowInitialization(isMyTour);
+            Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
+        }
+        private void CloseWindow(CloseWindowMessage messsage)
+        {
+            Close();
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Messenger.Default.Unregister(this);
         }
 
         private void PdfButton_Click(object sender, RoutedEventArgs e)
@@ -38,8 +50,12 @@ namespace BookingApp.View.TouristWindows
 
         }
 
+        private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Close();
         }

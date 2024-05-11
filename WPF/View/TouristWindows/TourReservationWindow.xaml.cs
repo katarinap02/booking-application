@@ -17,6 +17,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -34,14 +35,13 @@ namespace BookingApp.View.TouristWindows
             InitializeComponent();
             TourReservation = new TourReservationViewModel();
             DataContext = TourReservation;
-            TourReservation.SelectedTour = selectedTour;
-            TourReservation.ParticipantCount = insertedNumberOfParticipants.ToString();
-            TourReservation.UserId = userId;
-
+  
+            TourReservation.InitializeTourReservationWindow(selectedTour, insertedNumberOfParticipants, userId);
+            Messenger.Default.Register<NotificationMessage>(this, message =>
+            {
+                MessageBox.Show(message.Notification, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            });
         }
-
-
-
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
             Close();
@@ -52,11 +52,10 @@ namespace BookingApp.View.TouristWindows
             if(TourReservation.Book())
                 Close();
         }
-
-        private void removeParticipant_Click(object sender, RoutedEventArgs e)
+        protected override void OnClosed(EventArgs e)
         {
-            TourReservation.RemoveParticipant();
+            base.OnClosed(e);
+            Messenger.Default.Unregister(this);
         }
-
     }
 }

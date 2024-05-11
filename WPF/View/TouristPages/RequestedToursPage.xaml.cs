@@ -34,7 +34,10 @@ namespace BookingApp.WPF.View.TouristPages
 
             TourRequest.InitializeRequestedToursPage();
         }
-
+        private void CanExecute(CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
         {
             TourRequest.NotificationButton();
@@ -42,9 +45,56 @@ namespace BookingApp.WPF.View.TouristPages
 
         private void RequestTour_OnClick(object sender, RoutedEventArgs e)
         {
-            TourRequestWindow tourRequestWindow = new TourRequestWindow(TourRequest.UserId);
-            tourRequestWindow.ShowDialog();
-            TourRequest.InitializeRequestedToursPage();
+            TourRequest.RequestTourClick();
+        }
+        private void Notification_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            CanExecute(e);
+        }
+
+        private void Notification_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TourRequest.NotificationButton();
+        }
+
+        private void Request_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            CanExecute(e);
+        }
+
+        private void Request_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TourRequest.RequestTourClick();
+        }
+
+        private void BasicTours_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            CanExecute(e);
+        }
+
+        private void BasicTours_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            RequestTabControl.SelectedIndex = 0;
+        }
+
+        private void ComplexTours_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            CanExecute(e);
+        }
+
+        private void ComplexTours_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            RequestTabControl.SelectedIndex = 1;
+        }
+
+        private void Statistics_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            CanExecute(e);
+        }
+
+        private void Statistics_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TourRequest.StatisticsClick();
         }
     }
 }

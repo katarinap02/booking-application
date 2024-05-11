@@ -87,7 +87,79 @@ namespace BookingApp.WPF.ViewModel.Commands
             typeof(RoutedCommands),
             new InputGestureCollection()
             {
+                new KeyGesture(Key.R, ModifierKeys.Alt)
+            });
+        public static readonly RoutedUICommand Request = new RoutedUICommand(
+            "Clicking request button",
+            "Request",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
                 new KeyGesture(Key.R, ModifierKeys.Control)
-            }); 
+            });
+        public static readonly RoutedUICommand Statistics = new RoutedUICommand(
+            "Clicking statistics button",
+            "Statistics",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.S, ModifierKeys.Control)
+            });
+        public static readonly RoutedUICommand BasicTours = new RoutedUICommand(
+            "Switching to basic tours",
+            "Basic tours",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.B, ModifierKeys.Alt)
+            });
+        public static readonly RoutedUICommand ComplexTours = new RoutedUICommand(
+            "Switching to complex tours",
+            "Complex tours",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.C, ModifierKeys.Alt)
+            });
+        public static readonly RoutedUICommand Close = new RoutedUICommand(
+            "Close button click",
+            "Close",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.C, ModifierKeys.Control)
+            });
+        public static readonly RoutedUICommand Confirm = new RoutedUICommand(
+                       "Confirm button click",
+                                  "Confirm",
+                                             typeof(RoutedCommands),
+                                                        new InputGestureCollection()
+                                                        {
+                new KeyGesture(Key.S, ModifierKeys.Control)
+            });
+        public static readonly RoutedUICommand AddParticipant = new RoutedUICommand(
+            "Add participant click",
+            "AddParticipant",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.A, ModifierKeys.Alt)
+            });
+        public static readonly RoutedUICommand ParticipantName = new RoutedUICommand(
+            "Participant name focus",
+            "Participant name",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.N, ModifierKeys.Alt)
+            });
+        public static readonly RoutedUICommand CountryFocus = new RoutedUICommand(
+            "Country focus",
+            "Country",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.C, ModifierKeys.Alt)
+            });
     }
 }

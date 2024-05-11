@@ -5,9 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.WPF.View.TouristWindows"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
         Title="TourRequestWindow" Height="800" Width="900" WindowStartupLocation="CenterScreen">
-
+    <Window.CommandBindings>
+        <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.AddParticipant" CanExecute="AddParticipant_CanExecute" Executed="AddParticipant_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.ParticipantName" CanExecute="ParticipantName_CanExecute" Executed="ParticipantName_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.CountryFocus" CanExecute="CountryFocus_CanExecute" Executed="CountryFocus_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.Confirm" CanExecute="Confirm_CanExecute" Executed="Confirm_Executed"/>
+    </Window.CommandBindings>
     <Window.Resources>
         <local:ValidationErrorsConverter x:Key="ValidationErrorsConverter"/>
         <Style x:Key="BasicLabels" TargetType="Label">
@@ -202,6 +209,7 @@
                Style="{StaticResource BasicLabels}"
                VerticalAlignment="Center"></Label>
         <DatePicker Grid.Column="2"
+                    x:Name="StartDatePicker"
                     SelectedDate="{Binding SelectedStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     DisplayDateStart="{Binding MinDateStart, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                     Grid.Row="9"
@@ -209,6 +217,7 @@
                     FontSize="14"
                     PreviewTextInput="DatePicker_PreviewTextInput"
                     PreviewKeyDown="DatePicker_PreviewKeyDown"
+                    IsKeyboardFocusWithinChanged="StartDatePicker_IsKeyboardFocusWithinChanged"
                     Height="25"></DatePicker>
         <DatePicker Grid.Column="2"
                     IsEnabled="{Binding IsEndDateEnabled, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"

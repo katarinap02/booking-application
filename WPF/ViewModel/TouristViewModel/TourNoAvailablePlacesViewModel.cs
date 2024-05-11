@@ -2,6 +2,7 @@
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.View.TouristWindows;
+using BookingApp.WPF.View.TouristWindows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,6 +10,8 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
@@ -18,9 +21,23 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         public ObservableCollection<TourViewModel> Tours { get; set; }
 
+        private ICommand _closeCommand;
+        public ICommand CloseCommand
+        {
+            get
+            {
+                if (_closeCommand == null)
+                {
+                    _closeCommand = new RelayCommand(param => CloseWindow());
+                }
+                return _closeCommand;
+            }
+        }
+        private void CloseWindow()
+        {
+            Messenger.Default.Send(new CloseWindowMessage());
+        }
         private TourViewModel _selectedTour;
-
-
         public TourViewModel SelectedTour
         {
             get

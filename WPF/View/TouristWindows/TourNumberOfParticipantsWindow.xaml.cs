@@ -50,5 +50,25 @@ namespace BookingApp.View.TouristWindows
             Tour.ConfirmNumberOfParticipants();
             Close();
         }
+        private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void Confirm_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Confirm_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Tour.ConfirmNumberOfParticipants();
+            Close();
+        }
     }
 }
