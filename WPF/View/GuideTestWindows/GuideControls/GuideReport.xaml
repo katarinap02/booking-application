@@ -7,6 +7,39 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="230"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <TextBlock Grid.Row="0"  VerticalAlignment="Center" Width="300" FontSize="20" Style="{StaticResource GuideTextBlockStyle}" Text="Konsultovati se sa asistentom, nema besplatne opcije sa live preview-om, samo da se vidi vec napravljen PDF" ></TextBlock>
+        
+        <!-- desna strana -->
+        <Border Grid.Column="1" BorderThickness="2" CornerRadius="20">
+            <Border.BorderBrush>
+                <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                    <GradientStop Color="#784DFD" Offset="0"></GradientStop>
+                    <GradientStop Color="#4ADAEC" Offset="0.5"></GradientStop>
+                    <GradientStop Color="#07F3C0" Offset="1"></GradientStop>
+                </LinearGradientBrush>
+            </Border.BorderBrush>
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <StackPanel Orientation="Vertical">
+                <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="Select a tour for which you want to generate a report:" FontSize="15" Margin="15"></TextBlock>
+                <DataGrid Style="{StaticResource GuideDataGridStyle}">
+                    <DataGrid.Columns>                        
+                        <DataGridTextColumn ClipboardContentBinding="{x:Null}" Header="Tour Name" HeaderStringFormat=""/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
+            <Button Grid.Row="1" Content="Generate PDF" Margin="10,10,10,10" Style="{StaticResource generalButton}" Height="27" Foreground="#060531" BorderBrush="#FB539B"/>
+
+        </Grid>
+        </Border>
+
     </Grid>
 </UserControl>
