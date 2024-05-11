@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 {
@@ -71,6 +72,8 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         public ICommand StatsCommand { get; }
         public ICommand LogOutCommand { get; }
         public ICommand RequestsCommand { get; }
+        public ICommand ReportCommand { get; }
+        public ICommand AppInfoCommand { get; }
 
         public MainViewModel()
         {
@@ -82,6 +85,8 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             StatsCommand = new ViewModelCommand(ExecuteShowStatisticsViewCommand);
             LogOutCommand = new ViewModelCommand(ExecuteShowLogoutViewCommand);
             RequestsCommand = new ViewModelCommand(ExecuteShowTourRequestsViewCommand);
+            ReportCommand = new ViewModelCommand(ExecuteShowReportCommand);
+            AppInfoCommand = new ViewModelCommand(ExecuteShowAppInfoCommand);
 
             CurrentChildView = new TodaysToursViewModel();
             Caption = "Todays Tours";
@@ -91,6 +96,18 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 
         #region ImplementacijaKomandi
 
+        private void ExecuteShowAppInfoCommand(object obj)
+        {
+            CurrentChildView = new GuideAppInformationViewModel();
+            Icon = IconChar.InfoCircle;
+            Caption = "Application info";
+        }
+        private void ExecuteShowReportCommand(object obj)
+        {
+            CurrentChildView = new GuideReportViewModel();
+            Icon = IconChar.FilePdf;
+            Caption = "PDF report";
+        }
         private void ExecuteShowTourRequestsViewCommand(object obj)
         {
             CurrentChildView = new TourRequestsViewModel();
