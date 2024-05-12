@@ -22,11 +22,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         private DateTime _acceptedDate;
         private int _guideId;
         private DateTime _dateRequested;
-
-        public int ParticipantNumber
-        {
-            get => _participantIds.Count;
-        }
+        
         public string City
         {
             get { return _city; }
