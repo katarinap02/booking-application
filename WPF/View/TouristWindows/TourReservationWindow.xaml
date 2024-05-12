@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:touristWindows="clr-namespace:BookingApp.WPF.View.TouristWindows"
+        xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
         Title="TourReservationWindow" Height="557" Width="1000" WindowStartupLocation="CenterScreen">
     <Window.Resources>
@@ -15,6 +16,10 @@
         </Style>
         <touristWindows:ValidationErrorsConverter x:Key="ValidationErrorsConverter"/>
     </Window.Resources>
+    <Window.CommandBindings>
+        <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.AddParticipant" CanExecute="AddParticipant_CanExecute" Executed="AddParticipant_Executed"/>
+    </Window.CommandBindings>
     <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -54,15 +59,16 @@
                Grid.Column="2"
                Grid.Row="1"
                Grid.ColumnSpan="2"
-               FontSize="20"
-               Style="{StaticResource BasicLabels}"/>
+               Style="{StaticResource BasicLabels}"
+               VerticalAlignment="Center"
+               Margin="-115, 0, 0 ,0"/>
         <Label x:Name="tourName"
                Content="{Binding SelectedTour.Name}"
                VerticalAlignment="Center"
                Grid.Column="3"
-               Grid.Row="1" Grid.ColumnSpan="2" Margin="15,0,0,0"
+               Grid.Row="1" Grid.ColumnSpan="2" Margin="-90,0,0,0"
                FontWeight="Bold"
-               FontSize="15"/>
+               FontSize="22"/>
         <Label Content="Change number of participants:"
                Style="{StaticResource BasicLabels}"
                Grid.Row="2"
@@ -96,15 +102,20 @@
                Grid.Row="3"
                FontSize="15"
                Content="{Binding SelectedTour.AvailablePlaces}"
-               HorizontalContentAlignment="Left"
-               Foreground="Green"
-               />
+               Foreground="WhiteSmoke"
+               Background="DarkGreen"
+               Width="30"
+               HorizontalAlignment="Left">
+            
+        </Label>
 
         <GroupBox x:Name="ParticipantInformationGroupBox"
                   Grid.Row="5" 
                   Grid.Column="1" 
                   Grid.RowSpan="5"
                   Grid.ColumnSpan="4"
+                  FontSize="13"
+                  FontWeight="Medium"
                   Header="Participant Information" Margin="10,0,125,0">
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -194,7 +205,7 @@
         </GroupBox>
 
         <Button Content="Close"
-                Click="CloseButton_Click"
+                Command="{Binding CloseCommand}"
                 Style="{StaticResource EnlargeButtonStyle}"
                 FontSize="20"
                 Grid.Row="12"

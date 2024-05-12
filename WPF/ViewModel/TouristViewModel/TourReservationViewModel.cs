@@ -6,6 +6,7 @@ using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
 using BookingApp.View.TouristWindows;
+using BookingApp.WPF.View.TouristWindows;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections;
@@ -38,6 +39,24 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         public RelayCommand AddParticipantCommand { get; set; }
 
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
+
+        private ICommand _closeCommand;
+        public ICommand CloseCommand
+        {
+            get
+            {
+                if (_closeCommand == null)
+                {
+                    _closeCommand = new RelayCommand(param => CloseWindow());
+                }
+                return _closeCommand;
+            }
+        }
+
+        private void CloseWindow()
+        {
+            Messenger.Default.Send(new CloseWindowMessage());
+        }
 
         private ICommand _removeParticipantCommand;
         public ICommand RemoveParticipantCommand

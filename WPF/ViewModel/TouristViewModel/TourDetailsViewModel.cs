@@ -88,12 +88,18 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         }
         private void InitializePictures()
         {
+            var imagePlaceholder = "../../Resources/Images/no_image.jpg";
             if (SelectedTour.Pictures != null)
             {
                 for (int i = 0; i < SelectedTour.Pictures.Count; i++)
                 {
-                    SelectedTour.Pictures[i] = "../../" + SelectedTour.Pictures[i];
+                    if (!SelectedTour.Pictures[i].StartsWith("../../"))
+                        SelectedTour.Pictures[i] = "../../" + SelectedTour.Pictures[i];
                 }
+            }
+            else
+            {
+                SelectedTour.Pictures = new List<string> { imagePlaceholder };
             }
         }
         private void InitializePdfPanel(bool IsMyTour)

@@ -161,5 +161,21 @@ namespace BookingApp.WPF.ViewModel.Commands
             {
                 new KeyGesture(Key.C, ModifierKeys.Alt)
             });
+        public static readonly RoutedUICommand AddImage = new RoutedUICommand(
+            "Add image click",
+            "AddImage",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.A, ModifierKeys.Alt)
+            });
+        public static readonly RoutedUICommand Submit = new RoutedUICommand(
+            "Submit button click",
+            "Submit",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.S, ModifierKeys.Control)
+            });
     }
 }

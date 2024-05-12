@@ -341,6 +341,7 @@
                FontWeight="Bold"
                Grid.Row="4"
                Grid.Column="4"
+               FontSize="20"
                VerticalAlignment="Bottom"/>
         <ListBox x:Name="ParticipantsListBox"
                  ItemsSource="{Binding ParticipantsListBox}"

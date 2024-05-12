@@ -53,6 +53,9 @@
                         <DataTemplate>
                             <Button Content="Details" Click="DetailsButton_Click"
                                     Height="30"
+                                    Width="80"
+                                    VerticalAlignment="Center"
+                                    HorizontalAlignment="Center"
                                     Style="{StaticResource EnlargeButtonStyle1}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
