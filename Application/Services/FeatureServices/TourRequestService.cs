@@ -64,12 +64,23 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             return _tourRequestRepository.NextId();
         }
-    
-        public List<int> GetYearlyStatistic()
+        
+        public List<TourRequest> getRequestsForLocation(string city, string country)
         {
             List<TourRequest> requests = _tourRequestRepository.GetAll();
+            return requests.FindAll(x => x.City == city && x.Country == country);
+        }
+
+        public List<TourRequest> getRequestsForLanguage(string language)
+        {
+            List<TourRequest> requests = _tourRequestRepository.GetAll();
+            return requests.FindAll(x => x.Language == language);
+        }        
+
+        public List<int> GetYearlyStatistic(List<TourRequest> requests)
+        {
             // kao pretpostavku smo uzeli da ova aplikacija postoji od 2023 godine
-            List<int> yearly_requests = new List<int>();
+            List<int> yearly_requests = new List<int>() { 0, 0 };
             foreach (var request in requests)
             {
                 if (request.DateRequested.Year == 2023)
@@ -85,11 +96,12 @@ namespace BookingApp.Application.Services.FeatureServices
             return yearly_requests;
         }
 
-        public List<int> GetMonthlyStatistics(int year)
+        public List<int> GetMonthlyStatistics(List<TourRequest> requests1, int year)
         {
-            List<TourRequest> requests = _tourRequestRepository.GetAllForYear(year);
-            List<int> monthly_requests = new List<int>();
-            foreach(var request in requests)
+            List<TourRequest> requests = requests1.FindAll(x => x.DateRequested.Year == year);
+            List<int> monthly_requests = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            foreach (var request in requests)
             {
                 for(int j  = 0; j < 12; j++) 
                 {
