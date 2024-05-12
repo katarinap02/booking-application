@@ -27,32 +27,31 @@ namespace BookingApp.Application.Services.FeatureServices
             tourRequest.GuideId = GuideId;
             _tourRequestRepository.UpdateRequest(tourRequest);
         }
-        public List<TourRequest> filterRequests(TourRequest searchCriteria) // + broj participanata
+        public List<TourRequest> filterRequests(TourRequest searchCriteria, int ParticipantNumber) 
         {
             List<TourRequest> tourRequests = _tourRequestRepository.GetAllPending();
             List<TourRequest> filteredRequests = tourRequests;
 
             if (!string.IsNullOrEmpty(searchCriteria.City))
             {
-                MessageBox.Show("usao", "City");
                 filteredRequests = tourRequests.FindAll(x => x.City.ToLower().Contains(searchCriteria.City.ToLower())).ToList();
             }
             if (!string.IsNullOrEmpty(searchCriteria.Country))
             {
-                MessageBox.Show("usao", "Country");
                 filteredRequests = filteredRequests.FindAll(x => x.Country.ToLower().Contains(searchCriteria.Country.ToLower())).ToList();
             }
             if (!string.IsNullOrEmpty(searchCriteria.Language))
             {                
                 filteredRequests = filteredRequests.FindAll(x => x.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();                
             }
-            /*
-            if (searchCriteria.StartDate != null && searchCriteria.EndDate != null)
+            if (ParticipantNumber != 0)
             {
-                MessageBox.Show("usao", "datumi");
+                filteredRequests = filteredRequests.FindAll(x => x.ParticipantIds.Count() == ParticipantNumber).ToList();
+            }
+            if (searchCriteria.StartDate != DateTime.MinValue && searchCriteria.EndDate != DateTime.MaxValue)
+            {                
                 filteredRequests = tourRequests.FindAll(x => x.StartDate >= searchCriteria.StartDate && x.EndDate <= searchCriteria.EndDate).ToList();
-            }*/
-            
+            }
             return filteredRequests;
         }
 

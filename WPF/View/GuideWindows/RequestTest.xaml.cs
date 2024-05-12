@@ -5,19 +5,49 @@ using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Windows;
 
 namespace BookingApp.WPF.View.GuideWindows
 {
-    public partial class RequestTest: Window
+    public partial class RequestTest: Window, INotifyPropertyChanged
     {
         private readonly TourRequestService _tourRequestService;
         public ObservableCollection<TourRequestDTOViewModel> tourRequestViewModels { get; set; }
         public TourRequestDTOViewModel SearchCriteria { get; set; }
+        public TourRequestDTOViewModel SelectedRequest { get; set; }
 
-        public RequestTest()
+        private int _participantNumber;
+        public int ParticipantNumber
         {
-            DataContext = this;
+            get => _participantNumber;
+            set
+            {
+                _participantNumber = value;
+                NotifyPropertyChanged(nameof(ParticipantNumber));
+            }
+        }
+
+        private DateTime _AcceptingDate;
+        public DateTime AcceptingDate
+        {
+            get { return _AcceptingDate; }
+            set { _AcceptingDate = value; NotifyPropertyChanged(nameof(AcceptingDate)); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void NotifyPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+        private int GuideId;
+
+        public RequestTest(int ID)
+        {
+            GuideId = ID;
+            SelectedRequest = new TourRequestDTOViewModel();
             SearchCriteria = new TourRequestDTOViewModel(DateTime.MaxValue);
             _tourRequestService = new TourRequestService(Injector.Injector.CreateInstance<ITourRequestRepository>());            
             DataContext = this;
@@ -28,7 +58,7 @@ namespace BookingApp.WPF.View.GuideWindows
 
         public ObservableCollection<TourRequestDTOViewModel> getData() 
         {            
-            List<TourRequest> tourRequests = _tourRequestService.filterRequests(SearchCriteria.ToTourRequest()); 
+            List<TourRequest> tourRequests = _tourRequestService.filterRequests(SearchCriteria.ToTourRequest(), ParticipantNumber); 
             
             ObservableCollection<TourRequestDTOViewModel> viewModels = new ObservableCollection<TourRequestDTOViewModel>();
             foreach (var tourRequest in tourRequests)
@@ -45,7 +75,54 @@ namespace BookingApp.WPF.View.GuideWindows
             SearchCriteria.Language = "";
             SearchCriteria.City = "";
             SearchCriteria.Country = "";
-            // no of tourists
+            ParticipantNumber = 0;
+        }
+
+        private void Filter(object sender, RoutedEventArgs e)
+        {
+            tourRequestViewModels.Clear();
+
+            // Add new items to the existing collection
+            var newData = getData();
+            foreach (var item in newData)
+            {
+                tourRequestViewModels.Add(item);
+            }
+
+            MessageBox.Show(tourRequestViewModels.Count.ToString());
+        }
+
+        private void Accepting(object sender, RoutedEventArgs e)
+        {
+            if(SelectedRequest != null && AcceptingDate != DateTime.MinValue && AcceptingDate != DateTime.MaxValue)
+            {
+                if (AcceptingDate <= SelectedRequest.EndDate)
+                {
+                    if (AcceptingDate >= SelectedRequest.StartDate)
+                    {
+                        _tourRequestService.AcceptRequest(SelectedRequest.ToTourRequest(), GuideId, AcceptingDate);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Please select a Date that is after the start date.", "Error while accepting a request");
+                    }
+
+                }
+                else
+                {
+                    MessageBox.Show("Please select a Date that is before the end date.", "Error while accepting a request");
+                }
+
+            }
+            else
+            {                
+                MessageBox.Show("Please select a request before proceeding, and select a date.", "Error while accepting a request");
+            }
+        }
+
+        private void ShowStats(object sender, RoutedEventArgs e)
+        {
+            // TO DO
         }
     }
 }

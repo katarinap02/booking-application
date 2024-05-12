@@ -101,7 +101,7 @@ namespace BookingApp.View
                         {
                             if (user.Username == "test") // prostor za testiranje prozora
                             {
-                                RequestTest requestTest = new RequestTest();
+                                RequestTest requestTest = new RequestTest(user.Id);
                                 requestTest.Show();
                             }
                             else

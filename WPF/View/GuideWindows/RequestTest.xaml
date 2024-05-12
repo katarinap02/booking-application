@@ -45,7 +45,7 @@
             <!-- Fourth Row -->
             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1">
                 <Label Content="Tourists Number:"/>
-                <TextBox Width="250" />
+                <TextBox Width="250" Text="{Binding ParticipantNumber, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"/>
             </StackPanel>
 
             <!-- First Row, Second Column -->
@@ -64,26 +64,38 @@
             <Button Content="Clear search boxes" Grid.Row="3" Grid.Column="0" Margin="5" Click="Testic"/>
 
             <!-- Fourth Row, Second Column -->
-            <Button Content="Filter requests" Grid.Row="3" Grid.Column="1" Margin="5"/>
+            <Button Content="Filter requests" Grid.Row="3" Grid.Column="1" Margin="5" Click="Filter"/>
         </Grid>
 
+        <Grid Grid.Row="1" Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="auto"></RowDefinition>
+            </Grid.RowDefinitions>
+            <DataGrid  Grid.Row="0" ItemsSource="{Binding tourRequestViewModels}" SelectedItem="{Binding SelectedRequest}" AutoGenerateColumns="False" Margin="15">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="City" Binding="{Binding City}" />
+                    <DataGridTextColumn Header="Country" Binding="{Binding Country}" />
+                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
+                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
+                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
+                    <DataGridTextColumn Header="Language" Binding="{Binding Language}" />
+                    <DataGridTextColumn Header="Participant IDs" Binding="{Binding ParticipantIds}" />
+                    <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" />
+                    <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}" />
+                    <DataGridTextColumn Header="Accepted Date" Binding="{Binding AcceptedDate}" />
+                    <DataGridTextColumn Header="Guide Id" Binding="{Binding GuideId}" />
+                    <DataGridTextColumn Header="Date Requested" Binding="{Binding DateRequested}" />
+                </DataGrid.Columns>
+            </DataGrid>
 
-        <DataGrid Grid.Row="1" ItemsSource="{Binding tourRequestViewModels}" AutoGenerateColumns="False" Margin="15">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="City" Binding="{Binding City}" />
-                <DataGridTextColumn Header="Country" Binding="{Binding Country}" />
-                <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
-                <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
-                <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
-                <DataGridTextColumn Header="Language" Binding="{Binding Language}" />
-                <DataGridTextColumn Header="Participant IDs" Binding="{Binding ParticipantIds}" />
-                <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" />
-                <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}" />
-                <DataGridTextColumn Header="Accepted Date" Binding="{Binding AcceptedDate}" />
-                <DataGridTextColumn Header="Guide Id" Binding="{Binding GuideId}" />
-                <DataGridTextColumn Header="Date Requested" Binding="{Binding DateRequested}" />
-            </DataGrid.Columns>
-        </DataGrid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal">
+                <Button Content="Accept request" Click="Accepting" Margin="20, 10, 20, 10"></Button>
+                <xctk:DateTimePicker Width="250" Name="AcceptingDate1" Value="{Binding AcceptingDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <Button Content="Show statistics" Click="ShowStats" Margin="20, 10, 20, 10"></Button>
+            </StackPanel>
+            
+        </Grid>        
     </Grid>
     
     
