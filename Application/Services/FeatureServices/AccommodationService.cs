@@ -67,6 +67,22 @@ namespace BookingApp.Application.Services.FeatureServices
             AccommodationRepository.Update(accommodation);
         }
 
+        public void ChangeListOrder(AccommodationViewModel accommodation)
+        {
+            
+            foreach(Accommodation acc in  AccommodationRepository.GetAll())
+            {
+                if(acc.Id == accommodation.Id)
+                {
+                    string pom = acc.Pictures[0];
+                    acc.Pictures.RemoveAt(0);
+                    acc.Pictures.Add(pom);
+                    Update(acc);
+                    
+                }
+            }
+        }
+
         
     }
 }

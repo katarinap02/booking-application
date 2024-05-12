@@ -41,6 +41,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public RelayCommand NavigateToDelayPageCommand { get; set; }
 
         public MyICommand<AccommodationViewModel> NavigateToStatisticPageCommand { get; set; }
+
+        public MyICommand<AccommodationViewModel> ChangedPictureCommand { get; set; }
         public User User { get; set; }
 
         public NavigationService NavService { get; set; }
@@ -91,11 +93,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 NavigateToRateGuestPageCommand = new RelayCommand(Execute_NavigateToGuestRatePageCommand, CanExecute_NavigateCommand);
                 NavigateToDelayPageCommand = new RelayCommand(Execute_NavigateToDelayPageCommand, CanExecute_NavigateCommand);
                 NavigateToStatisticPageCommand = new MyICommand<AccommodationViewModel>(Execute_NavigateToStatisticPageCommand);
+                ChangedPictureCommand = new MyICommand<AccommodationViewModel>(ChangePicture);
                 Update();
 
          }
 
-
+        private void ChangePicture(AccommodationViewModel acc)
+        {
+            
+            if (acc.NumberOfPictures > 1) {
+                accommodationService.ChangeListOrder(acc);
+            }
+            Update();
+        }
 
         public void Update()
           {

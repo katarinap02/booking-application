@@ -32,10 +32,12 @@
     <None Remove="Resources\Images\view.png" />
     <None Remove="WPF\Resources\Images\arrow-to-line-right.png" />
     <None Remove="WPF\Resources\Images\empty.png" />
+    <None Remove="WPF\Resources\Images\left_arrow.png" />
     <None Remove="WPF\Resources\Images\lock.png" />
     <None Remove="WPF\Resources\Images\minus.png" />
     <None Remove="WPF\Resources\Images\play_button.png" />
     <None Remove="WPF\Resources\Images\plus.png" />
+    <None Remove="WPF\Resources\Images\right_arrow.png" />
     <None Remove="WPF\Resources\Images\rome1.jpg" />
     <None Remove="WPF\Resources\Images\search.png" />
     <None Remove="WPF\Resources\Images\user_white.png" />
@@ -90,6 +92,9 @@
     <Content Include="WPF\Resources\Images\Istanbul1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="WPF\Resources\Images\left_arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="WPF\Resources\Images\lock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -112,6 +117,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="WPF\Resources\Images\red_dot.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WPF\Resources\Images\right_arrow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="WPF\Resources\Images\rome1.jpg">
