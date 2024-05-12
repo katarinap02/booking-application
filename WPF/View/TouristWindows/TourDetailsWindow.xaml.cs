@@ -48,6 +48,7 @@ namespace BookingApp.View.TouristWindows
         private void PdfButton_Click(object sender, RoutedEventArgs e)
         {
 
+            // ovo jos treba implementirat
         }
 
         private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
@@ -58,6 +59,16 @@ namespace BookingApp.View.TouristWindows
         private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Close();
+        }
+
+        private void ExportPdf_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void ExportPdf_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            // ovo jos treba implementirat
         }
     }
 }

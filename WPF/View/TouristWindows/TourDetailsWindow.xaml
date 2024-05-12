@@ -9,6 +9,7 @@
         Title="TourDetailsWindow" Height="680" Width="800" WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.ExportPdf" CanExecute="ExportPdf_CanExecute" Executed="ExportPdf_Executed"/>
     </Window.CommandBindings>
     <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.ColumnDefinitions>

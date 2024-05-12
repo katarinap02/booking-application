@@ -177,5 +177,13 @@ namespace BookingApp.WPF.ViewModel.Commands
             {
                 new KeyGesture(Key.S, ModifierKeys.Control)
             });
+        public static readonly RoutedUICommand ExportPdf = new RoutedUICommand(
+            "Export pdf button click",
+            "ExportPdf",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.E, ModifierKeys.Control)
+            });
     }
 }
