@@ -60,6 +60,25 @@
         </Setter>
     </Style>
 
+    <Style x:Key="ButtonStyleWindowHostLocation" TargetType="Button">
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Cursor" Value="Arrow"/>
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+                <Setter Property="Foreground" Value="DarkBlue"/>
+                <Setter Property="Background" Value="Transparent"/>
+            </Trigger>
+            
+        </Style.Triggers>
+    </Style>
+
     <Style x:Key="TitleStyleHost" TargetType="Label">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="FontFamily" Value="Comic Sans MS"/>

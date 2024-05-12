@@ -130,16 +130,17 @@
             <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/red_dot.png" Width="20" Height="20"/>
                 <TextBlock Text="most popular:"  VerticalAlignment="Center" FontSize="15" Margin="6,0,0,0" />
-                <TextBlock x:Name="PopularTextBox" Width="93" FontSize="15" Height="20" Margin="10 0 0 0"  />
+                <TextBlock x:Name="PopularTextBox"  Text="{Binding MostPopular.City}" Width="93" FontSize="15" Height="20" Margin="10 0 0 0"  />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/down_right_arrow.png" Width="20" Height="25"/>
-                <TextBlock Text="register accommodation" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0" />
+                <Button Content="register accommodation" Style="{StaticResource ButtonStyleWindowHostLocation}" Command="{Binding RegisterCommand}"
+CommandParameter="{Binding MostPopular}" VerticalAlignment="Center" Margin="5,0,0,0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/blue_square.png" Width="18" Height="18"/>
                 <TextBlock Text="least popular:"  VerticalAlignment="Center" FontSize="15" Margin="7,0,0,0" />
-                <TextBlock x:Name="LeastPopularTextBox" Width="93" Height="20" FontSize="15" Margin="10 0 0 0" />
+                <TextBlock x:Name="LeastPopularTextBox" Text="{Binding LeastPopular.City}" Width="93" Height="20" FontSize="15" Margin="10 0 0 0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="8" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/down_right_arrow.png" Width="20" Height="25"/>

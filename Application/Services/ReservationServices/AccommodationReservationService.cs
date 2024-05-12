@@ -14,6 +14,7 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using System.Windows.Media;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 
 namespace BookingApp.Application.Services.ReservationServices
 {
@@ -22,10 +23,14 @@ namespace BookingApp.Application.Services.ReservationServices
         private readonly IAccommodationReservationRepository AccommodationReservationRepository;
 
         public DelayRequestService DelayRequestService { get; set; }
+
+        private AccommodationRepository AccommodationRepository {  get; set; }
+
         public AccommodationReservationService(IAccommodationReservationRepository accommodationReservationRepository, IDelayRequestRepository delayRequest)
         {
             AccommodationReservationRepository = accommodationReservationRepository;
             DelayRequestService = new DelayRequestService(delayRequest);
+            AccommodationRepository = new AccommodationRepository();
 
         }
 
@@ -245,6 +250,66 @@ namespace BookingApp.Application.Services.ReservationServices
             }
 
             return busyMonth;
+        }
+
+        public Accommodation GetMostPopularLocation(int hostId)
+        {
+            List<AccommodationReservation> accommodationReservations = GetAllFromHost(hostId);
+            Accommodation mostPopularAccommodation = AccommodationRepository.GetById(accommodationReservations[0].AccommodationId);
+            foreach(AccommodationReservation ar in  accommodationReservations)
+            {
+                if(getNumberForLocation(ar.AccommodationId) > getNumberForLocation(mostPopularAccommodation.Id))
+                {
+                    mostPopularAccommodation = AccommodationRepository.GetById(ar.AccommodationId);
+                }
+            }
+
+            return mostPopularAccommodation;  
+            
+        }
+
+        public List<AccommodationReservation> GetAllFromHost(int hostId)
+        {
+            List<AccommodationReservation> accommodationReservations = new List<AccommodationReservation> ();
+            foreach(AccommodationReservation ar in GetAll())
+            {
+                Accommodation ac = AccommodationRepository.GetById(ar.AccommodationId);
+                if(ac.HostId == hostId)
+                    accommodationReservations.Add(ar);
+            }
+            return accommodationReservations;
+        }
+
+        public Accommodation GetLeastPopularLocation(int hostId)
+        {
+            List<AccommodationReservation> accommodationReservations = GetAllFromHost(hostId);
+            Accommodation mostPopularAccommodation = AccommodationRepository.GetById(accommodationReservations[0].AccommodationId);
+            foreach (AccommodationReservation ar in accommodationReservations)
+            {
+                if (getNumberForLocation(ar.AccommodationId) < getNumberForLocation(mostPopularAccommodation.Id))
+                {
+                    mostPopularAccommodation = AccommodationRepository.GetById(ar.AccommodationId);
+                }
+            }
+
+            return mostPopularAccommodation;
+        }
+
+        public double getNumberForLocation(int idAcc)
+        {
+            double number = 0;
+            Accommodation acc = AccommodationRepository.GetById(idAcc);
+            foreach (AccommodationReservation ar in GetAllFromHost(acc.HostId))
+            {
+                if(ar.AccommodationId == idAcc)
+                {
+
+                    number += (double)ar.NumberOfPeople / (double)acc.MaxGuestNumber;
+                }
+                    
+            }    
+
+            return number;
         }
     }
 }
