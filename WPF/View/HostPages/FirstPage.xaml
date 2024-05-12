@@ -214,10 +214,10 @@
                                             </Style.Triggers>
                                         </Style>
                                     </StackPanel.Style>
-                                    <Button  Width="45" Height="25" Margin="0 0 10 0" Background="White" Command="{Binding DataContext.ChangedPictureCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}">
+                                    <Button  Width="45" Height="25" Margin="0 0 10 0" Background="White" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding DataContext.ChangedPictureCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}">
                                         <Image Source="../../Resources/Images/left_arrow.png" Width="25" Height="23"/>
                                     </Button>
-                                    <Button  Width="45" Height="25" Margin="10 0 0 0" Background="White" Command="{Binding DataContext.ChangedPictureCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}">
+                                    <Button  Width="45" Height="25" Margin="10 0 0 0" Background="White" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding DataContext.ChangedPictureCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}">
                                         <Image Source="../../Resources/Images/right_arrow.png" Width="25" Height="23"/>
                                     </Button>
                                 </StackPanel>

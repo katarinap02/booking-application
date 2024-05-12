@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels;
 using BookingApp.Domain.Model.Features;
+using System.Windows.Media.Animation;
 
 namespace BookingApp.View
 {
@@ -26,7 +27,7 @@ namespace BookingApp.View
     /// </summary>
     public partial class HostWindow : Window
     {
-        
+
         public HostWindowViewModel hostPageViewModel { get; set; }
 
         public HostWindow(User user)
@@ -42,6 +43,6 @@ namespace BookingApp.View
         {
             Close();
         }
-
+       
     }
-}
+    }

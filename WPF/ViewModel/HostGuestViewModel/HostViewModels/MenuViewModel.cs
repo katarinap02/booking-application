@@ -66,8 +66,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             }
         }
 
+        private bool isDemo;
+        public bool IsDemo
+        {
+            get { return isDemo; }
+            set
+            {
+                isDemo = value;
+                OnPropertyChanged();
+            }
+        }
+
         public MenuViewModel(Host host) {
             searchHost = host.Search;
+            isDemo = false;
         }
     }
 }

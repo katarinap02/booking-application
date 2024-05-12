@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
     
+    
 
     <DockPanel>
         <Menu DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="1.4">
@@ -81,10 +82,28 @@
                 <Style TargetType="Menu">
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Path=menuViewModel.IsMenuOpened}" Value="False">
-                            <Setter Property="Visibility" Value="Collapsed"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=menuViewModel.IsMenuOpened}" Value="True">
-                            <Setter Property="Visibility" Value="Visible"/>
+                            <DataTrigger.EnterActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                         Storyboard.TargetProperty="Width"
+                                         From="301.8"
+                                         To="0"
+                                         Duration="0:0:0.0" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.EnterActions>
+                            <DataTrigger.ExitActions>
+                                <BeginStoryboard>
+                                    <Storyboard>
+                                        <DoubleAnimation
+                                         Storyboard.TargetProperty="Width"
+                                         From="0"
+                                         To="301.8"
+                                         Duration="0:0:0.4" />
+                                    </Storyboard>
+                                </BeginStoryboard>
+                            </DataTrigger.ExitActions>
                         </DataTrigger>
                     </Style.Triggers>
                 </Style>
@@ -203,7 +222,9 @@
             <Frame DockPanel.Dock="Right"
 x:Name="HostFrame"
 NavigationUIVisibility="Hidden"
-Source="../View/HostPages/FirstPage.xaml" Height="705" VerticalAlignment="Center" />
+Source="../View/HostPages/FirstPage.xaml" Height="705" VerticalAlignment="Center" >
+                
+            </Frame>
             <Rectangle  DockPanel.Dock="Right" Fill="#80000000">
                 <Rectangle.Style>
                     <Style TargetType="Rectangle">
