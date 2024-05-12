@@ -113,7 +113,7 @@
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <fa:IconImage Grid.Column="0" Icon="GraduationCap" Foreground="LightGray" Height="60" HorizontalAlignment="Left" Margin="15, 0, 10, 0"/>
+                <fa:IconImage Grid.Column="0" Icon="RankingStar" Foreground="LightGray" Height="60" HorizontalAlignment="Left" Margin="15, 0, 10, 0"/>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <TextBlock Grid.Column="1" Style="{StaticResource GuideTextBlockStyle}" FontSize="16" Text="Average grade:"></TextBlock>
                     <TextBlock Grid.Column="1" Style="{StaticResource GuideTextBlockStyle}" FontSize="35" Text="3,9"></TextBlock>
