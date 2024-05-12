@@ -27,7 +27,7 @@ namespace BookingApp.Application.Services.FeatureServices
             tourRequest.GuideId = GuideId;
             _tourRequestRepository.UpdateRequest(tourRequest);
         }
-        public List<TourRequest> filterRequests(TourRequest searchCriteria)
+        public List<TourRequest> filterRequests(TourRequest searchCriteria) // + broj participanata
         {
             List<TourRequest> tourRequests = _tourRequestRepository.GetAllPending();
             List<TourRequest> filteredRequests = tourRequests;
@@ -43,12 +43,8 @@ namespace BookingApp.Application.Services.FeatureServices
                 filteredRequests = filteredRequests.FindAll(x => x.Country.ToLower().Contains(searchCriteria.Country.ToLower())).ToList();
             }
             if (!string.IsNullOrEmpty(searchCriteria.Language))
-            {
-                MessageBox.Show("usao", "Language");
-                MessageBox.Show(searchCriteria.Language.ToLower());
-                MessageBox.Show(filteredRequests.Count().ToString());
-                filteredRequests = filteredRequests.FindAll(x => x.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();
-                MessageBox.Show(filteredRequests.Count().ToString());
+            {                
+                filteredRequests = filteredRequests.FindAll(x => x.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();                
             }
             /*
             if (searchCriteria.StartDate != null && searchCriteria.EndDate != null)
@@ -56,8 +52,7 @@ namespace BookingApp.Application.Services.FeatureServices
                 MessageBox.Show("usao", "datumi");
                 filteredRequests = tourRequests.FindAll(x => x.StartDate >= searchCriteria.StartDate && x.EndDate <= searchCriteria.EndDate).ToList();
             }*/
-            MessageBox.Show(filteredRequests.Count().ToString());
-            MessageBox.Show(filteredRequests[0].Language);
+            
             return filteredRequests;
         }
 
