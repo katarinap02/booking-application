@@ -122,7 +122,8 @@ namespace BookingApp.WPF.View.GuideWindows
 
         private void ShowStats(object sender, RoutedEventArgs e)
         {
-            // TO DO
+            RequestStatsWindow requestStatsWindow = new RequestStatsWindow(GuideId);
+            requestStatsWindow.Show();
         }
     }
 }
