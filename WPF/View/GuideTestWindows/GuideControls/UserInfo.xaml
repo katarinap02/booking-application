@@ -4,7 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls"
+             xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
@@ -49,7 +49,7 @@
                     <Grid Grid.Column="0" Grid.Row="0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Name: " Style="{StaticResource GuideTextBlockStyle}"/>
-                            <TextBlock Text="DRAGANA" Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Name}" Style="{StaticResource GuideTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
 
@@ -57,7 +57,7 @@
                     <Grid Grid.Column="1" Grid.Row="0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Username: " Style="{StaticResource GuideTextBlockStyle}"/>
-                            <TextBlock Text="TextBlock 2" Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Username}" Style="{StaticResource GuideTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
 
@@ -65,7 +65,7 @@
                     <Grid Grid.Column="2" Grid.Row="0">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Email: " Style="{StaticResource GuideTextBlockStyle}"/>
-                            <TextBlock Text="fjeio" Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Email}" Style="{StaticResource GuideTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
 
@@ -73,7 +73,7 @@
                     <Grid Grid.Column="0" Grid.Row="1">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Surname: " Style="{StaticResource GuideTextBlockStyle}"/>
-                            <TextBlock Text="TextBlock 2" Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Surname}" Style="{StaticResource GuideTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
 
@@ -81,7 +81,7 @@
                     <Grid Grid.Column="1" Grid.Row="1">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Current age: " Style="{StaticResource GuideTextBlockStyle}"/>
-                            <TextBlock Text="TextBlock 2" Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="{Binding Age}" Style="{StaticResource GuideTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
 
@@ -89,7 +89,7 @@
                     <Grid Grid.Column="2" Grid.Row="1">
                         <StackPanel Orientation="Horizontal">
                             <TextBlock Text="Phone number: " Style="{StaticResource GuideTextBlockStyle}"/>
-                            <TextBlock Text="TextBlock 2" Style="{StaticResource GuideTextBlockStyle}"/>
+                            <TextBlock Text="{Binding PhoneNumber}" Style="{StaticResource GuideTextBlockStyle}"/>
                         </StackPanel>
                     </Grid>
                 </Grid>
@@ -199,7 +199,7 @@
                     <TextBlock Style="{StaticResource GuideTextBlockStyle}" Margin="10" Foreground="AntiqueWhite" Text="QUIT" HorizontalAlignment="Center" TextAlignment="Center" FontWeight="ExtraBold" FontSize="25"/>
                     <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="Quit being a guide by clicking the button below:" HorizontalAlignment="Center" TextAlignment="Center"/>
                 </StackPanel>                
-                <Button Grid.Row="1" Style="{StaticResource generalButton}" Background="#FF0000" Margin="40, 20" Content="Quit" Height="30" ></Button>
+                <Button Grid.Row="1" Style="{StaticResource generalButton}" Background="#FF0000" Margin="40, 20" Content="Quit" Height="30" Command="{Binding Quit}"></Button>
             </Grid>            
         </Border>
     </Grid>

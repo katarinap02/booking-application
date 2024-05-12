@@ -14,8 +14,11 @@ namespace BookingApp.View.GuideTestWindows
 {
     public partial class RandomTest : Window
     {
-        public RandomTest()
+        public MainViewModel mainViewModel { get; set; }
+        public RandomTest(int id)
         {
+            mainViewModel = new MainViewModel(id);
+            DataContext = mainViewModel;
             InitializeComponent();
         }
 

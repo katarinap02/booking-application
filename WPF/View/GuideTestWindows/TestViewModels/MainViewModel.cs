@@ -64,6 +64,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         }
         #endregion
 
+        private int GuideId;
 
         public ICommand ShowTodaysToursCommand { get; }
         public ICommand MyToursCommand { get; }
@@ -75,9 +76,10 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         public ICommand ReportCommand { get; }
         public ICommand AppInfoCommand { get; }
 
-        public MainViewModel()
+        public MainViewModel(int id)
         {
-            
+            GuideId = id;
+
             ShowTodaysToursCommand = new ViewModelCommand(ExecuteShowTodaysToursViewCommand);
             MyToursCommand = new ViewModelCommand(ExecuteShowMyToursViewCommand);
             UserInfoCommand = new ViewModelCommand(ExecuteShowUserInfoCommand);
@@ -131,7 +133,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 
         private void ExecuteShowUserInfoCommand(object obj)
         {
-            CurrentChildView = new UserInfoViewModel();
+            CurrentChildView = new UserInfoViewModel(GuideId);
             Caption = "User information";
             Icon = IconChar.Route;
         }
