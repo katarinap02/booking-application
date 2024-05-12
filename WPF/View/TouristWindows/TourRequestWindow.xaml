@@ -217,7 +217,6 @@
                     FontSize="14"
                     PreviewTextInput="DatePicker_PreviewTextInput"
                     PreviewKeyDown="DatePicker_PreviewKeyDown"
-                    IsKeyboardFocusWithinChanged="StartDatePicker_IsKeyboardFocusWithinChanged"
                     Height="25"></DatePicker>
         <DatePicker Grid.Column="2"
                     IsEnabled="{Binding IsEndDateEnabled, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"

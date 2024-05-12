@@ -7,9 +7,7 @@
         Title="Main Window" Width="1200" Height="700" WindowStartupLocation="CenterScreen"        
         >
 
-    <Window.DataContext>
-        <viewModel:MainViewModel/>
-    </Window.DataContext>
+    
     
     <Window.Resources>
         <!-- Dodati ostatak -->

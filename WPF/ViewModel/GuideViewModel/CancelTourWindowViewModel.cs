@@ -61,8 +61,7 @@ namespace BookingApp.WPF.ViewModel.GuideViewModel
         private void CancelTour_Click()
         {
             if (SelectedTour != null)
-            {
-                MessageBox.Show(SelectedTour.Id.ToString());
+            {                
                 tourService.cancelTour(SelectedTour.Id, Guide.Id);
                 getGridData();
             }

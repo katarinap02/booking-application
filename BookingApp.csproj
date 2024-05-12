@@ -40,6 +40,8 @@
     <None Remove="WPF\Resources\Images\right_arrow.png" />
     <None Remove="WPF\Resources\Images\rome1.jpg" />
     <None Remove="WPF\Resources\Images\search.png" />
+    <None Remove="WPF\Resources\Images\Tokyo1.jpg" />
+    <None Remove="WPF\Resources\Images\tokyo_temple.jpg" />
     <None Remove="WPF\Resources\Images\user_white.png" />
     <None Remove="WPF\Resources\Images\Unknown_person.jpg" />
     <None Remove="WPF\Resources\Images\warning.png" />
@@ -134,6 +136,14 @@
     </Content>
 
     <Content Include="WPF\Resources\Images\taj_mahal1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+    <Content Include="WPF\Resources\Images\Tokyo1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+    <Content Include="WPF\Resources\Images\tokyo_temple.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
 

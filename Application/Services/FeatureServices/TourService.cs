@@ -271,5 +271,11 @@ namespace BookingApp.Application.Services.FeatureServices
             return _tourRepository.isTourFinished(tourId);
         }
 
+        public List<Tour> getToursByGuide(int guide_ID)
+        {
+            List < Tour > tours = GetAllTours();
+            return tours.FindAll(x => x.GuideId == guide_ID ); // && x.Status == TourStatus.Finnished
+        }
+
     }
 }

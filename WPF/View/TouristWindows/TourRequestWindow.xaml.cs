@@ -117,10 +117,5 @@ namespace BookingApp.WPF.View.TouristWindows
         {
             TourRequest.SaveToCsvCommand.Execute(null);
         }
-
-        private void StartDatePicker_IsKeyboardFocusWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
-        {
-            StartDatePicker.IsDropDownOpen = true;
-        }
     }
 }
