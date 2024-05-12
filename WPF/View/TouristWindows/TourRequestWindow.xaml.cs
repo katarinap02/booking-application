@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
@@ -34,7 +35,7 @@ namespace BookingApp.WPF.View.TouristWindows
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
-                MessageBox.Show(message.Notification, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show(message.Notification, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
             });
 
             TourRequest.InitializeTourRequestWindow();
@@ -44,15 +45,19 @@ namespace BookingApp.WPF.View.TouristWindows
         {
             Close();
         }
+        private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
 
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
             Messenger.Default.Unregister(this);
-        }
-        private void Window_Unloaded(object sender, RoutedEventArgs e)
-        {
-            Messenger.Default.Unregister<NotificationMessage>(this);
         }
 
         private void DatePicker_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -71,6 +76,51 @@ namespace BookingApp.WPF.View.TouristWindows
             {
                 e.Handled = true;
             }
+        }
+
+        private void AddParticipant_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = TourRequest.AddParticipantCommand.CanExecute(null);
+        }
+
+        private void AddParticipant_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TourRequest.AddParticipantCommand.Execute(null);
+        }
+
+        private void ParticipantName_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void ParticipantName_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            NameTextBox.Focus();
+        }
+
+        private void CountryFocus_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CountryFocus_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CountryComboBox.Focus();
+        }
+
+        private void Confirm_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = TourRequest.SaveToCsvCommand.CanExecute(null);
+        }
+
+        private void Confirm_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TourRequest.SaveToCsvCommand.Execute(null);
+        }
+
+        private void StartDatePicker_IsKeyboardFocusWithinChanged(object sender, DependencyPropertyChangedEventArgs e)
+        {
+            StartDatePicker.IsDropDownOpen = true;
         }
     }
 }

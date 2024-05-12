@@ -44,6 +44,15 @@ namespace BookingApp.WPF.View.TouristWindows
             base.OnClosed(e);
             Messenger.Default.Unregister(this);
         }
+        private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
     }
 
     public class YearConverter : IValueConverter

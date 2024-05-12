@@ -1,4 +1,5 @@
-﻿using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+﻿using BookingApp.WPF.View.TouristWindows;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -29,9 +31,13 @@ namespace BookingApp.View.TouristWindows
 
             Voucher.UserId = userId;
             if (!Voucher.RefreshVoucherDataGrid())
-                Close();
+                CloseWindow(null);
+            Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
         }
-
+        private void CloseWindow(CloseWindowMessage message)
+        {
+            Close();
+        }
         private void UseButton_Click(object sender, RoutedEventArgs e)
         {
             Voucher.Use();
@@ -39,6 +45,15 @@ namespace BookingApp.View.TouristWindows
         }
 
         private void CancelButton_Click(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+        private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Close();
         }

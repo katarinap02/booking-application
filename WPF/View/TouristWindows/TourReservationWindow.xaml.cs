@@ -17,6 +17,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using GalaSoft.MvvmLight.Messaging;
+using BookingApp.WPF.View.TouristWindows;
+using BookingApp.Domain.Model.Features;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -34,15 +37,15 @@ namespace BookingApp.View.TouristWindows
             InitializeComponent();
             TourReservation = new TourReservationViewModel();
             DataContext = TourReservation;
-            TourReservation.SelectedTour = selectedTour;
-            TourReservation.ParticipantCount = insertedNumberOfParticipants.ToString();
-            TourReservation.UserId = userId;
-
+  
+            TourReservation.InitializeTourReservationWindow(selectedTour, insertedNumberOfParticipants, userId);
+            Messenger.Default.Register<NotificationMessage>(this, message =>
+            {
+                MessageBox.Show(message.Notification, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+            });
+            Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
         }
-
-
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void CloseWindow(CloseWindowMessage message)
         {
             Close();
         }
@@ -52,11 +55,28 @@ namespace BookingApp.View.TouristWindows
             if(TourReservation.Book())
                 Close();
         }
-
-        private void removeParticipant_Click(object sender, RoutedEventArgs e)
+        protected override void OnClosed(EventArgs e)
         {
-            TourReservation.RemoveParticipant();
+            base.OnClosed(e);
+            Messenger.Default.Unregister(this);
+        }
+        private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
 
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
+        private void AddParticipant_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TourReservation.AddParticipantCommand.Execute(null);
+        }
+
+        private void AddParticipant_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
     }
 }
