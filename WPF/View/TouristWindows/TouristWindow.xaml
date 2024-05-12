@@ -55,7 +55,7 @@
                                         Style="{StaticResource MenuBtnStyle}"
                                         FontSize="45"
                                         Foreground="WhiteSmoke"
-                                        Click="AllToursButton_Click"
+                                        Command="{Binding AllToursCommand}"
                                         IsChecked="True">
                         <TextBlock Text="All Tours"
                                             VerticalAlignment="Center"
@@ -66,16 +66,16 @@
                                     Style="{StaticResource MenuBtnStyle}"
                                     FontSize="45"
                                     Foreground="WhiteSmoke"
-                                    Click="MyToursButton_Click">
+                                    Command="{Binding MyToursCommand}">
                         <TextBlock Text="My Tours"
-                                            VerticalAlignment="Center"
-                                            Margin="20,0,0,0"/>
+                                   VerticalAlignment="Center"
+                                   Margin="20,0,0,0"/>
                     </Menu:Btn>
                     <Menu:Btn x:Name="EndedToursButton"
                                     Style="{StaticResource MenuBtnStyle}"
                                     FontSize="45"
                                     Foreground="WhiteSmoke"
-                                    Click="EndedToursButton_Click">
+                                    Command="{Binding EndedToursCommand}">
                         <TextBlock Text="Ended Tours"
                                             VerticalAlignment="Center"
                                             Margin="20, 0, 0, 0"/>
@@ -84,7 +84,7 @@
                                 Style="{StaticResource MenuBtnStyle}"
                                 Foreground="WhiteSmoke"
                                 FontSize="40"
-                                Click="RequestedToursButton_Click">
+                                Command="{Binding RequestedToursCommand}">
                         <TextBlock Text="Requested Tours"
                                         VerticalAlignment="Center"
                                         Margin="20, 0, 0, 0"/>
@@ -93,7 +93,7 @@
                                 Style="{StaticResource MenuBtnStyle}"
                                 FontSize="45"
                                 Foreground="WhiteSmoke"
-                                Click="VouchersButton_Click">
+                                Command="{Binding VouchersCommand}">
                         <TextBlock Text="Vouchers"
                                         VerticalAlignment="Center"
                                         Margin="20, 0, 0, 0"/>
@@ -111,6 +111,6 @@
                 </Menu:Btn>
             </Grid>
         </StackPanel>
-        <Frame x:Name="MainFrame" Content="{Binding MainFrameContent}" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+        <Frame x:Name="MainFrame" Content="{Binding MainFrameContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1" NavigationUIVisibility="Hidden"/>
     </Grid>
 </Window>
