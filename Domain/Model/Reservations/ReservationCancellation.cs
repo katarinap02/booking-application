@@ -12,7 +12,7 @@ namespace BookingApp.Domain.Model.Reservations
         public int GuestId { get; set; }
         public int HostId { get; set; }
 
-        public int ReservationId { get; set; }
+        public int AccommodationId { get; set; }
 
         public DateTime CancellationDate { get; set; }
 
@@ -20,11 +20,11 @@ namespace BookingApp.Domain.Model.Reservations
         public DateTime EndDate { get; set; }
 
         public ReservationCancellation() { }
-        public ReservationCancellation(int guestId, int hostId, int reservationId, DateTime cancellationDate, DateTime startDate, DateTime endDate)
+        public ReservationCancellation(int guestId, int hostId, int accommodationId, DateTime cancellationDate, DateTime startDate, DateTime endDate)
         {
             GuestId = guestId;
             HostId = hostId;
-            ReservationId = reservationId;
+            AccommodationId = accommodationId;
             CancellationDate = cancellationDate;
             StartDate = startDate;
             EndDate = endDate;
@@ -34,7 +34,7 @@ namespace BookingApp.Domain.Model.Reservations
 
         public string[] ToCSV()
         {
-            string[] csvValues = { GuestId.ToString(), HostId.ToString(), ReservationId.ToString(), CancellationDate.ToString(), StartDate.ToString(), EndDate.ToString() };
+            string[] csvValues = { GuestId.ToString(), HostId.ToString(), AccommodationId.ToString(), CancellationDate.ToString(), StartDate.ToString(), EndDate.ToString() };
             return csvValues;
         }
 
@@ -42,7 +42,7 @@ namespace BookingApp.Domain.Model.Reservations
         {
             GuestId = Convert.ToInt32(values[0]);
             HostId = Convert.ToInt32(values[1]);
-            ReservationId = Convert.ToInt32(values[2]);
+            AccommodationId = Convert.ToInt32(values[2]);
             CancellationDate = Convert.ToDateTime(values[3]);
             StartDate = Convert.ToDateTime(values[4]);
             EndDate = Convert.ToDateTime(values[5]);

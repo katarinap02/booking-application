@@ -100,7 +100,7 @@ namespace BookingApp.Application.Services.ReservationServices
             else
             {
                 Accommodation accommodation = accommodationService.GetById(reservation.AccommodationId);
-                ReservationCancellation cancellation = new ReservationCancellation(reservation.GuestId, accommodation.HostId, reservation.Id, DateTime.Now, reservation.StartDate, reservation.EndDate);
+                ReservationCancellation cancellation = new ReservationCancellation(reservation.GuestId, accommodation.HostId, reservation.AccommodationId, DateTime.Now, reservation.StartDate, reservation.EndDate);
                 cancellationService.Add(cancellation);
                 foreach (DelayRequest request in DelayRequestService.GetAll())
                     if (request.ReservationId == reservation.Id)
