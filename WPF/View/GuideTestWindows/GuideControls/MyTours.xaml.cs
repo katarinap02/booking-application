@@ -22,10 +22,8 @@ namespace BookingApp.WPF.View.GuideTestWindows.GuideControls
     /// </summary>
     public partial class MyTours : UserControl
     {
-        
         public MyTours()
-        {
-            
+        {            
             InitializeComponent();
         }
     }

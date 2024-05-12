@@ -171,7 +171,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                     OnPropertyChanged("Duration");
                 }
             }
-        }
+        }        
 
         private List<string> pictures = new List<string>();
         public List<string> Pictures
@@ -488,7 +488,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             CitySearch = CitiesSearch[0];
         }
 
-        //******************************* ZA ALLTOURS PAGE
+        //******************************* ZA ALLTOURS PAGE 
+        // BITNO PREBACITI U NOVI FAJL, OVO JE DTO
         public void BookButton(TourViewModel selectedTour)
         {
             if (selectedTour.availablePlaces > 0)

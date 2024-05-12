@@ -78,10 +78,10 @@
                         BorderThickness="{TemplateBinding BorderThickness}">
                         <ScrollViewer VerticalScrollBarVisibility="Auto" 
                                   HorizontalScrollBarVisibility="Auto"
-                                  Background="#200F53">
+                                  Background="#060531">
                             <ScrollViewer.Resources>
                                 <Style TargetType="ScrollBar">
-                                    <Setter Property="Background" Value="#200F53"/>
+                                    <Setter Property="Background" Value="#060531"/>
                                 </Style>
                                 <Style TargetType="Thumb">
                                     <Setter Property="Background" Value="#FB539B"/>
