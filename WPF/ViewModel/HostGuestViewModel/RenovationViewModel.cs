@@ -199,8 +199,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public PathConverter PathConverter { get; set; }
         public RenovationViewModel() {
             StartDateRange = new DateTime(2024, 1, 1);
-            EndDateRange = new DateTime(2024, 1, 1);
+            EndDateRange = new DateTime(2024, 1, 2);
             IsPossible = false;
+            duration = 1;
 
         }
 
