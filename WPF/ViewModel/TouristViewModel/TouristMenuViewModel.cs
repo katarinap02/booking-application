@@ -2,6 +2,7 @@
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.View.TouristWindows;
+using BookingApp.WPF.View.TouristPages;
 using BookingApp.WPF.View.TouristWindows;
 using GalaSoft.MvvmLight.Messaging;
 using System;
@@ -21,6 +22,91 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         public UserService _userService { get; set; }
 
         public ICommand LogoutCommand { get; set; }
+
+        private ICommand _allToursCommand;
+        public ICommand AllToursCommand
+        {
+            get
+            {
+                if (_allToursCommand == null)
+                {
+                    _allToursCommand = new RelayCommand(param => AllToursInit());
+                }
+                return _allToursCommand;
+            }
+        }
+        private void AllToursInit()
+        {
+            MainFrameContent = new AllToursPage(getUserId(UserName));
+        }
+
+        private ICommand _myToursCommand;
+        public ICommand MyToursCommand
+        {
+            get
+            {
+                if (_myToursCommand == null)
+                {
+                    _myToursCommand = new RelayCommand(param => MyToursInit());
+                }
+                return _myToursCommand;
+            }
+        }
+        private void MyToursInit()
+        {
+            MainFrameContent = new MyToursPage(SelectedTour, getUserId(UserName));
+        }
+
+        private ICommand _requestedToursCommand;
+        public ICommand RequestedToursCommand
+        {
+            get
+            {
+                if (_requestedToursCommand == null)
+                {
+                    _requestedToursCommand = new RelayCommand(param => RequestedToursInit());
+                }
+                return _requestedToursCommand;
+            }
+        }
+        private void RequestedToursInit()
+        {
+            MainFrameContent = new RequestedToursPage(getUserId(UserName));
+        }
+
+        private ICommand _endedToursCommand;
+        public ICommand EndedToursCommand
+        {
+            get
+            {
+                if (_endedToursCommand == null)
+                {
+                    _endedToursCommand = new RelayCommand(param => EndedToursInit());
+                }
+                return _endedToursCommand;
+            }
+        }
+        private void EndedToursInit()
+        {
+            MainFrameContent = new EndedToursPage(getUserId(UserName));
+        }
+
+        private ICommand _vouchersCommand;
+        public ICommand VouchersCommand
+        {
+            get
+            {
+                if (_vouchersCommand == null)
+                {
+                    _vouchersCommand = new RelayCommand(param => VouchersInit());
+                }
+                return _vouchersCommand;
+            }
+        }
+        private void VouchersInit()
+        {
+            MainFrameContent = new VouchersPage(getUserId(UserName));
+        }
         private string _username;
         public string UserName
         {
