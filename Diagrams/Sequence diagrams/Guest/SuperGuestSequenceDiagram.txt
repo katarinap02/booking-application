@@ -1,0 +1,91 @@
+@startuml
+actor Guest as G
+participant GuestService as GS
+participant AccommodationReservationService as AR
+participant GuestRepository as GR
+
+G -> GS++ : CalculateGuestStats(guest)
+note left
+Id, IsSuperGuest, YearlyReservations, 
+StartDate, EndDate, BonusPoints
+end note
+
+GS -> GS++ : GetYearlyReservations(guest)
+note left
+Id, YearlyReservations
+end note
+
+GS -> AR++ : GetAll()
+AR --> GS-- : allReservations
+
+loop foreach reservation in allReservations
+       
+       GS-> GS++ : IsInThePastYear(startDate)
+       note left
+         reservation.StartDate
+       end note
+       alt startDate <= DateTime.Now && startDate >= DateTime.Now.AddYears(-1)
+           GS --> GS : true
+       else startDate > DateTime.Now && startDate < DateTime.Now.AddYears(-1)
+          GS --> GS : false
+      
+       end 
+        
+         
+       GS --> GS-- : isInThePastYear 
+       note left
+         isInThePastYear = true/false
+       end note     
+
+       opt isInThePastYear && id == reservation.GuestId
+       GS -> GS++ : inc(YearlyReservations)
+       GS --> GS-- : counter
+           
+       end
+  
+end
+GS --> GS-- : YearlyReservations
+note left
+   YearlyReservations = counter
+end note
+
+alt !IsSuperGuest
+    GS -> GS++ : BecomeSuperGuest(guest)
+   opt YearlyReservations >= 10
+      GS -> GS++ : ActivateSuperGuest(guest)
+      GS --> GS-- : guest
+      note right
+       IsSuperGuest = true;
+       StartDate = DateTime.Now;
+       EndDate = DateTime.Now.AddYears(1);
+       BonusPoints = 5;
+     end note
+   end
+   GS --> GS-- : guest
+else IsSuperGuest
+   GS -> GS++ : CheckDueDate(guest)
+   opt EndDate == DateTime.Now
+    alt YearlyReservations >= 10
+      GS -> GS++ : ActivateSuperGuest(guest)
+      GS --> GS-- : guest
+   else YearlyReservations < 10
+     GS -> GS++ : DeactivateSuperGuest(guest)
+     GS --> GS-- : guest
+     note right
+       IsSuperGuest = false;
+       StartDate = DateTime.MinValue;
+       EndDate = DateTime.MinValue;
+       BonusPoints = 0
+     end note
+   end
+      
+   end
+    GS --> GS-- : guest
+end
+GS -> GS++ : Update(guest)
+GS -> GR++ : Update(guest)
+GR --> GS-- : UpdatedGuest
+GS --> GS-- : UpdatedGuest
+GS --> G-- : UpdatedGuest
+deactivate GS
+@enduml

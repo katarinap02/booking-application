@@ -1,0 +1,21 @@
+@startuml
+actor Guest as G
+participant AccommodationReservationService as AR
+participant AccommodationReservationRepository as ARR
+
+G -> AR++ : FinishReservation(BonusPoints, reservation)
+AR -> AR++ : Add(reservation)
+AR -> ARR++ : Add(reservation)
+ARR --> AR--: AddedReservation
+AR --> AR-- : AddedReservation
+
+opt BonusPoints > 0
+   AR -> AR++ : dec(BonusPoints)
+   AR --> AR-- : decrementedBonusPoints
+  
+end 
+
+AR --> G-- : AddedReservation
+
+
+@enduml
