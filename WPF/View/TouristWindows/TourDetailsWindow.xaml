@@ -4,9 +4,13 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
+        xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
         Title="TourDetailsWindow" Height="680" Width="800" WindowStartupLocation="CenterScreen">
-    
+    <Window.CommandBindings>
+        <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.ExportPdf" CanExecute="ExportPdf_CanExecute" Executed="ExportPdf_Executed"/>
+    </Window.CommandBindings>
     <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -39,7 +43,7 @@
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="220"/>
                     <ColumnDefinition Width="20"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="*"/>
@@ -57,16 +61,17 @@
 
                 <ScrollViewer VerticalScrollBarVisibility="Auto"
                               Grid.Column="1"
-                              Grid.RowSpan="6">
+                              Grid.RowSpan="6"
+                              Style="{StaticResource KeypointsStyle1}">
                     <ItemsControl ItemsSource="{Binding SelectedTour.Pictures}">
                         <ItemsControl.ItemsPanel>
                             <ItemsPanelTemplate>
-                                <StackPanel Orientation="Horizontal"/>
+                                <StackPanel Orientation="Vertical"/>
                             </ItemsPanelTemplate>
                         </ItemsControl.ItemsPanel>
                         <ItemsControl.ItemTemplate>
                             <DataTemplate>
-                                <Image Source="{Binding}" Width="200" Height="200" Margin="5"/>
+                                <Image Source="{Binding}" Width="200" Height="200" Margin="0,-10,0,-10"/>
                             </DataTemplate>
                         </ItemsControl.ItemTemplate>
                     </ItemsControl>
@@ -150,7 +155,7 @@
         </StackPanel>
         <Button Content="Close"
                 Style="{StaticResource EnlargeButtonStyle}"
-                Click="CloseButton_Click"
+                Command="{Binding CloseCommand}"
                 HorizontalAlignment="Right"
                 Margin="0, 0, 25, 0"
                 FontSize="19"

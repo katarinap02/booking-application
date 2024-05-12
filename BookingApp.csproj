@@ -40,8 +40,11 @@
     <None Remove="WPF\Resources\Images\right_arrow.png" />
     <None Remove="WPF\Resources\Images\rome1.jpg" />
     <None Remove="WPF\Resources\Images\search.png" />
+    <None Remove="WPF\Resources\Images\Tokyo1.jpg" />
+    <None Remove="WPF\Resources\Images\tokyo_temple.jpg" />
     <None Remove="WPF\Resources\Images\user_white.png" />
     <None Remove="WPF\Resources\Images\Unknown_person.jpg" />
+    <None Remove="WPF\Resources\Images\warning.png" />
 
     <None Remove="WPF\Resources\LoginImages\icon.png" />
     <None Remove="WPF\Resources\LoginImages\key.png" />
@@ -136,6 +139,14 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
 
+    <Content Include="WPF\Resources\Images\Tokyo1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+    <Content Include="WPF\Resources\Images\tokyo_temple.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
     <Content Include="WPF\Resources\Images\Unknown_person.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -185,6 +196,8 @@
     </Resource>
 
     <Resource Include="WPF\Resources\Images\user_white.png" />
+
+    <Resource Include="WPF\Resources\Images\warning.png" />
 
     <Resource Include="WPF\View\Guest\GuestThemes\DarkTheme.xaml" />
     <Resource Include="WPF\View\Guest\GuestThemes\LightTheme.xaml">

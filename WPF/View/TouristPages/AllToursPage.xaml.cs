@@ -39,6 +39,10 @@ namespace BookingApp.View.TouristWindows
             Tour.RefreshAllToursDataGrid(false);
         }
 
+        private void CanExecute(CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
         private void ResetButton_Click(object sender, RoutedEventArgs e)
         {
             Tour.ResetButton();
@@ -47,8 +51,6 @@ namespace BookingApp.View.TouristWindows
         {
             Tour.SearchButton();
         }
-
-
         private void BookButton_Click(object sender, RoutedEventArgs e)
         {
             Tour.BookButton(Tour.SelectedTour);
@@ -66,7 +68,7 @@ namespace BookingApp.View.TouristWindows
 
         private void CountrySearch_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
+            CanExecute(e);
         }
 
         private void CountrySearch_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -76,7 +78,7 @@ namespace BookingApp.View.TouristWindows
 
         private void Search_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
+            CanExecute(e);
         }
 
         private void Search_Executed(object sender, ExecutedRoutedEventArgs e)
@@ -86,12 +88,22 @@ namespace BookingApp.View.TouristWindows
 
         private void Reset_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
-            e.CanExecute = true;
+            CanExecute(e);
         }
 
         private void Reset_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Tour.ResetButton();
+        }
+
+        private void Notification_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            CanExecute(e);
+        }
+
+        private void Notification_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Tour.NotificationButton();
         }
     }
 }

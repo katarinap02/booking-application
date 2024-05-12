@@ -165,6 +165,19 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow(UserId);
             tourStatisticsWindow.ShowDialog();
         }
+
+        public void RequestTourClick()
+        {
+            TourRequestWindow tourRequestWindow = new TourRequestWindow(UserId);
+            tourRequestWindow.ShowDialog();
+            InitializeRequestedToursPage();
+        }
+
+        public void StatisticsClick()
+        {
+            TourStatisticsWindow tourStatisticsWindow = new TourStatisticsWindow(UserId);
+            tourStatisticsWindow.ShowDialog();
+        }
         public TourRequestViewModel()
         {
             _tourRequestService = new TourRequestService(Injector.Injector.CreateInstance<ITourRequestRepository>());

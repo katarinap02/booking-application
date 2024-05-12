@@ -12,6 +12,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BookingApp.WPF.View.TouristWindows
 {
@@ -30,15 +31,29 @@ namespace BookingApp.WPF.View.TouristWindows
             Tour.UserId = userId;
 
             Tour.RefreshToursByCity();
+            Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
         }
-
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void CloseWindow(CloseWindowMessage messsage)
         {
             Close();
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Messenger.Default.Unregister(this);
         }
         private void BookButton_Click(object sender, RoutedEventArgs e)
         {
             Tour.BookNumberOfParticipants();
+            Close();
+        }
+        private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
             Close();
         }
     }

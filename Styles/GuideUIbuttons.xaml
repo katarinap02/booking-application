@@ -189,4 +189,23 @@
 
     </Style>
 
+    <Style x:Key="GuideXButtonStyle" TargetType="Button">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Content" Value="x"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="Monospace"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="DodgerBlue"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="18" Height="18" CornerRadius="9" Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 </ResourceDictionary>

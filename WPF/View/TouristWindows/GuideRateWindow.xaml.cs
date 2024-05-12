@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using Microsoft.Win32;
 using System.Globalization;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -34,7 +35,15 @@ namespace BookingApp.View.TouristWindows
             GuideRate.UserId = userId;
             if (GuideRate.initializeGuideRate(selectedTour.Id, selectedTour.GuideId))
                 Close();
-
+            Messenger.Default.Register<NotificationMessage>(this, message =>
+            {
+                MessageBox.Show(message.Notification, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+            });
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Messenger.Default.Unregister(this);
         }
 
         private void Addimage_Click(object sender, RoutedEventArgs e)
@@ -61,6 +70,36 @@ namespace BookingApp.View.TouristWindows
         private void PlaceholderTextBlock_MouseDown(object sender, MouseButtonEventArgs e)
         {
             CommentTextBox.Focus();
+        }
+        private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
+
+        private void AddImage_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = GuideRate.IsAddImageButtonEnabled;
+        }
+
+        private void AddImage_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            GuideRate.AddImage();
+        }
+
+        private void Submit_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Submit_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            GuideRate.Submit(GuideRate);
+            Close();
         }
     }
 }

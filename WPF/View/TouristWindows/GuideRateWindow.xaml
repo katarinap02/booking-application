@@ -4,8 +4,14 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
+        xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
-        Title="GuideRateWindow" Height="580" Width="800" WindowStartupLocation="CenterScreen">
+        Title="GuideRateWindow" Height="630" Width="830" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.AddImage" CanExecute="AddImage_CanExecute" Executed="AddImage_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.Submit" CanExecute="Submit_CanExecute" Executed="Submit_Executed"/>
+    </Window.CommandBindings>
     <Window.Resources>
         <Style x:Key="CoolRadioButtonStyle" TargetType="RadioButton">
             <Setter Property="Foreground" Value="White" />
@@ -17,11 +23,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
                         <Grid>
-                            <Ellipse x:Name="RadioEllipse" Width="35" Height="35" Stroke="White" StrokeThickness="5">
+                            <Ellipse x:Name="RadioEllipse" Width="40" Height="40" Stroke="White" StrokeThickness="5">
                                 <Ellipse.Fill>
                                     <RadialGradientBrush>
-                                        <GradientStop Color="#FF007ACC" Offset="0" />
-                                        <GradientStop Color="#FF003C66" Offset="1" />
+                                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0" />
+                                        <GradientStop Color="{StaticResource ButtonColor2Press}" Offset="1" />
                                     </RadialGradientBrush>
                                 </Ellipse.Fill>
                             </Ellipse>
@@ -29,7 +35,7 @@
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsChecked" Value="True">
-                                <Setter TargetName="RadioEllipse" Property="Stroke" Value="Green" />
+                                <Setter TargetName="RadioEllipse" Property="Stroke" Value="{StaticResource ButtonColor2}" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -37,7 +43,7 @@
             </Setter>
         </Style>
     </Window.Resources>
-    <Grid Background="{StaticResource TouristBackgroundColor1Linear}">
+    <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="80"/>
@@ -51,7 +57,7 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="35"/>
             <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -81,7 +87,8 @@
                Grid.Column="1"
                Grid.Row="3"
                HorizontalContentAlignment="Center"
-               FontSize="16"/>
+               FontSize="18"
+               FontWeight="SemiBold"/>
         <StackPanel Grid.Column="1"
                     Grid.Row="4"
                     Orientation="Horizontal"
@@ -115,7 +122,8 @@
                Grid.Row="5"
                HorizontalContentAlignment="Center"
                VerticalContentAlignment="Center"
-               FontSize="16"/>
+               FontSize="18"
+               FontWeight="SemiBold"/>
         <StackPanel Grid.Column="1"
                     Grid.Row="6"
                     Grid.RowSpan="2"
@@ -149,7 +157,8 @@
                Grid.Column="3"
                Grid.Row="3"
                HorizontalContentAlignment="Center"
-               FontSize="16"/>
+               FontSize="18"
+               FontWeight="SemiBold"/>
         <StackPanel Grid.Column="3"
                     Grid.Row="4"
                     Orientation="Horizontal"
@@ -169,7 +178,8 @@
         <Label Content="Comment:"
                Grid.Column="3"
                Grid.Row="5"
-               FontSize="16"/>
+               FontSize="18"
+               FontWeight="SemiBold"/>
         <TextBox x:Name="CommentTextBox"
                  Grid.Column="3"
                  Grid.Row="6"
@@ -188,12 +198,13 @@
                   Grid.RowSpan="2"
                   Grid.Column="1"
                   Grid.ColumnSpan="3"
-                  Header="Images">
+                  Header="Images"
+                  FontSize="20">
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="10"/>
                     <ColumnDefinition Width="120"/>
                     <ColumnDefinition Width="20"/>
                 </Grid.ColumnDefinitions>
@@ -203,30 +214,34 @@
                     <RowDefinition Height="10"/>
                 </Grid.RowDefinitions>
 
+                <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto"
+                              Grid.Row="1"
+                              Grid.Column="1">
 
-                <StackPanel Grid.Row="1"
-                            Grid.Column="1"
-                            Orientation="Horizontal">
-
-                    <ItemsControl ItemsSource="{Binding imagePreviews}">
-                        <ItemsControl.ItemsPanel>
-                            <ItemsPanelTemplate>
-                                <WrapPanel/>
-                            </ItemsPanelTemplate>
-                        </ItemsControl.ItemsPanel>
-                        <ItemsControl.ItemTemplate>
-                            <DataTemplate>
-                                <Grid>
-                                    <Image Width="120" Height="120" Source="{Binding}" Margin="10,0"/>
-                                    <Button Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0" 
+                    <StackPanel Orientation="Horizontal">
+                        <ItemsControl ItemsSource="{Binding imagePreviews}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Image Width="120" Height="120" Source="{Binding}" Margin="10,0"/>
+                                        <Button Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"
+                                                Width="25"
+                                                Height="25"
+                                            Style="{StaticResource EnlargeButtonStyle}"
                                             Command="{Binding DataContext.DeletePreviewImageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
                                             CommandParameter="{Binding}" />
-                                </Grid>
-                            </DataTemplate>
-                        </ItemsControl.ItemTemplate>
-                    </ItemsControl>
-                </StackPanel>
-
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
                 <Button x:Name="Addimage"
                         Style="{StaticResource EnlargeButtonStyle1}"
                         IsEnabled="{Binding IsAddImageButtonEnabled}"
@@ -237,7 +252,7 @@
                         Height="40"
                         Grid.Column="3"
                         Grid.Row="1"
-                        Click="Addimage_Click"/>    
+                        Click="Addimage_Click"/>
 
             </Grid>
         </GroupBox>

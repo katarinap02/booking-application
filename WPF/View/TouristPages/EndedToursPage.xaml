@@ -13,6 +13,9 @@
     <Page.DataContext>
         <guideTouristViewModel:TourViewModel/>
     </Page.DataContext>
+    <Page.CommandBindings>
+        <CommandBinding Command="cmd:RoutedCommands.Notifications" CanExecute="Notification_CanExecute" Executed="Notification_Executed"/>
+    </Page.CommandBindings>
     <Grid Background="{StaticResource FrameBackgroundColor1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
