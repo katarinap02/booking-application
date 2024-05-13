@@ -1,0 +1,60 @@
+﻿<UserControl x:Class="BookingApp.WPF.View.GuideTestWindows.GuideControls.TodaysTours"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="220"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+
+        <!-- Leva polovina -->
+        <Grid Grid.Column="0">
+            <DataGrid Margin="10, 0, 20, 10" Style="{StaticResource GuideDataGridStyle}">
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="Tour Name" />
+                    <DataGridTextColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="City"/>
+                    <DataGridTextColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="Country"/>
+                    <DataGridTextColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="Language"/>
+                    <DataGridTextColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="Date and Time"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
+
+        <!-- Desna polovina -->
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0">
+                <TextBlock Text="Checkpoints of selected tour:" Style="{StaticResource GuideTextBlockStyle}"></TextBlock>
+                <ItemsControl ItemsSource="{Binding CheckpointsWithColors}"
+              Style="{StaticResource CustomCheckpointItemsControlStyle}"/>
+
+                <TextBlock Margin="0, 20, 0 0" Text="Expected tourists: " Style="{StaticResource GuideTextBlockStyle}"></TextBlock>
+                <ListBox VerticalAlignment="Center"                 
+                     Style="{StaticResource CustomListBoxStyle}"
+                     x:Name="listTest"
+                     SelectionMode="Single"
+                     Width="150">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomListBoxItemStyle}"/>
+                    </ListBox.ItemContainerStyle>
+                    <ListBoxItem>Test</ListBoxItem>
+                    <ListBoxItem>Test</ListBoxItem>
+                    <ListBoxItem>Test</ListBoxItem>
+                </ListBox>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <Button Content="Show information" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/>
+                <Button Content="Start Tour" Margin="10,0,10,10" Style="{StaticResource generalButton}" Height="27" Foreground="#060531" BorderBrush="#FB539B"/>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

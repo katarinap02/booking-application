@@ -1,4 +1,6 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Observer;
 using BookingApp.Serializer;
 using System;
@@ -10,7 +12,7 @@ using System.Windows.Media;
 
 namespace BookingApp.Repository
 {
-     public class HostRepository
+    public class HostRepository : IHostRepository
     {
         private const string FilePath = "../../../Resources/Data/hosts.csv";
 

@@ -1,0 +1,280 @@
+﻿<Window x:Class="BookingApp.View.TouristWindows.GuideRateWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
+        xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
+        mc:Ignorable="d"
+        Title="GuideRateWindow" Height="630" Width="830" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.AddImage" CanExecute="AddImage_CanExecute" Executed="AddImage_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.Submit" CanExecute="Submit_CanExecute" Executed="Submit_Executed"/>
+    </Window.CommandBindings>
+    <Window.Resources>
+        <Style x:Key="CoolRadioButtonStyle" TargetType="RadioButton">
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="FontSize" Value="20" />
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="5,0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Grid>
+                            <Ellipse x:Name="RadioEllipse" Width="40" Height="40" Stroke="White" StrokeThickness="5">
+                                <Ellipse.Fill>
+                                    <RadialGradientBrush>
+                                        <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0" />
+                                        <GradientStop Color="{StaticResource ButtonColor2Press}" Offset="1" />
+                                    </RadialGradientBrush>
+                                </Ellipse.Fill>
+                            </Ellipse>
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="RadioEllipse" Property="Stroke" Value="{StaticResource ButtonColor2}" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+    <Grid Background="{StaticResource WindowBackgroundColor1}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="33"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Label Content="Tour and Guide Rate"
+               FontSize="50"
+               Grid.ColumnSpan="5"
+               Grid.Row="1"
+               HorizontalAlignment="Center"/>
+
+        <Label Content="Guide"
+               Grid.Column="1"
+               Grid.Row="2"
+               FontSize="30"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"/>
+        <Rectangle Stroke="Black"
+                   Grid.Column="1"
+                   Grid.Row="3"
+                   Grid.RowSpan="2"/>
+        <Label Content="knowledge"
+               Grid.Column="1"
+               Grid.Row="3"
+               HorizontalContentAlignment="Center"
+               FontSize="18"
+               FontWeight="SemiBold"/>
+        <StackPanel Grid.Column="1"
+                    Grid.Row="4"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+>
+            <StackPanel Orientation="Horizontal">
+                <RadioButton x:Name="k1"
+                             Content="1" GroupName="Knowledge" Command="{Binding SelectKnowledgeRatingCommand}" CommandParameter="0"
+                             IsChecked="True"
+                             Style="{StaticResource CoolRadioButtonStyle}"/>
+                <RadioButton x:Name="k2"
+                             Content="2" GroupName="Knowledge" Command="{Binding SelectKnowledgeRatingCommand}" CommandParameter="1"
+                             Style="{StaticResource CoolRadioButtonStyle}"/>
+                <RadioButton x:Name="k3"
+                             Content="3" GroupName="Knowledge" Command="{Binding SelectKnowledgeRatingCommand}" CommandParameter="2"
+                             Style="{StaticResource CoolRadioButtonStyle}"/>
+                <RadioButton x:Name="k4"
+                             Content="4" GroupName="Knowledge" Command="{Binding SelectKnowledgeRatingCommand}" CommandParameter="3"
+                             Style="{StaticResource CoolRadioButtonStyle}"/>
+                <RadioButton x:Name="k5"
+                             Content="5" GroupName="Knowledge" Command="{Binding SelectKnowledgeRatingCommand}" CommandParameter="4"
+                             Style="{StaticResource CoolRadioButtonStyle}"/>
+            </StackPanel>
+        </StackPanel>
+        <Rectangle Stroke="Black"
+                   Grid.Column="1"
+                   Grid.Row="5"
+                   Grid.RowSpan="3"/>
+        <Label Content="language"
+               Grid.Column="1"
+               Grid.Row="5"
+               HorizontalContentAlignment="Center"
+               VerticalContentAlignment="Center"
+               FontSize="18"
+               FontWeight="SemiBold"/>
+        <StackPanel Grid.Column="1"
+                    Grid.Row="6"
+                    Grid.RowSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+            <RadioButton Content="1" GroupName="Language" Command="{Binding SelectLanguageRatingCommand}" CommandParameter="0"
+                         IsChecked="True"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="2" GroupName="Language" Command="{Binding SelectLanguageRatingCommand}" CommandParameter="1"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="3" GroupName="Language" Command="{Binding SelectLanguageRatingCommand}" CommandParameter="2"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="4" GroupName="Language" Command="{Binding SelectLanguageRatingCommand}" CommandParameter="3"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="5" GroupName="Language" Command="{Binding SelectLanguageRatingCommand}" CommandParameter="4"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+        </StackPanel>
+
+        <Label Content="Tour"
+               Grid.Column="3"
+               Grid.Row="2"
+               FontSize="30"
+               VerticalAlignment="Center"
+               HorizontalAlignment="Center"/>
+        <Rectangle Stroke="Black"
+                   Grid.Column="3"
+                   Grid.Row="3"
+                   Grid.RowSpan="2"/>
+        <Label Content="interestingness"
+               Grid.Column="3"
+               Grid.Row="3"
+               HorizontalContentAlignment="Center"
+               FontSize="18"
+               FontWeight="SemiBold"/>
+        <StackPanel Grid.Column="3"
+                    Grid.Row="4"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Center">
+            <RadioButton Content="1" GroupName="Interestingness" Command="{Binding SelectInterestRatingCommand}" CommandParameter="0"
+                         IsChecked="True"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="2" GroupName="Interestingness" Command="{Binding SelectInterestRatingCommand}" CommandParameter="1"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="3" GroupName="Interestingness" Command="{Binding SelectInterestRatingCommand}" CommandParameter="2"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="4" GroupName="Interestingness" Command="{Binding SelectInterestRatingCommand}" CommandParameter="3"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+            <RadioButton Content="5" GroupName="Interestingness" Command="{Binding SelectInterestRatingCommand}" CommandParameter="4"
+                         Style="{StaticResource CoolRadioButtonStyle}"/>
+        </StackPanel>
+        <Label Content="Comment:"
+               Grid.Column="3"
+               Grid.Row="5"
+               FontSize="18"
+               FontWeight="SemiBold"/>
+        <TextBox x:Name="CommentTextBox"
+                 Grid.Column="3"
+                 Grid.Row="6"
+                 Grid.RowSpan="2"
+                 TextChanged="CommentTextBox_TextChanged"
+                 Text="{Binding AdditionalComment}"
+                 Foreground="Black"
+                 TextWrapping="Wrap"/>
+        <TextBlock x:Name="PlaceholderTextBlock" Text="Leave a comment here..."
+                   Grid.Column="3"
+                   Grid.Row="6"
+                   Cursor="IBeam"
+                   MouseDown="PlaceholderTextBlock_MouseDown"
+                   Foreground="Gray" Margin="5,0,236,19"/>
+        <GroupBox Grid.Row="9"
+                  Grid.RowSpan="2"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="3"
+                  Header="Images"
+                  FontSize="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="10"/>
+                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="20"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+
+                <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                              VerticalScrollBarVisibility="Auto"
+                              Grid.Row="1"
+                              Grid.Column="1">
+
+                    <StackPanel Orientation="Horizontal">
+                        <ItemsControl ItemsSource="{Binding imagePreviews}">
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel/>
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Image Width="120" Height="120" Source="{Binding}" Margin="10,0"/>
+                                        <Button Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,10,10,0"
+                                                Width="25"
+                                                Height="25"
+                                            Style="{StaticResource EnlargeButtonStyle}"
+                                            Command="{Binding DataContext.DeletePreviewImageCommand, RelativeSource={RelativeSource AncestorType={x:Type Window}}}"
+                                            CommandParameter="{Binding}" />
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                    </StackPanel>
+                </ScrollViewer>
+                <Button x:Name="Addimage"
+                        Style="{StaticResource EnlargeButtonStyle1}"
+                        IsEnabled="{Binding IsAddImageButtonEnabled}"
+                        Content="Add image"
+                        FontSize="20"
+                        Width="110"
+                        VerticalAlignment="Bottom"
+                        Height="40"
+                        Grid.Column="3"
+                        Grid.Row="1"
+                        Click="Addimage_Click"/>
+
+            </Grid>
+        </GroupBox>
+
+        <Button Style="{StaticResource EnlargeButtonStyle}"
+                Content="Close"
+                FontSize="20"
+                Width="110"
+                VerticalAlignment="Bottom"
+                Grid.Column="1"
+                Grid.Row="12"
+                HorizontalAlignment="Right"
+                Click="CloseButton_Click"/>
+        <Button Style="{StaticResource EnlargeButtonStyle}"
+                Content="Submit"
+                FontSize="20"
+                Width="110"
+                VerticalAlignment="Bottom"
+                Grid.Column="3"
+                Grid.Row="12"
+                HorizontalAlignment="Left"
+                Click="SubmitButton_Click"/>
+
+    </Grid>
+</Window>

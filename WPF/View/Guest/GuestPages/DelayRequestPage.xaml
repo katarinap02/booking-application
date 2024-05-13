@@ -1,0 +1,107 @@
+﻿<Page x:Class="BookingApp.View.GuestPages.DelayRequestPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+        xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
+  mc:Ignorable="d" 
+  d:DesignHeight="798" d:DesignWidth="1085"
+  Title="RateAccommodationForm">
+
+    <Page.Resources>
+
+        <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <DrawingGroup x:Key="question_mark_in_a_circle_svgrepo_com_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,93.936,93.936"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 80.179 13.758 c -18.342 -18.342 -48.08 -18.342 -66.422 0 c -18.342 18.341 -18.342 48.08 0 66.421 c 18.342 18.342 48.08 18.342 66.422 0 C 98.521 61.837 98.521 32.099 80.179 13.758 z M 44.144 83.117 c -4.057 0 -7.001 -3.071 -7.001 -7.305 c 0 -4.291 2.987 -7.404 7.102 -7.404 c 4.123 0 7.001 3.044 7.001 7.404 C 51.246 80.113 48.326 83.117 44.144 83.117 z M 54.73 44.921 c -4.15 4.905 -5.796 9.117 -5.503 14.088 l 0.097 2.495 c 0.011 0.062 0.017 0.125 0.017 0.188 c 0 0.58 -0.47 1.051 -1.05 1.051 c -0.004 -0.001 -0.008 -0.001 -0.012 0 h -7.867 c -0.549 0 -1.005 -0.423 -1.047 -0.97 l -0.202 -2.623 c -0.676 -6.082 1.508 -12.218 6.494 -18.202 c 4.319 -5.087 6.816 -8.865 6.816 -13.145 c 0 -4.829 -3.036 -7.536 -8.548 -7.624 c -3.403 0 -7.242 1.171 -9.534 2.913 c -0.264 0.201 -0.607 0.264 -0.925 0.173 s -0.575 -0.327 -0.693 -0.636 l -2.42 -6.354 c -0.169 -0.442 -0.02 -0.943 0.364 -1.224 c 3.538 -2.573 9.441 -4.235 15.041 -4.235 c 12.36 0 17.894 7.975 17.894 15.877 C 63.652 33.765 59.785 38.919 54.73 44.921 z" FillRule="Nonzero"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource question_mark_in_a_circle_svgrepo_com_xaml}" x:Key="HintIcon"/>
+            <DrawingGroup x:Key="exclamation_mark_svgrepo_com_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,45.311,45.311"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="red">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 22.675 0.02 c -0.006 0 -0.014 0.001 -0.02 0.001 c -0.007 0 -0.013 -0.001 -0.02 -0.001 C 10.135 0.02 0 10.154 0 22.656 c 0 12.5 10.135 22.635 22.635 22.635 c 0.007 0 0.013 0 0.02 0 c 0.006 0 0.014 0 0.02 0 c 12.5 0 22.635 -10.135 22.635 -22.635 C 45.311 10.154 35.176 0.02 22.675 0.02 z M 22.675 38.811 c -0.006 0 -0.014 -0.001 -0.02 -0.001 c -0.007 0 -0.013 0.001 -0.02 0.001 c -2.046 0 -3.705 -1.658 -3.705 -3.705 c 0 -2.045 1.659 -3.703 3.705 -3.703 c 0.007 0 0.013 0 0.02 0 c 0.006 0 0.014 0 0.02 0 c 2.045 0 3.706 1.658 3.706 3.703 C 26.381 37.152 24.723 38.811 22.675 38.811 z M 27.988 10.578 c -0.242 3.697 -1.932 14.692 -1.932 14.692 c 0 1.854 -1.519 3.356 -3.373 3.356 c -0.01 0 -0.02 0 -0.029 0 c -0.009 0 -0.02 0 -0.029 0 c -1.853 0 -3.372 -1.504 -3.372 -3.356 c 0 0 -1.689 -10.995 -1.931 -14.692 C 17.202 8.727 18.62 5.29 22.626 5.29 c 0.01 0 0.02 0.001 0.029 0.001 c 0.009 0 0.019 -0.001 0.029 -0.001 C 26.689 5.29 28.109 8.727 27.988 10.578 z" FillRule="Nonzero"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource exclamation_mark_svgrepo_com_xaml}" x:Key="Warning"/>
+        </ResourceDictionary>
+
+    </Page.Resources>
+
+    <Grid>
+        <Grid>
+
+
+            <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,549,5">
+                <Grid>
+                    <Button Content="Back" Style="{StaticResource ButtonStyleN}" FontSize="16" Width="60" Height="25" Margin="10,10,452,754" Command="{Binding BackCommand}"/>
+                    <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="36,41,38,507">Please choose new dates for your reservation, and then wait for host's response. Requests can be pending, approved or rejected.</TextBlock>
+                  
+                    <ToggleButton Height="50" Background="White" BorderBrush="White" Margin="129,232,131,507" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="{StaticResource HintIcon}" Height="25" Width="25"/>
+                            <Label x:Name="HintLabel" Content="Problem with choosing dates" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
+                        </StackPanel>
+                        
+                    </ToggleButton>
+                    <TextBlock x:Name="Hint" FontSize="16" Foreground="Green" Height="150" TextAlignment="Center" TextWrapping="Wrap" Margin="129,287,105,352">
+                        It is neccessary to choose the same number of days you previously reserved.
+                    </TextBlock>
+
+                    <Label Content="Accommodation" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="136,434,-136,312"/>
+                    <Label Content="Host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="218,648,218,98"/>
+                    <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
+                        <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="8,2,114,-2"/>
+                    </Border>
+
+                    <controls:AccommodationCardSmaller DataContext="{Binding SelectedAccommodation}" Width="500" Margin="11,168,11,-168"></controls:AccommodationCardSmaller>
+
+                </Grid>
+
+            </Border>
+            <Border Width="526" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="549,1,10,0">
+
+                <Grid>
+                    <Calendar x:Name="ReservationCalendar"  BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"  Background="White" SelectionMode="SingleRange" Height="371" Margin="65,180,65,242" RenderTransformOrigin="0.515,0.5">
+                        <Calendar.LayoutTransform>
+                            <ScaleTransform ScaleX="2" ScaleY="2"/>
+                        </Calendar.LayoutTransform>
+
+                    </Calendar>
+                    <TextBlock x:Name="dayNumberValidator" FontSize="20" Foreground="red" Margin="133,530,133,221">
+
+
+                        <TextBlock.Inlines>
+                            <InlineUIContainer>
+                                <Image Source="{StaticResource Warning}" Width="16" Height="16" Margin="2,0,0,0"/>
+                            </InlineUIContainer>
+                            <Run Text="You need to select"/>
+                            <Run Text="{Binding DayNumber}" />
+
+                            <Run Text="days." />
+                        </TextBlock.Inlines>
+
+
+
+                    </TextBlock>
+                    <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,625,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{StaticResource ResourceKey=ButtonStyleN}" RenderTransformOrigin="0.505,0.945"/>
+                </Grid>
+            </Border>
+
+
+        </Grid>
+    </Grid>
+</Page>

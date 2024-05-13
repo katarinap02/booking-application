@@ -1,0 +1,82 @@
+﻿<Window x:Class="BookingApp.View.TouristWindows.AddedTouristsNotificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
+        xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
+        mc:Ignorable="d"
+        Title="AddedTouristsNotificationWindow" Height="425" Width="480" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
+    </Window.CommandBindings>
+    <Grid Background="{StaticResource WindowBackgroundColor1}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="70"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <Label Content="Tour:"
+               Grid.Column="1"
+               Grid.Row="1"
+               FontSize="20"
+               FontWeight="DemiBold"/>
+        <Label x:Name="tourNameLabel"
+               Content="{Binding SelectedNotification.TourName}"
+               FontWeight="Bold"
+               Margin="58, 0"
+               FontSize="20"
+               Grid.Column="1"
+               Grid.Row="1"/>
+        <Label Content="Keypoint:"
+               Grid.Column="1"
+               Grid.Row="2"
+               FontSize="20"
+               FontWeight="DemiBold"/>
+        <Label Content="{Binding CurrentCheckpointName}"
+               FontWeight="Bold"
+               Margin="100, 0"
+               FontSize="20"
+               Grid.Column="1"
+               Grid.Row="2"/>
+        <Label Content="added participants:"
+               Grid.Column="1"
+               Grid.Row="2"
+               FontWeight="DemiBold"
+               FontSize="15"
+               VerticalAlignment="Bottom"/>
+        <ScrollViewer VerticalScrollBarVisibility="Auto"
+                      Style="{StaticResource KeypointsStyle1}"
+                      Grid.Column="1"
+                      Grid.Row="3"
+                      Margin="140, 0">
+            <ItemsControl ItemsSource="{Binding tourists}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal" Margin="5">
+                            <TextBlock Text="{Binding}" VerticalAlignment="Center" FontSize="18"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
+
+        <Button Content="Close"
+                Style="{StaticResource EnlargeButtonStyle}"
+                Command="{Binding CloseCommand}"
+                HorizontalAlignment="Right"
+                Margin="0, 0, 25, 0"
+                FontSize="19"
+                Grid.Column="1"
+                Width="70"
+                Grid.Row="4"/>
+    </Grid>
+</Window>

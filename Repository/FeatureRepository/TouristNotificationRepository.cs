@@ -1,4 +1,5 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
@@ -6,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Repository
+namespace BookingApp.Repository.FeatureRepository
 {
-    public class TouristNotificationRepository
+    public class TouristNotificationRepository : ITouristNotificationRepository
     {
         private const string FilePath = "../../../Resources/Data/tourist_notifications.csv";
 
@@ -32,7 +33,7 @@ namespace BookingApp.Repository
             List<TouristNotification> notifications = GetAll();
             notifications = notifications.FindAll(n => n.TouristId == touristId);
             notifications.Reverse();
-            return notifications;
+            return notifications.Distinct().ToList();
         }
         public void Add(TouristNotification notification)
         {

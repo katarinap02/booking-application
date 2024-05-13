@@ -1,14 +1,16 @@
-﻿using BookingApp.Model;
-using BookingApp.Observer;
+﻿using BookingApp.Observer;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using BookingApp.View.ViewModel;
+using BookingApp.WPF.ViewModel.HostGuestViewModel;
+using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 
 namespace BookingApp.Repository
 {
-    public class AccommodationReservationRepository
+    public class AccommodationReservationRepository : IAccommodationReservationRepository
     {
         private const string FilePath = "../../../Resources/Data/accommodation_reservations.csv";
         private readonly Serializer<AccommodationReservation> _serializer;
@@ -100,7 +102,7 @@ namespace BookingApp.Repository
         }
 
 
-        internal void Delete(AccommodationReservationViewModel selectedReservation)
+        public void Delete(AccommodationReservationViewModel selectedReservation)
         {
             _reservations = _serializer.FromCSV(FilePath);
             AccommodationReservation found = _reservations.Find(r =>r.Id == selectedReservation.Id);
@@ -120,6 +122,6 @@ namespace BookingApp.Repository
             return null;
         }
 
-
+       
     }
 }

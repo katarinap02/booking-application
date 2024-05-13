@@ -1,4 +1,7 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.Repository.FeatureRepository;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
@@ -6,9 +9,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Repository
+namespace BookingApp.Repository.ReservationRepository
 {
-    public class TourParticipantRepository
+    public class TourParticipantRepository : ITourParticipantRepository
     {
         private const string FilePath = "../../../Resources/Data/tour_participants.csv";
 
@@ -49,12 +52,12 @@ namespace BookingApp.Repository
             return _tourParticipants.Find(tp => tp.Id == id);
         }
 
-        public TourParticipant SaveParticipant(string name, string lastName, string years)
+        public TourParticipant SaveParticipant(string name, string lastName, int age)
         {
             TourParticipant tourParticipant = new TourParticipant();
             tourParticipant.Name = name;
             tourParticipant.LastName = lastName;
-            tourParticipant.Years = Convert.ToInt32(years);
+            tourParticipant.Years = age;
             tourParticipant.Id = NextId();
 
             return tourParticipant;
@@ -79,17 +82,6 @@ namespace BookingApp.Repository
             return tourParticipantIds;
         }
 
-        public string GetAllParticipantNames(int reservationId) 
-        {
-            List<TourParticipant> tourParticipantsByReservation = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
-            List<string> participantNames = new List<string>();
-            foreach(TourParticipant tp in tourParticipantsByReservation)
-            {
-                participantNames.Add(tp.Name+" "+tp.LastName);
-            }
-            return string.Join(", ", participantNames);
-        }
-
         public List<TourParticipant> GetAllParticipantsByReservation(int reservationId)
         {
             List<TourParticipant> tourParticipantsByReservation = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
@@ -99,21 +91,7 @@ namespace BookingApp.Repository
                 tourParticipants.Add(tp);
 
             return tourParticipants;
-        }
-
-        public List<TourParticipant> GetAllJoinedParticipantsByReservation(int reservationId)
-        {
-            List<TourParticipant> tourParticipants = GetAllParticipantsByReservation(reservationId);
-            foreach(TourParticipant tp in tourParticipants.ToList())
-            {
-                if (!tp.HasJoinedTour) //ako se nije prikljucio
-                {
-                    tourParticipants.Remove(tp);
-                }
-            }
-
-            return tourParticipants;
-        }
+        }       
 
         public List<TourParticipant> GetAllNotJoinedParticipantsByReservation(int reservationId)
         {
@@ -129,54 +107,27 @@ namespace BookingApp.Repository
             return tourParticipants;
         }
         
-        public void JoinTour(int participant_id, int current_checkpoint_index)
+        public void Update(TourParticipant tourParticipant)
         {
-            TourParticipant tourParticipant = GetById(participant_id);
-            tourParticipant.HasJoinedTour = true;
-            tourParticipant.JoinedCheckpointIndex = current_checkpoint_index;
-            SendNotification(tourParticipant.ReservationId, current_checkpoint_index);
+            _tourParticipants = GetAll(); //ucitavanje
+            TourParticipant current = GetById(tourParticipant.Id);
+            int index = _tourParticipants.IndexOf(current);
+            _tourParticipants.Remove(current);
+            _tourParticipants.Insert(index, tourParticipant);
             _serializer.ToCSV(FilePath, _tourParticipants);
         }
 
-        private void InitialiseRepos() { 
-            _reservationrepository = new TourReservationRepository();
-            _tourRepository = new TourRepository();
-            _userRepository = new UserRepository();
-            _tourRepository = new TourRepository();
-        }
-        
-        private void SendNotification(int reservation_id, int checkpoint)
+        public bool IsUserJoined(int reservationId, string touristName, string touristLastName)
         {
-            InitialiseRepos();
-            _notificationRepository = new TouristNotificationRepository();
-            TourReservation tourReservation = _reservationrepository.GetById(reservation_id);
-            Tour tour = _tourRepository.GetTourById(tourReservation.TourId);
-            User user = _userRepository.GetById(tour.GuideId);
-            TouristNotification notification = new TouristNotification(0, tourReservation.TouristId, tourReservation.TourId, NotificationType.JoinedTour, tour.Name, user.Username, checkpoint);
-            _notificationRepository.Add(notification);
-        }
-
-        public bool IsSomeoneJoinedToTourByReservation(int reservationId)
-        {
+            _tourParticipants = GetAll(); // ovo da bi procitao nov sadrzaj iz csv-a
             List<TourParticipant> tourParticipants = _tourParticipants.FindAll(tp => tp.ReservationId == reservationId);
             foreach(TourParticipant tp in tourParticipants){
-                if(tp.HasJoinedTour == true)
+                if(tp.Name.Equals(touristName) && tp.LastName.Equals(touristLastName) && tp.HasJoinedTour == true)
                 {
                     return true;
                 }
             }
             return false;
-        }
-
-        public int getjoinedCheckpoint(int tour_id)
-        {
-            InitialiseRepos();
-            TourParticipant participant = GetById(_reservationrepository.getTouristParticipantID(tour_id));
-            if (!participant.HasJoinedTour)
-            {
-                return -1;
-            }
-            return participant.JoinedCheckpointIndex;
         }
         
     }

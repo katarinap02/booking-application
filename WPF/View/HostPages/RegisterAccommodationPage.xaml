@@ -1,0 +1,206 @@
+﻿<Page x:Class="BookingApp.View.HostPages.RegisterAccommodationPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:local="clr-namespace:BookingApp.View.HostPages" xmlns:BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands="clr-namespace:BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands"
+      mc:Ignorable="d" 
+      d:DesignHeight="705" d:DesignWidth="1024"
+      Title="RegisterAccommodationPage">
+
+    <Page.Resources>
+        <BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands:ValidationClass x:Key="StringIsNullOrEmptyConverter"/>
+        <Style TargetType="Label" x:Key="LabelStyle">
+            <Setter Property="FontSize" Value="13"/>
+            <Setter Property="Foreground" Value="Black"/>
+        </Style>
+    </Page.Resources>
+
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,2" EndPoint="1,1">
+                <GradientStop Color="#47D2E8" Offset="0.1"/>
+                <GradientStop Color="#FFD7F2" Offset="0.9"></GradientStop>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+            <ColumnDefinition Width="800"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label
+        x:Name="TitleLabel" Grid.Column ="1"
+        Grid.Row="0"
+        VerticalAlignment="Center"
+        HorizontalContentAlignment="Center"
+        Content="Accommodation Registration"
+        FontSize="32"
+        Style="{StaticResource TitleStyleHost}"
+            Margin="0 0 0 0"
+     />
+        <StackPanel Grid.Row ="1" Grid.Column="1" Orientation="Horizontal">
+            <Label
+               x:Name="NameLabel" 
+               Style="{StaticResource LableTextStyleMSHost}"
+               Content="Name*" Height="29" Width="51"
+            />
+            <StackPanel Margin="5,33,59,0">
+            <TextBox x:Name ="textBoxName" Text="{Binding Path= accommodationDTO.Name, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Top"  Width="742"/>
+            <TextBlock Text="name is required" Margin="0 1 0 0" Background="Transparent"  >
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockValidation}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=textBoxName, Path=Text, Converter={StaticResource StringIsNullOrEmptyConverter}}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row ="2" Grid.Column="1" Orientation="Horizontal">
+            <Label
+               x:Name="CityLabel"
+               Style="{StaticResource LableTextStyleMSHost}"
+               Content="City*" Height="29" Width="49"/>
+            <StackPanel Margin="5,33,59,0">
+            <TextBox x:Name ="textBoxCity" Text="{Binding Path= accommodationDTO.City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Top"  Width="281"/>
+            <TextBlock Text="city is required" Margin="0 1 0 0" Background="Transparent"  >
+                <TextBlock.Style>
+                    <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockValidation}">
+                        <Setter Property="Visibility" Value="Collapsed"/>
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ElementName=textBoxCity, Path=Text, Converter={StaticResource StringIsNullOrEmptyConverter}}" Value="True">
+                                <Setter Property="Visibility" Value="Visible"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </TextBlock.Style>
+            </TextBlock>
+            </StackPanel>
+            <Label
+                x:Name="CountryLabel"
+                Style="{StaticResource LableTextStyleMSHost}"
+                Content="Country*" Height="29" Width="65"
+                Margin="75 0 0 0"/>
+            <StackPanel Margin="5,33,59,0">
+            <TextBox x:Name ="textBoxCountry" Text="{Binding Path= accommodationDTO.Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Top"  Width="258"/>
+                <TextBlock Text="country is required" Margin="0 1 0 0" Background="Transparent"  >
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockValidation}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=textBoxCountry, Path=Text, Converter={StaticResource StringIsNullOrEmptyConverter}}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+
+        <StackPanel Grid.Row ="3" Grid.Column="1" Orientation="Horizontal" Margin="0 0 100 0" HorizontalAlignment="Left" >
+            <RadioButton x:Name="radioButtonApartment" GroupName="TypeButton" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="True"></RadioButton>
+            <Label
+                x:Name="ApartmentLabel"
+                Style="{StaticResource LableTextStyleMSHost}"
+                Content="Apartment" Height="29" Width="76"
+                Margin="3 0 50 0"/>
+            <RadioButton x:Name="radioButtonHouse" GroupName="TypeButton"  VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding accommodationDTO.IsCheckedHouse}"></RadioButton>
+            <Label
+                x:Name="HouseLabel"
+                Style="{StaticResource LableTextStyleMSHost}"
+                Content="House" Height="29" Width="49"
+                Margin="3 0 50 0"/>
+            <RadioButton x:Name="radioButtonCottage"  GroupName="TypeButton" IsChecked="{Binding accommodationDTO.IsCheckedCottage}" VerticalAlignment="Center" HorizontalAlignment="Center" ></RadioButton>
+            <Label
+                x:Name="CottageLabel"
+                Style="{StaticResource LableTextStyleMSHost}"
+                Content="Cottage" Height="29" Width="60"
+                Margin="3 0 0 0"/>
+        </StackPanel>
+        <StackPanel Grid.Row ="4" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,0,0,85" Grid.RowSpan="2" Width="800">
+            <Label
+               x:Name="GuestNmLabel" 
+                Style="{StaticResource LableTextStyleMSHost}"
+               Content="Maximum guest number" Height="29" Width="153" 
+    />
+            <xctk:IntegerUpDown x:Name ="textBoxGuestNm" Minimum="1" Text="{Binding Path= accommodationDTO.MaxGuestNumber, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="50"/>
+
+            <Label
+           x:Name="MinDaysLabel" 
+                Style="{StaticResource LableTextStyleMSHost}"
+           Content="Minimum reservation days" Height="29" Width="170" Margin="8 0 0 0"
+/>
+            <xctk:IntegerUpDown x:Name ="textBoxMinDays" Minimum="1" Text="{Binding Path= accommodationDTO.MinReservationDays, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="50"/>
+
+            <Label
+           x:Name="LimitLabel" 
+                Style="{StaticResource LableTextStyleMSHost}"
+           Content="Cancelling reservation limit" Height="29" Width="175" Margin="8 0 0 0"
+/>
+            <xctk:IntegerUpDown x:Name ="textBoxLimit" Minimum="1" Text="{Binding Path= accommodationDTO.ReservationDaysLimit, UpdateSourceTrigger=PropertyChanged,  ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Center" Margin="5,0,59,0" Width="50"/>
+        </StackPanel>
+        <StackPanel Grid.Row ="5" Grid.Column="1" Orientation="Horizontal" Margin="0,0,0,70" Grid.RowSpan="2">
+            <Label
+       x:Name="PictureLabel" 
+                Style="{StaticResource LableTextStyleMSHost}"
+       Content="Pictures" Height="29" Width="60" VerticalAlignment="Top" Margin="0 19 0 0"
+    />
+            <ListBox Name="txtPictureUrls" ItemsSource="{Binding Pictures, UpdateSourceTrigger=PropertyChanged}" Height="70" Width="593" Margin="5, 0, 5,0">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid>
+                        <Image Source="{Binding}" Width="65" Height="65" Margin="0, 0, 7, 0"/>
+                            <Button Content="X" Width="20" Style="{StaticResource ButtonStyleWindowHost}" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0" 
+                        Command="{Binding DataContext.XCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"
+                        CommandParameter="{Binding}"/>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <Button Command="{Binding PictureCommand}" Style="{StaticResource ButtonStyleHost}"  VerticalAlignment="Top" Height="27" Width="75" FontSize="15" Content="Browse" Margin="0 24 20 0"></Button>
+        </StackPanel>
+        <TextBox Margin="0,0,0,5" Name="txtPictureUrlTextBox" Visibility="Hidden" Width="179" Height="34"/>
+
+        <Button Grid.Row="6" VerticalAlignment="Center" HorizontalAlignment="Left" Grid.Column="1"  Height="39" Width="134" FontSize="20" Content="Submit" Command="{Binding SaveCommand}">
+            <Button.Style>
+                <Style TargetType="Button" BasedOn="{StaticResource ButtonStyleHost}">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding ElementName=textBoxName, Path=Text, Converter={StaticResource StringIsNullOrEmptyConverter}}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=textBoxCity, Path=Text, Converter={StaticResource StringIsNullOrEmptyConverter}}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding ElementName=textBoxCountry, Path=Text, Converter={StaticResource StringIsNullOrEmptyConverter}}" Value="True">
+                            <Setter Property="IsEnabled" Value="False"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                    
+                </Style>
+            </Button.Style>
+        </Button>
+
+    </Grid>
+</Page>

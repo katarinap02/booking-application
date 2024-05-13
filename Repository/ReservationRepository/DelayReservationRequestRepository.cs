@@ -1,14 +1,15 @@
-﻿using BookingApp.ViewModel;
-using BookingApp.Model;
+﻿using BookingApp.WPF.ViewModel;
 using BookingApp.Observer;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 
 namespace BookingApp.Repository
 {
-    public class DelayRequestRepository
+    public class DelayRequestRepository : IDelayRequestRepository
     {
         private const string FilePath = "../../../Resources/Data/delay_requests.csv";
         private readonly Serializer<DelayRequest> _serializer;

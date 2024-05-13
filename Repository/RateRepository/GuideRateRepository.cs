@@ -1,4 +1,5 @@
-﻿using BookingApp.Model;
+﻿using BookingApp.Domain.Model.Rates;
+using BookingApp.Domain.RepositoryInterfaces.Rates;
 using BookingApp.Serializer;
 using System;
 using System.Collections.Generic;
@@ -6,9 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BookingApp.Repository
+namespace BookingApp.Repository.RateRepository
 {
-    public class GuideRateRepository
+    public class GuideRateRepository : IGuideRateRepository
     {
         private const string FilePath = "../../../Resources/Data/guide_rate.csv";
 
@@ -52,7 +53,8 @@ namespace BookingApp.Repository
             return false;
         }
 
-        public List<GuideRate> getRatesForGuide(int guide_id){
+        public List<GuideRate> getRatesForGuide(int guide_id)
+        {
             List < GuideRate > rates = GetAll();
             return rates.FindAll(r => r.GuideId == guide_id);
         }

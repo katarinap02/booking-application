@@ -1,0 +1,64 @@
+﻿<Window x:Class="BookingApp.View.TouristWindows.TouristNotificationWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
+        xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
+        mc:Ignorable="d"
+        Title="TouristNotificationWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
+    </Window.CommandBindings>
+    <Grid Background="{StaticResource WindowBackgroundColor1}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Notifications" HorizontalAlignment="Left" VerticalAlignment="Center"
+                   FontSize="45"
+                   Grid.Column="1"
+                   Grid.Row="1"/>
+        <DataGrid ItemsSource="{Binding touristNotificationViewModels}"
+                  SelectedItem="{Binding SelectedNotification}"
+                  Grid.Column="1"
+                  Grid.Row="2"
+                  AutoGenerateColumns="False"
+                  FontSize="25"
+                  CanUserAddRows="False"
+                  Style="{StaticResource CoolDataGridStyle1}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding}" />
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Details"
+                                    Click="DetailsButton_Click" Width="78" Height="28"
+                                    FontSize="18"
+                                    Style="{StaticResource EnlargeButtonStyle1}">
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <Button Content="Close"
+        Style="{StaticResource EnlargeButtonStyle}"
+        Click="CloseButton_Click"
+        HorizontalAlignment="Right"
+        FontSize="19"
+        Grid.Column="1"
+        Width="90"
+        Grid.Row="4"/>
+    </Grid>
+</Window>

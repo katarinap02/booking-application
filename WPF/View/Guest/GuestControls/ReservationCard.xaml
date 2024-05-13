@@ -1,0 +1,149 @@
+﻿<UserControl x:Class="BookingApp.View.GuestControls.ReservationCard"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookingApp.View.GuestControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="103" d:DesignWidth="990">
+    <UserControl.Resources>
+        <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <DrawingGroup x:Key="calendar_symbol_svgrepo_com_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,610.398,610.398"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <DrawingGroup>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 159.567 0 h -15.329 c -1.956 0 -3.811 0.411 -5.608 0.995 c -8.979 2.912 -15.616 12.498 -15.616 23.997 v 10.552 v 27.009 v 14.052 c 0 2.611 0.435 5.078 1.066 7.44 c 2.702 10.146 10.653 17.552 20.158 17.552 h 15.329 c 11.724 0 21.224 -11.188 21.224 -24.992 V 62.553 V 35.544 V 24.992 C 180.791 11.188 171.291 0 159.567 0 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 461.288 0 h -15.329 c -11.724 0 -21.224 11.188 -21.224 24.992 v 10.552 v 27.009 v 14.052 c 0 13.804 9.5 24.992 21.224 24.992 h 15.329 c 11.724 0 21.224 -11.188 21.224 -24.992 V 62.553 V 35.544 V 24.992 C 482.507 11.188 473.007 0 461.288 0 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 539.586 62.553 h -37.954 v 14.052 c 0 24.327 -18.102 44.117 -40.349 44.117 h -15.329 c -22.247 0 -40.349 -19.79 -40.349 -44.117 V 62.553 H 199.916 v 14.052 c 0 24.327 -18.102 44.117 -40.349 44.117 h -15.329 c -22.248 0 -40.349 -19.79 -40.349 -44.117 V 62.553 H 70.818 c -21.066 0 -38.15 16.017 -38.15 35.764 v 476.318 c 0 19.784 17.083 35.764 38.15 35.764 h 468.763 c 21.085 0 38.149 -15.984 38.149 -35.764 V 98.322 C 577.735 78.575 560.671 62.553 539.586 62.553 z M 527.757 557.9 l -446.502 -0.172 V 173.717 h 446.502 V 557.9 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 353.017 266.258 h 117.428 c 10.193 0 18.437 -10.179 18.437 -22.759 s -8.248 -22.759 -18.437 -22.759 H 353.017 c -10.193 0 -18.437 10.179 -18.437 22.759 C 334.58 256.074 342.823 266.258 353.017 266.258 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 353.017 348.467 h 117.428 c 10.193 0 18.437 -10.179 18.437 -22.759 c 0 -12.579 -8.248 -22.758 -18.437 -22.758 H 353.017 c -10.193 0 -18.437 10.179 -18.437 22.758 C 334.58 338.288 342.823 348.467 353.017 348.467 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 353.017 430.676 h 117.428 c 10.193 0 18.437 -10.18 18.437 -22.759 s -8.248 -22.759 -18.437 -22.759 H 353.017 c -10.193 0 -18.437 10.18 -18.437 22.759 S 342.823 430.676 353.017 430.676 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 353.017 512.89 h 117.428 c 10.193 0 18.437 -10.18 18.437 -22.759 c 0 -12.58 -8.248 -22.759 -18.437 -22.759 H 353.017 c -10.193 0 -18.437 10.179 -18.437 22.759 C 334.58 502.71 342.823 512.89 353.017 512.89 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 145.032 266.258 H 262.46 c 10.193 0 18.436 -10.179 18.436 -22.759 s -8.248 -22.759 -18.436 -22.759 H 145.032 c -10.194 0 -18.437 10.179 -18.437 22.759 C 126.596 256.074 134.838 266.258 145.032 266.258 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 145.032 348.467 H 262.46 c 10.193 0 18.436 -10.179 18.436 -22.759 c 0 -12.579 -8.248 -22.758 -18.436 -22.758 H 145.032 c -10.194 0 -18.437 10.179 -18.437 22.758 C 126.596 338.288 134.838 348.467 145.032 348.467 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 145.032 430.676 H 262.46 c 10.193 0 18.436 -10.18 18.436 -22.759 s -8.248 -22.759 -18.436 -22.759 H 145.032 c -10.194 0 -18.437 10.18 -18.437 22.759 S 134.838 430.676 145.032 430.676 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 145.032 512.89 H 262.46 c 10.193 0 18.436 -10.18 18.436 -22.759 c 0 -12.58 -8.248 -22.759 -18.436 -22.759 H 145.032 c -10.194 0 -18.437 10.179 -18.437 22.759 C 126.596 502.71 134.838 512.89 145.032 512.89 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource calendar_symbol_svgrepo_com_xaml}" x:Key="Calendar"/>
+            <DrawingGroup x:Key="person_svgrepo_com_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,575.616,575.616"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <DrawingGroup>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 429.248 141.439 C 429.248 63.33 365.985 0 287.808 0 c -78.109 0 -141.439 63.33 -141.439 141.439 c 0 78.11 63.33 141.439 141.439 141.439 C 365.988 282.878 429.248 219.549 429.248 141.439 z M 181.727 144.499 c 0 0 -4.079 -40.12 24.82 -70.72 c 20.34 20.389 81.261 70.72 187.342 70.72 c 0 58.498 -47.586 106.081 -106.081 106.081 S 181.727 202.994 181.727 144.499 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                        <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 45.049 391.68 v 62.559 v 80.919 c 0 22.365 18.136 40.459 40.459 40.459 h 404.6 c 22.365 0 40.459 -18.097 40.459 -40.459 v -80.919 V 391.68 c 0 -44.688 -36.193 -80.919 -80.919 -80.919 H 377.91 c -5.07 0 -11.46 3.422 -14.271 7.639 l -70.735 99.982 c -2.812 4.22 -7.372 4.22 -10.184 0 l -70.738 -99.986 c -2.812 -4.22 -9.202 -7.638 -14.272 -7.638 h -71.742 C 81.319 310.758 45.049 346.991 45.049 391.68 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource person_svgrepo_com_xaml}" x:Key="Person"/>
+            <DrawingGroup x:Key="star_svgrepo_com_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,473.486,473.486"/>
+                </DrawingGroup.ClipGeometry>
+                <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry Figures="M 473.486 182.079 L 310.615 157.952 L 235.904 11.23 L 162.628 158.675 L 0 184.389 L 117.584 299.641 L 91.786 462.257 L 237.732 386.042 L 384.416 460.829 L 357.032 298.473 Z"/>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource star_svgrepo_com_xaml}" x:Key="Star"/>
+            <DrawingGroup x:Key="location_sign_svgrepo_com_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,395.71,395.71"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 197.849 0 C 122.131 0 60.531 61.609 60.531 137.329 c 0 72.887 124.591 243.177 129.896 250.388 l 4.951 6.738 c 0.579 0.792 1.501 1.255 2.471 1.255 c 0.985 0 1.901 -0.463 2.486 -1.255 l 4.948 -6.738 c 5.308 -7.211 129.896 -177.501 129.896 -250.388 C 335.179 61.609 273.569 0 197.849 0 z M 197.849 88.138 c 27.13 0 49.191 22.062 49.191 49.191 c 0 27.115 -22.062 49.191 -49.191 49.191 c -27.114 0 -49.191 -22.076 -49.191 -49.191 C 148.658 110.2 170.734 88.138 197.849 88.138 z" FillRule="Nonzero"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource location_sign_svgrepo_com_xaml}" x:Key="Location"/>
+        </ResourceDictionary>
+
+
+    </UserControl.Resources>
+    <Grid>
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Width="980" Height="103">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="179,0,504,27" FontWeight="Bold"/>
+                <Image Source="{StaticResource Location}" Height="15" Width="20" Margin="473,-10,473,56"/>
+
+                <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="494,0,-24,27"/>
+                <Image Source="{StaticResource Calendar}" Height="20" Width="20" Margin="259,43,677,16" RenderTransformOrigin="0.216,0.377"/>
+
+                <TextBlock x:Name="ReservationDate" FontSize="20" Text="{Binding DateRangeString}" Margin="290,43,115,16" Grid.RowSpan="2"/>
+                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Width="100" Height="70"  Margin="10,0,846,21" Grid.RowSpan="2">
+                    <Grid>
+                        <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Height="80" Source="{Binding FirstPicture}"/>
+                    </Grid>
+                </Border>
+
+
+            </Grid>
+
+        </Border>
+    </Grid>
+</UserControl>

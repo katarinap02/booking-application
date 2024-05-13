@@ -1,0 +1,265 @@
+﻿<Page x:Class="BookingApp.View.TouristWindows.AllToursPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
+      xmlns:cmd="clr-namespace:BookingApp.WPF.ViewModel.Commands"
+      xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="945"
+      Title="AllToursPage">
+    <Page.CommandBindings>
+        <CommandBinding Command="cmd:RoutedCommands.CountrySearch" CanExecute="CountrySearch_CanExecute" Executed="CountrySearch_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.Search" CanExecute="Search_CanExecute" Executed="Search_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.Reset" CanExecute="Reset_CanExecute" Executed="Reset_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.Notifications" CanExecute="Notification_CanExecute" Executed="Notification_Executed"/>
+    </Page.CommandBindings>
+    <Page.Resources>
+        <!-- Style for the GroupBox -->
+        <Style x:Key="GroupBoxStyle" TargetType="GroupBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Border BorderBrush="#303030" BorderThickness="1.5" CornerRadius="4">
+   
+                            <!-- ContentPresenter for the actual content -->
+                            <ContentPresenter Margin="0"/>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="GroupBoxStyle2" TargetType="GroupBox">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="GroupBox">
+                        <Grid>
+                            <!-- Blur the background -->
+                            <Border Background="{TemplateBinding Background}">
+                                <Border.Effect>
+                                    <BlurEffect Radius="10"/>
+                                </Border.Effect>
+                            </Border>
+                            <!-- ContentPresenter for the actual content -->
+                            <ContentPresenter Margin="0"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Page.Resources>
+    <Border>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                <GradientStop Color="#66060531" Offset="0"></GradientStop>
+                <GradientStop Color="#661b1448" Offset="1"></GradientStop>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid Background="{StaticResource FrameBackgroundColor1}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="80"/>
+            <RowDefinition Height="200"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+
+        <Label Content="All Tours"
+               FontSize="50"
+               FontWeight="DemiBold"
+               Grid.ColumnSpan="9"
+               Grid.Row="0"
+               HorizontalAlignment="Center"/>
+        <Button Style="{StaticResource NotificationIconButton}"
+                Grid.Column="1"
+                HorizontalAlignment="Right"
+                Click="NotificationButton_Click"/>
+
+        <GroupBox Grid.Row="1"
+                  Grid.Column="1"
+                  Style="{StaticResource GroupBoxStyle}">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="25"/>
+                    <ColumnDefinition Width="104"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="90"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="50"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="10"/>
+                    <RowDefinition Height="45"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="10"/>
+                </Grid.RowDefinitions>
+                <Button x:Name="ResetButton"
+                        Style="{StaticResource EnlargeButtonStyle}"
+                        Content="Reset"
+                        HorizontalAlignment="Right"
+                    FontSize="20"
+                    Width="80"
+                    Grid.Column="6"
+                    Grid.Row="4"
+                    Click="ResetButton_Click" Margin="0,0,7,0"/>
+                <Label Grid.Column="1" 
+                   HorizontalAlignment="Center" 
+                   VerticalAlignment="Center"
+                   Content="Country:" 
+                   Width="75"
+                   FontWeight="DemiBold"
+                   Grid.Row="1" 
+                   FontSize="16"/>
+                <ComboBox x:Name="CountrySearch" 
+                         SelectedItem="{Binding CountrySearch, Mode=TwoWay}"
+                         ItemsSource="{Binding CountriesSearch}"
+                         SelectedIndex="0"
+                         Grid.Column="2" 
+                         Width="150" 
+                         Height="35" 
+                         Grid.Row="1"
+                         FontSize="20"/>
+
+                <Label Grid.Column="3" 
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Center"
+                   Content="City:" 
+                   Width="48"
+                   FontWeight="DemiBold"
+                   Grid.Row="1" 
+                   FontSize="16" />
+                <ComboBox x:Name="CitySearch"
+                     SelectedItem="{Binding CitySearch, Mode=TwoWay}"
+                     ItemsSource="{Binding CitiesSearch}"
+                     SelectedIndex="0"
+                     Grid.Column="4" 
+                     Grid.Row="1"
+                     Grid.ColumnSpan="2"
+                     HorizontalAlignment="Left"
+                     Width="200" 
+                     Height="35"
+                     FontSize="20"
+                     VirtualizingPanel.IsVirtualizing="True"
+                     VirtualizingPanel.VirtualizationMode="Recycling"/>
+
+                <Label 
+                   VerticalAlignment="Top"
+                   Content="Duration:" 
+                   Grid.Row="3" 
+                   FontWeight="DemiBold"
+                   FontSize="16"
+                   HorizontalContentAlignment="Right" Grid.ColumnSpan="2" Margin="10,5,11,0" />
+                <xctk:DecimalUpDown x:Name="DurationSearch"
+                                Text="{Binding DurationSearch, Mode=TwoWay}"
+                                Grid.Column="2"
+                                Grid.Row="3"
+                                Increment=".5"
+                                Minimum="0"
+                                Value="0"
+                                TextAlignment="Justify"
+                                HorizontalAlignment="Left"
+                                Height="35"
+                                Width="85"
+                                FontSize="20"/>
+                <Label Grid.Column="2" 
+                   HorizontalAlignment="Left" 
+                   VerticalAlignment="Center"
+                   Content="h" Width="30" 
+                   Grid.Row="2" 
+                   FontSize="14" 
+                   FontWeight="Bold" Margin="85,0,0,0"/>
+
+                <Label Grid.Column="5" 
+                   HorizontalAlignment="Right" 
+                   VerticalAlignment="Center"
+                   Content="Language:" 
+                   Width="90"
+                   FontWeight="DemiBold"
+                   Grid.Row="1" 
+                   FontSize="16"/>
+                <ComboBox x:Name="LanguageSearch" 
+                     SelectedItem="{Binding LanguageSearch, Mode=TwoWay}"
+                     Grid.Column="6" 
+                     Grid.Row="1"
+                     Height="35"
+                     HorizontalAlignment="Left"
+                     Width="150"
+                     FontSize="20"
+                     ItemsSource="{Binding Languages}"/>
+
+                <Label Grid.Column="3"
+                       Grid.ColumnSpan="3"
+                   HorizontalAlignment="Left"
+                   VerticalAlignment="Center"
+                   Content="Number of participants:" 
+                   Width="186" 
+                   Grid.Row="3"
+                   FontWeight="DemiBold"
+                   FontSize="16" Margin="42,0,0,0"/>
+                <xctk:IntegerUpDown x:Name="PeopleSearch"
+                                Text="{Binding PeopleSearch, Mode=TwoWay}"
+                                Minimum="0"
+                                Maximum="{Binding MaximumValuePeoples}"
+                                Value="0"
+                                Grid.Column="5"
+                                Grid.Row="3"
+                                TextAlignment="Justify"
+                                HorizontalAlignment="Left"
+                                FontSize="20"
+                                Height="35"
+                                Width="100"/>
+
+                <Button x:Name="searchButton" 
+                        Style="{StaticResource SearchButtonStyle}"
+                        Grid.Column="7" 
+                        Grid.Row="4" 
+                        Click="SearchButton_Click"/>
+            </Grid>
+
+        </GroupBox>
+        <DataGrid ItemsSource="{Binding Tours}"
+                  SelectedItem="{Binding Path=SelectedTour}"
+                  Style="{StaticResource CoolDataGridStyle}"
+                  Grid.Row="3"
+                  Grid.Column="1"
+                  IsReadOnly="True"
+                  SelectionMode="Single"
+                  AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="15"
+                  FontWeight="DemiBold">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="210"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="190"/>
+                <DataGridTextColumn Header="City" Binding="{Binding City}" Width="200"/>
+                <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="110"/>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Details" Click="DetailsButton_Click" Width="75" Height="28"
+                                    Style="{StaticResource EnlargeButtonStyle1}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn>
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <Button Content="Book" Click="BookButton_Click" Width="75" Margin="1, 5, 1, 5" Height="30"
+                                    Style="{StaticResource EnlargeButtonStyle}"/>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+    </Grid>
+    </Border>
+</Page>
