@@ -1,0 +1,71 @@
+@startuml
+actor Guide as Guide
+participant "TourRequestService" as Service
+participant "TourRequestRepository" as Repository
+
+Guide -> Service: Choose to get location suggestion
+activate Service
+
+alt Guide Chooses to Get Location Suggestion
+    Service -> Service: GetRequestsForLastYear()
+    activate Service
+    Service -> Repository: GetRequestsBetweenDates(startDate, endDate)
+    activate Repository
+    Repository --> Service: List of TourRequests
+    deactivate Repository
+    
+        Service -> Service: CountLocationRequests(requests)
+        activate Service
+        loop for each request in requests
+            Service -> Service: Process Location Request
+            activate Service
+            Service -> Service: Construct Location String
+            opt if (languageCounts.ContainsKey(location))
+                Service -> Service: Update Location Count in Dictionary
+            end
+            deactivate Service
+        end
+        Service -> Service: GetMostRequestedLocation(locationCounts)
+        activate Service
+        Service -> Guide: Most requested location
+        deactivate Service    
+    
+else Guide Chooses to Get Language Suggestion
+    Guide -> Service: Choose to get language suggestion
+    activate Service
+    Service -> Service: GetRequestsForLastYear()
+    activate Service
+    Service -> Repository: GetRequestsBetweenDates(startDate, endDate)
+    activate Repository
+    Repository --> Service: List of TourRequests
+    deactivate Repository
+    
+        Service -> Service: CountLanguageRequests(requestsLastYear)
+        activate Service
+        loop for each request in requestsLastYear
+            Service -> Service: Process Language Request
+            activate Service
+            Service -> Service: Get Language
+            opt if (languageCounts.ContainsKey(language))
+                Service -> Service: Update Language Count in Dictionary
+            end
+            deactivate Service
+        end
+        Service -> Service: GetMostRequestedLanguage(languageCounts)
+        activate Service
+        Service -> Guide: Most requested language
+        deactivate Service
+    
+end
+
+Guide -> Service: Provide tour information
+Service-> TourService: CreateTourByStatistics 
+activate TourService
+TourService -> TourRepository: Add(tour)
+activate TourRepository
+TourRepository --> TourService: Tour added
+deactivate TourRepository
+TourService --> Guide: Tour created successfully
+deactivate TourService
+
+@enduml
