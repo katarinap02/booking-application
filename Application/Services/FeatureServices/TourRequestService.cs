@@ -71,7 +71,6 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             return _tourRequestRepository.GetByTouristId(touristId);
         }
-        public List<int> GetYearlyStatistic()
         
         public List<TourRequest> getRequestsForLocation(string city, string country)
         {
@@ -218,7 +217,6 @@ namespace BookingApp.Application.Services.FeatureServices
                     mostRequestedLocation = kvp.Key;
                 }
             }
-            MessageBox.Show(mostRequestedLocation, "servis");
             return mostRequestedLocation;
         }
         public double GetAcceptedRequestPercentage(int touristId, int? year = 0)

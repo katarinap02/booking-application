@@ -110,15 +110,14 @@ namespace BookingApp.View
                                 AddingTourWindow addingTourWindow = new AddingTourWindow();
                                 addingTourWindow.Show();
                                 RequestTest requestTest = new RequestTest();
-                                requestTest.Show();*/
-                                /*
-                                RequestTest requestTest = new RequestTest(user.Id);
-                                requestTest.Show();*/
+                                requestTest.Show();*/                                
                             }
                             else
                             {
-                                GuideMainWindow guideMainWindow = new GuideMainWindow(user);
-                                guideMainWindow.ShowDialog();
+                                /*GuideMainWindow guideMainWindow = new GuideMainWindow(user);
+                                guideMainWindow.ShowDialog();*/
+                                RequestTest requestTest = new RequestTest(user.Id);
+                                requestTest.ShowDialog();
                             }
                             
                         }
