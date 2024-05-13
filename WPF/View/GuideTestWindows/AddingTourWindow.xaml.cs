@@ -131,7 +131,6 @@ namespace BookingApp.WPF.View.GuideTestWindows
             if (!string.IsNullOrEmpty(pictureUrl))
             {
                 Tour.Pictures.Add(pictureUrl);
-                MessageBox.Show(pictureUrl);
                 Update();
             }
         }
