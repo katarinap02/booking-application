@@ -144,7 +144,7 @@ CommandParameter="{Binding MostPopular}" VerticalAlignment="Center" Margin="5,0,
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="8" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/down_right_arrow.png" Width="20" Height="25"/>
-                <TextBlock Text="close accommodation" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0" />
+                <TextBlock Text="close (selected) accommodation" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0" />
             </StackPanel>
         </Grid>
 
