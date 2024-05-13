@@ -283,8 +283,7 @@ namespace BookingApp.Application.Services.FeatureServices
                 .ToDictionary(g => g.Key, g => g.Count());
         }
 
-        public void CreateTourByStatistics(Tour tour, string parameter) // parameter ce biti ili lokacija ili jezik (tura se pravi ili spram jezika ili spram lokacije)
-                                                                        // slobodno dodati jos prosledjenih vrednosti
+        public void CreateTourByStatistics(Tour tour) 
         {
             _tourService.Add(tour);
             SendNotifications(tour);
