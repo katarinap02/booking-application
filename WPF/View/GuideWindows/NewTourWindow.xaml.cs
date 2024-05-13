@@ -100,7 +100,7 @@ namespace BookingApp.View
         {
             if (IsByRequest)
             {
-                tourRequestService.CreateTourByStatistics(Tour.ToTour(), "");
+                tourRequestService.CreateTourByStatistics(Tour.ToTour());
             }
             else
             {
