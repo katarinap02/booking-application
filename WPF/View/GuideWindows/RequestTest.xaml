@@ -61,10 +61,10 @@
             </StackPanel>
 
             <!-- Third Row, Second Column -->
-            <Button Content="Clear search boxes" Grid.Row="3" Grid.Column="0" Margin="5" Click="Testic"/>
+            <Button Content="Clear search boxes" Command="{Binding Clear}" Grid.Row="3" Grid.Column="0" Margin="5" />
 
             <!-- Fourth Row, Second Column -->
-            <Button Content="Filter requests" Grid.Row="3" Grid.Column="1" Margin="5" Click="Filter"/>
+            <Button Content="Filter requests" Grid.Row="3" Command="{Binding Filtering}" Grid.Column="1" Margin="5" />
         </Grid>
 
         <Grid Grid.Row="1" Margin="10">
@@ -74,25 +74,19 @@
             </Grid.RowDefinitions>
             <DataGrid  Grid.Row="0" ItemsSource="{Binding tourRequestViewModels}" SelectedItem="{Binding SelectedRequest}" AutoGenerateColumns="False" Margin="15">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="City" Binding="{Binding City}" />
-                    <DataGridTextColumn Header="Country" Binding="{Binding Country}" />
-                    <DataGridTextColumn Header="Id" Binding="{Binding Id}" />
-                    <DataGridTextColumn Header="Description" Binding="{Binding Description}" />
-                    <DataGridTextColumn Header="Status" Binding="{Binding Status}" />
-                    <DataGridTextColumn Header="Language" Binding="{Binding Language}" />
-                    <DataGridTextColumn Header="Participant IDs" Binding="{Binding ParticipantIds}" />
-                    <DataGridTextColumn Header="Start Date" Binding="{Binding StartDate}" />
-                    <DataGridTextColumn Header="End Date" Binding="{Binding EndDate}" />
-                    <DataGridTextColumn Header="Accepted Date" Binding="{Binding AcceptedDate}" />
-                    <DataGridTextColumn Header="Guide Id" Binding="{Binding GuideId}" />
-                    <DataGridTextColumn Header="Date Requested" Binding="{Binding DateRequested}" />
+                    <DataGridTextColumn Width="*" Header="City" Binding="{Binding City}" />
+                    <DataGridTextColumn Width="*" Header="Country" Binding="{Binding Country}" />
+                    <DataGridTextColumn Width="*" Header="Description" Binding="{Binding Description}" />
+                    <DataGridTextColumn Width="*" Header="Language" Binding="{Binding Language}" />
+                    <DataGridTextColumn Width="*" Header="Start Date" Binding="{Binding StartDate}" />
+                    <DataGridTextColumn Width="*" Header="End Date" Binding="{Binding EndDate}" />
                 </DataGrid.Columns>
             </DataGrid>
 
             <StackPanel Grid.Row="1" Orientation="Horizontal">
-                <Button Content="Accept request" Click="Accepting" Margin="20, 10, 20, 10"></Button>
+                <Button Content="Accept request" Command="{Binding Accept}" Margin="20, 10, 20, 10"></Button>
                 <xctk:DateTimePicker Width="250" Name="AcceptingDate1" Value="{Binding AcceptingDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Content="Show statistics" Click="ShowStats" Margin="20, 10, 20, 10"></Button>
+                <Button Content="Show statistics" Command="{Binding ShowingStats}" Margin="20, 10, 20, 10"></Button>
             </StackPanel>
             
         </Grid>        

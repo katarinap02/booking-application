@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.WPF.View.GuideWindows"
         mc:Ignorable="d"
-        Title="RequestStatsWindow" Height="150" Width="350" WindowStartupLocation="CenterScreen">
+        Title="RequestStatsWindow" Height="165" Width="365" WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid Margin="10">
             <Grid.RowDefinitions>
@@ -22,7 +22,7 @@
                     <TextBlock Text="Country:" VerticalAlignment="Center"/>
                     <TextBox Width="100" Margin="0,5,0,0" Text="{Binding CountryFilter, UpdateSourceTrigger=PropertyChanged}"/>
                 </StackPanel>
-                <Button Content="Filter" Width="70" Margin="10,0,0,0" Click="Location_Click"/>
+                <Button Content="Show" Width="70" Margin="10,0,0,0" Command="{Binding location}" />
             </StackPanel>
 
 
@@ -30,7 +30,7 @@
             <StackPanel Grid.Row="1" Orientation="Horizontal">
                 <TextBlock Text="Language:" VerticalAlignment="Center"/>
                 <TextBox Width="150" Margin="10,0,10,0" Text="{Binding LanguageFilter, UpdateSourceTrigger=PropertyChanged}"/>
-                <Button Content="Filter" Width="70" Click="Language_Click"/>
+                <Button Content="Show" Width="70" Command="{Binding language}" />
             </StackPanel>
         </Grid>
     </Grid>

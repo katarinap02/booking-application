@@ -115,9 +115,16 @@ namespace BookingApp.Application.Services.FeatureServices
             return monthly_requests;
         }
 
+        public List<TourRequest> GetRequestsForLastYear()
+        {
+            DateTime startDate = DateTime.Now.Date.AddYears(-1);
+            DateTime endDate = DateTime.Now.Date;
+            return _tourRequestRepository.GetRequestsBetweenDates(startDate, endDate);
+        }
+
         public string GetLanguageSuggestion()
         {
-            List<TourRequest> requestsLastYear = _tourRequestRepository.GetAllForYear(DateTime.Now.Year-1);
+            List<TourRequest> requestsLastYear = GetRequestsForLastYear();
 
             Dictionary<string, int> languageCounts = CountLanguageRequests(requestsLastYear);
 
@@ -159,14 +166,7 @@ namespace BookingApp.Application.Services.FeatureServices
             }
 
             return mostRequestedLanguage;
-        }
-
-        public List<TourRequest> GetRequestsForLastYear()
-        {
-            DateTime startDate = DateTime.Now.Date.AddYears(-1); 
-            DateTime endDate = DateTime.Now.Date; 
-            return _tourRequestRepository.GetRequestsBetweenDates(startDate, endDate);
-        }
+        }        
 
         public string GetLocationSuggestion()
         {
@@ -210,7 +210,7 @@ namespace BookingApp.Application.Services.FeatureServices
                     mostRequestedLocation = kvp.Key;
                 }
             }
-
+            MessageBox.Show(mostRequestedLocation, "servis");
             return mostRequestedLocation;
         }
 

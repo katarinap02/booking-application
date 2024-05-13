@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingApp.WPF.ViewModel.GuideViewModel;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -18,74 +19,16 @@ namespace BookingApp.WPF.View.GuideWindows
     /// <summary>
     /// Interaction logic for RequestStatsWindow.xaml
     /// </summary>
-    public partial class RequestStatsWindow : Window, INotifyPropertyChanged
+    public partial class RequestStatsWindow : Window
     {
-        private string _cityFilter;
-        public string CityFilter
-        {
-            get { return _cityFilter; }
-            set
-            {
-                if (_cityFilter != value)
-                {
-                    _cityFilter = value;
-                    OnPropertyChanged(nameof(CityFilter));
-                }
-            }
-        }
-
-        private string _countryFilter;
-        public string CountryFilter
-        {
-            get { return _countryFilter; }
-            set
-            {
-                if (_countryFilter != value)
-                {
-                    _countryFilter = value;
-                    OnPropertyChanged(nameof(CountryFilter));
-                }
-            }
-        }
-
-        private string _languageFilter;
-        public string LanguageFilter
-        {
-            get { return _languageFilter; }
-            set
-            {
-                if (_languageFilter != value)
-                {
-                    _languageFilter = value;
-                    OnPropertyChanged(nameof(LanguageFilter));
-                }
-            }
-        }
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName)
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-        private int GuideId;
+        public RequestsStatsWindowViewModel ViewModel { get; set; }
         public RequestStatsWindow(int guide_id)
         {
-            GuideId = guide_id;
-            DataContext = this;
+            ViewModel = new RequestsStatsWindowViewModel(guide_id);
+            DataContext = ViewModel;
             InitializeComponent();
         }
 
-        private void Language_Click(object sender, RoutedEventArgs e)
-        {
-            LanguageGraphWindow languageGraphWindow = new LanguageGraphWindow(LanguageFilter, GuideId);
-            languageGraphWindow.Show();
-        }
-
-        private void Location_Click(object sender, RoutedEventArgs e)
-        {
-            LocationGraphWindow locationGraphWindow = new LocationGraphWindow(CityFilter, CountryFilter, GuideId);
-            locationGraphWindow.Show();
-        }
+        
     }
 }
