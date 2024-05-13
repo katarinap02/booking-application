@@ -215,11 +215,7 @@
                         </Button>
                     </MenuItem.Header>
                 </MenuItem>
-                <MenuItem Margin="10 35 10 0" Height="200" Width="200">
-                <MenuItem.Icon>
-                        <Image Style="{StaticResource CustomLogoStyle}" Width="100" Height="100" Margin="0"/>
-                 </MenuItem.Icon>
-                </MenuItem>
+                <Image Style="{StaticResource CustomLogoStyleHost}" Width="200" Height="190" Margin="0 150 70 0"/>
             </StackPanel>
         </Menu>
         <Grid>
@@ -227,7 +223,7 @@
 x:Name="HostFrame"
 NavigationUIVisibility="Hidden"
 Source="../View/HostPages/FirstPage.xaml" Height="705" VerticalAlignment="Center" >
-                
+
             </Frame>
             <Rectangle  DockPanel.Dock="Right" Fill="#80000000">
                 <Rectangle.Style>
