@@ -26,7 +26,7 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <UniformGrid Columns="3" Rows="2" HorizontalAlignment="Center" Grid.Row="1">
+        <UniformGrid Columns="3"  HorizontalAlignment="Center" Grid.Row="1">
             <Button Content="{Binding ButtonString, UpdateSourceTrigger=PropertyChanged}" Command="{Binding SwitchTours}" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/>
             <!-- Button Content="  Add a new date for tour  " Command="{Binding AddTourDate}" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/ -->
             <Button Content="Cancel Tour" Command="{Binding Cancel}" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/>
