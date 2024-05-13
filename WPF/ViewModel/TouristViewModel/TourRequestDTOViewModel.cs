@@ -22,7 +22,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         private DateTime _acceptedDate;
         private int _guideId;
         private DateTime _dateRequested;
-
+        
         public string City
         {
             get { return _city; }
@@ -102,6 +102,12 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public TourRequestDTOViewModel() { }
+
+        public TourRequestDTOViewModel(DateTime endDate) { 
+            EndDate = endDate;
+        }
+
         public TourRequestDTOViewModel(TourRequest tourRequest)
         {
             this.Id = tourRequest.Id;
@@ -116,6 +122,24 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             this.Status = tourRequest.Status;
             this.StartDate = tourRequest.StartDate;
             this.ParticipantIds = tourRequest.ParticipantIds;
+        }
+        public TourRequest ToTourRequest()
+        {
+            return new TourRequest
+            {
+                Id = this.Id,
+                EndDate = this.EndDate,
+                AcceptedDate = this.AcceptedDate,
+                Language = this.Language,
+                Description = this.Description,
+                DateRequested = this.DateRequested,
+                City = this.City,
+                Country = this.Country,
+                GuideId = this.GuideId,
+                Status = this.Status,
+                StartDate = this.StartDate,
+                ParticipantIds = this.ParticipantIds
+            };
         }
     }
 }

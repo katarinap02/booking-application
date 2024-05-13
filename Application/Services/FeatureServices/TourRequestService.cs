@@ -29,37 +29,31 @@ namespace BookingApp.Application.Services.FeatureServices
             tourRequest.GuideId = GuideId;
             _tourRequestRepository.UpdateRequest(tourRequest);
         }
-        public List<TourRequest> filterRequests(TourRequest searchCriteria)
+        public List<TourRequest> filterRequests(TourRequest searchCriteria, int ParticipantNumber) 
         {
             List<TourRequest> tourRequests = _tourRequestRepository.GetAllPending();
             List<TourRequest> filteredRequests = tourRequests;
 
             if (!string.IsNullOrEmpty(searchCriteria.City))
             {
-                MessageBox.Show("usao", "City");
                 filteredRequests = tourRequests.FindAll(x => x.City.ToLower().Contains(searchCriteria.City.ToLower())).ToList();
             }
             if (!string.IsNullOrEmpty(searchCriteria.Country))
             {
-                MessageBox.Show("usao", "Country");
                 filteredRequests = filteredRequests.FindAll(x => x.Country.ToLower().Contains(searchCriteria.Country.ToLower())).ToList();
             }
             if (!string.IsNullOrEmpty(searchCriteria.Language))
-            {
-                MessageBox.Show("usao", "Language");
-                MessageBox.Show(searchCriteria.Language.ToLower());
-                MessageBox.Show(filteredRequests.Count().ToString());
-                filteredRequests = filteredRequests.FindAll(x => x.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();
-                MessageBox.Show(filteredRequests.Count().ToString());
+            {                
+                filteredRequests = filteredRequests.FindAll(x => x.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();                
             }
-            /*
-            if (searchCriteria.StartDate != null && searchCriteria.EndDate != null)
+            if (ParticipantNumber != 0)
             {
-                MessageBox.Show("usao", "datumi");
+                filteredRequests = filteredRequests.FindAll(x => x.ParticipantIds.Count() == ParticipantNumber).ToList();
+            }
+            if (searchCriteria.StartDate != DateTime.MinValue && searchCriteria.EndDate != DateTime.MaxValue)
+            {                
                 filteredRequests = tourRequests.FindAll(x => x.StartDate >= searchCriteria.StartDate && x.EndDate <= searchCriteria.EndDate).ToList();
-            }*/
-            MessageBox.Show(filteredRequests.Count().ToString());
-            MessageBox.Show(filteredRequests[0].Language);
+            }
             return filteredRequests;
         }
 
@@ -78,10 +72,23 @@ namespace BookingApp.Application.Services.FeatureServices
             return _tourRequestRepository.GetByTouristId(touristId);
         }
         public List<int> GetYearlyStatistic()
+        
+        public List<TourRequest> getRequestsForLocation(string city, string country)
         {
             List<TourRequest> requests = _tourRequestRepository.GetAll();
+            return requests.FindAll(x => x.City == city && x.Country == country);
+        }
+
+        public List<TourRequest> getRequestsForLanguage(string language)
+        {
+            List<TourRequest> requests = _tourRequestRepository.GetAll();
+            return requests.FindAll(x => x.Language == language);
+        }        
+
+        public List<int> GetYearlyStatistic(List<TourRequest> requests)
+        {
             // kao pretpostavku smo uzeli da ova aplikacija postoji od 2023 godine
-            List<int> yearly_requests = new List<int>();
+            List<int> yearly_requests = new List<int>() { 0, 0 };
             foreach (var request in requests)
             {
                 if (request.DateRequested.Year == 2023)
@@ -97,11 +104,12 @@ namespace BookingApp.Application.Services.FeatureServices
             return yearly_requests;
         }
 
-        public List<int> GetMonthlyStatistics(int year)
+        public List<int> GetMonthlyStatistics(List<TourRequest> requests1, int year)
         {
-            List<TourRequest> requests = _tourRequestRepository.GetAllForYear(year);
-            List<int> monthly_requests = new List<int>();
-            foreach(var request in requests)
+            List<TourRequest> requests = requests1.FindAll(x => x.DateRequested.Year == year);
+            List<int> monthly_requests = new List<int> { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+            foreach (var request in requests)
             {
                 for(int j  = 0; j < 12; j++) 
                 {
@@ -115,9 +123,16 @@ namespace BookingApp.Application.Services.FeatureServices
             return monthly_requests;
         }
 
+        public List<TourRequest> GetRequestsForLastYear()
+        {
+            DateTime startDate = DateTime.Now.Date.AddYears(-1);
+            DateTime endDate = DateTime.Now.Date;
+            return _tourRequestRepository.GetRequestsBetweenDates(startDate, endDate);
+        }
+
         public string GetLanguageSuggestion()
         {
-            List<TourRequest> requestsLastYear = _tourRequestRepository.GetAllForYear(DateTime.Now.Year-1);
+            List<TourRequest> requestsLastYear = GetRequestsForLastYear();
 
             Dictionary<string, int> languageCounts = CountLanguageRequests(requestsLastYear);
 
@@ -159,14 +174,7 @@ namespace BookingApp.Application.Services.FeatureServices
             }
 
             return mostRequestedLanguage;
-        }
-
-        public List<TourRequest> GetRequestsForLastYear()
-        {
-            DateTime startDate = DateTime.Now.Date.AddYears(-1); 
-            DateTime endDate = DateTime.Now.Date; 
-            return _tourRequestRepository.GetRequestsBetweenDates(startDate, endDate);
-        }
+        }        
 
         public string GetLocationSuggestion()
         {
@@ -183,7 +191,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
             foreach (var request in requests)
             {
-                string location = $"{request.City}, {request.Country}";
+                string location = $"{request.City},{request.Country}";
                 if (locationCounts.ContainsKey(location))
                 {
                     locationCounts[location]++;
@@ -210,7 +218,7 @@ namespace BookingApp.Application.Services.FeatureServices
                     mostRequestedLocation = kvp.Key;
                 }
             }
-
+            MessageBox.Show(mostRequestedLocation, "servis");
             return mostRequestedLocation;
         }
         public double GetAcceptedRequestPercentage(int touristId, int? year = 0)

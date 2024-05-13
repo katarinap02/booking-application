@@ -4,7 +4,7 @@ using BookingApp.Repository.FeatureRepository;
 using BookingApp.View.GuideTestWindows;
 using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;
-using BookingApp.WPF.View.GuideTestWindows;
+using BookingApp.WPF.View.GuideWindows;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using BookingApp.WPF.View.GuideTestWindows.GuideControls;
 using BookingApp.WPF.ViewModel;
@@ -111,7 +111,9 @@ namespace BookingApp.View
                                 addingTourWindow.Show();
                                 RequestTest requestTest = new RequestTest();
                                 requestTest.Show();*/
-
+                                /*
+                                RequestTest requestTest = new RequestTest(user.Id);
+                                requestTest.Show();*/
                             }
                             else
                             {
