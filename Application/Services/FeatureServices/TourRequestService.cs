@@ -183,7 +183,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
             foreach (var request in requests)
             {
-                string location = $"{request.City}, {request.Country}";
+                string location = $"{request.City},{request.Country}";
                 if (locationCounts.ContainsKey(location))
                 {
                     locationCounts[location]++;
