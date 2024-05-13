@@ -37,6 +37,6 @@
         </lvc:CartesianChart>
 
         <!-- Button for Tour by Language Statistics -->
-        <Button Grid.Row="2" Content="Make Tour by Language Statistics" Width="250" Margin="0,10,0,0" HorizontalAlignment="Center"/>
+        <Button Grid.Row="2" Content="Make Tour by Language Statistics" Click="AddTourByStats_Click" Width="250" Margin="0,10,0,0" HorizontalAlignment="Center"/>
     </Grid>
 </Window>

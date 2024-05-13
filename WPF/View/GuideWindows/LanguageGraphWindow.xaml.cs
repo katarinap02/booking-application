@@ -17,6 +17,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BookingApp.View;
 
 namespace BookingApp.WPF.View.GuideWindows
 {
@@ -64,8 +65,7 @@ namespace BookingApp.WPF.View.GuideWindows
         {            
             GuideId = guide_id;
             tourRequestService = new TourRequestService(Injector.Injector.CreateInstance<ITourRequestRepository>());
-            tourRequests = tourRequestService.getRequestsForLanguage(language);            
-            MessageBox.Show(tourRequests.Count.ToString());
+            tourRequests = tourRequestService.getRequestsForLanguage(language);       
             
             DataContext = this;
             InitializeComponent();
@@ -73,7 +73,6 @@ namespace BookingApp.WPF.View.GuideWindows
 
         public SeriesCollection getGraphYearly() {
             List<int> stats = tourRequestService.GetYearlyStatistic(tourRequests);
-            MessageBox.Show(stats[1].ToString());
             SeriesCollection series = new SeriesCollection
                                         {
                                             new ColumnSeries
@@ -92,9 +91,7 @@ namespace BookingApp.WPF.View.GuideWindows
 
         public SeriesCollection getMonthlyGraph(int year)
         {
-            MessageBox.Show(tourRequests[0].DateRequested.ToString());
             List<int> stats = tourRequestService.GetMonthlyStatistics(tourRequests, year);
-            MessageBox.Show(stats[0].ToString()+stats[4].ToString());
             List<string> monthNames = new List<string> { "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" };
 
             // Create a SeriesCollection
@@ -132,6 +129,13 @@ namespace BookingApp.WPF.View.GuideWindows
                     TourStatistics = getMonthlyGraph(2024);
                 }
             }            
+        }
+
+        private void MakeTourByStatistics(object sender, RoutedEventArgs e)
+        {
+            string language_Suggestion = tourRequestService.GetLanguageSuggestion();
+            NewTourWindow newTourWindow = new NewTourWindow(GuideId, language_Suggestion);
+            newTourWindow.Show();
         }
     }
 }

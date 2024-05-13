@@ -1,6 +1,7 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.View;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
@@ -66,7 +67,6 @@ namespace BookingApp.WPF.View.GuideWindows
             GuideId = guide_id;
             tourRequestService = new TourRequestService(Injector.Injector.CreateInstance<ITourRequestRepository>());
             tourRequests = tourRequestService.getRequestsForLocation(city, country);
-            MessageBox.Show(tourRequests.Count.ToString());
             DataContext = this;
             InitializeComponent();
         }
@@ -74,7 +74,6 @@ namespace BookingApp.WPF.View.GuideWindows
         public SeriesCollection getGraphYearly()
         {
             List<int> stats = tourRequestService.GetYearlyStatistic(tourRequests);
-            MessageBox.Show(stats[1].ToString());
             SeriesCollection series = new SeriesCollection
                                         {
                                             new ColumnSeries
@@ -129,7 +128,11 @@ namespace BookingApp.WPF.View.GuideWindows
             }
         }
 
-
-         
+        private void AddTourByStats_Click(object sender, RoutedEventArgs e)
+        {
+            string location = tourRequestService.GetLocationSuggestion();
+            NewTourWindow newTourWindow = new NewTourWindow(GuideId, location);
+            newTourWindow.Show();
+        }
     }
 }
