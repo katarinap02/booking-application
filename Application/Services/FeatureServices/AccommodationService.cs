@@ -67,6 +67,62 @@ namespace BookingApp.Application.Services.FeatureServices
             AccommodationRepository.Update(accommodation);
         }
 
-        
+        public List<Accommodation> FindAvailableAccommodations(int dayNumber, int guestNumber, DateTime startDate, DateTime endDate)
+        {
+           List<Accommodation> result = new List<Accommodation>();
+           foreach(Accommodation accommodation in this.GetAll())
+            {
+                if (CheckParameters(accommodation, dayNumber, guestNumber, startDate, endDate))
+                    result.Add(accommodation);
+            }
+            return result;
+        }
+
+        private bool CheckParameters(Accommodation accommodation, int dayNumber, int guestNumber, DateTime startDate, DateTime endDate)
+        {
+            if (CheckDayGuestNumber(accommodation, dayNumber, guestNumber))
+            {
+                if (CheckDateRange(accommodation, startDate, endDate, dayNumber))
+                    return true;
+                else
+                    return false;
+            }
+            else
+                return false;
+        }
+
+        private bool CheckDateRange(Accommodation accommodation, DateTime startDate, DateTime endDate, int dayNumber)
+        {
+            List<CalendarDateRange> possibleAvailableRanges = new List<CalendarDateRange>();
+            possibleAvailableRanges = GeneratePossibleRanges(startDate, endDate, dayNumber);
+            foreach(CalendarDateRange possibleRange in possibleAvailableRanges)
+            {
+                foreach(CalendarDateRange unavailableDateRange in accommodation.UnavailableDates)
+                {
+                    if (possibleRange.Start >= unavailableDateRange.Start || possibleRange.End <= unavailableDateRange.End)
+                        return false;
+                }
+            }
+            return true;
+        }
+
+        private List<CalendarDateRange> GeneratePossibleRanges(DateTime startDate, DateTime endDate, int dayNumber)
+        {
+            List<CalendarDateRange> result = new List<CalendarDateRange>();
+            while(startDate.AddDays(dayNumber) <=  endDate) {
+                result.Add(new CalendarDateRange(startDate, startDate.AddDays(dayNumber)));
+                startDate.AddDays(1);
+            
+            }
+            return result;
+        }
+
+        private bool CheckDayGuestNumber(Accommodation accommodation, int dayNumber, int guestNumber)
+        {
+            if (accommodation.MinReservationDays <= dayNumber && accommodation.MaxGuestNumber >= guestNumber)
+                return true;
+            else
+                return false;
+        }
     }
 }
