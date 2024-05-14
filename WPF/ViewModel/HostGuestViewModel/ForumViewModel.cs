@@ -83,6 +83,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private bool isClosed;
+        public bool IsClosed
+        {
+            get { return IsClosed; }
+            set
+            {
+                if(isClosed != value)
+                {
+                    isClosed = value;
+                    OnPropertyChanged("IsClosed");
+                }
+            }
+
+        }
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
 
@@ -91,18 +106,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-       public ForumViewModel(GuestForum forum)
+       public ForumViewModel(Forum forum)
         {
             id = forum.Id;
             city = forum.City;
             country = forum.Country;
             firstComment = forum.FirstComment;
             comments = forum.Comments;
+            isClosed = forum.IsClosed;
         }
 
-        public GuestForum ToForum()
+        public Forum ToForum()
         {
-            GuestForum f = new GuestForum(city, country, firstComment);
+            Forum f = new Forum(city, country, firstComment, isClosed);
             f.Id = id;
             f.Comments = comments;
 

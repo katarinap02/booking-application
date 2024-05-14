@@ -40,8 +40,8 @@ namespace BookingApp.Injector
             { typeof(IRenovationRecommendationRepository), new RenovationRecommendationRepository() },
             { typeof(IGuestRepository), new GuestRepository() },
             { typeof(ITourRequestRepository), new TourRequestRepository()},
-            { typeof(IRequestedTourParticipantRepository), new RequestedTourParticipantRepository() }
-
+            { typeof(IRequestedTourParticipantRepository), new RequestedTourParticipantRepository() },
+            { typeof(IForumRepository), new ForumRepository() }
             /*{ typeof(IUserService), new UserService() },*/
             // Add more implementations here
             

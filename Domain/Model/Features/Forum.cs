@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookingApp.Domain.Model.Features
 {
-    public class GuestForum : ISerializable
+    public class Forum : ISerializable
     {
         public int Id { get; set; }
         public string City { get; set; }
@@ -16,22 +16,24 @@ namespace BookingApp.Domain.Model.Features
 
         public List<string> Comments { get; set; }
 
-        public GuestForum() { 
+        public bool IsClosed { get; set; }
+
+        public Forum() { 
              Comments = new List<string>(); 
         
         }
-        public GuestForum(string city, string country, string firstComment)
+        public Forum(string city, string country, string firstComment, bool isClosed)
         {
             City = city;
             Country = country;
             FirstComment = firstComment;
             Comments = new List<string>();
-
+            IsClosed = isClosed;
         }
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), City, Country, FirstComment, MakeCommentsList(Comments) };
+            string[] csvValues = { Id.ToString(), City, Country, FirstComment, MakeCommentsList(Comments), IsClosed.ToString() };
             return csvValues;
         }
 
@@ -51,6 +53,7 @@ namespace BookingApp.Domain.Model.Features
             Country = values[2];
             FirstComment = values[3];
             Comments = FromCommentsList(values[4]);
+            IsClosed = Convert.ToBoolean(values[5]);
         }
 
         private List<string> FromCommentsList(string value)
