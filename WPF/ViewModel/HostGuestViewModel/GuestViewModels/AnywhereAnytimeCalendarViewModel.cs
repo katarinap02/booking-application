@@ -1,7 +1,10 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.View.GuestPages;
 using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.View.Guest.GuestTools;
 using BookingApp.WPF.ViewModel.Commands;
@@ -38,6 +41,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public Calendar ReservationCalendar { get; set; }
         public AnywhereAnytimeCalendarPage Page { get; set; }
 
+        public AccommodationService AccommodationService { get; set; }
+
+        public AccommodationReservationService AccommodationReservationService { get; set; }
+
+        public AccommodationReservation Reservation { get; set; }
+
         // KOMANDE
         public GuestICommand SelectDatesCommand { get; set; }
         public AnywhereAnytimeCalendarViewModel(User user, Frame frame, int dayNumber, int guestNumber, DateTime startDate, DateTime endDate, AnywhereAnytimeCalendarPage page, AccommodationViewModel selectedAccommodation)
@@ -58,6 +67,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             GuestService = new GuestService(Injector.Injector.CreateInstance<IGuestRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             Guest = GuestService.GetById(User.Id);
             GuestService.CalculateGuestStats(Guest);
+            AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
+            AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+
 
             SelectDatesCommand = new GuestICommand(OnSelectDates);
         }
@@ -73,9 +85,24 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Page.Hint.Text = "Number of guests cannot be larger than specified maximal number of guests.";
             Page.Hint.Visibility = Visibility.Collapsed;
 
+            ReserveAccommodation();
+
         }
 
+        private void ReserveAccommodation()
+        {
+            Reservation = new AccommodationReservation(User.Id, SelectedAccommodation.Id, SelectedDateRange.Start, SelectedDateRange.End, GuestNumber, SelectedAccommodation.Name, SelectedAccommodation.City, SelectedAccommodation.Country);
+            SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
+            AccommodationService.Update(SelectedAccommodation.ToAccommodation());
+            AccommodationReservationService.Add(Reservation);
+            if (Guest.BonusPoints > 0)
+            {
+                Guest.BonusPoints--;
+            }
 
+            Frame.Content = new ReservationSuccessfulPage(new AccommodationReservationViewModel(Reservation), SelectedAccommodation, SelectedDateRange, GuestNumber, User, Frame);
+
+        }
 
         public void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
