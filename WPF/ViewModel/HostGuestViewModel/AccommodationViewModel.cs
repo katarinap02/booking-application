@@ -250,6 +250,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        
+
+
+
         public string ConvertToRelativePath(string inputPath)
         {
 
@@ -271,7 +275,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
         public event PropertyChangedEventHandler PropertyChanged;
 
-
+        public int NumberOfPictures;
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -307,19 +311,23 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             MinReservationDays = accommodation.MinReservationDays;
             ReservationDaysLimit = accommodation.ReservationDaysLimit;
             UnavailableDates = accommodation.UnavailableDates;
-
+            NumberOfPictures = accommodation.Pictures.Count;
             hostId = accommodation.HostId;
 
             if (accommodation.Pictures.Count != 0)
             {
                 OnePicture = ConvertToRelativePath(accommodation.Pictures[0]);
+                
             }
             else
             {
                 OnePicture = "../../Resources/Images/no_image.jpg";
             }
+            
 
         }
+
+        
 
         private AccommodationType ConvertToType()
         { 

@@ -3,6 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
       xmlns:local="clr-namespace:BookingApp.View.HostPages"
       mc:Ignorable="d" 
       d:DesignHeight="705" d:DesignWidth="1024"
@@ -95,7 +96,7 @@
                 FontWeight="Bold"
                  />
             <StackPanel Orientation="Horizontal" Grid.Row="1" Margin="5 0 0 0">
-                <Image Source="../../Resources/Images/urgent.png" Width="20" Height="25"/>
+                <fa:IconImage Icon="EnvelopesBulk" Foreground="#1A1A1A" Height="25" HorizontalAlignment="Left" Margin="5, 0, 0, 0"/>
                 <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">
                     <Hyperlink Style="{StaticResource HyperlinkStyle}" Command="{Binding NavigateToDelayPageCommand}" >
                         Delay request
@@ -103,7 +104,7 @@
                 </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5 0 0 0">
-                <Image Source="../../Resources/Images/urgent.png" Width="20" Height="25"/>
+                <fa:IconImage Icon="UsersViewfinder" Foreground="#1A1A1A" Height="22" HorizontalAlignment="Left" Margin="5, 0, 0, 0"/>
                 <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">
         <Hyperlink Style="{StaticResource HyperlinkStyle}"   >
             View new forums
@@ -111,7 +112,7 @@
                 </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="5 0 0 0">
-                <Image Source="../../Resources/Images/notification.png" Width="20" Height="25"/>
+                <fa:IconImage Icon="Bell" Foreground="#1A1A1A" Height="25" HorizontalAlignment="Left" Margin="5, 0, 0, 0"/>
                 <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">
         <Hyperlink Style="{StaticResource HyperlinkStyle}"  Command="{Binding NavigateToRateGuestPageCommand}" >
             Rate guest
@@ -130,20 +131,21 @@
             <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/red_dot.png" Width="20" Height="20"/>
                 <TextBlock Text="most popular:"  VerticalAlignment="Center" FontSize="15" Margin="6,0,0,0" />
-                <TextBlock x:Name="PopularTextBox" Width="93" FontSize="15" Height="20" Margin="10 0 0 0"  />
+                <TextBlock x:Name="PopularTextBox"  Text="{Binding MostPopular.City}" Width="93" FontSize="15" Height="20" Margin="10 0 0 0"  />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/down_right_arrow.png" Width="20" Height="25"/>
-                <TextBlock Text="register accommodation" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0" />
+                <Button Content="register accommodation" Style="{StaticResource ButtonStyleWindowHostLocation}" Command="{Binding RegisterCommand}"
+CommandParameter="{Binding MostPopular}" VerticalAlignment="Center" Margin="5,0,0,0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/blue_square.png" Width="18" Height="18"/>
                 <TextBlock Text="least popular:"  VerticalAlignment="Center" FontSize="15" Margin="7,0,0,0" />
-                <TextBlock x:Name="LeastPopularTextBox" Width="93" Height="20" FontSize="15" Margin="10 0 0 0" />
+                <TextBlock x:Name="LeastPopularTextBox" Text="{Binding LeastPopular.City}" Width="93" Height="20" FontSize="15" Margin="10 0 0 0" />
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="8" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/down_right_arrow.png" Width="20" Height="25"/>
-                <TextBlock Text="close accommodation" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0" />
+                <Button Content="close (selected) accommodation" Style="{StaticResource ButtonStyleWindowHostLocation}" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0" />
             </StackPanel>
         </Grid>
 
@@ -192,21 +194,36 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0" Grid.RowSpan="7" Grid.Column="0">
                             <Image
-                                Grid.Row="0"
-                                Grid.RowSpan="7"
-                                Grid.Column="0"
                                 Height="150"
                                 Margin="10"
                                 VerticalAlignment="Center">
                                 <Image.Style>
                                     <Style TargetType="Image">
-                                        <Setter Property="Source" Value="{Binding OnePicture}" />
+                                        <Setter Property="Source" Value="{Binding OnePicture}"/>
                                     </Style>
                                 </Image.Style>
                             </Image>
-
-
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center" >
+                                    <StackPanel.Style>
+                                        <Style TargetType="StackPanel">
+                                            <Setter Property="IsEnabled" Value="True"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding OnePicture}" Value="../../Resources/Images/no_image.jpg">
+                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </StackPanel.Style>
+                                    <Button  Width="35" Height="25" Margin="0 0 2 0" Background="White" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding DataContext.ChangedPictureCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}">
+                                        <Image Source="../../Resources/Images/left_arrow.png" Width="25" Height="23"/>
+                                    </Button>
+                                    <Button  Width="35" Height="25" Margin="2 0 0 0" Background="White" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding DataContext.ChangedPictureCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}">
+                                        <Image Source="../../Resources/Images/right_arrow.png" Width="25" Height="23"/>
+                                    </Button>
+                                </StackPanel>
+                            </StackPanel>
                             <TextBlock
                         Grid.Row="0"
                         Grid.Column="1"

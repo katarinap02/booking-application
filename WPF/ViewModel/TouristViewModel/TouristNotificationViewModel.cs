@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
@@ -21,6 +22,24 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         private readonly TourService _tourService;
         public ObservableCollection<string> tourists { get; set; }
         public ObservableCollection<TouristNotificationViewModel> touristNotificationViewModels { get; set; }
+
+        private ICommand _closeCommand;
+        public ICommand CloseCommand
+        {
+            get
+            {
+                if (_closeCommand == null)
+                {
+                    _closeCommand = new RelayCommand(param => CloseWindow());
+                }
+                return _closeCommand;
+            }
+        }
+
+        private void CloseWindow()
+        {
+            Messenger.Default.Send(new CloseWindowMessage());
+        }
 
         public void ExecuteDetailsButton()
         {

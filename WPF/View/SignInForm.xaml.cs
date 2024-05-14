@@ -4,8 +4,10 @@ using BookingApp.Repository.FeatureRepository;
 using BookingApp.View.GuideTestWindows;
 using BookingApp.View.GuideWindows;
 using BookingApp.View.TouristWindows;
-using BookingApp.WPF.View.GuideTestWindows;
+using BookingApp.WPF.View.GuideWindows;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.WPF.View.GuideTestWindows.GuideControls;
+using BookingApp.WPF.ViewModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -15,6 +17,7 @@ namespace BookingApp.View
     /// <summary>
     /// Interaction logic for SignInForm.xaml
     /// </summary>
+    /// Version 2.0
     public partial class SignInForm : Window
     {
 
@@ -101,13 +104,21 @@ namespace BookingApp.View
                         {
                             if (user.Username == "test") // prostor za testiranje prozora
                             {
+                                RandomTest randomTest = new RandomTest(user.Id);
+                                randomTest.Show();
+                                /*GridTest gridtest = new GridTest();
+                                gridtest.Show();
+                                AddingTourWindow addingTourWindow = new AddingTourWindow();
+                                addingTourWindow.Show();
                                 RequestTest requestTest = new RequestTest();
-                                requestTest.Show();
+                                requestTest.Show();*/                                
                             }
                             else
                             {
-                                GuideMainWindow guideMainWindow = new GuideMainWindow(user);
-                                guideMainWindow.ShowDialog();
+                                /*GuideMainWindow guideMainWindow = new GuideMainWindow(user);
+                                guideMainWindow.ShowDialog();*/
+                                RequestTest requestTest = new RequestTest(user.Id);
+                                requestTest.ShowDialog();
                             }
                             
                         }
@@ -119,8 +130,7 @@ namespace BookingApp.View
                         GuestWindow guestWindow = new GuestWindow(user);
                         guestWindow.ShowDialog();
                     }
-                    //Close();
-
+                    //Close(); // obrisati zbog HCI-ja
                 } 
                 else
                 {

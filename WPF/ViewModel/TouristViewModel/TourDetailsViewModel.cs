@@ -1,6 +1,7 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.WPF.View.TouristWindows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -9,13 +10,33 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
     public class TourDetailsViewModel : INotifyPropertyChanged
     {
         public ObservableCollection<Checkpoint> CheckpointWithColors { get; set; }
+
+        private ICommand _closeCommand;
+        public ICommand CloseCommand
+        {
+            get
+            {
+                if (_closeCommand == null)
+                {
+                    _closeCommand = new RelayCommand(param => CloseWindow());
+                }
+                return _closeCommand;
+            }
+        }
+
+        private void CloseWindow()
+        {
+            Messenger.Default.Send(new CloseWindowMessage());
+        }
 
         private TourViewModel _selectedTour;
         public TourViewModel SelectedTour
@@ -59,7 +80,35 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         public void TourDetailsWindowInitialization(bool IsMyTour)
         {
+            InitializePdfPanel(IsMyTour);
+
+            InitializeCheckpoints();
+
+            InitializePictures();
+        }
+        private void InitializePictures()
+        {
+            var imagePlaceholder = "../../Resources/Images/no_image.jpg";
+            if (SelectedTour.Pictures != null)
+            {
+                for (int i = 0; i < SelectedTour.Pictures.Count; i++)
+                {
+                    if (!SelectedTour.Pictures[i].StartsWith("../../"))
+                        SelectedTour.Pictures[i] = "../../" + SelectedTour.Pictures[i];
+                }
+            }
+            else
+            {
+                SelectedTour.Pictures = new List<string> { imagePlaceholder };
+            }
+        }
+        private void InitializePdfPanel(bool IsMyTour)
+        {
             PdfPanel = Visibility.Collapsed;
+            PdfPanel = IsMyTour ? Visibility.Visible : PdfPanel;
+        }
+        private void InitializeCheckpoints()
+        {
             SolidColorBrush activeColor = new SolidColorBrush((Color)ColorConverter.ConvertFromString("#4F4A09"));
             SolidColorBrush inactiveColor = Brushes.LightGray;
             CheckpointWithColors.Clear();
@@ -67,8 +116,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             {
                 CheckpointWithColors.Add(new Checkpoint { Name = checkpoint, IndicatorColor = inactiveColor });
             }
-
-            PdfPanel = IsMyTour ? Visibility.Visible : PdfPanel;
 
             int checkpointIndex = SelectedTour.CurrentCheckpoint;
             for (int i = 0; i < SelectedTour.Checkpoints.Count; i++)
@@ -80,14 +127,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 else
                 {
                     CheckpointWithColors[i].IndicatorColor = inactiveColor;
-                }
-            }
-            // images
-            if (SelectedTour.Pictures != null)
-            {
-                for (int i = 0; i < SelectedTour.Pictures.Count; i++)
-                {
-                    SelectedTour.Pictures[i] = "../../" + SelectedTour.Pictures[i];
                 }
             }
         }

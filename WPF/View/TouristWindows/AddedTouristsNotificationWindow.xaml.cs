@@ -15,6 +15,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.WPF.View.TouristWindows;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -24,8 +26,6 @@ namespace BookingApp.View.TouristWindows
     public partial class AddedTouristsNotificationWindow : Window
     {
         public TouristNotificationViewModel TouristNotification { get; set; }
-
-        
         public AddedTouristsNotificationWindow(TouristNotificationViewModel selectedNotification)
         {
             InitializeComponent();
@@ -34,9 +34,24 @@ namespace BookingApp.View.TouristWindows
             TouristNotification.SelectedNotification = selectedNotification;
             TouristNotification.CurrentCheckpoint = selectedNotification.CurrentCheckpoint;
             TouristNotification.InitializeAddedTouristsWindow();
+            Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
+        }
+        private void CloseWindow(CloseWindowMessage messsage)
+        {
+            Close();
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Messenger.Default.Unregister(this);
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Close();
         }

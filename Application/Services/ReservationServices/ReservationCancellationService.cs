@@ -35,8 +35,8 @@ namespace BookingApp.Application.Services.ReservationServices
             int num = 0;
             foreach (ReservationCancellation ar in ReservationCancellationRepository.GetAll())
             {
-                AccommodationReservation arr = AccommodationReservationRepository.GetById(ar.ReservationId);
-                if (arr.AccommodationId == accId && ar.CancellationDate.Year == year)
+                
+                if (ar.AccommodationId == accId && ar.CancellationDate.Year == year)
                 {
                     num++;
                 }
@@ -50,8 +50,8 @@ namespace BookingApp.Application.Services.ReservationServices
             int num = 0;
             foreach (ReservationCancellation ar in ReservationCancellationRepository.GetAll())
             {
-                AccommodationReservation arr = AccommodationReservationRepository.GetById(ar.ReservationId);
-                if (arr.AccommodationId == accId && ar.CancellationDate.Month == month && ar.CancellationDate.Year == year)
+                
+                if (ar.AccommodationId == accId && ar.CancellationDate.Month == month && ar.CancellationDate.Year == year)
                 {
                     num++;
                 }
@@ -66,8 +66,8 @@ namespace BookingApp.Application.Services.ReservationServices
 
             foreach (ReservationCancellation ar in ReservationCancellationRepository.GetAll())
             {
-                AccommodationReservation arr = AccommodationReservationRepository.GetById(ar.ReservationId);
-                if (arr.AccommodationId == accId)
+                
+                if (ar.AccommodationId == accId)
                 {
                     uniqueYears.Add(ar.CancellationDate.Year); // Add the year to the HashSet
                 }
@@ -82,8 +82,8 @@ namespace BookingApp.Application.Services.ReservationServices
 
             foreach (ReservationCancellation ar in ReservationCancellationRepository.GetAll())
             {
-                AccommodationReservation arr = AccommodationReservationRepository.GetById(ar.ReservationId);
-                if (arr.AccommodationId == accId && ar.CancellationDate.Year == year)
+                
+                if (ar.AccommodationId == accId && ar.CancellationDate.Year == year)
                 {
                     uniqueMonths.Add(ar.CancellationDate.Month); // Add the year to the HashSet
                 }

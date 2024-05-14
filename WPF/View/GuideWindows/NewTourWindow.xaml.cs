@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Repository.FeatureRepository;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 
 namespace BookingApp.View
 {
@@ -20,14 +22,55 @@ namespace BookingApp.View
         private readonly TourRepository _tourRepository;
         public TourViewModel Tour { get; set; }
         private List<DateTime> selectedDates = new List<DateTime>();
-        private User Guide;
+        private readonly TourRequestService tourRequestService;
+        private int GuideId;
+        private bool IsByRequest;
 
-        public NewTourWindow(User guide) {
+        public NewTourWindow(int guide_id, string request) { // string koji se parsira po , ako je location itd
             InitializeComponent();
             DataContext = this;
+            tourRequestService = new TourRequestService(Injector.Injector.CreateInstance<ITourRequestRepository>());
             _tourRepository = new TourRepository();
             Tour = new TourViewModel();
-            Guide = guide;
+            GuideId = guide_id;
+            stringChecker(request);            
+        }
+
+        public void stringChecker(string sstring) {
+            if (!string.IsNullOrEmpty(sstring))
+            {
+                IsByRequest = true;
+                string[] parts = sstring.Split(',');
+                if(parts.Length==2)
+                {
+                    UpdateLocation(parts);
+                }
+                else
+                {
+                    UpdateLanguage(parts[0]);
+                }
+            }
+            else
+            {
+                IsByRequest = false;
+            }
+        }
+
+        public void UpdateLanguage(string language)
+        {
+            Tour.Language = language;
+            txtLanguage.Text = language;
+            txtLanguage.IsReadOnly = true;
+        }
+
+        public void UpdateLocation(string[] parts)
+        {
+            Tour.City = parts[0];
+            Tour.Country = parts[1];
+            txtCity.IsReadOnly = true;
+            txtCity.Text = parts[0];
+            txtCountry.IsReadOnly = true;
+            txtCountry.Text = parts[1];
         }
 
         private void AddTour_Click(object sender, RoutedEventArgs e)
@@ -40,17 +83,29 @@ namespace BookingApp.View
                 int groupId = _tourRepository.NextId();
                 foreach (DateTime date in selectedDates)
                 {
-                    Tour.GuideId = Guide.Id;
+                    Tour.GuideId = GuideId;
                     Tour.GroupId = groupId;
                     Tour.Date = date;
                     Tour.Id = _tourRepository.NextPersonalId();
                     Tour.AvailablePlaces = Tour.MaxTourists;
-                    _tourRepository.Add(Tour.ToTour());
+                    createTour(Tour);
                 }
             
             }
             MessageBox.Show("Tour added");
             Close();
+        }
+
+        public void createTour(TourViewModel Tour)
+        {
+            if (IsByRequest)
+            {
+                tourRequestService.CreateTourByStatistics(Tour.ToTour());
+            }
+            else
+            {
+                _tourRepository.Add(Tour.ToTour());
+            }
         }
 
         private void AddDate_Click(object sender, RoutedEventArgs e)

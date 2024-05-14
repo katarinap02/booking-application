@@ -13,6 +13,7 @@
         <CommandBinding Command="cmd:RoutedCommands.CountrySearch" CanExecute="CountrySearch_CanExecute" Executed="CountrySearch_Executed"/>
         <CommandBinding Command="cmd:RoutedCommands.Search" CanExecute="Search_CanExecute" Executed="Search_Executed"/>
         <CommandBinding Command="cmd:RoutedCommands.Reset" CanExecute="Reset_CanExecute" Executed="Reset_Executed"/>
+        <CommandBinding Command="cmd:RoutedCommands.Notifications" CanExecute="Notification_CanExecute" Executed="Notification_Executed"/>
     </Page.CommandBindings>
     <Page.Resources>
         <!-- Style for the GroupBox -->
@@ -49,7 +50,14 @@
             </Setter>
         </Style>
     </Page.Resources>
-    <Grid Background="{StaticResource FrameBackgroundColor1}">
+    <Border>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                <GradientStop Color="#66060531" Offset="0"></GradientStop>
+                <GradientStop Color="#661b1448" Offset="1"></GradientStop>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid Background="{StaticResource FrameBackgroundColor1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>
             <RowDefinition Height="200"/>
@@ -253,4 +261,5 @@
             </DataGrid.Columns>
         </DataGrid>
     </Grid>
+    </Border>
 </Page>

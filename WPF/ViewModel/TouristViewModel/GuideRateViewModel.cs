@@ -2,6 +2,7 @@
 using BookingApp.Domain.Model.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using GalaSoft.MvvmLight.Command;
+using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Win32;
 using System;
 using System.Collections.Generic;
@@ -264,6 +265,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             Pictures = imagePreviews.Select(image => GetAbsolutePath(image.UriSource)).ToList();
             rate.IsValid = true;
             _guideRateService.SaveRate(rate);
+            Messenger.Default.Send(new NotificationMessage("Tour and Guide are successfully rated"));
         }
 
         private string GetAbsolutePath(Uri uri)
@@ -320,6 +322,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         private void DeleteImagePreview(BitmapImage image)
         {
             imagePreviews.Remove(image);
+            IsAddImageButtonEnabled = true;
         }
 
         public GuideRateViewModel()

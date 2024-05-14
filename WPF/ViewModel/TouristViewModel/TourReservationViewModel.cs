@@ -6,9 +6,12 @@ using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
 using BookingApp.View.TouristWindows;
+using BookingApp.WPF.View.TouristWindows;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -36,6 +39,53 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         public RelayCommand AddParticipantCommand { get; set; }
 
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
+
+        private ICommand _closeCommand;
+        public ICommand CloseCommand
+        {
+            get
+            {
+                if (_closeCommand == null)
+                {
+                    _closeCommand = new RelayCommand(param => CloseWindow());
+                }
+                return _closeCommand;
+            }
+        }
+
+        private void CloseWindow()
+        {
+            Messenger.Default.Send(new CloseWindowMessage());
+        }
+
+        private ICommand _removeParticipantCommand;
+        public ICommand RemoveParticipantCommand
+        {
+            get
+            {
+                if (_removeParticipantCommand == null)
+                {
+                    _removeParticipantCommand = new RelayCommand(
+                        param => RemoveParticipant(param),
+                        param => CanRemoveParticipant());
+                }
+                return _removeParticipantCommand;
+            }
+        }
+        private void RemoveParticipant(object participant)
+        {
+            TourParticipantDTOs.Remove(participant as TourParticipantViewModel);
+            TourParticipantsListBox.Remove(participant as TourParticipantViewModel);
+            ParticipantsListBox.Clear();
+            foreach (var p in TourParticipantsListBox)
+            {
+                ParticipantsListBox.Add(p);
+            }
+        }
+        private bool CanRemoveParticipant()
+        {
+            return ParticipantsListBox.Count > 0;
+        }
 
         private int _id;
         public int Id
@@ -159,8 +209,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
-        private List<TourParticipantViewModel> _participantsListBox;
-        public List<TourParticipantViewModel> ParticipantsListBox
+        private ObservableCollection<TourParticipantViewModel> _participantsListBox;
+        public ObservableCollection<TourParticipantViewModel> ParticipantsListBox
         {
             get
             {
@@ -168,11 +218,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
             set
             {
-                if (value != _participantsListBox)
-                {
-                    _participantsListBox = value;
-                    OnPropertyChanged(nameof(ParticipantsListBox));
-                }
+                _participantsListBox = value;
+                OnPropertyChanged(nameof(ParticipantsListBox));
             }
         }
 
@@ -294,8 +341,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         private void SetupForNextParticipantInput()
         {
-            ParticipantsListBox = null;
-            ParticipantsListBox = TourParticipantsListBox;
+            ParticipantsListBox.Clear();
+            foreach(var participant in TourParticipantsListBox)
+            {
+                ParticipantsListBox.Add(participant);
+            }
 
             Name = string.Empty;
             LastName = string.Empty;
@@ -332,15 +382,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
 
             return true;
-        }
-
-        public void RemoveParticipant()
-        {
-            TourParticipantDTOs.Remove(SelectedParticipant);
-
-            TourParticipantsListBox.Remove(SelectedParticipant);
-            ParticipantsListBox = null;
-            ParticipantsListBox = TourParticipantsListBox;
         }
         private void saveParticipants(bool hasAlreadyReserved, TourReservationViewModel reservation)
         {
@@ -379,38 +420,41 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             // trebam da uracunam i korisnika
             if (participantCount - 1 < TourParticipantDTOs.Count)
             {
-                System.Windows.MessageBox.Show("Too many participants in the list of participants", "Participants error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                Messenger.Default.Send(new NotificationMessage("Too many participants in the list of participants\nNote: Number of participants includes you"));
                 return false;
             }
-            else if (participantCount - 1 > TourParticipantDTOs.Count)
+            if (participantCount - 1 > TourParticipantDTOs.Count)
             {
-                System.Windows.MessageBox.Show("Too less participants in the list of participants", "Participants error", MessageBoxButton.OK, MessageBoxImage.Warning);
+                Messenger.Default.Send(new NotificationMessage("Too less participants in the list of participants\nNote: Number of participants includes you"));
                 return false;
+            }
+
+            //ako postoji vec rezervacija za tu turu
+            TourReservationViewModel reservation = ToTourReservationViewModel(_tourReservationService.FindReservationByTOuristIdAndTourId(UserId, SelectedTour.Id));
+            
+            Save(reservation);
+            // ovo za vaucere
+            if (_voucherService.HasVoucher(UserId))
+            {
+                VoucherWindow voucherWindom = new VoucherWindow(UserId);
+                voucherWindom.ShowDialog();
+            }
+            System.Windows.MessageBox.Show("Tour " + "\"" + SelectedTour.Name + "\"" + " booked!", "Tour booked", MessageBoxButton.OK, MessageBoxImage.Information);
+            return true;
+        }
+        private void Save(TourReservationViewModel reservation)
+        {
+            // ovo znaci da vec ima rezervacija
+            if (reservation != null)
+            {
+                saveParticipants(true, reservation);
             }
             else
             {
-                //ako postoji vec rezervacija za tu turu
-                TourReservationViewModel reservation = ToTourReservationViewModel(_tourReservationService.FindReservationByTOuristIdAndTourId(UserId, SelectedTour.Id));
-                // ovo znaci da vec ima rezervacija
-                if (reservation != null)
-                {
-                    saveParticipants(true, reservation);
-                }
-                else
-                {
-                    saveParticipants(false, reservation);
-                    saveReservation();
-                }
-                ReduceNumberOfAvailablePlaces();
-                // ovo za vaucere
-                if (_voucherService.HasVoucher(UserId))
-                {
-                    VoucherWindow voucherWindom = new VoucherWindow(UserId);
-                    voucherWindom.ShowDialog();
-                }
-                System.Windows.MessageBox.Show("Tour " + "\"" + SelectedTour.Name + "\"" + " booked!");
-                return true;
+                saveParticipants(false, reservation);
+                saveReservation();
             }
+            ReduceNumberOfAvailablePlaces();
         }
 
         private void ReduceNumberOfAvailablePlaces()
@@ -425,6 +469,15 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
             TourParticipantDTOs.Clear();
         }
+
+        public void InitializeTourReservationWindow(TourViewModel selectedTour, int insertedNumberOfParticipants, int userId)
+        {
+            Age = 1;
+            SelectedTour = selectedTour;
+            ParticipantCount = insertedNumberOfParticipants.ToString();
+            UserId = userId;
+        }
+
         private TourReservationViewModel ToTourReservationViewModel(TourReservation reservation)
         {
             TourReservationViewModel tourReservationViewModel = new TourReservationViewModel();
@@ -439,11 +492,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             return null;
         }
 
-        public void Close()
-        {
-
-        }
-
         public TourReservationViewModel()
         {
             _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
@@ -455,6 +503,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
             TourParticipantDTOs = new List<TourParticipantViewModel>();
             TourParticipantsListBox = new List<TourParticipantViewModel>();
+            ParticipantsListBox = new ObservableCollection<TourParticipantViewModel>();
         }
 
         public TourReservationViewModel(TourReservation tourReservation)

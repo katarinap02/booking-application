@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.WPF.View.TouristPages"
+      xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="945"
       Title="RequestedToursPage">
@@ -16,13 +17,19 @@
             <Setter Property="Padding" Value="10,5" />
         </Style>
     </Page.Resources>
-
+    <Page.CommandBindings>
+        <CommandBinding Command="commands:RoutedCommands.Notifications" CanExecute="Notification_CanExecute" Executed="Notification_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.Request" CanExecute="Request_CanExecute" Executed="Request_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.BasicTours" CanExecute="BasicTours_CanExecute" Executed="BasicTours_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.ComplexTours" CanExecute="ComplexTours_CanExecute" Executed="ComplexTours_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.Statistics" CanExecute="Statistics_CanExecute" Executed="Statistics_Executed"/>
+    </Page.CommandBindings>
     <Grid Background="{StaticResource FrameBackgroundColor1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="30"></RowDefinition>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -41,7 +48,8 @@
                 Grid.Column="1"
                 HorizontalAlignment="Right"
                 Click="NotificationButton_Click"/>
-        <TabControl Grid.Row="2"
+        <TabControl x:Name="RequestTabControl"
+                    Grid.Row="2"
                     Grid.Column="1">
             <TabItem Header="Basic">
                 <DataGrid ItemsSource="{Binding TourRequests}"

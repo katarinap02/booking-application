@@ -34,7 +34,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public MyICommand<string> XCommand { get; set; }
 
-        public RegisterAccommodationPageViewModel(User us)
+        public RegisterAccommodationPageViewModel(User us, AccommodationViewModel acc)
         {
             this.user = us;
             accommodationDTO = new AccommodationViewModel();
@@ -43,6 +43,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             PictureCommand = new MyICommand(Picture_Click);
             Pictures = new ObservableCollection<string>();
             XCommand = new MyICommand<string>(DeletePicture);
+            if(acc != null)
+            {
+                accommodationDTO.City = acc.City;
+                accommodationDTO.Country = acc.Country;
+            }
             Update();
         }
 

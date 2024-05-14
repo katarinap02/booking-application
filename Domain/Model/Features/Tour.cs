@@ -59,12 +59,11 @@ namespace BookingApp.Domain.Model.Features
             Date = date;
             Duration = duration;
             Pictures = pictures;
-            Status = TourStatus.inPreparation; //kad se pravi noava tura, ona ne moze biti zavrsena ili u toku
+            Status = TourStatus.inPreparation;
             currentCheckpoint = 0;
             Country = country;
             AvailablePlaces = maxTourists;
             GuideId = guideId;
-            // + u dao napraviti da dodeljuje jedinstven groupId
         }
 
         public string[] ToCSV()

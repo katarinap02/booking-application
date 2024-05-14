@@ -68,6 +68,7 @@ namespace BookingApp.Application.Services.FeatureServices
             AccommodationRepository.Update(accommodation);
         }
 
+
         public List<Accommodation> FindAvailableAccommodations(int dayNumber, int guestNumber, DateTime startDate, DateTime endDate)
         {
            List<Accommodation> result = new List<Accommodation>();
@@ -160,5 +161,24 @@ namespace BookingApp.Application.Services.FeatureServices
             else
                 return false;
         }
+
+        public void ChangeListOrder(AccommodationViewModel accommodation)
+        {
+            
+            foreach(Accommodation acc in  AccommodationRepository.GetAll())
+            {
+                if(acc.Id == accommodation.Id)
+                {
+                    string pom = acc.Pictures[0];
+                    acc.Pictures.RemoveAt(0);
+                    acc.Pictures.Add(pom);
+                    Update(acc);
+                    
+                }
+            }
+        }
+
+        
+
     }
 }

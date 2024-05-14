@@ -1,0 +1,61 @@
+@startuml
+actor "Guide" as G
+actor "Tourist" as T
+participant SuggestedTourViewModel as STVM
+participant TourRequestService as TRS
+participant TourService as TS
+participant TouristNotificationService as TNS
+participant TouristNotificationRepository as TNR
+participant TourRequestRepository as TRR
+participant TouristNotificationViewModel as TNVM
+
+
+G -> STVM : CreateTour button click
+note left
+Name, Country, City, Date, Language,
+GuideId, Description
+end note
+activate STVM
+STVM -> TRS : CreateTourByStatistics(tour)
+activate TRS
+ref over TRS: Guide Diagran Sequence
+TRS -> TRS : SendNotifications(tour)
+activate TRS
+TRS -> TRR : GetAllPendingOrInvalid()
+activate TRR
+TRR --> TRS : unfulfilledRequests
+deactivate TRR
+loop request in unfulfilledRequests
+   opt (tour.Language == request.Language || tour.City == request.City) && !notifiedTouristIds.Contains(request.TouristId)
+         TRS -> TRS : notifiedTouristIds.Add(request.TouristId)
+         activate TRS
+         deactivate TRS
+         TRS -> TNS : Save(notification)
+         activate TNS
+         note left
+         TouristId, TourId, NotificationType, TourName
+         end note
+         TNS -> TNR : Add(notification)
+         activate TNR
+         deactivate TNR
+         deactivate TNS
+   end
+end
+TRS --> STVM : true
+deactivate TRS
+deactivate TRS
+STVM --> G : MessageBox("Tour is created")
+deactivate STVM
+T -> TNVM : Notifications Window click
+activate TNVM
+TNVM -> TNS : GetAllNotifications(TouristId)
+activate TNS
+TNS -> TNR : GetAll()
+activate TNR
+TNR --> TNS : AllNotifications
+deactivate TNR
+TNS --> TNVM : AllNotifications
+deactivate TNS
+TNVM --> T : AllNotifications
+deactivate TNVM
+@enduml

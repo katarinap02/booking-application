@@ -20,6 +20,8 @@ using System.Windows.Navigation;
 using BookingApp.WPF.View.HostPages;
 using GalaSoft.MvvmLight.Command;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
+using BookingApp.Application.Services.ReservationServices;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -28,7 +30,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public event PropertyChangedEventHandler? PropertyChanged;
 
         public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
+
+        public AccommodationViewModel MostPopular { get; set; }
+
+        public AccommodationViewModel LeastPopular { get; set; }
         public AccommodationService accommodationService { get; set; }
+
+        public AccommodationReservationService accommodationReservationService { get; set; }
 
         public AccommodationReservationViewModel SelectedAccommodation { get; set; }
 
@@ -41,6 +49,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public RelayCommand NavigateToDelayPageCommand { get; set; }
 
         public MyICommand<AccommodationViewModel> NavigateToStatisticPageCommand { get; set; }
+
+        public MyICommand<AccommodationViewModel> ChangedPictureCommand { get; set; }
+
+        public MyICommand<AccommodationViewModel> RegisterCommand { get; set; }
         public User User { get; set; }
 
         public NavigationService NavService { get; set; }
@@ -71,6 +83,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             this.NavService.Navigate(page);
         }
 
+        private void Execute_NavigateToRegisterPageCommand(AccommodationViewModel acc)
+        {
+            CloseMenu();
+            RegisterAccommodationPage page = new RegisterAccommodationPage(User, acc);
+            this.NavService.Navigate(page);
+        }
+
+
         private bool CanExecute_NavigateCommand(object obj)
         {
             return true;
@@ -91,11 +111,23 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 NavigateToRateGuestPageCommand = new RelayCommand(Execute_NavigateToGuestRatePageCommand, CanExecute_NavigateCommand);
                 NavigateToDelayPageCommand = new RelayCommand(Execute_NavigateToDelayPageCommand, CanExecute_NavigateCommand);
                 NavigateToStatisticPageCommand = new MyICommand<AccommodationViewModel>(Execute_NavigateToStatisticPageCommand);
+                ChangedPictureCommand = new MyICommand<AccommodationViewModel>(ChangePicture);
+                RegisterCommand = new MyICommand<AccommodationViewModel>(Execute_NavigateToRegisterPageCommand);
+                accommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+                MostPopular = new AccommodationViewModel(accommodationReservationService.GetMostPopularLocation(host.Id));
+                LeastPopular = new AccommodationViewModel(accommodationReservationService.GetLeastPopularLocation(host.Id));
                 Update();
 
          }
 
-
+        private void ChangePicture(AccommodationViewModel acc)
+        {
+            
+            if (acc.NumberOfPictures > 1) {
+                accommodationService.ChangeListOrder(acc);
+            }
+            Update();
+        }
 
         public void Update()
           {
@@ -108,6 +140,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                     }
 
                 }
+                
           }
 
         private void CloseMenu()

@@ -1,0 +1,198 @@
+<Window
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:av="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" mc:Ignorable="av"
+        x:Class="BookingApp.WPF.View.GuideTestWindows.AddingTourWindow"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        Title="Adding Tour" Height="560" Width="1050" BorderThickness="3" WindowStartupLocation="CenterScreen">
+    <Window.Background>
+        <SolidColorBrush Color="#060531"></SolidColorBrush>
+    </Window.Background>
+    <Window.BorderBrush>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="HotPink" Offset="0"></GradientStop>
+            <GradientStop Color="LightCoral" Offset="0.5"></GradientStop>
+            <GradientStop Color="Magenta" Offset="1"></GradientStop>
+        </LinearGradientBrush>
+    </Window.BorderBrush>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <Border Grid.Column="0"  Background="#060531" Margin="0,0,0,0">
+            <Grid Margin="20 20 20 5">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/> 
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+                <TextBlock Text="Adding Tour" FontSize="20" Foreground="White" Margin="0 0 0 10" Grid.Row="0"/>
+
+                <!-- Tour Name -->
+                <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Tour Name" Margin="0 10 0 10" Grid.Row="1"
+                         Name="txtTourName" Text="{Binding Path = Tour.Name, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- City -->
+                <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="City" Margin="0 15 0 10" Grid.Row="2"
+                         Name="txtCity" Text="{Binding Path = Tour.City, UpdateSourceTrigger=PropertyChanged}"/>
+
+                <!-- Country -->
+                <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Country" Margin="0 15 0 10" Grid.Row="3"
+                         Name="txtCountry" Text="{Binding Path = Tour.Country, UpdateSourceTrigger=PropertyChanged}"/>
+                
+                <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Language" Grid.Row="4" Margin="0 15 0 10"
+				Name="txtLanguage" Text="{Binding Path = Tour.Language, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+
+                <!-- Number of Tourists -->
+                <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Number of Tourists" Margin="0 15 0 10" Grid.Row="5"
+                         Text="{Binding Path = StringTouristsNumber.Number, UpdateSourceTrigger=PropertyChanged}"
+                         PreviewTextInput="NumericTextBox_PreviewTextInput"/>
+
+                <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Duration (in hours)" Margin="0 15 0 10" Grid.Row="6"
+                     Name="txtDuration" Text="{Binding Path=StringDuration.Number, UpdateSourceTrigger=PropertyChanged}"
+                     PreviewTextInput="NumericTextBox_PreviewTextInput"/>
+
+
+
+                <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Description" Grid.Row="7" Margin="0 15 0 10"
+					Name="txtDescription" Text="{Binding Path = Tour.Description, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                         
+
+                <Button Grid.Row="9" VerticalAlignment="Bottom" Content="Cancel Adding Tour" Click="Exit_Click" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/>
+
+
+            </Grid>
+        </Border>
+
+        <!-- Right Section: New content -->
+        <Border Background="#060531"  Grid.Column="1">
+            <!-- Add your new content here -->
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <!-- Empty space -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- DateTimePicker -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- ListBox -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Add Picture Button -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Second ListBox -->
+                    <RowDefinition Height="*"/>
+                    <!-- Cancel Button -->
+                    <RowDefinition Height="Auto"/>
+                    <!-- Add Tour Button -->
+
+                </Grid.RowDefinitions>
+
+                <!-- Empty space -->
+                <StackPanel Grid.Row="0"  Orientation="Vertical">
+                    <StackPanel  Orientation="Horizontal" Margin="0 40 0 15">
+                        <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Checkpoint" Width="380" Margin="0 0 0 5"
+                                 Text="{Binding Path = typedCheckpoint.SString, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Button Content="Add" Margin="10 0 0 0" Style="{StaticResource TransparentBorderButton}" Click="AddCheckpoint_Click" Width="100" Foreground="#FB539B" BorderBrush="#FB539B"/>
+                    </StackPanel>
+                    <ListBox 
+				                 Style="{StaticResource CustomListBoxStyle}"
+				                 x:Name="CheckpointsList"
+                                 ItemsSource="{Binding Path= Tour.Checkpoints, UpdateSourceTrigger=PropertyChanged}"
+								 Height="60"
+				                 SelectionMode="Single" Margin="0,0,0,0" VerticalAlignment="Center">
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomListBoxItemStyle}"/>
+                        </ListBox.ItemContainerStyle>
+                    </ListBox>
+                </StackPanel>
+
+
+
+
+
+                <!-- DateTimePicker -->
+                <StackPanel Orientation="Vertical" Grid.Row="1">
+
+
+
+                    <TextBlock Text="Select date and time for your tour:" Foreground="LightGray"
+								FontSize="14"
+								FontWeight="Medium"
+								FontFamily="Montserrat"
+								TextWrapping="Wrap"
+                               Margin="15, 15, 0, 5"
+								>
+
+                    </TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <xctk:DateTimePicker Name="dateTimePicker" Margin="5 0  0 0" Height="30" Width="270" Style="{StaticResource CustomDateTimePickerStyleSimple}"/>
+                        <Button Content="Add Date" Margin="10 0  0 0" Click="AddDate_Click" Style="{StaticResource TransparentBorderButton}" Width="100" Height="35" Foreground="#FB539B" BorderBrush="#FB539B"/>
+                    </StackPanel>
+
+                </StackPanel>
+
+
+                <!-- ListBox -->
+                <ListBox Grid.Row="2"
+					 Style="{StaticResource CustomListBoxStyle}"
+					 x:Name="dates"
+						 Height="60"
+					 SelectionMode="Single"
+                         Margin="5 10 5 10" av:ItemsSource="{av:SampleData ItemCount=5}">
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomListBoxItemStyle}"/>
+                    </ListBox.ItemContainerStyle>
+                    
+                </ListBox>
+
+                <!-- Add Picture Button -->
+                <Button Grid.Row="3" Content="Add Picture" Style="{StaticResource TransparentBorderButton}" Margin="15 10 15 0"
+                         Height="35"  Foreground="#FB539B" BorderBrush="#FB539B" Click="btnBrowse_Click"/>
+
+                <!-- Second ListBox -->
+                <ListBox Grid.Row="4"
+         Style="{StaticResource CustomListBoxStyle}"
+         x:Name="pictures"
+         Height="70"
+         SelectionMode="Single" 
+         ItemsSource="{Binding Pictures, UpdateSourceTrigger=PropertyChanged}"
+         Margin="5 10 5 15" av:ItemsSource="{av:SampleData ItemCount=5}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel Orientation="Horizontal"/>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemContainerStyle>
+                        <Style TargetType="ListBoxItem">
+                            <Setter Property="Height" Value="75"/>
+                            <!-- Set the height as per your requirement -->
+                        </Style>
+                    </ListBox.ItemContainerStyle>
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Image Source="{Binding}" Stretch="Uniform" Width="65" Height="65" Margin="0,0,7,0"/>
+                                <Button Content="x" Style="{StaticResource GuideXButtonStyle}" Width="20" Height="20" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,5,0"                                
+                                    Click="DeleteItem_Click"
+                                    CommandParameter="{Binding}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+
+                <Button Grid.Row="6" Content="Add Tour" Margin="15" Style="{StaticResource generalButton}" Height="30" Foreground="#060531" BorderBrush="#FB539B" Click="AddTour_Click"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

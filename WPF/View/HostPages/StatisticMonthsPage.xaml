@@ -25,7 +25,7 @@
         <Grid.ColumnDefinitions>
 
         </Grid.ColumnDefinitions>
-
+        <Button Content="PDF" HorizontalAlignment="Left" Margin="15 30 0 0" Style="{StaticResource ButtonStyleHost}" Width="50" Height="25"/>
         <TextBlock
 x:Name="TitleLabel"
 Grid.ColumnSpan="2"
@@ -34,6 +34,7 @@ VerticalAlignment="Center"
 HorizontalAlignment="Center"
 Text="{Binding Path= AccommodationViewModel.Name, UpdateSourceTrigger=PropertyChanged}"
 FontSize="32"
+Margin="0 16 0 0"
 Style="{StaticResource TextBlockStyleMSHost}"
  />
         <Grid Grid.Row="1">

@@ -32,14 +32,19 @@
     <None Remove="Resources\Images\view.png" />
     <None Remove="WPF\Resources\Images\arrow-to-line-right.png" />
     <None Remove="WPF\Resources\Images\empty.png" />
+    <None Remove="WPF\Resources\Images\left_arrow.png" />
     <None Remove="WPF\Resources\Images\lock.png" />
     <None Remove="WPF\Resources\Images\minus.png" />
     <None Remove="WPF\Resources\Images\play_button.png" />
     <None Remove="WPF\Resources\Images\plus.png" />
+    <None Remove="WPF\Resources\Images\right_arrow.png" />
     <None Remove="WPF\Resources\Images\rome1.jpg" />
     <None Remove="WPF\Resources\Images\search.png" />
+    <None Remove="WPF\Resources\Images\Tokyo1.jpg" />
+    <None Remove="WPF\Resources\Images\tokyo_temple.jpg" />
     <None Remove="WPF\Resources\Images\user_white.png" />
     <None Remove="WPF\Resources\Images\Unknown_person.jpg" />
+    <None Remove="WPF\Resources\Images\warning.png" />
 
     <None Remove="WPF\Resources\LoginImages\icon.png" />
     <None Remove="WPF\Resources\LoginImages\key.png" />
@@ -90,6 +95,9 @@
     <Content Include="WPF\Resources\Images\Istanbul1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="WPF\Resources\Images\left_arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="WPF\Resources\Images\lock.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -114,6 +122,9 @@
     <Content Include="WPF\Resources\Images\red_dot.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="WPF\Resources\Images\right_arrow.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="WPF\Resources\Images\rome1.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -125,6 +136,14 @@
     </Content>
 
     <Content Include="WPF\Resources\Images\taj_mahal1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+    <Content Include="WPF\Resources\Images\Tokyo1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+
+    <Content Include="WPF\Resources\Images\tokyo_temple.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
 
@@ -154,11 +173,14 @@
   <ItemGroup>
     <PackageReference Include="DotNetProjects.WpfToolkit.DataVisualization" Version="6.1.94" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.6.0" />
+    <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
     <PackageReference Include="LiveCharts" Version="0.9.7" />
     <PackageReference Include="LiveCharts.WinForms" Version="0.9.7.1" />
     <PackageReference Include="MVVMLight.Messaging" Version="1.0.0" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
+    <PackageReference Include="Syncfusion.Pdf.NET" Version="25.2.3" />
+    <PackageReference Include="WPF-UI" Version="3.0.4" />
   </ItemGroup>
 
   <ItemGroup>
@@ -174,6 +196,8 @@
     </Resource>
 
     <Resource Include="WPF\Resources\Images\user_white.png" />
+
+    <Resource Include="WPF\Resources\Images\warning.png" />
 
     <Resource Include="WPF\View\Guest\GuestThemes\DarkTheme.xaml" />
     <Resource Include="WPF\View\Guest\GuestThemes\LightTheme.xaml">
