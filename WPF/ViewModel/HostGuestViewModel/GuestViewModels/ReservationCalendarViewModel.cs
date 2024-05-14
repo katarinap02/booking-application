@@ -152,13 +152,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             if (GuestNumber > SelectedAccommodation.MaxGuestNumber || GuestNumber <= 0)
             {
                 
-               // if (Page.PeopleNumberSection.IsEnabled == true)
-                   // Page.guestNumberValidator.Visibility = Visibility.Visible;
+                if (Page.PeopleNumberSection.IsEnabled == true)
+                    Page.guestNumberValidator.Visibility = Visibility.Visible;
               
             }
             else
             {
-                //Page.guestNumberValidator.Visibility = Visibility.Hidden;
+                Page.guestNumberValidator.Visibility = Visibility.Hidden;
 
                 
             }
@@ -209,13 +209,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             if (selectedDatesCount != DayNumber)
             {
                 Page.reserveButton.IsEnabled = false;
-              //  Page.dayNumberValidator.Visibility = Visibility.Visible;
+                Page.dayNumberValidator.Visibility = Visibility.Visible;
 
             }
             else
             {
                 Page.reserveButton.IsEnabled = true;
-               // Page.dayNumberValidator.Visibility = Visibility.Hidden;
+                Page.dayNumberValidator.Visibility = Visibility.Hidden;
 
             }
 

@@ -63,7 +63,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
                 if (firstComment != value)
                 {
 
-                    country = value;
+                    firstComment = value;
                     OnPropertyChanged("FirstComment");
                 }
             }

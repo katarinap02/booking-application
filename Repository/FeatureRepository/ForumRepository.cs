@@ -17,6 +17,13 @@ namespace BookingApp.Repository.FeatureRepository
         private List<Forum> _forums;
 
         public Subject ForumSubject { get; set; }
+
+        public ForumRepository()
+        {
+            _serializer = new Serializer<Forum>();
+            _forums = _serializer.FromCSV(FilePath);
+            ForumSubject = new Subject();
+        }
         public Forum Add(Forum forum)
         {
             forum.Id = NextId();
