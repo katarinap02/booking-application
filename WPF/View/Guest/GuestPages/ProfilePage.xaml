@@ -22,7 +22,7 @@
                     <LineBreak/>
                     <TreeViewItem Header="Requests" FontSize="37" Selected="Requests_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Forums" FontSize="37"></TreeViewItem>
+                    <TreeViewItem Header="Forums" FontSize="37" Selected="Forums_Click"></TreeViewItem>
                     <LineBreak/>
                     <TreeViewItem Header="Settings" FontSize="37"></TreeViewItem>
 

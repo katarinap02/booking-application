@@ -18,6 +18,7 @@ using BookingApp.Observer;
 using System.Security.Cryptography;
 using BookingApp.Application.Services;
 using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.View.Guest.GuestPages;
 
 namespace BookingApp.View.GuestPages
 {
@@ -67,7 +68,12 @@ namespace BookingApp.View.GuestPages
             Profile.Content = new ProfileInfo(User, Profile);
         }
 
-      
-       
+        public void Forums_Click(object sender, RoutedEventArgs e)
+        {
+            Profile.Content = new ProfileForumsPage(User, Profile);
+        }
+
+
+
     }
 }
