@@ -54,7 +54,7 @@
         </Border>
         <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="960,92,289,162" Width="671">
             <Grid x:Name="CalendarSection">
-                <Calendar x:Name="ReservationCalendar"  BorderBrush="{StaticResource AccentColorN}" BorderThickness="2"  Background="White" SelectionMode="SingleRange" Height="371" Margin="65,142,65,218" RenderTransformOrigin="0.515,0.5">
+                <Calendar x:Name="ReservationCalendar"  BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"  Background="White" SelectionMode="SingleRange" Height="371" Margin="65,142,65,218" RenderTransformOrigin="0.515,0.5">
                     <Calendar.LayoutTransform>
                         <ScaleTransform ScaleX="2" ScaleY="2"/>
                     </Calendar.LayoutTransform>

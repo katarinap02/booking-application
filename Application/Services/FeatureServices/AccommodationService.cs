@@ -93,25 +93,17 @@ namespace BookingApp.Application.Services.FeatureServices
 
         private bool CheckDateRange(Accommodation accommodation, DateTime startDate, DateTime endDate, int dayNumber)
         {
-            List<CalendarDateRange> possibleAvailableRanges = new List<CalendarDateRange>();
-            possibleAvailableRanges = GeneratePossibleRanges(startDate, endDate, dayNumber);
-            foreach(CalendarDateRange possibleRange in possibleAvailableRanges)
-            {
-                foreach(CalendarDateRange unavailableDateRange in accommodation.UnavailableDates)
-                {
-                    if (possibleRange.Start >= unavailableDateRange.Start || possibleRange.End <= unavailableDateRange.End)
-                        return false;
-                }
-            }
             return true;
         }
+
+       
 
         private List<CalendarDateRange> GeneratePossibleRanges(DateTime startDate, DateTime endDate, int dayNumber)
         {
             List<CalendarDateRange> result = new List<CalendarDateRange>();
             while(startDate.AddDays(dayNumber) <=  endDate) {
                 result.Add(new CalendarDateRange(startDate, startDate.AddDays(dayNumber)));
-                startDate.AddDays(1);
+                startDate.AddDays(dayNumber);
             
             }
             return result;

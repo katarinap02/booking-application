@@ -2,6 +2,9 @@
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Observer;
+using BookingApp.View.GuestPages;
+using BookingApp.WPF.View.Guest.GuestPages;
+using BookingApp.WPF.ViewModel.Commands;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,6 +20,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
     public class AnywhereAnytimeContinueViewModel: IObserver
     {
         public ObservableCollection<AccommodationViewModel> Accommodations { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
 
         public AccommodationService AccommodationService { get; set; }
 
@@ -31,6 +35,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public string DateRange => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
 
+        public GuestICommand<object> ReserveCommand { get; set; }
+
         public AnywhereAnytimeContinueViewModel(User user, Frame frame, int dayNumber, int guestNumber, DateTime startDate, DateTime endDate)
         {
             User = user;
@@ -41,7 +47,17 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             EndDate = endDate;
             Accommodations = new ObservableCollection<AccommodationViewModel>();
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
+            ReserveCommand = new GuestICommand<object>(OnReserve);
             Update();
+            
+        }
+
+        private void OnReserve(object sender)
+        {
+           
+                Button button = sender as Button;
+                SelectedAccommodation = button.DataContext as AccommodationViewModel;
+                Frame.Content = new AnywhereAnytimeCalendarPage(User, Frame, DayNumber, GuestNumber, StartDate, EndDate, SelectedAccommodation);
             
         }
 
