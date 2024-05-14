@@ -141,49 +141,6 @@
         <Setter Property="Padding" Value="5"/>
     </Style>
 
-
-    <Style x:Key="CustomDateTimePickerStyle" TargetType="xctk:DateTimePicker">
-        <Setter Property="Background" Value="#060531"/>
-        <Setter Property="Foreground" Value="#BCBEE0"/>
-        <Setter Property="FontFamily" Value="Montserrat"/>
-        <Setter Property="FontSize" Value="15"/>
-        <Setter Property="BorderBrush" Value="#78A3FC"/>
-        <Setter Property="BorderThickness" Value="2"/>
-        <Setter Property="Margin" Value="30"/>
-        <Setter Property="Padding" Value="5"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="xctk:DateTimePicker">
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="Auto"/>
-                        </Grid.ColumnDefinitions>
-                        <Border Grid.Column="0" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <DatePicker x:Name="PART_DatePicker"
-                                    SelectedDate="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
-                        </Border>
-                        <ToggleButton Grid.Column="1" x:Name="PART_ToggleButton" Content="▼" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"/>
-                        <Popup x:Name="PART_Popup" Grid.ColumnSpan="2" AllowsTransparency="True" Placement="Bottom" StaysOpen="False">
-                            <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                                <StackPanel>
-                                    <Calendar x:Name="PART_Calendar"
-                                          SelectedDate="{Binding Value, RelativeSource={RelativeSource TemplatedParent}, Mode=TwoWay}"/>
-                                    <Button Content="OK"/>
-                                </StackPanel>
-                            </Border>
-                        </Popup>
-                    </Grid>
-                    <ControlTemplate.Triggers>
-                        <Trigger SourceName="PART_ToggleButton" Property="ToggleButton.IsChecked" Value="True">
-                            <Setter TargetName="PART_Popup" Property="IsOpen" Value="True"/>
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style> <!-- ne radi  dobro -->
-
     <Style x:Key="GuideTextBlockStyle" TargetType="TextBlock">
         <Setter Property="Foreground" Value="LightGray" />
         <Setter Property="FontSize" Value="14" />
