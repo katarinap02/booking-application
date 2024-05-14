@@ -123,7 +123,7 @@
     </Style>
 
     <Style x:Key="TextBlockValidation" TargetType="TextBlock">
-        <Setter Property="Foreground" Value="DodgerBlue"/>
+        <Setter Property="Foreground" Value="#DC1414"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontSize" Value="12"/>
@@ -168,6 +168,25 @@
                         </DrawingGroup>
                     </DrawingImage.Drawing>
                 </DrawingImage>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="HostXButtonStyle" TargetType="Button">
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Content" Value="x"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="FontFamily" Value="Monospace"/>
+        <Setter Property="Foreground" Value="White"/>
+        <Setter Property="Background" Value="#DC1414"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <Border Width="18" Height="18" CornerRadius="9" Background="{TemplateBinding Background}">
+                        <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
