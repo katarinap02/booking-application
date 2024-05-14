@@ -67,7 +67,14 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         }
         public void StartTour()
         {
-            MessageBox.Show(SelectedTour.Name, "StartTour");
+            if(SelectedTour != null)
+            {
+                MessageBox.Show(SelectedTour.Name, "StartTour", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("error", "StartTour", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+            }
         }
 
         public void GetGridData()
