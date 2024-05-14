@@ -25,7 +25,7 @@
                    Grid.Column="1"
                    Grid.Row="1"/>
         <DataGrid ItemsSource="{Binding touristNotificationViewModels}"
-                  SelectedItem="{Binding Path=SelectedNotification}"
+                  SelectedItem="{Binding SelectedNotification}"
                   Grid.Column="1"
                   Grid.Row="2"
                   AutoGenerateColumns="False"

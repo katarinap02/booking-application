@@ -32,6 +32,11 @@ namespace BookingApp.Repository.FeatureRepository
         {
             return GetAll().FindAll(x => x.Status == TourRequestStatus.Pending);
         }
+
+        public List<TourRequest> GetAllPendingOrInvalid()
+        {
+            return GetAll().FindAll(tr => tr.Status == TourRequestStatus.Pending || tr.Status == TourRequestStatus.Invalid);
+        }
         
         public void Add(TourRequest tourRequest)
         {
@@ -43,6 +48,12 @@ namespace BookingApp.Repository.FeatureRepository
         public void Save()
         {
             _serializer.ToCSV(FilePath, _tourRequests);
+        }
+
+        public List<TourRequest> GetByTouristId(int touristId)
+        {
+            _tourRequests = GetAll();
+           return _tourRequests.FindAll(r => r.TouristId == touristId);
         }
 
         public int NextId()

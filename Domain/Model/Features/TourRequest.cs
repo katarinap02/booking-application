@@ -18,6 +18,7 @@ namespace BookingApp.Domain.Model.Features
         public string City { get; set; }
         public string Country { get; set; }
         public int Id { get; set; }
+        public int TouristId { get; set; }
         public string Description { get; set; }
         public TourRequestStatus Status { get; set; }
         public string Language {  get; set; }
@@ -30,7 +31,8 @@ namespace BookingApp.Domain.Model.Features
 
         public TourRequest() { }
 
-        public TourRequest(string description, string language, List<int> ids, DateTime startDate, DateTime endDate, string city, string country) { // kada se pravi zahtev
+        public TourRequest(int touristId, string description, string language, List<int> ids, DateTime startDate, DateTime endDate, string city, string country) { // kada se pravi zahtev
+            TouristId = touristId;
             City = city;
             Country = country;
             Description = description;
@@ -47,6 +49,7 @@ namespace BookingApp.Domain.Model.Features
         public TourRequest(TourRequest tourRequest) 
         { 
             Id = tourRequest.Id;
+            TouristId = tourRequest.TouristId;
             City = tourRequest.City;
             Country = tourRequest.Country;
             Description = tourRequest.Description;
@@ -68,7 +71,7 @@ namespace BookingApp.Domain.Model.Features
                 idString = string.Join(",", ParticipantIds);
             }
 
-            string[] CSVvalues = { Id.ToString(), Status.ToString(), City, Country, Description, Language, 
+            string[] CSVvalues = { Id.ToString(), TouristId.ToString(), Status.ToString(), City, Country, Description, Language, 
                                    StartDate.ToString(), EndDate.ToString(), AcceptedDate.ToString(), GuideId.ToString(), idString, DateRequested.ToString()};
 
             return CSVvalues;
@@ -77,22 +80,23 @@ namespace BookingApp.Domain.Model.Features
         public void FromCSV(string[] values)
         {
             Id = int.Parse(values[0]);
-            ParseRequestStatus(values[1]);
-            City = values[2];
-            Country = values[3];
-            Description = values[4];
-            Language = values[5];
-            StartDate = ParseDate(values[6]);
-            EndDate = ParseDate(values[7]);
-            AcceptedDate = ParseDate(values[8]);
-            GuideId = int.Parse(values[9]);
-            if (!string.IsNullOrEmpty(values[10]))
+            TouristId = int.Parse(values[1]);
+            ParseRequestStatus(values[2]);
+            City = values[3];
+            Country = values[4];
+            Description = values[5];
+            Language = values[6];
+            StartDate = ParseDate(values[7]);
+            EndDate = ParseDate(values[8]);
+            AcceptedDate = ParseDate(values[9]);
+            GuideId = int.Parse(values[10]);
+            if (!string.IsNullOrEmpty(values[11]))
             {
-                string ids = values[10];
+                string ids = values[11];
                 List<string> participantIds = ids.Split(",").ToList();
                 ParticipantIds = participantIds.Select(int.Parse).ToList();
             }
-            DateRequested = ParseDate(values[11]);
+            DateRequested = ParseDate(values[12]);
 
         }
 

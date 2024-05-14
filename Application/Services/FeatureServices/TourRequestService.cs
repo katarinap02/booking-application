@@ -1,5 +1,6 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.WPF.View.HostPages;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +13,8 @@ namespace BookingApp.Application.Services.FeatureServices
     public class TourRequestService
     {
         private readonly ITourRequestRepository _tourRequestRepository;
+        private static readonly TourService _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
+        private static readonly TouristNotificationService _touristNotificationService = new TouristNotificationService(Injector.Injector.CreateInstance<ITouristNotificationRepository>());
 
         public TourRequestService(ITourRequestRepository tourRequestRepository)
         {
@@ -29,31 +32,34 @@ namespace BookingApp.Application.Services.FeatureServices
         public List<TourRequest> filterRequests(TourRequest searchCriteria)
         {
             List<TourRequest> tourRequests = _tourRequestRepository.GetAllPending();
-            List<TourRequest> filteredRequests = new List<TourRequest>();
-            
+            List<TourRequest> filteredRequests = tourRequests;
+
             if (!string.IsNullOrEmpty(searchCriteria.City))
             {
                 MessageBox.Show("usao", "City");
                 filteredRequests = tourRequests.FindAll(x => x.City.ToLower().Contains(searchCriteria.City.ToLower())).ToList();
             }
-            else if (!string.IsNullOrEmpty(searchCriteria.Country))
+            if (!string.IsNullOrEmpty(searchCriteria.Country))
             {
                 MessageBox.Show("usao", "Country");
                 filteredRequests = filteredRequests.FindAll(x => x.Country.ToLower().Contains(searchCriteria.Country.ToLower())).ToList();
             }
-            else if (!string.IsNullOrEmpty(searchCriteria.Language))
+            if (!string.IsNullOrEmpty(searchCriteria.Language))
             {
                 MessageBox.Show("usao", "Language");
                 MessageBox.Show(searchCriteria.Language.ToLower());
+                MessageBox.Show(filteredRequests.Count().ToString());
                 filteredRequests = filteredRequests.FindAll(x => x.Language.ToLower().Contains(searchCriteria.Language.ToLower())).ToList();
                 MessageBox.Show(filteredRequests.Count().ToString());
             }
-            else if (searchCriteria.StartDate != null && searchCriteria.EndDate != null)
+            /*
+            if (searchCriteria.StartDate != null && searchCriteria.EndDate != null)
             {
                 MessageBox.Show("usao", "datumi");
                 filteredRequests = tourRequests.FindAll(x => x.StartDate >= searchCriteria.StartDate && x.EndDate <= searchCriteria.EndDate).ToList();
-            }
-            
+            }*/
+            MessageBox.Show(filteredRequests.Count().ToString());
+            MessageBox.Show(filteredRequests[0].Language);
             return filteredRequests;
         }
 
@@ -62,11 +68,15 @@ namespace BookingApp.Application.Services.FeatureServices
             _tourRequestRepository.Add(tourRequest);
         }
 
-        public int NextReservationId()
+        public int NextRequestId()
         {
             return _tourRequestRepository.NextId();
         }
     
+        public List<TourRequest> GetRequestsByTouristId(int touristId)
+        {
+            return _tourRequestRepository.GetByTouristId(touristId);
+        }
         public List<int> GetYearlyStatistic()
         {
             List<TourRequest> requests = _tourRequestRepository.GetAll();
@@ -202,6 +212,97 @@ namespace BookingApp.Application.Services.FeatureServices
             }
 
             return mostRequestedLocation;
+        }
+        public double GetAcceptedRequestPercentage(int touristId, int? year = 0)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId);
+            if (year != 0)
+            {
+                foreach(var req in requests)
+                {
+                    var p = req.DateRequested.Year;
+                }
+                requests = requests.Where(r => r.DateRequested.Year == year.Value).ToList();
+            }
+
+            var totalRequests = requests.Count;
+            var acceptedRequests = requests.Count(r => r.Status == TourRequestStatus.Accepted);
+            if(acceptedRequests == 0)
+            {
+                return 0;
+            }
+            return (double)acceptedRequests / totalRequests * 100;
+        }
+
+        public double GetRejectedRequestPercentage(int touristId, int? year = 0)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId);
+            if (year != 0)
+            {
+                requests = requests.Where(r => r.DateRequested.Year == year.Value).ToList();
+            }
+
+            var totalRequests = requests.Count;
+            var rejectedRequests = requests.Count(r => r.Status == TourRequestStatus.Invalid);
+            if(rejectedRequests == 0)
+            {
+                return 0;
+            }
+            return (double)rejectedRequests / totalRequests * 100;
+        }
+        public double GetAverageNumberOfPeopleInAcceptedRequests(int touristId, int? year = 0)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId)
+                .Where(r => r.Status == TourRequestStatus.Accepted);
+            if (year != 0)
+            {
+                requests = requests.Where(r => r.DateRequested.Year == year.Value).ToList();
+            }
+            if(requests.Count() == 0)
+            {
+                return 0;
+            }
+            return requests.Average(r => r.ParticipantIds.Count);
+        }
+        public Dictionary<string, int> GetRequestCountByLanguage(int touristId)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId);
+            return requests.GroupBy(r => r.Language)
+                .ToDictionary(g => g.Key, g => g.Count());
+        }
+        public Dictionary<string, int> GetRequestCountByCity(int touristId)
+        {
+            var requests = _tourRequestRepository.GetByTouristId(touristId);
+            return requests.GroupBy(r => r.City)
+                .ToDictionary(g => g.Key, g => g.Count());
+        }
+
+        public void CreateTourByStatistics(Tour tour, string parameter) // parameter ce biti ili lokacija ili jezik (tura se pravi ili spram jezika ili spram lokacije)
+                                                                        // slobodno dodati jos prosledjenih vrednosti
+        {
+            _tourService.Add(tour);
+            SendNotifications(tour);
+        }
+
+        public void SendNotifications(Tour tour)
+        {
+            var unfulfilledRequests = _tourRequestRepository.GetAllPendingOrInvalid();
+            List<int> notifiedTouristIds = new List<int>();
+            foreach (var request in unfulfilledRequests)
+            {
+                if(notifiedTouristIds.Contains(request.TouristId))
+                {
+                    continue;
+                }
+
+                if(tour.Language == request.Language || tour.City == request.City)
+                {
+                    notifiedTouristIds.Add(request.TouristId);
+                    var Notification = new TouristNotification(request.TouristId, tour.Id, NotificationType.RequestAccepted, tour.Name,
+                        "", 0);
+                    _touristNotificationService.Add(Notification);
+                }
+            }
         }
     }
 }
