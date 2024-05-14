@@ -24,18 +24,18 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-
+        <StackPanel Grid.Row="0" Grid.ColumnSpan="2" Orientation="Horizontal" Margin="30 0 0 0" VerticalAlignment="Center">
         <Label
-x:Name="TitleLabel"
-      Grid.Row="0"
-Grid.ColumnSpan="2"
-VerticalAlignment="Center"
-Content="Select days for reservation"
-Margin="30 0 0 0"
-FontSize="20"
-Style="{StaticResource TitleStyleHost}"
- />
-
+            x:Name="TitleLabel"
+            Content="Select days for renovation of"
+            FontSize="20"
+            Style="{StaticResource TitleStyleHost}"
+            Margin="0"
+             />
+            <TextBlock Background="Transparent" FontSize="20" Margin="0 5.1 0 0" Style="{StaticResource TextBlockHost}" Text="{Binding Path= SelectedAccommodation.Name, UpdateSourceTrigger=PropertyChanged}">
+                
+            </TextBlock>
+        </StackPanel>
         <Calendar x:Name="RenovationCalendar" VerticalAlignment="Center" DisplayDateStart="{Binding Renovation.StartDateRange}" DisplayDateEnd="{Binding Renovation.EndDateRange}"  HorizontalAlignment="Center" Height="184" BorderThickness="2" SelectedDatesChanged="ReservationCalendar_SelectedDatesChanged"  Background="White" SelectionMode="SingleRange"  Grid.Row="1" Grid.ColumnSpan="2" >
             <Calendar.LayoutTransform>
                 <ScaleTransform ScaleX="1.9" ScaleY="1.3"/>
