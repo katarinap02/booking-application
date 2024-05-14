@@ -1,4 +1,5 @@
 ﻿using BookingApp.Domain.Model.Features;
+using BookingApp.View.GuestPages;
 using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
 using System;
@@ -65,16 +66,32 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             DayNumber = 1;
             GuestNumber = 1;
             Page = page;
-            Page.txtStartDate.Text = DateTime.Now.ToString();
-            Page.txtEndDate.Text = DateTime.Now.ToString();
+           
             ContinueCommand = new GuestICommand(OnContinue);
         }
 
         private void OnContinue()
         {
-            DateTime startDate = Convert.ToDateTime(Page.txtStartDate.Text);
-            DateTime endDate = Convert.ToDateTime((Page.txtEndDate.Text));
+
+            DateTime startDate = SetUpStart();
+            DateTime endDate = SetUpEnd();
             Frame.Content = new AnywhereAnytimeContinuePage(User, Frame, DayNumber, GuestNumber, startDate, endDate);
+        }
+
+        private DateTime SetUpEnd()
+        {
+            if (string.IsNullOrEmpty(Page.txtEndDate.Text))
+                return DateTime.MaxValue;
+            else
+                return Convert.ToDateTime(Page.txtEndDate.Text);
+        }
+
+        private DateTime SetUpStart()
+        {
+            if (string.IsNullOrEmpty(Page.txtStartDate.Text))
+                return DateTime.Now;
+            else
+                return Convert.ToDateTime(Page.txtStartDate.Text);
         }
     }
 }

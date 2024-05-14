@@ -73,8 +73,16 @@ namespace BookingApp.Application.Services.FeatureServices
            List<Accommodation> result = new List<Accommodation>();
            foreach(Accommodation accommodation in this.GetAll())
             {
-                if (CheckParameters(accommodation, dayNumber, guestNumber, startDate, endDate))
+                if(endDate == DateTime.MaxValue)
+                {
+                    if (CheckParameters(accommodation, dayNumber, guestNumber, startDate, endDate))
+                        result.Add(accommodation);
+                }
+                else
+                {
                     result.Add(accommodation);
+                }
+               
             }
             return result;
         }
@@ -112,8 +120,10 @@ namespace BookingApp.Application.Services.FeatureServices
         public List<DateTime> GetDatesBetween(DateTime startDate, DateTime endDate)
         {
             List<DateTime> allDates = new List<DateTime>();
-            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+            for (DateTime date = startDate; date <= endDate.AddDays(-1); date = date.AddDays(1))
                 allDates.Add(date);
+
+            allDates.Add(endDate);
             return allDates;
         }
 
