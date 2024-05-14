@@ -115,10 +115,10 @@ namespace BookingApp.View
                             }
                             else
                             {
-                                /*GuideMainWindow guideMainWindow = new GuideMainWindow(user);
-                                guideMainWindow.ShowDialog();*/
-                                RequestTest requestTest = new RequestTest(user.Id);
-                                requestTest.ShowDialog();
+                                GuideMainWindow guideMainWindow = new GuideMainWindow(user);
+                                guideMainWindow.ShowDialog();
+                                /*RequestTest requestTest = new RequestTest(user.Id);
+                                requestTest.ShowDialog();*/
                             }
                             
                         }
