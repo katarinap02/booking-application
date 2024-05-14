@@ -21,10 +21,8 @@ namespace BookingApp.WPF.View.GuideTestWindows.GuideControls
     /// </summary>
     public partial class UserInfo : UserControl
     {
-        public UserInfoViewModel ViewModel { get; set; }
         public UserInfo()
-        {
-            
+        {            
             InitializeComponent();
         }
     }
