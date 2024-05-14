@@ -9,6 +9,7 @@ using System.Windows.Controls;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using System.Windows;
 
 namespace BookingApp.Application.Services.FeatureServices
 {
@@ -82,7 +83,8 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             if (CheckDayGuestNumber(accommodation, dayNumber, guestNumber))
             {
-                if (CheckDateRange(accommodation, startDate, endDate, dayNumber))
+                List<DateTime> chosenDates = RemoveDates(accommodation, startDate, endDate);
+                if (CheckAvailability(chosenDates, dayNumber))
                     return true;
                 else
                     return false;
@@ -91,23 +93,55 @@ namespace BookingApp.Application.Services.FeatureServices
                 return false;
         }
 
-        private bool CheckDateRange(Accommodation accommodation, DateTime startDate, DateTime endDate, int dayNumber)
+        private bool CheckAvailability(List<DateTime> chosenDates, int dayNumber)
         {
-            return true;
+            int dayCounter = 1;
+            for(int i = 0; i < chosenDates.Count-1; i++)
+            {
+               
+                if ((chosenDates[i + 1] - chosenDates[i]).Days == 1)
+                    dayCounter++;
+
+                if(dayCounter >= dayNumber)
+                    return true;
+            }
+
+            return false;
         }
+
+        public List<DateTime> GetDatesBetween(DateTime startDate, DateTime endDate)
+        {
+            List<DateTime> allDates = new List<DateTime>();
+            for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+                allDates.Add(date);
+            return allDates;
+        }
+
+        private List<DateTime> RemoveDates(Accommodation accommodation, DateTime startDate, DateTime endDate)
+        {
+            
+            List<DateTime> chosenDates = GetDatesBetween(startDate, endDate);
+          
+            List<DateTime> unavailableDates = new List<DateTime>();
+            foreach(CalendarDateRange unavailableRange in accommodation.UnavailableDates)
+            {
+                unavailableDates = GetDatesBetween(unavailableRange.Start, unavailableRange.End);
+                foreach (DateTime unavailableDate in unavailableDates)
+                {
+                    if (unavailableDate >= startDate && unavailableDate <= endDate)
+                        chosenDates.Remove(unavailableDate);
+                }
+            }
+
+           
+
+            return chosenDates;
+        }
+
+    
+      
 
        
-
-        private List<CalendarDateRange> GeneratePossibleRanges(DateTime startDate, DateTime endDate, int dayNumber)
-        {
-            List<CalendarDateRange> result = new List<CalendarDateRange>();
-            while(startDate.AddDays(dayNumber) <=  endDate) {
-                result.Add(new CalendarDateRange(startDate, startDate.AddDays(dayNumber)));
-                startDate.AddDays(dayNumber);
-            
-            }
-            return result;
-        }
 
         private bool CheckDayGuestNumber(Accommodation accommodation, int dayNumber, int guestNumber)
         {
