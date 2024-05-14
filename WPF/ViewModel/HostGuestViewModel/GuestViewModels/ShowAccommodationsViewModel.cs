@@ -7,6 +7,7 @@ using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Injector;
 using BookingApp.Observer;
 using BookingApp.View.GuestPages;
+using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.View.Guest.GuestTools;
 using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
@@ -96,6 +97,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public GuestICommand<object> ReserveCommand { get; set; }
 
+        public GuestICommand AnywhereAnytimeCommand { get; set; }
+
         public ShowAccommodationsViewModel(User user, Frame frame, AccommodationsPage accommodationsPage)
         {
 
@@ -114,11 +117,17 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             CountriesSearch = new ObservableCollection<string>();
             SearchCommand = new GuestICommand(OnSearch);
             ReserveCommand = new GuestICommand<object>(OnReserve);
+            AnywhereAnytimeCommand = new GuestICommand(OnAnywhereAnytime);
             CountriesSearch.Add("");
             LoadCountriesFromCSV();
            
          
 
+        }
+
+        private void OnAnywhereAnytime()
+        {
+            Frame.Content = new AnywhereAnytimePage(User, Frame);
         }
 
         private void OnReserve(object sender)

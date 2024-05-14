@@ -36,9 +36,9 @@
         <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="269,85,980,161" Width="671" Background="White">
             <Grid>
 
-                <Label Content="Anywhere / Anytime" FontSize="55" Margin="52,12,83,318" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+                <Label Content="Anywhere / Anytime" FontSize="55" Margin="52,42,83,288" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
 
-                <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Height="323" Margin="61,99,71,318">Welcome to the "anywhere/anytime" reservation page. Please, enter number of guests and days by choice. Optionally, you can choose date range.</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Height="323" Margin="61,121,71,296">Welcome to the "anywhere/anytime" reservation page. Please, enter number of guests and days by choice. Optionally, you can choose date range.</TextBlock>
 
                 <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Margin="24,466,24,22" CornerRadius="20">
                     <Grid>
@@ -51,20 +51,21 @@
             <Grid Margin="2,-58,-2,58">
                 <Label Content="Number of guests" FontSize="30" Margin="98,160,311,516"/>
                 <!--<TextBox x:Name="txtDayNumber" TextWrapping="Wrap" Margin="352,251,160,444"/>-->
-                <xctk:IntegerUpDown Name="txtGuestNumber" Text="{Binding ViewModel.DayNumber}" Margin="392,166,120,530" RenderTransformOrigin="0.903,-0.489"/>
+                <xctk:IntegerUpDown  Name="txtGuestNumber" Text="{Binding DayNumber}" Margin="392,166,120,530" RenderTransformOrigin="0.903,-0.489"/>
+                <Label Content="Optional" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="50,356,478,333"/>
                 <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="50,407,47,147">
                     <Grid Margin="0,154,0,0">
                     </Grid>
                 </Border>
                 <Label Content="Start date " Margin="106,441,396,221" FontSize="30"/>
                 <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
-                <DatePicker x:Name="txtStartDate" Margin="392,441,120,254" SelectedDateChanged="DatePicker_SelectedDateChanged" RenderTransformOrigin="0.697,-0.222"/>
+                <DatePicker x:Name="txtStartDate" Margin="392,441,120,254"  RenderTransformOrigin="0.697,-0.222"/>
                 <Label Content="End date" FontSize="30" HorizontalAlignment="Left" Margin="110,505,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
                 <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
-                <DatePicker x:Name="txtEndDate" Margin="392,511,120,186" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
-                <Button x:Name="ContinueButton" Content="Continue" HorizontalAlignment="Left" Margin="238,664,0,0" VerticalAlignment="Top" Command="{Binding ViewModel.ContinueCommand}" Width="200" Height="50" Style="{StaticResource ButtonStyleN}"/>
+                <DatePicker x:Name="txtEndDate" Margin="392,511,120,186"/>
+                <Button x:Name="ContinueButton" Content="Continue" HorizontalAlignment="Left" Margin="238,664,0,0" VerticalAlignment="Top" Command="{Binding ContinueCommand}" Width="200" Height="50" Style="{StaticResource ButtonStyleN}"/>
                 
-                <Label Content="Number of days" FontSize="30" Margin="96,235,334,441" RenderTransformOrigin="0.5,0.5">
+                <Label Content="Number of days" FontSize="30" Margin="118,235,312,441" RenderTransformOrigin="0.5,0.5">
                     <Label.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -74,7 +75,7 @@
                         </TransformGroup>
                     </Label.RenderTransform>
                 </Label>
-                <xctk:IntegerUpDown x:Name="txtDayNumber_Copy" Text="{Binding ViewModel.DayNumber}" Margin="392,247,120,449" RenderTransformOrigin="0.903,-0.489"/>
+                <xctk:IntegerUpDown x:Name="txtDayNumber_Copy" Text="{Binding GuestNumber}" Margin="392,247,120,449" RenderTransformOrigin="0.903,-0.489"/>
             </Grid>
         </Border>
 

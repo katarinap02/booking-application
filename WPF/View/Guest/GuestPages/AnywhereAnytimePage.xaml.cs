@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,17 @@ namespace BookingApp.WPF.View.Guest.GuestPages
     /// </summary>
     public partial class AnywhereAnytimePage : Page
     {
-        public AnywhereAnytimePage()
+        public User User { get; set; }
+        public Frame Frame { get; set; }
+
+        public AnywhereAnytimeViewModel ViewModel { get; set; }
+        public AnywhereAnytimePage(User user, Frame frame)
         {
             InitializeComponent();
+            User = user;
+            Frame = frame;
+            ViewModel = new AnywhereAnytimeViewModel(User, Frame, this);
+            DataContext = ViewModel;
         }
     }
 }

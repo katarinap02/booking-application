@@ -164,7 +164,7 @@
                 <TextBlock TextWrapping="Wrap" FontSize="20" Margin="81,85,93,-51" TextAlignment="Center">
                     If you wish to see all available accommodations according to your requests, choose below option:
                 </TextBlock>
-                <Button x:Name="AnywhereAnytimeButton" Content="Anywhere/Anytime" Style="{StaticResource ButtonStyleN}" FontSize="20" Margin="170,187,170,44" Height="33"/>
+                <Button x:Name="AnywhereAnytimeButton" Content="Anywhere/Anytime" Style="{StaticResource ButtonStyleN}" FontSize="20" Margin="170,187,170,44" Height="33" Command="{Binding AnywhereAnytimeCommand}"/>
             </Grid>
         </Border>
 

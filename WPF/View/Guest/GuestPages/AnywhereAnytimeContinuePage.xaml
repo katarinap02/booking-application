@@ -39,6 +39,19 @@
                 <Label Content="Anywhere / Anytime" FontSize="55" Margin="52,42,83,288" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
 
                 <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Margin="52,184,80,430">You can choose one of the recommended accommodations.</TextBlock>
+                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="46,452,46,83"></Border>
+                <TextBlock FontSize="23" Margin="80,486,80,116" TextAlignment="Center" FontWeight="Bold">
+                    
+                    <TextBlock.Text>
+                        
+                        <MultiBinding StringFormat="{}Day number: {0}&#x0a;Guest number: {1}&#x0a;Date range: {2}">
+                            <Binding Path="DayNumber"/>
+                            <Binding Path="GuestNumber"/>
+                            <Binding Path="DateRange"/>
+                          
+                        </MultiBinding>
+                    </TextBlock.Text>
+                </TextBlock>
             </Grid>
         </Border>
         <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="980,85,269,161" Width="671" Background="White">
