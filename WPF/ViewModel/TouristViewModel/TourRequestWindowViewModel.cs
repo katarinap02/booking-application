@@ -3,6 +3,7 @@ using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.WPF.View.TouristPages;
 using BookingApp.WPF.View.TouristWindows;
 using GalaSoft.MvvmLight.Messaging;
 using System;
@@ -15,6 +16,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
@@ -334,9 +336,24 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 if (_tourRequestType != value)
                 {
                     _tourRequestType = value;
+                    InitFrame(_tourRequestType);
                     OnPropertyChanged(nameof(TourRequestType));
                 }
             }
+        }
+
+        public void InitFrame(string tourRequestType)
+        {
+            if(tourRequestType == null)
+            {
+                return;
+            }
+            else if (tourRequestType.Equals("Basic"))
+            {
+                MainFrameContent = new BasicTourRequestPage(this);
+                return;
+            }
+            //MainFrameContent = new ComlpexTourRequestPage(this);
         }
 
         private int _age;
@@ -396,6 +413,23 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 }
             }
         }
+
+        private Page _mainFrameContent;
+        public Page MainFrameContent
+        {
+            get
+            {
+                return _mainFrameContent;
+            }
+            set
+            {
+                if (value != _mainFrameContent)
+                {
+                    _mainFrameContent = value;
+                    OnPropertyChanged(nameof(MainFrameContent));
+                }
+            }
+        }
         public bool HasErrors => Errors.Count > 0;
 
         public event PropertyChangedEventHandler? PropertyChanged;
@@ -417,7 +451,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         private void ExecuteSelectTourRequestType(object parameter)
         {
-
             TourRequestType = parameter as string;
         }
         public void Validate(string propertyName, object propertyValue)
@@ -528,7 +561,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             MinDateStart = DateTime.Now.AddDays(3);
             IsEndDateEnabled = false;
         }
-
         private void LoadLanguagesFromCSV()
         {
             string csvFilePath = "../../../Resources/Data/languages.csv";
