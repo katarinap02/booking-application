@@ -4,6 +4,8 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.Repository.FeatureRepository;
+using BookingApp.Repository;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using System;
@@ -13,6 +15,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Controls;
 using System.Windows.Forms;
 using System.Windows.Media;
 
@@ -20,6 +23,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 {
     public class TodaysToursViewModel : ViewModelBase, INotifyPropertyChanged
     {
+        public event EventHandler<TourViewModel> StartTourRequested;
         public ObservableCollection<CheckpointViewModel> CheckpointsWithColors { get; set; }
         public ObservableCollection<string> TourParticipants { get; set; }
 
@@ -46,11 +50,17 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        private readonly GuidedTourRepository guidedTourRepository = new GuidedTourRepository();
+        private readonly TourRepository tourRepository = new TourRepository();
+
+        private int GuideId;
+
         public MyICommand ShowInfo {  get; set; }
         public MyICommand Start {  get; set; }
 
-        public TodaysToursViewModel()
+        public TodaysToursViewModel(int guide_id)
         {
+            GuideId = guide_id;
             ShowInfo = new MyICommand(ShowingInfo);
             Start = new MyICommand(StartTour);
             _reservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
@@ -68,13 +78,20 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         public void StartTour()
         {
             if(SelectedTour != null)
-            {
-                MessageBox.Show(SelectedTour.Name, "StartTour", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information);
+            {                
+                OnStartTourRequested(SelectedTour);
             }
             else
             {
                 MessageBox.Show("error", "StartTour", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
             }
+        }
+
+        protected virtual void OnStartTourRequested(TourViewModel selectedTour)
+        {
+            guidedTourRepository.Add(GuideId, selectedTour.Id);
+            tourRepository.activateTour(selectedTour.Id, GuideId);
+            StartTourRequested?.Invoke(this, selectedTour);
         }
 
         public void GetGridData()
