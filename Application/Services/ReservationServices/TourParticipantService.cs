@@ -33,6 +33,7 @@ namespace BookingApp.Application.Services.ReservationServices
         {
             _tourParticipantRepository = tourParticipantRepository;
         }
+        
 
         public TourParticipantViewModel saveParticipantToDTO(string name, string lastName, int age)
         {
@@ -80,12 +81,20 @@ namespace BookingApp.Application.Services.ReservationServices
             return participant.JoinedCheckpointIndex;
         }
 
-        public void JoinTour(int participant_id, int current_checkpoint_index) // prebaciti
+        public void JoinTour(int participant_id, int current_checkpoint_index)
         {
             TourParticipant tourParticipant = GetById(participant_id);
             tourParticipant.HasJoinedTour = true;
             tourParticipant.JoinedCheckpointIndex = current_checkpoint_index;
             SendNotification(tourParticipant.ReservationId, current_checkpoint_index);
+            _tourParticipantRepository.Update(tourParticipant);
+        }
+
+        public void RemoveFromTour(int participant_id)
+        {
+            TourParticipant tourParticipant = GetById(participant_id);
+            tourParticipant.HasJoinedTour = false;
+            tourParticipant.JoinedCheckpointIndex = 0;
             _tourParticipantRepository.Update(tourParticipant);
         }
 
