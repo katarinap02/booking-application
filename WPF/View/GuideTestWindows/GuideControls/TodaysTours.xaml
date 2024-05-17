@@ -58,7 +58,7 @@
                 <ItemsControl ItemsSource="{Binding CheckpointsWithColors}"
               Style="{StaticResource CustomCheckpointItemsControlStyle}"/>
 
-                <TextBlock Margin="0, 20, 0 0" Text="Expected tourists: " Style="{StaticResource GuideTextBlockStyle}"></TextBlock>
+                <TextBlock Margin="0, 20, 0 15" Text="Expected tourists: " Style="{StaticResource GuideTextBlockStyle}"></TextBlock>
                 <ListBox VerticalAlignment="Center"     
                          ItemsSource="{Binding TourParticipants}"
                      Style="{StaticResource CustomListBoxStyle}"
