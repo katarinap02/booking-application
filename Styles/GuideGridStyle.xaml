@@ -42,7 +42,6 @@
         <Setter Property="Background" Value="#060531"/>
         <Setter Property="BorderThickness" Value="2"/>
         <Setter Property="BorderBrush" Value="#78A3FC"/>
-        <Setter Property="Margin" Value="30"/>
         <Setter Property="Padding" Value="0"/>
         <Setter Property="FontFamily" Value="Montserrat"/>
         <Setter Property="FontSize" Value="15"/>
