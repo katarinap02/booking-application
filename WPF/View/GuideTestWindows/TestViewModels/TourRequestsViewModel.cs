@@ -120,7 +120,8 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             {
                 MessageBox.Show("Please select a request before proceeding, and select a date.", "Error while accepting a request");
             }*/
-            MessageBox.Show("Usao");
+            CalendarGuideWindow calendarGuideWindow = new CalendarGuideWindow();
+            calendarGuideWindow.Show();
         }
     }
 }
