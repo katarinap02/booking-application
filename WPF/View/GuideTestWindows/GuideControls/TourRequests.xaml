@@ -13,12 +13,12 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border Grid.Row="0" BorderThickness="2" BorderBrush="Aquamarine" CornerRadius="20" Margin="5">
+        <Border Grid.Row="0" BorderThickness="1"  Background="#200F53" CornerRadius="20" Margin="20 5">
             <Grid Margin="5">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
-                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
@@ -26,21 +26,54 @@
                     <RowDefinition Height="*"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <TextBox Grid.Row="0" Grid.Column="0" Margin="5" Style="{StaticResource CustomTextBoxStyle}" Tag="Country"></TextBox>
-                <TextBox Grid.Row="1" Grid.Column="0" Margin="5" Style="{StaticResource CustomTextBoxStyle}" Tag="City"></TextBox>
-                <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Style="{StaticResource CustomTextBoxStyle}" Tag="Language"></TextBox>
-                <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Style="{StaticResource CustomTextBoxStyle}" Tag="Number of tourists"></TextBox>
-                <xctk:DateTimePicker Grid.Row="0" Grid.Column="2" Name="dateTimePicker1" Margin="5" Height="30" Style="{StaticResource CustomDateTimePickerStyleSimple}"/>
-                <xctk:DateTimePicker Grid.Row="1" Grid.Column="2" Name="dateTimePicker2" Margin="5" Height="30" Style="{StaticResource CustomDateTimePickerStyleSimple}"/>
-                <Button Margin="10" Height="30" Grid.Row="0" Grid.Column="3" Content="Clear search data" Style="{StaticResource TransparentBorderButton}"></Button>
-                <Button Margin="10" Height="30" Grid.Row="1" Grid.Column="3" Content="Search" Style="{StaticResource generalButton}"></Button>
+                <TextBox Grid.Row="0" Grid.Column="0" Margin="5" Style="{StaticResource CustomTextBoxStyle}" x:Name="country_tb"
+                         Text="{Binding SearchCriteria.Country, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Tag="Country"></TextBox>
+                
+                <TextBox Grid.Row="1" Grid.Column="0" Margin="5" Style="{StaticResource CustomTextBoxStyle}"  x:Name="city_tb"
+                         Text="{Binding SearchCriteria.City, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Tag="City"></TextBox>
+                
+                <TextBox Grid.Row="0" Grid.Column="1" Margin="5" Style="{StaticResource CustomTextBoxStyle}"  x:Name="language_tb"
+                         Text="{Binding SearchCriteria.Language, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Tag="Language"></TextBox>
+                
+                <TextBox Grid.Row="1" Grid.Column="1" Margin="5" Style="{StaticResource CustomTextBoxStyle}" Tag="Number of tourists"
+                         Text="{Binding ParticipantnumberString.Number, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" x:Name="number_tb" 
+                         PreviewTextInput="NumericTextBox_PreviewTextInput"></TextBox>
+                
+                <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="2">
+                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="Start Date:" VerticalAlignment="Center"></TextBlock>
+                    <xctk:DateTimePicker  Name="dateTimePicker1" Margin="5"
+                                          Value="{Binding SearchCriteria.StartDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="210" Height="30" Style="{StaticResource CustomDateTimePickerStyleSimple}"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="2">
+                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="End Date:  " VerticalAlignment="Center"></TextBlock>
+                    <xctk:DateTimePicker  Name="dateTimePicker2" Margin="5" Height="30"
+                                          Value="{Binding SearchCriteria.EndDate, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="210" Style="{StaticResource CustomDateTimePickerStyleSimple}"/>
+                </StackPanel>                
+                <Button Margin="10" Height="30" Grid.Row="0" Grid.Column="3" Command="{Binding Clear}" Click="ClearData_Click" Content="Clear search data" Style="{StaticResource TransparentBorderButton}"></Button>
+                <Button Margin="10" Height="30" Grid.Row="1" Grid.Column="3" Command="{Binding Filtering}" Content="Search" Style="{StaticResource generalButton}"></Button>
                 
             </Grid>
         </Border>
         
         
-        <Border Grid.RowSpan="2" Grid.Row="1" BorderThickness="2" BorderBrush="HotPink" CornerRadius="20" Margin="5">
-            <DataGrid Style="{StaticResource GuideDataGridStyle}"></DataGrid>
+        <Border Grid.RowSpan="2" Grid.Row="1" BorderThickness="2" CornerRadius="20" Margin="5">
+            <Grid Margin="7">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"></RowDefinition>
+                    <RowDefinition Height="auto"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <DataGrid Style="{StaticResource GuideDataGridStyle}" ItemsSource="{Binding tourRequestViewModels}" Margin="8">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Width="*" Header="City" Binding="{Binding City}" />
+                        <DataGridTextColumn Width="*" Header="Country" Binding="{Binding Country}" />
+                        <DataGridTextColumn Width="*" Header="Language" Binding="{Binding Language}" />
+                        <DataGridTextColumn Width="*" Header="Start Date" Binding="{Binding StartDate}" />
+                        <DataGridTextColumn Width="*" Header="End Date" Binding="{Binding EndDate}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Button Grid.Row="1" Style="{StaticResource generalButton}" Command="{Binding Accept}" Content="Accept request" Height="27" Width="300"></Button>
+            </Grid>            
         </Border>
     </Grid>
 </UserControl>
