@@ -5,7 +5,6 @@
     <Style x:Key="GuideDataGridStyle" TargetType="DataGrid">
         <Setter Property="Background" Value="#200F53"/>
         <Setter Property="BorderThickness" Value="0"/>
-        <Setter Property="Margin" Value="30"/>
         <Setter Property="AutoGenerateColumns" Value="False"/>
         <Setter Property="RowHeaderWidth" Value="0"/>
         <Setter Property="CanUserAddRows" Value="False"/>
