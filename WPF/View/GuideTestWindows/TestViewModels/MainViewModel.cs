@@ -131,7 +131,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         }
         private void ExecuteShowTourRequestsViewCommand(object obj)
         {
-            CurrentChildView = new TourRequestsViewModel();
+            CurrentChildView = new TourRequestsViewModel(GuideId);
             Caption = "Tour Requests";
             Icon = IconChar.EnvelopeOpenText;
         }
