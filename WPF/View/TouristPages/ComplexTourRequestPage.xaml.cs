@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,19 @@ namespace BookingApp.WPF.View.TouristPages
     /// </summary>
     public partial class ComplexTourRequestPage : Page
     {
-        public ComplexTourRequestPage()
+        TourRequestWindowViewModel TourRequest { get; }
+        public ComplexTourRequestPage(TourRequestWindowViewModel tourRequest)
         {
             InitializeComponent();
+            TourRequest = tourRequest;
+            DataContext = TourRequest;
+        }
+        private void Integer_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+            if (!int.TryParse(e.Text, out _))
+            {
+                e.Handled = true;
+            }
         }
     }
 }

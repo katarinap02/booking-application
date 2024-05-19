@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
-        Title="GuideRateWindow" Height="630" Width="830" WindowStartupLocation="CenterScreen">
+        Title="GuideRateWindow" Height="640" Width="830" WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
         <CommandBinding Command="commands:RoutedCommands.AddImage" CanExecute="AddImage_CanExecute" Executed="AddImage_Executed"/>
@@ -23,11 +23,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
                         <Grid>
-                            <Ellipse x:Name="RadioEllipse" Width="40" Height="40" Stroke="White" StrokeThickness="5">
+                            <Ellipse x:Name="RadioEllipse" Width="45" Height="45" Stroke="White" StrokeThickness="7">
                                 <Ellipse.Fill>
                                     <RadialGradientBrush>
                                         <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0" />
-                                        <GradientStop Color="{StaticResource ButtonColor2Press}" Offset="1" />
+                                        <GradientStop Color="{StaticResource ButtonColor2Press}" Offset="1.2" />
                                     </RadialGradientBrush>
                                 </Ellipse.Fill>
                             </Ellipse>
@@ -49,10 +49,10 @@
             <RowDefinition Height="80"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="33"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="55"/>
             <RowDefinition Height="33"/>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
@@ -79,10 +79,11 @@
                FontSize="30"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"/>
-        <Rectangle Stroke="Black"
+        <Rectangle Stroke="#303030"
+                   StrokeThickness="3"
                    Grid.Column="1"
                    Grid.Row="3"
-                   Grid.RowSpan="2"/>
+                   Grid.RowSpan="5"/>
         <Label Content="knowledge"
                Grid.Column="1"
                Grid.Row="3"
@@ -113,7 +114,8 @@
                              Style="{StaticResource CoolRadioButtonStyle}"/>
             </StackPanel>
         </StackPanel>
-        <Rectangle Stroke="Black"
+        <Rectangle Stroke="#303030"
+                   StrokeThickness="3"
                    Grid.Column="1"
                    Grid.Row="5"
                    Grid.RowSpan="3"/>
@@ -149,7 +151,8 @@
                FontSize="30"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"/>
-        <Rectangle Stroke="Black"
+        <Rectangle Stroke="#303030"
+                   StrokeThickness="3"
                    Grid.Column="3"
                    Grid.Row="3"
                    Grid.RowSpan="2"/>
@@ -260,7 +263,7 @@
         <Button Style="{StaticResource EnlargeButtonStyle}"
                 Content="Close"
                 FontSize="20"
-                Width="110"
+                Width="90"
                 VerticalAlignment="Bottom"
                 Grid.Column="1"
                 Grid.Row="12"
@@ -269,7 +272,7 @@
         <Button Style="{StaticResource EnlargeButtonStyle}"
                 Content="Submit"
                 FontSize="20"
-                Width="110"
+                Width="90"
                 VerticalAlignment="Bottom"
                 Grid.Column="3"
                 Grid.Row="12"

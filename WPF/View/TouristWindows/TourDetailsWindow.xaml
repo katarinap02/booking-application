@@ -7,6 +7,12 @@
         xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
         Title="TourDetailsWindow" Height="680" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.Resources>
+        <Style x:Key="BasicLabels" TargetType="Label">
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontWeight" Value="Medium"/>
+        </Style>
+    </Window.Resources>
     <Window.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
         <CommandBinding Command="commands:RoutedCommands.ExportPdf" CanExecute="ExportPdf_CanExecute" Executed="ExportPdf_Executed"/>
@@ -78,14 +84,14 @@
                 </ScrollViewer>
 
                 <Label Content="Name:"
-                       Style="{StaticResource CustomLabelStyle2}"
+                       Style="{StaticResource BasicLabels}"
                        Grid.Column="3"
                        VerticalAlignment="Center"/>
                 <Label Content="{Binding SelectedTour.Name}"
                        Style="{StaticResource TourDetailsLabel1}"
                        Grid.Column="4"/>
                 <Label Content="Country:"
-                       Style="{StaticResource CustomLabelStyle2}"
+                       Style="{StaticResource BasicLabels}"
                        Grid.Column="3"
                        Grid.Row="1"
                        VerticalAlignment="Center"/>
@@ -94,7 +100,7 @@
                        Grid.Column="4"
                        Grid.Row="1"/>
                 <Label Content="City:"
-                       Style="{StaticResource CustomLabelStyle2}"
+                       Style="{StaticResource BasicLabels}"
                        Grid.Column="3"
                        Grid.Row="2"
                        VerticalAlignment="Center"/>
@@ -103,7 +109,7 @@
                        Grid.Column="4"
                        Grid.Row="2"/>
                 <Label Content="Language:"
-                       Style="{StaticResource CustomLabelStyle2}"
+                       Style="{StaticResource BasicLabels}"
                        Grid.Column="3"
                        Grid.Row="3"
                        VerticalAlignment="Center"/>
@@ -112,7 +118,7 @@
                        Grid.Column="4"
                        Grid.Row="3"/>
                 <Label Content="Date:"
-                       Style="{StaticResource CustomLabelStyle2}"
+                       Style="{StaticResource BasicLabels}"
                        Grid.Column="3"
                        Grid.Row="4"
                        VerticalAlignment="Center"/>
@@ -121,7 +127,7 @@
                        Grid.Column="4"
                        Grid.Row="4"/>
                 <Label Content="Status:"
-                       Style="{StaticResource CustomLabelStyle2}"
+                       Style="{StaticResource BasicLabels}"
                        Grid.Column="3"
                        Grid.Row="5"
                        VerticalAlignment="Center"/>
@@ -130,7 +136,7 @@
                        Grid.Column="4"
                        Grid.Row="5"/>
                 <Label Content="Keypoints:"
-                       Style="{StaticResource CustomLabelStyle2}"
+                       Style="{StaticResource BasicLabels}"
                        VerticalAlignment="Top"
                        Grid.Column="3"
                        Grid.Row="6"/>

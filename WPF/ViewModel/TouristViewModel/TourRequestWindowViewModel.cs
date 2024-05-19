@@ -348,12 +348,13 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             {
                 return;
             }
-            else if (tourRequestType.Equals("Basic"))
+
+            if (tourRequestType.Equals("Basic"))
             {
                 MainFrameContent = new BasicTourRequestPage(this);
                 return;
             }
-            //MainFrameContent = new ComlpexTourRequestPage(this);
+            MainFrameContent = new ComplexTourRequestPage(this);
         }
 
         private int _age;

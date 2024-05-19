@@ -23,7 +23,7 @@ namespace BookingApp.WPF.View.TouristPages
     /// </summary>
     public partial class BasicTourRequestPage : Page
     {
-        TourRequestWindowViewModel TourRequest { get; set; }
+        TourRequestWindowViewModel TourRequest { get; }
         public BasicTourRequestPage(TourRequestWindowViewModel tourRequest)
         {
             InitializeComponent();

@@ -25,6 +25,24 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         public ObservableCollection<TourRequestViewModel> TourRequests { get; set; }
 
         public ICommand StatisticsCommand { get; set; }
+        public ICommand RequestedTourDetailsCommand { get; set; }
+
+        private TourRequestViewModel _selectedTourRequest;
+        public TourRequestViewModel SelectedTourRequest
+        {
+            get
+            {
+                return _selectedTourRequest;
+            }
+            set
+            {
+                if(_selectedTourRequest != value)
+                {
+                    _selectedTourRequest = value;
+                    OnPropertyChanged(nameof(SelectedTourRequest));
+                }
+            }
+        }
 
         private int _userId;
         public int UserId
@@ -166,6 +184,12 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             tourStatisticsWindow.ShowDialog();
         }
 
+        private void ExecuteRequestedTourDetailsCommand(object obj)
+        {
+            RequestedTourDetailsWindow requestedTourDetailsWindow = new RequestedTourDetailsWindow(SelectedTourRequest);
+            requestedTourDetailsWindow.ShowDialog();
+        }
+
         public void RequestTourClick()
         {
             TourRequestWindow tourRequestWindow = new TourRequestWindow(UserId);
@@ -183,6 +207,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             _tourRequestService = new TourRequestService(Injector.Injector.CreateInstance<ITourRequestRepository>());
             
             StatisticsCommand = new RelayCommand(ExecuteStatisticsCommand);
+            RequestedTourDetailsCommand = new RelayCommand(ExecuteRequestedTourDetailsCommand);
             TourRequests = new ObservableCollection<TourRequestViewModel>();
         }
         public TourRequestViewModel(TourRequest tourRequest)
