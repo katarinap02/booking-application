@@ -5,6 +5,8 @@ using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.TouristWindows;
 using BookingApp.WPF.View.TouristWindows;
+using GalaSoft.MvvmLight.Messaging;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -27,6 +29,23 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         public ICommand StatisticsCommand { get; set; }
         public ICommand RequestedTourDetailsCommand { get; set; }
 
+        private ICommand _closeCommand;
+        public ICommand CloseCommand
+        {
+            get
+            {
+                if (_closeCommand == null)
+                {
+                    _closeCommand = new RelayCommand(param => CloseWindow());
+                }
+                return _closeCommand;
+            }
+        }
+        private void CloseWindow()
+        {
+            Messenger.Default.Send(new CloseWindowMessage());
+        }
+
         private TourRequestViewModel _selectedTourRequest;
         public TourRequestViewModel SelectedTourRequest
         {
@@ -40,6 +59,57 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 {
                     _selectedTourRequest = value;
                     OnPropertyChanged(nameof(SelectedTourRequest));
+                }
+            }
+        }
+
+        private DateTime _acceptedDate;
+        public DateTime AcceptedDate
+        {
+            get
+            {
+                return _acceptedDate;
+            }
+            set
+            {
+                if(value != _acceptedDate)
+                {
+                    _acceptedDate = value;
+                    OnPropertyChanged(nameof(AcceptedDate));
+                }
+            }
+        }
+
+        private DateTime _startDate;
+        public DateTime StartDate
+        {
+            get
+            {
+                return _startDate;
+            }
+            set
+            {
+                if(_startDate != value)
+                {
+                    _startDate = value;
+                    OnPropertyChanged(nameof(StartDate));
+                }
+            }
+        }
+
+        private DateTime _endDate;
+        public DateTime EndDate
+        {
+            get
+            {
+                return _endDate;
+            }
+            set
+            {
+                if (_endDate != value)
+                {
+                    _endDate = value;
+                    OnPropertyChanged(nameof(EndDate));
                 }
             }
         }
@@ -218,6 +288,9 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             Language = tourRequest.Language;
             Description = tourRequest.Description;
             Status = tourRequest.Status;
+            StartDate = tourRequest.StartDate;
+            EndDate = tourRequest.EndDate;
+            AcceptedDate = tourRequest.AcceptedDate;
         }
         public void NotificationButton()
         {

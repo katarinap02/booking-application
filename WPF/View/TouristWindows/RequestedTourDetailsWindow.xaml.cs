@@ -1,4 +1,5 @@
 ﻿using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,6 +27,17 @@ namespace BookingApp.WPF.View.TouristWindows
             InitializeComponent();
             TourRequest = selectedTourRequest;
             DataContext = TourRequest;
+
+            Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
+        }
+        private void CloseWindow(CloseWindowMessage messsage)
+        {
+            Close();
+        }
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Messenger.Default.Unregister(this);
         }
     }
 }

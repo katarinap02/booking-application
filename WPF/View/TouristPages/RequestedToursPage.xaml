@@ -67,6 +67,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="Details" Height="30" Width="80" Style="{StaticResource EnlargeButtonStyle}"
+                                            Click="DetailsButton_Click"
                                             Command="{Binding RequestedTourDetailsCommand}"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
