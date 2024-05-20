@@ -1,0 +1,18 @@
+﻿using BookingApp.Domain.Model.Features;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace BookingApp.Domain.RepositoryInterfaces.Features
+{
+    interface IComplexTourRequestRepository
+    {
+        List<ComplexTourRequest> GetAll();
+        List<ComplexTourRequest> GetAllPending();
+        void Add(ComplexTourRequest tourRequest);
+        int NextId();
+        ComplexTourRequest GetById(int id);
+    }
+}
