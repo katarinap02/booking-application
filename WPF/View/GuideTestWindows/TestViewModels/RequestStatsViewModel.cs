@@ -115,13 +115,17 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             // Update options based on the initial settings
             UpdateOptions();
 
-            // Update graph with the initial settings
-            UpdateGraph();
+            // Update graph with the initial settings, if SelectedOption is set
+            if (SelectedOption != null)
+            {
+                UpdateGraph();
+            }
         }
+
 
         public void UpdateOptions()
         {
-            if(LocationLanguageCombo.Contains("Language"))
+            if (LocationLanguageCombo.Contains("Language"))
             {
                 ShowLanguages();
             }
@@ -155,12 +159,20 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         {
             if (Options.Count > 0)
             {
-                SelectedOption = Options[0];
+                _selectedOption = Options[0]; // Set directly to avoid triggering OnPropertyChanged
+                OnPropertyChanged(nameof(SelectedOption));
+                UpdateGraph();
             }
         }
 
-        public void UpdateGraph() // pri svakoj promeni Selektovane Opcije i Time-a
+
+        public void UpdateGraph()
         {
+            if (SelectedOption == null)
+            {
+                return;
+            }
+
             if (LocationLanguageCombo.Contains("Language"))
             {
                 List<TourRequest> tourRequests = tourRequestService.getRequestsForLanguage(SelectedOption);
@@ -168,7 +180,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
                 {
                     TourStatistics = getGraphYearly(tourRequests);
                 }
-                else if(Time.Contains("2023"))
+                else if (Time.Contains("2023"))
                 {
                     TourStatistics = getMonthlyGraph(2023, tourRequests);
                 }
@@ -179,15 +191,11 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             }
             else // Location
             {
-                if(SelectedOption == null)
-                {
-                    setDefaultOption();
-                }
-                string[] strings= SelectedOption.Split(", ");
+                string[] strings = SelectedOption.Split(", ");
                 List<TourRequest> tourRequests = tourRequestService.getRequestsForLocation(strings[0], strings[1]);
                 if (Time.Equals("Yearly"))
                 {
-                    TourStatistics= getGraphYearly(tourRequests);
+                    TourStatistics = getGraphYearly(tourRequests);
                 }
                 else if (Time.Contains("2023"))
                 {
@@ -199,6 +207,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
                 }
             }
         }
+
 
         public SeriesCollection getGraphYearly(List<TourRequest> tourRequests)
         {
