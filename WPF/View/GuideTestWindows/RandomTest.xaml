@@ -253,7 +253,7 @@
                     <!--Content section / Child views-->
                     <ContentControl Content="{Binding CurrentChildView}"
                                     Grid.Row="2"
-                                    Margin="25"/>
+                                    Margin="20 10 20 25"/>
 
                 </Grid>
             </Border>
