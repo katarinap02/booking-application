@@ -14,7 +14,7 @@
             <RowDefinition Height="auto"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Grid.Row="0" Text="Choose Date for the tour:" Style="{StaticResource GuideTextBlockStyle}"></TextBlock>
-        <Calendar Grid.Row="1" Style="{DynamicResource CalendarStyle1}" CalendarButtonStyle="{StaticResource CalendarButtonStyle1}" CalendarDayButtonStyle="{StaticResource CalendarDayButtonStyle1}" CalendarItemStyle="{StaticResource CalendarItemStyle1}"></Calendar>
+        <Calendar Grid.Row="1" Style="{StaticResource CalendarStyle1}" CalendarButtonStyle="{StaticResource CalendarButtonStyle1}" CalendarDayButtonStyle="{StaticResource CalendarDayButtonStyle1}" CalendarItemStyle="{StaticResource CalendarItemStyle1}"></Calendar>
         <StackPanel Grid.Row="2" Orientation="Horizontal">
             <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="Select a time for the tour:  " VerticalAlignment="Center"></TextBlock>
             <TextBox Style="{StaticResource CustomTextBoxStyle}" Height="20" Width="200" VerticalAlignment="Bottom" 
