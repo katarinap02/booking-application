@@ -59,7 +59,7 @@ else Guide Chooses to Get Language Suggestion
 end
 
 Guide -> Service: Provide tour information
-Service-> TourService: CreateTourByStatistics 
+Service-> TourService: CreateTourByStatistics (Tour tour)
 activate TourService
 TourService -> TourRepository: Add(tour)
 activate TourRepository
