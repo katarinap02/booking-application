@@ -8,5 +8,6 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 {
     public class RequestStatsViewModel: ViewModelBase
     {
+        public RequestStatsViewModel(int guide_id) { }
     }
 }
