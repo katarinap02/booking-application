@@ -100,7 +100,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 
             // Directly setting the fields to avoid triggering OnPropertyChanged prematurely
             _time = "Yearly";
-            _locationLanguageCombo = "Location";
+            _locationLanguageCombo = "Language";
 
             // Initialize collections
             TourStatistics = new SeriesCollection();
