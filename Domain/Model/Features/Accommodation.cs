@@ -23,12 +23,15 @@ namespace BookingApp.Domain.Model.Features
 
         public List<CalendarDateRange> UnavailableDates { get; set; }
 
+        public bool ClosedAccommodation {  get; set; }
+
         public int HostId { get; set; }
         public Accommodation()
         {
 
             UnavailableDates = new List<CalendarDateRange>();
             Pictures = new List<string>();
+            ClosedAccommodation = false;
 
         }
 
@@ -45,6 +48,7 @@ namespace BookingApp.Domain.Model.Features
             ReservationDaysLimit = reservationDaysLimit;
             UnavailableDates = new List<CalendarDateRange>();
             HostId = hostId;
+            ClosedAccommodation = false;
         }
 
         public string ConvertToString(CalendarDateRange range)

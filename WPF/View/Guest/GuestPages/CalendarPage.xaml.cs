@@ -43,6 +43,7 @@ namespace BookingApp.View.GuestPages
         public Frame Frame { get; set; }
         public int DayNumber { get; set; }
 
+
      
         public CalendarPage(AccommodationViewModel selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end, Frame frame)
         {

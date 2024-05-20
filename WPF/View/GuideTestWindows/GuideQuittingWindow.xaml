@@ -83,7 +83,7 @@
 
                         <TextBlock
                 Grid.Column="0"
-                Text="LOG IN"
+                Text="QUIT"
                 Foreground="LightGray"
                 FontSize="13"
                 FontFamily="Montserrat"

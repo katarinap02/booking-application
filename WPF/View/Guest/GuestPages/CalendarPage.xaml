@@ -4,7 +4,9 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
+
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+
       xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       mc:Ignorable="d" 
       d:DesignHeight="990" d:DesignWidth="1920"
@@ -49,17 +51,17 @@
             <Grid>
                 <Label Content="Reservation" FontSize="55" Margin="158,16,-24,315" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
                 <TextBlock FontSize="35" TextWrapping="Wrap" TextAlignment="Center" Margin="31,101,31,315">Please choose days and number od people for your reservation.</TextBlock>
-               
+
                 <ToggleButton Height="50" Width="300" Background="White" BorderBrush="White" Margin="168,260,199,430" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{StaticResource HintIcon}" Height="25" Width="25"/>
                         <Label x:Name="HintLabel" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
                     </StackPanel>
-                    
-                   
+
+
                 </ToggleButton>
                 <TextBlock x:Name="Hint" FontSize="16" Foreground="Green" Height="150" Width="400" TextAlignment="Center" TextWrapping="Wrap" Margin="140,310,127,280">
-    
+
                 </TextBlock>
                 <Label Content="Accommodation" FontSize="40" Margin="168,470,-34,-75" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
                 <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Margin="6,258,-6,-258"/>
@@ -89,7 +91,7 @@
 
 
                 </TextBlock>
-             
+
                 <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,457,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{StaticResource ResourceKey=ButtonStyleN}"/>
 
             </Grid>
@@ -124,3 +126,4 @@
 
     </Grid>
 </Page>
+
