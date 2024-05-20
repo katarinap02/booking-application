@@ -3,9 +3,21 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:viewModel ="clr-namespace:BookingApp.WPF.View.GuideTestWindows.TestViewModels"
+             xmlns:cont ="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls.GuideStatisticsControls"
              xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewModel:RequestStatsViewModel}">
+            <cont:TourRequestsStats></cont:TourRequestsStats>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:TourStatsViewModel}">
+            <cont:TourStatisticsControl></cont:TourStatisticsControl>
+        </DataTemplate>
+    </UserControl.Resources>
+    
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -13,7 +25,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <RadioButton Style="{StaticResource StylishRadioButton}" Content="Tour Request Statistics" Width="200" IsChecked="True">
+            <RadioButton Style="{StaticResource StylishRadioButton}" Content="Tour Request Statistics" Width="200" IsChecked="True" Command="{Binding ShowRequestStats}">
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Width="Auto" Height="Auto" CornerRadius="15,0,0,15" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
@@ -22,7 +34,7 @@
                     </ControlTemplate>
                 </RadioButton.Template>
             </RadioButton>
-            <RadioButton Style="{StaticResource StylishRadioButton}" Content="Tour Statistics" Width="200">
+            <RadioButton Style="{StaticResource StylishRadioButton}" Content="Tour Statistics" Width="200" Command="{Binding ShowTourStats}">
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Width="Auto" Height="Auto" CornerRadius="0,15,15,0" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
@@ -32,6 +44,7 @@
                 </RadioButton.Template>
             </RadioButton>
         </StackPanel>
-
+        
+        <ContentControl Grid.Row="1" Margin="5" Content="{Binding CurrentChildView}"></ContentControl>
     </Grid>
 </UserControl>
