@@ -1,6 +1,7 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.WPF.View.HostPages;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -306,6 +307,18 @@ namespace BookingApp.Application.Services.FeatureServices
                     var Notification = new TouristNotification(request.TouristId, tour.Id, NotificationType.RequestAccepted, tour.Name,
                         "", 0);
                     _touristNotificationService.Add(Notification);
+                }
+            }
+        }
+        public void UpdateTourRequests()
+        {
+            List<TourRequest> tourRequests = _tourRequestRepository.GetAll();
+            foreach(TourRequest request in tourRequests)
+            {
+                if(request.Status != TourRequestStatus.Accepted && DateTime.Now >= request.StartDate.AddHours(-48))
+                {
+                    request.Status = TourRequestStatus.Invalid;
+                    _tourRequestRepository.UpdateRequest(request);
                 }
             }
         }
