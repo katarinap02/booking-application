@@ -1,6 +1,7 @@
 ﻿<UserControl x:Class="BookingApp.WPF.View.GuideTestWindows.GuideControls.TodaysTours"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls"
@@ -13,17 +14,37 @@
         </Grid.ColumnDefinitions>
 
         <!-- Leva polovina -->
-        <Grid Grid.Column="0">
-            <DataGrid Margin="10, 0, 20, 10" Style="{StaticResource GuideDataGridStyle}">
-                <DataGrid.Columns>
-                    <DataGridTextColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="Tour Name" />
-                    <DataGridTextColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="City"/>
-                    <DataGridTextColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="Country"/>
-                    <DataGridTextColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="Language"/>
-                    <DataGridTextColumn  Width="*" ClipboardContentBinding="{x:Null}" Header="Date and Time"/>
-                </DataGrid.Columns>
-            </DataGrid>
-        </Grid>
+        <DataGrid Margin="10, 0, 20, 10" Style="{StaticResource GuideDataGridStyle}"
+              ItemsSource="{Binding Tours, UpdateSourceTrigger=PropertyChanged}"
+              IsReadOnly="True"
+              SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}">
+            <DataGrid.Columns>
+                <!-- Your existing columns -->
+                <DataGridTextColumn Width="*" Binding="{Binding Name}" Header="Tour Name" />
+                <DataGridTextColumn Width="*" Binding="{Binding City}" Header="City" />
+                <DataGridTextColumn Width="*" Binding="{Binding Country}" Header="Country" />
+                <DataGridTextColumn Width="*" Binding="{Binding Language}" Header="Language" />
+                <!-- Button column -->
+                <DataGridTemplateColumn Width="Auto">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <!-- Attach the behavior to the button -->
+                            <Button Content="i" FontSize="12" FontFamily="Times New Roman"
+                                    Style="{StaticResource GuideXButtonStyle}"
+                                FontWeight="DemiBold" Foreground="#060531">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger EventName="Click">
+                                        <i:InvokeCommandAction Command="{Binding DataContext.ShowInfo, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}}"
+                                                           CommandParameter="{Binding}"/>
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Button>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
 
         <!-- Desna polovina -->
         <Grid Grid.Column="1">
@@ -37,8 +58,9 @@
                 <ItemsControl ItemsSource="{Binding CheckpointsWithColors}"
               Style="{StaticResource CustomCheckpointItemsControlStyle}"/>
 
-                <TextBlock Margin="0, 20, 0 0" Text="Expected tourists: " Style="{StaticResource GuideTextBlockStyle}"></TextBlock>
-                <ListBox VerticalAlignment="Center"                 
+                <TextBlock Margin="0, 20, 0 15" Text="Expected tourists: " Style="{StaticResource GuideTextBlockStyle}"></TextBlock>
+                <ListBox VerticalAlignment="Center"     
+                         ItemsSource="{Binding TourParticipants}"
                      Style="{StaticResource CustomListBoxStyle}"
                      x:Name="listTest"
                      SelectionMode="Single"
@@ -46,14 +68,12 @@
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem" BasedOn="{StaticResource CustomListBoxItemStyle}"/>
                     </ListBox.ItemContainerStyle>
-                    <ListBoxItem>Test</ListBoxItem>
-                    <ListBoxItem>Test</ListBoxItem>
-                    <ListBoxItem>Test</ListBoxItem>
                 </ListBox>
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <Button Content="Show information" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/>
-                <Button Content="Start Tour" Margin="10,0,10,10" Style="{StaticResource generalButton}" Height="27" Foreground="#060531" BorderBrush="#FB539B"/>
+                <!--Button Content="Show information" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/-->
+                <Button Content="Start Tour" Margin="10,0,10,10" Style="{StaticResource generalButton}" Height="27" Foreground="#060531" BorderBrush="#FB539B" 
+                        Command="{Binding Start}"/>
             </StackPanel>
         </Grid>
     </Grid>

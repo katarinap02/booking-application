@@ -30,6 +30,13 @@ namespace BookingApp.Repository
             _serializer.ToCSV(FilePath, _guidedTours);
         }
 
+        public void Add(int guide_id, int tour_id)
+        {
+            GuidedTour guidedTour = new GuidedTour(guide_id, tour_id);
+            _guidedTours.Add(guidedTour);
+            _serializer.ToCSV(FilePath, _guidedTours);
+        }
+
         public bool HasTourCurrently(int guide_id)
         {
             return _guidedTours.Find(t => t.GuideId == guide_id) != null;
@@ -48,6 +55,13 @@ namespace BookingApp.Repository
         public void Remove(int guide_id, int tour_id)
         {
             GuidedTour guidedTour = _guidedTours.Find(t => t.GuideId == guide_id && t.TourId == tour_id);
+            _guidedTours.Remove(guidedTour);
+            _serializer.ToCSV(FilePath, _guidedTours);
+        }
+
+        public void Remove(int tour_id)
+        {
+            GuidedTour guidedTour = _guidedTours.Find(t => t.TourId == tour_id);
             _guidedTours.Remove(guidedTour);
             _serializer.ToCSV(FilePath, _guidedTours);
         }

@@ -1,13 +1,19 @@
-﻿using BookingApp.Domain.RepositoryInterfaces.Features;
+﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Repository;
+using BookingApp.Repository.FeatureRepository;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using FontAwesome.Sharp;
+using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
 
@@ -66,6 +72,9 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 
         private int GuideId;
 
+        private readonly GuidedTourRepository guidedTourRepository = new GuidedTourRepository();
+        private readonly TourService tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
+
         public ICommand ShowTodaysToursCommand { get; }
         public ICommand MyToursCommand { get; }
         public ICommand UserInfoCommand { get; }
@@ -90,10 +99,20 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             ReportCommand = new ViewModelCommand(ExecuteShowReportCommand);
             AppInfoCommand = new ViewModelCommand(ExecuteShowAppInfoCommand);
 
-            CurrentChildView = new TodaysToursViewModel();
-            Caption = "Todays Tours";
-            Icon = IconChar.CalendarDay;
+            ExecuteShowTodaysToursViewCommand(null);
 
+        }
+
+        private void HandleStartTourRequested(object sender, TourViewModel tour)
+        {
+            var startedTourView = new StartedTourViewModel(tour);
+            startedTourView.FinnishTourEvent += HandleFinnishTourRequested;
+            CurrentChildView = startedTourView;
+        }
+        
+        private void HandleFinnishTourRequested(object sender, EventArgs e)
+        {
+            ExecuteShowTodaysToursViewCommand(null);
         }
 
         #region ImplementacijaKomandi
@@ -112,16 +131,39 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         }
         private void ExecuteShowTourRequestsViewCommand(object obj)
         {
-            CurrentChildView = new TourRequestsViewModel();
+            CurrentChildView = new TourRequestsViewModel(GuideId);
             Caption = "Tour Requests";
             Icon = IconChar.EnvelopeOpenText;
         }
 
         private void ExecuteShowTodaysToursViewCommand(object obj)
         {
-            CurrentChildView = new TodaysToursViewModel(); 
+            if (guidedTourRepository.HasTourCurrently(GuideId))
+            {
+                HasTour();
+            }
+            else
+            {
+                NoTour();
+            }
+            
             Caption = "Todays Tours";
-            Icon = IconChar.CalendarDay; 
+            Icon = IconChar.CalendarDay;
+        }
+
+        private void NoTour()
+        {
+            var todaysToursViewModel = new TodaysToursViewModel(GuideId);
+            todaysToursViewModel.StartTourRequested += (sender, tour) => HandleStartTourRequested(sender, tour);
+            CurrentChildView = todaysToursViewModel;
+        }
+
+        private void HasTour()
+        {
+            Tour tour = tourService.GetTourById(guidedTourRepository.FindTourIdByGuide(GuideId));
+            var startedTourView = new StartedTourViewModel(new TourViewModel(tour));
+            startedTourView.FinnishTourEvent += HandleFinnishTourRequested;
+            CurrentChildView = startedTourView;
         }
 
         private void ExecuteShowMyToursViewCommand(object obj)
@@ -147,14 +189,15 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 
         private void ExecuteShowStatisticsViewCommand(object obj)
         {
-            CurrentChildView = new StatisticsViewModel();
+            CurrentChildView = new StatisticsViewModel(GuideId);
             Caption = "Statistics";
             Icon = IconChar.ChartPie;
         }
 
         private void ExecuteShowLogoutViewCommand(object obj)
         {
-            // Implement logout functionality here
+           
+
         }
 
         #endregion

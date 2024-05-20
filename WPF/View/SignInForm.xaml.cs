@@ -95,7 +95,7 @@ namespace BookingApp.View
                     }
                     else if (user.Type.ToString().Equals("guide"))
                     {
-                        if(_guidedTourRepository.HasTourCurrently(user.Id)) {
+                        if(_guidedTourRepository.HasTourCurrently(user.Id) && user.Username != "test") {
                             Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
                             GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourViewModel(tour), user);
                             guideWithTourWindow.ShowDialog();
@@ -115,10 +115,10 @@ namespace BookingApp.View
                             }
                             else
                             {
-                                /*GuideMainWindow guideMainWindow = new GuideMainWindow(user);
-                                guideMainWindow.ShowDialog();*/
-                                RequestTest requestTest = new RequestTest(user.Id);
-                                requestTest.ShowDialog();
+                                GuideMainWindow guideMainWindow = new GuideMainWindow(user);
+                                guideMainWindow.ShowDialog();
+                                /*RequestTest requestTest = new RequestTest(user.Id);
+                                requestTest.ShowDialog();*/
                             }
                             
                         }
