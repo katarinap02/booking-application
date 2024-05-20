@@ -89,6 +89,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
+        public string Location
+        {
+            get { return city+","+ country; }            
+        }
+
         private string description;
         public string Description
         {
