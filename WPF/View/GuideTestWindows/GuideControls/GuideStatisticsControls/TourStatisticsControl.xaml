@@ -41,7 +41,7 @@
                         <RowDefinition Height="auto"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding Caption}" Margin="20 2"></TextBlock>
+                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding Caption}" FontSize="20" Margin="20 2"></TextBlock>
                     <lvc:PieChart Grid.Row="1" Series="{Binding series}" Hoverable="True" InnerRadius="20" Margin="20" LegendLocation="Right">
                         <lvc:PieChart.ChartLegend>
                             <lvc:DefaultLegend BulletSize="15" TextBlock.FontSize="10" Foreground="LightGray" FontSize="15"></lvc:DefaultLegend>
@@ -77,8 +77,8 @@
                     </StackPanel>
                     
                     <StackPanel Grid.Row="1" Margin="20 5">                        
-                        <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding TourName}" FontSize="35" Margin="0 10"></TextBlock>
-                        <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding ParticipantNumber}" FontSize="25"></TextBlock>
+                        <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding TourName}" FontSize="40" Margin="0 10"></TextBlock>
+                        <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding ParticipantNumber}" FontSize="30"></TextBlock>
                     </StackPanel>
                     
                 </Grid>
