@@ -189,7 +189,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 
         private void ExecuteShowStatisticsViewCommand(object obj)
         {
-            CurrentChildView = new StatisticsViewModel();
+            CurrentChildView = new StatisticsViewModel(GuideId);
             Caption = "Statistics";
             Icon = IconChar.ChartPie;
         }
