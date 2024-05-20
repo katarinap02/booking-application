@@ -7,13 +7,13 @@
              xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls.GuideStatisticsControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="*"></ColumnDefinition>
-            <ColumnDefinition Width="*"></ColumnDefinition>            
-        </Grid.ColumnDefinitions>
+    <Grid>        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
 
-        <DataGrid Grid.Column="0" Style="{StaticResource GuideDataGridStyle}" Margin="5" ItemsSource="{Binding Tours}" SelectedItem="{Binding SelectedTour}">
+        <DataGrid Grid.Row="0" Style="{StaticResource GuideDataGridStyle}" Margin="5" ItemsSource="{Binding Tours}" SelectedItem="{Binding SelectedTour}">
             <DataGrid.Columns>
                 <DataGridTextColumn  Width="*" Binding="{Binding Name}" Header="Tour Name" />
                 <DataGridTextColumn  Width="*" Binding="{Binding Location}"  Header="Location"/>
@@ -21,11 +21,12 @@
                 <DataGridTextColumn  Width="*" Binding="{Binding Date}" Header="Date"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Grid  Grid.Column="1">
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*"></RowDefinition>
-                <RowDefinition Height="*"></RowDefinition>
-            </Grid.RowDefinitions>
+            
+        <Grid  Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
 
             <Border Margin="5" BorderThickness="1" CornerRadius="20">
                 <Border.BorderBrush>
@@ -43,7 +44,7 @@
                     <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding Caption}" Margin="20 2"></TextBlock>
                     <lvc:PieChart Grid.Row="1" Series="{Binding series}" Hoverable="True" InnerRadius="20" Margin="20" LegendLocation="Right">
                         <lvc:PieChart.ChartLegend>
-                            <lvc:DefaultLegend BulletSize="15" TextBlock.FontSize="10" Foreground="LightGray"></lvc:DefaultLegend>
+                            <lvc:DefaultLegend BulletSize="15" TextBlock.FontSize="10" Foreground="LightGray" FontSize="15"></lvc:DefaultLegend>
                         </lvc:PieChart.ChartLegend>
                         <lvc:PieChart.DataTooltip>
                             <lvc:DefaultTooltip BulletSize="20"></lvc:DefaultTooltip>
@@ -53,7 +54,7 @@
             </Border>
             
             
-            <Border Grid.Row="1" BorderThickness="1" CornerRadius="20" Margin="5">
+            <Border Grid.Column="1" BorderThickness="1" CornerRadius="20" Margin="5">
                 <Border.BorderBrush>
                     <LinearGradientBrush EndPoint="1,0" StartPoint="0,1">
                         <GradientStop Color="#784DFD" Offset="0"></GradientStop>
@@ -66,15 +67,18 @@
                         <RowDefinition Height="auto"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <ComboBox Style="{StaticResource ModernComboBoxStyle}" Width="150" HorizontalAlignment="Left" Margin="20 5">
-                        <ComboBoxItem >All time</ComboBoxItem>
-                        <ComboBoxItem >2023</ComboBoxItem>
-                        <ComboBoxItem >2024</ComboBoxItem>
-                    </ComboBox>
-                    <StackPanel Grid.Row="1" Margin="20 10">
-                        <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="most visited tour in: " FontSize="20"></TextBlock>
-                        <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="nesto" FontSize="40" Margin="0 10"></TextBlock>
-                        <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="nesto" FontSize="25"></TextBlock>
+                    <StackPanel Orientation="Horizontal" Margin="20 10">
+                        <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="Most visited tour:   " FontSize="20"></TextBlock>
+                        <ComboBox Style="{StaticResource ModernComboBoxStyle}" Width="150" SelectedItem="{Binding Combo}">
+                            <ComboBoxItem IsSelected="True" >All time</ComboBoxItem>
+                            <ComboBoxItem >2023</ComboBoxItem>
+                            <ComboBoxItem >2024</ComboBoxItem>
+                        </ComboBox>
+                    </StackPanel>
+                    
+                    <StackPanel Grid.Row="1" Margin="20 5">                        
+                        <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding TourName}" FontSize="35" Margin="0 10"></TextBlock>
+                        <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding ParticipantNumber}" FontSize="25"></TextBlock>
                     </StackPanel>
                     
                 </Grid>

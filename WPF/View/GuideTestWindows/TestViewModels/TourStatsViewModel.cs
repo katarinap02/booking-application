@@ -1,6 +1,8 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using LiveCharts;
 using LiveCharts.Defaults;
@@ -30,6 +32,38 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
                 OnPropertyChanged(nameof(Caption));
             }
         }
+        private string _combo;
+        public string Combo
+        {
+            get { return _combo; }
+            set { _combo = value;
+                OnPropertyChanged(nameof(Combo));
+                ChangeMostVisited();
+            }
+        }
+
+        private string _tourName;
+        public string TourName
+        {
+            get { return _tourName; }
+            set
+            {
+                _tourName = value;
+                OnPropertyChanged(nameof(TourName));
+            }
+        }
+
+        private string _participantNumber;
+        public string ParticipantNumber
+        {
+            get { return _participantNumber; }
+            set
+            {
+                _participantNumber = value;
+                OnPropertyChanged(nameof(ParticipantNumber));
+            }
+        }
+
         private TourViewModel _selectedTour;
         public TourViewModel SelectedTour
         {
@@ -42,11 +76,13 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             }
         }
         private readonly TourService tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
+        private readonly TourReservationService reservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>()); 
         private int GuideId;
         public TourStatsViewModel(int guide_id)
         { 
             GuideId = guide_id;
             series = new SeriesCollection();
+            Combo = "System.Windows.Controls.ComboBoxItem: All time";
             getGridData();            
         }
 
@@ -94,6 +130,59 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
                 }
             };
             OnPropertyChanged(nameof(series));
+        }
+
+
+        private void ChangeMostVisited()
+        {
+            if(Combo == "System.Windows.Controls.ComboBoxItem: All time")
+            {
+                ShowMostVisitedTourAllTime();
+            }
+            else
+            {
+                int selectedYear = 0;
+                if (Combo.Contains("2023")) { selectedYear = 2023; }
+                else if (Combo.Contains("2024")) { selectedYear = 2024; }  
+                ShowMostVisitedTourPreviousYears(selectedYear);
+            }
+        }
+
+        private void ShowMostVisitedTourAllTime()
+        {
+            Tour mostVisitedTourAllTime = tourService.GetMostPopularTourForGuide(GuideId);
+            
+            if (mostVisitedTourAllTime != null)
+            {
+                TourName = mostVisitedTourAllTime.Name;
+                int participantCount = reservationService.GetNumberOfJoinedParticipants(mostVisitedTourAllTime.Id);
+                ParticipantNumber= $"Participants: {participantCount}";
+            }
+            else
+            {
+                TourName = "No data available";
+                ParticipantNumber = "";
+            }
+
+
+        }
+
+        private void ShowMostVisitedTourPreviousYears(int year)
+        {
+            Tour mostVisitedTourPreviousYears = tourService.GetMostPopularTourForGuideInYear(GuideId, year);
+
+            if (mostVisitedTourPreviousYears != null)
+            {
+                TourName = mostVisitedTourPreviousYears.Name;
+                int participantCount = reservationService.GetNumberOfJoinedParticipants(mostVisitedTourPreviousYears.Id);
+                ParticipantNumber = $"Participants: {participantCount}";
+            }
+            else
+            {
+                TourName = "No data available";
+                ParticipantNumber = "";
+            }
+
         }
     }
 }
