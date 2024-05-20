@@ -190,7 +190,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
             foreach (var request in requests)
             {
-                string location = $"{request.City},{request.Country}";
+                string location = $"{request.City}, {request.Country}";
                 if (locationCounts.ContainsKey(location))
                 {
                     locationCounts[location]++;
@@ -287,6 +287,35 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             _tourService.Add(tour);
             SendNotifications(tour);
+        }
+
+        public List<string> getAllLocations()
+        {
+            List<TourRequest> requests = _tourRequestRepository.GetAll();
+            List<string> locations = new List<string>();
+            foreach (TourRequest request in requests)
+            {
+                string location = request.City+", "+request.Country;
+                if (!locations.Contains(location))
+                {
+                    locations.Add(location);
+                }
+            }
+            return locations;
+        }
+
+        public List<string> getAllLanguages()
+        {
+            List<TourRequest> requests = _tourRequestRepository.GetAll();
+            List<string> languages = new List<string>();
+            foreach (TourRequest request in requests)
+            {                
+                if (!languages.Contains(request.Language))
+                {
+                    languages.Add(request.Language);
+                }
+            }
+            return languages;
         }
 
         public void SendNotifications(Tour tour)
