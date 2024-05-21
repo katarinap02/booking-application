@@ -150,6 +150,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public ForumViewModel()
+        {
+
+        }
        public ForumViewModel(Forum forum)
         {
             id = forum.Id;
