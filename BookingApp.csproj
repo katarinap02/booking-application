@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>WPF\Resources\LoginImages\LogoIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -168,6 +169,7 @@
     <Content Include="WPF\Resources\LoginImages\key.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="WPF\Resources\LoginImages\LogoIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
