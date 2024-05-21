@@ -27,9 +27,9 @@ namespace BookingApp.Domain.Model.Features
 
         }
 
-        public ForumComment(int id, int userId, string comment, bool isSpecial, bool isHost, DateTime date)
+        public ForumComment(int userId, string comment, bool isSpecial, bool isHost, DateTime date)
         {
-            Id = id;
+            
             UserId = userId;
             Comment = comment;
             IsSpecial = isSpecial;

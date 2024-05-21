@@ -22,11 +22,13 @@ namespace BookingApp.Domain.Model.Features
 
         public bool IsVeryUseful { get; set; }
 
+        public DateTime Date { get; set; }
+
         public Forum() { 
              Comments = new List<int>(); 
         
         }
-        public Forum(int userId, string city, string country, string firstComment, bool isClosed, bool isVeryUseful)
+        public Forum(int userId, string city, string country, string firstComment, bool isClosed, bool isVeryUseful, DateTime date)
         {
             UserId = userId;
             City = city;
@@ -35,11 +37,12 @@ namespace BookingApp.Domain.Model.Features
             Comments = new List<int>();
             IsClosed = isClosed;
             IsVeryUseful = isVeryUseful;
+            Date = date;
         }
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), UserId.ToString(), City, Country, FirstComment, MakeCommentsList(Comments), IsClosed.ToString(), IsVeryUseful.ToString() };
+            string[] csvValues = { Id.ToString(), UserId.ToString(), City, Country, FirstComment, MakeCommentsList(Comments), IsClosed.ToString(), IsVeryUseful.ToString(), Date.ToString() };
             return csvValues;
         }
 
@@ -61,6 +64,7 @@ namespace BookingApp.Domain.Model.Features
             FirstComment = values[4];
             Comments = FromCommentsList(values[5]);
             IsClosed = Convert.ToBoolean(values[6]);
+            Date = Convert.ToDateTime(values[7]);
         }
 
         private List<int> FromCommentsList(string value)

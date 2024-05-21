@@ -87,7 +87,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         private void OnSave()
         {
-            Forum forum = new Forum(User.Id, City, Country, FirstComment, false);
+            Forum forum = new Forum(User.Id, City, Country, FirstComment, false, false, DateTime.Now);
             
             ForumService.Add(forum);
             MessageBox.Show("Forum added");

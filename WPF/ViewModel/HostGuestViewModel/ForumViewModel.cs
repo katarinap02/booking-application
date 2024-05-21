@@ -127,6 +127,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
         }
 
+        private DateTime date;
+        public DateTime Date
+        {
+            get { return date; }
+            set
+            {
+                if (date != value)
+                {
+
+                    date = value;
+                    OnPropertyChanged("Date");
+                }
+            }
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
 
@@ -145,11 +160,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             comments = forum.Comments;
             isClosed = forum.IsClosed;
             isVeryUseful = forum.IsVeryUseful;
+            date = forum.Date;
         }
 
         public Forum ToForum()
         {
-            Forum f = new Forum(userId, city, country, firstComment, isClosed, isVeryUseful);
+            Forum f = new Forum(userId, city, country, firstComment, isClosed, isVeryUseful, date);
             f.Id = id;
             f.Comments = comments;
 
