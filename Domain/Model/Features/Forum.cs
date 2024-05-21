@@ -64,7 +64,8 @@ namespace BookingApp.Domain.Model.Features
             FirstComment = values[4];
             Comments = FromCommentsList(values[5]);
             IsClosed = Convert.ToBoolean(values[6]);
-            Date = Convert.ToDateTime(values[7]);
+            IsVeryUseful = Convert.ToBoolean(values[7]);
+            Date = Convert.ToDateTime(values[8]);
         }
 
         private List<int> FromCommentsList(string value)
