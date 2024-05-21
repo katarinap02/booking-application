@@ -41,5 +41,7 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             return ForumRepository.GetById(id);
         }
+
+        
     }
 }
