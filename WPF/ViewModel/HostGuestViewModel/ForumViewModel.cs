@@ -24,6 +24,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private int userId;
+        public int UserId
+        {
+            get { return userId; }
+            set
+            {
+                if (userId != value)
+                {
+                    userId = value;
+                    OnPropertyChanged("UserId");
+                }
+            }
+        }
+
         private string city;
         public string City
         {
@@ -69,8 +83,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
-        private List<string> comments = new List<string>();
-        public List<string> Comments
+        private List<int> comments = new List<int>();
+        public List<int> Comments
         {
             get { return comments; }
             set
@@ -109,6 +123,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
        public ForumViewModel(Forum forum)
         {
             id = forum.Id;
+            userId = forum.UserId;
             city = forum.City;
             country = forum.Country;
             firstComment = forum.FirstComment;
@@ -118,7 +133,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
         public Forum ToForum()
         {
-            Forum f = new Forum(city, country, firstComment, isClosed);
+            Forum f = new Forum(userId, city, country, firstComment, isClosed);
             f.Id = id;
             f.Comments = comments;
 

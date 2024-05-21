@@ -10,30 +10,33 @@ namespace BookingApp.Domain.Model.Features
     public class Forum : ISerializable
     {
         public int Id { get; set; }
+
+        public int UserId { get; set; }
         public string City { get; set; }
         public string Country { get; set; }
         public string FirstComment { get; set; }
 
-        public List<string> Comments { get; set; }
+        public List<int> Comments { get; set; }
 
         public bool IsClosed { get; set; }
 
         public Forum() { 
-             Comments = new List<string>(); 
+             Comments = new List<int>(); 
         
         }
-        public Forum(string city, string country, string firstComment, bool isClosed)
+        public Forum(int userId, string city, string country, string firstComment, bool isClosed)
         {
+            UserId = userId;
             City = city;
             Country = country;
             FirstComment = firstComment;
-            Comments = new List<string>();
+            Comments = new List<int>();
             IsClosed = isClosed;
         }
 
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), City, Country, FirstComment, MakeCommentsList(Comments), IsClosed.ToString() };
+            string[] csvValues = { Id.ToString(), UserId.ToString(), City, Country, FirstComment, MakeCommentsList(Comments), IsClosed.ToString() };
             return csvValues;
         }
 
@@ -49,20 +52,25 @@ namespace BookingApp.Domain.Model.Features
         public void FromCSV(string[] values)
         {
             Id = Convert.ToInt32(values[0]);
-            City = values[1];
-            Country = values[2];
-            FirstComment = values[3];
-            Comments = FromCommentsList(values[4]);
-            IsClosed = Convert.ToBoolean(values[5]);
+            UserId = Convert.ToInt32(values[1]);
+            City = values[2];
+            Country = values[3];
+            FirstComment = values[4];
+            Comments = FromCommentsList(values[5]);
+            IsClosed = Convert.ToBoolean(values[6]);
         }
 
-        private List<string> FromCommentsList(string value)
+        private List<int> FromCommentsList(string value)
         {
             List<string> list = new List<string>();
+            List<int> result = new List<int>();
             if (!string.IsNullOrEmpty(value))
                 list = value.Split(",").ToList();
-
-            return list;
+            foreach(String item in list)
+            {
+                result.Add(Convert.ToInt32(item));
+            }
+            return result;
         }
     }
 }
