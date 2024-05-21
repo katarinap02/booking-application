@@ -111,7 +111,22 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
 
         }
-        
+
+        private bool isVeryUseful;
+        public bool IsVeryUseful
+        {
+            get { return IsVeryUseful; }
+            set
+            {
+                if (isVeryUseful != value)
+                {
+                    isVeryUseful = value;
+                    OnPropertyChanged("IsVeryUseful");
+                }
+            }
+
+        }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
 
@@ -129,11 +144,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             firstComment = forum.FirstComment;
             comments = forum.Comments;
             isClosed = forum.IsClosed;
+            isVeryUseful = forum.IsVeryUseful;
         }
 
         public Forum ToForum()
         {
-            Forum f = new Forum(userId, city, country, firstComment, isClosed);
+            Forum f = new Forum(userId, city, country, firstComment, isClosed, isVeryUseful);
             f.Id = id;
             f.Comments = comments;
 
