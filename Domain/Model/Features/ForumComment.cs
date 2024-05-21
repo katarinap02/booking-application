@@ -20,6 +20,8 @@ namespace BookingApp.Domain.Model.Features
         public bool IsHost { get; set; }
 
         public DateTime Date { get; set; }
+
+        public int ForumId { get; set; }
        
 
         public ForumComment()
@@ -27,7 +29,7 @@ namespace BookingApp.Domain.Model.Features
 
         }
 
-        public ForumComment(int userId, string comment, bool isSpecial, bool isHost, DateTime date)
+        public ForumComment(int userId, string comment, bool isSpecial, bool isHost, DateTime date, int forumId)
         {
             
             UserId = userId;
@@ -35,10 +37,11 @@ namespace BookingApp.Domain.Model.Features
             IsSpecial = isSpecial;
             IsHost = isHost;
             Date = date;
+            ForumId = forumId;
         }
         public string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), UserId.ToString(), Comment, IsSpecial.ToString(), IsHost.ToString(), Date.ToString() };
+            string[] csvValues = { Id.ToString(), UserId.ToString(), Comment, IsSpecial.ToString(), IsHost.ToString(), Date.ToString(), ForumId.ToString() };
             return csvValues;
         }
 
@@ -50,6 +53,7 @@ namespace BookingApp.Domain.Model.Features
             IsSpecial = Convert.ToBoolean(values[3]);
             IsHost = Convert.ToBoolean(values[4]);
             Date = Convert.ToDateTime(values[5]);
+            ForumId = Convert.ToInt32(values[6]);
            
         }
     }

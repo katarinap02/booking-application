@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestPages"
+      xmlns:control="clr-namespace:BookingApp.WPF.View.Guest.GuestControls"
       mc:Ignorable="d" 
             
       d:DesignHeight="798" d:DesignWidth="1085"
@@ -17,8 +18,8 @@
                 <TextBlock  FontSize="40" FontWeight="Bold" Foreground="{StaticResource AccentColorN}" Margin="314,0,314,732">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}Location: {0}, {1}">
-                            <Binding Path="City"/>
-                            <Binding Path="Country"/>
+                            <Binding Path="SelectedForum.City"/>
+                            <Binding Path="SelectedForum.Country"/>
 
                         </MultiBinding>
                     </TextBlock.Text>
@@ -27,9 +28,10 @@
                     <Grid>
                         <TextBlock FontSize="23" Margin="16,20,530,97" FontWeight="Bold" Foreground="AliceBlue" Text="{Binding Username}"></TextBlock>
                         <TextBlock FontSize="23" Margin="16,42,530,79" Foreground="AliceBlue" Text="{Binding UserType}"></TextBlock>
+                        <TextBlock FontSize="16" Margin="16,70,530,56" Foreground="AliceBlue" Text="{Binding SelectedForum.DateString}"></TextBlock>
                         <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Margin="123,15,14,15" CornerRadius="30" Background="White">
                             <Grid>
-                                <TextBlock Text="{Binding SelectedForum.FirstComment}" FontSize="20" Margin="28,10,10,10" TextWrapping="Wrap"></TextBlock>
+                                <TextBlock Text="{Binding SelectedForum.FirstComment}" FontSize="16" Margin="28,10,10,10" TextWrapping="Wrap"></TextBlock>
                             </Grid>
                         </Border>
                     </Grid>
@@ -47,7 +49,15 @@
 
                 </Border>
 
-                <ListBox ItemsSource="{Binding Comments}" ScrollViewer.VerticalScrollBarVisibility="Auto" Margin="204,446,204,10"/>
+                <ListBox ItemsSource="{Binding ForumComments}" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="680" Margin="190,449,190,10">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <control:CommentCard></control:CommentCard>
+                            </Grid>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
 
 
 

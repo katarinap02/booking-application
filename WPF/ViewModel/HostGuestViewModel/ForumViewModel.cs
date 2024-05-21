@@ -142,6 +142,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        public string DateString => Date.ToString("MM/dd/yyyy");
         public event PropertyChangedEventHandler PropertyChanged;
 
 

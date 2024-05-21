@@ -53,7 +53,7 @@ namespace BookingApp.Application.Services.FeatureServices
             return ForumCommentRepository.GetById(id);
         }
 
-        public ForumComment CreateComment(int id, string comment, string city, string country)
+        public ForumComment CreateComment(int id, string comment, string city, string country, int forumId)
         {
             ForumComment result = new ForumComment();
             result.UserId = id;
@@ -69,6 +69,7 @@ namespace BookingApp.Application.Services.FeatureServices
             }
 
             result.Date = DateTime.Now;
+            result.ForumId = forumId;
             return this.Add(result);
           
 

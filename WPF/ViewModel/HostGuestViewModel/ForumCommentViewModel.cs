@@ -1,4 +1,6 @@
-﻿using BookingApp.Domain.Model.Features;
+﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -98,6 +100,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
                 }
             }
         }
+        public string DateString => Date.ToString("MM/dd/yyyy");
+
+        private int forumId;
+        public int ForumId
+        {
+            get { return forumId; }
+            set
+            {
+                if (forumId != value)
+                {
+                    id = value;
+                    OnPropertyChanged("ForumId");
+                }
+            }
+        }
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -107,6 +124,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public UserService userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
+        public string Username => userService.GetById(UserId).Username;
+        public string UserType => userService.GetById(UserId).Type.ToString();
         public ForumCommentViewModel(ForumComment forumComment)
         {
             id = forumComment.Id;
@@ -115,11 +135,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             isSpecial = forumComment.IsSpecial;
             isHost = forumComment.IsHost;
             date = forumComment.Date;
+            forumId = forumComment.ForumId;
         }
 
         public ForumComment ToForum()
         {
-            ForumComment f = new ForumComment(userId, comment, isSpecial, isHost, date);
+            ForumComment f = new ForumComment(userId, comment, isSpecial, isHost, date, forumId);
             f.Id = id;
 
             return f;

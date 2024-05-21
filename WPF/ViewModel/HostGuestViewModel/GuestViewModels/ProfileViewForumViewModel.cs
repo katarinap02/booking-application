@@ -2,9 +2,11 @@
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.Observer;
 using BookingApp.WPF.ViewModel.Commands;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Text;
@@ -14,7 +16,7 @@ using System.Windows.Controls;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
-    public class ProfileViewForumViewModel : INotifyPropertyChanged
+    public class ProfileViewForumViewModel : INotifyPropertyChanged, IObserver
     {
         public User User { get; set; }
         public Frame Frame { get; set; }
@@ -29,6 +31,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public ForumCommentService ForumCommentService { get; set; }
 
         public ForumService ForumService { get; set; }
+
+        public ObservableCollection<ForumCommentViewModel> ForumComments { get; set; }
+        
+
+        
 
         private string comment;
         public string Comment
@@ -64,18 +71,36 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             PostCommentCommand = new GuestICommand(OnPostComment);
             ForumCommentService = new ForumCommentService(Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>());
+            ForumComments = new ObservableCollection<ForumCommentViewModel>();
+            Update();
             
         }
 
         private void OnPostComment()
         {
            ForumComment = new ForumComment();
-            ForumComment = ForumCommentService.CreateComment(User.Id, Comment, SelectedForum.City, SelectedForum.Country);
+            ForumComment = ForumCommentService.CreateComment(User.Id, Comment, SelectedForum.City, SelectedForum.Country, SelectedForum.Id);
            SelectedForum.Comments.Add(ForumComment.Id);
            ForumService.Update(SelectedForum.ToForum());
 
-            MessageBox.Show("Komentar dodat");
+            Update();
 
+
+        }
+
+        public void Update()
+        {
+            ForumComments.Clear();
+            List<ForumCommentViewModel> tmpComments = new List<ForumCommentViewModel>();
+            foreach(ForumComment comment in ForumCommentService.GetAll())
+            {
+                if (comment.ForumId == SelectedForum.Id)
+                    tmpComments.Add(new ForumCommentViewModel(comment));
+            }
+
+            tmpComments = tmpComments.OrderByDescending(x => x.Date).ToList();
+            foreach (ForumCommentViewModel comment in tmpComments)
+                ForumComments.Add(comment);
 
         }
     }
