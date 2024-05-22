@@ -1,6 +1,7 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
 using System;
 using System.Collections.Generic;
@@ -73,6 +74,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public ForumViewModel NewForum { get; set; }
+
         // KOMANDE
         public GuestICommand SaveCommand { get; set; }
         public CreateForumViewModel(User user, Frame frame) { 
@@ -90,7 +93,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Forum forum = new Forum(User.Id, City, Country, FirstComment, false, false, DateTime.Now);
             
             ForumService.Add(forum);
-            MessageBox.Show("Forum added");
+            NewForum = new ForumViewModel(forum);
+            Frame.Content = new CreateForumSuccessfulPage(User, Frame, NewForum);
+           
 
         }
     }

@@ -49,13 +49,23 @@ namespace BookingApp.Domain.Model.Features
         private string MakeCommentsList(List<int> comments)
         {
             string CommentString = "";
-            CommentString += comments[0];
-            int i;
-            for(i = 1; i <= comments.Count-1; i++)
+
+            if(comments.Count != 0)
             {
-                CommentString += "," + comments[i];
+                CommentString += comments[0];
+                if(comments.Count > 1)
+                {
+                    int i;
+                    for (i = 1; i <= comments.Count - 1; i++)
+                    {
+                        CommentString += "," + comments[i];
+
+                    }
+                }
+               
 
             }
+           
 
             
 

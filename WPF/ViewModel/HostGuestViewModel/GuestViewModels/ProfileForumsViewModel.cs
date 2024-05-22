@@ -29,6 +29,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public GuestICommand CreateForumCommand { get; set; }
 
         public GuestICommand<object> ViewForumCommand { get; set; }
+       
+        public ForumViewModel NewForum { get; set; }
         public ProfileForumsViewModel(User user, Frame frame)
         {
             User = user;
@@ -37,10 +39,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>());
             CreateForumCommand = new GuestICommand(OnCreateForum);
             ViewForumCommand = new GuestICommand<object>(OnViewForum);
+          
+            
            // SelectedForum = new ForumViewModel();
             Update();
             
         }
+
+       
 
         private void OnViewForum(object sender)
         {
