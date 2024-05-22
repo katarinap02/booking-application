@@ -76,7 +76,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
         }
 
-        private bool HasReservation(int id, string city, string country)
+        public bool HasReservation(int id, string city, string country)
         {
             foreach(AccommodationReservation reservation in AccommodationReservationService.GetAll())
             {

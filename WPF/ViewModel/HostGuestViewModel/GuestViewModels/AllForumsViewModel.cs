@@ -1,6 +1,7 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
@@ -33,7 +34,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             User = user;
             Frame = frame;
             Forums = new ObservableCollection<ForumViewModel>();
-            ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>());
+            ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             CreateForumCommand = new GuestICommand(OnCreateForum);
             ViewForumCommand = new GuestICommand<object>(OnViewForum);
             // SelectedForum = new ForumViewModel();
@@ -59,7 +60,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Forums.Clear();
             foreach (Forum forum in ForumService.GetAll())
             {
-               Forums.Add(new ForumViewModel(forum));
+                ForumService.CalculateGuestHostComments(forum);
+                Forums.Add(new ForumViewModel(forum));
             }
         }
     }

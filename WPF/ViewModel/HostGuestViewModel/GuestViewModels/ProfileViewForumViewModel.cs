@@ -70,7 +70,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             SelectedForum = selectedForum;
             PostCommentCommand = new GuestICommand(OnPostComment);
             ForumCommentService = new ForumCommentService(Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
-            ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>());
+            ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             ForumComments = new ObservableCollection<ForumCommentViewModel>();
             Update();
             
