@@ -44,7 +44,8 @@ namespace BookingApp.Injector
 
             { typeof(IForumRepository), new ForumRepository() },
 
-            { typeof(IGuideInformationRepository), new GuideInformationRepository() }
+            { typeof(IGuideInformationRepository), new GuideInformationRepository() },
+            { typeof(IForumCommentRepository), new ForumCommentRepository() }
 
 
             /*{ typeof(IUserService), new UserService() },*/

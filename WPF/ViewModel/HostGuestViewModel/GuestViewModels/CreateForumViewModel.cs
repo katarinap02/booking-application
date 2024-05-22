@@ -1,6 +1,8 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
 using System;
 using System.Collections.Generic;
@@ -73,6 +75,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public ForumViewModel NewForum { get; set; }
+
         // KOMANDE
         public GuestICommand SaveCommand { get; set; }
         public CreateForumViewModel(User user, Frame frame) { 
@@ -80,17 +84,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             User = user;
             Frame = frame;
             SaveCommand = new GuestICommand(OnSave);
-            ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>());
+            ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             
         
         }
 
         private void OnSave()
         {
-            Forum forum = new Forum(City, Country, FirstComment, false);
+            Forum forum = new Forum(User.Id, City, Country, FirstComment, false, false, DateTime.Now);
             
             ForumService.Add(forum);
-            MessageBox.Show("Forum added");
+            NewForum = new ForumViewModel(forum);
+            Frame.Content = new CreateForumSuccessfulPage(User, Frame, NewForum);
+           
 
         }
     }

@@ -1,10 +1,10 @@
-﻿<Page x:Class="BookingApp.WPF.View.Guest.GuestPages.ProfileForumsPage"
+﻿<Page x:Class="BookingApp.WPF.View.Guest.GuestPages.CreateForumSuccessfulPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestPages"
-      xmlns:controls="clr-namespace:BookingApp.WPF.View.Guest.GuestControls"
+           xmlns:controls="clr-namespace:BookingApp.WPF.View.Guest.GuestControls"
       mc:Ignorable="d" 
       d:DesignHeight="798" d:DesignWidth="1085"
       Title="RateAccommodationPage">
@@ -32,32 +32,44 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
+                <Label Content="You've successfully created a forum!" Style="{StaticResource HeaderStyleN}" FontSize="40" Margin="174,103,154,626"/>
+                <Grid Margin="10,168,-10,471">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="115*"/>
+                        <ColumnDefinition Width="97*"/>
+                    </Grid.ColumnDefinitions>
+                    <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Height="103" Grid.ColumnSpan="2" Margin="0,24,32,24">
+                        <Grid Margin="10">
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"/>
+                                <RowDefinition Height="auto"/>
+                            </Grid.RowDefinitions>
 
-                <ListBox Name="ReservationListBox" Margin="30,34,20,276"  ScrollViewer.VerticalScrollBarVisibility="Auto" Width="1010"
-ItemsSource="{Binding Forums}" Background="{StaticResource BackgroundColorN}" SelectedItem="{Binding SelectedForum}">
-                    <ListBox.ItemTemplate>
-                        <DataTemplate>
-                            <Grid>
-                                <controls:ForumCard></controls:ForumCard>
-                                <Button Content="View forum" Command="{Binding Path=DataContext.ViewForumCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Style="{StaticResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, -40, 0, 0"/>
-                                <Button Content="Close forum" Command="{Binding Path=DataContext.CloseForumCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"  Style="{StaticResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, 50, 0, 0" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                            <TextBlock Margin="10,10,675,-47" Grid.RowSpan="2" FontSize="22" FontWeight="Bold" Foreground="{StaticResource AccentColorN}">
 
-                            </Grid>
-                        </DataTemplate>
-                    </ListBox.ItemTemplate>
-                </ListBox>
-                <Button Style="{StaticResource ButtonStyleN}" Content="Create forum" Height="50" Margin="442,660,442,79" Command="{Binding CreateForumCommand}"/>
-                <!--<ToggleButton Height="50" Background="White" BorderBrush="White" Margin="20,545,726,194" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
-                    <StackPanel Orientation="Horizontal">
-                        <Image Source="{StaticResource HintIcon}" Height="25" Width="25"/>
-                        <Label x:Name="HintLabel" Content="Problem with accommodation rating" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
-                    </StackPanel>
+                                <TextBlock.Text>
+                                    <MultiBinding StringFormat="{}Location: {0}, {1}">
+                                        <Binding Path="NewForum.City"/>
+                                        <Binding Path="NewForum.Country"/>
 
-                </ToggleButton>
-                <TextBlock x:Name="Hint" FontSize="16" Foreground="Green" TextAlignment="Justify" TextWrapping="Wrap" Margin="657,559,30,154">
-                Please select one of the accommodations above.
-                You can only rate accommodation and host five days at most after the end of the reservation.
-                </TextBlock>-->
+                                    </MultiBinding>
+                                </TextBlock.Text>
+                            </TextBlock>
+
+                            <TextBlock Text="{Binding NewForum.CommentNumber}" Margin="10,52,868,-86" Grid.RowSpan="2" FontSize="16"></TextBlock>
+                            <Button Content="View forum" Command="{Binding Path=ViewForumCommand}" Style="{StaticResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="864,25,10,85"/>
+
+
+                        </Grid>
+
+                    </Border>
+                    <!--<Button Content="Close forum"  Style="{StaticResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, 50, 0, 0" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>-->
+
+                </Grid>
+
+                <Button Content="Your forums" Command="{Binding Path=ViewForumsCommand}" Style="{StaticResource ButtonStyleN}" FontSize="23" Margin="286,600,616,139"/>
+                <Button Content="Your profile" Command="{Binding Path=ViewProfileCommand}" Style="{StaticResource ButtonStyleN}" FontSize="23" Margin="632,600,270,139"/>
+
 
             </Grid>
 

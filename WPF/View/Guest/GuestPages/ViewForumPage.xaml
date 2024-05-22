@@ -1,0 +1,61 @@
+﻿<Page x:Class="BookingApp.WPF.View.Guest.GuestPages.ViewForumPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestPages"
+     xmlns:control="clr-namespace:BookingApp.WPF.View.Guest.GuestControls"
+ mc:Ignorable="d" 
+      d:DesignHeight="990" d:DesignWidth="1920"
+      Title="ViewForumPage">
+
+    <Grid>
+
+        <TextBlock  FontSize="40" FontWeight="Bold" Foreground="{StaticResource AccentColorN}" Margin="574,24,425,873">
+          
+            <TextBlock.Text>
+                <MultiBinding StringFormat="{}Location: {0}, {1}">
+                    <Binding Path="SelectedForum.City"/>
+                    <Binding Path="SelectedForum.Country"/>
+
+                </MultiBinding>
+            </TextBlock.Text>
+        </TextBlock>
+
+        <Border BorderBrush="{StaticResource AccentColorN}" Background="{StaticResource AccentColorN}" BorderThickness="2" Margin="574,122,666,687" CornerRadius="30">
+            <Grid Margin="0,-3,0,3">
+                <TextBlock FontSize="23" Margin="16,20,530,97" FontWeight="Bold" Foreground="AliceBlue" Text="{Binding Username}"></TextBlock>
+                <TextBlock FontSize="23" Margin="16,42,530,79" Foreground="AliceBlue" Text="{Binding UserType}"></TextBlock>
+                <TextBlock FontSize="16" Margin="16,70,530,56" Foreground="AliceBlue" Text="{Binding SelectedForum.DateString}"></TextBlock>
+                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Margin="123,15,14,15" CornerRadius="30" Background="White">
+                    <Grid>
+                        <TextBlock Text="{Binding SelectedForum.FirstComment}" FontSize="16" Margin="28,10,10,10" TextWrapping="Wrap"></TextBlock>
+                    </Grid>
+                </Border>
+            </Grid>
+
+        </Border>
+
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Margin="574,332,666,462" CornerRadius="30">
+            <Grid Margin="6,6,-18,-2">
+                <TextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="26,18,56,49" TextWrapping="Wrap">
+
+                </TextBox>
+                <Button Content="Post comment" Command="{Binding PostCommentCommand}" Style="{StaticResource ButtonStyleN}" FontSize="16" Width="140" Height="30" Margin="492,144,56,14"/>
+
+            </Grid>
+
+        </Border>
+
+        <ListBox ItemsSource="{Binding ForumComments}" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="680" Margin="574,552,666,21">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <control:CommentCard></control:CommentCard>
+                    </Grid>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+</Page>

@@ -11,16 +11,15 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 using System.Windows.Controls;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
-    public class ProfileForumsViewModel : IObserver
+    public class AllForumsViewModel : IObserver
     {
         public User User { get; set; }
         public Frame Frame { get; set; }
-        public ObservableCollection<ForumViewModel> Forums { get; set;}
+        public ObservableCollection<ForumViewModel> Forums { get; set; }
 
         public ForumViewModel SelectedForum { get; set; }
         public ForumService ForumService { get; set; }
@@ -30,10 +29,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public GuestICommand CreateForumCommand { get; set; }
 
         public GuestICommand<object> ViewForumCommand { get; set; }
-        public GuestICommand<object> CloseForumCommand { get; set; }
-
-        public ForumViewModel NewForum { get; set; }
-        public ProfileForumsViewModel(User user, Frame frame)
+        public AllForumsViewModel(User user, Frame frame)
         {
             User = user;
             Frame = frame;
@@ -41,27 +37,17 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             CreateForumCommand = new GuestICommand(OnCreateForum);
             ViewForumCommand = new GuestICommand<object>(OnViewForum);
-            CloseForumCommand = new GuestICommand<object>(OnCloseForum);
-
-
             // SelectedForum = new ForumViewModel();
             Update();
-            
-        }
 
-        private void OnCloseForum(object sender)
-        {
-            Button button = sender as Button;
-            SelectedForum = button.DataContext as ForumViewModel;
-            Frame.Content = new CloseForumPage(User, Frame, SelectedForum);
         }
 
         private void OnViewForum(object sender)
         {
             Button button = sender as Button;
             SelectedForum = button.DataContext as ForumViewModel;
-            Frame.Content = new ProfileViewForum(User, Frame, SelectedForum);
-            
+            Frame.Content = new ViewForumPage(User, Frame, SelectedForum);
+
         }
 
         private void OnCreateForum()
@@ -72,11 +58,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public void Update()
         {
             Forums.Clear();
-            foreach(Forum forum in ForumService.GetAll())
+            foreach (Forum forum in ForumService.GetAll())
             {
                 ForumService.CalculateGuestHostComments(forum);
-                if(User.Id == forum.UserId)
-                    Forums.Add(new ForumViewModel(forum));
+                Forums.Add(new ForumViewModel(forum));
             }
         }
     }
