@@ -45,7 +45,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         private void OnHelp()
         {
-
+            Frame.Content = new HelpPage();
         }
 
         private void OnReserve()

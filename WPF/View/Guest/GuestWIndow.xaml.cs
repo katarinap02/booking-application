@@ -79,7 +79,7 @@ namespace BookingApp.View
 
         private void HelpClick(object sender, RoutedEventArgs e)
         {
-
+            Main.Content = new HelpPage();
         }
 
         private void DarkTheme_Click(object sender, RoutedEventArgs e)

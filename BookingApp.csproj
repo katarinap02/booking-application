@@ -31,15 +31,20 @@
     <None Remove="Resources\Images\video-camera.png" />
     <None Remove="Resources\Images\view.png" />
     <None Remove="WPF\Resources\Images\arrow-to-line-right.png" />
+    <None Remove="WPF\Resources\Images\cancelHelp.png" />
     <None Remove="WPF\Resources\Images\empty.png" />
+    <None Remove="WPF\Resources\Images\forumHelp.png" />
     <None Remove="WPF\Resources\Images\left_arrow.png" />
     <None Remove="WPF\Resources\Images\lock.png" />
     <None Remove="WPF\Resources\Images\minus.png" />
     <None Remove="WPF\Resources\Images\play_button.png" />
     <None Remove="WPF\Resources\Images\plus.png" />
+    <None Remove="WPF\Resources\Images\rateHelp.png" />
+    <None Remove="WPF\Resources\Images\reserveHelp.png" />
     <None Remove="WPF\Resources\Images\right_arrow.png" />
     <None Remove="WPF\Resources\Images\rome1.jpg" />
     <None Remove="WPF\Resources\Images\search.png" />
+    <None Remove="WPF\Resources\Images\superGuestHelp.png" />
     <None Remove="WPF\Resources\Images\Tokyo1.jpg" />
     <None Remove="WPF\Resources\Images\tokyo_temple.jpg" />
     <None Remove="WPF\Resources\Images\user_white.png" />
@@ -191,7 +196,27 @@
 
     <Resource Include="WPF\Resources\Images\arrow-to-line-right.png" />
 
+    <Resource Include="WPF\Resources\Images\cancelHelp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
+    <Resource Include="WPF\Resources\Images\forumHelp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
     <Resource Include="WPF\Resources\Images\play_button.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
+    <Resource Include="WPF\Resources\Images\rateHelp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
+    <Resource Include="WPF\Resources\Images\reserveHelp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
+    <Resource Include="WPF\Resources\Images\superGuestHelp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
 
