@@ -1,0 +1,29 @@
+﻿<Window x:Class="BookingApp.WPF.View.GuideTestWindows.CalendarGuideWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows"
+        mc:Ignorable="d"
+        Title="Accepting request" Height="470" Width="600" Background="#0A003A" WindowStyle="SingleBorderWindow" WindowStartupLocation="CenterScreen">
+    <Grid Background="#0A003A" Margin="20">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Grid.Row="0" Text="Choose Date for the tour:" Style="{StaticResource GuideTextBlockStyle}"></TextBlock>
+        <Calendar Grid.Row="1" Style="{StaticResource CalendarStyle1}" CalendarButtonStyle="{StaticResource CalendarButtonStyle1}" CalendarDayButtonStyle="{StaticResource CalendarDayButtonStyle1}" CalendarItemStyle="{StaticResource CalendarItemStyle1}"></Calendar>
+        <StackPanel Grid.Row="2" Orientation="Horizontal">
+            <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="Select a time for the tour:  " VerticalAlignment="Center"></TextBlock>
+            <TextBox Style="{StaticResource CustomTextBoxStyle}" Height="20" Width="200" VerticalAlignment="Bottom" 
+                     PreviewTextInput="TimeTextBox_PreviewTextInput" TextChanged="TimeTextBox_TextChanged"></TextBox>
+            <ComboBox x:Name="AmPmComboBox" Width="50" Margin="20 5" Height="25" Style="{StaticResource ModernComboBoxStyle}" VerticalAlignment="Top">
+                <ComboBoxItem>AM</ComboBoxItem>
+                <ComboBoxItem>PM</ComboBoxItem>
+            </ComboBox>
+        </StackPanel>
+        <Button Grid.Row="3" Width="250" Style="{StaticResource generalButton}" Margin="10" Content="Accept request" Height="25"></Button>
+    </Grid>
+</Window>

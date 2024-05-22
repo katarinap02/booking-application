@@ -118,6 +118,11 @@ namespace BookingApp.Application.Services.ReservationServices
             return participants;
         }
 
+        public List<TourParticipant> GetNotJoinedParticipants(int tour_id)
+        {
+            return _tourReservationRepository.GetNotJoinedReservations(tour_id);
+        }
+
         public int GetNumberOfJoinedParticipants(int tour_id)
         {
             List<TourParticipant> tourParticipants = GetJoinedParticipantsByTour(tour_id);

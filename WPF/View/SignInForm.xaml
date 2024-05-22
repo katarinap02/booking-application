@@ -101,6 +101,7 @@
                     FontSize="16"
                     Cursor="Hand"
                     Click="Minimise_Buton_Click"
+                    IsTabStop="False"
                     Foreground="White">
 
                         <Button.Style>
@@ -129,6 +130,7 @@
                         BorderThickness="0"
                         Content="x"
                         FontSize="16"
+                        IsTabStop="False"
                         Cursor="Hand"
                         FontFamily="Monospace"
                         Foreground="White"

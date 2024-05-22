@@ -21,6 +21,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         }
         public StringToNumberViewModel() { }
         public int convertToInt() {
+            if (Number == null || string.IsNullOrEmpty(Number)) { return 0; }
             return Convert.ToInt32(Number);
         }
     }

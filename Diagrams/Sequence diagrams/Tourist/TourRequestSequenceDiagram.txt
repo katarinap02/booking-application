@@ -3,7 +3,6 @@ actor "Guide" as G
 actor "Tourist" as T
 participant SuggestedTourViewModel as STVM
 participant TourRequestService as TRS
-participant TourService as TS
 participant TouristNotificationService as TNS
 participant TouristNotificationRepository as TNR
 participant TourRequestRepository as TRR

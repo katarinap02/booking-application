@@ -5,6 +5,7 @@
     <TargetFramework>net6.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>WPF\Resources\LoginImages\LogoIcon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -173,6 +174,7 @@
     <Content Include="WPF\Resources\LoginImages\key.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="WPF\Resources\LoginImages\LogoIcon.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -181,6 +183,7 @@
     <PackageReference Include="FontAwesome.Sharp" Version="6.3.0" />
     <PackageReference Include="LiveCharts" Version="0.9.7" />
     <PackageReference Include="LiveCharts.WinForms" Version="0.9.7.1" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.77" />
     <PackageReference Include="MVVMLight.Messaging" Version="1.0.0" />
     <PackageReference Include="MvvmLightLibs" Version="5.4.1.1" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />

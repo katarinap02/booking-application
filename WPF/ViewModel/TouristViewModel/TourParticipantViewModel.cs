@@ -48,6 +48,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 {
                     _name = value;
                     OnPropertyChanged(nameof(Name));
+                    OnPropertyChanged(nameof(FullName));
                 }
             }
         }
@@ -62,6 +63,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 {
                     _lastName = value;
                     OnPropertyChanged(nameof(LastName));
+                    OnPropertyChanged(nameof(FullName));
                 }
             }
         }
@@ -80,6 +82,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
+        public string FullName
+        {
+            get { return _name +" "+_lastName;}
+        }
+
         public event PropertyChangedEventHandler? PropertyChanged;
         protected virtual void OnPropertyChanged(string propertyName)
         {
@@ -92,7 +99,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             _name = tourParticipant.Name;
             _id = tourParticipant.Id;
             _lastName = tourParticipant.LastName;
-            _years = tourParticipant.Years;
+            _years = tourParticipant.Years;            
         }
 
         public TourParticipant ToTourParticipant()

@@ -157,6 +157,15 @@ namespace BookingApp.Repository.FeatureRepository
             tour.Status = TourStatus.Active;
             _serializer.ToCSV(FilePath, _tours);
         }
+        
+        public void activateTour(int id, int guide_id)
+        {
+            Tour tour = GetTourById(id);
+            if (tour == null) return;
+            tour.Status = TourStatus.Active;
+            tour.GuideId = guide_id;
+            _serializer.ToCSV(FilePath, _tours);
+        }
 
         public void nextCheckpoint(int id)
         {
