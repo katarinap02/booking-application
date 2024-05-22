@@ -1,6 +1,7 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
@@ -35,7 +36,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ViewForumsCommand = new GuestICommand(OnViewForums);
             ViewProfileCommand = new GuestICommand(OnViewProfile);
             CloseForumCommand = new GuestICommand(OnCloseForum);
-            ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>());
+            ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
         }
 
         private void OnCloseForum()
