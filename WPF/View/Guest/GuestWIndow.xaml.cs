@@ -67,6 +67,7 @@ namespace BookingApp.View
 
         private void ForumsClick(object sender, RoutedEventArgs e)
         {
+            Main.Content = new AllForumsPage(User, Main);
 
         }
 

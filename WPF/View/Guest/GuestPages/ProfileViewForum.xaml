@@ -15,7 +15,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <TextBlock  FontSize="40" FontWeight="Bold" Foreground="{StaticResource AccentColorN}" Margin="314,0,314,732">
+                <TextBlock  FontSize="40" FontWeight="Bold" Foreground="{StaticResource AccentColorN}" Margin="282,0,282,732">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}Location: {0}, {1}">
                             <Binding Path="SelectedForum.City"/>
