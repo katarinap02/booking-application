@@ -1,4 +1,6 @@
-﻿using BookingApp.Domain.Model.Features;
+﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
@@ -21,6 +23,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public GuestICommand ViewForumsCommand { get; set; }
         public GuestICommand ViewProfileCommand { get; set; }
 
+        public GuestICommand CloseForumCommand { get; set; }
+
+        public ForumService ForumService { get; set; }
         public CreateForumSuccessfulViewModel(User user, Frame frame, ForumViewModel newForum) {
 
             User = user;
@@ -29,6 +34,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ViewForumCommand = new GuestICommand(OnViewForum);
             ViewForumsCommand = new GuestICommand(OnViewForums);
             ViewProfileCommand = new GuestICommand(OnViewProfile);
+            CloseForumCommand = new GuestICommand(OnCloseForum);
+            ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>());
+        }
+
+        private void OnCloseForum()
+        {
+            NewForum.IsClosed = true;
+            ForumService.Update(NewForum.ToForum());
+            Frame.Content = new CloseThreadSuccessfulPage(User, Frame, NewForum);
         }
 
         private void OnViewProfile()

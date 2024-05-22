@@ -100,7 +100,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         private bool isClosed;
         public bool IsClosed
         {
-            get { return IsClosed; }
+            get { return isClosed; }
             set
             {
                 if(isClosed != value)
@@ -115,7 +115,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         private bool isVeryUseful;
         public bool IsVeryUseful
         {
-            get { return IsVeryUseful; }
+            get { return isVeryUseful; }
             set
             {
                 if (isVeryUseful != value)

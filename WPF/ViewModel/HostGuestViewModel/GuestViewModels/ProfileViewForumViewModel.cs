@@ -78,12 +78,18 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         private void OnPostComment()
         {
-           ForumComment = new ForumComment();
-            ForumComment = ForumCommentService.CreateComment(User.Id, Comment, SelectedForum.City, SelectedForum.Country, SelectedForum.Id);
-           SelectedForum.Comments.Add(ForumComment.Id);
-           ForumService.Update(SelectedForum.ToForum());
+            if (SelectedForum.IsClosed)
+                MessageBox.Show("This forum is closed");
+            else
+            {
+                ForumComment = new ForumComment();
+                ForumComment = ForumCommentService.CreateComment(User.Id, Comment, SelectedForum.City, SelectedForum.Country, SelectedForum.Id);
+                SelectedForum.Comments.Add(ForumComment.Id);
+                ForumService.Update(SelectedForum.ToForum());
 
-            Update();
+                Update();
+            }
+           
 
 
         }

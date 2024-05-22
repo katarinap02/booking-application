@@ -59,7 +59,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         private bool isSpecial;
         public bool IsSpecial
         {
-            get { return IsSpecial; }
+            get { return isSpecial; }
             set
             {
                 if (isSpecial != value)
@@ -74,7 +74,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         private bool isHost;
         public bool IsHost
         {
-            get { return IsHost; }
+            get { return isHost; }
             set
             {
                 if (isHost != value)
