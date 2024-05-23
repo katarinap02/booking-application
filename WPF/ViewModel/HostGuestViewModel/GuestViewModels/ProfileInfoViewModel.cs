@@ -7,6 +7,7 @@ using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.View.GuestPages;
+using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using System;
@@ -43,6 +44,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         // KOMANDE
         public GuestICommand<object> DelayCommand { get; set; }
         public GuestICommand<object> CancelCommand { get; set; }
+
+        public GuestICommand CreateReportCommand { get; set; }
         public ProfileInfoViewModel(User user, Frame frame)
         {
             Frame = frame;
@@ -57,9 +60,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             TotalReservations = GetTotalReservations(AccommodationReservationService);
             DelayCommand = new GuestICommand<object>(OnDelay, CanDelay);
             CancelCommand = new GuestICommand<object>(OnCancel, CanCancel);
+            CreateReportCommand = new GuestICommand(OnCreateReport);
             CancelCommand.RaiseCanExecuteChanged();
             DelayCommand.RaiseCanExecuteChanged();
           
+        }
+
+        private void OnCreateReport()
+        {
+            Frame.Content = new ReservationReportPage(User, Frame);
         }
 
         private bool CanDelay(object sender)
