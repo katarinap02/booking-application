@@ -1,14 +1,13 @@
-﻿<Page x:Class="BookingApp.View.GuestPages.AccommodationsPage"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:BookingApp.View.GuestPages"
-      xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
-      mc:Ignorable="d" 
-      d:DesignHeight="990" d:DesignWidth="1920"
-      Title="AccommodationsPage">
-    <Page.Resources>
+﻿<UserControl x:Class="BookingApp.View.GuestControls.AccommodationCardMedium"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookingApp.View.GuestControls"
+             mc:Ignorable="d" 
+                          d:DesignHeight="120" d:DesignWidth="570">
+
+    <UserControl.Resources>
         <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
             <DrawingGroup x:Key="calendar_symbol_svgrepo_com_xaml">
                 <DrawingGroup.ClipGeometry>
@@ -121,74 +120,33 @@
             <DrawingImage Drawing="{StaticResource location_sign_svgrepo_com_xaml}" x:Key="Location"/>
         </ResourceDictionary>
 
-    </Page.Resources>
+
+    </UserControl.Resources>
     <Grid>
-        <Image Source="{StaticResource Location}" Height="20" Width="20" Margin="947,125,953,845"/>
-        <TextBlock x:Name="Location" FontSize="20" Text="Location" Margin="976,122,832,831"  Foreground="{StaticResource TextColorN}"/>
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Width="570" Height="120">
+            <Grid Margin="10">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="157,0,88,0" Grid.Row="1" FontWeight="Bold" Foreground="{StaticResource TextColorN}"/>
+                <Image Source="{StaticResource Location}" Height="20" Width="20" Margin="157,37,369,-23" Grid.Row="1"/>
+                <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="184,30,49,-28" Grid.Row="1" Foreground="{StaticResource TextColorN}"/>
 
-        <Image Source="{StaticResource Star}" Height="20" Width="20" Margin="1111,125,789,845"/>
-        <TextBlock x:Name="AccommodationRate" FontSize="20" Text="Rate" Margin="1141,122,712,831" Foreground="{StaticResource TextColorN}"/>
-        <Image Source="{StaticResource Calendar}" Height="20" Width="20" Margin="1245,125,655,845"/>
-        <TextBlock x:Name="AccommodationDays" FontSize="20" Text="Min. number of days" Margin="1276,123,411,831" Foreground="{StaticResource TextColorN}"/>
-        <Image Source="{StaticResource Person}" Height="20" Width="20" Margin="1537,125,363,845"/>
-        <TextBlock x:Name="AccommodationGuests" FontSize="20" Text="Max. number of guests" Margin="1570,123,118,834" Foreground="{StaticResource TextColorN}"/>
-       
-
-
-            <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,162,1082,393">
-            <Grid x:Name="SearchSection">
-                <Label Content="Search accommodations" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="122,10,-122,-10"/>
-                <Label Content="Name:" HorizontalAlignment="Left" Margin="66,89,0,0" VerticalAlignment="Top" Width="74" FontSize="16" RenderTransformOrigin="0.439,1.63"/>
-                <Label Content="City:" HorizontalAlignment="Left" Margin="66,169,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="-8.542,2.786" FontSize="16"/>
-                <Label Content="Type:" HorizontalAlignment="Left" Margin="66,208,0,0" VerticalAlignment="Top" Width="74" FontSize="16"/>
-                <Label Content="Max. guest number:" HorizontalAlignment="Left" Margin="66,250,0,0" VerticalAlignment="Top" Width="160" FontSize="16"/>
-                <Label Content="Minimal number of reservation days:" HorizontalAlignment="Left" Margin="66,287,0,0" VerticalAlignment="Top" Width="266" FontSize="16"/>
-                <TextBox x:Name="txtSearchName" HorizontalAlignment="Left" Margin="382,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118" />
-                <!--<TextBox x:Name="txtSearchCity" HorizontalAlignment="Left" Margin="382,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>-->
-                <ComboBox x:Name="txtSearchCity" HorizontalAlignment="Left" Margin="382,175,0,236" Width="118" Height="20" ItemsSource="{Binding CitiesSearch}"  SelectedItem="{Binding CitySearch, Mode=TwoWay}"/>
-                <TextBox x:Name="txtSearchGuestNumber" HorizontalAlignment="Left" Margin="382,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
-                <TextBox x:Name="txtSearchReservationDays" HorizontalAlignment="Left" Margin="382,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
-                <Button Content="Search" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Width="142" Command="{Binding SearchCommand}" RenderTransformOrigin="-2.474,0.401" Style="{StaticResource ButtonStyleN}" FontSize="20" Height="33"/>
-                <Label FontSize="16" Content="Country:" HorizontalAlignment="Left" Margin="66,129,0,0"  VerticalAlignment="Top" Width="74"/>
-                <!--<TextBox x:Name="txtSearchCountry" HorizontalAlignment="Left" Margin="382,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>-->
-                <ComboBox x:Name="txtSearchCountry" HorizontalAlignment="Left" Margin="382,135,0,276" Width="118" Height="20" ItemsSource="{Binding CountriesSearch}"  SelectedItem="{Binding CountrySearch, Mode=TwoWay}"/>
-                <TextBox x:Name="txtSearchType" HorizontalAlignment="Left" Margin="382,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-
-
-            </Grid>
-        </Border>
-
-        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,618,1082,92">
-            <Grid Margin="0,-2,0,-26">
-                <Label Content="Anywhere / Anytime" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="130,10,130,235"/>
-                <TextBlock TextWrapping="Wrap" FontSize="20" Margin="81,85,93,-51" TextAlignment="Center">
-                    If you wish to see all available accommodations according to your requests, choose below option:
-                </TextBlock>
-                <Button x:Name="AnywhereAnytimeButton" Content="Anywhere/Anytime" Style="{StaticResource ButtonStyleN}" FontSize="20" Margin="170,187,170,44" Height="33" Command="{Binding AnywhereAnytimeCommand}"/>
-            </Grid>
-        </Border>
-
-
-
-        <ListBox x:Name="AccommodationListBox"
-         ScrollViewer.VerticalScrollBarVisibility="Auto"
-         ItemsSource="{Binding Accommodations}" Margin="906,177,134,92" Background="{StaticResource BackgroundColorN}">
-
-            <ListBox.ItemTemplate>
-                <DataTemplate>
+                <Image Source="{StaticResource Star}" Height="20" Width="20" Margin="157,66,369,-52" Grid.Row="1"/>
+                <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{Binding Rate}" Margin="193,64,273,-63" Grid.Row="1" Foreground="{StaticResource TextColorN}"/>
+                <Image Source="{StaticResource Calendar}" Height="20" Width="20" RenderTransformOrigin="0.948,2.773" Margin="220,66,236,-52" Grid.Row="1"/>
+                <TextBlock x:Name="AccommodationDays" FontSize="20" Text="{Binding MinReservationDays}" Margin="290,62,156,-62" Grid.Row="1" Foreground="{StaticResource TextColorN}"/>
+                <Image Source="{StaticResource Person}" Height="20" Width="20" Margin="270,66,107,-52" Grid.Row="1"/>
+                <TextBlock x:Name="AccommodationGuests" FontSize="20" Text="{Binding MaxGuestNumber}" Margin="370,60,10,-57" Grid.Row="1" Foreground="{StaticResource TextColorN}"/>
+                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2"  Margin="10,0,406,-66" Grid.Row="1" Width="130" Height="100">
                     <Grid>
-                        <controls:AccommodationCard Margin="30, 10, 30, 10" Width="821"/>
-                        <Button x:Name="DetailsButton" Content="Details" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Margin="600, 30, 0, 0"  Command="{Binding Path=DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-                        <Button x:Name="ReserveButton" Content="Reserve" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Grid.Row="1" Margin="600, 30, 0, 70" Command="{Binding Path=DataContext.ReserveCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-                       
-
+                        <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="{Binding FirstPicture}"/>
                     </Grid>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
+                </Border>
+            </Grid>
 
-
-
-
-        </ListBox>
+        </Border>
     </Grid>
-</Page>
+</UserControl>
+

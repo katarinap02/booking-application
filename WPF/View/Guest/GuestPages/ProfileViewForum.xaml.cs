@@ -40,6 +40,11 @@ namespace BookingApp.WPF.View.Guest.GuestPages
             SelectedForum = selectedForum;
             ViewModel = new ProfileViewForumViewModel(User, Frame, SelectedForum);
             DataContext = ViewModel;
+
+            if (SelectedForum.IsClosed)
+            { postCommentSection.IsEnabled = false; closedMessage.Visibility = Visibility.Visible; }
+            else
+            { postCommentSection.IsEnabled = true; closedMessage.Visibility = Visibility.Hidden; }
         }
     }
 }

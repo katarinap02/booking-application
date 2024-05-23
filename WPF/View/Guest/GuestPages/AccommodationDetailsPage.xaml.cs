@@ -19,32 +19,22 @@ using System.Windows.Shapes;
 namespace BookingApp.WPF.View.Guest.GuestPages
 {
     /// <summary>
-    /// Interaction logic for ViewForumPage.xaml
+    /// Interaction logic for AccommodationDetailsPage.xaml
     /// </summary>
-    public partial class ViewForumPage : Page
+    public partial class AccommodationDetailsPage : Page
     {
-        public User User { get; set; }
+        public AccommodationViewModel SelectedAccommodation { get; set; }
+        public AccommodationDetailsViewModel ViewModel { get; set; }
         public Frame Frame { get; set; }
-
-        public ProfileViewForumViewModel ViewModel { get; set; }
-
-        public ForumViewModel SelectedForum { get; set; }
-        public ViewForumPage(User user, Frame frame, ForumViewModel selectedForum)
+        public User User { get; set; }
+        public AccommodationDetailsPage(Frame frame, User user, AccommodationViewModel selectedAccommodation)
         {
             InitializeComponent();
-            User = user;
             Frame = frame;
-            SelectedForum = selectedForum;
-            ViewModel = new ProfileViewForumViewModel(User, Frame, SelectedForum);
+            SelectedAccommodation = selectedAccommodation;
+            User = user;
+            ViewModel = new AccommodationDetailsViewModel(Frame, User, SelectedAccommodation);
             DataContext = ViewModel;
-
-            if (SelectedForum.IsClosed)
-            { postCommentSection.IsEnabled = false; closedMessage.Visibility = Visibility.Visible; }
-            else
-            { postCommentSection.IsEnabled = true; closedMessage.Visibility = Visibility.Hidden; }
-
         }
-
-      
     }
 }

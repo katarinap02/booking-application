@@ -13,7 +13,7 @@
                 <TextBlock FontSize="23" Margin="16,42,530,79" Foreground="AliceBlue" Text="{Binding UserType}"></TextBlock>
                 <TextBlock FontSize="16" Margin="16,70,530,56" Foreground="AliceBlue" Text="{Binding DateString}"></TextBlock>
 
-                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Margin="123,15,14,15" CornerRadius="30" Background="White">
+                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Margin="123,15,14,15" CornerRadius="30" Background="LightPink">
                     <Grid>
                         <TextBlock Text="{Binding Comment}" FontSize="16" Margin="28,10,10,10" TextWrapping="Wrap"></TextBlock>
                     </Grid>

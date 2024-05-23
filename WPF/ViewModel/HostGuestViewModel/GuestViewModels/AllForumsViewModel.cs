@@ -29,7 +29,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public GuestICommand CreateForumCommand { get; set; }
 
         public GuestICommand<object> ViewForumCommand { get; set; }
-        public AllForumsViewModel(User user, Frame frame)
+
+        public ComboBox ForumBox { get; set; }
+        public AllForumsViewModel(User user, Frame frame, AllForumsPage page)
         {
             User = user;
             Frame = frame;
@@ -37,6 +39,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             CreateForumCommand = new GuestICommand(OnCreateForum);
             ViewForumCommand = new GuestICommand<object>(OnViewForum);
+            ForumBox = page.forumTypeBox;
             // SelectedForum = new ForumViewModel();
             Update();
 
@@ -58,11 +61,44 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public void Update()
         {
             Forums.Clear();
+            switch (ForumBox.SelectedItem)
+            {
+                case ComboBoxItem pendingItem when pendingItem.Content.ToString() == "All forums":
+                    ShowAllForums(Forums);
+                    break;
+                case ComboBoxItem approvedItem when approvedItem.Content.ToString() == "Your forums":
+                    ShowYourForums(Forums);
+                    break;
+              
+            }
+            
+        }
+
+        private void ShowYourForums(ObservableCollection<ForumViewModel> forums)
+        {
+            foreach (Forum forum in ForumService.GetAll())
+            {
+                if(forum.UserId == User.Id)
+                {
+                    ForumService.CalculateGuestHostComments(forum);
+                    Forums.Add(new ForumViewModel(forum));
+                }
+               
+            }
+        }
+
+        private void ShowAllForums(ObservableCollection<ForumViewModel> forums)
+        {
             foreach (Forum forum in ForumService.GetAll())
             {
                 ForumService.CalculateGuestHostComments(forum);
                 Forums.Add(new ForumViewModel(forum));
             }
+        }
+
+        public void ForumBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Update();
         }
     }
 }
