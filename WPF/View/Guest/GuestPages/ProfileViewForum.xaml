@@ -29,7 +29,7 @@
                         <TextBlock FontSize="23" Margin="16,20,530,97" FontWeight="Bold" Foreground="AliceBlue" Text="{Binding Username}"></TextBlock>
                         <TextBlock FontSize="23" Margin="16,42,530,79" Foreground="AliceBlue" Text="{Binding UserType}"></TextBlock>
                         <TextBlock FontSize="16" Margin="16,70,530,56" Foreground="AliceBlue" Text="{Binding SelectedForum.DateString}"></TextBlock>
-                        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Margin="123,15,14,15" CornerRadius="30" Background="White">
+                        <Border BorderBrush="{StaticResource AccentColorN}"  BorderThickness="2" Margin="123,15,14,15" CornerRadius="30" Background="LightPink">
                             <Grid>
                                 <TextBlock Text="{Binding SelectedForum.FirstComment}" FontSize="16" Margin="28,10,10,10" TextWrapping="Wrap"></TextBlock>
                             </Grid>
@@ -38,7 +38,7 @@
 
                 </Border>
 
-                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Margin="204,238,204,359" CornerRadius="30">
+                <Border BorderBrush="{StaticResource AccentColorN}" Background="{StaticResource AccentColorN}" BorderThickness="2" Margin="204,238,204,359" CornerRadius="30">
                     <Grid>
                         <TextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,18,34,44" TextWrapping="Wrap">
 
