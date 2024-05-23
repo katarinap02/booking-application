@@ -10,6 +10,7 @@ using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using System.Windows;
+using Wpf.Ui.Controls;
 
 namespace BookingApp.Application.Services.FeatureServices
 {
@@ -178,7 +179,11 @@ namespace BookingApp.Application.Services.FeatureServices
             }
         }
 
-        
+        public void ChangeImageOrder(AccommodationViewModel selectedAccommodation)
+        {
+           ChangeListOrder(selectedAccommodation);
+            
 
+        }
     }
 }
