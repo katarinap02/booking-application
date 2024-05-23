@@ -38,16 +38,18 @@
 
                 </Border>
 
-                <Border BorderBrush="{StaticResource AccentColorN}" Background="{StaticResource AccentColorN}" BorderThickness="2" Margin="204,238,204,359" CornerRadius="30">
+                <Border x:Name="postCommentSection" BorderBrush="{StaticResource AccentColorN}" Background="{StaticResource AccentColorN}" BorderThickness="2" Margin="204,238,204,359" CornerRadius="30">
                     <Grid>
                         <TextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,18,34,44" TextWrapping="Wrap">
 
                         </TextBox>
-                        <Button Content="Post comment" Command="{Binding PostCommentCommand}" Style="{StaticResource ButtonStyleN}" FontSize="16" Width="130" Height="30" Margin="484,148,34,4"/>
+                        <Button BorderBrush="LightPink" BorderThickness="3" Content="Post comment" Command="{Binding PostCommentCommand}" Style="{StaticResource ButtonStyleN}" FontSize="16" Width="130" Height="30" Margin="484,148,34,4"/>
 
                     </Grid>
 
                 </Border>
+
+                <TextBlock x:Name="closedMessage" TextAlignment="Center" TextWrapping="Wrap" FontSize="22" Foreground="{StaticResource TextColorN}" FontWeight="Bold" Margin="270,291,262,428">This forum is closed. It is not possible to leave new comments.</TextBlock>
 
                 <ListBox ItemsSource="{Binding ForumComments}" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="680" Margin="190,449,190,10">
                     <ListBox.ItemTemplate>
