@@ -24,7 +24,7 @@
 
         <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2"  Margin="1076,120,212,336">
             <Grid>
-                <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="800" Height="1000" Source="{Binding SelectedAccommodation.FirstPicture}"/>
+                <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="800" Height="1000" Source="{Binding FirstPicture}"/>
             </Grid>
         </Border>
 

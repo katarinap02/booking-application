@@ -6,6 +6,7 @@ using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,7 +16,7 @@ using System.Windows.Controls;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
-    public class AccommodationDetailsViewModel
+    public class AccommodationDetailsViewModel : INotifyPropertyChanged
     {
         public Frame Frame { get; set; }
         public AccommodationViewModel SelectedAccommodation { get; set; }
@@ -27,10 +28,31 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public GuestICommand ReserveCommand { get; set; }
         public AccommodationService AccommodationService { get; set; }
 
-      
 
-     
-        public string FirstPicture { get; set; }
+        private string firstPicture;
+        public string FirstPicture
+        {
+            get { return firstPicture; }
+            set
+            {
+                if (firstPicture != value)
+                {
+
+                    firstPicture = value;
+                    OnPropertyChanged("FirstPicture");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+       
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
         public AccommodationDetailsViewModel(Frame frame, User user, AccommodationViewModel selectedAccommodation)
         {
             Frame = frame;
@@ -39,6 +61,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ChangedPictureCommand = new GuestICommand(ChangePicture);
             ReserveCommand = new GuestICommand(OnReserve);
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
+            FirstPicture = SelectedAccommodation.FirstPicture;
+           
           
         }
 
@@ -47,9 +71,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             if (SelectedAccommodation.NumberOfPictures > 1)
             {
                
-                AccommodationService.ChangeImageOrder(SelectedAccommodation);
-             
-               
+                AccommodationService.ChangeListOrder(SelectedAccommodation);
+                FirstPicture = "../../" + SelectedAccommodation.FirstPicture;
+                
+
+
             }
           
         }

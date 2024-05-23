@@ -174,16 +174,12 @@ namespace BookingApp.Application.Services.FeatureServices
                     acc.Pictures.RemoveAt(0);
                     acc.Pictures.Add(pom);
                     Update(acc);
-                    
+                    accommodation.OnePicture = acc.Pictures[0];
+
                 }
             }
         }
 
-        public void ChangeImageOrder(AccommodationViewModel selectedAccommodation)
-        {
-           ChangeListOrder(selectedAccommodation);
-            
-
-        }
+       
     }
 }
