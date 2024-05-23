@@ -8,7 +8,7 @@
       mc:Ignorable="d" 
            d:DesignHeight="990" d:DesignWidth="1920"
       Title="HomePage">
-   
+
 
     <Grid>
         <Label Content="Forums" FontSize="70" Style="{StaticResource HeaderStyleN}" Margin="310,153,1328,738"/>
@@ -22,14 +22,34 @@ ItemsSource="{Binding Forums}" Background="{StaticResource BackgroundColorN}" Se
                 <DataTemplate>
                     <Grid>
                         <controls:ForumCard></controls:ForumCard>
-                        <Button Content="View forum" Command="{Binding Path=DataContext.ViewForumCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Style="{StaticResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, -40, 0, 0"/>
-                        <Button Content="Close forum"  Style="{StaticResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, 50, 0, 0" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                        <Button Content="View forum" Command="{Binding Path=DataContext.ViewForumCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Style="{StaticResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, -20, 0, 0"/>
+
 
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>
         </ListBox>
 
+        <Border BorderBrush="{StaticResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="200,405,1210,384">
+            <Grid x:Name="SearchSection">
+                <Label Content="Search forums" Style="{StaticResource HeaderStyleN}" FontSize="30" Margin="131,10,151,136"/>
+                <Label Content="City:" HorizontalAlignment="Left" Margin="142,97,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="-8.542,2.786" FontSize="16"/>
+                <!--<TextBox x:Name="txtSearchCity" HorizontalAlignment="Left" Margin="382,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>-->
+                <ComboBox x:Name="txtSearchCity" HorizontalAlignment="Left" Margin="255,103,0,74" Width="118" Height="20" ItemsSource="{Binding CitiesSearch}"  SelectedItem="{Binding CitySearch, Mode=TwoWay}" RenderTransformOrigin="0.458,-0.9"/>
+                <Button Content="Search" HorizontalAlignment="Left" Margin="178,141,0,0" VerticalAlignment="Top" Width="142" Command="{Binding SearchCommand}" RenderTransformOrigin="-2.474,0.401" Style="{StaticResource ButtonStyleN}" FontSize="20" Height="33"/>
+                <Label FontSize="16" Content="Country:" HorizontalAlignment="Left" Margin="141,66,0,0"  VerticalAlignment="Top" Width="74"/>
+                <!--<TextBox x:Name="txtSearchCountry" HorizontalAlignment="Left" Margin="382,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>-->
+                <ComboBox x:Name="txtSearchCountry" HorizontalAlignment="Left" Margin="255,72,0,105" Width="118" Height="20" ItemsSource="{Binding CountriesSearch}"  SelectedItem="{Binding CountrySearch, Mode=TwoWay}"/>
+
+
+            </Grid>
+        </Border>
+        <Label FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="896,108,942,842">Filter</Label>
+        <ComboBox x:Name="forumTypeBox" HorizontalAlignment="Left" Margin="980,112,0,0" VerticalAlignment="Top" Width="148" Height="28"  SelectionChanged="ForumBox_SelectionChanged">
+            <ComboBoxItem Content="All forums" Tag="0"></ComboBoxItem>
+            <ComboBoxItem Content="Your forums" Tag="1"></ComboBoxItem>
+
+        </ComboBox>
 
 
     </Grid>

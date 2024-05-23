@@ -28,7 +28,9 @@ ItemsSource="{Binding Requests}" Background="{StaticResource BackgroundColorN}" 
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <ComboBox x:Name="requestStatusBox" HorizontalAlignment="Left" Margin="30,234,0,0" VerticalAlignment="Top" Width="148" Height="28"  SelectionChanged="RequestStatusBox_SelectionChanged">
+                <Label FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="36,239,930,500" RenderTransformOrigin="-4.944,2.36">Filter</Label>
+
+                <ComboBox x:Name="requestStatusBox" HorizontalAlignment="Left" Margin="123,244,0,0" VerticalAlignment="Top" Width="148" Height="28"  SelectionChanged="RequestStatusBox_SelectionChanged">
                     <ComboBoxItem Content="Pending" Tag="0"></ComboBoxItem>
                     <ComboBoxItem Content="Approved" Tag="1"></ComboBoxItem>
                     <ComboBoxItem Content="Rejected" Tag="2"></ComboBoxItem>

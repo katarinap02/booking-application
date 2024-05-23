@@ -34,8 +34,22 @@ namespace BookingApp.WPF.View.Guest.GuestPages
             InitializeComponent();
             User = user;
             Frame = frame;
-            ViewModel = new AllForumsViewModel(User, Frame);
+            ViewModel = new AllForumsViewModel(User, Frame, this);
             DataContext = ViewModel;
+
+            foreach (ComboBoxItem item in forumTypeBox.Items)
+            {
+                if (item.Content.ToString() == "All forums")
+                {
+                    forumTypeBox.SelectedItem = item;
+                    break;
+                }
+            }
+        }
+
+        public void ForumBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+           ViewModel.ForumBox_SelectionChanged(sender, e);
         }
     }
 }
