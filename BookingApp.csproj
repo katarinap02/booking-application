@@ -38,6 +38,7 @@
     <None Remove="WPF\Resources\Images\left_arrow.png" />
     <None Remove="WPF\Resources\Images\lock.png" />
     <None Remove="WPF\Resources\Images\minus.png" />
+    <None Remove="WPF\Resources\Images\planeComputer.jpg" />
     <None Remove="WPF\Resources\Images\play_button.png" />
     <None Remove="WPF\Resources\Images\plus.png" />
     <None Remove="WPF\Resources\Images\rateHelp.png" />
@@ -204,6 +205,10 @@
     </Resource>
 
     <Resource Include="WPF\Resources\Images\forumHelp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
+    <Resource Include="WPF\Resources\Images\planeComputer.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
 
