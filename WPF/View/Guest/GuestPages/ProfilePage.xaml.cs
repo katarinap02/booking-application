@@ -73,6 +73,11 @@ namespace BookingApp.View.GuestPages
             Profile.Content = new ProfileForumsPage(User, Profile);
         }
 
+        public void Settings_Click(object sender, RoutedEventArgs e)
+        {
+            Profile.Content = new SettingsPage(User, Profile);
+        }
+
 
 
     }
