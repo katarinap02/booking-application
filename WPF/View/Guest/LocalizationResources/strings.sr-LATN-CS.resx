@@ -201,8 +201,14 @@
   <data name="DayNumber" xml:space="preserve">
     <value>Broj dana</value>
   </data>
+  <data name="DelayRequest" xml:space="preserve">
+    <value>Zahtev za pomeranje</value>
+  </data>
   <data name="DelaySuccess" xml:space="preserve">
     <value>Zahtev za pomeranje rezervacije je uspešno poslat.</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>detalji</value>
   </data>
   <data name="Developers" xml:space="preserve">
     <value>Developeri</value>
