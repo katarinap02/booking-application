@@ -50,6 +50,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public MyICommand<AccommodationViewModel> NavigateToStatisticPageCommand { get; set; }
 
+        public MyICommand<AccommodationViewModel> CloseAccommodation { get; set; }
+
         public MyICommand<AccommodationViewModel> ChangedPictureCommand { get; set; }
 
         public MyICommand<AccommodationViewModel> RegisterCommand { get; set; }
@@ -90,7 +92,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             this.NavService.Navigate(page);
         }
 
-
+        private void CloseFunction(AccommodationViewModel acc)
+        {
+            accommodationService.CloseAccommodation(acc.Id);
+            Update();
+        }
         private bool CanExecute_NavigateCommand(object obj)
         {
             return true;
@@ -116,7 +122,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 accommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
                 MostPopular = new AccommodationViewModel(accommodationReservationService.GetMostPopularLocation(host.Id));
                 LeastPopular = new AccommodationViewModel(accommodationReservationService.GetLeastPopularLocation(host.Id));
-                Update();
+                CloseAccommodation = new MyICommand<AccommodationViewModel>(CloseFunction);
+            Update();
 
          }
 
@@ -130,12 +137,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         }
 
         public void Update()
-          {
-                Accommodations.Clear();
-                foreach (Accommodation accommodation in accommodationService.GetAll())
-                {
-                
-                if (accommodation.HostId == host.Id && accommodation.Name.ToLower().Contains(menuViewModel.SearchHost.ToLower())) 
+        {
+            Accommodations.Clear();
+            foreach (Accommodation accommodation in accommodationService.GetAll())
+            {
+
+                if (accommodation.HostId == host.Id && !accommodation.ClosedAccommodation && accommodation.Name.ToLower().Contains(menuViewModel.SearchHost.ToLower())) 
                     {
                     AccommodationViewModel ac = new AccommodationViewModel(accommodation);
                     doPopular(ac);

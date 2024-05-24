@@ -248,7 +248,7 @@
                                             <DataTrigger Binding="{Binding IsLeastPopular}" Value="True">
                                                 <Setter Property="Content">
                                                     <Setter.Value>
-                                                        <Button  Content="X" Width="20"  Style="{StaticResource HostXButtonStyle}" Height="20" />
+                                                            <Button  Command="{Binding DataContext.CloseAccommodation, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" Content="X" Width="20"  Style="{StaticResource HostXButtonStyle}" Height="20" />
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
