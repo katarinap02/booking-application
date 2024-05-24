@@ -201,8 +201,14 @@
   <data name="DayNumber" xml:space="preserve">
     <value>Number of days</value>
   </data>
+  <data name="DelayRequest" xml:space="preserve">
+    <value>Delay request</value>
+  </data>
   <data name="DelaySuccess" xml:space="preserve">
     <value>Reservation delay request is successfully sent.</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
   </data>
   <data name="Developers" xml:space="preserve">
     <value>Developers</value>
@@ -267,11 +273,11 @@
   <data name="LogOut" xml:space="preserve">
     <value>Log out</value>
   </data>
+  <data name="MaxGuestNumber" xml:space="preserve">
+    <value>Max. number of guests</value>
+  </data>
   <data name="MinDayNumber" xml:space="preserve">
     <value>Min. number of days</value>
-  </data>
-  <data name="MinGuestNumber" xml:space="preserve">
-    <value>Min. number of guests</value>
   </data>
   <data name="NewPass" xml:space="preserve">
     <value>New password</value>
