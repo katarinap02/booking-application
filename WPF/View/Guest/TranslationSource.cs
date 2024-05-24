@@ -3,7 +3,7 @@ using System.Globalization;
 using System.Resources;
 using System.Windows.Data;
 
-namespace MenuNavigation
+namespace BookingApp
 {
     class TranslationSource : INotifyPropertyChanged
     {

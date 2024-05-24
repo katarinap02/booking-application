@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View"
+        xmlns:ns="clr-namespace:BookingApp"
         mc:Ignorable="d"
         Title="GuestWindow" Height="1080" Width="1920"
         WindowStartupLocation="CenterScreen" Background="{DynamicResource BackgroundColorN}">
@@ -43,12 +44,12 @@
                     <Grid>
                         <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
 
-                            <Button x:Name="HomeButton" Content="Home" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HomeClick"/>
-                            <Button Content="Profile" Width="150" Style="{DynamicResource ButtonStyleN}" Click="ProfileClick"/>
-                            <Button Content="Accommodations" Width="280" Style="{DynamicResource ButtonStyleN}" Click="AccommodationsClick"/>
-                            <Button Content="Forums" Width="150" Style="{DynamicResource ButtonStyleN}" Click="ForumsClick"/>
-                            <Button Content="About" Width="150" Style="{DynamicResource ButtonStyleN}" Click="AboutClick"/>
-                            <Button Content="Help" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HelpClick"/>
+                            <Button x:Name="HomeButton" Content="{ns:Loc Home}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HomeClick"/>
+                            <Button Content="{ns:Loc Profile}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="ProfileClick"/>
+                            <Button Content="{ns:Loc Accommodations}" Width="280" Style="{DynamicResource ButtonStyleN}" Click="AccommodationsClick"/>
+                            <Button Content="{ns:Loc Forums}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="ForumsClick"/>
+                            <Button Content="{ns:Loc About}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="AboutClick"/>
+                            <Button Content="{ns:Loc Help}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HelpClick"/>
 
                         </StackPanel>
                         <Button Content="Log out" Style="{DynamicResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1813,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105" Click="LogOut_Click"/>

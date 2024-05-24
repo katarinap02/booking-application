@@ -19,6 +19,7 @@ using System.Windows.Shapes;
 using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.View.Guest.GuestPages;
 using System.Windows.Controls.DataVisualization;
+using BookingApp.WPF.ViewModel.Commands;
 
 namespace BookingApp.View
 {
@@ -27,7 +28,18 @@ namespace BookingApp.View
     {
       
         public User User { get; set; }
-        
+
+        private string currentLanguage;
+        public string CurrentLanguage
+        {
+            get { return currentLanguage; }
+            set
+            {
+                currentLanguage = value;
+            }
+        }
+
+        public GuestICommand SwitchLanguageCommand { get; set; }
         public GuestWindow(User user)
         {
             InitializeComponent();
@@ -36,11 +48,24 @@ namespace BookingApp.View
             Main.Content = new HomePage(User, Main);
             Main.DataContext = this;
             SetTheme(new Uri("/Styles/GuestUIdictionaryLight.xaml", UriKind.Relative));
+            this.SwitchLanguageCommand = new GuestICommand(OnSwitchLanguage);
 
 
         }
 
-       
+        private void OnSwitchLanguage()
+        {
+            var app = System.Windows.Application.Current;
+            if (CurrentLanguage.Equals("en-US"))
+            {
+                CurrentLanguage = "sr-LATN";
+            }
+            else
+            {
+                CurrentLanguage = "en-US";
+            }
+            //app.ChangeLanguage(CurrentLanguage);
+        }
 
         private void HomeClick(object sender, RoutedEventArgs e)
         {

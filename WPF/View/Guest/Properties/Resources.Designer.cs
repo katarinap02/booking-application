@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace MenuNavigation.Properties
+namespace BookingApp.Properties
 {
     using System;
 
