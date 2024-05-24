@@ -76,11 +76,10 @@
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
                 <RowDefinition Height="40" />
+                <RowDefinition Height="50" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="30" />
-                <RowDefinition Height="20" />
                 <RowDefinition Height="30" />
-                <RowDefinition Height="20" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Label
@@ -112,40 +111,41 @@
                 </TextBlock>
             </StackPanel>
             <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="5 0 0 0">
-                <fa:IconImage Icon="Bell" Foreground="#1A1A1A" Height="25" HorizontalAlignment="Left" Margin="5, 0, 0, 0"/>
+                <fa:IconImage  Icon="Bell" Foreground="#1A1A1A" Height="25" HorizontalAlignment="Left" Margin="5, 0, 0, 0"/>
                 <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">
         <Hyperlink Style="{StaticResource HyperlinkStyle}"  Command="{Binding NavigateToRateGuestPageCommand}" >
             Rate guest
         </Hyperlink>
                 </TextBlock>
             </StackPanel>
+            <StackPanel Orientation="Horizontal" Grid.Row="4" Margin="5 0 0 0">
+                <fa:IconImage Icon="Book" Foreground="#1A1A1A" Height="25" HorizontalAlignment="Left" Margin="5, 0, 0, 0"/>
+                <TextBlock VerticalAlignment="Center" MaxWidth="270" TextWrapping="Wrap" Margin="10 0 0 0">
+                <Hyperlink Style="{StaticResource HyperlinkStyle}"  Command="{Binding RegisterCommand}"
+                CommandParameter="{Binding MostPopular}" >
+                    Register accommodation on most popular location
+                </Hyperlink>
+                </TextBlock>
+            </StackPanel>
             <Label
                 x:Name="LocationLabel"
-                Grid.Row="4"
+                Grid.Row="5"
                 VerticalAlignment="Bottom"
                 Content="Locations:"
                 Style="{StaticResource LableStyleHost}"
                 FontSize="18"
                 Margin="5 0 0 0"
                  />
-            <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="5 0 0 0">
+            <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/red_dot.png" Width="20" Height="20"/>
                 <TextBlock Text="most popular:"  VerticalAlignment="Center" FontSize="15" Margin="6,0,0,0" />
                 <TextBlock x:Name="PopularTextBox"  Text="{Binding MostPopular.City}" Width="93" FontSize="15" Height="20" Margin="10 0 0 0"  />
             </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="5 0 0 0">
-                <Image Source="../../Resources/Images/down_right_arrow.png" Width="20" Height="25"/>
-                <Button Content="register accommodation" Style="{StaticResource ButtonStyleWindowHostLocation}" Command="{Binding RegisterCommand}"
-CommandParameter="{Binding MostPopular}" VerticalAlignment="Center" Margin="5,0,0,0" />
-            </StackPanel>
+
             <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="5 0 0 0">
                 <Image Source="../../Resources/Images/blue_square.png" Width="18" Height="18"/>
                 <TextBlock Text="least popular:"  VerticalAlignment="Center" FontSize="15" Margin="7,0,0,0" />
                 <TextBlock x:Name="LeastPopularTextBox" Text="{Binding LeastPopular.City}" Width="93" Height="20" FontSize="15" Margin="10 0 0 0" />
-            </StackPanel>
-            <StackPanel Orientation="Horizontal" Grid.Row="8" Margin="5 0 0 0">
-                <Image Source="../../Resources/Images/down_right_arrow.png" Width="20" Height="25"/>
-                <Button Content="close (selected) accommodation" Style="{StaticResource ButtonStyleWindowHostLocation}" FontSize="15" VerticalAlignment="Center" Margin="5,0,0,0" />
             </StackPanel>
         </Grid>
 

@@ -202,7 +202,6 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             EndDateRange = new DateTime(2024, 1, 2);
             IsPossible = false;
             duration = 1;
-
         }
 
         public RenovationViewModel(Renovation ra)
