@@ -555,7 +555,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             LoadCountriesFromCSV();
             LoadLanguagesFromCSV();
-
+            
+            
             SelectedStartDate = DateTime.Now.AddDays(3);
             Age = 1;
             ParticipantCount = 1;

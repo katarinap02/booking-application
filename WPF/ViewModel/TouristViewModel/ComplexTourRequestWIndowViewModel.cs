@@ -15,9 +15,9 @@ using System.Windows.Input;
 
 namespace BookingApp.WPF.ViewModel.TouristViewModel
 {
-    public class ComplexTourRequestWIndowViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
+    public class ComplexTourRequestWindowViewModel : INotifyPropertyChanged, INotifyDataErrorInfo
     {
-        private readonly ComplexTourRequest _complexTourRequestServce;
+        private readonly ComplexTourRequestService _complexTourRequestService;
 
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
@@ -118,9 +118,14 @@ namespace BookingApp.WPF.ViewModel.TouristViewModel
 
         }
 
-        public ComplexTourRequestWIndowViewModel()
+        public void InitializeWindow()
         {
-            _complexTourRequestServce = new ComplexTourRequestService(Injector.Injector.CreateInstance<IComplexTourRequestRepository>());
+
+        }
+
+        public ComplexTourRequestWindowViewModel()
+        {
+            _complexTourRequestService = new ComplexTourRequestService(Injector.Injector.CreateInstance<IComplexTourRequestRepository>());
             TourRequests = new ObservableCollection<TourRequestWindowViewModel>();
         }
 
