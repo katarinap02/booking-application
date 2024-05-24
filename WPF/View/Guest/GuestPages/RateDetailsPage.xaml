@@ -10,12 +10,12 @@
       Title="ProfileInfo">
 
     <Grid>
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
-                <Button Content="Back" Style="{StaticResource ButtonStyleN}" FontSize="18" Width="70" Height="30" Margin="10,10,980,751" Command="{Binding BackCommand}" RenderTransformOrigin="0.678,-0.34"/>
+                <Button Content="Back" Style="{DynamicResource ButtonStyleN}" FontSize="18" Width="70" Height="30" Margin="10,10,980,751" Command="{Binding BackCommand}" RenderTransformOrigin="0.678,-0.34"/>
 
-                <Label Content="Reservation: " FontSize="40" Width="250" Height="80" Margin="210,44,600,667" Style="{StaticResource HeaderStyleN}"/>
-                <Label Content="{Binding DateRange}" FontSize="40" Height="80" Margin="465,44,29,667" Style="{StaticResource HeaderStyleN}"/>
+                <Label Content="Reservation: " FontSize="40" Width="250" Height="80" Margin="210,44,600,667" Style="{DynamicResource HeaderStyleN}"/>
+                <Label Content="{Binding DateRange}" FontSize="40" Height="80" Margin="465,44,29,667" Style="{DynamicResource HeaderStyleN}"/>
                 <TextBlock FontSize="30" Height="80" TextAlignment="Center" Margin="10,111,-10,600" FontWeight="Bold">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} has rated you: ">
@@ -43,8 +43,8 @@
                     </TextBlock.Text>
                 </TextBlock>
 
-                <Label Content="Comment by host: " FontSize="35" Height="80" Margin="363,411,363,300" Style="{StaticResource HeaderStyleN}"/>
-                <Border Margin="225,491,225,57" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
+                <Label Content="Comment by host: " FontSize="35" Height="80" Margin="363,411,363,300" Style="{DynamicResource HeaderStyleN}"/>
+                <Border Margin="225,491,225,57" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
                     <Grid>
                         <TextBlock x:Name="commentTxtBlock" FontSize="20" Text="{Binding SelectedRate.AdditionalComment}" TextWrapping="Wrap" Margin="10,10,0,0"/>
                     </Grid>

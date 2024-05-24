@@ -15,8 +15,10 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+
 using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.View.Guest.GuestPages;
+using System.Windows.Controls.DataVisualization;
 
 namespace BookingApp.View
 {
@@ -33,8 +35,9 @@ namespace BookingApp.View
             this.User = user;
             Main.Content = new HomePage(User, Main);
             Main.DataContext = this;
-          
-            
+            SetTheme(new Uri("/Styles/GuestUIdictionaryLight.xaml", UriKind.Relative));
+
+
         }
 
        
@@ -65,6 +68,37 @@ namespace BookingApp.View
            NotificationFrame.Visibility = Visibility.Collapsed;
         }
 
+        private void ThemeToggleButton_Checked(object sender, RoutedEventArgs e)
+        {
+            SetTheme(new Uri("/Styles/GuestUIdictionaryDark.xaml", UriKind.Relative));
+        }
+
+        private void ThemeToggleButton_Unchecked(object sender, RoutedEventArgs e)
+        {
+            SetTheme(new Uri("/Styles/GuestUIdictionaryLight.xaml", UriKind.Relative));
+        }
+
+        private void SetTheme(Uri themeUri)
+        {
+
+            for (int i = 0; i < System.Windows.Application.Current.Resources.MergedDictionaries.Count; i++)
+            {
+                if (System.Windows.Application.Current.Resources.MergedDictionaries[i].Source.ToString() == "/Styles/GuestUIdictionaryDark.xaml" || System.Windows.Application.Current.Resources.MergedDictionaries[i].Source.ToString() == "/Styles/GuestUIdictionaryLight.xaml")
+                {
+
+                    System.Windows.Application.Current.Resources.MergedDictionaries.Remove(System.Windows.Application.Current.Resources.MergedDictionaries[i]);
+                   
+                
+                }
+            }
+
+            
+            var dict = new ResourceDictionary { Source = themeUri };
+            System.Windows.Application.Current.Resources.MergedDictionaries.Add(dict);
+      
+          
+            
+        }
         private void ForumsClick(object sender, RoutedEventArgs e)
         {
             Main.Content = new AllForumsPage(User, Main);

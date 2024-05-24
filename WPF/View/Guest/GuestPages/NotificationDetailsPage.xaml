@@ -10,25 +10,25 @@
       Title="ProfileInfo">
 
     <Grid>
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
-                <Button Content="Back" Style="{StaticResource ButtonStyleN}" FontSize="18" Width="70" Height="30" Margin="10,10,980,751" Command="{Binding BackCommand}" RenderTransformOrigin="0.678,-0.34"/>
-                <Label x:Name="requestHeader" Style="{StaticResource HeaderStyleN}" Content="{Binding RequestHeader}" FontSize="40" Margin="300, 10, 0, 0"></Label>
-                <Label Content="Accommodation" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="160,174,638,573"/>
-                <Label Content="Host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="240,396,716,351"/>
-                <Border Width="500" Height="80" Margin="0,445,508,266" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
-                    <Label Content="{Binding HostUsername}" FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="59,-2,63,2"/>
+                <Button Content="Back" Style="{DynamicResource ButtonStyleN}" FontSize="18" Width="70" Height="30" Margin="10,10,980,751" Command="{Binding BackCommand}" RenderTransformOrigin="0.678,-0.34"/>
+                <Label x:Name="requestHeader" Style="{DynamicResource HeaderStyleN}" Content="{Binding RequestHeader}" FontSize="40" Margin="300, 10, 0, 0"></Label>
+                <Label Content="Accommodation" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="160,174,638,573"/>
+                <Label Content="Host" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="240,396,716,351"/>
+                <Border Width="500" Height="80" Margin="0,445,508,266" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
+                    <Label Content="{Binding HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="59,-2,63,2"/>
                 </Border>
 
                 <controls:AccommodationCardSmaller DataContext="{Binding Accommodation}" Width="500" Margin="0,-94,508,105"></controls:AccommodationCardSmaller>
-                <Label Content="Comment by host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="150,554,638,193"/>
-                <Border Width="500" Margin="0,598,508,33" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
+                <Label Content="Comment by host" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="150,554,638,193"/>
+                <Border Width="500" Margin="0,598,508,33" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
                     <Grid>
                         <TextBlock x:Name="commentTxtBlock" FontSize="20" Text="{Binding Comment}" TextWrapping="Wrap" Margin="10,10,0,0"/>
                     </Grid>
                 </Border>
-                <Label Content="Request details" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="696,165,108,582"/>
-                <Border Margin="540,216,10,266" Width="500" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
+                <Label Content="Request details" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="696,165,108,582"/>
+                <Border Margin="540,216,10,266" Width="500" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
                     <Grid>
                         <TextBlock TextWrapping="Wrap" Margin="34,79,-84,104" FontSize="22">Previous dates:<LineBreak/>New dates:<LineBreak/>Number of peple:<LineBreak/>Number of days:<LineBreak/></TextBlock>
                         <Label FontSize="22" Content="{Binding OldDateRange}" Margin="214,74,6,189"/>

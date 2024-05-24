@@ -36,7 +36,7 @@
                     </GeometryDrawing>
                 </DrawingGroup>
             </DrawingGroup>
-            <DrawingImage Drawing="{StaticResource Layer_1}" x:Key="di_Layer_1"/>
+            <DrawingImage Drawing="{DynamicResource Layer_1}" x:Key="di_Layer_1"/>
         </ResourceDictionary>
 
     </Page.Resources>
@@ -62,10 +62,10 @@
         <TextBlock FontStyle="Italic" TextWrapping="Wrap" FontSize="23" TextAlignment="Center" Margin="601,497,574,369">Find your perfect accommodation and reserve it with ease, whether you're planning a vacation, a business trip, or a spontaneous getaway. We make booking accommodations simple, so you can focus on making memories.</TextBlock>
         <Label Content="Your adventure begins here." FontStyle="Italic" FontWeight="Bold" FontSize="20" Margin="834,594,806,344"/>
         <Label Content="You are logged in as a guest." HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Oblique" Height="80" Margin="766,446,0,0" Width="408" FontSize="30"/>
-        <Button Content="Reserve" HorizontalAlignment="Left" Margin="648,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{StaticResource ButtonStyleN}" Command="{Binding ReserveCommand}"/>
-        <Button Content="About" HorizontalAlignment="Center" Margin="0,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{StaticResource ButtonStyleN}" Command="{Binding AboutCommand}" RenderTransformOrigin="0.659,2.62"/>
-        <Button Content="Help" HorizontalAlignment="Left" Margin="1127,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{StaticResource ButtonStyleN}" Command="{Binding HelpCommand}"/>
-        <Image Source="{StaticResource di_Layer_1}" Margin="837,232,811,632" />
+        <Button Content="Reserve" HorizontalAlignment="Left" Margin="648,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{DynamicResource ButtonStyleN}" Command="{Binding ReserveCommand}"/>
+        <Button Content="About" HorizontalAlignment="Center" Margin="0,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{DynamicResource ButtonStyleN}" Command="{Binding AboutCommand}" RenderTransformOrigin="0.659,2.62"/>
+        <Button Content="Help" HorizontalAlignment="Left" Margin="1127,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{DynamicResource ButtonStyleN}" Command="{Binding HelpCommand}"/>
+        <Image Source="{DynamicResource di_Layer_1}" Margin="837,232,811,632" />
     </Grid>
 
 </Page>

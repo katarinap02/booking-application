@@ -9,12 +9,12 @@
       Title="AboutPage">
 
     <Grid>
-        <Label FontSize="40" Style="{StaticResource HeaderStyleN}" Margin="260,140,-260,-140">About the app</Label>
+        <Label FontSize="40" Style="{DynamicResource HeaderStyleN}" Margin="260,140,-260,-140">About the app</Label>
         <TextBlock TextWrapping="Wrap" Margin="260,194,1106,703" FontSize="20" TextAlignment="Justify">
             Welcome to our booking app, where simplicity meets satisfaction. We've simplified the reservation process, ensuring your journey from browsing to booking is effortless.
             
         </TextBlock>
-        <Label FontSize="30" Style="{StaticResource HeaderStyleN}" Margin="260,385,-260,-385" Content="Developers"/>
+        <Label FontSize="30" Style="{DynamicResource HeaderStyleN}" Margin="260,385,-260,-385" Content="Developers"/>
         <TextBlock FontSize="20" Margin="260,445,-250,-445" TextWrapping="Wrap">
     <Run Text="• Katarina Petrovic, RA 17/2021"/>
     <LineBreak/>
@@ -30,7 +30,7 @@
 
         </TextBlock>
         <TextBlock TextWrapping="Wrap" Margin="260,287,1106,610" FontSize="20" TextAlignment="Justify"><Run Text="Discover a wide range of accommodations tailored to your preferences and budget, and book with confidence. Our user-friendly interface makes finding the perfect place easy."/></TextBlock>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2"  Margin="1079,246,303,346">
+        <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="1079,246,303,346">
             <Grid>
                 <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="400" Source="../../../Resources/Images/planeComputer.jpg"/>
             </Grid>
