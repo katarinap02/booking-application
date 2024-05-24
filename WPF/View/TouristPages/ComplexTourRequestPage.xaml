@@ -23,10 +23,10 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="20"/>
-            <RowDefinition Height="40"/>
+            <RowDefinition Height="50"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
@@ -46,8 +46,8 @@
                             TextAlignment="Justify"
                             HorizontalAlignment="Left"
                             Width="80"
-                            Height="30"
-                            FontSize="18"
+                            Height="35"
+                            FontSize="20"
                             PreviewTextInput="Integer_PreviewTextInput"/>
         <Label Content="Name of complex tour:"
                Grid.Column="1"
@@ -61,7 +61,8 @@
                  Grid.ColumnSpan="2"
                  HorizontalAlignment="Left"
                  Width="120"
-                 Height="25"/>
+                 FontSize="20"
+                 Height="35"/>
         <Button Style="{StaticResource EnlargeButtonStyle1}"
                 Grid.Row="4"
                 Grid.Column="1"

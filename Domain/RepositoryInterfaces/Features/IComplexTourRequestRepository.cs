@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BookingApp.Domain.RepositoryInterfaces.Features
 {
-    interface IComplexTourRequestRepository
+    public interface IComplexTourRequestRepository
     {
         List<ComplexTourRequest> GetAll();
         List<ComplexTourRequest> GetAllPending();
