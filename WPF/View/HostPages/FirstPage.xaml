@@ -137,13 +137,15 @@
                 Margin="5 0 0 0"
                  />
             <StackPanel Orientation="Horizontal" Grid.Row="6" Margin="5 0 0 0">
-                <Image Source="../../Resources/Images/red_dot.png" Width="20" Height="20"/>
+                <fa:IconImage Icon="Crown" Foreground="DarkBlue" Height="20" Width="20" HorizontalAlignment="Left" Margin="5 0 0 0"/>
+                
+                
                 <TextBlock Text="most popular:"  VerticalAlignment="Center" FontSize="15" Margin="6,0,0,0" />
                 <TextBlock x:Name="PopularTextBox"  Text="{Binding MostPopular.City}" Width="93" FontSize="15" Height="20" Margin="10 0 0 0"  />
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Grid.Row="7" Margin="5 0 0 0">
-                <Image Source="../../Resources/Images/blue_square.png" Width="18" Height="18"/>
+                <Button  Content="X" Width="20" Cursor="Arrow" Style="{StaticResource HostXButtonStyle}" Height="20" Margin="5 0 0 0"/>
                 <TextBlock Text="least popular:"  VerticalAlignment="Center" FontSize="15" Margin="7,0,0,0" />
                 <TextBlock x:Name="LeastPopularTextBox" Text="{Binding LeastPopular.City}" Width="93" Height="20" FontSize="15" Margin="10 0 0 0" />
             </StackPanel>
@@ -194,6 +196,7 @@
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                             </Grid.RowDefinitions>
+                            
                             <StackPanel Grid.Row="0" Grid.RowSpan="7" Grid.Column="0">
                             <Image
                                 Height="150"
@@ -224,18 +227,43 @@
                                     </Button>
                                 </StackPanel>
                             </StackPanel>
-                            <TextBlock
-                        Grid.Row="0"
-                        Grid.Column="1"
+                            <StackPanel Grid.Column="1" Grid.Row="0"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Orientation="Horizontal" >
+                            <TextBlock   
                         Margin="5,10,5,5"
                         FontSize="20"
                         FontFamily="Comic Sans MS"
                         FontWeight="Bold"
-                        Text="{Binding Name}"
-                        HorizontalAlignment="Center"
-                                VerticalAlignment="Bottom">
+                        Text="{Binding Name}">
 
                             </TextBlock>
+                            <ContentControl  Margin="7 10 0 2" >
+                                <ContentControl.Style>
+                                    <Style TargetType="ContentControl">
+                                        <Setter Property="Content">
+                                            <Setter.Value>
+                                                <Image Source="{x:Null}"/>
+                                            </Setter.Value>
+                                        </Setter>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding IsLeastPopular}" Value="True">
+                                                <Setter Property="Content">
+                                                    <Setter.Value>
+                                                        <Button  Content="X" Width="20"  Style="{StaticResource HostXButtonStyle}" Height="20" />
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding IsMostPopular}" Value="True">
+                                                <Setter Property="Content">
+                                                    <Setter.Value>
+                                                        <fa:IconImage Icon="Crown" Foreground="DarkBlue" Height="20" Width="20" HorizontalAlignment="Left" Margin="5, 0, 0, 0"/>
+                                                    </Setter.Value>
+                                                </Setter>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </ContentControl.Style>
+                            </ContentControl>
+                            </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="15 0 0 0">
                                 <Label Content="id:" FontSize="13" VerticalAlignment="Center" />
                                 <TextBlock FontWeight="Bold"
@@ -266,6 +294,9 @@
                                     Text="{Binding Country}" 
                                      Style="{StaticResource TextBlockStyleHost}"
                                     VerticalAlignment="Center"/>
+                                
+
+
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="1" Margin="15 0 0 0">
                                 <Label Content="max guests:" FontSize="13" VerticalAlignment="Center" />
@@ -292,7 +323,7 @@
                                     VerticalAlignment="Center"/>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="0" Margin="0 0 5 0" Grid.Column="2">
-                                <TextBlock VerticalAlignment="Center"  Style="{StaticResource TextBlockStyleHost}"  HorizontalAlignment="Right" Margin="10 0 0 0">
+                                <TextBlock VerticalAlignment="Bottom"  Style="{StaticResource TextBlockStyleHost}"  HorizontalAlignment="Right" Margin="10 0 0 7">
                                     <Hyperlink Style="{StaticResource HyperlinkStyle}" Command="{Binding DataContext.NavigateToStatisticPageCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding}" >
                                         statistic
                                     </Hyperlink>

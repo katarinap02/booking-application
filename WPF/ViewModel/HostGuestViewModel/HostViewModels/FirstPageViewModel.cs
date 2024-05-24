@@ -134,14 +134,29 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 Accommodations.Clear();
                 foreach (Accommodation accommodation in accommodationService.GetAll())
                 {
+                
                 if (accommodation.HostId == host.Id && accommodation.Name.ToLower().Contains(menuViewModel.SearchHost.ToLower())) 
                     {
-                        Accommodations.Add(new AccommodationViewModel(accommodation));
+                    AccommodationViewModel ac = new AccommodationViewModel(accommodation);
+                    doPopular(ac);
+                    Accommodations.Add(ac);
                     }
 
                 }
                 
           }
+
+        private void doPopular(AccommodationViewModel acc)
+        {
+            if(acc.City.Equals(MostPopular.City))
+            {
+                acc.IsMostPopular = true;
+            }
+            if(acc.City.Equals(LeastPopular.City))
+            {
+                acc.IsLeastPopular = true;
+            }
+        }
 
         private void CloseMenu()
         {
