@@ -38,33 +38,40 @@
     <Grid>
         <Viewbox Stretch="Uniform">
             <Grid Margin="10,0,0,0">
-                <Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="1929" Fill="{DynamicResource AccentColorN}" Margin="-9,0,0,0"/>
+                <!--<Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="1929" Fill="{DynamicResource AccentColorN}" Margin="-9,0,0,0"/>-->
+                <Border Height="50" BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" Background="{DynamicResource AccentColorN}" Margin="-10,-9,0,991">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
 
-                <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
-                    <Button x:Name="HomeButton" Content="Home" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HomeClick"/>
-                    <Button Content="Profile" Width="150" Style="{DynamicResource ButtonStyleN}" Click="ProfileClick"/>
-                    <Button Content="Accommodations" Width="280" Style="{DynamicResource ButtonStyleN}" Click="AccommodationsClick"/>
-                    <Button Content="Forums" Width="150" Style="{DynamicResource ButtonStyleN}" Click="ForumsClick"/>
-                    <Button Content="About" Width="150" Style="{DynamicResource ButtonStyleN}" Click="AboutClick"/>
-                    <Button Content="Help" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HelpClick"/>
+                            <Button x:Name="HomeButton" Content="Home" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HomeClick"/>
+                            <Button Content="Profile" Width="150" Style="{DynamicResource ButtonStyleN}" Click="ProfileClick"/>
+                            <Button Content="Accommodations" Width="280" Style="{DynamicResource ButtonStyleN}" Click="AccommodationsClick"/>
+                            <Button Content="Forums" Width="150" Style="{DynamicResource ButtonStyleN}" Click="ForumsClick"/>
+                            <Button Content="About" Width="150" Style="{DynamicResource ButtonStyleN}" Click="AboutClick"/>
+                            <Button Content="Help" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HelpClick"/>
 
-                </StackPanel>
+                        </StackPanel>
+                        <Button Content="Log out" Style="{DynamicResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1813,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105" Click="LogOut_Click"/>
+                        <ToggleButton x:Name="themeButton" FontSize="20" Checked="ThemeToggleButton_Checked" Unchecked="ThemeToggleButton_Unchecked" Height="45" Background="{DynamicResource AccentColorN}" Margin="1627,1,221,0">
+                            <ToggleButton.Content>
+                                <Label Foreground="White">Theme</Label>
+                            </ToggleButton.Content>
+                        </ToggleButton>
+                        <ToggleButton x:Name="notificationsButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Width="45" Height="45" Background="{DynamicResource AccentColorN}" Margin="1733,-1,147,2">
+                            <ToggleButton.Content>
+                                <Image Source="{DynamicResource Bell}" Height="30" Width="30"/>
+                            </ToggleButton.Content>
+                        </ToggleButton>
+                    </Grid>
+
+                </Border>
+
                 <Frame x:Name="Main" Height="990" Width="1920" Margin="0,55,0,-21" NavigationUIVisibility="Hidden"/>
                 <!--<Frame x:Name="Profile" Width="1090" Height="820" Margin="669,85,161,85" NavigationUIVisibility="Hidden"></Frame>-->
                 <Frame x:Name="NotificationFrame" Margin="1605,23,-10,559" Height="450" Width="320" NavigationUIVisibility="Hidden"/>
                 <!--<Button Content="Dark theme" HorizontalAlignment="Left" Margin="1215,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="DarkTheme_Click"/>-->
                 <!--<Button Content="Light theme" HorizontalAlignment="Left" Margin="1362,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="LightTheme_Click"/>-->
-                <Button Content="Log out" Style="{DynamicResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1791,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105" Click="LogOut_Click"/>
-                <ToggleButton x:Name="themeButton" FontSize="20" Checked="ThemeToggleButton_Checked" Unchecked="ThemeToggleButton_Unchecked" Height="45" Background="{DynamicResource AccentColorN}" Margin="1635,5,213,982">
-                    <ToggleButton.Content>
-                        <Label Foreground="White">Theme</Label>
-                    </ToggleButton.Content>
-                </ToggleButton>
-                <ToggleButton x:Name="notificationsButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Width="45" Height="45" Background="{DynamicResource AccentColorN}" Margin="1722,5,152,982">
-                    <ToggleButton.Content>
-                        <Image Source="{DynamicResource Bell}" Height="30" Width="30"/>
-                    </ToggleButton.Content>
-                </ToggleButton>
+
             </Grid>
         </Viewbox>
 
