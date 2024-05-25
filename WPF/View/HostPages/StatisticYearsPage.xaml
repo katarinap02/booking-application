@@ -54,7 +54,7 @@
                 <Label x:Name="YearLabel" VerticalAlignment="Center" Style="{StaticResource LableStyleHost}" Margin="15 0 10 0 ">
                 Year
             </Label>
-                <ComboBox x:Name="YearComboBox" SelectedValuePath="Tag" Width="60" Height="30" SelectedValue="{Binding SelectedYear, UpdateSourceTrigger=PropertyChanged}" >
+                <ComboBox x:Name="YearComboBox" BorderBrush="#A0CCED" BorderThickness="2" SelectedValuePath="Tag" Width="60" Height="30" SelectedValue="{Binding SelectedYear, UpdateSourceTrigger=PropertyChanged}" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
                             <cmd:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True"/>

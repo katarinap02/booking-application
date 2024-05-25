@@ -215,7 +215,7 @@
                 </StackPanel>
                 <MenuItem Margin="10 35 10 0">
                     <MenuItem.Header>
-                        <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Content="Forum" FontSize="15" Width="180" Height="25">
+                        <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding NavigateToForumPageCommand}" Content="Forum" FontSize="15" Width="180" Height="25">
 
                         </Button>
                     </MenuItem.Header>

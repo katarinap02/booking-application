@@ -58,6 +58,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public RelayCommand NavigateToSchedulePageCommand { get; set; }
 
+        public RelayCommand NavigateToForumPageCommand { get; set; }
+
         public RelayCommand GoBackCommand {  get; set; }
         public NavigationService NavService { get; set; }
 
@@ -131,6 +133,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             this.NavService.Navigate(page);
         }
 
+        private void Execute_NavigateToForumPageCommand(object obj)
+        {
+            CloseMenu();
+            ForumPage page = new ForumPage(User, NavService);
+            this.NavService.Navigate(page);
+        }
+
 
 
         public HostWindowViewModel(User user, NavigationService navService)
@@ -147,6 +156,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             NavigateToPreviousPageCommand = new RelayCommand(Execute_NavigateToPreviousPageCommand, CanExecute_NavigateCommand);
             NavigateToScheduledPageCommand = new RelayCommand(Execute_NavigateToScheduledPageCommand, CanExecute_NavigateCommand);
             NavigateToSchedulePageCommand = new RelayCommand(Execute_NavigateToSchedulePageCommand, CanExecute_NavigateCommand);
+            NavigateToForumPageCommand = new RelayCommand(Execute_NavigateToForumPageCommand, CanExecute_NavigateCommand);
             GoBackCommand = new RelayCommand(BackCommand, CanExecute_NavigateCommand);
             SearchCommand = new RelayCommand(SearchClick, CanExecute_NavigateCommand);
             this.OpenMenuCommand = new RelayCommand(
