@@ -23,6 +23,7 @@ namespace BookingApp.WPF.View.Guest.GuestPages
         public AboutPage()
         {
             InitializeComponent();
+            
         }
     }
 }

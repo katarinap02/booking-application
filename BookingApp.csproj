@@ -243,7 +243,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="WPF\View\Guest\Properties\Settings.Designer.cs">
+    <Compile Update="Properties\Settings.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -251,7 +251,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="WPF\View\Guest\Properties\Settings.settings">
+    <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>

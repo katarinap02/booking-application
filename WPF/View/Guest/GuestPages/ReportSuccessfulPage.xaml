@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestPages"
          
                     xmlns:controls="clr-namespace:BookingApp.WPF.View.Guest.GuestControls"
+      xmlns:ns="clr-namespace:BookingApp"
       mc:Ignorable="d" 
       d:DesignHeight="798" d:DesignWidth="1085"
       Title="RateAccommodationPage">

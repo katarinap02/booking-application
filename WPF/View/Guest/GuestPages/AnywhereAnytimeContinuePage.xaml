@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestPages"
                  xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+      xmlns:ns="clr-namespace:BookingApp"
       mc:Ignorable="d" 
       d:DesignHeight="990" d:DesignWidth="1920"
       Title="ReservationInfoPage">
