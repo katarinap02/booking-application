@@ -48,23 +48,29 @@ namespace BookingApp.View
             Main.Content = new HomePage(User, Main);
             Main.DataContext = this;
             SetTheme(new Uri("/Styles/GuestUIdictionaryLight.xaml", UriKind.Relative));
-            this.SwitchLanguageCommand = new GuestICommand(OnSwitchLanguage);
+            CurrentLanguage = "en-US";
 
+            SwitchLanguageCommand = new GuestICommand(OnSwitchLanguage);
+            DataContext = this;
 
         }
 
         private void OnSwitchLanguage()
         {
-            var app = System.Windows.Application.Current;
+          
+            var app = (App)System.Windows.Application.Current;
+          
             if (CurrentLanguage.Equals("en-US"))
             {
+               
                 CurrentLanguage = "sr-LATN";
             }
             else
             {
+              
                 CurrentLanguage = "en-US";
             }
-            //app.ChangeLanguage(CurrentLanguage);
+            app.ChangeLanguage(CurrentLanguage);
         }
 
         private void HomeClick(object sender, RoutedEventArgs e)

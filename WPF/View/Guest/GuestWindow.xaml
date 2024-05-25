@@ -52,12 +52,14 @@
                             <Button Content="{ns:Loc Help}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HelpClick"/>
 
                         </StackPanel>
+                        <Button Content="Lang" Style="{DynamicResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1538,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105" Command ="{Binding SwitchLanguageCommand}"/>
                         <Button Content="Log out" Style="{DynamicResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1813,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105" Click="LogOut_Click"/>
                         <ToggleButton x:Name="themeButton" FontSize="20" Checked="ThemeToggleButton_Checked" Unchecked="ThemeToggleButton_Unchecked" Height="45" Background="{DynamicResource AccentColorN}" Margin="1627,1,221,0">
                             <ToggleButton.Content>
                                 <Label Foreground="White">Theme</Label>
                             </ToggleButton.Content>
                         </ToggleButton>
+
                         <ToggleButton x:Name="notificationsButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Width="45" Height="45" Background="{DynamicResource AccentColorN}" Margin="1733,-1,147,2">
                             <ToggleButton.Content>
                                 <Image Source="{DynamicResource Bell}" Height="30" Width="30"/>
