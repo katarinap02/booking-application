@@ -21,30 +21,6 @@ namespace BookingApp.WPF.ViewModel.TouristViewModel
 
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
-        public ObservableCollection<TourRequestWindowViewModel> TourRequests {  get; set; }
-
-        private ICommand _removeTourCommand;
-        public ICommand RemoveTourCommand
-        {
-            get
-            {
-                if (_removeTourCommand == null)
-                {
-                    _removeTourCommand = new RelayCommand(
-                        param => RemoveTour(param),
-                        param => CanRemoveParticipant());
-                }
-                return _removeTourCommand;
-            }
-        }
-        private void RemoveTour(object tourRequest)
-        {
-            TourRequests.Remove(tourRequest as TourRequestWindowViewModel);
-        }
-        private bool CanRemoveParticipant()
-        {
-            return TourRequests.Count > 0;
-        }
         private int _numberOfTours;
         public int NumberOfTours
         {
@@ -118,15 +94,10 @@ namespace BookingApp.WPF.ViewModel.TouristViewModel
 
         }
 
-        public void InitializeWindow()
-        {
-
-        }
 
         public ComplexTourRequestWindowViewModel()
         {
             _complexTourRequestService = new ComplexTourRequestService(Injector.Injector.CreateInstance<IComplexTourRequestRepository>());
-            TourRequests = new ObservableCollection<TourRequestWindowViewModel>();
         }
 
     }

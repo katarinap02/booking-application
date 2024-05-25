@@ -29,7 +29,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         private readonly RequestedTourParticipantService _requestedTourParticipantService;
         public List<TourParticipantViewModel> TourParticipantDTOs { get; set; }
         public List<TourParticipantViewModel> TourParticipantsListBox { get; set; }
-
+        public List<DateTime> SelectedDates { get; set; }
         public ObservableCollection<string> Countries { get; set; }
         public ObservableCollection<string> Languages { get; set; }
         public ObservableCollection<string> Cities { get; set; }
@@ -41,6 +41,98 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
+        private ICommand _addToToursCommand;
+        public ICommand AddToToursCommand
+        {
+            get
+            {
+                if(_addToToursCommand == null)
+                {
+                    _addToToursCommand = new RelayCommand(
+                        param => AddToTours(param),
+                        param => true);
+                }
+                return _addToToursCommand;
+            }
+        }
+        private void AddToTours(object tourRequest)
+        {
+            //ovde ide kod za dodavanje u listu tourRequestova
+            TourRequests.Add(this);
+            for (var date = SelectedStartDate; date <= SelectedEndDate; date = date.AddDays(1))
+            {
+                if (!SelectedDates.Contains(date))
+                {
+                    SelectedDates.Add(date);
+                }
+            }
+
+            SelectedDates.Sort();
+
+            List<DateTime> updatedDates = new List<DateTime>();
+
+            for (int i = 0; i < SelectedDates.Count - 1; i++)
+            {
+                updatedDates.Add(SelectedDates[i]);
+
+                // If the next date is not the day after the current date, add the missing dates
+                if(SelectedDates[i + 1].Date > SelectedDates[i].Date.AddDays(1))
+                {
+                    SelectedDates[i] = SelectedDates[i].Date.AddDays(1);
+                    updatedDates.Add(SelectedDates[i]);
+                }
+            }
+
+            // Add the last date to the updated list
+            updatedDates.Add(SelectedDates[SelectedDates.Count - 1]);
+
+            SelectedDates = updatedDates;
+            Messenger.Default.Send(new CloseWindowMessage());
+
+            //SaveToCsv(); ovo ce kasnije trebati
+        }
+        private ICommand _addTourCommand;
+        public ICommand AddTourCommand
+        {
+            get
+            {
+                if (_addTourCommand == null)
+                {
+                    _addTourCommand = new RelayCommand(
+                        param => AddTour(param),
+                        param => true);
+                }
+                return _addTourCommand;
+            }
+        }
+        private void AddTour(object tourRequest)
+        {
+            AddTourRequestWindow addTourRequestWindow = new AddTourRequestWindow(this);
+            addTourRequestWindow.ShowDialog();
+        }
+
+        private ICommand _removeTourCommand;
+        public ICommand RemoveTourCommand
+        {
+            get
+            {
+                if (_removeTourCommand == null)
+                {
+                    _removeTourCommand = new RelayCommand(
+                        param => RemoveTour(param),
+                        param => CanRemoveTour());
+                }
+                return _removeTourCommand;
+            }
+        }
+        private void RemoveTour(object tourRequest)
+        {
+            TourRequests.Remove(SelectedTourRequest);
+        }
+        private bool CanRemoveTour()
+        {
+            return TourRequests.Count > 0;
+        }
         private ICommand _removeParticipantCommand;
         public ICommand RemoveParticipantCommand
         {
@@ -72,12 +164,16 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         }
         private void RemoveParticipant(object participant)
         {
-            TourParticipantDTOs.Remove(participant as TourParticipantViewModel);
-            TourParticipantsListBox.Remove(participant as TourParticipantViewModel);
-            ParticipantsListBox.Clear();
-            foreach (var p in TourParticipantsListBox)
+            var participantViewModel = participant as TourParticipantViewModel;
+            if (participantViewModel != null)
             {
-                ParticipantsListBox.Add(p);
+                TourParticipantDTOs.Remove(participantViewModel);
+                TourParticipantsListBox.Remove(participantViewModel);
+                ParticipantsListBox.Clear();
+                foreach (var p in TourParticipantsListBox)
+                {
+                    ParticipantsListBox.Add(p);
+                }
             }
         }
         private bool CanRemoveParticipant()
@@ -95,6 +191,20 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 OnPropertyChanged("ParticipantsListBox");
             }
         }
+
+        private ObservableCollection<TourRequestWindowViewModel> _tourRequests;
+        public ObservableCollection<TourRequestWindowViewModel> TourRequests
+        {
+            get
+            {
+                return _tourRequests;
+            }
+            set
+            {
+                _tourRequests = value;
+                OnPropertyChanged(nameof(TourRequests));
+            }
+        }
         private TourParticipantViewModel _selectedParticipant;
         public TourParticipantViewModel SelectedParticipant
         {
@@ -108,6 +218,40 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 {
                     _selectedParticipant = value;
                     OnPropertyChanged(nameof(SelectedParticipant));
+                }
+            }
+        }
+
+        private TourRequestWindowViewModel _selectedTourRequest;
+        public TourRequestWindowViewModel SelectedTourRequest
+        {
+            get
+            {
+                return _selectedTourRequest;
+            }
+            set
+            {
+                if(_selectedTourRequest != value)
+                {
+                    _selectedTourRequest = value;
+                    OnPropertyChanged(nameof(SelectedTourRequest));
+                }
+            }
+        }
+        //numberoftours koristi complexTourRequestPage
+        private int _numberOfTours;
+        public int NumberOfTours
+        {
+            get
+            {
+                return _numberOfTours;
+            }
+            set
+            {
+                if (_numberOfTours != value)
+                {
+                    _numberOfTours = value;
+                    OnPropertyChanged(nameof(NumberOfTours));
                 }
             }
         }
@@ -245,14 +389,52 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 if (_selectedStartDate != value)
                 {
                     _selectedStartDate = value;
-                    MinDateEnd = SelectedStartDate.AddDays(1);
+                    if (IsStartDateBeforeBlackoutDates())
+                    {
+                        SelectedEndDate = GetLastAvailableDateBeforeBlackout(_selectedStartDate);
+                        MinDateEnd = SelectedEndDate;
+                    }
+                    else
+                    {
+                        MinDateEnd = SelectedStartDate.AddDays(1);
+                        SelectedEndDate = MinDateEnd;
+                    }
                     IsEndDateEnabled = true;
-                    SelectedEndDate = MinDateEnd;
                     OnPropertyChanged(nameof(MinDateEnd));
                     OnPropertyChanged(nameof(SelectedEndDate));
                     OnPropertyChanged(nameof(SelectedStartDate));
                 }
             }
+        }
+        private bool IsStartDateBeforeBlackoutDates()
+        {
+            SelectedDates.Sort();
+
+            if (SelectedDates.Count != 0 && SelectedStartDate < SelectedDates[0])
+            {
+                return true;
+            }
+
+            return false;
+        }
+        private DateTime GetLastAvailableDateBeforeBlackout(DateTime startDate)
+        {
+            // Sort the SelectedDates list to ensure the dates are in order
+            SelectedDates.Sort();
+
+            // Find the first blackout date that is after the start date
+            var firstBlackoutAfterStart = SelectedDates
+                .Where(date => date > startDate)
+                .FirstOrDefault();
+
+            // If there is no blackout date after the start date, return the maximum date
+            if (firstBlackoutAfterStart == default(DateTime))
+            {
+                return DateTime.MaxValue;
+            }
+
+            // Otherwise, return the day before the blackout date
+            return firstBlackoutAfterStart.AddDays(-1);
         }
 
         private DateTime _selectedEndDate;
@@ -352,6 +534,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             if (tourRequestType.Equals("Basic"))
             {
                 MainFrameContent = new BasicTourRequestPage(this);
+                TourRequestType = "Basic";
                 return;
             }
             MainFrameContent = new ComplexTourRequestPage(this);
@@ -442,6 +625,10 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         public IEnumerable GetErrors(string? propertyName)
         {
+            if(propertyName == null)
+            {
+                return Enumerable.Empty<string>();
+            }
             if (Errors.ContainsKey(propertyName))
             {
                 return Errors[propertyName];
@@ -452,7 +639,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         private void ExecuteSelectTourRequestType(object parameter)
         {
-            TourRequestType = parameter as string;
+            var tourRequestType = parameter as string;
+            if (tourRequestType != null)
+            {
+                TourRequestType = tourRequestType;
+            }
         }
         public void Validate(string propertyName, object propertyValue)
         {
@@ -556,11 +747,28 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             LoadCountriesFromCSV();
             LoadLanguagesFromCSV();
             
-            
-            SelectedStartDate = DateTime.Now.AddDays(3);
+            if((TourRequests.Count == 0 && TourRequestType.Equals("Complex")) || TourRequestType.Equals("Basic"))
+            {
+                SelectedStartDate = DateTime.Now.AddDays(3);
+                MinDateStart = DateTime.Now.AddDays(3);
+            }
+            else
+            {
+                SelectedDates.Sort();
+                MinDateStart = SelectedDates[SelectedDates.Count - 1].AddDays(1);
+                SelectedStartDate = MinDateStart;
+                for (int i = 0; i < SelectedDates.Count - 1; i++)
+                {
+                    if ((SelectedDates[i + 1] - SelectedDates[i]).TotalDays > 2)
+                    {
+                        MinDateStart = SelectedDates[i].AddDays(1);
+                        SelectedStartDate = MinDateStart;
+                        break;
+                    }
+                }
+            }
             Age = 1;
             ParticipantCount = 1;
-            MinDateStart = DateTime.Now.AddDays(3);
             IsEndDateEnabled = false;
         }
         private void LoadLanguagesFromCSV()
@@ -625,6 +833,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
             _requestedTourParticipantService = new RequestedTourParticipantService(Injector.Injector.CreateInstance<IRequestedTourParticipantRepository>());
 
+            SelectedDates = new List<DateTime>();
+            TourRequests = new ObservableCollection<TourRequestWindowViewModel>();
             Countries = new ObservableCollection<string>();
             Languages = new ObservableCollection<string>();
             Cities = new ObservableCollection<string>();

@@ -69,7 +69,8 @@
                 Width="90"
                 Content="Add tour"
                 FontSize="20"
-                HorizontalAlignment="Left"/>
+                HorizontalAlignment="Left"
+                Command="{Binding AddTourCommand}"/>
         <Label Content="Added tours:"
                Grid.Column="1"
                Grid.Row="6"
@@ -77,6 +78,7 @@
                VerticalAlignment="Top"/>
 
         <DataGrid ItemsSource="{Binding TourRequests}"
+                  SelectedItem="{Binding SelectedTourRequest}"
                   Style="{StaticResource CoolDataGridStyle}"
                   FontWeight="DemiBold"
                   Grid.Column="1"
@@ -86,14 +88,16 @@
                   IsReadOnly="True"
                   HeadersVisibility="Column" FontSize="16">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="*"/>
-                <DataGridTextColumn Header="City" Binding="{Binding City}" Width="*"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="270"/>
+                <DataGridTextColumn Header="City" Binding="{Binding City}" Width="270"/>
                 <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="100"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="120"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Remove" Height="30" Width="80" Style="{StaticResource EnlargeButtonStyle}"/>
+                            <Button Content="Remove" Height="30" Width="80" Style="{StaticResource EnlargeButtonStyle}"
+                                    HorizontalAlignment="Left"
+                                    Command="{Binding RemoveTourCommand}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

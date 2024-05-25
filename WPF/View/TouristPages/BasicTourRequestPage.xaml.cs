@@ -30,6 +30,7 @@ namespace BookingApp.WPF.View.TouristPages
             TourRequest = tourRequest;
             DataContext = TourRequest;
 
+            TourRequest.TourRequestType = "Basic";
             TourRequest.InitializeTourRequestWindow();
         }
         private void DatePicker_PreviewTextInput(object sender, TextCompositionEventArgs e)

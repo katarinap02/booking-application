@@ -42,7 +42,10 @@ namespace BookingApp.WPF.View.TouristWindows
 
         private void CloseWindow(CloseWindowMessage message)
         {
-            Close();
+            if(this.IsActive == true)
+            {
+                Close();
+            }
         }
         private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
