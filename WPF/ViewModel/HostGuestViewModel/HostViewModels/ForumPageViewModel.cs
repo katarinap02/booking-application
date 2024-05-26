@@ -4,6 +4,7 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
+using BookingApp.View.HostPages;
 using BookingApp.WPF.View.HostPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using System;
@@ -49,6 +50,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public MyICommand SelectCityCommand {  get; set; }
 
+        public MyICommand<ForumViewModel> NavigateToForumPageCommand { get; set; }
+
+        private void Execute_NavigateToForumPageCommand(ForumViewModel forum)
+        {
+            ForumCommentPage page = new ForumCommentPage(User, NavService, forum);
+            this.NavService.Navigate(page);
+        }
+
         public ForumPageViewModel(User user, NavigationService navService)
         {
 
@@ -59,6 +68,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             SelectCityCommand = new MyICommand(SortByCity);
             SelectedLocation = "All";
             LocationCity = "";
+            NavigateToForumPageCommand = new MyICommand<ForumViewModel>(Execute_NavigateToForumPageCommand);
             Update();
 
         }
