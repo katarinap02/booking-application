@@ -34,7 +34,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <Label Content="Profile settings" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="377,42,377,687"/>
+                <Label Content="{ns:Loc ProfileSettings}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="377,42,377,687"/>
                 <Grid Margin="10,168,-10,471">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="115*"/>
@@ -48,9 +48,9 @@
                     <Grid>
                         <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="158,0,159,356">Change username</Label>
                         <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="160,152,159,207">Change password</Label>
-                        <Label Content="Old password " Margin="78,194,304,157" FontSize="20"/>
+                        <Label Content="{ns:Loc OldPass}" Margin="78,194,304,157" FontSize="20"/>
                         <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
-                        <Label Content="New password" FontSize="20" HorizontalAlignment="Left" Margin="80,233,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="43" Width="141">
+                        <Label Content="{ns:Loc NewPass}" FontSize="20" HorizontalAlignment="Left" Margin="80,233,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="43" Width="141">
                             <Label.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1"/>
@@ -60,10 +60,10 @@
                                 </TransformGroup>
                             </Label.RenderTransform>
                         </Label>
-                        <Label Content="Confirm new password " Margin="43,276,259,75" FontSize="20"/>
-                        <Label Content="New username " Margin="110,57,272,294" FontSize="20"/>
+                        <Label Content="{ns:Loc ConfirmPass}" Margin="43,276,259,75" FontSize="20"/>
+                        <Label Content="{ns:Loc NewUser}" Margin="110,57,272,294" FontSize="20"/>
                         <TextBox x:Name="newUsername" Height="30" Width="200" Margin="280,62,46,309"/>
-                        <Label Content="Password " Margin="110,102,274,249" FontSize="20"/>
+                        <Label Content="{ns:Loc Password}" Margin="110,102,274,249" FontSize="20"/>
                         <TextBox x:Name="passwordCheck" Height="30" Width="200" Margin="280,107,46,264"/>
                         <TextBox x:Name="oldPassword" Height="30" Width="200" Margin="280,198,46,173"/>
                         <TextBox x:Name="newPassword" Height="30" Width="200" Margin="280,240,46,131"/>
@@ -74,7 +74,7 @@
 
                 </Border>
 
-                <Button Content="Save changes" Command="{Binding Path=SaveCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="440,602,440,137"/>
+                <Button Content="{ns:Loc Save}" Command="{Binding Path=SaveCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="440,602,440,137"/>
 
 
             </Grid>

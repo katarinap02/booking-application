@@ -11,11 +11,11 @@
       Title="ProfileInfo">
 
     <Grid>
-        <Label Content="Are you sure you want to cancel the reservation?" FontSize="33" Style="{DynamicResource HeaderStyleN}" Margin="143,63,143,675"/>
+        <Label Content="{ns:Loc CancelSure}" FontSize="33" Style="{DynamicResource HeaderStyleN}" Margin="143,63,143,675"/>
         <controls:ReservationDetailsCard Margin="0,143,0,247"></controls:ReservationDetailsCard>
 
-        <Button Content="Cancel reservation" HorizontalAlignment="Left" Margin="221,602,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Width="287" Height="47" Command="{Binding ViewModel.CancelReservationCommand}"/>
-        <Button Content="Give up" HorizontalAlignment="Left" Margin="572,602,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Width="287" Height="47" Command="{Binding ViewModel.GiveUpCommand}"/>
+        <Button Content="{ns:Loc CancelReservation}" HorizontalAlignment="Left" Margin="221,602,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Width="287" Height="47" Command="{Binding ViewModel.CancelReservationCommand}"/>
+        <Button Content="{ns:Loc GiveUp}" HorizontalAlignment="Left" Margin="572,602,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Width="287" Height="47" Command="{Binding ViewModel.GiveUpCommand}"/>
 
 
     </Grid>

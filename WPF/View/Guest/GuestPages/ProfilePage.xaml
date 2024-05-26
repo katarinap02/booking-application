@@ -15,17 +15,17 @@
             <Grid>
                 <TreeView Name="TreeMenu" Height="692" Margin="10,30,0,67">
                     <LineBreak/>
-                    <TreeViewItem Header="Profile" FontSize="37" Selected="Profile_Click"></TreeViewItem>
+                    <TreeViewItem Header="{ns:Loc Profile}" FontSize="37" Selected="Profile_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Rate accommodation" FontSize="37" Selected="RateAccommodation_Click"></TreeViewItem>
+                    <TreeViewItem Header="{ns:Loc RateAccommodation}" FontSize="37" Selected="RateAccommodation_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Rates by host" FontSize="37" Selected="RatesByHost_Click"></TreeViewItem>
+                    <TreeViewItem Header="{ns:Loc RatesByHost}" FontSize="37" Selected="RatesByHost_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Requests" FontSize="37" Selected="Requests_Click"></TreeViewItem>
+                    <TreeViewItem Header="{ns:Loc Requests}" FontSize="37" Selected="Requests_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Forums" FontSize="37" Selected="Forums_Click"></TreeViewItem>
+                    <TreeViewItem Header="{ns:Loc Forums}" FontSize="37" Selected="Forums_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Settings" FontSize="37" Selected="Settings_Click"></TreeViewItem>
+                    <TreeViewItem Header="{ns:Loc Settings}" FontSize="37" Selected="Settings_Click"></TreeViewItem>
 
                 </TreeView>
             </Grid>

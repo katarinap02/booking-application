@@ -33,7 +33,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <Label Content="Are you sure you want to close this forum?" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="96,80,124,649"/>
+                <Label Content="{ns:Loc CloseSure}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="96,80,124,649"/>
                 <TextBlock TextAlignment="center" TextWrapping="Wrap" FontSize="23" Margin="251,168,279,546">After you close it, it won't be possible to post new comments.</TextBlock>
                 <Grid Margin="10,168,-10,471">
                     <Grid.ColumnDefinitions>
@@ -59,7 +59,7 @@
                             </TextBlock>
 
                             <TextBlock Text="{Binding NewForum.CommentNumber}" Margin="10,52,868,-86" Grid.RowSpan="2" FontSize="16"></TextBlock>
-                            <Button Content="View forum" Command="{Binding Path=ViewForumCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="864,25,10,85"/>
+                            <Button Content="{ns:Loc ViewForum}" Command="{Binding Path=ViewForumCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="864,25,10,85"/>
 
 
                         </Grid>
@@ -69,8 +69,8 @@
 
                 </Grid>
 
-                <Button Content="Close forum" Command="{Binding Path=CloseForumCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="286,600,616,139"/>
-                <Button Content="Give up" Command="{Binding Path=ViewForumsCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="632,600,270,139"/>
+                <Button Content="{ns:Loc CloseForum}" Command="{Binding Path=CloseForumCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="286,600,616,139"/>
+                <Button Content="{ns:Loc GiveUp}" Command="{Binding Path=ViewForumsCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="632,600,270,139"/>
 
 
             </Grid>

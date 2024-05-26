@@ -37,7 +37,7 @@
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="269,85,980,161" Width="671" Background="White">
             <Grid>
 
-                <Label Content="Anywhere / Anytime" FontSize="55" Margin="52,42,83,288" Style="{DynamicResource ResourceKey=HeaderStyleN}"/>
+                <Label Content="{ns:Loc AnywhereAnytime}" FontSize="55" Margin="52,42,83,288" Style="{DynamicResource ResourceKey=HeaderStyleN}"/>
 
                 <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Margin="52,184,80,430">You can choose one of the recommended accommodations.</TextBlock>
                 <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="46,452,46,83"></Border>
@@ -74,8 +74,8 @@
                         <DataTemplate>
                             <Grid>
                                 <controls:AccommodationCardMedium Margin="0,0,0,0"/>
-                                <Button x:Name="DetailsButton" Content="Details" Style="{DynamicResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Margin="400, 30, 0, 0"/>
-                                <Button x:Name="ReserveButton" Content="Reserve" Style="{DynamicResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Grid.Row="1" Margin="400, 30, 0, 70" Command="{Binding Path=DataContext.ReserveCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                                <Button x:Name="DetailsButton" Content="{ns:Loc Details}" Style="{DynamicResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Margin="400, 30, 0, 0"/>
+                                <Button x:Name="ReserveButton" Content="{ns:Loc Reserve}" Style="{DynamicResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Grid.Row="1" Margin="400, 30, 0, 70" Command="{Binding Path=DataContext.ReserveCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
 
 
                             </Grid>

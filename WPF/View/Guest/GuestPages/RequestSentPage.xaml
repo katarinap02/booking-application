@@ -13,15 +13,15 @@
     <Grid>
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
-                <Label x:Name="requestHeader" Style="{DynamicResource HeaderStyleN}" Content="You have successfully sent reservation delay request!" FontSize="35" Margin="78,64,15,-53"></Label>
-                <Label Content="Accommodation" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="160,174,638,573"/>
-                <Label Content="Host" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="240,396,716,351"/>
+                <Label x:Name="requestHeader" Style="{DynamicResource HeaderStyleN}" Content="{ns:Loc DelaySuccess}" FontSize="35" Margin="78,64,15,-53"></Label>
+                <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="160,174,638,573"/>
+                <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="240,396,716,351"/>
                 <Border Width="500" Height="80" Margin="0,445,508,266" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
                     <Label Content="{Binding HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="59,-2,63,2"/>
                 </Border>
 
                 <controls:AccommodationCardSmaller DataContext="{Binding Accommodation}" Width="500" Margin="0,-94,508,105"></controls:AccommodationCardSmaller>
-                <Label Content="Request details" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="696,165,108,582"/>
+                <Label Content="{ns:Loc RequestDetails}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="696,165,108,582"/>
                 <Border Margin="540,216,10,266" Width="500" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
                     <Grid>
                         <TextBlock TextWrapping="Wrap" Margin="34,79,-84,104" FontSize="22">Previous dates:<LineBreak/>New dates:<LineBreak/>Number of peple:<LineBreak/>Number of days:<LineBreak/></TextBlock>
@@ -32,8 +32,8 @@
                     </Grid>
                 </Border>
 
-                <Button Content="All requests" Style="{DynamicResource ButtonStyleN}" Width="170" Height="50" Margin="356,616,534,125" Click="AllRequests_Click"/>
-                <Button Content="Profile" Style="{DynamicResource ButtonStyleN}" Width="170" Height="50" Margin="562,616,328,125" Click="Profile_Click"/>
+                <Button Content="{ns:Loc AllRequest}" Style="{DynamicResource ButtonStyleN}" Width="170" Height="50" Margin="356,616,534,125" Click="AllRequests_Click"/>
+                <Button Content="{ns:Loc YourProfile}" Style="{DynamicResource ButtonStyleN}" Width="170" Height="50" Margin="562,616,328,125" Click="Profile_Click"/>
 
             </Grid>
         </Border>

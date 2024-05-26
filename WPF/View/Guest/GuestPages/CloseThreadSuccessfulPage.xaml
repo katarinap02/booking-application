@@ -33,7 +33,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <Label Content="You've successfully closed a forum!" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="174,103,154,626"/>
+                <Label Content="{ns:Loc CloseSuccess}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="174,103,154,626"/>
                 <Grid Margin="10,168,-10,471">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="115*"/>
@@ -58,7 +58,7 @@
                             </TextBlock>
 
                             <TextBlock Text="{Binding NewForum.CommentNumber}" Margin="10,52,868,-86" Grid.RowSpan="2" FontSize="16"></TextBlock>
-                            <Button Content="View forum" Command="{Binding Path=ViewForumCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="864,25,10,85"/>
+                            <Button Content="{ns:Loc ViewForum}" Command="{Binding Path=ViewForumCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="864,25,10,85"/>
 
 
                         </Grid>
@@ -68,7 +68,7 @@
 
                 </Grid>
 
-                <Button Content="Your forums" Command="{Binding Path=ViewForumsCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="286,600,616,139"/>
+                <Button Content="{ns:Loc YourForums}" Command="{Binding Path=ViewForumsCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="286,600,616,139"/>
                 <Button Content="Your profile" Command="{Binding Path=ViewProfileCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="632,600,270,139"/>
 
 

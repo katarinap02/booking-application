@@ -52,37 +52,37 @@
         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="269,85,980,161" Width="671" Background="White">
             <Grid>
 
-                <Label Content="Reservation" FontSize="55" Margin="158,16,-24,315" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+                <Label Content="{ns:Loc Reservation}" FontSize="55" Margin="158,16,-24,315" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
 
                 <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Height="323" Width="663" Margin="-2,98,6,318"><Run Text="Welcome to the reservation page."/><LineBreak/><Run Text="Please enter required information."/></TextBlock>
 
                 <ToggleButton Height="50" Width="300" Background="White" BorderBrush="White" Margin="168,260,199,430" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{StaticResource HintIcon}" Height="25" Width="25"/>
-                        <Label Content="Problem with data input" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
+                        <Label Content="{ns:Loc InputProblem}" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
                     </StackPanel>
 
                 </ToggleButton>
                 <TextBlock x:Name="Hint" FontSize="16" Foreground="Green" Height="150" Width="400" TextAlignment="Center" TextWrapping="Wrap" Margin="140,310,127,280">
                     Enter values in corresponding fields. It is neccessary to reserve at least the number of days specified in accommodation description.
                 </TextBlock>
-                <Label Content="Accommodation" FontSize="40" Margin="168,470,-34,-75" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+                <Label Content="{ns:Loc Accommodation}" FontSize="40" Margin="168,470,-34,-75" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
                 <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Margin="6,258,-6,-258"/>
 
             </Grid>
         </Border>
         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="980,85,269,161" Width="671" Background="White">
             <Grid Margin="2,-58,-2,58">
-                <Label Content="Number of days" FontSize="30" Margin="105,238,-105,-238"/>
+                <Label Content="{ns:Loc DayNumber}" FontSize="30" Margin="105,238,-105,-238"/>
                 <!--<TextBox x:Name="txtDayNumber" TextWrapping="Wrap" Margin="352,251,160,444"/>-->
                 <xctk:IntegerUpDown Name="txtDayNumber" Text="{Binding ViewModel.DayNumber}" Margin="352,237,160,458"/>
-                <Label Content="Start date " Margin="136,319,-136,-319" FontSize="30"/>
+                <Label Content="{ns:Loc StartDate} " Margin="136,319,-136,-319" FontSize="30"/>
                 <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
                 <DatePicker x:Name="txtStartDate" Margin="352,329,160,366" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
-                <Label Content="End date" FontSize="30" HorizontalAlignment="Left" Margin="136,417,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
+                <Label Content="{ns:Loc EndDate}" FontSize="30" HorizontalAlignment="Left" Margin="136,417,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
                 <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
                 <DatePicker x:Name="txtEndDate" Margin="352,424,160,273" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
-                <Button x:Name="ContinueButton" Content="Continue" HorizontalAlignment="Center" Margin="0,545,0,0" VerticalAlignment="Top" Command="{Binding ViewModel.ContinueCommand}" Width="200" Height="50" Style="{StaticResource ButtonStyleN}"/>
+                <Button x:Name="ContinueButton" Content="{ns:Loc Continue}" HorizontalAlignment="Center" Margin="0,545,0,0" VerticalAlignment="Top" Command="{Binding ViewModel.ContinueCommand}" Width="200" Height="50" Style="{StaticResource ButtonStyleN}"/>
                 <TextBlock x:Name="dayNumberValidator" FontSize="12" Foreground="red" Margin="352,282,160,440">
 
 

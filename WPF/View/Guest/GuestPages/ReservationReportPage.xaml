@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:ns="clr-namespace:BookingApp"
+    
       xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestPages"
                     xmlns:controls="clr-namespace:BookingApp.WPF.View.Guest.GuestControls"
       xmlns:ns="clr-namespace:BookingApp"
@@ -46,14 +46,14 @@
                 </Grid>
                 <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="265,192,265,267">
                     <Grid>
-                        <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="182,0,182,277">Report type</Label>
-                        <RadioButton FontSize="18" Height="20" Margin="126,49,-126,257">Created reservations report</RadioButton>
-                        <RadioButton FontSize="18" Height="20" Margin="126,85,-126,221">Cancelled reservations report</RadioButton>
-                        <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="182,133,182,143">Time period</Label>
-                        <Label Content="Start date " Margin="119,188,306,91" FontSize="20"/>
+                        <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="182,0,182,277" Content="{ns:Loc ReportType}"></Label>
+                        <RadioButton FontSize="18" Height="20" Margin="126,49,-126,257" Content="{ns:Loc CreatedRes}"></RadioButton>
+                        <RadioButton FontSize="18" Height="20" Margin="126,85,-126,221" Content="{ns:Loc CancelledRes}"></RadioButton>
+                        <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="182,133,182,143" Content="{ns:Loc TimePeriod}"></Label>
+                        <Label Content="{ns:Loc StartDate} " Margin="119,188,306,91" FontSize="20"/>
                         <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
                         <DatePicker x:Name="txtStartDate" Margin="229,196,149,98"  RenderTransformOrigin="0.697,-0.222"/>
-                        <Label Content="End date" FontSize="20" HorizontalAlignment="Left" Margin="121,227,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="43" Width="93">
+                        <Label Content="{ns:Loc EndDate}" FontSize="20" HorizontalAlignment="Left" Margin="121,227,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="43" Width="93">
                             <Label.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1"/>
@@ -70,8 +70,8 @@
 
                 </Border>
 
-                <Button Content="Your profile" Command="{Binding Path=ViewProfileCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="286,600,616,139"/>
-                <Button Content="Create report" Command="{Binding Path=CreateReportCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="620,600,282,139"/>
+                <Button Content="{ns:Loc YourProfile}" Command="{Binding Path=ViewProfileCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="286,600,616,139"/>
+                <Button Content="{ns:Loc CreateReport}" Command="{Binding Path=CreateReportCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="620,600,282,139"/>
 
 
             </Grid>

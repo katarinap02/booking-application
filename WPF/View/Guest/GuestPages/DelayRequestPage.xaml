@@ -54,7 +54,7 @@
                     <ToggleButton Height="50" Background="White" BorderBrush="White" Margin="129,232,131,507" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{DynamicResource HintIcon}" Height="25" Width="25"/>
-                            <Label x:Name="HintLabel" Content="Problem with choosing dates" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
+                            <Label x:Name="HintLabel" Content="{ns:Loc DatesProblem}" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
                         </StackPanel>
 
                     </ToggleButton>
@@ -62,8 +62,8 @@
                         It is neccessary to choose the same number of days you previously reserved.
                     </TextBlock>
 
-                    <Label Content="Accommodation" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="136,434,-136,312"/>
-                    <Label Content="Host" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="218,648,218,98"/>
+                    <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="136,434,-136,312"/>
+                    <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="218,648,218,98"/>
                     <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
                         <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="8,2,114,-2"/>
                     </Border>
@@ -98,7 +98,7 @@
 
 
                     </TextBlock>
-                    <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,625,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{DynamicResource ResourceKey=ButtonStyleN}" RenderTransformOrigin="0.505,0.945"/>
+                    <Button x:Name="reserveButton" Content="{ns:Loc SelectDates}" HorizontalAlignment="Center" Margin="0,625,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{DynamicResource ResourceKey=ButtonStyleN}" RenderTransformOrigin="0.505,0.945"/>
                 </Grid>
             </Border>
 

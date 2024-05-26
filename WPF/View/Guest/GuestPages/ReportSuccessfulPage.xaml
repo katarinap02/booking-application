@@ -34,7 +34,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <Label Content="You have successfully created a report!" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="137,126,137,603"/>
+                <Label Content="{ns:Loc ReportSuccess}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="137,126,137,603"/>
                 <TextBlock TextAlignment="center" TextWrapping="Wrap" FontSize="30" Margin="265,246,265,434" Text="The report is now located on your computer."/>
                 <Grid Margin="10,168,-10,471">
                     <Grid.ColumnDefinitions>
@@ -46,7 +46,7 @@
 
                 </Grid>
 
-                <Button Content="Your profile" Command="{Binding Path=ViewProfileCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="451,599,451,140"/>
+                <Button Content="{ns:Loc YourProfile}" Command="{Binding Path=ViewProfileCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="451,599,451,140"/>
 
 
             </Grid>

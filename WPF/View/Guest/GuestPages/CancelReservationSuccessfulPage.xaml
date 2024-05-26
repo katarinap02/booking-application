@@ -11,9 +11,9 @@
       Title="ProfileInfo">
 
     <Grid>
-        <Label Content="Your reservation is canceled." FontSize="33" Style="{DynamicResource HeaderStyleN}" Margin="310,63,143,675"/>
+        <Label Content="{ns:Loc CancelSuccess}" FontSize="33" Style="{DynamicResource HeaderStyleN}" Margin="310,63,143,675"/>
         <controls:ReservationDetailsCard Margin="0,143,0,247"></controls:ReservationDetailsCard>
-        <Button Content="Your profile" Style="{DynamicResource ButtonStyleN}" Width="200" Height="45" Margin="442,585,443,168" Command="{Binding BackToProfileCommand}"/>
+        <Button Content="{ns:Loc YourProfile}" Style="{DynamicResource ButtonStyleN}" Width="200" Height="45" Margin="442,585,443,168" Command="{Binding BackToProfileCommand}"/>
 
     </Grid>
 </Page>

@@ -52,8 +52,8 @@
 
                     <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="24,28,24,605">Welcome to the accommodation rating page. To create a review, fill the cleanliness and correctness rate fields, as well as the comment field.</TextBlock>
                     <TextBlock TextWrapping="Wrap" FontSize="23" TextAlignment="Center" FontWeight="Bold" Margin="1,184,-1,532">Optional: You can leave your accommodation pictures and reccommend renovation.</TextBlock>
-                    <Label Content="Accommodation" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="136,434,-136,312"/>
-                    <Label Content="Host" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="218,648,218,98"/>
+                    <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="136,434,-136,312"/>
+                    <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="218,648,218,98"/>
                     <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
                         <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="59,-2,63,2"/>
                     </Border>
@@ -61,7 +61,7 @@
                     <ToggleButton Height="50" Background="White" BorderBrush="White" Margin="131,272,129,467" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{DynamicResource HintIcon}" Height="25" Width="25"/>
-                            <Label x:Name="HintLabel" Content="Problem with creating a review" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
+                            <Label x:Name="HintLabel" Content="{ns:Loc ReviewProblem}" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
                         </StackPanel>
 
                     </ToggleButton>
@@ -75,8 +75,8 @@
             <Border Width="526" Height="517" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="549,1,10,280">
 
                 <Grid>
-                    <Label Content="Cleanliness:" FontSize="20" HorizontalAlignment="Left" Margin="88,33,0,0" VerticalAlignment="Top"/>
-                    <Label Content="Correctness:" FontSize="20" HorizontalAlignment="Left" Margin="310,33,0,0" VerticalAlignment="Top"/>
+                    <Label Content="{ns:Loc Cleanliness}" FontSize="20" HorizontalAlignment="Left" Margin="88,33,0,0" VerticalAlignment="Top"/>
+                    <Label Content="{ns:Loc Correctness}" FontSize="20" HorizontalAlignment="Left" Margin="310,33,0,0" VerticalAlignment="Top"/>
 
                     <ComboBox HorizontalAlignment="Left" Margin="88,72,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding Cleanliness, Mode=TwoWay}">
 
@@ -95,12 +95,12 @@
                         <ComboBoxItem Content="2" Tag="2"></ComboBoxItem>
                         <ComboBoxItem Content="1" Tag="1"></ComboBoxItem>
                     </ComboBox>
-                    <Label Content="Comment:" FontSize="20" HorizontalAlignment="Left" Margin="55,115,0,0" VerticalAlignment="Top"/>
+                    <Label Content="{ns:Loc Comment}" FontSize="20" HorizontalAlignment="Left" Margin="55,115,0,0" VerticalAlignment="Top"/>
                     <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="100" Margin="0,152,0,0"/>
 
-                    <Button FontSize="15" Command="{Binding AddPicturesCommand}" Content="Add picture" HorizontalAlignment="Left" Margin="55,284,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{DynamicResource ButtonStyleN}"/>
-                    <Button FontSize="15" Content="Recommend renovation" HorizontalAlignment="Left" Margin="55,387,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Height="29" Width="208" Command="{Binding RecommendCommand}"/>
-                    <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="369,456,0,0" VerticalAlignment="Top" Height="30" Width="121" Style="{DynamicResource ButtonStyleN}" Command="{Binding SaveRateCommand}"/>
+                    <Button FontSize="15" Command="{Binding AddPicturesCommand}" Content="{ns:Loc AddPicture}" HorizontalAlignment="Left" Margin="55,284,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{DynamicResource ButtonStyleN}"/>
+                    <Button FontSize="15" Content="{ns:Loc Recommend}" HorizontalAlignment="Left" Margin="55,387,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Height="29" Width="208" Command="{Binding RecommendCommand}"/>
+                    <Button FontSize="15" Content="{ns:Loc Save}" HorizontalAlignment="Left" Margin="369,456,0,0" VerticalAlignment="Top" Height="30" Width="121" Style="{DynamicResource ButtonStyleN}" Command="{Binding SaveRateCommand}"/>
                     <ListBox x:Name="pictureListBox" Margin="186,283,55,135" ScrollViewer.VerticalScrollBarVisibility="Auto"  ItemsSource="{Binding Images, UpdateSourceTrigger=PropertyChanged}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>

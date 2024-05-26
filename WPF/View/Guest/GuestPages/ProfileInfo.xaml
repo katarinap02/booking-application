@@ -39,9 +39,9 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                         <DataTemplate>
                             <Grid>
                                 <controls:ReservationCard></controls:ReservationCard>
-                                <Button Style="{DynamicResource ButtonStyleN}" Content="Details" Width="90" Height="25" FontSize="15" Margin="800, -65, 0, 0" Command="{Binding Path=DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-                                <Button Style="{DynamicResource ButtonStyleN}" Content="Delay" Width="90" Height="25" FontSize="15" Margin="800, 0, 0, 0" Command="{Binding Path=DataContext.DelayCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-                                <Button Style="{DynamicResource ButtonStyleN}" Content="Cancel" Width="90" Height="25" FontSize="15" Margin="800, 65, 0, 0" Command="{Binding Path=DataContext.CancelCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                                <Button Style="{DynamicResource ButtonStyleN}" Content="{ns:Loc Details}" Width="90" Height="25" FontSize="15" Margin="800, -65, 0, 0" Command="{Binding Path=DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                                <Button Style="{DynamicResource ButtonStyleN}" Content="{ns:Loc Delay}" Width="90" Height="25" FontSize="15" Margin="800, 0, 0, 0" Command="{Binding Path=DataContext.DelayCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                                <Button Style="{DynamicResource ButtonStyleN}" Content="{ns:Loc Cancel}" Width="90" Height="25" FontSize="15" Margin="800, 65, 0, 0" Command="{Binding Path=DataContext.CancelCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
 
 
                             </Grid>
@@ -50,7 +50,7 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                 </ListBox>
                 <Label Content="{Binding User.Username}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="420,10,442,735" Height="100" FontStyle="Italic"/>
                 <TextBlock TextWrapping="Wrap"  FontSize="23" Margin="26,81,276,470"><LineBreak/>Total reservation number:<LineBreak/>Reservation number in the past year:<LineBreak/>Ratng:<LineBreak/></TextBlock>
-                <Label Content="Reservations" FontSize="30" Style="{DynamicResource HeaderStyleN}" Margin="26,254,830,481"/>
+                <Label Content="{ns:Loc Reservation}" FontSize="30" Style="{DynamicResource HeaderStyleN}" Margin="26,254,830,481"/>
 
                 <Label FontSize="23"  Margin="20,70,818,681">
                     <Label.Style>
@@ -161,7 +161,7 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                         </Style>
                     </Label.Style>
                 </Label>
-                <Button FontSize="20" Content="Reservation report" Style="{DynamicResource ButtonStyleN}" Command="{Binding CreateReportCommand}" Margin="825,258,21,495"/>
+                <Button FontSize="20" Content="{ns:Loc ReservationReport}" Style="{DynamicResource ButtonStyleN}" Command="{Binding CreateReportCommand}" Margin="825,258,21,495"/>
                 <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="881,75,21,569">
                     <Grid>
                         <Image HorizontalAlignment="Left" VerticalAlignment="Center" Width="281" Height="170" Source="../../../Resources/Images/Unknown_person.jpg"/>
@@ -171,7 +171,7 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                 <ToggleButton Height="50" Background="White" BorderBrush="White" Margin="45,682,720,59" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{DynamicResource HintIcon}" Height="25" Width="25"/>
-                        <Label x:Name="HintLabel" Content="Problem with reservation cancellation" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
+                        <Label x:Name="HintLabel" Content="{ns:Loc ProblemCancel}" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
                     </StackPanel>
 
                 </ToggleButton>

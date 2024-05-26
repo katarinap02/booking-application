@@ -46,11 +46,11 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Button Style="{DynamicResource ButtonStyleN}" Content="Rate" Width="100" Height="50" Margin="480,654,480,85" Command="{Binding RateCommand}"/>
+                <Button Style="{DynamicResource ButtonStyleN}" Content="{ns:Loc RateButton}" Width="100" Height="50" Margin="480,654,480,85" Command="{Binding RateCommand}"/>
                 <ToggleButton Height="50" Background="White" BorderBrush="White" Margin="20,545,726,194" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{DynamicResource HintIcon}" Height="25" Width="25"/>
-                        <Label x:Name="HintLabel" Content="Problem with accommodation rating" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
+                        <Label x:Name="HintLabel" Content="{ns:Loc RateProblem}" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
                     </StackPanel>
 
                 </ToggleButton>

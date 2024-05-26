@@ -44,7 +44,7 @@
                         <TextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="30,18,34,44" TextWrapping="Wrap">
 
                         </TextBox>
-                        <Button BorderBrush="LightPink" BorderThickness="3" Content="Post comment" Command="{Binding PostCommentCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="16" Width="130" Height="30" Margin="484,148,34,4"/>
+                        <Button BorderBrush="LightPink" BorderThickness="3" Content="{ns:Loc PostComment}" Command="{Binding PostCommentCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="16" Width="130" Height="30" Margin="484,148,34,4"/>
 
                     </Grid>
 

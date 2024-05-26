@@ -40,14 +40,14 @@ ItemsSource="{Binding Forums}" Background="{DynamicResource BackgroundColorN}" S
                         <DataTemplate>
                             <Grid>
                                 <controls:ForumCard></controls:ForumCard>
-                                <Button Content="View forum" Command="{Binding Path=DataContext.ViewForumCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Style="{DynamicResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, -40, 0, 0"/>
-                                <Button Content="Close forum" Command="{Binding Path=DataContext.CloseForumCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"  Style="{DynamicResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, 50, 0, 0" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                                <Button Content="{ns:Loc ViewForum}" Command="{Binding Path=DataContext.ViewForumCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}" Style="{DynamicResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, -40, 0, 0"/>
+                                <Button Content="{ns:Loc CloseForum}" Command="{Binding Path=DataContext.CloseForumCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}"  Style="{DynamicResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, 50, 0, 0" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
 
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Button Style="{DynamicResource ButtonStyleN}" Content="Create forum" Height="50" Margin="442,660,442,79" Command="{Binding CreateForumCommand}"/>
+                <Button Style="{DynamicResource ButtonStyleN}" Content="{ns:Loc CreateForum}" Height="50" Margin="442,660,442,79" Command="{Binding CreateForumCommand}"/>
                 <!--<ToggleButton Height="50" Background="White" BorderBrush="White" Margin="20,545,726,194" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{DynamicResource HintIcon}" Height="25" Width="25"/>

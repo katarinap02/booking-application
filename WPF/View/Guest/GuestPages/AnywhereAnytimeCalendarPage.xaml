@@ -35,7 +35,7 @@
 
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="268,92,981,162" Width="671" Height="736">
             <Grid>
-                <Label Content="Reservation" FontSize="55" Margin="158,16,-24,315" Style="{DynamicResource ResourceKey=HeaderStyleN}"/>
+                <Label Content="{ns:Loc Reservation}" FontSize="55" Margin="158,16,-24,315" Style="{DynamicResource ResourceKey=HeaderStyleN}"/>
                 <TextBlock FontSize="35" TextWrapping="Wrap" TextAlignment="Center" Margin="31,127,31,289">Please choose days and number od people for your reservation.</TextBlock>
 
                 <ToggleButton Height="50" Width="300" Background="White" BorderBrush="White" Margin="168,260,199,430" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
@@ -49,7 +49,7 @@
                 <TextBlock x:Name="Hint" FontSize="16" Foreground="Green" Height="150" Width="400" TextAlignment="Center" TextWrapping="Wrap" Margin="140,310,127,280">
 
                 </TextBlock>
-                <Label Content="Accommodation" FontSize="40" Margin="168,470,-34,-75" Style="{DynamicResource ResourceKey=HeaderStyleN}"/>
+                <Label Content="{ns:Loc Accommodation}" FontSize="40" Margin="168,470,-34,-75" Style="{DynamicResource ResourceKey=HeaderStyleN}"/>
                 <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Margin="6,258,-6,-258"/>
             </Grid>
         </Border>
@@ -61,7 +61,7 @@
                     </Calendar.LayoutTransform>
 
                 </Calendar>
-                <Button x:Name="reserveButton" Content="Select dates" HorizontalAlignment="Center" Margin="0,520,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{DynamicResource ResourceKey=ButtonStyleN}"/>
+                <Button x:Name="reserveButton" Content="{ns:Loc SelectDates}" HorizontalAlignment="Center" Margin="0,520,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{DynamicResource ResourceKey=ButtonStyleN}"/>
 
             </Grid>
         </Border>
