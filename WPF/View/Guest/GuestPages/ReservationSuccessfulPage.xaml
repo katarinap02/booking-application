@@ -39,7 +39,7 @@
                     <Setter Property="Content" Value="{x:Null}"/>
                     <Style.Triggers>
                         <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
-                            <Setter Property="Content" Value="Bonus points:"/>
+                            <Setter Property="Content" Value="{ns:Loc BonusPoints}"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
                             <Setter Property="Content" Value="{x:Null}"/>

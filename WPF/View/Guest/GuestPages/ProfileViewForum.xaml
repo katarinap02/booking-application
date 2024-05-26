@@ -50,7 +50,7 @@
 
                 </Border>
 
-                <TextBlock x:Name="closedMessage" TextAlignment="Center" TextWrapping="Wrap" FontSize="22" Foreground="{DynamicResource TextColorN}" FontWeight="Bold" Margin="270,291,262,428">This forum is closed. It is not possible to leave new comments.</TextBlock>
+                <TextBlock x:Name="closedMessage" Text="{ns:Loc ClosedForum}" TextAlignment="Center" TextWrapping="Wrap" FontSize="22" Foreground="{DynamicResource TextColorN}" FontWeight="Bold" Margin="270,291,262,428"></TextBlock>
 
                 <ListBox ItemsSource="{Binding ForumComments}" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="680" Margin="190,449,190,10">
                     <ListBox.ItemTemplate>

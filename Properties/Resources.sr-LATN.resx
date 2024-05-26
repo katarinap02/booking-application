@@ -123,6 +123,15 @@
   <data name="AboutApp" xml:space="preserve">
     <value>O aplikaciji</value>
   </data>
+  <data name="AboutDiscoverText" xml:space="preserve">
+    <value>Otkrijte širok spektar smeštaja i tura prilagođen Vašim željama i budžetu, a zatim rezervišite sa sigurnošću. Naš user-friendly interfejs čini pronalazak savršenog smeštaja jednostavnim. </value>
+  </data>
+  <data name="AboutOurTeam" xml:space="preserve">
+    <value>Našem timu developera pripadaju talentovani studenti koji gaje strast prema kreiranju inovativnih rešenja. Sa kombinacijom akademskog znanja i praktičnih veština, donose svežu perspektivu našem projektu. Svaki developer je motivisan, entuzijastičan i posvećen donošenju rezultata visokog kvaliteta. Zajedno, sarađuju bez problema i uravnotežavaju njihova različita iskustva radi postizanja inovacije i uspeha. </value>
+  </data>
+  <data name="AboutWelcomeText" xml:space="preserve">
+    <value>Dobrodošli na našu aplikaciju za rezervisanje, gde se jednostavnost spaja sa satisfakcijom. Pojednostavili smo proces rezervisanja i osigurali da Vaš put od pretrage smeštaja i tura do rezervisanja istih bude lak.</value>
+  </data>
   <data name="Accommodation" xml:space="preserve">
     <value>Smeštaj</value>
   </data>
@@ -135,11 +144,32 @@
   <data name="Adventure" xml:space="preserve">
     <value>Vaša avantura počinje ovde.</value>
   </data>
+  <data name="AfterClosing" xml:space="preserve">
+    <value>Nakon što ga zatvorite, neće biti moguće ostaviti nove komentare.</value>
+  </data>
+  <data name="AllForumsDesc" xml:space="preserve">
+    <value>Svi forumi su prikazani na ovoj strani.</value>
+  </data>
   <data name="AllRequests" xml:space="preserve">
     <value>Svi zahtevi</value>
   </data>
   <data name="AnywhereAnytime" xml:space="preserve">
     <value>Bilo gde / Bilo kada</value>
+  </data>
+  <data name="AnywhereAnytimeDesc" xml:space="preserve">
+    <value>Ako želite da vidite sve slobodne smeštaje na osnovu Vaših zahteva, izaberite opciju ispod:</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Prihvaćeni</value>
+  </data>
+  <data name="BonusPoints" xml:space="preserve">
+    <value>Bonus poeni:</value>
+  </data>
+  <data name="CancelHelp" xml:space="preserve">
+    <value>Ako želite da otkažete rezervaciju, možete to uraditi tako što ćete otići na stranicu Profil. Otkažite ili pomerite Vašu rezervaciju u listi, tako što ćete kliknuti na odgovarajuće dugmiće.</value>
+  </data>
+  <data name="CancelHint" xml:space="preserve">
+    <value>Otkazivanje rezervacije je moguće najkasnije 24 sata pre početka, osim ako vlasnik nije definisao tu granicu drugačije. Ako postoji, granica se može videti u detaljima o smeštaju.</value>
   </data>
   <data name="CancelledRes" xml:space="preserve">
     <value>Izveštaj o otkazanim rezervacijama</value>
@@ -153,11 +183,20 @@
   <data name="CancelSure" xml:space="preserve">
     <value>Da li ste sigurni da želite da otkažete ovu rezervaciju?</value>
   </data>
+  <data name="ChooseHint" xml:space="preserve">
+    <value>Molimo Vas izaberite jedan od smeštaja iznad. Možete oceniti smeštaj i vlasnika najviše pet dana nakon što je rezervacija završena.</value>
+  </data>
   <data name="City" xml:space="preserve">
     <value>Grad</value>
   </data>
   <data name="Cleanliness" xml:space="preserve">
     <value>Čistoća</value>
+  </data>
+  <data name="CleanlinessValid" xml:space="preserve">
+    <value>Polje za čistoću ne može biti prazno.</value>
+  </data>
+  <data name="ClosedForum" xml:space="preserve">
+    <value>Ovaj forum je zatvoren. Nije moguće ostaviti nove komentare.</value>
   </data>
   <data name="ClosedMessage" xml:space="preserve">
     <value>Ovaj forum je zatvoren. Nije moguće ostaviti nove komentare.</value>
@@ -174,6 +213,9 @@
   <data name="Comment" xml:space="preserve">
     <value>Komentar</value>
   </data>
+  <data name="CommentValid" xml:space="preserve">
+    <value>Polje za komentar ne može biti prazno.</value>
+  </data>
   <data name="ConfirmPass" xml:space="preserve">
     <value>Potvrda nove lozinke</value>
   </data>
@@ -182,6 +224,9 @@
   </data>
   <data name="Correctness" xml:space="preserve">
     <value>Korektnost</value>
+  </data>
+  <data name="CorrectnessValid" xml:space="preserve">
+    <value>Polje za korektnost ne može biti prazno.</value>
   </data>
   <data name="CreatedRes" xml:space="preserve">
     <value>Izveštaj o napravljenim rezervacijama</value>
@@ -195,11 +240,26 @@
   <data name="CreateReport" xml:space="preserve">
     <value>Generiši izveštaj</value>
   </data>
+  <data name="Date" xml:space="preserve">
+    <value>Datum</value>
+  </data>
+  <data name="DateRangeValid" xml:space="preserve">
+    <value>Potrebno je izabrati</value>
+  </data>
   <data name="DatesProblem" xml:space="preserve">
     <value>Problem sa biranjem dana.</value>
   </data>
+  <data name="DayNum" xml:space="preserve">
+    <value>Broj dana:</value>
+  </data>
   <data name="DayNumber" xml:space="preserve">
     <value>Broj dana</value>
+  </data>
+  <data name="DayNumHint" xml:space="preserve">
+    <value>Potrebno je izabrati isti broj dana koji ste uneli na prethodnoj strani.</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>dana.</value>
   </data>
   <data name="DelayRequest" xml:space="preserve">
     <value>Zahtev za pomeranje</value>
@@ -219,6 +279,12 @@
   <data name="Filter" xml:space="preserve">
     <value>Filter</value>
   </data>
+  <data name="FindPerfect" xml:space="preserve">
+    <value>Pronađite Vaš savršen smeštaj i rezervišite ga sa lakoćom, bilo da planirate odmor, poslovno putovanje ili spontan odlazak. Omogućili smo da rezervisanje smeštaja bude lako, tako da možete da se fokusirate na stvaranje uspomena.</value>
+  </data>
+  <data name="ForumHelp" xml:space="preserve">
+    <value>Možete napraviti forum tako što ćete otići na stranicu Profile na Meniju i izabrati tab Forumi na sajd-baru. Tamo možete videti Vaše prethodno napravljene forume. Da biste napravili novi forum, kliknite na odgovarajuće dugme na dnu strane. Takođe, moguće je i zatvoriti forum. U tom slučaju neće biti moguće ostaviti nove komentare.</value>
+  </data>
   <data name="Forums" xml:space="preserve">
     <value>Forumi</value>
   </data>
@@ -227,6 +293,12 @@
   </data>
   <data name="GuestNumber" xml:space="preserve">
     <value>Broj gostiju</value>
+  </data>
+  <data name="GuestNumValid" xml:space="preserve">
+    <value>Max. broj gostiju je</value>
+  </data>
+  <data name="GuestStatus" xml:space="preserve">
+    <value>Status: gost</value>
   </data>
   <data name="Help" xml:space="preserve">
     <value>Pomoć</value>
@@ -258,14 +330,38 @@
   <data name="HowSuperGuest" xml:space="preserve">
     <value>Kako postati Super-gost?</value>
   </data>
+  <data name="InputHint" xml:space="preserve">
+    <value>Unesite vrednosti u odgovarajuća polja. Potrebno je da rezervišete najmanje onoliko dana koliko je navedeno u opisu smeštaja.</value>
+  </data>
   <data name="InputProblem" xml:space="preserve">
     <value>Problem sa unosom podataka</value>
   </data>
   <data name="Level" xml:space="preserve">
     <value>Nivo hitnosti</value>
   </data>
+  <data name="Level1" xml:space="preserve">
+    <value>Nivo 1 - bilo bi lepo renovirati neke sitnice, ali sve funkcioniše kako treba i bez toga</value>
+  </data>
+  <data name="Level2" xml:space="preserve">
+    <value>Nivo 2 - male zamerke na smeštaj koje kada bi se uklonile bi ga učinile savršenim"</value>
+  </data>
+  <data name="Level3" xml:space="preserve">
+    <value>Nivo 3 - nekoliko stvari koje su baš zasmetale bi trebalo renovirati</value>
+  </data>
+  <data name="Level4" xml:space="preserve">
+    <value>Nivo 4 - ima dosta loših stvari i renoviranje je stvarno neophodno</value>
+  </data>
+  <data name="Level5" xml:space="preserve">
+    <value>Nivo 5 - smeštaj je u jako lošem stanju i ne vredi ga uopšte iznajmljivati ukoliko se ne renovira</value>
+  </data>
+  <data name="LocatedReport" xml:space="preserve">
+    <value>Izveštaj se nalazi na Vašem kompjuteru.</value>
+  </data>
   <data name="Location" xml:space="preserve">
     <value>Lokacija</value>
+  </data>
+  <data name="LocationDetails" xml:space="preserve">
+    <value>{}Location: {0}&amp;#x0a;Max. number of guests: {1}&amp;#x0a;Min. number of reservation days: {2}&amp;#x0a;Rate: {3}</value>
   </data>
   <data name="LoggedIn" xml:space="preserve">
     <value>Ulogovani ste kao gost.</value>
@@ -279,6 +375,15 @@
   <data name="MinDayNumber" xml:space="preserve">
     <value>Min. broj dana</value>
   </data>
+  <data name="MoreDetailed" xml:space="preserve">
+    <value>Detaljnija objašnjenja su dostupna u vidu hintova za svaku funkcionalnost.</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Naziv</value>
+  </data>
+  <data name="NewDates" xml:space="preserve">
+    <value>Novi datumi:</value>
+  </data>
   <data name="NewPass" xml:space="preserve">
     <value>Nova lozinka</value>
   </data>
@@ -291,14 +396,32 @@
   <data name="Optional" xml:space="preserve">
     <value>Opciono</value>
   </data>
+  <data name="OptionalMsg" xml:space="preserve">
+    <value>Opciono: Možete ostaviti Vaše slike smeštaja ili napraviti preporuku za renovaciju.</value>
+  </data>
   <data name="Password" xml:space="preserve">
     <value>Lozinka</value>
   </data>
   <data name="PasswordChange" xml:space="preserve">
     <value>Promeni lozinku</value>
   </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Na čekanju</value>
+  </data>
+  <data name="PeopleNum" xml:space="preserve">
+    <value>Broj ljudi:</value>
+  </data>
+  <data name="PleaseChooseDays" xml:space="preserve">
+    <value>Molimo Vas izaberite dane i broj ljudi za Vašu rezervaciju.</value>
+  </data>
+  <data name="PleaseChooseDelay" xml:space="preserve">
+    <value>Molimo Vas izaberite nove datume za Vašu rezervaciju i zatim sačekajte vlasnikov odgovor. Zahtev može biti na čekanju, prihvaćen ili odbijen.</value>
+  </data>
   <data name="PostComment" xml:space="preserve">
     <value>Ostavi komentar</value>
+  </data>
+  <data name="PreviousDates" xml:space="preserve">
+    <value>Prethodni datumi:</value>
   </data>
   <data name="ProblemCancel" xml:space="preserve">
     <value>Problem sa otkazivanjem rezervacije</value>
@@ -318,20 +441,41 @@
   <data name="RateButton" xml:space="preserve">
     <value>Oceni</value>
   </data>
+  <data name="RateHelp" xml:space="preserve">
+    <value>Možete oceniti smeštaj i gosta tako što ćete otići na Profilnu sranu na Meniju i izabrati Oceni smeštaj na sajd-baru. Sledeći korak je da izaberete rezervaciju iz ponuđenih rezervacija. Možete oceniti smeštaj najkasnije 5 dana nakon što je rezervacija završena.</value>
+  </data>
+  <data name="RateHint" xml:space="preserve">
+    <value>Molimo Vas unesite ocene za čistoću i korektnost. Da biste napravili preporuku za renovaciju, potrebno je da prvo unesete sva obavezna polja i zatim kliknete na dugme Preporuka za renoviranje.</value>
+  </data>
   <data name="RateProblem" xml:space="preserve">
     <value>Problem sa ocenjivanjem smeštaja</value>
   </data>
   <data name="RatesByHost" xml:space="preserve">
     <value>Ocene vlasnika</value>
   </data>
+  <data name="RatesByHostDesc" xml:space="preserve">
+    <value>Na ovoj stranici možete videti kako su Vas ocenili vlasnici.</value>
+  </data>
   <data name="RateSuccess" xml:space="preserve">
     <value>Smeštaj je uspešno ocenjen.</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Ocena:</value>
   </data>
   <data name="Recommend" xml:space="preserve">
     <value>Preporuka za renoviranje</value>
   </data>
   <data name="Recommendation" xml:space="preserve">
     <value>Preporuka</value>
+  </data>
+  <data name="RecommendDesc" xml:space="preserve">
+    <value>Potrebno je da navedete informacije o tome šta treba da bude renovirano. Nakon toga, izaberite nivo hitnosti.</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Odbijeni</value>
+  </data>
+  <data name="ReportsDesc" xml:space="preserve">
+    <value>Ova stranica je za kreiranje izveštaja o rezervacijama u određenom vremenskom periodu. Molimo Vas izaberite tip i vremenski period.</value>
   </data>
   <data name="ReportSuccess" xml:space="preserve">
     <value>Izveštaj je uspešno kreiran.</value>
@@ -345,11 +489,17 @@
   <data name="Requests" xml:space="preserve">
     <value>Zahtevi</value>
   </data>
+  <data name="Required" xml:space="preserve">
+    <value>Molimo Vas unesite tražene podatke.</value>
+  </data>
   <data name="Reservation" xml:space="preserve">
     <value>Rezervacija</value>
   </data>
   <data name="ReservationDetails" xml:space="preserve">
     <value>Detalji o rezervaciji</value>
+  </data>
+  <data name="ReservationHelp" xml:space="preserve">
+    <value>Možete kreirati rezervaciju tako što ćete otići na stranicu Smeštaji na Meniju, ili kliknuti na Rezerviši dugme na početnoj strani. Tamo možete izabrati smeštaj iz liste i kliknuti na dugme Rezerviši. Druga opcija je rezervacija "Bilo gde / Bilo kada" koja će vam pružiti sve slobodne smeštaje na osnovu Vaših potreba.</value>
   </data>
   <data name="ReservationReport" xml:space="preserve">
     <value>Izveštaj o rezervacijama</value>
@@ -363,8 +513,14 @@
   <data name="Reserve" xml:space="preserve">
     <value>Rezerviši</value>
   </data>
+  <data name="ResPastYear" xml:space="preserve">
+    <value>Rezervacije u proteklih godinu dana:</value>
+  </data>
   <data name="ReviewProblem" xml:space="preserve">
     <value>Problem with creating a review</value>
+  </data>
+  <data name="RquestsDesc" xml:space="preserve">
+    <value>Možete da vidite sve Vaše zahteve sortirane po statusu na ovoj strani.</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Sačuvaj</value>
@@ -390,8 +546,29 @@
   <data name="StartDate" xml:space="preserve">
     <value>Početni datum</value>
   </data>
+  <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="SuperGuestHelp" xml:space="preserve">
+    <value>Da biste postali Super-gost, potrebno je da ostvarite bar 10 rezervacija u proteklih godinu dana. Sa statusom Super-gosta dobijame 5 dodatnih poena koji Vam donose popuste pri pravljenju rezervacije. Status traje godinu dana i može biti produžen ukoliko ste u međuvremenu kreirali još 10 rezervacija u proteklih godinu dana.</value>
+  </data>
+  <data name="SuperGuestStatus" xml:space="preserve">
+    <value>Status: super-gost</value>
+  </data>
+  <data name="TheSystemAA" xml:space="preserve">
+    <value>Sistem će Vam preporučiti sve slobodne smeštaje na osnovu Vašeg unosa.</value>
+  </data>
   <data name="TimePeriod" xml:space="preserve">
     <value>Vremenski period</value>
+  </data>
+  <data name="TotalRes" xml:space="preserve">
+    <value>Ukupan broj rezervacija:</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Tip</value>
+  </data>
+  <data name="Until" xml:space="preserve">
+    <value>, do</value>
   </data>
   <data name="UsernameChange" xml:space="preserve">
     <value>Promeni korisničko ime</value>
@@ -401,6 +578,21 @@
   </data>
   <data name="ViewForum" xml:space="preserve">
     <value>Vidi forum</value>
+  </data>
+  <data name="WelcomeAA" xml:space="preserve">
+    <value>Dobrodošli na "Bilo gde / Bilo kada" stranicu za rezervaciju. Molimo Vas, unesite broj gostiju i dana po izboru. Opciono, možete izabrati raspon datuma.</value>
+  </data>
+  <data name="WelcomeHome" xml:space="preserve">
+    <value>{}Welcome, {0}</value>
+  </data>
+  <data name="WelcomeRating" xml:space="preserve">
+    <value>Dobrodošli na stranicu za ocenjivanje smeštaja. Da biste napravili zahtev, popunite polja za čistoću i korektnost, kao i komentar.</value>
+  </data>
+  <data name="WelcomeRes" xml:space="preserve">
+    <value>Dobrodošli na stranicu za rezervaciju.</value>
+  </data>
+  <data name="YouCanChoose" xml:space="preserve">
+    <value>Možete izabrati jedan od preporučenih smeštaja.</value>
   </data>
   <data name="YourForums" xml:space="preserve">
     <value>Vaši forumi</value>

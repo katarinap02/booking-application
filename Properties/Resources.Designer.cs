@@ -844,5 +844,461 @@ namespace BookingApp.Properties
                 return ResourceManager.GetString("YourProfile", resourceCulture);
             }
         }
+
+        public static string AboutWelcomeText
+        {
+            get
+            {
+                return ResourceManager.GetString("AboutWelcomeText", resourceCulture);
+            }
+        }
+
+        public static string AboutDiscoverText
+        {
+            get
+            {
+                return ResourceManager.GetString("AboutDiscoverText", resourceCulture);
+            }
+        }
+
+        public static string AboutOurTeam
+        {
+            get
+            {
+                return ResourceManager.GetString("AboutOurTeam", resourceCulture);
+            }
+        }
+
+        public static string LocationDetails
+        {
+            get
+            {
+                return ResourceManager.GetString("LocationDetails", resourceCulture);
+            }
+        }
+
+        public static string Name
+        {
+            get
+            {
+                return ResourceManager.GetString("Name", resourceCulture);
+            }
+        }
+
+        public static string Type
+        {
+            get
+            {
+                return ResourceManager.GetString("Type", resourceCulture);
+            }
+        }
+
+        public static string AnywhereAnytimeDesc
+        {
+            get
+            {
+                return ResourceManager.GetString("AnywhereAnytimeDesc", resourceCulture);
+            }
+        }
+
+        public static string AllForumsDesc
+        {
+            get
+            {
+                return ResourceManager.GetString("AllForumsDesc", resourceCulture);
+            }
+        }
+
+        public static string PleaseChooseDays
+        {
+            get
+            {
+                return ResourceManager.GetString("PleaseChooseDays", resourceCulture);
+            }
+        }
+
+        public static string YouCanChoose
+        {
+            get
+            {
+                return ResourceManager.GetString("YouCanChoose", resourceCulture);
+            }
+        }
+
+        public static string WelcomeAA
+        {
+            get
+            {
+                return ResourceManager.GetString("WelcomeAA", resourceCulture);
+            }
+        }
+
+        public static string TheSystemAA
+        {
+            get
+            {
+                return ResourceManager.GetString("TheSystemAA", resourceCulture);
+            }
+        }
+
+        public static string AfterClosing
+        {
+            get
+            {
+                return ResourceManager.GetString("AfterClosing", resourceCulture);
+            }
+        }
+
+        public static string PleaseChooseDelay
+        {
+            get
+            {
+                return ResourceManager.GetString("PleaseChooseDelay", resourceCulture);
+            }
+        }
+
+        public static string ReservationHelp
+        {
+            get
+            {
+                return ResourceManager.GetString("ReservationHelp", resourceCulture);
+            }
+        }
+
+        public static string CancelHelp
+        {
+            get
+            {
+                return ResourceManager.GetString("CancelHelp", resourceCulture);
+            }
+        }
+
+        public static string RateHelp
+        {
+            get
+            {
+                return ResourceManager.GetString("RateHelp", resourceCulture);
+            }
+        }
+
+        public static string SuperGuestHelp
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperGuestHelp", resourceCulture);
+            }
+        }
+
+        public static string ForumHelp
+        {
+            get
+            {
+                return ResourceManager.GetString("ForumHelp", resourceCulture);
+            }
+        }
+
+        public static string MoreDetailed
+        {
+            get
+            {
+                return ResourceManager.GetString("MoreDetailed", resourceCulture);
+            }
+        }
+
+        public static string FindPerfect
+        {
+            get
+            {
+                return ResourceManager.GetString("FindPerfect", resourceCulture);
+            }
+        }
+
+        public static string PreviousDates
+        {
+            get
+            {
+                return ResourceManager.GetString("PreviousDates", resourceCulture);
+            }
+        }
+
+        public static string NewDates
+        {
+            get
+            {
+                return ResourceManager.GetString("NewDates", resourceCulture);
+            }
+        }
+
+        public static string PeopleNum
+        {
+            get
+            {
+                return ResourceManager.GetString("PeopleNum", resourceCulture);
+            }
+        }
+
+        public static string DayNum
+        {
+            get
+            {
+                return ResourceManager.GetString("DayNum", resourceCulture);
+            }
+        }
+
+        public static string SuperGuestStatus
+        {
+            get
+            {
+                return ResourceManager.GetString("SuperGuestStatus", resourceCulture);
+            }
+        }
+
+        public static string GuestStatus
+        {
+            get
+            {
+                return ResourceManager.GetString("GuestStatus", resourceCulture);
+            }
+        }
+
+        public static string Until
+        {
+            get
+            {
+                return ResourceManager.GetString("Until", resourceCulture);
+            }
+        }
+
+        public static string TotalRes
+        {
+            get
+            {
+                return ResourceManager.GetString("TotalRes", resourceCulture);
+            }
+        }
+
+        public static string ResPastYear
+        {
+            get
+            {
+                return ResourceManager.GetString("ResPastYear", resourceCulture);
+            }
+        }
+
+        public static string Rating
+        {
+            get
+            {
+                return ResourceManager.GetString("Rating", resourceCulture);
+            }
+        }
+
+        public static string CancelHint
+        {
+            get
+            {
+                return ResourceManager.GetString("CancelHint", resourceCulture);
+            }
+        }
+
+        public static string ClosedForum
+        {
+            get
+            {
+                return ResourceManager.GetString("ClosedForum", resourceCulture);
+            }
+        }
+
+        public static string WelcomeRating
+        {
+            get
+            {
+                return ResourceManager.GetString("WelcomeRating", resourceCulture);
+            }
+        }
+
+        public static string OptionalMsg
+        {
+            get
+            {
+                return ResourceManager.GetString("OptionalMsg", resourceCulture);
+            }
+        }
+
+        public static string RateHint
+        {
+            get
+            {
+                return ResourceManager.GetString("RateHint", resourceCulture);
+            }
+        }
+
+        public static string CleanlinessValid
+        {
+            get
+            {
+                return ResourceManager.GetString("CleanlinessValid", resourceCulture);
+            }
+        }
+
+        public static string CorrectnessValid
+        {
+            get
+            {
+                return ResourceManager.GetString("CorrectnessValid", resourceCulture);
+            }
+        }
+
+        public static string CommentValid
+        {
+            get
+            {
+                return ResourceManager.GetString("CommentValid", resourceCulture);
+            }
+        }
+
+        public static string ChooseHint
+        {
+            get
+            {
+                return ResourceManager.GetString("ChooseHint", resourceCulture);
+            }
+        }
+
+        public static string RatesByHostDesc
+        {
+            get
+            {
+                return ResourceManager.GetString("RatesByHostDesc", resourceCulture);
+            }
+        }
+
+        public static string RecommendDesc
+        {
+            get
+            {
+                return ResourceManager.GetString("RecommendDesc", resourceCulture);
+            }
+        }
+
+        public static string LocatedReport
+        {
+            get
+            {
+                return ResourceManager.GetString("LocatedReport", resourceCulture);
+            }
+        }
+
+        public static string RquestsDesc
+        {
+            get
+            {
+                return ResourceManager.GetString("RquestsDesc", resourceCulture);
+            }
+        }
+
+        public static string Pending
+        {
+            get
+            {
+                return ResourceManager.GetString("Pending", resourceCulture);
+            }
+        }
+
+        public static string Approved
+        {
+            get
+            {
+                return ResourceManager.GetString("Approved", resourceCulture);
+            }
+        }
+
+        public static string Rejected
+        {
+            get
+            {
+                return ResourceManager.GetString("Rejected", resourceCulture);
+            }
+        }
+
+        public static string WelcomeRes
+        {
+            get
+            {
+                return ResourceManager.GetString("WelcomeRes", resourceCulture);
+            }
+        }
+
+        public static string Required
+        {
+            get
+            {
+                return ResourceManager.GetString("Required", resourceCulture);
+            }
+        }
+
+        public static string InputHint
+        {
+            get
+            {
+                return ResourceManager.GetString("InputHint", resourceCulture);
+            }
+        }
+
+        public static string ReportsDesc
+        {
+            get
+            {
+                return ResourceManager.GetString("ReportsDesc", resourceCulture);
+            }
+        }
+
+        public static string BonusPoints
+        {
+            get
+            {
+                return ResourceManager.GetString("BonusPoints", resourceCulture);
+            }
+        }
+
+        public static string DateRangeValid
+        {
+            get
+            {
+                return ResourceManager.GetString("DateRangeValid", resourceCulture);
+            }
+        }
+
+        public static string GuestNumValid
+        {
+            get
+            {
+                return ResourceManager.GetString("GuestNumValid", resourceCulture);
+            }
+        }
+
+        public static string Days
+        {
+            get
+            {
+                return ResourceManager.GetString("Days", resourceCulture);
+            }
+        }
+
+        public static string WelcomeHome
+        {
+            get
+            {
+                return ResourceManager.GetString("WelcomeHome", resourceCulture);
+            }
+        }
+
+        public static string Date
+        {
+            get
+            {
+                return ResourceManager.GetString("Date", resourceCulture);
+            }
+        }
     }
 }

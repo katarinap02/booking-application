@@ -39,7 +39,7 @@
 
                 <Label Content="{ns:Loc AnywhereAnytime}" FontSize="55" Margin="52,42,83,288" Style="{DynamicResource ResourceKey=HeaderStyleN}"/>
 
-                <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Margin="52,184,80,430">You can choose one of the recommended accommodations.</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Margin="52,184,80,430" Text="{ns:Loc YouCanChoose}"></TextBlock>
                 <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="46,452,46,83"></Border>
                 <TextBlock FontSize="23" Margin="80,486,80,116" TextAlignment="Center" FontWeight="Bold">
 

@@ -35,7 +35,7 @@
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
                 <Label Content="{ns:Loc ReportSuccess}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="137,126,137,603"/>
-                <TextBlock TextAlignment="center" TextWrapping="Wrap" FontSize="30" Margin="265,246,265,434" Text="The report is now located on your computer."/>
+                <TextBlock TextAlignment="center" TextWrapping="Wrap" FontSize="30" Margin="265,246,265,434" Text="{ns:Loc LocatedReport}"/>
                 <Grid Margin="10,168,-10,471">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="115*"/>

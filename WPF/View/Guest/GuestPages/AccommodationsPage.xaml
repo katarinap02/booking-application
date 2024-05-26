@@ -125,25 +125,25 @@
     </Page.Resources>
     <Grid>
         <Image Source="{DynamicResource Location}" Height="20" Width="20" Margin="947,125,953,845"/>
-        <TextBlock x:Name="Location" FontSize="20" Text="Location" Margin="976,122,832,831"  Foreground="{DynamicResource TextColorN}"/>
+        <TextBlock x:Name="Location" FontSize="20" Text="{ns:Loc Location}" Margin="976,122,832,831"  Foreground="{DynamicResource TextColorN}"/>
 
         <Image Source="{DynamicResource Star}" Height="20" Width="20" Margin="1111,125,789,845"/>
-        <TextBlock x:Name="AccommodationRate" FontSize="20" Text="Rate" Margin="1141,122,712,831" Foreground="{DynamicResource TextColorN}"/>
+        <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{ns:Loc Rate}" Margin="1141,122,712,831" Foreground="{DynamicResource TextColorN}"/>
         <Image Source="{DynamicResource Calendar}" Height="20" Width="20" Margin="1245,125,655,845"/>
-        <TextBlock x:Name="AccommodationDays" FontSize="20" Text="Min. number of days" Margin="1276,123,411,831" Foreground="{DynamicResource TextColorN}"/>
+        <TextBlock x:Name="AccommodationDays" FontSize="20" Text="{ns:Loc MinDayNumber}" Margin="1276,123,411,831" Foreground="{DynamicResource TextColorN}"/>
         <Image Source="{DynamicResource Person}" Height="20" Width="20" Margin="1537,125,363,845"/>
-        <TextBlock x:Name="AccommodationGuests" FontSize="20" Text="Max. number of guests" Margin="1570,123,118,834" Foreground="{DynamicResource TextColorN}"/>
+        <TextBlock x:Name="AccommodationGuests" FontSize="20" Text="{ns:Loc MaxGuestNumber}" Margin="1570,123,118,834" Foreground="{DynamicResource TextColorN}"/>
 
 
 
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,162,1082,393">
             <Grid x:Name="SearchSection">
                 <Label Content="{ns:Loc Search accommodation}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="122,10,-122,-10"/>
-                <Label Content="Name:" HorizontalAlignment="Left" Margin="66,89,0,0" VerticalAlignment="Top" Width="74" FontSize="16" RenderTransformOrigin="0.439,1.63"/>
-                <Label Content="City:" HorizontalAlignment="Left" Margin="66,169,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="-8.542,2.786" FontSize="16"/>
-                <Label Content="Type:" HorizontalAlignment="Left" Margin="66,208,0,0" VerticalAlignment="Top" Width="74" FontSize="16"/>
-                <Label Content="Max. guest number:" HorizontalAlignment="Left" Margin="66,250,0,0" VerticalAlignment="Top" Width="160" FontSize="16"/>
-                <Label Content="Minimal number of reservation days:" HorizontalAlignment="Left" Margin="66,287,0,0" VerticalAlignment="Top" Width="266" FontSize="16"/>
+                <Label Content="{ns:Loc Name}" HorizontalAlignment="Left" Margin="66,89,0,0" VerticalAlignment="Top" Width="74" FontSize="16" RenderTransformOrigin="0.439,1.63"/>
+                <Label Content="{ns:Loc City}" HorizontalAlignment="Left" Margin="66,169,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="-8.542,2.786" FontSize="16"/>
+                <Label Content="{ns:Loc Type}" HorizontalAlignment="Left" Margin="66,208,0,0" VerticalAlignment="Top" Width="74" FontSize="16"/>
+                <Label Content="{ns:Loc MaxGuestNumber}" HorizontalAlignment="Left" Margin="66,250,0,0" VerticalAlignment="Top" Width="160" FontSize="16"/>
+                <Label Content="{ns:Loc MinDayNumber}" HorizontalAlignment="Left" Margin="66,287,0,0" VerticalAlignment="Top" Width="266" FontSize="16"/>
                 <TextBox x:Name="txtSearchName" HorizontalAlignment="Left" Margin="382,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118" />
                 <!--<TextBox x:Name="txtSearchCity" HorizontalAlignment="Left" Margin="382,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>-->
                 <ComboBox x:Name="txtSearchCity" HorizontalAlignment="Left" Margin="382,175,0,236" Width="118" Height="20" ItemsSource="{Binding CitiesSearch}"  SelectedItem="{Binding CitySearch, Mode=TwoWay}"/>
@@ -162,8 +162,8 @@
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,618,1082,92">
             <Grid Margin="0,-2,0,-26">
                 <Label Content="{ns:Loc AnywhereAnytime}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="130,10,130,235"/>
-                <TextBlock TextWrapping="Wrap" FontSize="20" Margin="81,85,93,-51" TextAlignment="Center">
-                    If you wish to see all available accommodations according to your requests, choose below option:
+                <TextBlock Text="{ns:Loc AnywhereAnytimeDesc}" TextWrapping="Wrap" FontSize="20" Margin="81,85,93,-51" TextAlignment="Center">
+                    
                 </TextBlock>
                 <Button x:Name="AnywhereAnytimeButton" Content="{ns:Loc AnywhereAnytime}" Style="{DynamicResource ButtonStyleN}" FontSize="20" Margin="170,187,170,44" Height="33" Command="{Binding AnywhereAnytimeCommand}"/>
             </Grid>

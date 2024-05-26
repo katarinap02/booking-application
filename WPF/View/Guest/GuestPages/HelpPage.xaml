@@ -12,29 +12,23 @@
     <Grid>
         <Label Content="FAQ" Style="{DynamicResource HeaderStyleN}" FontSize="60" Margin="884,28,884,881"/>
         <Label Content="{ns:Loc HowReservation}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="91,146,1220,780"/>
-        <TextBlock TextWrapping="Wrap" FontSize="20" Margin="96,185,1323,589" TextAlignment="Justify">
-            You can create a reservation by going to the Accommodations page on the Menu bar, or clicking on Reserve button on Home page.
-            There you can pick an accommodation from the list and click on Reserve. The other option is Anywhere / Anytime reservation
-            which will give you all available accommodations according to your needs.
-        </TextBlock>
+        <TextBlock Text="{ns:Loc ReservationHelp}" TextWrapping="Wrap" FontSize="20" Margin="96,185,1323,589" TextAlignment="Justify">
+             </TextBlock>
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="135,406,1385,479">
             <Grid>
                 <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="200" Source="../../../Resources/Images/reserveHelp.png"/>
             </Grid>
         </Border>
         <Label Content="{ns:Loc HowCancel}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="96,557,1215,344"/>
-        <TextBlock TextWrapping="Wrap" FontSize="20" Margin="96,604,1323,242" TextAlignment="Justify">
-            If you want to cancel a reservation, you can do it by going to the Profile page or My reservations page on the Menu bar.
-            Cancel or delay a reservation in your list, by clicking on the corresponding buttons.
-        </TextBlock>
+        <TextBlock Text="{ns:Loc CancelHelp}" TextWrapping="Wrap" FontSize="20" Margin="96,604,1323,242" TextAlignment="Justify">
+              </TextBlock>
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="135,748,1385,80">
             <Grid>
                 <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="200" Source="../../../Resources/Images/cancelHelp.png"/>
             </Grid>
         </Border>
         <Label Content="{ns:Loc HowRate}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="700,146,611,781"/>
-        <TextBlock TextWrapping="Wrap" FontSize="20" Margin="705,185,704,625" TextAlignment="Justify">You can rate accommodation and host by going to the Profile page on Menu bar, and choosing Rate accommodation tab from side menu. 
-        Next step is to pick a reservation from provided reservations. You can only rate accommodation within five days after the reservation is finished.</TextBlock>
+        <TextBlock Text="{ns:Loc RateHelp}" TextWrapping="Wrap" FontSize="20" Margin="705,185,704,625" TextAlignment="Justify"></TextBlock>
 
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="758,365,758,465">
             <Grid>
@@ -43,11 +37,9 @@
         </Border>
 
         <Label Content="{ns:Loc HowCreate}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="700,557,611,370"/>
-        <TextBlock TextWrapping="Wrap" FontSize="20" Margin="700,604,704,222" TextAlignment="Justify" Text="You can create a forum by going to the Profile page on Menu bar and choosing Forums tab from the side menu. There, you can see your previously created forums. To create a new forum, click on the corresponding button on the bootom of the page.  It is also possible to close forum in which case no one will be able to post new comments."/>
+        <TextBlock Text="{ns:Loc ForumHelp}" TextWrapping="Wrap" FontSize="20" Margin="700,604,704,222" TextAlignment="Justify" />
         <Label Content="{ns:Loc HowSuperGuest}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="1342,149,-31,778"/>
-        <TextBlock TextWrapping="Wrap" FontSize="20" Margin="1342,185,82,541" TextAlignment="Justify">In order to become a Super-guest, you need to
-        create at least 10 reservations in the past a year. With the Super-guest status, you also get 5 bonus points that bring you discounts when creating
-        a reservation. Super-guest status lasts for a year and it can be prolonged if you created another 10 reservations in the past year.</TextBlock>
+        <TextBlock Text="{ns:Loc SuperGuestHelp}" TextWrapping="Wrap" FontSize="20" Margin="1342,185,82,541" TextAlignment="Justify"></TextBlock>
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="1378,365,142,520">
             <Grid>
                 <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="200" Source="../../../Resources/Images/superGuestHelp.png"/>
@@ -60,7 +52,7 @@
         </Border>
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="1456,772,82,80" CornerRadius="20">
             <Grid>
-                <TextBlock TextWrapping="Wrap" FontSize="23" FontWeight="Bold" Margin="26,10,26,-64" TextAlignment="Justify" RenderTransformOrigin="0.5,0.5">
+                <TextBlock Text="{ns:Loc MoreDetailed}"  TextWrapping="Wrap" FontSize="23" FontWeight="Bold" Margin="26,10,26,-64" TextAlignment="Justify" RenderTransformOrigin="0.5,0.5">
                     <TextBlock.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform ScaleX="1" ScaleY="1"/>
@@ -68,7 +60,7 @@
                             <RotateTransform/>
                             <TranslateTransform/>
                         </TransformGroup>
-                    </TextBlock.RenderTransform>More detailed explanations are available as hints for each functionality.</TextBlock>
+                    </TextBlock.RenderTransform></TextBlock>
             </Grid>
         </Border>
     </Grid>

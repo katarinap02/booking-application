@@ -13,8 +13,8 @@
     <Grid>
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
             <Grid>
-                <TextBlock TextWrapping="Wrap" FontSize="25" Margin="187,114,187,629">
-On this page, you can see how you were rated by the hosts.</TextBlock>
+                <TextBlock Text="{ns:Loc RatesByHostDesc}" TextWrapping="Wrap" FontSize="25" Margin="187,114,187,629">
+</TextBlock>
 
 
                 <ListBox Name="ReservationListBox" Margin="30,235,30,27"  ScrollViewer.VerticalScrollBarVisibility="Auto"

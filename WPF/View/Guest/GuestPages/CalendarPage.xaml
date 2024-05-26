@@ -50,7 +50,7 @@
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="218,92,1031,162" Width="671" Height="736">
             <Grid>
                 <Label Content="{ns:Loc Reservation}" FontSize="55" Margin="158,16,-24,315" Style="{DynamicResource ResourceKey=HeaderStyleN}"/>
-                <TextBlock FontSize="35" TextWrapping="Wrap" TextAlignment="Center" Margin="31,101,31,315">Please choose days and number od people for your reservation.</TextBlock>
+                <TextBlock Text="{ns:Loc PleaseChoose}" FontSize="35" TextWrapping="Wrap" TextAlignment="Center" Margin="31,101,31,315"></TextBlock>
 
                 <ToggleButton Height="50" Width="300" Background="White" BorderBrush="White" Margin="168,260,199,430" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                     <StackPanel Orientation="Horizontal">
@@ -82,10 +82,10 @@
                         <InlineUIContainer>
                             <Image Source="{DynamicResource Warning}" Width="16" Height="16" Margin="2,0,0,0"/>
                         </InlineUIContainer>
-                        <Run Text="You need to select"/>
+                        <Run Text="{ns:Loc DateRangeValid}"/>
                         <Run Text="{Binding DayNumber}" />
 
-                        <Run Text="days." />
+                        <Run Text="{ns:Loc Days}" />
                     </TextBlock.Inlines>
 
 
@@ -110,7 +110,7 @@
                         <InlineUIContainer>
                             <Image Source="{DynamicResource Warning}" Width="16" Height="12" Margin="2,0,0,0"/>
                         </InlineUIContainer>
-                        <Run Text="Max. guest number is"/>
+                        <Run Text="{ns:Loc GuestNumValid}"/>
                         <Run Text="{Binding SelectedAccommodation.MaxGuestNumber}" />
 
                         <Run Text="." />

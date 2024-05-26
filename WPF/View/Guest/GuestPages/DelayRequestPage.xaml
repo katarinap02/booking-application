@@ -49,7 +49,7 @@
             <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,549,5">
                 <Grid>
                     <Button Content="Back" Style="{DynamicResource ButtonStyleN}" FontSize="16" Width="60" Height="25" Margin="10,10,452,754" Command="{Binding BackCommand}"/>
-                    <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="36,41,38,507">Please choose new dates for your reservation, and then wait for host's response. Requests can be pending, approved or rejected.</TextBlock>
+                    <TextBlock Text="{ns:Loc PleaseChooseDelay}" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="36,41,38,507"></TextBlock>
 
                     <ToggleButton Height="50" Background="White" BorderBrush="White" Margin="129,232,131,507" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                         <StackPanel Orientation="Horizontal">
@@ -59,8 +59,7 @@
 
                     </ToggleButton>
                     <TextBlock x:Name="Hint" FontSize="16" Foreground="Green" Height="150" TextAlignment="Center" TextWrapping="Wrap" Margin="129,287,105,352">
-                        It is neccessary to choose the same number of days you previously reserved.
-                    </TextBlock>
+                        </TextBlock>
 
                     <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="136,434,-136,312"/>
                     <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="218,648,218,98"/>
@@ -89,10 +88,10 @@
                             <InlineUIContainer>
                                 <Image Source="{DynamicResource Warning}" Width="16" Height="16" Margin="2,0,0,0"/>
                             </InlineUIContainer>
-                            <Run Text="You need to select"/>
+                            <Run Text="{ns:Loc DateRangeValid}"/>
                             <Run Text="{Binding DayNumber}" />
 
-                            <Run Text="days." />
+                            <Run Text="{ns:Loc Days}" />
                         </TextBlock.Inlines>
 
 

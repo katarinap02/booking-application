@@ -60,7 +60,7 @@
             </TextBlock.Text>
 
         </TextBlock>
-        <TextBlock FontStyle="Italic" TextWrapping="Wrap" FontSize="23" TextAlignment="Center" Margin="601,497,574,369">Find your perfect accommodation and reserve it with ease, whether you're planning a vacation, a business trip, or a spontaneous getaway. We make booking accommodations simple, so you can focus on making memories.</TextBlock>
+        <TextBlock FontStyle="Italic" TextWrapping="Wrap" FontSize="23" TextAlignment="Center" Margin="601,497,574,369" Text="{ns:Loc FindPerfect}"></TextBlock>
         <Label Content="{ns:Loc Adventure}" FontStyle="Italic" FontWeight="Bold" FontSize="20" Margin="834,594,806,344"/>
         <Label Content="{ns:Loc LoggedIn}" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Oblique" Height="80" Margin="766,446,0,0" Width="408" FontSize="30"/>
         <Button Content="{ns:Loc Reserve}" HorizontalAlignment="Left" Margin="648,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{DynamicResource ButtonStyleN}" Command="{Binding ReserveCommand}"/>

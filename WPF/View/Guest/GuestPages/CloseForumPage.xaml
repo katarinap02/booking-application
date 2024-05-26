@@ -34,7 +34,7 @@
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
                 <Label Content="{ns:Loc CloseSure}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="96,80,124,649"/>
-                <TextBlock TextAlignment="center" TextWrapping="Wrap" FontSize="23" Margin="251,168,279,546">After you close it, it won't be possible to post new comments.</TextBlock>
+                <TextBlock Text="{ns:Loc AfterClosing}" TextAlignment="center" TextWrapping="Wrap" FontSize="23" Margin="251,168,279,546"></TextBlock>
                 <Grid Margin="10,168,-10,471">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="115*"/>

@@ -14,7 +14,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <TextBlock TextWrapping="Wrap" FontSize="25" Margin="187,94,187,649">You can see all of your requests sorted by status on this page.</TextBlock>
+                <TextBlock TextWrapping="Wrap" FontSize="25" Margin="187,94,187,649"></TextBlock>
 
                 <ListBox Name="RequestsListBox" Margin="24,287,34,26"  ScrollViewer.VerticalScrollBarVisibility="Auto"
 ItemsSource="{Binding Requests}" Background="{DynamicResource BackgroundColorN}" SelectedItem="{Binding SelectedRequest}">
@@ -32,9 +32,9 @@ ItemsSource="{Binding Requests}" Background="{DynamicResource BackgroundColorN}"
                 <Label FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="36,239,930,500" RenderTransformOrigin="-4.944,2.36">Filter</Label>
 
                 <ComboBox x:Name="requestStatusBox" HorizontalAlignment="Left" Margin="123,244,0,0" VerticalAlignment="Top" Width="148" Height="28"  SelectionChanged="RequestStatusBox_SelectionChanged">
-                    <ComboBoxItem Content="Pending" Tag="0"></ComboBoxItem>
-                    <ComboBoxItem Content="Approved" Tag="1"></ComboBoxItem>
-                    <ComboBoxItem Content="Rejected" Tag="2"></ComboBoxItem>
+                    <ComboBoxItem Content="{ns:Loc Pending}" Tag="0"></ComboBoxItem>
+                    <ComboBoxItem Content="{ns:Loc Approved}" Tag="1"></ComboBoxItem>
+                    <ComboBoxItem Content="{ns:Loc Rejected}" Tag="2"></ComboBoxItem>
                 </ComboBox>
 
             </Grid>

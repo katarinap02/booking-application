@@ -36,7 +36,7 @@
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="268,92,981,162" Width="671" Height="736">
             <Grid>
                 <Label Content="{ns:Loc Reservation}" FontSize="55" Margin="158,16,-24,315" Style="{DynamicResource ResourceKey=HeaderStyleN}"/>
-                <TextBlock FontSize="35" TextWrapping="Wrap" TextAlignment="Center" Margin="31,127,31,289">Please choose days and number od people for your reservation.</TextBlock>
+                <TextBlock Text="{ns:Loc PleaseChooseDays}" FontSize="35" TextWrapping="Wrap" TextAlignment="Center" Margin="31,127,31,289"></TextBlock>
 
                 <ToggleButton Height="50" Width="300" Background="White" BorderBrush="White" Margin="168,260,199,430" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                     <StackPanel Orientation="Horizontal">

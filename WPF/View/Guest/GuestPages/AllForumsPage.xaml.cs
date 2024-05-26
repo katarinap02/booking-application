@@ -39,7 +39,7 @@ namespace BookingApp.WPF.View.Guest.GuestPages
 
             foreach (ComboBoxItem item in forumTypeBox.Items)
             {
-                if (item.Content.ToString() == "All forums")
+                if (item.Content.ToString() == "All forums" || item.Content.ToString() == "Svi forumi")
                 {
                     forumTypeBox.SelectedItem = item;
                     break;

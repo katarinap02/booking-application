@@ -33,7 +33,7 @@
                 <Grid>
                     <Button Content="Back" Style="{DynamicResource ButtonStyleN}" FontSize="16" Width="60" Height="25" Margin="10,10,452,754" Command="{Binding BackCommand}"/>
 
-                    <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="23,75,25,558">It is necessary to fill in information about what should be renovated. After that, choose the level of urgency.</TextBlock>
+                    <TextBlock Text="{ns:Loc RecommendDesc}" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="23,75,25,558"></TextBlock>
                     <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="136,434,-136,312"/>
                     <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="218,648,218,98"/>
                     <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
@@ -65,7 +65,7 @@
                             <InlineUIContainer>
                                 <Image Source="{DynamicResource Warning}" Width="16" Height="12" Margin="2,0,0,0"/>
                             </InlineUIContainer>
-                            <Run Text="Comment field can't be empty."/>
+                            <Run Text="{ns:Loc CommentValid}"/>
 
                         </TextBlock.Inlines>
 

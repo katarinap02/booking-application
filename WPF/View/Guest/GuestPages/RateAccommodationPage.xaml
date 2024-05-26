@@ -54,9 +54,7 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                     </StackPanel>
 
                 </ToggleButton>
-                <TextBlock x:Name="Hint" FontSize="16" Foreground="Green" TextAlignment="Justify" TextWrapping="Wrap" Margin="657,559,30,154">
-                Please select one of the accommodations above.
-                You can only rate accommodation and host five days at most after the end of the reservation.
+                <TextBlock Text="{ns:Loc ChooseHint}" x:Name="Hint" FontSize="16" Foreground="Green" TextAlignment="Justify" TextWrapping="Wrap" Margin="657,559,30,154">
                 </TextBlock>
 
             </Grid>

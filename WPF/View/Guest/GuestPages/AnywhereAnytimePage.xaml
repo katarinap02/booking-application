@@ -39,11 +39,11 @@
 
                 <Label Content="{ns:Loc AnywhereAnytime}" FontSize="55" Margin="52,42,83,288" Style="{DynamicResource ResourceKey=HeaderStyleN}"/>
 
-                <TextBlock TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Height="323" Margin="61,121,71,296">Welcome to the "anywhere/anytime" reservation page. Please, enter number of guests and days by choice. Optionally, you can choose date range.</TextBlock>
+                <TextBlock Text="{ns:Loc WelcomeAA}" TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Height="323" Margin="61,121,71,296"></TextBlock>
 
                 <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" Margin="24,466,24,22" CornerRadius="20">
                     <Grid>
-                        <TextBlock TextWrapping="Wrap" TextAlignment="Center" FontSize="35" Margin="42,54,42,48">The system will recommend you all available accommodations depending on your input.</TextBlock>
+                        <TextBlock Text="{ns:Loc TheSystemAA}" TextWrapping="Wrap" TextAlignment="Center" FontSize="35" Margin="42,54,42,48"></TextBlock>
                     </Grid>
                 </Border>
             </Grid>
@@ -58,7 +58,7 @@
                     <Grid Margin="0,154,0,0">
                     </Grid>
                 </Border>
-                <Label Content="{ns:Loc StartDate} " Margin="106,441,396,221" FontSize="30"/>
+                <Label Content="{ns:Loc StartDate}" Margin="106,441,396,221" FontSize="30"/>
                 <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
                 <DatePicker x:Name="txtStartDate" Margin="392,441,120,254"  RenderTransformOrigin="0.697,-0.222"/>
                 <Label Content="{ns:Loc EndDate}" FontSize="30" HorizontalAlignment="Left" Margin="110,505,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>

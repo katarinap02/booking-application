@@ -69,7 +69,7 @@
                 </Grid>
 
                 <Button Content="{ns:Loc YourForums}" Command="{Binding Path=ViewForumsCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="286,600,616,139"/>
-                <Button Content="Your profile" Command="{Binding Path=ViewProfileCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="632,600,270,139"/>
+                <Button Content="{ns:Loc YourProfile}" Command="{Binding Path=ViewProfileCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="632,600,270,139"/>
 
 
             </Grid>

@@ -34,7 +34,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <TextBlock TextAlignment="center" TextWrapping="Wrap" FontSize="23" Margin="265,59,265,621">This page is for creating reports about reservations in a specific time period. Please choose report type and time period.</TextBlock>
+                <TextBlock Text="{ns:Loc ReportsDesc}" TextAlignment="center" TextWrapping="Wrap" FontSize="23" Margin="265,59,265,621"></TextBlock>
                 <Grid Margin="10,168,-10,471">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="115*"/>
@@ -50,7 +50,7 @@
                         <RadioButton FontSize="18" Height="20" Margin="126,49,-126,257" Content="{ns:Loc CreatedRes}"></RadioButton>
                         <RadioButton FontSize="18" Height="20" Margin="126,85,-126,221" Content="{ns:Loc CancelledRes}"></RadioButton>
                         <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="182,133,182,143" Content="{ns:Loc TimePeriod}"></Label>
-                        <Label Content="{ns:Loc StartDate} " Margin="119,188,306,91" FontSize="20"/>
+                        <Label Content="{ns:Loc StartDate}" Margin="119,188,306,91" FontSize="20"/>
                         <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
                         <DatePicker x:Name="txtStartDate" Margin="229,196,149,98"  RenderTransformOrigin="0.697,-0.222"/>
                         <Label Content="{ns:Loc EndDate}" FontSize="20" HorizontalAlignment="Left" Margin="121,227,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="43" Width="93">
