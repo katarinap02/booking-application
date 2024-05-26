@@ -16,10 +16,16 @@ namespace BookingApp.Application.Services.FeatureServices
         private readonly ITourRequestRepository _tourRequestRepository;
         private static readonly TourService _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
         private static readonly TouristNotificationService _touristNotificationService = new TouristNotificationService(Injector.Injector.CreateInstance<ITouristNotificationRepository>());
+        private static readonly ComplexTourRequestService _complexTourRequestService = new ComplexTourRequestService(Injector.Injector.CreateInstance<IComplexTourRequestRepository>());
 
         public TourRequestService(ITourRequestRepository tourRequestRepository)
         {
             _tourRequestRepository = tourRequestRepository;
+        }
+
+        public void SaveComplexRequest(ComplexTourRequest complexTourRequest)
+        {
+            _complexTourRequestService.Add(complexTourRequest);
         }
 
         public void AcceptRequest(TourRequest request, int GuideId, DateTime acceptedDate)

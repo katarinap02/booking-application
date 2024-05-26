@@ -37,12 +37,12 @@
                HorizontalAlignment="Center"/>
         <StackPanel Grid.ColumnSpan="2" Grid.Row="1">
             <StackPanel x:Name="PdfPanel" Visibility="{Binding PdfPanel}">
-                <Button Click="PdfButton_Click" Width="190"
+                <Button Command="{Binding ExportToPDFCommand}" Width="190"
                         Height="40"
                         Style="{StaticResource EnlargeButtonStyle1}">
                     <StackPanel Orientation="Horizontal" Margin="-10,0,0,0">
                         <Image Height="30" Width="39" Source="/WPF/Resources/Images/pdf.png"/>
-                        <Label Content="Export reservation" FontSize="16"/>
+                        <Label Content="Export reservation" FontSize="16" Foreground="WhiteSmoke"/>
                     </StackPanel>
                 </Button>
             </StackPanel>

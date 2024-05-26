@@ -57,7 +57,17 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         }
         private void AddToTours(object tourRequest)
         {
-            //ovde ide kod za dodavanje u listu tourRequestova
+            if (ParticipantCount - 1 != ParticipantsListBox.Count)
+            {
+                Messenger.Default.Send(new NotificationMessage("Number of participants does not match the number of participants entered\nNote: Number of participants includes you"));
+                return;
+            }
+            if (IsOverlappingWithBlackouttDates(_selectedStartDate, _selectedEndDate) || _selectedEndDate < _selectedStartDate)
+            {
+                Messenger.Default.Send(new NotificationMessage("Dates are overlapping with another dates"));
+                return;
+            }
+
             TourRequests.Add(this);
             for (var date = SelectedStartDate; date <= SelectedEndDate; date = date.AddDays(1))
             {
@@ -75,7 +85,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             {
                 updatedDates.Add(SelectedDates[i]);
 
-                // If the next date is not the day after the current date, add the missing dates
                 if(SelectedDates[i + 1].Date > SelectedDates[i].Date.AddDays(1))
                 {
                     SelectedDates[i] = SelectedDates[i].Date.AddDays(1);
@@ -87,9 +96,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             updatedDates.Add(SelectedDates[SelectedDates.Count - 1]);
 
             SelectedDates = updatedDates;
-            Messenger.Default.Send(new CloseWindowMessage());
 
-            //SaveToCsv(); ovo ce kasnije trebati
+            Messenger.Default.Send(new CloseWindowMessage());
         }
         private ICommand _addTourCommand;
         public ICommand AddTourCommand
@@ -127,7 +135,12 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         }
         private void RemoveTour(object tourRequest)
         {
+            for (var date = SelectedTourRequest.SelectedStartDate; date <= SelectedTourRequest.SelectedEndDate; date = date.AddDays(1))
+            {
+                SelectedTourRequest.SelectedDates.Remove(date);
+            }
             TourRequests.Remove(SelectedTourRequest);
+
         }
         private bool CanRemoveTour()
         {
@@ -360,6 +373,23 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
+        private string _complexTourName;
+        public string ComplexTourName
+        {
+            get
+            {
+                return _complexTourName;
+            }
+            set
+            {
+                if(_complexTourName != value)
+                {
+                    _complexTourName = value;
+                    OnPropertyChanged(nameof(ComplexTourName));
+                }
+            }
+        }
+
         private int _participantCount;
         public int ParticipantCount
         {
@@ -406,6 +436,17 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 }
             }
         }
+        private bool IsOverlappingWithBlackouttDates(DateTime startDate, DateTime endDate)
+        {
+            for (var date = startDate; date <= endDate; date = date.AddDays(1))
+            {
+                if (SelectedDates.Contains(date))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
         private bool IsStartDateBeforeBlackoutDates()
         {
             SelectedDates.Sort();
@@ -419,7 +460,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         }
         private DateTime GetLastAvailableDateBeforeBlackout(DateTime startDate)
         {
-            // Sort the SelectedDates list to ensure the dates are in order
             SelectedDates.Sort();
 
             // Find the first blackout date that is after the start date
@@ -693,21 +733,64 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         private void SaveToCsv()
         {
-            if (ParticipantCount - 1 != ParticipantsListBox.Count)
+            if (TourRequestType.Equals("Basic"))
             {
-                Messenger.Default.Send(new NotificationMessage("Number of participants does not match the number of participants entered\nNote: Number of participants includes you"));
-                return;
+                if (ParticipantCount - 1 != ParticipantsListBox.Count)
+                {
+                    Messenger.Default.Send(new NotificationMessage("Number of participants does not match the number of participants entered\nNote: Number of participants includes you"));
+                    return;
+                }
+                // saving participants
+                List<int> participantIds = SaveParticipants();
+
+                // saving request
+
+                TourRequest request = new TourRequest(UserId, Description, Language, participantIds,
+                                                      SelectedStartDate, SelectedEndDate, City, Country);
+                _tourRequestService.SaveRequest(request);
             }
-            // saving participants
-            List<int> participantIds = SaveParticipants();
+            else
+            {
+                List<int> requestIds = new List<int>();
+                foreach(TourRequestWindowViewModel tr in TourRequests)
+                {
+                    // saving participants
+                    List<int> participantIds = SaveParticipants(tr);
+                    TourRequest request = new TourRequest(tr.UserId, tr.Description, tr.Language, participantIds,
+                        tr.SelectedStartDate, tr.SelectedEndDate, tr.City, tr.Country);
+                    _tourRequestService.SaveRequest(request);
+                    requestIds.Add(_tourRequestService.NextRequestId() - 1);
+                }
 
-            // saving request
+                _tourRequestService.SaveComplexRequest(ToComplexTourRequest(this, requestIds));
 
-            TourRequest request = new TourRequest(UserId, Description, Language, participantIds,
-                                                  SelectedStartDate, SelectedEndDate, City, Country);
-            _tourRequestService.SaveRequest(request);
+            }
 
             Messenger.Default.Send(new CloseWindowMessage());
+        }
+
+        private ComplexTourRequest ToComplexTourRequest(TourRequestWindowViewModel tourRequestWindowViewModel, List<int> ids)
+        {
+            ComplexTourRequest complexTourRequest = new ComplexTourRequest();
+            complexTourRequest.Name = tourRequestWindowViewModel.ComplexTourName;
+            complexTourRequest.Status = ComplexTourRequestStatus.Pending;
+            complexTourRequest.TourRequests = ids;
+            return complexTourRequest;
+        }
+
+        private List<int> SaveParticipants(TourRequestWindowViewModel tourRequest)
+        {
+            tourRequest.TourParticipantDTOs.Add(ToTourParticipantViewModel(_tourReservationService.FindTouristById(UserId)));
+            tourRequest.TourParticipantDTOs.Reverse();
+            int TourRequestdId = _tourRequestService.NextRequestId();
+
+            List<int> participantIds = new List<int>();
+            foreach (TourParticipantViewModel tp in tourRequest.TourParticipantDTOs)
+            {
+                participantIds.Add(_requestedTourParticipantService.NextParticipantId());
+                _requestedTourParticipantService.SaveRequestedTourParticipant(ToRequestedTourParticipant(tp), TourRequestdId);
+            }
+            return participantIds;
         }
 
         private List<int> SaveParticipants()
@@ -755,15 +838,27 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             else
             {
                 SelectedDates.Sort();
-                MinDateStart = SelectedDates[SelectedDates.Count - 1].AddDays(1);
-                SelectedStartDate = MinDateStart;
+                MinDateStart = DateTime.Now.AddDays(3);
+                if (!SelectedDates.Any(date => date.Date == MinDateStart.Date))
+                {
+                    SelectedStartDate = DateTime.Now.AddDays(3);
+                }
+
+                if (IsStartDateBeforeBlackoutDates())
+                {
+                    SelectedEndDate = GetLastAvailableDateBeforeBlackout(_selectedStartDate);
+                    MinDateEnd = SelectedEndDate;
+                }
                 for (int i = 0; i < SelectedDates.Count - 1; i++)
                 {
                     if ((SelectedDates[i + 1] - SelectedDates[i]).TotalDays > 2)
                     {
-                        MinDateStart = SelectedDates[i].AddDays(1);
-                        SelectedStartDate = MinDateStart;
+                        SelectedStartDate = SelectedDates[i].AddDays(1);
                         break;
+                    }
+                    if(i == (SelectedDates.Count - 2))
+                    {
+                        SelectedStartDate = SelectedDates[i].AddDays(1);
                     }
                 }
             }
@@ -771,6 +866,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             ParticipantCount = 1;
             IsEndDateEnabled = false;
         }
+
         private void LoadLanguagesFromCSV()
         {
             string csvFilePath = "../../../Resources/Data/languages.csv";

@@ -568,6 +568,35 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
+    <Style x:Key="CoolScrollThumb" TargetType="Thumb">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Thumb">
+                    <Rectangle Fill="WhiteSmoke" RadiusX="5" RadiusY="5"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    
+    <Style x:Key="CoolScrollBar" TargetType="ScrollBar">
+        <Setter Property="Stylus.IsFlicksEnabled" Value="True"/>
+        <Setter Property="Foreground" Value="WhiteSmoke"/>
+        <Setter Property="Width" Value="10"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="ScrollBar">
+                    <Grid>
+                        <Track x:Name="PART_Track" Grid.Column="0" IsDirectionReversed="True">
+                            <Track.Thumb>
+                                <Thumb Style="{StaticResource CoolScrollThumb}"/>
+                            </Track.Thumb>
+                        </Track>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
 
     <Style x:Key="KeypointsStyle1" TargetType="ScrollViewer">
         <Setter Property="Foreground" Value="Black"/>
@@ -582,22 +611,35 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="ScrollViewer">
-                    <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" 
-                BorderBrush="{TemplateBinding BorderBrush}" 
-                Background="{TemplateBinding Background}">
-                        <ScrollContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
-                                    VerticalAlignment="{TemplateBinding VerticalAlignment}" 
-                                    Margin="{TemplateBinding Padding}" 
-                                    ContentTemplate="{TemplateBinding ContentTemplate}"/>
-                    </Border>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Border x:Name="border" Grid.Column="0" BorderThickness="{TemplateBinding BorderThickness}" 
+                                BorderBrush="{TemplateBinding BorderBrush}" 
+                                Background="{TemplateBinding Background}">
+                            <ScrollContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
+                                                    VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+                                                    Margin="{TemplateBinding Padding}" 
+                                                    ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                        </Border>
+                        <ScrollBar Grid.Column="1" 
+                                   Orientation="Vertical" 
+                                   Maximum="{TemplateBinding ScrollableHeight}" 
+                                   ViewportSize="{TemplateBinding ViewportHeight}" 
+                                   Value="{TemplateBinding VerticalOffset}" 
+                                   Visibility="{TemplateBinding ComputedVerticalScrollBarVisibility}"
+                                   Style="{StaticResource CoolScrollBar}"/>
+                    </Grid>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Trigger.EnterActions>
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="border" 
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="{StaticResource TourDetailsColor1Pressed}" Duration="0:0:0.2"/>
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="{StaticResource TourDetailsColor1Pressed}" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.EnterActions>
@@ -605,8 +647,8 @@
                                 <BeginStoryboard>
                                     <Storyboard>
                                         <ColorAnimation Storyboard.TargetName="border" 
-                                            Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
-                                            To="{StaticResource TourDetailsColor1C}" Duration="0:0:0.2"/>
+                                                        Storyboard.TargetProperty="(Border.Background).(SolidColorBrush.Color)"
+                                                        To="{StaticResource TourDetailsColor1C}" Duration="0:0:0.2"/>
                                     </Storyboard>
                                 </BeginStoryboard>
                             </Trigger.ExitActions>
@@ -631,19 +673,17 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Label">
                     <Border x:Name="border" BorderThickness="{TemplateBinding BorderThickness}" 
-                        BorderBrush="{TemplateBinding BorderBrush}" 
-                        Background="{TemplateBinding Background}">
+                            BorderBrush="{TemplateBinding BorderBrush}" 
+                            Background="{TemplateBinding Background}">
                         <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalAlignment}" 
-                                      VerticalAlignment="{TemplateBinding VerticalAlignment}" 
-                                      Margin="{TemplateBinding Padding}"/>
+                                          VerticalAlignment="{TemplateBinding VerticalAlignment}" 
+                                          Margin="{TemplateBinding Padding}"/>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-
-
-
+    
     <Style x:Key="CoolDataGridStyle" TargetType="DataGrid">
         <Setter Property="AlternatingRowBackground" Value="#E8E6A5" />
         <Setter Property="AutoGenerateColumns" Value="False" />

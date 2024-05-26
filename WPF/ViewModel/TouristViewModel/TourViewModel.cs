@@ -511,7 +511,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         public void DetailsButton(TourViewModel selectedTour, bool isMyTour)
         {
-            TourDetailsWindow tourDetailsWindow = new TourDetailsWindow(selectedTour, isMyTour);
+            TourDetailsWindow tourDetailsWindow = new TourDetailsWindow(selectedTour, isMyTour, _userService.GetById(UserId).Username);
             tourDetailsWindow.ShowDialog();
         }
 
