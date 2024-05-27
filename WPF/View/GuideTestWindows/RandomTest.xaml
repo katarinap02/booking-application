@@ -6,8 +6,6 @@
         xmlns:cont ="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls" 
         Title="Main Window" Width="1200" Height="700" WindowStartupLocation="CenterScreen"        
         >
-
-    
     
     <Window.Resources>
         <!-- Dodati ostatak -->
@@ -35,8 +33,11 @@
         <DataTemplate DataType="{x:Type viewModel:GuideAppInformationViewModel}">
             <cont:AppInformation/>
         </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:StartedTourViewModel}">
+            <cont:StartedTour/>
+        </DataTemplate>
     </Window.Resources>
-
+    
     <Border CornerRadius="10"   
             BorderThickness="1">
         <Border.BorderBrush>
@@ -171,6 +172,7 @@
 
                     <RadioButton Style="{StaticResource menuButton}"
                                  Grid.Row="1"
+                                 Click="LogOut_Click"
                                  Command="{Binding LogOutCommand}"
                         Tag="{StaticResource color7}">
                         <StackPanel Orientation="Horizontal">
@@ -252,7 +254,7 @@
                     <!--Content section / Child views-->
                     <ContentControl Content="{Binding CurrentChildView}"
                                     Grid.Row="2"
-                                    Margin="25"/>
+                                    Margin="20 10 20 25"/>
 
                 </Grid>
             </Border>

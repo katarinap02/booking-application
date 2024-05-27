@@ -40,7 +40,7 @@ namespace BookingApp.View
             if (!string.IsNullOrEmpty(sstring))
             {
                 IsByRequest = true;
-                string[] parts = sstring.Split(',');
+                string[] parts = sstring.Split(", ");
                 if(parts.Length==2)
                 {
                     UpdateLocation(parts);

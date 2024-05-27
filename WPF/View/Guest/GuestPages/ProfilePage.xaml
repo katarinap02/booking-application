@@ -24,7 +24,7 @@
                     <LineBreak/>
                     <TreeViewItem Header="Forums" FontSize="37" Selected="Forums_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Settings" FontSize="37"></TreeViewItem>
+                    <TreeViewItem Header="Settings" FontSize="37" Selected="Settings_Click"></TreeViewItem>
 
                 </TreeView>
             </Grid>

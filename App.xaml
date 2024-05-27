@@ -8,6 +8,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>                
                 <ResourceDictionary Source="/Styles/GuideGridStyle.xaml"></ResourceDictionary>
+                <ResourceDictionary Source="/Styles/GuideUICalendarStyle.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/Styles/GuideUIcolors.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/Styles/GuideUIbuttons.xaml"></ResourceDictionary>
                 <ResourceDictionary Source="/Styles/TouristUIdictionary.xaml"></ResourceDictionary>

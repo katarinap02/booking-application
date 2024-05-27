@@ -72,7 +72,7 @@ namespace BookingApp.View.GuideWindows
                 Close();
             }
             else {
-                MessageBox.Show("Please select a tour to cancel!");
+                MessageBox.Show("Please select a tour to start!");
             }
         }
 

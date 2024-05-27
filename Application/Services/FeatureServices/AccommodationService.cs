@@ -10,6 +10,7 @@ using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using System.Windows;
+using Wpf.Ui.Controls;
 
 namespace BookingApp.Application.Services.FeatureServices
 {
@@ -173,12 +174,25 @@ namespace BookingApp.Application.Services.FeatureServices
                     acc.Pictures.RemoveAt(0);
                     acc.Pictures.Add(pom);
                     Update(acc);
-                    
+                    accommodation.OnePicture = acc.Pictures[0];
+
                 }
             }
         }
 
-        
+        public void CloseAccommodation(int Id)
+        {
+            foreach (Accommodation acc in AccommodationRepository.GetAll())
+            {
+                if (acc.Id == Id)
+                {
+                    acc.ClosedAccommodation = true;
+                    Update(acc);
 
+                }
+            }
+        }
+
+       
     }
 }

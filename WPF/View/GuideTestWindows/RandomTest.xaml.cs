@@ -48,9 +48,9 @@ namespace BookingApp.View.GuideTestWindows
             else this.WindowState = WindowState.Normal;
         }
 
-        private void test_click(object sender, RoutedEventArgs e)
+        private void LogOut_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show("kliknuto");
+            Close();
         }
     }
 }

@@ -96,7 +96,8 @@ namespace BookingApp.Domain.Model.Features
                 ReservationDaysLimit.ToString(),
                 MakeStringFromPictures(Pictures),
                 FindUnavailableDates(UnavailableDates),
-                HostId.ToString()
+                HostId.ToString(),
+                ClosedAccommodation.ToString()
 
             };
 
@@ -124,6 +125,7 @@ namespace BookingApp.Domain.Model.Features
             }
 
             HostId = Convert.ToInt32(values[10]);
+            ClosedAccommodation = Convert.ToBoolean(values[11]);
 
         }
 

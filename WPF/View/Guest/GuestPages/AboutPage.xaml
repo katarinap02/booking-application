@@ -9,13 +9,13 @@
       Title="AboutPage">
 
     <Grid>
-        <Label FontSize="40" Style="{StaticResource HeaderStyleN}" Margin="114,138,-114,-138">About the app</Label>
-        <TextBlock TextWrapping="Wrap" Margin="119,200,1247,697" FontSize="20" TextAlignment="Justify">
+        <Label FontSize="40" Style="{StaticResource HeaderStyleN}" Margin="260,140,-260,-140">About the app</Label>
+        <TextBlock TextWrapping="Wrap" Margin="260,194,1106,703" FontSize="20" TextAlignment="Justify">
             Welcome to our booking app, where simplicity meets satisfaction. We've simplified the reservation process, ensuring your journey from browsing to booking is effortless.
             
         </TextBlock>
-        <Label FontSize="30" Style="{StaticResource HeaderStyleN}" Margin="119,391,-119,-391" Content="Developers"/>
-        <TextBlock FontSize="20" Margin="119,435,-109,-435" TextWrapping="Wrap">
+        <Label FontSize="30" Style="{StaticResource HeaderStyleN}" Margin="260,385,-260,-385" Content="Developers"/>
+        <TextBlock FontSize="20" Margin="260,445,-250,-445" TextWrapping="Wrap">
     <Run Text="• Katarina Petrovic, RA 17/2021"/>
     <LineBreak/>
     <Run Text="• Natasa Radmilovic, RA 20/2021"/>
@@ -25,10 +25,15 @@
     <Run Text="• Akos Kis, RA 11/2021"/>
         </TextBlock>
 
-        <TextBlock TextWrapping="Wrap" Margin="119,560,1247,216" FontSize="20" TextAlignment="Justify">
+        <TextBlock TextWrapping="Wrap" Margin="260,564,1106,212" FontSize="20" TextAlignment="Justify">
    Our team of developers comprises talented students who are passionate about creating innovative solutions. With a blend of academic knowledge and practical skills, they bring fresh perspectives to our project. Each developer is motivated, enthusiastic, and committed to delivering high-quality results. Together, they collaborate seamlessly, leveraging their diverse experiences to drive innovation and success.
 
         </TextBlock>
-        <TextBlock TextWrapping="Wrap" Margin="119,287,1247,610" FontSize="20" TextAlignment="Justify"><Run Text="Discover a wide range of accommodations tailored to your preferences and budget, and book with confidence. Our user-friendly interface makes finding the perfect place easy."/></TextBlock>
+        <TextBlock TextWrapping="Wrap" Margin="260,287,1106,610" FontSize="20" TextAlignment="Justify"><Run Text="Discover a wide range of accommodations tailored to your preferences and budget, and book with confidence. Our user-friendly interface makes finding the perfect place easy."/></TextBlock>
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2"  Margin="1079,246,303,346">
+            <Grid>
+                <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="600" Height="400" Source="../../../Resources/Images/planeComputer.jpg"/>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

@@ -29,5 +29,11 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        public CheckpointViewModel() { }
+        public CheckpointViewModel(string name, Brush color) {
+            Name = name;
+            IndicatorColor = color;
+        }
     }
 }

@@ -56,6 +56,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public ObservableCollection<string> CountriesSearch { get; set; }
         public ObservableCollection<string> CitiesSearch { get; set; }
 
+      
+
         private string citySearch;
         public string CitySearch
         {
@@ -99,6 +101,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public GuestICommand AnywhereAnytimeCommand { get; set; }
 
+        public GuestICommand<object> DetailsCommand { get; set; }
+
         public ShowAccommodationsViewModel(User user, Frame frame, AccommodationsPage accommodationsPage)
         {
 
@@ -118,11 +122,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             SearchCommand = new GuestICommand(OnSearch);
             ReserveCommand = new GuestICommand<object>(OnReserve);
             AnywhereAnytimeCommand = new GuestICommand(OnAnywhereAnytime);
+            DetailsCommand = new GuestICommand<object>(OnDetails);
             CountriesSearch.Add("");
             LoadCountriesFromCSV();
            
          
 
+        }
+
+        private void OnDetails(object sender)
+        {
+            Button button = sender as Button;
+            SelectedAccommodation = button.DataContext as AccommodationViewModel;
+            Frame.Content = new AccommodationDetailsPage(Frame, User, SelectedAccommodation);
         }
 
         private void OnAnywhereAnytime()

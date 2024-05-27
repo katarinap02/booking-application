@@ -24,5 +24,27 @@ namespace BookingApp.WPF.View.GuideTestWindows.GuideControls
         {
             InitializeComponent();
         }
+
+        private void ClearData_Click(object sender, RoutedEventArgs e)
+        {
+            country_tb.Text = string.Empty;
+            city_tb.Text = string.Empty;
+            language_tb.Text = string.Empty;
+            number_tb.Text= string.Empty;
+        }
+
+        private void NumericTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
+        {
+
+            if (!IsNumeric(e.Text))
+            {
+                e.Handled = true;
+            }
+        }
+
+        private bool IsNumeric(string text)
+        {
+            return double.TryParse(text, out _);
+        }
     }
 }

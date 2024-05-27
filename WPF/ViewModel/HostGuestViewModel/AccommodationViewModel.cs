@@ -113,6 +113,34 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private bool isLeastPopular;
+        public bool IsLeastPopular
+        {
+            get { return isLeastPopular; }
+            set
+            {
+                if (isLeastPopular != value)
+                {
+                    isLeastPopular = value;
+                    OnPropertyChanged("IsLeastPopular");
+                }
+            }
+        }
+
+        private bool isMostPopular;
+        public bool IsMostPopular
+        {
+            get { return isMostPopular; }
+            set
+            {
+                if (isMostPopular != value)
+                {
+                    isMostPopular = value;
+                    OnPropertyChanged("IsMostPopular");
+                }
+            }
+        }
+
         private bool isCheckedCottage;
         public bool IsCheckedCottage
         {
@@ -284,6 +312,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public AccommodationViewModel()
         {
             reservationDaysLimit = 1;
+            isLeastPopular = false;
+            isMostPopular = false;
 
         }
 

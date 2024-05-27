@@ -18,12 +18,14 @@ namespace BookingApp.Application.Services.FeatureServices
         private readonly IHostRepository HostRepository;
         public Subject HostSubject;
         private readonly IAccommodationRateRepository AccommodationRateRepository;
+        public AccommodationService AccommodationService { get; set; }
 
-        public HostService()
+        public HostService(IAccommodationRepository accommodationRepository)
         {
             HostRepository = new HostRepository();
             HostSubject = new Subject();
             AccommodationRateRepository = new AccommodationRateRepository();
+            AccommodationService = new AccommodationService(accommodationRepository);
         }
 
         public HostService(IHostRepository hostRepository, IAccommodationRateRepository accommodationRateRepository)
@@ -93,6 +95,14 @@ namespace BookingApp.Application.Services.FeatureServices
 
         }
 
-
+        internal bool HasAccommodation(int userId, string city, string country)
+        {
+            foreach(Accommodation accommodation in AccommodationService.GetAll())
+            {
+                if(accommodation.HostId == userId && accommodation.City == city && accommodation.Country == country)
+                    return true;
+            }
+            return false;
+        }
     }
 }

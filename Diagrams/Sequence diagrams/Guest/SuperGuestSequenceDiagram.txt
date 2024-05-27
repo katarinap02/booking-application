@@ -3,6 +3,7 @@ actor Guest as G
 participant GuestService as GS
 participant AccommodationReservationService as AR
 participant GuestRepository as GR
+participant AccommodationReservationRepository as ARR
 
 G -> GS++ : CalculateGuestStats(guest)
 note left
@@ -15,8 +16,12 @@ note left
 Id, YearlyReservations
 end note
 
+GS -> GS++ : GetAllResevations()
 GS -> AR++ : GetAll()
+AR -> ARR++ : GetAll()
+ARR --> AR-- : allReservations
 AR --> GS-- : allReservations
+GS --> GS-- : allReservations
 
 loop foreach reservation in allReservations
        
