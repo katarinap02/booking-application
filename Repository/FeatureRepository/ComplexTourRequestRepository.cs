@@ -47,5 +47,10 @@ namespace BookingApp.Repository.FeatureRepository
         {
             return _complexTourRequests.Find(x => x.Id == id);
         }
+        public List<ComplexTourRequest> GetAllById(int touristId)
+        {
+            _complexTourRequests = GetAll();
+            return _complexTourRequests.FindAll(r => r.TouristId == touristId);
+        }
     }
 }

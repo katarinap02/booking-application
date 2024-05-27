@@ -76,14 +76,23 @@
                 </DataGrid>
             </TabItem>
             <TabItem Header="Complex">
-                <DataGrid ItemsSource="{Binding TourRequests}"
+                <DataGrid ItemsSource="{Binding ComplexTourRequests}"
                           Style="{StaticResource CoolDataGridStyle}"
                           FontWeight="DemiBold"
                           IsReadOnly="True"
                           AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16">
                     <DataGrid.Columns>
+                        <DataGridTextColumn Header="Name" Binding="{Binding ComplexTourName}" Width="2*"/>
                         <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
-                        <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="1.5*"/>
+                        <DataGridTemplateColumn>
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Button Content="Details" Height="30" Width="80" Style="{StaticResource EnlargeButtonStyle}"
+                                            Click="DetailsButton_Click"
+                                            Command="{Binding RequestedComplexTourDetailsCommand}"/>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
                     </DataGrid.Columns>
                 </DataGrid>
             </TabItem>

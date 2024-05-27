@@ -773,6 +773,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             ComplexTourRequest complexTourRequest = new ComplexTourRequest();
             complexTourRequest.Name = tourRequestWindowViewModel.ComplexTourName;
+            complexTourRequest.TouristId = tourRequestWindowViewModel.UserId;
             complexTourRequest.Status = ComplexTourRequestStatus.Pending;
             complexTourRequest.TourRequests = ids;
             return complexTourRequest;

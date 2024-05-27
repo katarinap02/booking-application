@@ -21,7 +21,7 @@ namespace BookingApp.Application.Services.FeatureServices
         public TourRequestService(ITourRequestRepository tourRequestRepository)
         {
             _tourRequestRepository = tourRequestRepository;
-        }
+        } 
 
         public void SaveComplexRequest(ComplexTourRequest complexTourRequest)
         {
@@ -77,6 +77,11 @@ namespace BookingApp.Application.Services.FeatureServices
         public List<TourRequest> GetRequestsByTouristId(int touristId)
         {
             return _tourRequestRepository.GetByTouristId(touristId);
+        }
+
+        public List<ComplexTourRequest> GetComplexRequestsByTouristId(int touristId)
+        {
+            return _complexTourRequestService.GetByTouristId(touristId);
         }
         
         public List<TourRequest> getRequestsForLocation(string city, string country)

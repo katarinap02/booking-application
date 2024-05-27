@@ -25,9 +25,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
     {
         private readonly TourRequestService _tourRequestService;
         public ObservableCollection<TourRequestViewModel> TourRequests { get; set; }
+        public ObservableCollection<TourRequestViewModel> ComplexTourRequests { get; set; }
 
         public ICommand StatisticsCommand { get; set; }
         public ICommand RequestedTourDetailsCommand { get; set; }
+        public ICommand RequestedComplexTourDetailsCommand { get; set; }
 
         private ICommand _closeCommand;
         public ICommand CloseCommand
@@ -200,6 +202,23 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
+        private string _complexTourName;
+        public string ComplexTourName
+        {
+            get
+            {
+                return _complexTourName;
+            }
+            set
+            {
+                if(_complexTourName != value)
+                {
+                    _complexTourName = value;
+                    OnPropertyChanged(nameof(ComplexTourName));
+                }
+            }
+        }
+
         private string _description;
         public string Description
         {
@@ -234,12 +253,34 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
+        private ComplexTourRequestStatus _complexStatus;
+        public ComplexTourRequestStatus ComplexStatus
+        {
+            get
+            {
+                return _complexStatus;
+            }
+            set
+            {
+                if (_complexStatus != value)
+                {
+                    _complexStatus = value;
+                    OnPropertyChanged(nameof(ComplexStatus));
+                }
+            }
+        }
+
         public void InitializeRequestedToursPage()
         {
             TourRequests.Clear();
             foreach(TourRequest tourRequest in _tourRequestService.GetRequestsByTouristId(UserId))
             {
                 TourRequests.Add(new TourRequestViewModel(tourRequest));
+            }
+            ComplexTourRequests.Clear();
+            foreach (ComplexTourRequest complexTourRequest in _tourRequestService.GetComplexRequestsByTouristId(UserId))
+            {
+                ComplexTourRequests.Add(ToTourRequestViewModel(complexTourRequest));
             }
         }
 
@@ -260,6 +301,10 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             requestedTourDetailsWindow.ShowDialog();
         }
 
+        private void ExecuteRequestedComplexTourDetailsCommand(object obj)
+        {
+            // open window
+        }
         public void RequestTourClick()
         {
             TourRequestWindow tourRequestWindow = new TourRequestWindow(UserId);
@@ -278,8 +323,21 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             
             StatisticsCommand = new RelayCommand(ExecuteStatisticsCommand);
             RequestedTourDetailsCommand = new RelayCommand(ExecuteRequestedTourDetailsCommand);
+            RequestedComplexTourDetailsCommand = new RelayCommand(ExecuteRequestedComplexTourDetailsCommand);
             TourRequests = new ObservableCollection<TourRequestViewModel>();
+            ComplexTourRequests = new ObservableCollection<TourRequestViewModel>();
         }
+
+        public TourRequestViewModel ToTourRequestViewModel(ComplexTourRequest complexTourRequest)
+        {
+            TourRequestViewModel viewModel = new TourRequestViewModel();
+            viewModel.UserId = complexTourRequest.TouristId;
+            viewModel.ComplexTourName = complexTourRequest.Name;
+            viewModel.ComplexStatus = complexTourRequest.Status;
+            // OVDE CE SIGURNO TREBATI JOS DA SE DODA DA BI MOGAO DA OTVORI DETAILS
+            return viewModel;
+        }
+
         public TourRequestViewModel(TourRequest tourRequest)
         {
             UserId = tourRequest.TouristId;

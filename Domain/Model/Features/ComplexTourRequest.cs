@@ -12,11 +12,13 @@ namespace BookingApp.Domain.Model.Features
         public ComplexTourRequestStatus Status;
         public List<int> TourRequests;
         public string Name;
+        public int TouristId;
 
         public ComplexTourRequest() { }
-        public ComplexTourRequest(int id, string name, ComplexTourRequestStatus status)
+        public ComplexTourRequest(int id, int touristId, string name, ComplexTourRequestStatus status)
         {
             this.Id = id;
+            this.TouristId = touristId;
             this.Status = status;
             this.Name = name;
             TourRequests = new List<int>();
@@ -30,18 +32,19 @@ namespace BookingApp.Domain.Model.Features
                 idString = string.Join(",", TourRequests);
             }
 
-            string[] CSVvalues = { Id.ToString(), Name, Status.ToString(), idString };
+            string[] CSVvalues = { Id.ToString(), TouristId.ToString(), Name, Status.ToString(), idString };
             return CSVvalues;
         }
 
         public void FromCSV(string[] values)
         {
             Id = int.Parse(values[0]);
-            Name = values[1];
-            ParseStatus(values[2]);
-            if (!string.IsNullOrEmpty(values[3]))
+            TouristId = int.Parse(values[1]);
+            Name = values[2];
+            ParseStatus(values[3]);
+            if (!string.IsNullOrEmpty(values[4]))
             {
-                string ids = values[3];
+                string ids = values[4];
                 List<string> tourRequestIds = ids.Split(",").ToList();
                 TourRequests = tourRequestIds.Select(int.Parse).ToList();
             }

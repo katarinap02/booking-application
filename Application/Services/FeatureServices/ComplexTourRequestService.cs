@@ -21,5 +21,10 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             _complexTourRequestRepository.Add(complexTourRequest);
         }
+
+        public List<ComplexTourRequest> GetByTouristId(int touristId)
+        {
+            return _complexTourRequestRepository.GetAllById(touristId);
+        }
     }
 }
