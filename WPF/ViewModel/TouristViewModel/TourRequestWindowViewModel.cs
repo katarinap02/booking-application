@@ -920,7 +920,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         private void ExecuteCloseWindow(object obj)
         {
             Messenger.Default.Send(new CloseWindowMessage());
-
         }
 
         public TourRequestWindowViewModel()

@@ -58,7 +58,7 @@
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="35"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
@@ -263,7 +263,8 @@
         <Button Style="{StaticResource EnlargeButtonStyle}"
                 Content="Close"
                 FontSize="20"
-                Width="90"
+                Height="35"
+                Width="85"
                 VerticalAlignment="Bottom"
                 Grid.Column="1"
                 Grid.Row="12"
@@ -272,11 +273,12 @@
         <Button Style="{StaticResource EnlargeButtonStyle}"
                 Content="Submit"
                 FontSize="20"
-                Width="90"
+                Width="85"
                 VerticalAlignment="Bottom"
                 Grid.Column="3"
                 Grid.Row="12"
                 HorizontalAlignment="Left"
+                Height="35"
                 Click="SubmitButton_Click"/>
 
     </Grid>

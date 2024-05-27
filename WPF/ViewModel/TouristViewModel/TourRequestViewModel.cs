@@ -7,6 +7,7 @@ using BookingApp.View.TouristWindows;
 using BookingApp.WPF.View.TouristWindows;
 using GalaSoft.MvvmLight.Messaging;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -25,6 +26,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
     {
         private readonly TourRequestService _tourRequestService;
         public ObservableCollection<TourRequestViewModel> TourRequests { get; set; }
+        public ObservableCollection<TourRequestViewModel> TourRequestsForComplex { get; set; }
         public ObservableCollection<TourRequestViewModel> ComplexTourRequests { get; set; }
 
         public ICommand StatisticsCommand { get; set; }
@@ -303,7 +305,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         private void ExecuteRequestedComplexTourDetailsCommand(object obj)
         {
-            // open window
         }
         public void RequestTourClick()
         {
@@ -325,6 +326,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             RequestedTourDetailsCommand = new RelayCommand(ExecuteRequestedTourDetailsCommand);
             RequestedComplexTourDetailsCommand = new RelayCommand(ExecuteRequestedComplexTourDetailsCommand);
             TourRequests = new ObservableCollection<TourRequestViewModel>();
+            TourRequestsForComplex = new ObservableCollection<TourRequestViewModel>();
             ComplexTourRequests = new ObservableCollection<TourRequestViewModel>();
         }
 
@@ -334,8 +336,29 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             viewModel.UserId = complexTourRequest.TouristId;
             viewModel.ComplexTourName = complexTourRequest.Name;
             viewModel.ComplexStatus = complexTourRequest.Status;
+            viewModel.TourRequestsForComplex = new ObservableCollection<TourRequestViewModel>(ToTourRequestViewModels(_tourRequestService.GetTourRequestsByComplexId(complexTourRequest.Id)));
             // OVDE CE SIGURNO TREBATI JOS DA SE DODA DA BI MOGAO DA OTVORI DETAILS
             return viewModel;
+        }
+
+        public List<TourRequestViewModel> ToTourRequestViewModels(List<TourRequest> tourRequests)
+        {
+            List<TourRequestViewModel> viewModels = new List<TourRequestViewModel>();
+            foreach(var tourRequest in tourRequests)
+            {
+                TourRequestViewModel viewModel = new TourRequestViewModel();
+                viewModel.UserId = tourRequest.TouristId;
+                viewModel.Country = tourRequest.Country;
+                viewModel.City = tourRequest.City;
+                viewModel.Language = tourRequest.Language;
+                viewModel.Description = tourRequest.Description;
+                viewModel.Status = tourRequest.Status;
+                viewModel.StartDate = tourRequest.StartDate;
+                viewModel.EndDate = tourRequest.EndDate;
+                viewModel.AcceptedDate = tourRequest.AcceptedDate;
+                viewModels.Add(viewModel);
+            }
+            return viewModels;
         }
 
         public TourRequestViewModel(TourRequest tourRequest)

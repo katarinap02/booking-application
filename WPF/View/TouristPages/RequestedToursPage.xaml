@@ -78,6 +78,7 @@
             <TabItem Header="Complex">
                 <DataGrid ItemsSource="{Binding ComplexTourRequests}"
                           Style="{StaticResource CoolDataGridStyle}"
+                          SelectedItem="{Binding Path=SelectedTourRequest}"
                           FontWeight="DemiBold"
                           IsReadOnly="True"
                           AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16">
@@ -88,8 +89,7 @@
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>
                                     <Button Content="Details" Height="30" Width="80" Style="{StaticResource EnlargeButtonStyle}"
-                                            Click="DetailsButton_Click"
-                                            Command="{Binding RequestedComplexTourDetailsCommand}"/>
+                                            Click="ComplexDetailsButton_Click"/>
                                 </DataTemplate>
                             </DataGridTemplateColumn.CellTemplate>
                         </DataGridTemplateColumn>

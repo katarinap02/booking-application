@@ -21,7 +21,7 @@ namespace BookingApp.Application.Services.FeatureServices
         public TourRequestService(ITourRequestRepository tourRequestRepository)
         {
             _tourRequestRepository = tourRequestRepository;
-        } 
+        }
 
         public void SaveComplexRequest(ComplexTourRequest complexTourRequest)
         {
@@ -332,6 +332,16 @@ namespace BookingApp.Application.Services.FeatureServices
                     _tourRequestRepository.UpdateRequest(request);
                 }
             }
+        }
+
+        public List<TourRequest> GetTourRequestsByComplexId(int complexId)
+        {
+            return _complexTourRequestService.GetTourRequestsByComplexId(complexId);
+        }
+
+        public TourRequest GetById(int id)
+        {
+            return _tourRequestRepository.GetById(id);
         }
     }
 }

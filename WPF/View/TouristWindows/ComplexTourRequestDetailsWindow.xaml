@@ -1,0 +1,61 @@
+﻿<Window x:Class="BookingApp.WPF.View.TouristWindows.ComplexTourRequestDetailsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.View.TouristWindows"
+        mc:Ignorable="d"
+        Title="ComplexTourRequestDetailsWindow" Height="450" Width="950" WindowStartupLocation="CenterScreen">
+    <Grid Background="{StaticResource WindowBackgroundColor1}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        <TextBlock Text="Complex tour details" HorizontalAlignment="Left" VerticalAlignment="Center"
+                   FontSize="45"
+                   Grid.Column="1"
+                   Grid.Row="1"/>
+        <DataGrid ItemsSource="{Binding TourRequests}"
+          Grid.Column="1"
+          Grid.Row="2"
+          FontWeight="DemiBold"
+          IsReadOnly="True"
+          AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16"
+          Style="{StaticResource CoolDataGridStyle}">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="*" />
+                <DataGridTextColumn Header="City" Binding="{Binding City}" Width="*"/>
+                <DataGridTemplateColumn Header="Accepted Date" Width="170">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock x:Name="AcceptedDateTextBlock" Text="{Binding AcceptedDate}" />
+                            <DataTemplate.Triggers>
+                                <DataTrigger Binding="{Binding AcceptedDate}" Value="0001/01/01">
+                                    <Setter TargetName="AcceptedDateTextBlock" Property="Text" Value="" />
+                                </DataTrigger>
+                            </DataTemplate.Triggers>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="110"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Close"
+            Style="{StaticResource EnlargeButtonStyle}"
+            Command="{Binding CloseWindowCommand}"
+            HorizontalAlignment="Right"
+            FontSize="19"
+            Grid.Column="1"
+            Width="90"
+            Grid.Row="4"/>
+    </Grid>
+</Window>
