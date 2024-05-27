@@ -23,7 +23,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
     public class AccommodationViewModel : INotifyPropertyChanged
     {
+        public ObservableCollection<string> CountriesSearch { get; set; }
 
+        public ObservableCollection<string> CitiesSearch {  get; set; } 
 
         private int id;
         public int Id
@@ -363,9 +365,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         private AccommodationRateService accommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
         public string Rate => Round(accommodationRateService.GetAverageRate(Id)).ToString();
 
-        public ObservableCollection<string> CountriesSearch;
+        
 
-        public ObservableCollection<string> CitiesSearch;
+        
         private double Round(double v)
         {
             return Math.Round(v, 2);
@@ -390,8 +392,6 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             UnavailableDates = accommodation.UnavailableDates;
             NumberOfPictures = accommodation.Pictures.Count;
             hostId = accommodation.HostId;
-            CountriesSearch = new ObservableCollection<string>();
-            CitiesSearch = new ObservableCollection<string>();
 
             if (accommodation.Pictures.Count != 0)
             {

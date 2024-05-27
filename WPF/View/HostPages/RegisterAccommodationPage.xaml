@@ -74,31 +74,13 @@
 
         <StackPanel Grid.Row ="2" Grid.Column="1" Orientation="Horizontal">
             <Label
-               x:Name="CityLabel"
-               Style="{StaticResource LableTextStyleMSHost}"
-               Content="City*" Height="29" Width="49"/>
+    x:Name="CountryLabel"
+    Style="{StaticResource LableTextStyleMSHost}"
+    Content="Country*"
+    
+             Height="29" Width="65"/>
             <StackPanel Margin="5,33,59,0">
-            <TextBox x:Name ="textBoxCity" Text="{Binding Path= accommodationDTO.City, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Top"  Width="281"/>
-            <TextBlock Text="city is required" Margin="0 1 0 0" Background="Transparent"  >
-                <TextBlock.Style>
-                    <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockValidation}">
-                        <Setter Property="Visibility" Value="Collapsed"/>
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding ElementName=textBoxCity, Path=Text, Converter={StaticResource StringIsNullOrEmptyConverter}}" Value="True">
-                                <Setter Property="Visibility" Value="Visible"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </TextBlock.Style>
-            </TextBlock>
-            </StackPanel>
-            <Label
-                x:Name="CountryLabel"
-                Style="{StaticResource LableTextStyleMSHost}"
-                Content="Country*" Height="29" Width="65"
-                Margin="75 0 0 0"/>
-            <StackPanel Margin="5,33,59,0">
-            <TextBox x:Name ="textBoxCountry" Text="{Binding Path= accommodationDTO.Country, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" Height="30" VerticalAlignment="Top"  Width="258"/>
+                <ComboBox x:Name ="textBoxCountry" SelectedItem="{Binding Path=accommodationDTO.CountrySearch, Mode=TwoWay}" ItemsSource="{Binding Path=accommodationDTO.CountriesSearch}" Height="30" VerticalAlignment="Top" SelectedIndex="0" Width="258"/>
                 <TextBlock Text="country is required" Margin="0 1 0 0" Background="Transparent"  >
                     <TextBlock.Style>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockValidation}">
@@ -111,6 +93,27 @@
                         </Style>
                     </TextBlock.Style>
                 </TextBlock>
+            </StackPanel>
+                    <Label
+           x:Name="CityLabel"
+           Style="{StaticResource LableTextStyleMSHost}"
+           Content="City*" Height="29" Width="49"
+                        Margin="75 0 0 0"/>
+            <StackPanel Margin="5,33,59,0">
+                <ComboBox  x:Name ="textBoxCity" SelectedItem="{Binding accommodationDTO.CitySearch, Mode=TwoWay}" ItemsSource="{Binding accommodationDTO.CitiesSearch}" Height="30" VerticalAlignment="Top"  Width="281"/>
+                <TextBlock Text="city is required" Margin="0 1 0 0" Background="Transparent"  >
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockValidation}">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=textBoxCity, Path=Text, Converter={StaticResource StringIsNullOrEmptyConverter}}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+                
             </StackPanel>
         </StackPanel>
 
