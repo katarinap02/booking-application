@@ -96,5 +96,17 @@ namespace BookingApp.WPF.View.TouristPages
         {
             TourRequest.StatisticsClick();
         }
+
+        private void DetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            RequestedTourDetailsWindow requestedTourDetailsWindow = new RequestedTourDetailsWindow(TourRequest.SelectedTourRequest);
+            requestedTourDetailsWindow.ShowDialog();
+        }
+
+        private void ComplexDetailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            ComplexTourRequestDetailsWindow window = new ComplexTourRequestDetailsWindow(TourRequest.SelectedTourRequest);
+            window.ShowDialog();
+        }
     }
 }

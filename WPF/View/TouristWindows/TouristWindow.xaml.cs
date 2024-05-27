@@ -40,6 +40,7 @@ namespace BookingApp.View.TouristWindows
 
             Tour.UserName = username;
 
+            Tour.Initialize();
             Messenger.Default.Register<LogoutMessage>(this, LogoutWindow);
 
             MainFrame.Content = new AllToursPage(Tour.getUserId(Tour.UserName));

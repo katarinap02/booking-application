@@ -178,7 +178,7 @@
                 <DataTemplate>
                     <Grid>
                         <controls:AccommodationCard Margin="30, 10, 30, 10" Width="821"/>
-                        <Button x:Name="DetailsButton" Content="Details" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Margin="600, 30, 0, 0"/>
+                        <Button x:Name="DetailsButton" Content="Details" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Margin="600, 30, 0, 0"  Command="{Binding Path=DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
                         <Button x:Name="ReserveButton" Content="Reserve" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Grid.Row="1" Margin="600, 30, 0, 70" Command="{Binding Path=DataContext.ReserveCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
                        
 

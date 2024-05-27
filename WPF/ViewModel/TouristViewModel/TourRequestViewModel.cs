@@ -5,6 +5,9 @@ using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.View.TouristWindows;
 using BookingApp.WPF.View.TouristWindows;
+using GalaSoft.MvvmLight.Messaging;
+using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
@@ -23,8 +26,97 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
     {
         private readonly TourRequestService _tourRequestService;
         public ObservableCollection<TourRequestViewModel> TourRequests { get; set; }
+        public ObservableCollection<TourRequestViewModel> TourRequestsForComplex { get; set; }
+        public ObservableCollection<TourRequestViewModel> ComplexTourRequests { get; set; }
 
         public ICommand StatisticsCommand { get; set; }
+        public ICommand RequestedTourDetailsCommand { get; set; }
+        public ICommand RequestedComplexTourDetailsCommand { get; set; }
+
+        private ICommand _closeCommand;
+        public ICommand CloseCommand
+        {
+            get
+            {
+                if (_closeCommand == null)
+                {
+                    _closeCommand = new RelayCommand(param => CloseWindow());
+                }
+                return _closeCommand;
+            }
+        }
+        private void CloseWindow()
+        {
+            Messenger.Default.Send(new CloseWindowMessage());
+        }
+
+        private TourRequestViewModel _selectedTourRequest;
+        public TourRequestViewModel SelectedTourRequest
+        {
+            get
+            {
+                return _selectedTourRequest;
+            }
+            set
+            {
+                if(_selectedTourRequest != value)
+                {
+                    _selectedTourRequest = value;
+                    OnPropertyChanged(nameof(SelectedTourRequest));
+                }
+            }
+        }
+
+        private DateTime _acceptedDate;
+        public DateTime AcceptedDate
+        {
+            get
+            {
+                return _acceptedDate;
+            }
+            set
+            {
+                if(value != _acceptedDate)
+                {
+                    _acceptedDate = value;
+                    OnPropertyChanged(nameof(AcceptedDate));
+                }
+            }
+        }
+
+        private DateTime _startDate;
+        public DateTime StartDate
+        {
+            get
+            {
+                return _startDate;
+            }
+            set
+            {
+                if(_startDate != value)
+                {
+                    _startDate = value;
+                    OnPropertyChanged(nameof(StartDate));
+                }
+            }
+        }
+
+        private DateTime _endDate;
+        public DateTime EndDate
+        {
+            get
+            {
+                return _endDate;
+            }
+            set
+            {
+                if (_endDate != value)
+                {
+                    _endDate = value;
+                    OnPropertyChanged(nameof(EndDate));
+                }
+            }
+        }
 
         private int _userId;
         public int UserId
@@ -112,6 +204,23 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
+        private string _complexTourName;
+        public string ComplexTourName
+        {
+            get
+            {
+                return _complexTourName;
+            }
+            set
+            {
+                if(_complexTourName != value)
+                {
+                    _complexTourName = value;
+                    OnPropertyChanged(nameof(ComplexTourName));
+                }
+            }
+        }
+
         private string _description;
         public string Description
         {
@@ -146,12 +255,34 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
+        private ComplexTourRequestStatus _complexStatus;
+        public ComplexTourRequestStatus ComplexStatus
+        {
+            get
+            {
+                return _complexStatus;
+            }
+            set
+            {
+                if (_complexStatus != value)
+                {
+                    _complexStatus = value;
+                    OnPropertyChanged(nameof(ComplexStatus));
+                }
+            }
+        }
+
         public void InitializeRequestedToursPage()
         {
             TourRequests.Clear();
             foreach(TourRequest tourRequest in _tourRequestService.GetRequestsByTouristId(UserId))
             {
                 TourRequests.Add(new TourRequestViewModel(tourRequest));
+            }
+            ComplexTourRequests.Clear();
+            foreach (ComplexTourRequest complexTourRequest in _tourRequestService.GetComplexRequestsByTouristId(UserId))
+            {
+                ComplexTourRequests.Add(ToTourRequestViewModel(complexTourRequest));
             }
         }
 
@@ -166,6 +297,15 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             tourStatisticsWindow.ShowDialog();
         }
 
+        private void ExecuteRequestedTourDetailsCommand(object obj)
+        {
+            RequestedTourDetailsWindow requestedTourDetailsWindow = new RequestedTourDetailsWindow(SelectedTourRequest);
+            requestedTourDetailsWindow.ShowDialog();
+        }
+
+        private void ExecuteRequestedComplexTourDetailsCommand(object obj)
+        {
+        }
         public void RequestTourClick()
         {
             TourRequestWindow tourRequestWindow = new TourRequestWindow(UserId);
@@ -183,8 +323,44 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             _tourRequestService = new TourRequestService(Injector.Injector.CreateInstance<ITourRequestRepository>());
             
             StatisticsCommand = new RelayCommand(ExecuteStatisticsCommand);
+            RequestedTourDetailsCommand = new RelayCommand(ExecuteRequestedTourDetailsCommand);
+            RequestedComplexTourDetailsCommand = new RelayCommand(ExecuteRequestedComplexTourDetailsCommand);
             TourRequests = new ObservableCollection<TourRequestViewModel>();
+            TourRequestsForComplex = new ObservableCollection<TourRequestViewModel>();
+            ComplexTourRequests = new ObservableCollection<TourRequestViewModel>();
         }
+
+        public TourRequestViewModel ToTourRequestViewModel(ComplexTourRequest complexTourRequest)
+        {
+            TourRequestViewModel viewModel = new TourRequestViewModel();
+            viewModel.UserId = complexTourRequest.TouristId;
+            viewModel.ComplexTourName = complexTourRequest.Name;
+            viewModel.ComplexStatus = complexTourRequest.Status;
+            viewModel.TourRequestsForComplex = new ObservableCollection<TourRequestViewModel>(ToTourRequestViewModels(_tourRequestService.GetTourRequestsByComplexId(complexTourRequest.Id)));
+            // OVDE CE SIGURNO TREBATI JOS DA SE DODA DA BI MOGAO DA OTVORI DETAILS
+            return viewModel;
+        }
+
+        public List<TourRequestViewModel> ToTourRequestViewModels(List<TourRequest> tourRequests)
+        {
+            List<TourRequestViewModel> viewModels = new List<TourRequestViewModel>();
+            foreach(var tourRequest in tourRequests)
+            {
+                TourRequestViewModel viewModel = new TourRequestViewModel();
+                viewModel.UserId = tourRequest.TouristId;
+                viewModel.Country = tourRequest.Country;
+                viewModel.City = tourRequest.City;
+                viewModel.Language = tourRequest.Language;
+                viewModel.Description = tourRequest.Description;
+                viewModel.Status = tourRequest.Status;
+                viewModel.StartDate = tourRequest.StartDate;
+                viewModel.EndDate = tourRequest.EndDate;
+                viewModel.AcceptedDate = tourRequest.AcceptedDate;
+                viewModels.Add(viewModel);
+            }
+            return viewModels;
+        }
+
         public TourRequestViewModel(TourRequest tourRequest)
         {
             UserId = tourRequest.TouristId;
@@ -193,6 +369,9 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             Language = tourRequest.Language;
             Description = tourRequest.Description;
             Status = tourRequest.Status;
+            StartDate = tourRequest.StartDate;
+            EndDate = tourRequest.EndDate;
+            AcceptedDate = tourRequest.AcceptedDate;
         }
         public void NotificationButton()
         {

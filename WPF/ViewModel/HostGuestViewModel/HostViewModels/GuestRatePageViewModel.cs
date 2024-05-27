@@ -1,6 +1,7 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Observer;
 using BookingApp.Repository;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
@@ -41,7 +42,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             accommodationReservationRepository = new AccommodationReservationRepository();
             guestRateRepository = new GuestRateRepository();
             guestRateViewModel = new GuestRateViewModel();
-            hostService = new HostService();
+            hostService = new HostService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             host = hostService.GetByUsername(user.Username);
             SaveCommand = new MyICommand(Save_Click);
             Update();

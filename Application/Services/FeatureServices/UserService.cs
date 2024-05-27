@@ -13,6 +13,7 @@ namespace BookingApp.Application.Services.FeatureServices
     public class UserService
     {
         private readonly IUserRepository UserRepository;
+        private readonly TourRequestService tourRequestService = new TourRequestService(Injector.Injector.CreateInstance<ITourRequestRepository>());
 
         public UserService(IUserRepository userRepository)
         {
@@ -27,6 +28,11 @@ namespace BookingApp.Application.Services.FeatureServices
         public User GetById(int id)
         {
             return UserRepository.GetById(id);
+        }
+
+        public void UpdateTourRequests()
+        {
+            tourRequestService.UpdateTourRequests();
         }
     }
 }

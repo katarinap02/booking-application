@@ -61,7 +61,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             Accommodations.Clear();
             foreach (Accommodation accommodation in accommodationService.GetAll())
             {
-                if (accommodation.HostId == User.Id)
+                if (accommodation.HostId == User.Id && !accommodation.ClosedAccommodation)
                 {
                     Accommodations.Add(new AccommodationViewModel(accommodation));
                 }

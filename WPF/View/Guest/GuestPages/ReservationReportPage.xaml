@@ -1,0 +1,83 @@
+﻿<Page x:Class="BookingApp.WPF.View.Guest.GuestPages.ReservationReportPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestPages"
+                    xmlns:controls="clr-namespace:BookingApp.WPF.View.Guest.GuestControls"
+      mc:Ignorable="d" 
+      d:DesignHeight="798" d:DesignWidth="1085"
+      Title="RateAccommodationPage">
+    <Page.Resources>
+
+        <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <DrawingGroup x:Key="question_mark_in_a_circle_svgrepo_com_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,93.936,93.936"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 80.179 13.758 c -18.342 -18.342 -48.08 -18.342 -66.422 0 c -18.342 18.341 -18.342 48.08 0 66.421 c 18.342 18.342 48.08 18.342 66.422 0 C 98.521 61.837 98.521 32.099 80.179 13.758 z M 44.144 83.117 c -4.057 0 -7.001 -3.071 -7.001 -7.305 c 0 -4.291 2.987 -7.404 7.102 -7.404 c 4.123 0 7.001 3.044 7.001 7.404 C 51.246 80.113 48.326 83.117 44.144 83.117 z M 54.73 44.921 c -4.15 4.905 -5.796 9.117 -5.503 14.088 l 0.097 2.495 c 0.011 0.062 0.017 0.125 0.017 0.188 c 0 0.58 -0.47 1.051 -1.05 1.051 c -0.004 -0.001 -0.008 -0.001 -0.012 0 h -7.867 c -0.549 0 -1.005 -0.423 -1.047 -0.97 l -0.202 -2.623 c -0.676 -6.082 1.508 -12.218 6.494 -18.202 c 4.319 -5.087 6.816 -8.865 6.816 -13.145 c 0 -4.829 -3.036 -7.536 -8.548 -7.624 c -3.403 0 -7.242 1.171 -9.534 2.913 c -0.264 0.201 -0.607 0.264 -0.925 0.173 s -0.575 -0.327 -0.693 -0.636 l -2.42 -6.354 c -0.169 -0.442 -0.02 -0.943 0.364 -1.224 c 3.538 -2.573 9.441 -4.235 15.041 -4.235 c 12.36 0 17.894 7.975 17.894 15.877 C 63.652 33.765 59.785 38.919 54.73 44.921 z" FillRule="Nonzero"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource question_mark_in_a_circle_svgrepo_com_xaml}" x:Key="HintIcon"/>
+        </ResourceDictionary>
+
+    </Page.Resources>
+
+    <Grid>
+
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
+            <Grid>
+                <TextBlock TextAlignment="center" TextWrapping="Wrap" FontSize="23" Margin="265,59,265,621">This page is for creating reports about reservations in a specific time period. Please choose report type and time period.</TextBlock>
+                <Grid Margin="10,168,-10,471">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="115*"/>
+                        <ColumnDefinition Width="97*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!--<Button Content="Close forum"  Style="{StaticResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, 50, 0, 0" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>-->
+
+                </Grid>
+                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="265,192,265,267">
+                    <Grid>
+                        <Label Foreground="{StaticResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="182,0,182,277">Report type</Label>
+                        <RadioButton FontSize="18" Height="20" Margin="126,49,-126,257">Created reservations report</RadioButton>
+                        <RadioButton FontSize="18" Height="20" Margin="126,85,-126,221">Cancelled reservations report</RadioButton>
+                        <Label Foreground="{StaticResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="182,133,182,143">Time period</Label>
+                        <Label Content="Start date " Margin="119,188,306,91" FontSize="20"/>
+                        <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
+                        <DatePicker x:Name="txtStartDate" Margin="229,196,149,98"  RenderTransformOrigin="0.697,-0.222"/>
+                        <Label Content="End date" FontSize="20" HorizontalAlignment="Left" Margin="121,227,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="43" Width="93">
+                            <Label.RenderTransform>
+                                <TransformGroup>
+                                    <ScaleTransform ScaleY="1"/>
+                                    <SkewTransform/>
+                                    <RotateTransform/>
+                                    <TranslateTransform/>
+                                </TransformGroup>
+                            </Label.RenderTransform>
+                        </Label>
+                        <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
+                        <DatePicker x:Name="txtEndDate" Margin="229,240,149,58"/>
+                    </Grid>
+
+
+                </Border>
+
+                <Button Content="Your profile" Command="{Binding Path=ViewProfileCommand}" Style="{StaticResource ButtonStyleN}" FontSize="23" Margin="286,600,616,139"/>
+                <Button Content="Create report" Command="{Binding Path=CreateReportCommand}" Style="{StaticResource ButtonStyleN}" FontSize="23" Margin="620,600,282,139"/>
+
+
+            </Grid>
+
+
+        </Border>
+
+
+    </Grid>
+
+</Page>

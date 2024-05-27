@@ -58,6 +58,7 @@
             <Grid Margin="2,0,-2,0">
                 <ListBox x:Name="AccommodationListBox"
   ScrollViewer.VerticalScrollBarVisibility="Auto"
+                         ScrollViewer.HorizontalScrollBarVisibility="Auto"
   ItemsSource="{Binding Accommodations}" Margin="36,32,35,32" Background="{StaticResource BackgroundColorN}" RenderTransformOrigin="0.5,0.5">
                     <ListBox.RenderTransform>
                         <TransformGroup>
@@ -71,9 +72,9 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
-                                <controls:AccommodationCardSmall Margin="30, 10, 30, 10" Width="821"/>
-                                <Button x:Name="DetailsButton" Content="Details" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Margin="600, 30, 0, 0"/>
-                                <Button x:Name="ReserveButton" Content="Reserve" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Grid.Row="1" Margin="600, 30, 0, 70" Command="{Binding Path=DataContext.ReserveCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                                <controls:AccommodationCardMedium Margin="0,0,0,0"/>
+                                <Button x:Name="DetailsButton" Content="Details" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Margin="400, 30, 0, 0"/>
+                                <Button x:Name="ReserveButton" Content="Reserve" Style="{StaticResource ButtonStyleN}" Width="100" Height="30" FontSize="20" Grid.Row="1" Margin="400, 30, 0, 70" Command="{Binding Path=DataContext.ReserveCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
 
 
                             </Grid>
