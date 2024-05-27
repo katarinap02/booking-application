@@ -36,14 +36,15 @@
 
 
         <Grid Grid.Column="1" Grid.Row="1">
-            
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="100" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="25" />
                 <RowDefinition Height="60" />
                 <RowDefinition Height="25" />
-                <RowDefinition Height="120" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="100" />
                 <RowDefinition Height="*" />
 
             </Grid.RowDefinitions>
@@ -63,7 +64,7 @@
                 <Label
                 x:Name="CleanlinessLabel"
                 Style="{StaticResource LableStyleHost}"
-                Content="cleanliness" Height="29" 
+                Content="cleanliness:" Height="29" 
                 Margin="3 0 35 0"/>
                 <RadioButton x:Name="radioButtonCleanliness1" GroupName="TypeButton" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="True"></RadioButton>
                 <Label
@@ -95,12 +96,12 @@
                 Content="5" Height="29" 
                     Style="{StaticResource LableStyleHost}"
                 Margin="3 0 5 0"/>
-                        </StackPanel>
+            </StackPanel>
             <StackPanel Grid.Row ="3" Grid.Column="1" Orientation="Horizontal" Margin="50 0 0 0" HorizontalAlignment="Left" >
                 <Label
                  x:Name="RulesLabel"
                  Style="{StaticResource LableStyleHost}"
-                 Content="rules following" Height="29" 
+                 Content="rules following:" Height="29" 
                  Margin="3 0 9 0"/>
                 <RadioButton x:Name="radioButtonRuless1" GroupName="TypeButtonRules" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="True"></RadioButton>
                 <Label
@@ -135,29 +136,29 @@
             </StackPanel>
 
 
-            <StackPanel Orientation="Horizontal" Grid.Row="5" Margin="50 0 0 0">
-                <StackPanel>
-                    <TextBlock Text="additional" Style="{StaticResource TextBlockHost}" VerticalAlignment="Top" Margin="5,0,0,0" />
-                    <TextBlock Text="comment" Style="{StaticResource TextBlockHost}" FontSize="15" VerticalAlignment="Top" Margin="5,0,0,0" />
-                </StackPanel>
-                <TextBox x:Name="CommentTextBox" Style="{StaticResource TextBoxStyleHost}" Width="360" Height="118" Margin="15 0 0 0"  Text="{Binding Path= guestRateViewModel.AdditionalComment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
-            </StackPanel>
 
-            
+            <StackPanel Margin="50 0 0 0" Grid.Row="5">
+                <TextBlock Text="additional comment:" Style="{StaticResource TextBlockHost}" VerticalAlignment="Top" Margin="5,0,0,0" />
+
+            </StackPanel>
+            <TextBox x:Name="CommentTextBox" Grid.Row="6" Style="{StaticResource TextBoxStyleHost}" Margin="56,0,108,10"  Text="{Binding Path= guestRateViewModel.AdditionalComment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+
+
+
             <StackPanel Grid.Row="7" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
                 <Button Content="Rate guest" Style="{StaticResource ButtonStyleHost}" Command="{Binding SaveCommand}" FontSize="15" Width="110" Height="45" Margin="0 0 0 0">
                 </Button>
-                
+
             </StackPanel>
 
 
 
         </Grid>
 
-       
-            <Label Content="select guest" Style="{StaticResource LableStyleHost}" VerticalAlignment="Top" Grid.Row="1" FontWeight="Bold" Margin="25 10 0 0">
 
-                </Label>
+        <Label Content="select guest:" Style="{StaticResource LableStyleHost}" VerticalAlignment="Top" Grid.Row="1" Margin="25 10 0 0">
+
+        </Label>
         <ListView
                 x:Name="AccommodationsListView"
                 Margin="25,50,0,30"

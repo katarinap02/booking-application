@@ -33,8 +33,8 @@
         Content="Renovations"
         Style="{StaticResource TitleStyleHost}"
          />
-        <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="5 10 5 0">
-            <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal" Margin="15 0 400 0">
+        <StackPanel Orientation="Horizontal" Grid.Row="1"  Margin="5 10 0 0">
+            <StackPanel  HorizontalAlignment="Right" Orientation="Horizontal" Margin="30 0 363 0">
                 <Button Style="{StaticResource ButtonStyleHost}" Content="Previous" Command="{Binding NavigateToPreviousPageCommand}" FontSize="15" Width="110" Height="40" VerticalAlignment="Top"/>
                 <Button Style="{StaticResource ButtonStyleHost}" IsEnabled="False" Content="Scheduled" FontSize="15" Margin="20 0 0 0" Width="110" Height="40" VerticalAlignment="Top"/>
             </StackPanel>
