@@ -160,6 +160,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        public int numOfComments;
+        public int NumOfComments
+        {
+            get { return numOfComments; }
+            set
+            {
+                if (numOfComments != value)
+                {
+
+                    numOfComments = value;
+                    OnPropertyChanged("NumOfComments");
+                }
+            }
+        }
+
         public string DateString => Date.ToString("MM/dd/yyyy");
         public string Location => City + ", " + Country;
         UserService userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
@@ -187,6 +202,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             isVeryUseful = forum.IsVeryUseful;
             date = forum.Date;
             guestUsername = userService.GetById(userId).Username;
+            numOfComments = forum.Comments.Count;
 
         }
 

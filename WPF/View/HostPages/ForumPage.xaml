@@ -119,16 +119,39 @@
 
                             <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="15 0 0 0">
                                 <Label Content="very usefull:" FontSize="13" VerticalAlignment="Center" />
-                                <TextBlock FontWeight="Bold" Width="Auto"
-                                 Margin="5,0,0,0"
-                                 Text="{Binding Cleanliness}" 
-                                 VerticalAlignment="Center"/>
+                                <ContentControl  >
+                                    <ContentControl.Style>
+                                        <Style TargetType="ContentControl">
+                                            <Setter Property="Content">
+                                                <Setter.Value>
+                                                    <Image Source="{x:Null}"/>
+                                                </Setter.Value>
+                                            </Setter>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsVeryUseful}" Value="False">
+                                                    <Setter Property="Content">
+                                                        <Setter.Value>
+                                                            <Image Source="{x:Null}"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                                <DataTrigger Binding="{Binding IsVeryUseful}" Value="True">
+                                                    <Setter Property="Content">
+                                                        <Setter.Value>
+                                                            <fa:IconImage Icon="Medal" Foreground="DarkBlue" Height="20" Width="20" HorizontalAlignment="Left" Margin="5, 0, 0, 0"/>
+                                                        </Setter.Value>
+                                                    </Setter>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </ContentControl.Style>
+                                </ContentControl>
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="15 0 0 0">
                                 <Label Content="replies:" FontSize="13" VerticalAlignment="Center" />
                                 <TextBlock FontWeight="Bold" Width="Auto"
                                  Margin="5,0,0,0"
-                                 Text="{Binding Correctness}" 
+                                 Text="{Binding NumOfComments}" 
                                  VerticalAlignment="Center"/>
                             </StackPanel>
                             <Button Content="Reply" Grid.Column="1" Width="75" Height="29" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"

@@ -76,9 +76,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public void Update()
         {
             Forums.Clear();
-            foreach (Forum forum in forumService.GetAll())
+            foreach (Forum forum in forumService.GetForumsForHost(User))
             {
-                if(forum.City.ToLower().Equals(LocationCity.ToLower()) || LocationCity.Equals(""))
+                forumService.CalculateGuestHostComments(forum);
+                if (forum.City.ToLower().Equals(LocationCity.ToLower()) || LocationCity.Equals(""))
                 Forums.Add(new ForumViewModel(forum));
             }
         }
