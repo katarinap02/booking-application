@@ -36,7 +36,7 @@
          Style="{StaticResource TitleStyleHost}"
           />
 
-        <ComboBox x:Name="LocationComboBox" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0, 80, 0" SelectedValuePath="Tag" Width="120" Height="30" Style="{StaticResource ComboBoxStyleHost}" SelectedValue="{Binding SelectedLocation, UpdateSourceTrigger=PropertyChanged}" >
+        <ComboBox x:Name="LocationComboBox" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="115,0, 0, 0" SelectedValuePath="Tag" Width="120" Height="30" Style="{StaticResource ComboBoxStyleHost}" SelectedValue="{Binding SelectedLocation, UpdateSourceTrigger=PropertyChanged}" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
                     <cmd:EventToCommand Command="{Binding SelectCityCommand}" PassEventArgsToCommand="True"/>
