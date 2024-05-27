@@ -155,6 +155,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             return replacedPath;
         }
 
+        public void LoadLocation()
+        {
+            accommodationDTO.InitializeAllLocations();
+        }
+
 
         public void DeletePicture(string pictureUrl)
         {
