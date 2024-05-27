@@ -1,6 +1,7 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.WPF.View.HostPages;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,10 +16,16 @@ namespace BookingApp.Application.Services.FeatureServices
         private readonly ITourRequestRepository _tourRequestRepository;
         private static readonly TourService _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
         private static readonly TouristNotificationService _touristNotificationService = new TouristNotificationService(Injector.Injector.CreateInstance<ITouristNotificationRepository>());
+        private static readonly ComplexTourRequestService _complexTourRequestService = new ComplexTourRequestService(Injector.Injector.CreateInstance<IComplexTourRequestRepository>());
 
         public TourRequestService(ITourRequestRepository tourRequestRepository)
         {
             _tourRequestRepository = tourRequestRepository;
+        }
+
+        public void SaveComplexRequest(ComplexTourRequest complexTourRequest)
+        {
+            _complexTourRequestService.Add(complexTourRequest);
         }
 
         public void AcceptRequest(TourRequest request, int GuideId, DateTime acceptedDate)
@@ -70,6 +77,11 @@ namespace BookingApp.Application.Services.FeatureServices
         public List<TourRequest> GetRequestsByTouristId(int touristId)
         {
             return _tourRequestRepository.GetByTouristId(touristId);
+        }
+
+        public List<ComplexTourRequest> GetComplexRequestsByTouristId(int touristId)
+        {
+            return _complexTourRequestService.GetByTouristId(touristId);
         }
         
         public List<TourRequest> getRequestsForLocation(string city, string country)
@@ -337,6 +349,28 @@ namespace BookingApp.Application.Services.FeatureServices
                     _touristNotificationService.Add(Notification);
                 }
             }
+        }
+        public void UpdateTourRequests()
+        {
+            List<TourRequest> tourRequests = _tourRequestRepository.GetAll();
+            foreach(TourRequest request in tourRequests)
+            {
+                if(request.Status != TourRequestStatus.Accepted && DateTime.Now >= request.StartDate.AddHours(-48))
+                {
+                    request.Status = TourRequestStatus.Invalid;
+                    _tourRequestRepository.UpdateRequest(request);
+                }
+            }
+        }
+
+        public List<TourRequest> GetTourRequestsByComplexId(int complexId)
+        {
+            return _complexTourRequestService.GetTourRequestsByComplexId(complexId);
+        }
+
+        public TourRequest GetById(int id)
+        {
+            return _tourRequestRepository.GetById(id);
         }
     }
 }

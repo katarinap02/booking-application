@@ -192,6 +192,12 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             return UserId;
         }
 
+        public void Initialize()
+        {
+            // initializing tour requests
+            _userService.UpdateTourRequests();
+        }
+
         public TouristMenuViewModel()
         {
             _userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());

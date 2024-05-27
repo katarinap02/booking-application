@@ -8,21 +8,21 @@
 8|5|Pending|Rio de Janeiro|Brazil|Christ the Redeemer Tour|Portuguese|5/14/2024 11:00:00 AM|5/15/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|1/8/2024 1:20:00 PM
 9|5|Accepted|Cairo|Egypt|Pyramids Visit|Arabic|5/16/2024 8:00:00 AM|5/16/2024 12:00:00 PM|5/16/2024 9:00:00 AM|1|1,2,3|1/9/2024 5:55:00 PM
 10|3|Accepted|Buenos Aires|Argentina|Tango Dance Experience|Spanish|5/17/2024 7:00:00 PM|5/17/2024 9:00:00 PM|6/1/2024 12:00:00 AM|1|1,2,3|1/10/2024 8:10:00 AM
-11|3|Pending|Buenos Aires|Argentina|Tango Dance Experience|Spanish|5/17/2024 7:00:00 PM|5/17/2024 9:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3,4,5|1/12/2024 8:10:00 AM
+11|3|Invalid|Buenos Aires|Argentina|Tango Dance Experience|Spanish|5/17/2024 7:00:00 PM|5/17/2024 9:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3,4,5|1/12/2024 8:10:00 AM
 12|3|Accepted|Kistarcsa|Hungary||Hungarian|6/7/2024 12:00:00 AM|6/20/2024 12:00:00 AM|6/3/2024 12:00:00 AM|1|4,5,6,7,8|5/12/2024 3:57:30 PM
 13|3|Invalid|Sheringham|United Kingdom||English|5/15/2024 3:57:37 PM|5/16/2024 3:57:37 PM|1/1/0001 12:00:00 AM|-1|9,10,11|5/12/2023 3:58:18 PM
-14|3|Pending|Vidovci|Croatia||Serbian|5/15/2024 3:58:47 PM|5/16/2024 3:58:47 PM|1/1/0001 12:00:00 AM|-1|12,13|5/12/2023 3:59:19 PM
+14|3|Invalid|Vidovci|Croatia||Serbian|5/15/2024 3:58:47 PM|5/16/2024 3:58:47 PM|1/1/0001 12:00:00 AM|-1|12,13|5/12/2023 3:59:19 PM
 15|3|Accepted|Warga|Netherlands||Dutch|5/15/2024 4:00:02 PM|7/16/2024 4:00:02 PM|7/1/2024 12:00:00 AM|1|14,15,16|5/12/2024 4:00:36 PM
 16|3|Pending|Budapest|Hungary|Fisherman's Bastion tour|Hungarian|5/15/2024 4:00:55 PM|6/10/2024 4:00:55 PM|1/1/0001 12:00:00 AM|-1|17,18,19|5/12/2024 4:01:56 PM
 17|3|Pending|Brezje|Croatia|Hrvatska|Croatian|5/17/2024 12:00:00 AM|5/31/2024 12:00:00 AM|1/1/0001 12:00:00 AM|-1|20,21|5/13/2024 9:16:11 AM
-18|3|Pending|Barcelona|Spain|Gaudí Architecture Tour|Spanish|7/20/2024 10:00:00 AM|7/21/2024 5:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|2/14/2024 3:30:00 PM
+18|3|Pending|Barcelona|Spain|GaudÃ­ Architecture Tour|Spanish|7/20/2024 10:00:00 AM|7/21/2024 5:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|2/14/2024 3:30:00 PM
 19|3|Pending|Moscow|Russia|Red Square Visit|Russian|8/2/2024 9:30:00 AM|8/3/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|1/6/2024 11:45:00 AM
 20|3|Pending|Cape Town|South Africa|Table Mountain Hike|Afrikaans|9/5/2024 1:00:00 PM|9/6/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|12/30/2023 3:20:00 PM
 21|3|Pending|Vancouver|Canada|Stanley Park Bike Tour|English|5/10/2024 11:00:00 AM|5/11/2024 4:30:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|10/17/2023 9:00:00 AM
 22|3|Pending|Mumbai|India|Gateway of India Visit|Hindi|6/15/2024 8:00:00 AM|6/16/2024 12:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|11/25/2023 2:15:00 PM
-23|3|Pending|Lisbon|Portugal|Belém Tower Exploration|Portuguese|7/10/2024 10:00:00 AM|7/11/2024 2:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|3/7/2024 4:30:00 PM
+23|3|Pending|Lisbon|Portugal|BelÃ©m Tower Exploration|Portuguese|7/10/2024 10:00:00 AM|7/11/2024 2:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|3/7/2024 4:30:00 PM
 24|3|Pending|Istanbul|Turkey|Hagia Sophia Tour|Turkish|9/3/2024 9:00:00 AM|9/4/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|4/18/2023 10:45:00 AM
-25|3|Pending|Vienna|Austria|Schönbrunn Palace Visit|German|10/1/2024 11:00:00 AM|10/2/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|6/11/2023 1:20:00 PM
+25|3|Pending|Vienna|Austria|SchÃ¶nbrunn Palace Visit|German|10/1/2024 11:00:00 AM|10/2/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|6/11/2023 1:20:00 PM
 26|3|Pending|Beijing|China|Great Wall Hike|Mandarin|8/15/2024 8:00:00 AM|8/16/2024 12:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|2/22/2024 5:55:00 PM
 27|3|Pending|Edinburgh|UK|Edinburgh Castle Tour|English|9/18/2024 7:00:00 PM|9/19/2024 9:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|1/15/2024 8:10:00 AM
 28|3|Pending|Helsinki|Finland|Suomenlinna Island Visit|Finnish|6/10/2024 10:00:00 AM|6/11/2024 5:00:00 PM|1/1/0001 12:00:00 AM|-1|4,5,6|3/25/2024 9:10:00 AM
