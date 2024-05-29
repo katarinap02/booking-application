@@ -22,5 +22,15 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             return informationRepository.GetByGuideId(id);
         }
+
+        public void quit(int id)
+        {
+            GuideInformation guide = GetByGuideId(id);
+            // pronadji sve ture za guide-a
+            // cancel-uj ih -> status cancel
+            // podeli vaucere
+            // HasQuit = true
+            // dodati proveru u SignIn da li je obrisan
+        }
     }
 }

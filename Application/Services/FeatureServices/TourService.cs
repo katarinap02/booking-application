@@ -164,6 +164,26 @@ namespace BookingApp.Application.Services.FeatureServices
             }
         }
 
+        public List<Tour> sortBySuperGuide(List<Tour> tours)
+        {
+            bool SuperGuide = true;
+            List < Tour > isSuperGuide = new List<Tour> ();
+            List < Tour > notSuperGuide = new List<Tour> ();
+            foreach (Tour tour in tours)
+            {
+                if (SuperGuide)
+                {
+                    isSuperGuide.Add(tour);
+                }
+                else
+                {
+                    notSuperGuide.Add(tour);
+                }
+            }
+            // isSuperGuide.Append(notSuperGuide);
+            return null;
+        }
+
         public void cancelTour(int tour_id, int guide_id)
         {
             Tour tour = _tourRepository.GetTourById(tour_id);
