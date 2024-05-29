@@ -317,6 +317,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   <data name="GuestStatus" xml:space="preserve">
     <value>Status: guest</value>
   </data>
+  <data name="HasRated" xml:space="preserve">
+    <value>has rated you:</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>Help</value>
   </data>
@@ -541,6 +544,9 @@ which will give you all available accommodations according to your needs.</value
   </data>
   <data name="RquestsDesc" xml:space="preserve">
     <value>You can see all of your requests sorted by status on this page.</value>
+  </data>
+  <data name="RulesFollowing" xml:space="preserve">
+    <value>Rules-following</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Save</value>

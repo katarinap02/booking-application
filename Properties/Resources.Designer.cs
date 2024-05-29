@@ -101,6 +101,14 @@ namespace BookingApp.Properties
             }
         }
 
+        internal static string RulesFollowing
+        {
+            get
+            {
+                return ResourceManager.GetString("RulesFollowing", resourceCulture);
+            }
+        }
+
         internal static string AddPicture
         {
             get

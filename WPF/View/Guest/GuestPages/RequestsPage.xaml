@@ -14,7 +14,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <TextBlock TextWrapping="Wrap" FontSize="25" Margin="187,94,187,649"></TextBlock>
+                <TextBlock Text="{ns:Loc RquestsDesc}" TextWrapping="Wrap" FontSize="25" Margin="187,94,187,649"></TextBlock>
 
                 <ListBox Name="RequestsListBox" Margin="24,287,34,26"  ScrollViewer.VerticalScrollBarVisibility="Auto"
 ItemsSource="{Binding Requests}" Background="{DynamicResource BackgroundColorN}" SelectedItem="{Binding SelectedRequest}">

@@ -28,7 +28,7 @@
 
                 <TextBlock FontSize="23" Height="40" Margin="50,40,0,-20" Grid.RowSpan="2">
                    <Run Text="{ns:Loc Cleanliness}"/><Run Text=": "/><Run Text="{Binding SelectedRate.Cleanliness}"/>
-<Run Text=", "/><Run Text="{ns:Loc RulesFollowing}"/><Run Text="{Binding SelectedForum.RulesFollowing}"/>
+<Run Text=", "/><Run Text="{ns:Loc RulesFollowing}"/><Run Text=": "/><Run Text="{Binding SelectedRate.RulesFollowing}"/>
                     <!--<TextBlock.Text>
                         <MultiBinding StringFormat="{}Cleanliness: {0}, Rules-following: {1}">
                             <Binding Path="SelectedRate.Cleanliness"/>

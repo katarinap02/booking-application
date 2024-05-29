@@ -18,7 +18,7 @@
                 <Label Content="{ns:Loc Reservation}" FontSize="40" Width="250" Height="80" Margin="210,44,600,667" Style="{DynamicResource HeaderStyleN}"/>
                 <Label Content="{Binding DateRange}" FontSize="40" Height="80" Margin="465,44,29,667" Style="{DynamicResource HeaderStyleN}"/>
                 <TextBlock FontSize="30" Height="80" TextAlignment="Center" Margin="10,111,-10,600" FontWeight="Bold">
-                    <Run Text="{Binding HostUsername}"/><Run Text=" has rated you: "/>
+                    <Run Text="{Binding HostUsername}"/><Run Text=" "></Run><Run Text="{ns:Loc HasRated}"/>
                     <!--<TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} has rated you: ">
                             <Binding Path="HostUsername"/>
@@ -28,7 +28,7 @@
                 </TextBlock>
 
                 <TextBlock FontSize="30" Height="80" TextAlignment="Center" Margin="10,191,-10,520">
-                     <Run Text="Cleanliness"/><Run Text="{Binding SelectedRate.Cleanliness}"/>
+                     <Run Text="{ns:Loc Cleanliness}"/><Run Text=": "></Run><Run Text="{Binding SelectedRate.Cleanliness}"/>
                     <!--<TextBlock.Text>
                         <MultiBinding StringFormat="{}Cleanliness: {0}">
                             <Binding Path="SelectedRate.Cleanliness"/>
@@ -38,7 +38,7 @@
                 </TextBlock>
 
                 <TextBlock FontSize="30" Height="80" TextAlignment="Center" Margin="10,271,-10,440">
-                     <Run Text="Rules-following"/><Run Text="{Binding SelectedRate.RulesFollowing}"/>
+                     <Run Text="{ns:Loc RulesFollowing}"/><Run Text=" "></Run><Run Text="{Binding SelectedRate.RulesFollowing}"/>
                     <!--<TextBlock.Text>
                         <MultiBinding StringFormat="{}Rules-following: {0}">
                             <Binding Path="SelectedRate.RulesFollowing"/>

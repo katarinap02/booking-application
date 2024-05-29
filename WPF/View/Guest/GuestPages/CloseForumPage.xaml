@@ -48,8 +48,8 @@
                             </Grid.RowDefinitions>
 
                             <TextBlock Margin="10,10,675,-47" Grid.RowSpan="2" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource AccentColorN}">
-<Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding SelectedForum.City}"/>
-<Run Text=", "/><Run Text="{Binding SelectedForum.Country}"/>
+<Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding NewForum.City}"/>
+<Run Text=", "/><Run Text="{Binding NewForum.Country}"/>
                                 <!--<TextBlock.Text>
                                     <MultiBinding StringFormat="{}Location: {0}, {1}">
                                         <Binding Path="NewForum.City"/>

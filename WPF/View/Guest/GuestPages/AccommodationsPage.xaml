@@ -138,7 +138,7 @@
 
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="White" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,162,1082,393">
             <Grid x:Name="SearchSection">
-                <Label Content="{ns:Loc Search accommodation}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="122,10,-122,-10"/>
+                <Label Content="{ns:Loc SearchAccommodations}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="122,10,-122,-10"/>
                 <Label Content="{ns:Loc Name}" HorizontalAlignment="Left" Margin="66,89,0,0" VerticalAlignment="Top" Width="74" FontSize="16" RenderTransformOrigin="0.439,1.63"/>
                 <Label Content="{ns:Loc City}" HorizontalAlignment="Left" Margin="66,169,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="-8.542,2.786" FontSize="16"/>
                 <Label Content="{ns:Loc Type}" HorizontalAlignment="Left" Margin="66,208,0,0" VerticalAlignment="Top" Width="74" FontSize="16"/>
@@ -150,7 +150,7 @@
                 <TextBox x:Name="txtSearchGuestNumber" HorizontalAlignment="Left" Margin="382,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
                 <TextBox x:Name="txtSearchReservationDays" HorizontalAlignment="Left" Margin="382,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
                 <Button Content="{ns:Loc Search}" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Width="142" Command="{Binding SearchCommand}" RenderTransformOrigin="-2.474,0.401" Style="{DynamicResource ButtonStyleN}" FontSize="20" Height="33"/>
-                <Label FontSize="16" Content="Country:" HorizontalAlignment="Left" Margin="66,129,0,0"  VerticalAlignment="Top" Width="74"/>
+                <Label FontSize="16" Content="{ns:Loc Country}" HorizontalAlignment="Left" Margin="66,129,0,0"  VerticalAlignment="Top" Width="74"/>
                 <!--<TextBox x:Name="txtSearchCountry" HorizontalAlignment="Left" Margin="382,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>-->
                 <ComboBox x:Name="txtSearchCountry" HorizontalAlignment="Left" Margin="382,135,0,276" Width="118" Height="20" ItemsSource="{Binding CountriesSearch}"  SelectedItem="{Binding CountrySearch, Mode=TwoWay}"/>
                 <TextBox x:Name="txtSearchType" HorizontalAlignment="Left" Margin="382,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>

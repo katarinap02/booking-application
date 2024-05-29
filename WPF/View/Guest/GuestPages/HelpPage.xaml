@@ -36,11 +36,11 @@
             </Grid>
         </Border>
 
-        <Label Content="{ns:Loc HowCreate}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="700,557,611,370"/>
-        <TextBlock Text="{ns:Loc HowForum}" TextWrapping="Wrap" FontSize="20" Margin="700,604,704,222" TextAlignment="Justify" />
+        <Label Content="{ns:Loc HowForum}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="700,557,611,370"/>
+        <TextBlock Text="{ns:Loc ForumHelp}" TextWrapping="Wrap" FontSize="20" Margin="700,604,704,222" TextAlignment="Justify" />
         <Label Content="{ns:Loc HowSuperGuest}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="1342,149,-31,778"/>
         <TextBlock Text="{ns:Loc SuperGuestHelp}" TextWrapping="Wrap" FontSize="20" Margin="1342,185,82,541" TextAlignment="Justify"></TextBlock>
-        <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="1378,365,142,520">
+        <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="1390,406,130,479">
             <Grid>
                 <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="200" Source="../../../Resources/Images/superGuestHelp.png"/>
             </Grid>

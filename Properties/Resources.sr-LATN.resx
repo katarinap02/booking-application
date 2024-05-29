@@ -315,6 +315,9 @@
   <data name="GuestStatus" xml:space="preserve">
     <value>Status: gost</value>
   </data>
+  <data name="HasRated" xml:space="preserve">
+    <value>vas je ocenio/la:</value>
+  </data>
   <data name="Help" xml:space="preserve">
     <value>Pomoć</value>
   </data>
@@ -456,6 +459,13 @@
   <data name="RateButton" xml:space="preserve">
     <value>Oceni</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="RateDetailsPage" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\WPF\View\Guest\GuestPages\RateDetailsPage.xaml;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
+  <data name="RateDetailsPage.xaml" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\WPF\View\Guest\GuestPages\RateDetailsPage.xaml.cs;System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089;utf-8</value>
+  </data>
   <data name="RateHelp" xml:space="preserve">
     <value>Možete oceniti smeštaj i gosta tako što ćete otići na Profilnu sranu na Meniju i izabrati Oceni smeštaj na sajd-baru. Sledeći korak je da izaberete rezervaciju iz ponuđenih rezervacija. Možete oceniti smeštaj najkasnije 5 dana nakon što je rezervacija završena.</value>
   </data>
@@ -536,6 +546,9 @@
   </data>
   <data name="RquestsDesc" xml:space="preserve">
     <value>Možete da vidite sve Vaše zahteve sortirane po statusu na ovoj strani.</value>
+  </data>
+  <data name="RulesFollowing" xml:space="preserve">
+    <value>Poštovanje pravila</value>
   </data>
   <data name="Save" xml:space="preserve">
     <value>Sačuvaj</value>
