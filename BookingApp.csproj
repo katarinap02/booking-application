@@ -38,6 +38,7 @@
     <None Remove="WPF\Resources\Images\left_arrow.png" />
     <None Remove="WPF\Resources\Images\lock.png" />
     <None Remove="WPF\Resources\Images\minus.png" />
+    <None Remove="WPF\Resources\Images\person.jpg" />
     <None Remove="WPF\Resources\Images\planeComputer.jpg" />
     <None Remove="WPF\Resources\Images\play_button.png" />
     <None Remove="WPF\Resources\Images\plus.png" />
@@ -121,6 +122,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="WPF\Resources\Images\paris1.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WPF\Resources\Images\person.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="WPF\Resources\Images\plus.png">

@@ -77,60 +77,79 @@ SelectionMode="Single">
                                 </LinearGradientBrush>
                             </Grid.Background>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="500" />
+                                <ColumnDefinition Width="140" />
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
                                 <RowDefinition Height="*" />
-                                <RowDefinition Height="45" />
+                                <RowDefinition Height="*" />
 
                             </Grid.RowDefinitions>
-                            <TextBlock
+                            <Image
                             Grid.Row="0"
-                            Grid.RowSpan="3"
+                            Grid.RowSpan="2"
                             Grid.Column="0"
-                            MaxWidth="480"
-                            Margin="10"
-                            VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding Comment}" Style="{StaticResource TextBlockHost}" FontSize="20" >
-                            </TextBlock>
+                            Height="75"
+                            Margin="0 10 0 0"
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Source="../../Resources/Images/person.jpg" />
 
+
+                            
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Center" Margin="0 0 5 0">
+                                <TextBlock FontWeight="Bold" Width="Auto"
+                                    Margin="5,0,0,0"
+                                    VerticalAlignment="Center">
+                                    <TextBlock.Style>
+                                        <Style TargetType="TextBlock">
+                                            <Setter Property="Text" Value="Guest"/>
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsHost}" Value="True">
+                                                    <Setter Property="Text" Value="Host"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </TextBlock.Style>
+                                </TextBlock>
+                            </StackPanel>
 
 
                             <StackPanel Orientation="Horizontal" Grid.Row="4" Grid.Column="0" Margin="10 0 0 10">
-                                <Label Content="guest username:" FontSize="13" VerticalAlignment="Center" />
+                                <Label Content="username:" FontSize="13" VerticalAlignment="Center" />
                                 <TextBlock FontWeight="Bold" Width="Auto"
                                 Margin="5,0,0,0"
-                                Text="{Binding GuestUsername}" 
+                                Text="{Binding Username}" 
                                 VerticalAlignment="Center"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" VerticalAlignment="Center" Margin="15 10 0 0">
+                            <TextBlock
+                                Grid.Row="0"
+                                Grid.RowSpan="2"
+                                Grid.Column="1"
+                                Margin="20 10 0 0"
+                                VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding Comment}" Style="{StaticResource TextBlockHost}" FontSize="20" >
+                            </TextBlock>
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15 0 30 5">
                                 <Label Content="location:" FontSize="13"  />
                                 <TextBlock FontWeight="Bold" Width="Auto"
-                                Margin="5,0,0,0"
-                                Text="{Binding Location}" 
-                                VerticalAlignment="Center"/>
+                                 Margin="5,0,0,0"
+                                 Text="{Binding Location}" 
+                                 VerticalAlignment="Center"/>
                             </StackPanel>
-
-                            <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="1" Margin="15 0 0 0">
-                                <Label Content="very usefull:" FontSize="13" VerticalAlignment="Center" />
-                                <TextBlock FontWeight="Bold" Width="Auto"
-                                Margin="5,0,0,0"
-                                Text="{Binding Cleanliness}" 
-                                VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" Margin="15 0 0 0">
-                                <Label Content="replies:" FontSize="13" VerticalAlignment="Center" />
+                            <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" Margin="15 0 0 0">
+                                <Label Content="reports:" FontSize="13" />
                                 <TextBlock FontWeight="Bold" Width="Auto"
                                 Margin="5,0,0,0"
                                 Text="{Binding Correctness}" 
                                 VerticalAlignment="Center"/>
-                            </StackPanel>
-                            <Button Content="Reply" Grid.Column="1" Width="75" Height="29" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Center"
-                                   Style="{StaticResource ButtonStyleHost}" Margin="0 0 30 10">
+                            
+                            <Button Content="Report" Grid.Column="1" Width="75" Height="29" Grid.Row="3"  VerticalAlignment="Center"
+                                   Style="{StaticResource ButtonStyleHost}" Margin="10 0 30 10">
 
                             </Button>
+                            </StackPanel>
                         </Grid>
                     </Border>
                 </DataTemplate>
