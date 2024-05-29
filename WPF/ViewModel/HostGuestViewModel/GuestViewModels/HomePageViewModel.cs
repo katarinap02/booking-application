@@ -24,6 +24,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public GuestICommand ReserveCommand { get; set; }
         public GuestICommand AboutCommand { get; set; }
         public GuestICommand HelpCommand { get; set; }
+     
         public HomePageViewModel(User user, Frame frame) { 
             
             User = user;
@@ -34,7 +35,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ReserveCommand = new GuestICommand(OnReserve);
             AboutCommand = new GuestICommand(OnAbout);
             HelpCommand = new GuestICommand(OnHelp);
-
+          
 
         }
 

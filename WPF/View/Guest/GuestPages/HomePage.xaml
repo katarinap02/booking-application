@@ -51,18 +51,12 @@
         <!--<Label Content="Welcome, " HorizontalAlignment="Left" Margin="723,450,0,0" VerticalAlignment="Top" FontSize="50" Height="90"/>
         <Label Content="{Binding User.Username}" HorizontalAlignment="Left" Margin="948,448,0,0" VerticalAlignment="Top" FontSize="50" RenderTransformOrigin="0.944,0.271" Height="86" Width="283"/>-->
 
-        <TextBlock FontSize="50" Height="90" TextAlignment="Center" Margin="10,363,-10,537">
-            <TextBlock.Text>
-                <MultiBinding StringFormat="{}Welcome, {0}">
-                    <Binding Path="User.Username" />
-
-                </MultiBinding>
-            </TextBlock.Text>
-
+        <TextBlock FontSize="50" Height="90" TextAlignment="Center" Margin="10,363,10,537">
+                <Run Text="{ns:Loc WelcomeHome}"/><Run Text=", "/><Run Text="{Binding User.Username}"/>
         </TextBlock>
-        <TextBlock FontStyle="Italic" TextWrapping="Wrap" FontSize="23" TextAlignment="Center" Margin="601,497,574,369" Text="{ns:Loc FindPerfect}"></TextBlock>
-        <Label Content="{ns:Loc Adventure}" FontStyle="Italic" FontWeight="Bold" FontSize="20" Margin="834,594,806,344"/>
-        <Label Content="{ns:Loc LoggedIn}" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Oblique" Height="80" Margin="766,446,0,0" Width="408" FontSize="30"/>
+        <TextBlock FontStyle="Italic" TextWrapping="Wrap" FontSize="23" TextAlignment="Center" Margin="601,480,574,369" Text="{ns:Loc FindPerfect}"></TextBlock>
+        <Label Content="{ns:Loc Adventure}" FontStyle="Italic" FontWeight="Bold" FontSize="20" Margin="834,605,806,344"/>
+        <Label Content="{ns:Loc LoggedIn}" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Oblique" Height="80" Margin="766,426,0,0" Width="408" FontSize="30"/>
         <Button Content="{ns:Loc Reserve}" HorizontalAlignment="Left" Margin="648,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{DynamicResource ButtonStyleN}" Command="{Binding ReserveCommand}"/>
         <Button Content="{ns:Loc About}" HorizontalAlignment="Center" Margin="0,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{DynamicResource ButtonStyleN}" Command="{Binding AboutCommand}" RenderTransformOrigin="0.659,2.62"/>
         <Button Content="{ns:Loc Help}" HorizontalAlignment="Left" Margin="1127,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{DynamicResource ButtonStyleN}" Command="{Binding HelpCommand}"/>

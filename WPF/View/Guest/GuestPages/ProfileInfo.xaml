@@ -161,7 +161,7 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                         </Style>
                     </Label.Style>
                 </Label>
-                <Button FontSize="20" Content="{ns:Loc ReservationReport}" Style="{DynamicResource ButtonStyleN}" Command="{Binding CreateReportCommand}" Margin="825,258,21,495"/>
+                <Button FontSize="18" Content="{ns:Loc ReservationReport}" Style="{DynamicResource ButtonStyleN}" Command="{Binding CreateReportCommand}" Margin="825,258,21,495"/>
                 <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="881,75,21,569">
                     <Grid>
                         <Image HorizontalAlignment="Left" VerticalAlignment="Center" Width="281" Height="170" Source="../../../Resources/Images/Unknown_person.jpg"/>

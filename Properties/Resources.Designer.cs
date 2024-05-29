@@ -117,6 +117,14 @@ namespace BookingApp.Properties
             }
         }
 
+        internal static string AllForums
+        {
+            get
+            {
+                return ResourceManager.GetString("AllForums", resourceCulture);
+            }
+        }
+
         internal static string AllRequests
         {
             get
@@ -133,11 +141,79 @@ namespace BookingApp.Properties
             }
         }
 
+        internal static string Level1
+        {
+            get
+            {
+                return ResourceManager.GetString("Level1", resourceCulture);
+            }
+        }
+
+        internal static string Level2
+        {
+            get
+            {
+                return ResourceManager.GetString("Level2", resourceCulture);
+            }
+        }
+        internal static string Level3
+        {
+            get
+            {
+                return ResourceManager.GetString("Level3", resourceCulture);
+            }
+        }
+        internal static string Level4
+        {
+            get
+            {
+                return ResourceManager.GetString("Level4", resourceCulture);
+            }
+        }
+        internal static string Level5
+        {
+            get
+            {
+                return ResourceManager.GetString("Level5", resourceCulture);
+            }
+        }
+
+        internal static string EnterAt
+        {
+            get
+            {
+                return ResourceManager.GetString("EnterAt", resourceCulture);
+            }
+        }
         internal static string CancelledRes
         {
             get
             {
                 return ResourceManager.GetString("CancelledRes", resourceCulture);
+            }
+        }
+
+        internal static string Country
+        {
+            get
+            {
+                return ResourceManager.GetString("Country", resourceCulture);
+            }
+        }
+
+        internal static string Cancel
+        {
+            get
+            {
+                return ResourceManager.GetString("Cancel", resourceCulture);
+            }
+        }
+
+        internal static string Delay
+        {
+            get
+            {
+                return ResourceManager.GetString("Delay", resourceCulture);
             }
         }
 

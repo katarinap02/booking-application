@@ -13,14 +13,15 @@
     <Grid>
 
         <TextBlock  FontSize="40" FontWeight="Bold" Foreground="{DynamicResource AccentColorN}" Margin="574,24,425,873">
-
-            <TextBlock.Text>
+    <Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding SelectedForum.City}"/>
+    <Run Text=", "/><Run Text="{Binding SelectedForum.Country}"/>
+            <!--<TextBlock.Text>
                 <MultiBinding StringFormat="{}Location: {0}, {1}">
                     <Binding Path="SelectedForum.City"/>
                     <Binding Path="SelectedForum.Country"/>
 
                 </MultiBinding>
-            </TextBlock.Text>
+            </TextBlock.Text>-->
         </TextBlock>
 
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource AccentColorN}" BorderThickness="2" Margin="574,122,666,687" CornerRadius="30">
@@ -49,7 +50,7 @@
 
         </Border>
 
-        <TextBlock x:Name="closedMessage" TextAlignment="Center" TextWrapping="Wrap" FontSize="22" Foreground="{DynamicResource TextColorN}" FontWeight="Bold" Margin="623,389,723,531">This forum is closed. It is not possible to leave new comments.</TextBlock>
+        <TextBlock x:Name="closedMessage" TextAlignment="Center" TextWrapping="Wrap" FontSize="22" Foreground="{DynamicResource TextColorN}" FontWeight="Bold" Margin="623,389,723,531" Text="{ns:Loc ClosedMessage}"></TextBlock>
 
         <ListBox ItemsSource="{Binding ForumComments}" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="680" Margin="574,552,666,21">
             <ListBox.ItemTemplate>

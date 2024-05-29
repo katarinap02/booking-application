@@ -70,8 +70,8 @@
 
                 </Border>
 
-                <Button Content="{ns:Loc YourProfile}" Command="{Binding Path=ViewProfileCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="286,600,616,139"/>
-                <Button Content="{ns:Loc CreateReport}" Command="{Binding Path=CreateReportCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="620,600,282,139"/>
+                <Button Content="{ns:Loc YourProfile}" Command="{Binding Path=ViewProfileCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="18" Width="150" Margin="286,600,616,139"/>
+                <Button  Content="{ns:Loc CreateReport}" Command="{Binding Path=CreateReportCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="18" Margin="620,600,282,139"/>
 
 
             </Grid>

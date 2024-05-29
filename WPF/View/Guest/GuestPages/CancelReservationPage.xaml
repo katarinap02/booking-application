@@ -11,7 +11,7 @@
       Title="ProfileInfo">
 
     <Grid>
-        <Label Content="{ns:Loc CancelSure}" FontSize="33" Style="{DynamicResource HeaderStyleN}" Margin="143,63,143,675"/>
+        <Label Content="{ns:Loc CancelSure}" FontSize="30" Style="{DynamicResource HeaderStyleN}" Margin="170,63,143,675"/>
         <controls:ReservationDetailsCard Margin="0,143,0,247"></controls:ReservationDetailsCard>
 
         <Button Content="{ns:Loc CancelReservation}" HorizontalAlignment="Left" Margin="221,602,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Width="287" Height="47" Command="{Binding ViewModel.CancelReservationCommand}"/>

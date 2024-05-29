@@ -12,15 +12,21 @@
     <Grid>
         <Label FontSize="40" Style="{DynamicResource HeaderStyleN}" Margin="248,182,1162,724" Content="{Binding SelectedAccommodation.Name}"></Label>
         <TextBlock FontSize="30" TextWrapping="Wrap" Margin="248,280,1099,495">
-
-            <TextBlock.Text>
+            <Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding Location}"/>
+            <LineBreak/> 
+            <Run Text="{ns:Loc MaxGuestNumber}"/><Run Text=": "/><Run Text="{Binding SelectedAccommodation.MaxGuestNumber}"/>
+            <LineBreak/> 
+<Run Text="{ns:Loc MinDayNumber}"/><Run Text=": "/><Run Text="{Binding SelectedAccommodation.MinReservationDays}"/>
+            <LineBreak/> 
+<Run Text="{ns:Loc Rate}"/><Run Text=": "/><Run Text="{Binding Rate}"/>
+            <!--<TextBlock.Text>
                 <MultiBinding StringFormat="{}Location: {0}&#x0a;Max. number of guests: {1}&#x0a;Min. number of reservation days: {2}&#x0a;Rate: {3}">
                     <Binding Path="SelectedAccommodation.Location"/>
                     <Binding Path="SelectedAccommodation.MaxGuestNumber"/>
                     <Binding Path="SelectedAccommodation.MinReservationDays"/>
                     <Binding Path="SelectedAccommodation.Rate"/>
                 </MultiBinding>
-            </TextBlock.Text>
+            </TextBlock.Text>-->
         </TextBlock>
 
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="1076,120,212,336">

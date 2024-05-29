@@ -18,30 +18,33 @@
                 <Label Content="{ns:Loc Reservation}" FontSize="40" Width="250" Height="80" Margin="210,44,600,667" Style="{DynamicResource HeaderStyleN}"/>
                 <Label Content="{Binding DateRange}" FontSize="40" Height="80" Margin="465,44,29,667" Style="{DynamicResource HeaderStyleN}"/>
                 <TextBlock FontSize="30" Height="80" TextAlignment="Center" Margin="10,111,-10,600" FontWeight="Bold">
-                    <TextBlock.Text>
+                    <Run Text="{Binding HostUsername}"/><Run Text=" has rated you: "/>
+                    <!--<TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} has rated you: ">
                             <Binding Path="HostUsername"/>
 
                         </MultiBinding>
-                    </TextBlock.Text>
+                    </TextBlock.Text>-->
                 </TextBlock>
 
                 <TextBlock FontSize="30" Height="80" TextAlignment="Center" Margin="10,191,-10,520">
-                    <TextBlock.Text>
+                     <Run Text="Cleanliness"/><Run Text="{Binding SelectedRate.Cleanliness}"/>
+                    <!--<TextBlock.Text>
                         <MultiBinding StringFormat="{}Cleanliness: {0}">
                             <Binding Path="SelectedRate.Cleanliness"/>
 
                         </MultiBinding>
-                    </TextBlock.Text>
+                    </TextBlock.Text>-->
                 </TextBlock>
 
                 <TextBlock FontSize="30" Height="80" TextAlignment="Center" Margin="10,271,-10,440">
-                    <TextBlock.Text>
+                     <Run Text="Rules-following"/><Run Text="{Binding SelectedRate.RulesFollowing}"/>
+                    <!--<TextBlock.Text>
                         <MultiBinding StringFormat="{}Rules-following: {0}">
                             <Binding Path="SelectedRate.RulesFollowing"/>
 
                         </MultiBinding>
-                    </TextBlock.Text>
+                    </TextBlock.Text>-->
                 </TextBlock>
 
                 <Label Content="{ns:Loc HostComment}" FontSize="35" Height="80" Margin="363,411,363,300" Style="{DynamicResource HeaderStyleN}"/>

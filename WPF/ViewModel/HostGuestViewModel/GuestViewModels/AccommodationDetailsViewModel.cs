@@ -12,7 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-
+using Xceed.Wpf.Toolkit;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -52,6 +52,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public string Location { get; set; }
+        public string Rate { get; set; }
+
 
         public AccommodationDetailsViewModel(Frame frame, User user, AccommodationViewModel selectedAccommodation)
         {
@@ -62,6 +65,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ReserveCommand = new GuestICommand(OnReserve);
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             FirstPicture = SelectedAccommodation.FirstPicture;
+            Location = SelectedAccommodation.Location;
+            Rate = SelectedAccommodation.Rate;
            
           
         }

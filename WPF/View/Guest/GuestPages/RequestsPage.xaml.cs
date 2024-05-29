@@ -47,7 +47,7 @@ namespace BookingApp.View.GuestPages
             DataContext = ViewModel;
             foreach (ComboBoxItem item in requestStatusBox.Items)
             {
-                if (item.Content.ToString() == "Pending")
+                if (item.Content.ToString() == "Pending" || item.Content.ToString() == "Na čekanju")
                 {
                     requestStatusBox.SelectedItem = item;
                     break;

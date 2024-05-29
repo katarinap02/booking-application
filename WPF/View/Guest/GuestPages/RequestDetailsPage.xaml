@@ -30,7 +30,7 @@
                 <Label Content="{ns:Loc RequestDetails}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="696,165,108,582"/>
                 <Border Margin="540,216,10,266" Width="500" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
                     <Grid>
-                        <TextBlock TextWrapping="Wrap" Margin="34,79,-84,104" FontSize="22"><LineBreak/><Run Text="{ns:Loc PreviousDates}"></Run><LineBreak/><Run Text="{ns:Loc NewDates}"></Run><LineBreak/><Run Text="{ns:Loc PeopleNum}"></Run><LineBreak/><Run Text="{ns:Loc DayNum}"></Run><LineBreak/></TextBlock>
+                        <TextBlock TextWrapping="Wrap" Margin="24,49,-84,104" FontSize="22"><LineBreak/><Run Text="{ns:Loc PreviousDates}"></Run><LineBreak/><Run Text="{ns:Loc NewDates}"></Run><LineBreak/><Run Text="{ns:Loc PeopleNum}"></Run><LineBreak/><Run Text="{ns:Loc DayNum}"></Run><LineBreak/></TextBlock>
                         <Label FontSize="22" Content="{Binding OldDateRange}" Margin="214,74,6,189"/>
                         <Label FontSize="22" Content="{Binding NewDateRange}" Margin="214,103,6,162"/>
                         <Label FontSize="22" Content="{Binding NumberOfPeople}" Margin="214,132,6,138"/>

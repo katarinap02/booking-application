@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Globalization;
 using System.Resources;
 using System.Windows.Data;
@@ -43,6 +44,8 @@ namespace BookingApp
                 }
             }
         }
+
+      
     }
 
     public class LocExtension : Binding

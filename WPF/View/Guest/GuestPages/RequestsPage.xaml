@@ -22,7 +22,7 @@ ItemsSource="{Binding Requests}" Background="{DynamicResource BackgroundColorN}"
                         <DataTemplate>
                             <Grid>
                                 <controls:RequestCard></controls:RequestCard>
-                                <Button x:Name="detailsButton" Style="{DynamicResource ButtonStyleN}" Content="Details" Width="80" Height="40" Margin="850, 0, 0, 0" FontSize="16" Click="Details_Click"/>
+                                <Button x:Name="detailsButton" Style="{DynamicResource ButtonStyleN}" Content="{ns:Loc Details}" Width="80" Height="40" Margin="850, 0, 0, 0" FontSize="16" Click="Details_Click"/>
 
 
                             </Grid>

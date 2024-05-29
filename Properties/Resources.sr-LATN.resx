@@ -147,6 +147,9 @@
   <data name="AfterClosing" xml:space="preserve">
     <value>Nakon što ga zatvorite, neće biti moguće ostaviti nove komentare.</value>
   </data>
+  <data name="AllForums" xml:space="preserve">
+    <value>Svi forumi</value>
+  </data>
   <data name="AllForumsDesc" xml:space="preserve">
     <value>Svi forumi su prikazani na ovoj strani.</value>
   </data>
@@ -164,6 +167,9 @@
   </data>
   <data name="BonusPoints" xml:space="preserve">
     <value>Bonus poeni:</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Otkaži</value>
   </data>
   <data name="CancelHelp" xml:space="preserve">
     <value>Ako želite da otkažete rezervaciju, možete to uraditi tako što ćete otići na stranicu Profil. Otkažite ili pomerite Vašu rezervaciju u listi, tako što ćete kliknuti na odgovarajuće dugmiće.</value>
@@ -228,6 +234,9 @@
   <data name="CorrectnessValid" xml:space="preserve">
     <value>Polje za korektnost ne može biti prazno.</value>
   </data>
+  <data name="Country" xml:space="preserve">
+    <value>Drzava</value>
+  </data>
   <data name="CreatedRes" xml:space="preserve">
     <value>Izveštaj o napravljenim rezervacijama</value>
   </data>
@@ -261,6 +270,9 @@
   <data name="Days" xml:space="preserve">
     <value>dana.</value>
   </data>
+  <data name="Delay" xml:space="preserve">
+    <value>Pomeri</value>
+  </data>
   <data name="DelayRequest" xml:space="preserve">
     <value>Zahtev za pomeranje</value>
   </data>
@@ -268,13 +280,16 @@
     <value>Zahtev za pomeranje rezervacije je uspešno poslat.</value>
   </data>
   <data name="Details" xml:space="preserve">
-    <value>detalji</value>
+    <value>Detalji</value>
   </data>
   <data name="Developers" xml:space="preserve">
     <value>Developeri</value>
   </data>
   <data name="EndDate" xml:space="preserve">
     <value>Krajnji datum</value>
+  </data>
+  <data name="EnterAt" xml:space="preserve">
+    <value>Unesite bar</value>
   </data>
   <data name="Filter" xml:space="preserve">
     <value>Filter</value>
@@ -517,7 +532,7 @@
     <value>Rezervacije u proteklih godinu dana:</value>
   </data>
   <data name="ReviewProblem" xml:space="preserve">
-    <value>Problem with creating a review</value>
+    <value>Problem sa ocenjivanjem smeštaja</value>
   </data>
   <data name="RquestsDesc" xml:space="preserve">
     <value>Možete da vidite sve Vaše zahteve sortirane po statusu na ovoj strani.</value>
@@ -583,7 +598,7 @@
     <value>Dobrodošli na "Bilo gde / Bilo kada" stranicu za rezervaciju. Molimo Vas, unesite broj gostiju i dana po izboru. Opciono, možete izabrati raspon datuma.</value>
   </data>
   <data name="WelcomeHome" xml:space="preserve">
-    <value>{}Welcome, {0}</value>
+    <value>Dobrodošli</value>
   </data>
   <data name="WelcomeRating" xml:space="preserve">
     <value>Dobrodošli na stranicu za ocenjivanje smeštaja. Da biste napravili zahtev, popunite polja za čistoću i korektnost, kao i komentar.</value>

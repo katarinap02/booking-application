@@ -73,13 +73,13 @@
         </Border>
         <Border BorderBrush="Gray" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="980,85,269,161" Width="671" Background="White">
             <Grid Margin="2,-58,-2,58">
-                <Label Content="{ns:Loc DayNumber}" FontSize="30" Margin="105,238,-105,-238"/>
+                <Label Content="{ns:Loc DayNumber}" FontSize="30" Margin="120,238,-105,-238"/>
                 <!--<TextBox x:Name="txtDayNumber" TextWrapping="Wrap" Margin="352,251,160,444"/>-->
                 <xctk:IntegerUpDown Name="txtDayNumber" Text="{Binding ViewModel.DayNumber}" Margin="352,237,160,458"/>
-                <Label Content="{ns:Loc StartDate}" Margin="136,319,-136,-319" FontSize="30"/>
+                <Label Content="{ns:Loc StartDate}" Margin="120,319,-136,-319" FontSize="30"/>
                 <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
                 <DatePicker x:Name="txtStartDate" Margin="352,329,160,366" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
-                <Label Content="{ns:Loc EndDate}" FontSize="30" HorizontalAlignment="Left" Margin="136,417,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
+                <Label Content="{ns:Loc EndDate}" FontSize="30" HorizontalAlignment="Left" Margin="125,417,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
                 <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
                 <DatePicker x:Name="txtEndDate" Margin="352,424,160,273" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
                 <Button x:Name="ContinueButton" Content="{ns:Loc Continue}" HorizontalAlignment="Center" Margin="0,545,0,0" VerticalAlignment="Top" Command="{Binding ViewModel.ContinueCommand}" Width="200" Height="50" Style="{StaticResource ButtonStyleN}"/>
@@ -90,10 +90,10 @@
                         <InlineUIContainer>
                             <Image Source="{StaticResource Warning}" Width="16" Height="12" Margin="2,0,0,0"/>
                         </InlineUIContainer>
-                        <Run Text="Enter at least"/>
+                        <Run Text="{ns:Loc EnterAt}"/>
                         <Run Text="{Binding SelectedAccommodation.MinReservationDays}" />
 
-                        <Run Text="days." />
+                        <Run Text="{ns:Loc Days}" />
                     </TextBlock.Inlines>
 
 

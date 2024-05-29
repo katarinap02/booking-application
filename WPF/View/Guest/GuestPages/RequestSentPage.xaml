@@ -32,7 +32,7 @@
                     </Grid>
                 </Border>
 
-                <Button Content="{ns:Loc AllRequest}" Style="{DynamicResource ButtonStyleN}" Width="170" Height="50" Margin="356,616,534,125" Click="AllRequests_Click"/>
+                <Button Content="{ns:Loc AllRequests}" Style="{DynamicResource ButtonStyleN}" Width="170" Height="50" Margin="356,616,534,125" Click="AllRequests_Click"/>
                 <Button Content="{ns:Loc YourProfile}" Style="{DynamicResource ButtonStyleN}" Width="170" Height="50" Margin="562,616,328,125" Click="Profile_Click"/>
 
             </Grid>

@@ -33,7 +33,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public DateTime EndDate { get; set; }
         public int GuestNumber { get; set; }
 
-        public string DateRange => StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
+        public string DateRange {get; set; }
 
         public GuestICommand<object> ReserveCommand { get; set; }
 
@@ -48,6 +48,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Accommodations = new ObservableCollection<AccommodationViewModel>();
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             ReserveCommand = new GuestICommand<object>(OnReserve);
+            DateRange = StartDate.ToString("MM/dd/yyyy") + " -> " + EndDate.ToString("MM/dd/yyyy");
             Update();
             
         }

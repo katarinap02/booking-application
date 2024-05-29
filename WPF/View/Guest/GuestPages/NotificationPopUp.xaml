@@ -17,7 +17,7 @@
                     <DataTemplate>
                         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="1" Margin="0,0,0,5" CornerRadius="10">
                             <TextBlock Text="{Binding}" Padding="5">
-                            <Button Style="{DynamicResource ButtonStyleN}" Width="40" Height="20" FontSize="10" Content="Details" Margin="10, 0, 0, 0" Click="Details_Click"/>
+                            <Button Style="{DynamicResource ButtonStyleN}" Width="40" Height="20" FontSize="10" Content="{ns:Loc Details}" Margin="10, 0, 0, 0" Click="Details_Click"/>
                             </TextBlock>
 
                         </Border>

@@ -13,6 +13,7 @@ namespace BookingApp
     /// </summary>
     public partial class App : System.Windows.Application
     {
+
         public void ChangeLanguage(string currLang)
         {
             if (currLang.Equals("en-US"))
