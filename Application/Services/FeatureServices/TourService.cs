@@ -95,11 +95,16 @@ namespace BookingApp.Application.Services.FeatureServices
             }
             return maxTourists;
         }
+        public int GetTourCountForLastYear(int touristId)
+        {
+            DateTime oneYearsAgo = DateTime.Now.AddYears(-1);
+            return FindMyTours(touristId, true).Count(tour => tour.Date >= oneYearsAgo);
+        }
 
-        public List<Tour> FindMyTours(int touristId)
+        public List<Tour> FindMyTours(int touristId, bool isForVoucher)
         {
             Tourist tourist = _touristService.GetTouristById(touristId);
-            return _tourReservationService.FindMyTours(touristId, tourist.Name, tourist.LastName);
+            return _tourReservationService.FindMyTours(touristId, tourist.Name, tourist.LastName, isForVoucher);
         }
 
         public List<Tour> FindMyEndedTours(int touristId)
@@ -107,7 +112,6 @@ namespace BookingApp.Application.Services.FeatureServices
             Tourist tourist = _touristService.GetTouristById(touristId);
             return _tourReservationService.FindMyEndedTours(touristId, tourist.Name, tourist.LastName);
         }
-
 
         public List<string> GetParticipantsThatJoinedNow(TouristNotification notification)
         {

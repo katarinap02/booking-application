@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.WPF.View.HostPages"
+      xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
       mc:Ignorable="d" 
       d:DesignHeight="705" d:DesignWidth="1024"
       Title="PreviousRenovationDisplayPage">
@@ -161,11 +162,24 @@ SelectionMode="Single">
                             </StackPanel>
                             <StackPanel Orientation="Horizontal" Grid.Row="6" Grid.Column="1" Margin="15 0 0 5">
                                 <Label Content="description:" FontSize="13" VerticalAlignment="Center" />
-                                <TextBlock FontWeight="Bold"
-                                    Margin="5,0,0,0"
-                                     Style="{StaticResource TextBlockStyleHost}"
-                                    Text="{Binding Description}" 
-                                    VerticalAlignment="Center"/>
+                                <TextBlock x:Name="DescriptionTextBlock" FontWeight="Bold" MaxWidth="155" Margin="5,0,0,0" Style="{StaticResource TextBlockStyleHost}" Text="{Binding Description}" VerticalAlignment="Center">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="MouseEnter">
+                                    <i:ChangePropertyAction TargetObject="{Binding ElementName=DescriptionPopup}" PropertyName="IsOpen" Value="True"/>
+                                </i:EventTrigger>
+                                <i:EventTrigger EventName="MouseLeave">
+                                    <i:ChangePropertyAction TargetObject="{Binding ElementName=DescriptionPopup}" PropertyName="IsOpen" Value="False"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                                </TextBlock>
+
+                                <Popup x:Name="DescriptionPopup" PlacementTarget="{Binding ElementName=DescriptionTextBlock}" Placement="Bottom" StaysOpen="True">
+                                    <Grid>
+                                        <Border BorderBrush="#A0CCED" BorderThickness="2" Background="White" MaxWidth="300">
+                                            <TextBlock Text="{Binding Description}" Padding="5" TextWrapping="Wrap"/>
+                                        </Border>
+                                    </Grid>
+                                </Popup>
                             </StackPanel>
 
 

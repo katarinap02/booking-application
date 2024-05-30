@@ -26,14 +26,18 @@ namespace BookingApp.View.TouristWindows
     public partial class TourDetailsWindow : Window
     {
         public TourDetailsViewModel Tour { get; set; }
-        public TourDetailsWindow(TourViewModel selectedTour, bool isMyTour)
+        public TourDetailsWindow(TourViewModel selectedTour, bool isMyTour, string username)
         {
             InitializeComponent();
             Tour = new TourDetailsViewModel();
             Tour.SelectedTour = selectedTour;
             DataContext = Tour;
-            Tour.TourDetailsWindowInitialization(isMyTour);
+            Tour.TourDetailsWindowInitialization(isMyTour, username);
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
+            Messenger.Default.Register<NotificationMessage>(this, message =>
+            {
+                MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            });
         }
         private void CloseWindow(CloseWindowMessage messsage)
         {
@@ -43,12 +47,6 @@ namespace BookingApp.View.TouristWindows
         {
             base.OnClosed(e);
             Messenger.Default.Unregister(this);
-        }
-
-        private void PdfButton_Click(object sender, RoutedEventArgs e)
-        {
-
-            // ovo jos treba implementirat
         }
 
         private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)

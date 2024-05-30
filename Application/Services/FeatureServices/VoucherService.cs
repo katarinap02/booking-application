@@ -14,7 +14,7 @@ namespace BookingApp.Application.Services.FeatureServices
     public class VoucherService
     {
         private readonly IVoucherRepository _voucherRepository;
-
+        private static readonly TouristService _touristService = new TouristService(Injector.Injector.CreateInstance<ITouristRepository>());
         public VoucherService(IVoucherRepository voucherRepository)
         {
             _voucherRepository = voucherRepository;
@@ -43,6 +43,18 @@ namespace BookingApp.Application.Services.FeatureServices
         public void Add(Voucher voucher)
         {
             _voucherRepository.Add(voucher);
+        }
+
+        public void AwardVoucher(int userId)
+        {
+            Voucher newVoucher = new Voucher(0, userId, -1, false, "You have attended 5 tours in the past year", DateOnly.FromDateTime(DateTime.Now.AddMonths(6)));
+            _voucherRepository.Add(newVoucher);
+            _touristService.SetTouristConqueredVoucher(userId);
+        }
+
+        public bool isTouristConqueredVoucher(int touristId)
+        {
+            return _touristService.isTouristConqueredVoucher(touristId);
         }
     }
 }

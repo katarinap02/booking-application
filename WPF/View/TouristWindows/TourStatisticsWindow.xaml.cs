@@ -53,6 +53,7 @@ namespace BookingApp.WPF.View.TouristWindows
         {
             Close();
         }
+
     }
 
     public class YearConverter : IValueConverter

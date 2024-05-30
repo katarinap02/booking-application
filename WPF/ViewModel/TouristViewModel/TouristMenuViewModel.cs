@@ -20,6 +20,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
     public class TouristMenuViewModel : INotifyPropertyChanged
     {
         public UserService _userService { get; set; }
+        public VoucherService _voucherService { get; set; }
+        public TourService _tourService { get; set; }
 
         public ICommand LogoutCommand { get; set; }
 
@@ -192,9 +194,27 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             return UserId;
         }
 
+        public void Initialize()
+        {
+            // initializing tour requests
+            _userService.UpdateTourRequests();
+
+            _voucherService.RefreshVouchers();
+
+            // add vouchers to user
+            if(_tourService.GetTourCountForLastYear(UserId) >= 5 && !_voucherService.isTouristConqueredVoucher(UserId))
+            {
+                _voucherService.AwardVoucher(UserId);
+                MessageBox.Show("Congratulations on earning a voucher for attending 5 tours in the past year, \nvalid for any tour over the next 6 months as a thank you for your loyalty!", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
+                Messenger.Default.Send(new NotificationMessage("Congratulations on earning a voucher for attending 5 tours in the past year, valid for any tour over the next 6 months as a thank you for your loyalty!"));
+            }
+        }
+
         public TouristMenuViewModel()
         {
             _userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
+            _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
+            _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
 
             LogoutCommand = new RelayCommand(ExecuteLogoutCommand);
 

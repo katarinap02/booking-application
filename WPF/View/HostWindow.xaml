@@ -152,9 +152,14 @@
                     </StackPanel.Style>
                     <MenuItem Margin="25 7 10 0">
                         <MenuItem.Header>
-                            <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding NavigateToGuestRatingsPageCommand}" Content="guest ratings" FontSize="13" Width="100" Height="25">
 
+                            <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding NavigateToGuestRatingsPageCommand}" FontSize="13" Width="100" Height="25">
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock VerticalAlignment="Center">guest ratings</TextBlock>
+                                </StackPanel>
                             </Button>
+
+
                         </MenuItem.Header>
                     </MenuItem>
                     <MenuItem Margin="25 7 10 0">
@@ -215,7 +220,7 @@
                         </Button>
                     </MenuItem.Header>
                 </MenuItem>
-                <Image Style="{StaticResource CustomLogoStyleHost}" Width="200" Height="190" Margin="0 150 70 0"/>
+                <Image Style="{StaticResource CustomLogoStyleHost}"  Width="200" Height="190" Margin="0 0 70 20"/>
             </StackPanel>
         </Menu>
         <Grid>

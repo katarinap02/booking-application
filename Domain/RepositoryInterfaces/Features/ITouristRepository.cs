@@ -11,5 +11,7 @@ namespace BookingApp.Domain.RepositoryInterfaces.Features
     {
         List<Tourist> GetAll();
         Tourist FindTouristById(int touristId);
+        void SetTouristConqueredVoucher(int touristId);
+        bool isTouristConqueredVoucher(int touristId);
     }
 }

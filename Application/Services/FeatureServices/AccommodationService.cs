@@ -180,6 +180,19 @@ namespace BookingApp.Application.Services.FeatureServices
             }
         }
 
+        public void CloseAccommodation(int Id)
+        {
+            foreach (Accommodation acc in AccommodationRepository.GetAll())
+            {
+                if (acc.Id == Id)
+                {
+                    acc.ClosedAccommodation = true;
+                    Update(acc);
+
+                }
+            }
+        }
+
        
     }
 }

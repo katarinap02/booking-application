@@ -38,13 +38,19 @@
                   Style="{StaticResource CoolDataGridStyle1}">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding}" />
-                <DataGridTemplateColumn>
+                <DataGridTemplateColumn Width="95" Header="Details">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="Details"
-                                    Click="DetailsButton_Click" Width="78" Height="28"
-                                    FontSize="18"
-                                    Style="{StaticResource EnlargeButtonStyle1}">
+                            <Button Content="Details" Click="DetailsButton_Click" Height="38" FontSize="22">
+                                <Button.Style>
+                                    <Style TargetType="Button" BasedOn="{StaticResource EnlargeButtonStyle1}">
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding NotificationType}" Value="GuideQuit">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Button.Style>
                             </Button>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

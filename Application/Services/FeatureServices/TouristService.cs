@@ -33,6 +33,15 @@ namespace BookingApp.Application.Services.FeatureServices
 
            // return tourRepository.FindMaxNumberOfParticipants(ToTour(tours));
         }
+        public void SetTouristConqueredVoucher(int touristId)
+        {
+            _touristRepository.SetTouristConqueredVoucher(touristId);
+        }
+
+        public bool isTouristConqueredVoucher(int touristId)
+        {
+            return _touristRepository.isTouristConqueredVoucher(touristId);
+        }
 
         /*public List<TourViewModel> ToTourViewModel(List<Tour> Tours)
         {

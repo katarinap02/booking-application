@@ -32,20 +32,24 @@ namespace BookingApp.View.TouristWindows
     {
         public TouristMenuViewModel Tour { get; set; }
 
-        public TouristWindow(string username)
+        public TouristWindow(string username, int userId)
         {
             InitializeComponent();
             Tour = new TouristMenuViewModel();
             DataContext = Tour;
 
             Tour.UserName = username;
-
+            Tour.UserId = userId;
+            Tour.Initialize();
             Messenger.Default.Register<LogoutMessage>(this, LogoutWindow);
 
             MainFrame.Content = new AllToursPage(Tour.getUserId(Tour.UserName));
+            Messenger.Default.Register<NotificationMessage>(this, message =>
+            {
+                MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            });
 
         }
-
         private void LogoutWindow(LogoutMessage message)
         {
             this.Close();

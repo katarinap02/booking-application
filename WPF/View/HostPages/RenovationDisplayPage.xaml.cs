@@ -24,11 +24,13 @@ namespace BookingApp.WPF.View.HostPages
     {
 
         RenovationDisplayPageViewModel ViewModel;
+        public bool IsDescriptionPopupOpen { get; set; }
         public RenovationDisplayPage(User user, NavigationService navigationService)
         {
             ViewModel = new RenovationDisplayPageViewModel(user, navigationService);
             InitializeComponent();
             DataContext = ViewModel;
         }
+
     }
 }

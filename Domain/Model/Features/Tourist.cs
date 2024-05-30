@@ -13,10 +13,11 @@ namespace BookingApp.Domain.Model.Features
         public string Name;
         public string LastName;
         public int Age;
+        public bool HasConqueredVoucher;
 
         public Tourist() { }
 
-        public Tourist(int id, string name, string lastName, int age, string username, string password)
+        public Tourist(int id, string name, string lastName, int age, string username, string password, bool hasConqueredVoucher)
         {
             Id = id;
             Name = name;
@@ -24,11 +25,12 @@ namespace BookingApp.Domain.Model.Features
             Age = age;
             Username = username;
             Password = password;
+            HasConqueredVoucher = hasConqueredVoucher;
         }
 
         public override string[] ToCSV()
         {
-            string[] csvValues = { Id.ToString(), Name, LastName, Age.ToString(), Username, Password};
+            string[] csvValues = { Id.ToString(), Name, LastName, Age.ToString(), Username, Password, HasConqueredVoucher.ToString()};
             return csvValues;
         }
 
@@ -40,6 +42,7 @@ namespace BookingApp.Domain.Model.Features
             Age = Convert.ToInt32(values[3]);
             Username = values[4];
             Password = values[5];
+            HasConqueredVoucher = Convert.ToBoolean(values[6]);
         }
     }
 }
