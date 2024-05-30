@@ -1,6 +1,7 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -100,7 +101,6 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
                 }
             }
         }
-        public string DateString => Date.ToString("MM/dd/yyyy");
 
         private int forumId;
         public int ForumId
@@ -115,6 +115,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
                 }
             }
         }
+
+        public ForumService forumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+        public string DateString => Date.ToString("MM/dd/yyyy");
+        public String Location => forumService.GetById(ForumId).City + ", "+ forumService.GetById(ForumId).Country;
+
+        
 
         public event PropertyChangedEventHandler PropertyChanged;
 

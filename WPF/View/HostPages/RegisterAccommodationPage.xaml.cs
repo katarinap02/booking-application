@@ -30,7 +30,10 @@ namespace BookingApp.View.HostPages
         {
             InitializeComponent();
             RegisterAccommodationPageViewModel = new RegisterAccommodationPageViewModel(us, acc);
+            RegisterAccommodationPageViewModel.LoadLocation();
             DataContext = RegisterAccommodationPageViewModel;
+            
+            
             
             
         }

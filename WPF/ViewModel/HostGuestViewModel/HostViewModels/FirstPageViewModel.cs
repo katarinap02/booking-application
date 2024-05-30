@@ -50,6 +50,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public MyICommand<AccommodationViewModel> NavigateToStatisticPageCommand { get; set; }
 
+        public RelayCommand NavigateToForumPageCommand { get; set; }
+
         public MyICommand<AccommodationViewModel> CloseAccommodation { get; set; }
 
         public MyICommand<AccommodationViewModel> ChangedPictureCommand { get; set; }
@@ -92,6 +94,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             this.NavService.Navigate(page);
         }
 
+        private void Execute_NavigateToForumPageCommand(object obj)
+        {
+            CloseMenu();
+            ForumPage page = new ForumPage(User, NavService);
+            this.NavService.Navigate(page);
+        }
+
         private void CloseFunction(AccommodationViewModel acc)
         {
             accommodationService.CloseAccommodation(acc.Id);
@@ -118,7 +127,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 NavigateToDelayPageCommand = new RelayCommand(Execute_NavigateToDelayPageCommand, CanExecute_NavigateCommand);
                 NavigateToStatisticPageCommand = new MyICommand<AccommodationViewModel>(Execute_NavigateToStatisticPageCommand);
                 ChangedPictureCommand = new MyICommand<AccommodationViewModel>(ChangePicture);
-                RegisterCommand = new MyICommand<AccommodationViewModel>(Execute_NavigateToRegisterPageCommand);
+            NavigateToForumPageCommand = new RelayCommand(Execute_NavigateToForumPageCommand, CanExecute_NavigateCommand);
+            RegisterCommand = new MyICommand<AccommodationViewModel>(Execute_NavigateToRegisterPageCommand);
                 accommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
                 MostPopular = new AccommodationViewModel(accommodationReservationService.GetMostPopularLocation(host.Id));
                 LeastPopular = new AccommodationViewModel(accommodationReservationService.GetLeastPopularLocation(host.Id));

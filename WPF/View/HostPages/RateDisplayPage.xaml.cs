@@ -35,9 +35,5 @@ namespace BookingApp.WPF.View.HostPages
             
         }
 
-        private void RateGuest_RequestNavigate(object sender, RequestNavigateEventArgs e)
-        {
-
-        }
     }
 }

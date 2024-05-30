@@ -36,6 +36,24 @@
 
     </Style>
 
+    <Style x:Key="ComboBoxStyleHost" TargetType="ComboBox">
+        <Setter Property="FontSize" Value="15"/>
+        <Setter Property="FontFamily" Value="Comic Sans MS"></Setter>
+        <Setter Property="BorderBrush" Value="#A0CCED"></Setter>
+        <Setter Property="BorderThickness" Value="2" ></Setter>
+        <Setter Property="HorizontalContentAlignment" Value="Center"/>
+        <Setter Property="VerticalContentAlignment" Value="Center"/>
+        <Setter Property="ItemContainerStyle">
+            <Setter.Value>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                    <Setter Property="VerticalContentAlignment" Value="Center"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
     <Style x:Key="ButtonStyleWindowHost" TargetType="Button">
         <Setter Property="Foreground" Value="Black"/>
         <Setter Property="Background" Value="White" />

@@ -193,6 +193,23 @@ namespace BookingApp.Application.Services.FeatureServices
             }
         }
 
-       
+        public List<string> GetHostLocations(User user)
+        {
+            HashSet<string> uniqueCities = new HashSet<string>();
+            List<string> list = new List<string>();
+
+            foreach (Accommodation acc in GetAll())
+            {
+                if (!uniqueCities.Contains(acc.City) && acc.HostId == user.Id)
+                {
+                    uniqueCities.Add(acc.City);
+                    list.Add(acc.City);
+                }
+            }
+
+            return list;
+        }
+
+
     }
 }

@@ -40,7 +40,7 @@
                     <TextBox x:Name="textboxSearch" Text="{Binding Path= menuViewModel.SearchHost, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" HorizontalAlignment="Right" Margin="255 0 0 0 " Width="294" Height="26"></TextBox>
                 </MenuItem.Header>
             </MenuItem>
-            <MenuItem Width="131" >
+            <MenuItem Width="125" >
                 <MenuItem.Header >
                     <Button x:Name="buttonSearch" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding SearchCommand}" FontSize="15" DockPanel.Dock="Right" Width="59" Content="Search" Height="26"/>
                 </MenuItem.Header>
@@ -48,7 +48,7 @@
             <MenuItem x:Name="HomeItem" Height="47" Margin="0 0 0 0" >
                 <MenuItem.Header>
                     <Button BorderThickness="0"  Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding NavigateToHomePageCommand}">
-                        <Image Source="../Resources/Images/home.png" Width="25" Height="25"/>
+                        <Image Source="../Resources/Images/home.png" Width="25" Margin="2" Height="25"/>
                     </Button>
                 </MenuItem.Header>
             </MenuItem>
@@ -56,7 +56,7 @@
                 <MenuItem.Header >
                     <Button Style="{StaticResource ButtonStyleWindowHost}">
                         <StackPanel Orientation="Horizontal">
-                            <Image Source="../Resources/Images/video-camera.png" Width="20" Height="25"/>
+                            <Image Source="../Resources/Images/video-camera.png" Width="20" Margin="2 0 0 0" Height="25"/>
                             <TextBlock  Text="Demo" FontSize="15" VerticalAlignment="Center" Margin="10,0,2,0" />
                         </StackPanel>
                     </Button>
@@ -215,7 +215,7 @@
                 </StackPanel>
                 <MenuItem Margin="10 35 10 0">
                     <MenuItem.Header>
-                        <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Content="Forum" FontSize="15" Width="180" Height="25">
+                        <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding NavigateToForumPageCommand}" Content="Forum" FontSize="15" Width="180" Height="25">
 
                         </Button>
                     </MenuItem.Header>

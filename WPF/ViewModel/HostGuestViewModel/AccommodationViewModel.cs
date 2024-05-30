@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Application.Services.RateServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
@@ -22,7 +23,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
     public class AccommodationViewModel : INotifyPropertyChanged
     {
+        public ObservableCollection<string> CountriesSearch { get; set; }
 
+        public ObservableCollection<string> CitiesSearch {  get; set; } 
 
         private int id;
         public int Id
@@ -79,6 +82,41 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
                     country = value;
                     OnPropertyChanged("Country");
+                }
+            }
+        }
+
+        private string countrySearch;
+        public string CountrySearch
+        {
+            get
+            {
+                return countrySearch;
+            }
+            set
+            {
+                if (value != countrySearch)
+                {
+                    countrySearch = value ?? string.Empty;
+                    LoadCitiesFromCSV();
+                    OnPropertyChanged(nameof(CountrySearch));
+                }
+            }
+        }
+
+        private string citySearch;
+        public string CitySearch
+        {
+            get
+            {
+                return citySearch;
+            }
+            set
+            {
+                if (value != citySearch)
+                {
+                    citySearch = value ?? string.Empty;
+                    OnPropertyChanged(nameof(CitySearch));
                 }
             }
         }
@@ -314,8 +352,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             reservationDaysLimit = 1;
             isLeastPopular = false;
             isMostPopular = false;
+            CountriesSearch = new ObservableCollection<string>();
+            CitiesSearch = new ObservableCollection<string>();
 
         }
+
+        
 
         public string FirstPicture => "../" + OnePicture;
 
@@ -323,13 +365,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         private AccommodationRateService accommodationRateService = new AccommodationRateService(Injector.Injector.CreateInstance<IAccommodationRateRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
         public string Rate => Round(accommodationRateService.GetAverageRate(Id)).ToString();
 
+        
+
+        
         private double Round(double v)
         {
             return Math.Round(v, 2);
         }
 
 
-
+        public void InitializeAllLocations()
+        {
+            CountriesSearch.Add("");
+            LoadCountriesFromCSV();
+        }
         public AccommodationViewModel(Accommodation accommodation)
         {
             id = accommodation.Id;
@@ -378,13 +427,47 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
                 type = ConvertToType();
             }
 
-            Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit, hostId);
+            Accommodation a = new Accommodation(name, countrySearch, citySearch, type, maxGuestNumber, minReservationDays, reservationDaysLimit, hostId);
             a.Id = id;
             a.UnavailableDates = unavailableDates;
             a.Pictures = picture;
 
             return a;
 
+        }
+
+        private void LoadCountriesFromCSV()
+        {
+            string csvFilePath = "../../../Resources/Data/european_countries.csv";
+
+            using (var reader = new StreamReader(csvFilePath))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    CountriesSearch.Add(values[0]);
+                }
+            }
+        }
+
+        private void LoadCitiesFromCSV()
+        {
+            CitiesSearch.Clear();
+            CitiesSearch.Add("");
+            string csvFilePath = "../../../Resources/Data/european_cities_and_countries.csv";
+
+            using (var reader = new StreamReader(csvFilePath))
+            {
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    var values = line.Split(',');
+                    if (values[1].Equals(CountrySearch))
+                        CitiesSearch.Add(values[0]);
+                }
+            }
+            CitySearch = CitiesSearch[0];
         }
 
 

@@ -4,7 +4,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.RepositoryInterfaces.Features;
+
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 {
     public class ForumViewModel : INotifyPropertyChanged
@@ -34,6 +37,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
                 {
                     userId = value;
                     OnPropertyChanged("UserId");
+                }
+            }
+        }
+
+        private string guestUsername;
+        public string GuestUsername
+        {
+            get { return guestUsername; }
+            set
+            {
+                if (guestUsername != value)
+                {
+
+                    guestUsername = value;
+                    OnPropertyChanged("GuestUsername");
                 }
             }
         }
@@ -142,7 +160,24 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        public int numOfComments;
+        public int NumOfComments
+        {
+            get { return numOfComments; }
+            set
+            {
+                if (numOfComments != value)
+                {
+
+                    numOfComments = value;
+                    OnPropertyChanged("NumOfComments");
+                }
+            }
+        }
+
         public string DateString => Date.ToString("MM/dd/yyyy");
+        public string Location => City + ", " + Country;
+        UserService userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
         public event PropertyChangedEventHandler PropertyChanged;
 
 
@@ -166,6 +201,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             isClosed = forum.IsClosed;
             isVeryUseful = forum.IsVeryUseful;
             date = forum.Date;
+            guestUsername = userService.GetById(userId).Username;
+            numOfComments = forum.Comments.Count;
+
         }
 
         public Forum ToForum()

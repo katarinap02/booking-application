@@ -13,7 +13,7 @@
 
     
 
-    <Grid>
+    <Grid Margin="1,0,-1,0">
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,2" EndPoint="1,1">
                 <GradientStop Color="#47D2E8" Offset="0.1"/>
@@ -54,7 +54,7 @@
                 <Label x:Name="YearLabel" VerticalAlignment="Center" Style="{StaticResource LableStyleHost}" Margin="15 0 10 0 ">
                 Year
             </Label>
-                <ComboBox x:Name="YearComboBox" SelectedValuePath="Tag" Width="60" Height="30" SelectedValue="{Binding SelectedYear, UpdateSourceTrigger=PropertyChanged}" >
+                <ComboBox x:Name="YearComboBox" Style="{StaticResource ComboBoxStyleHost}"  SelectedValuePath="Tag" Width="70" Height="30" SelectedValue="{Binding SelectedYear, UpdateSourceTrigger=PropertyChanged}" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
                             <cmd:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True"/>
