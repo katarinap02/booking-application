@@ -1,0 +1,628 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="About" xml:space="preserve">
+    <value>About</value>
+  </data>
+  <data name="AboutApp" xml:space="preserve">
+    <value>About the app</value>
+  </data>
+  <data name="AboutDiscoverText" xml:space="preserve">
+    <value>Discover a wide range of accommodations tailored to your preferences and budget, and book with confidence. Our user-friendly interface makes finding the perfect place easy.</value>
+  </data>
+  <data name="AboutOurTeam" xml:space="preserve">
+    <value>Our team of developers comprises talented students who are passionate about creating innovative solutions. With a blend of academic knowledge and practical skills, they bring fresh perspectives to our project. Each developer is motivated, enthusiastic, and committed to delivering high-quality results. Together, they collaborate seamlessly, leveraging their diverse experiences to drive innovation and success.</value>
+  </data>
+  <data name="AboutWelcomeText" xml:space="preserve">
+    <value>Welcome to our booking app, where simplicity meets satisfaction. We've simplified the reservation process, ensuring your journey from browsing to booking is effortless.</value>
+  </data>
+  <data name="Accommodation" xml:space="preserve">
+    <value>Accommodation</value>
+  </data>
+  <data name="Accommodations" xml:space="preserve">
+    <value>Accommodations</value>
+  </data>
+  <data name="AddPicture" xml:space="preserve">
+    <value>Add picture</value>
+  </data>
+  <data name="Adventure" xml:space="preserve">
+    <value>Your adventure begins here.</value>
+  </data>
+  <data name="AfterClosing" xml:space="preserve">
+    <value>After you close it, it won't be possible to post new comments.</value>
+  </data>
+  <data name="AllForums" xml:space="preserve">
+    <value>All forums</value>
+  </data>
+  <data name="AllForumsDesc" xml:space="preserve">
+    <value>All forums are shown on this page.</value>
+  </data>
+  <data name="AllRequests" xml:space="preserve">
+    <value>All requests</value>
+  </data>
+  <data name="AnywhereAnytime" xml:space="preserve">
+    <value>Anywhere / Anytime</value>
+  </data>
+  <data name="AnywhereAnytimeDesc" xml:space="preserve">
+    <value>If you wish to see all available accommodations according to your requests, choose below option:</value>
+  </data>
+  <data name="Approved" xml:space="preserve">
+    <value>Approved</value>
+  </data>
+  <data name="BonusPoints" xml:space="preserve">
+    <value>Bonus points:</value>
+  </data>
+  <data name="Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CancelHelp" xml:space="preserve">
+    <value>If you want to cancel a reservation, you can do it by going to the Profile page.
+Cancel or delay a reservation in your list, by clicking on the corresponding buttons.</value>
+  </data>
+  <data name="CancelHint" xml:space="preserve">
+    <value>Reservation cancellation is possible no later than 24 hours before the start date, unless the host specified the limit differently. If it exists, the limit can be seen in accommodation details.</value>
+  </data>
+  <data name="CancelledRes" xml:space="preserve">
+    <value>Cancelled reservations report</value>
+  </data>
+  <data name="CancelReservation" xml:space="preserve">
+    <value>Cancel reservation</value>
+  </data>
+  <data name="CancelSuccess" xml:space="preserve">
+    <value>Your reservation is cancelled.</value>
+  </data>
+  <data name="CancelSure" xml:space="preserve">
+    <value>Are you sure you want to cancel this reservation?</value>
+  </data>
+  <data name="ChooseHint" xml:space="preserve">
+    <value>Please select one of the accommodations above.
+    You can only rate accommodation and host five days at most after the end of the reservation.</value>
+  </data>
+  <data name="City" xml:space="preserve">
+    <value>City</value>
+  </data>
+  <data name="Cleanliness" xml:space="preserve">
+    <value>Cleanliness</value>
+  </data>
+  <data name="CleanlinessValid" xml:space="preserve">
+    <value>Cleanliness field can't be empty.</value>
+  </data>
+  <data name="ClosedForum" xml:space="preserve">
+    <value>This forum is closed. It is not possible to leave new comments.</value>
+  </data>
+  <data name="ClosedMessage" xml:space="preserve">
+    <value>This forum is closed. It is not possible to leave new comments.</value>
+  </data>
+  <data name="CloseForum" xml:space="preserve">
+    <value>Close forum</value>
+  </data>
+  <data name="CloseSuccess" xml:space="preserve">
+    <value>Your forum is closed.</value>
+  </data>
+  <data name="CloseSure" xml:space="preserve">
+    <value>Are you sure you want to close this forum?</value>
+  </data>
+  <data name="Comment" xml:space="preserve">
+    <value>Comment</value>
+  </data>
+  <data name="CommentValid" xml:space="preserve">
+    <value>Comment field can't be empty.</value>
+  </data>
+  <data name="ConfirmPass" xml:space="preserve">
+    <value>Confirm new password</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="Correctness" xml:space="preserve">
+    <value>Correctness</value>
+  </data>
+  <data name="CorrectnessValid" xml:space="preserve">
+    <value>Correctness field can't be empty.</value>
+  </data>
+  <data name="Country" xml:space="preserve">
+    <value>Country</value>
+  </data>
+  <data name="CreatedRes" xml:space="preserve">
+    <value>Created reservations report</value>
+  </data>
+  <data name="CreateForum" xml:space="preserve">
+    <value>Create forum</value>
+  </data>
+  <data name="CreateForumSuccess" xml:space="preserve">
+    <value>Forum is successfully created.</value>
+  </data>
+  <data name="CreateReport" xml:space="preserve">
+    <value>Create report</value>
+  </data>
+  <data name="Date" xml:space="preserve">
+    <value>Date</value>
+  </data>
+  <data name="DateRangeValid" xml:space="preserve">
+    <value>You need to select</value>
+  </data>
+  <data name="DatesProblem" xml:space="preserve">
+    <value>Problem with choosing dates</value>
+  </data>
+  <data name="DayNum" xml:space="preserve">
+    <value>Number of days</value>
+  </data>
+  <data name="DayNumber" xml:space="preserve">
+    <value>Number of days</value>
+  </data>
+  <data name="DayNumHint" xml:space="preserve">
+    <value>It is neccessary to choose the same number of days you previously reserved.</value>
+  </data>
+  <data name="Days" xml:space="preserve">
+    <value>days</value>
+  </data>
+  <data name="Delay" xml:space="preserve">
+    <value>Delay</value>
+  </data>
+  <data name="DelayRequest" xml:space="preserve">
+    <value>Delay request</value>
+  </data>
+  <data name="DelaySuccess" xml:space="preserve">
+    <value>Reservation delay request is successfully sent.</value>
+  </data>
+  <data name="Details" xml:space="preserve">
+    <value>Details</value>
+  </data>
+  <data name="Developers" xml:space="preserve">
+    <value>Developers</value>
+  </data>
+  <data name="EndDate" xml:space="preserve">
+    <value>End date</value>
+  </data>
+  <data name="EnterAt" xml:space="preserve">
+    <value>Enter at least</value>
+  </data>
+  <data name="Filter" xml:space="preserve">
+    <value>Filter</value>
+  </data>
+  <data name="FindPerfect" xml:space="preserve">
+    <value>Find your perfect accommodation and reserve it with ease, whether you're planning a vacation, a business trip, or a spontaneous getaway. We make booking accommodations simple, so you can focus on making memories.</value>
+  </data>
+  <data name="ForumHelp" xml:space="preserve">
+    <value>You can create a forum by going to the Profile page on Menu bar and choosing Forums tab from the side menu. There, you can see your previously created forums. To create a new forum, click on the corresponding button on the bootom of the page.  It is also possible to close forum in which case no one will be able to post new comments.</value>
+  </data>
+  <data name="Forums" xml:space="preserve">
+    <value>Forums</value>
+  </data>
+  <data name="GiveUp" xml:space="preserve">
+    <value>Give up</value>
+  </data>
+  <data name="GuestNumber" xml:space="preserve">
+    <value>Number of guests</value>
+  </data>
+  <data name="GuestNumValid" xml:space="preserve">
+    <value>Max. guest number is</value>
+  </data>
+  <data name="GuestStatus" xml:space="preserve">
+    <value>Status: guest</value>
+  </data>
+  <data name="HasRated" xml:space="preserve">
+    <value>has rated you:</value>
+  </data>
+  <data name="Help" xml:space="preserve">
+    <value>Help</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="HomePage" xml:space="preserve">
+    <value>Home page</value>
+  </data>
+  <data name="Host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="HostComment" xml:space="preserve">
+    <value>Comment by host</value>
+  </data>
+  <data name="HowCancel" xml:space="preserve">
+    <value>How to cancel or delay reservation?</value>
+  </data>
+  <data name="HowForum" xml:space="preserve">
+    <value>How to create a forum?</value>
+  </data>
+  <data name="HowRate" xml:space="preserve">
+    <value>How to rate accommodation and host?</value>
+  </data>
+  <data name="HowReservation" xml:space="preserve">
+    <value>How to create reservation?</value>
+  </data>
+  <data name="HowSuperGuest" xml:space="preserve">
+    <value>How to become a Super-guest?</value>
+  </data>
+  <data name="InputHint" xml:space="preserve">
+    <value>Enter values in corresponding fields. It is neccessary to reserve at least the number of days specified in accommodation description.</value>
+  </data>
+  <data name="InputProblem" xml:space="preserve">
+    <value>Problem with data input</value>
+  </data>
+  <data name="Level" xml:space="preserve">
+    <value>Urgency level</value>
+  </data>
+  <data name="Level1" xml:space="preserve">
+    <value>Level 1 - It would be nice to renovate some small things, but everything works fine without it.</value>
+  </data>
+  <data name="Level2" xml:space="preserve">
+    <value>Level 2 - There are minor complaints about the accommodation which, if addressed, would make it perfect.</value>
+  </data>
+  <data name="Level3" xml:space="preserve">
+    <value>Level 3 - Several things that really bothered me should be renovated.</value>
+  </data>
+  <data name="Level4" xml:space="preserve">
+    <value>Level 4 - There are many bad things and renovation is really necessary.</value>
+  </data>
+  <data name="Level5" xml:space="preserve">
+    <value>Level 5 - The accommodation is in very bad condition and it's not worth renting it at all unless it's renovated.</value>
+  </data>
+  <data name="LocatedReport" xml:space="preserve">
+    <value>The report is now located on your computer.</value>
+  </data>
+  <data name="Location" xml:space="preserve">
+    <value>Location</value>
+  </data>
+  <data name="LocationDetails" xml:space="preserve">
+    <value>nista</value>
+  </data>
+  <data name="LoggedIn" xml:space="preserve">
+    <value>You are logged in as a guest.</value>
+  </data>
+  <data name="LogOut" xml:space="preserve">
+    <value>Log out</value>
+  </data>
+  <data name="MaxGuestNumber" xml:space="preserve">
+    <value>Max. number of guests</value>
+  </data>
+  <data name="MinDayNumber" xml:space="preserve">
+    <value>Min. number of days</value>
+  </data>
+  <data name="MoreDetailed" xml:space="preserve">
+    <value>More detailed explanations are available as hints for each functionality.</value>
+  </data>
+  <data name="Name" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="NewDates" xml:space="preserve">
+    <value>New dates:</value>
+  </data>
+  <data name="NewPass" xml:space="preserve">
+    <value>New password</value>
+  </data>
+  <data name="NewUser" xml:space="preserve">
+    <value>New username</value>
+  </data>
+  <data name="OldPass" xml:space="preserve">
+    <value>Old password</value>
+  </data>
+  <data name="Optional" xml:space="preserve">
+    <value>Optional</value>
+  </data>
+  <data name="OptionalMsg" xml:space="preserve">
+    <value>Optional: You can leave your accommodation pictures and reccommend renovation.</value>
+  </data>
+  <data name="Password" xml:space="preserve">
+    <value>Password</value>
+  </data>
+  <data name="PasswordChange" xml:space="preserve">
+    <value>Change password</value>
+  </data>
+  <data name="Pending" xml:space="preserve">
+    <value>Pending</value>
+  </data>
+  <data name="PeopleNum" xml:space="preserve">
+    <value>Number of people:</value>
+  </data>
+  <data name="PleaseChooseDays" xml:space="preserve">
+    <value>Please choose days and number od people for your reservation.</value>
+  </data>
+  <data name="PleaseChooseDelay" xml:space="preserve">
+    <value>Please choose new dates for your reservation, and then wait for host's response. Requests can be pending, approved or rejected.</value>
+  </data>
+  <data name="PostComment" xml:space="preserve">
+    <value>Post comment</value>
+  </data>
+  <data name="PreviousDates" xml:space="preserve">
+    <value>Previous dates:</value>
+  </data>
+  <data name="ProblemCancel" xml:space="preserve">
+    <value>Problem with reservation cancellation</value>
+  </data>
+  <data name="Profile" xml:space="preserve">
+    <value>Profile</value>
+  </data>
+  <data name="ProfileSettings" xml:space="preserve">
+    <value>Profile settings</value>
+  </data>
+  <data name="Rate" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="RateAccommodation" xml:space="preserve">
+    <value>Rate accommodation</value>
+  </data>
+  <data name="RateButton" xml:space="preserve">
+    <value>Rate</value>
+  </data>
+  <data name="RateHelp" xml:space="preserve">
+    <value>You can rate accommodation and host by going to the Profile page on Menu bar, and choosing Rate accommodation tab from side menu. 
+        Next step is to pick a reservation from provided reservations. You can only rate accommodation within five days after the reservation is finished.</value>
+  </data>
+  <data name="RateHint" xml:space="preserve">
+    <value>Please enter rates for cleanliness and correctness. To recommend a renovation, you need to enter all mandatory values and then click on the "Recommend renovation" button."</value>
+  </data>
+  <data name="RateProblem" xml:space="preserve">
+    <value>Problem with accommodation rating</value>
+  </data>
+  <data name="RatesByHost" xml:space="preserve">
+    <value>Rates by host</value>
+  </data>
+  <data name="RatesByHostDesc" xml:space="preserve">
+    <value>On this page, you can see how you were rated by the hosts.</value>
+  </data>
+  <data name="RateSuccess" xml:space="preserve">
+    <value>The accommodation is successfully rated.</value>
+  </data>
+  <data name="Rating" xml:space="preserve">
+    <value>Ratng:</value>
+  </data>
+  <data name="Recommend" xml:space="preserve">
+    <value>Recommend renovation</value>
+  </data>
+  <data name="Recommendation" xml:space="preserve">
+    <value>Recommendation</value>
+  </data>
+  <data name="RecommendDesc" xml:space="preserve">
+    <value>It is necessary to fill in information about what should be renovated. After that, choose the level of urgency.</value>
+  </data>
+  <data name="Rejected" xml:space="preserve">
+    <value>Rejected</value>
+  </data>
+  <data name="ReportsDesc" xml:space="preserve">
+    <value>This page is for creating reports about reservations in a specific time period. Please choose report type and time period.</value>
+  </data>
+  <data name="ReportSuccess" xml:space="preserve">
+    <value>Report is successfully created.</value>
+  </data>
+  <data name="ReportType" xml:space="preserve">
+    <value>Report type</value>
+  </data>
+  <data name="RequestDetails" xml:space="preserve">
+    <value>Request details</value>
+  </data>
+  <data name="Requests" xml:space="preserve">
+    <value>Requests</value>
+  </data>
+  <data name="Required" xml:space="preserve">
+    <value>Please enter required information.</value>
+  </data>
+  <data name="Reservation" xml:space="preserve">
+    <value>Reservation</value>
+  </data>
+  <data name="ReservationDetails" xml:space="preserve">
+    <value>Reservation details</value>
+  </data>
+  <data name="ReservationHelp" xml:space="preserve">
+    <value>You can create a reservation by going to the Accommodations page on the Menu bar, or clicking on Reserve button on Home page.
+There you can pick an accommodation from the list and click on Reserve. The other option is Anywhere / Anytime reservation
+which will give you all available accommodations according to your needs.</value>
+  </data>
+  <data name="ReservationReport" xml:space="preserve">
+    <value>Reservation report</value>
+  </data>
+  <data name="Reservations" xml:space="preserve">
+    <value>Reservations</value>
+  </data>
+  <data name="ReservationSuccess" xml:space="preserve">
+    <value>Reservation is successfully created.</value>
+  </data>
+  <data name="Reserve" xml:space="preserve">
+    <value>Reserve</value>
+  </data>
+  <data name="ResPastYear" xml:space="preserve">
+    <value>Reservation number in the past year:</value>
+  </data>
+  <data name="ReviewProblem" xml:space="preserve">
+    <value>Problem with creating a review</value>
+  </data>
+  <data name="RquestsDesc" xml:space="preserve">
+    <value>You can see all of your requests sorted by status on this page.</value>
+  </data>
+  <data name="RulesFollowing" xml:space="preserve">
+    <value>Rules-following</value>
+  </data>
+  <data name="Save" xml:space="preserve">
+    <value>Save</value>
+  </data>
+  <data name="Search" xml:space="preserve">
+    <value>Search</value>
+  </data>
+  <data name="SearchAccommodations" xml:space="preserve">
+    <value>Search accommodations</value>
+  </data>
+  <data name="SearchForums" xml:space="preserve">
+    <value>Search forums</value>
+  </data>
+  <data name="SelectDates" xml:space="preserve">
+    <value>Select dates</value>
+  </data>
+  <data name="Settings" xml:space="preserve">
+    <value>Settings</value>
+  </data>
+  <data name="Special" xml:space="preserve">
+    <value>special</value>
+  </data>
+  <data name="StartDate" xml:space="preserve">
+    <value>Start date</value>
+  </data>
+  <data name="SuperGuestHelp" xml:space="preserve">
+    <value>In order to become a Super-guest, you need to
+        create at least 10 reservations in the past a year. With the Super-guest status, you also get 5 bonus points that bring you discounts when creating
+        a reservation. Super-guest status lasts for a year and it can be prolonged if you created another 10 reservations in the past year.</value>
+  </data>
+  <data name="SuperGuestStatus" xml:space="preserve">
+    <value>Status: super-guest</value>
+  </data>
+  <data name="TheSystemAA" xml:space="preserve">
+    <value>The system will recommend you all available accommodations depending on your input.</value>
+  </data>
+  <data name="TimePeriod" xml:space="preserve">
+    <value>Time period</value>
+  </data>
+  <data name="TotalRes" xml:space="preserve">
+    <value>Total reservation number:</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Until" xml:space="preserve">
+    <value>, until</value>
+  </data>
+  <data name="UsernameChange" xml:space="preserve">
+    <value>Change username</value>
+  </data>
+  <data name="VeryUseful" xml:space="preserve">
+    <value>very useful</value>
+  </data>
+  <data name="ViewForum" xml:space="preserve">
+    <value>View forum</value>
+  </data>
+  <data name="WelcomeAA" xml:space="preserve">
+    <value>Welcome to the "anywhere/anytime" reservation page. Please, enter number of guests and days by choice. Optionally, you can choose date range.</value>
+  </data>
+  <data name="WelcomeHome" xml:space="preserve">
+    <value>Welcome</value>
+  </data>
+  <data name="WelcomeRating" xml:space="preserve">
+    <value>Welcome to the accommodation rating page. To create a review, fill the cleanliness and correctness rate fields, as well as the comment field.</value>
+  </data>
+  <data name="WelcomeRes" xml:space="preserve">
+    <value>Welcome to the reservation page.</value>
+  </data>
+  <data name="YouCanChoose" xml:space="preserve">
+    <value>You can choose one of the recommended accommodations.</value>
+  </data>
+  <data name="YourForums" xml:space="preserve">
+    <value>Your forums</value>
+  </data>
+  <data name="YourProfile" xml:space="preserve">
+    <value>Your profile</value>
+  </data>
+</root>

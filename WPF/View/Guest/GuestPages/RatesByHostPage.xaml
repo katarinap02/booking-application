@@ -5,31 +5,32 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
       xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
+      xmlns:ns="clr-namespace:BookingApp"
       mc:Ignorable="d" 
       d:DesignHeight="798" d:DesignWidth="1085"
       Title="RatesByHostPage">
 
     <Grid>
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,11,2">
             <Grid>
-                <TextBlock TextWrapping="Wrap" FontSize="25" Margin="187,114,187,629">
-On this page, you can see how you were rated by the hosts.</TextBlock>
+                <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc RatesByHostDesc}" TextWrapping="Wrap" FontSize="25" Margin="187,114,187,629">
+</TextBlock>
 
 
                 <ListBox Name="ReservationListBox" Margin="30,235,30,27"  ScrollViewer.VerticalScrollBarVisibility="Auto"
-ItemsSource="{Binding GuestRates}" Background="{StaticResource BackgroundColorN}" SelectedItem="{Binding SelectedReservation}">
+ItemsSource="{Binding GuestRates}" Background="{DynamicResource BackgroundColorN}" SelectedItem="{Binding SelectedReservation}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <controls:GuestRateCard/>
-                                <Button Content="Details" Click="Details_Click" Style="{StaticResource ButtonStyleN}" Width="100" Height="50" Margin="800, 0, 0, 0"/>
+                                <Button Content="{ns:Loc Details}" Click="Details_Click" Style="{DynamicResource ButtonStyleN}" Width="100" Height="50" Margin="800, 0, 0, 0"/>
 
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
 
                 </ListBox>
-                
+
             </Grid>
         </Border>
 

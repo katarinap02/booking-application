@@ -28,6 +28,7 @@ namespace BookingApp.View.GuestPages
     public partial class HomePage : Page
     {
    
+        
         public User User { get; set; }
 
         public Frame Frame { get; set; }    
@@ -42,7 +43,7 @@ namespace BookingApp.View.GuestPages
             this.User = user;
             this.Frame = frame;
             ViewModel = new HomePageViewModel(User, Frame);
-            
+           
             DataContext = ViewModel;
             
         }

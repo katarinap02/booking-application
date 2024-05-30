@@ -7,15 +7,15 @@
              mc:Ignorable="d" 
              d:DesignHeight="165" d:DesignWidth="670">
     <Grid>
-        <Border Width="650" Height="155" BorderBrush="{StaticResource AccentColorN}" Background="{StaticResource AccentColorN}" BorderThickness="2" Margin="0,0,10,10" CornerRadius="30">
+        <Border Width="650" Height="155" BorderBrush="{StaticResource AccentColorN}" Background="{DynamicResource BackgroundColorN}" BorderThickness="2" Margin="0,0,10,10" CornerRadius="30">
             <Grid>
-                <TextBlock FontSize="23" Margin="16,20,530,97" FontWeight="Bold" Foreground="AliceBlue" Text="{Binding Username}"></TextBlock>
-                <TextBlock FontSize="23" Margin="16,42,530,79" Foreground="AliceBlue" Text="{Binding UserType}"></TextBlock>
-                <TextBlock FontSize="16" Margin="16,70,530,56" Foreground="AliceBlue" Text="{Binding DateString}"></TextBlock>
+                <TextBlock FontSize="23" Margin="16,20,530,97" FontWeight="Bold" Foreground="{DynamicResource TextColorN}" Text="{Binding Username}"></TextBlock>
+                <TextBlock FontSize="23" Margin="16,42,530,79" Foreground="{DynamicResource TextColorN}" Text="{Binding UserType}"></TextBlock>
+                <TextBlock FontSize="16" Margin="16,70,530,56" Foreground="{DynamicResource TextColorN}" Text="{Binding DateString}"></TextBlock>
 
-                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Margin="123,15,14,15" CornerRadius="30" Background="LightPink">
+                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Margin="123,15,14,15" CornerRadius="30" Background="{DynamicResource CommentBackgroundN}">
                     <Grid>
-                        <TextBlock Text="{Binding Comment}" FontSize="16" Margin="28,10,10,10" TextWrapping="Wrap"></TextBlock>
+                        <TextBlock Foreground="{DynamicResource TextBlockColorN}" Text="{Binding Comment}" FontSize="16" Margin="28,10,10,10" TextWrapping="Wrap"></TextBlock>
                     </Grid>
                 </Border>
             </Grid>

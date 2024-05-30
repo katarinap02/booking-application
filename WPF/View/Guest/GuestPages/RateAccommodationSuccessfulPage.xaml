@@ -4,25 +4,26 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
               xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
+      xmlns:ns="clr-namespace:BookingApp"
       mc:Ignorable="d" 
       d:DesignHeight="798" d:DesignWidth="1085"
       Title="ProfileInfo">
 
     <Grid>
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
-                <Label x:Name="requestHeader" Style="{StaticResource HeaderStyleN}" Content="You have successfully rated the accommodation!" FontSize="35" Margin="78,64,15,-53"></Label>
-                <Label Content="Accommodation" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="160,174,638,573"/>
-                <Label Content="Host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="240,396,716,351"/>
-                <Border Width="500" Height="80" Margin="0,445,508,266" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
-                    <Label Content="{Binding HostUsername}" FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="59,-2,63,2"/>
+                <Label x:Name="requestHeader" Style="{DynamicResource HeaderStyleN}" Content="{ns:Loc RateSuccess}" FontSize="35" Margin="78,64,15,-53"></Label>
+                <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="160,174,638,573"/>
+                <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="240,396,716,351"/>
+                <Border Width="500" Height="80" Margin="0,445,508,266" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
+                    <Label Content="{Binding HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="59,-2,63,2"/>
                 </Border>
 
                 <controls:AccommodationCardSmaller DataContext="{Binding Accommodation}" Width="500" Margin="0,-94,508,105"></controls:AccommodationCardSmaller>
 
 
-                <Button Content="Rate another accommodation" Style="{StaticResource ButtonStyleN}" Margin="633,265,54,464" Command="{Binding RateAnotherCommand}"/>
-                <Button Content="Profile" Style="{StaticResource ButtonStyleN}" Margin="633,346,54,387" Command="{Binding ProfileCommand}"/>
+                <Button Content="{ns:Loc RateAccommodation}" Style="{DynamicResource ButtonStyleN}" Margin="633,265,54,464" Command="{Binding RateAnotherCommand}"/>
+                <Button Content="{ns:Loc YourProfile}" Style="{DynamicResource ButtonStyleN}" Margin="633,346,54,387" Command="{Binding ProfileCommand}"/>
 
             </Grid>
         </Border>

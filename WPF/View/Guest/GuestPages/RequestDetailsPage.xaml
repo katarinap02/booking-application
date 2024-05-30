@@ -5,40 +5,41 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
            xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
+      xmlns:ns="clr-namespace:BookingApp"
       mc:Ignorable="d" 
       d:DesignHeight="798" d:DesignWidth="1085"
       Title="ProfileInfo">
 
     <Grid>
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
-                <Label x:Name="requestHeader" Style="{StaticResource HeaderStyleN}" Content="{Binding RequestHeader}" FontSize="40" Margin="300, 10, 0, 0"></Label>
-                <Label Content="Accommodation" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="160,174,638,573"/>
-                <Label Content="Host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="240,396,716,351"/>
-                <Border Width="500" Height="80" Margin="0,445,508,266" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
-                    <Label Content="{Binding HostUsername}" FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="59,-2,63,2"/>
+                <Label x:Name="requestHeader" Style="{DynamicResource HeaderStyleN}" Content="{Binding RequestHeader}" FontSize="40" Margin="300, 10, 0, 0"></Label>
+                <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="160,174,638,573"/>
+                <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="240,396,716,351"/>
+                <Border Width="500" Height="80" Margin="0,445,508,266" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
+                    <Label Content="{Binding HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="59,-2,63,2"/>
                 </Border>
 
                 <controls:AccommodationCardSmaller DataContext="{Binding Accommodation}" Width="500" Margin="0,-94,508,105"></controls:AccommodationCardSmaller>
-                <Label Content="Comment by host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="150,554,638,193"/>
-                <Border Width="500" Margin="0,598,508,33" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
+                <Label Content="{ns:Loc HostComment}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="150,554,638,193"/>
+                <Border Width="500" Margin="0,598,508,33" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
                     <Grid>
-                        <TextBlock x:Name="commentTxtBlock" FontSize="20" Text="{Binding Comment}" TextWrapping="Wrap" Margin="10,10,0,0"/>
+                        <TextBlock Style="{DynamicResource TextBlockStyleN}" x:Name="commentTxtBlock" FontSize="20" Text="{Binding Comment}" TextWrapping="Wrap" Margin="10,10,0,0"/>
                     </Grid>
                 </Border>
-                <Label Content="Request details" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="696,165,108,582"/>
-                <Border Margin="540,216,10,266" Width="500" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
+                <Label Content="{ns:Loc RequestDetails}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="696,165,108,582"/>
+                <Border Margin="540,216,10,266" Width="500" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
                     <Grid>
-                        <TextBlock TextWrapping="Wrap" Margin="34,79,-84,104" FontSize="22">Previous dates:<LineBreak/>New dates:<LineBreak/>Number of peple:<LineBreak/>Number of days:<LineBreak/></TextBlock>
-                        <Label FontSize="22" Content="{Binding OldDateRange}" Margin="214,74,6,189"/>
-                        <Label FontSize="22" Content="{Binding NewDateRange}" Margin="214,103,6,162"/>
-                        <Label FontSize="22" Content="{Binding NumberOfPeople}" Margin="214,132,6,138"/>
-                        <Label FontSize="22" Content="{Binding NumberOfDays}" Margin="210,162,10,109"/>
+                        <TextBlock Style="{DynamicResource TextBlockStyleN}" TextWrapping="Wrap" Margin="24,49,-84,104" FontSize="22"><LineBreak/><Run Text="{ns:Loc PreviousDates}"></Run><LineBreak/><Run Text="{ns:Loc NewDates}"></Run><LineBreak/><Run Text="{ns:Loc PeopleNum}"></Run><LineBreak/><Run Text="{ns:Loc DayNum}"></Run><LineBreak/></TextBlock>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" FontSize="22" Content="{Binding OldDateRange}" Margin="214,61,6,202"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" FontSize="22" Content="{Binding NewDateRange}" Margin="214,92,6,173"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" FontSize="22" Content="{Binding NumberOfPeople}" Margin="220,118,0,153"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" FontSize="22" Content="{Binding NumberOfDays}" Margin="210,152,10,119"/>
                     </Grid>
                 </Border>
 
-                <Button Content="All requests" Style="{StaticResource ButtonStyleN}" Width="170" Height="50" Margin="540, 470, 0, 0" Command="{Binding AllRequestsCommand}"/>
-                <Button Content="Profile" Style="{StaticResource ButtonStyleN}" Width="170" Height="50" Margin="540, 600, 0, 0" Command="{Binding ProfileCommand}"/>
+                <Button Content="{ns:Loc AllRequests}" Style="{DynamicResource ButtonStyleN}" Width="170" Height="50" Margin="540, 470, 0, 0" Command="{Binding AllRequestsCommand}"/>
+                <Button Content="{ns:Loc YourProfile}" Style="{DynamicResource ButtonStyleN}" Width="170" Height="50" Margin="540, 600, 0, 0" Command="{Binding ProfileCommand}"/>
 
             </Grid>
         </Border>

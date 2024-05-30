@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
       xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
+      xmlns:ns="clr-namespace:BookingApp"
       mc:Ignorable="d" 
       d:DesignHeight="798" d:DesignWidth="1085"
       Title="ProfileInfo">
@@ -16,40 +17,40 @@
                     <RectangleGeometry Rect="0.0,0.0,93.936,93.936"/>
                 </DrawingGroup.ClipGeometry>
                 <DrawingGroup>
-                    <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                    <GeometryDrawing Brush="{DynamicResource AccentColorN}">
                         <GeometryDrawing.Geometry>
                             <PathGeometry Figures="M 80.179 13.758 c -18.342 -18.342 -48.08 -18.342 -66.422 0 c -18.342 18.341 -18.342 48.08 0 66.421 c 18.342 18.342 48.08 18.342 66.422 0 C 98.521 61.837 98.521 32.099 80.179 13.758 z M 44.144 83.117 c -4.057 0 -7.001 -3.071 -7.001 -7.305 c 0 -4.291 2.987 -7.404 7.102 -7.404 c 4.123 0 7.001 3.044 7.001 7.404 C 51.246 80.113 48.326 83.117 44.144 83.117 z M 54.73 44.921 c -4.15 4.905 -5.796 9.117 -5.503 14.088 l 0.097 2.495 c 0.011 0.062 0.017 0.125 0.017 0.188 c 0 0.58 -0.47 1.051 -1.05 1.051 c -0.004 -0.001 -0.008 -0.001 -0.012 0 h -7.867 c -0.549 0 -1.005 -0.423 -1.047 -0.97 l -0.202 -2.623 c -0.676 -6.082 1.508 -12.218 6.494 -18.202 c 4.319 -5.087 6.816 -8.865 6.816 -13.145 c 0 -4.829 -3.036 -7.536 -8.548 -7.624 c -3.403 0 -7.242 1.171 -9.534 2.913 c -0.264 0.201 -0.607 0.264 -0.925 0.173 s -0.575 -0.327 -0.693 -0.636 l -2.42 -6.354 c -0.169 -0.442 -0.02 -0.943 0.364 -1.224 c 3.538 -2.573 9.441 -4.235 15.041 -4.235 c 12.36 0 17.894 7.975 17.894 15.877 C 63.652 33.765 59.785 38.919 54.73 44.921 z" FillRule="Nonzero"/>
                         </GeometryDrawing.Geometry>
                     </GeometryDrawing>
                 </DrawingGroup>
             </DrawingGroup>
-            <DrawingImage Drawing="{StaticResource question_mark_in_a_circle_svgrepo_com_xaml}" x:Key="HintIcon"/>
+            <DrawingImage Drawing="{DynamicResource question_mark_in_a_circle_svgrepo_com_xaml}" x:Key="HintIcon"/>
         </ResourceDictionary>
 
     </Page.Resources>
 
     <Grid>
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
 
                 <ListBox Name="ReservationListBox" Height="377" Margin="26,304,21,109"  ScrollViewer.VerticalScrollBarVisibility="Auto"
-ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColorN}" SelectedItem="{Binding SelectedReservation}">
+ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColorN}" SelectedItem="{Binding SelectedReservation}">
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Grid>
                                 <controls:ReservationCard></controls:ReservationCard>
-                                <Button Style="{StaticResource ButtonStyleN}" Content="Details" Width="90" Height="25" FontSize="15" Margin="800, -65, 0, 0" Command="{Binding Path=DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-                                <Button Style="{StaticResource ButtonStyleN}" Content="Delay" Width="90" Height="25" FontSize="15" Margin="800, 0, 0, 0" Command="{Binding Path=DataContext.DelayCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
-                                <Button Style="{StaticResource ButtonStyleN}" Content="Cancel" Width="90" Height="25" FontSize="15" Margin="800, 65, 0, 0" Command="{Binding Path=DataContext.CancelCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                                <Button Style="{DynamicResource ButtonStyleN}" Content="{ns:Loc Details}" Width="90" Height="25" FontSize="15" Margin="800, -65, 0, 0" Command="{Binding Path=DataContext.DetailsCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                                <Button Style="{DynamicResource ButtonStyleN}" Content="{ns:Loc Delay}" Width="90" Height="25" FontSize="15" Margin="800, 0, 0, 0" Command="{Binding Path=DataContext.DelayCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
+                                <Button Style="{DynamicResource ButtonStyleN}" Content="{ns:Loc Cancel}" Width="90" Height="25" FontSize="15" Margin="800, 65, 0, 0" Command="{Binding Path=DataContext.CancelCommand, RelativeSource={RelativeSource AncestorType={x:Type ListBox}}}" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>
 
 
                             </Grid>
                         </DataTemplate>
                     </ListBox.ItemTemplate>
                 </ListBox>
-                <Label Content="{Binding User.Username}" Style="{StaticResource HeaderStyleN}" FontSize="40" Margin="420,10,442,735" Height="100" FontStyle="Italic"/>
-                <TextBlock TextWrapping="Wrap"  FontSize="23" Margin="26,81,276,470"><LineBreak/>Total reservation number:<LineBreak/>Reservation number in the past year:<LineBreak/>Ratng:<LineBreak/></TextBlock>
-                <Label Content="Reservations" FontSize="30" Style="{StaticResource HeaderStyleN}" Margin="26,254,830,481"/>
+                <Label Content="{Binding User.Username}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="420,10,442,735" Height="100" FontStyle="Italic"/>
+                <TextBlock Style="{DynamicResource TextBlockStyleN}" TextWrapping="Wrap"  FontSize="23" Margin="26,81,276,470"><LineBreak/><Run Text="{ns:Loc TotalRes}"></Run><LineBreak/><Run Text="{ns:Loc ResPastYear}"></Run><LineBreak/><Run Text="{ns:Loc Rating}"></Run><LineBreak/></TextBlock>
+                <Label Content="{ns:Loc Reservation}" FontSize="30" Style="{DynamicResource HeaderStyleN}" Margin="26,254,830,481"/>
 
                 <Label FontSize="23"  Margin="20,70,818,681">
                     <Label.Style>
@@ -57,11 +58,11 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                             <Setter Property="Content" Value="{x:Null}"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
-                                    <Setter Property="Content" Value="Status: super-guest"/>
+                                    <Setter Property="Content" Value="{ns:Loc SuperGuestStatus}"/>
                                     <Setter Property="Foreground" Value="Orange"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
-                                    <Setter Property="Content" Value="Status: guest"/>
+                                    <Setter Property="Content" Value="{ns:Loc GuestStatus}"/>
                                     <Setter Property="Foreground" Value="Black"/>
                                 </DataTrigger>
                             </Style.Triggers>
@@ -76,12 +77,12 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                             <Setter Property="Content" Value="{x:Null}"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
-                                    <Setter Property="Content" Value=", until "/>
+                                    <Setter Property="Content" Value="{ns:Loc Until}"/>
                                     <Setter Property="Foreground" Value="Orange"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
                                     <Setter Property="Content" Value="{x:Null}"/>
-                                    
+
                                 </DataTrigger>
                             </Style.Triggers>
 
@@ -108,8 +109,8 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                     </Label.Style>
                 </Label>
                 <!--<Label x:Name="statusLabel" Content="{Binding Status}" FontSize="23" Margin="105,75,739,670"/>-->
-                <Label x:Name="totalReservationsLabel" Content="{Binding TotalReservations}" FontSize="23" Margin="295,106,547,641"></Label>
-                <Label x:Name="totalReservationsYearLabel" Content="{Binding Guest.YearlyReservations}" FontSize="23" Margin="410,137,528,603"></Label>
+                <Label Foreground="{DynamicResource TextBlockColorN}" x:Name="totalReservationsLabel" Content="{Binding TotalReservations}" FontSize="23" Margin="295,98,547,653"></Label>
+                <Label Foreground="{DynamicResource TextBlockColorN}" x:Name="totalReservationsYearLabel" Content="{Binding Guest.YearlyReservations}" FontSize="23" Margin="410,125,528,620"></Label>
 
                 <Image VerticalAlignment="Top" HorizontalAlignment="Left" Margin="995,10,0,0" Width="50" Height="50">
                     <Image.Style>
@@ -134,7 +135,7 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                             <Setter Property="Content" Value="{x:Null}"/>
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="True">
-                                    <Setter Property="Content" Value="Bonus points:"/>
+                                    <Setter Property="Content" Value="{ns:Loc BonusPoints}"/>
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding Guest.IsSuperGuest}" Value="False">
                                     <Setter Property="Content" Value="{x:Null}"/>
@@ -160,22 +161,22 @@ ItemsSource="{Binding Reservations}" Background="{StaticResource BackgroundColor
                         </Style>
                     </Label.Style>
                 </Label>
-                <Button FontSize="20" Content="Reservation report" Style="{StaticResource ButtonStyleN}" Command="{Binding CreateReportCommand}" Margin="825,258,21,495"/>
-                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2"  Margin="881,75,21,569">
+                <Button FontSize="18" Content="{ns:Loc ReservationReport}" Style="{DynamicResource ButtonStyleN}" Command="{Binding CreateReportCommand}" Margin="825,258,21,495"/>
+                <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="881,75,21,569">
                     <Grid>
                         <Image HorizontalAlignment="Left" VerticalAlignment="Center" Width="281" Height="170" Source="../../../Resources/Images/Unknown_person.jpg"/>
                     </Grid>
                 </Border>
-               
-                <ToggleButton Height="50" Background="White" BorderBrush="White" Margin="45,682,720,59" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
+
+                <ToggleButton Height="50" Background="{DynamicResource BorderBackground}" BorderBrush="{DynamicResource BorderBackground}" Margin="45,682,720,59" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                     <StackPanel Orientation="Horizontal">
-                        <Image Source="{StaticResource HintIcon}" Height="25" Width="25"/>
-                        <Label x:Name="HintLabel" Content="Problem with reservation cancellation" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
+                        <Image Source="{DynamicResource HintIcon}" Height="25" Width="25"/>
+                        <Label x:Name="HintLabel" Content="{ns:Loc ProblemCancel}" FontSize="16" Foreground="{DynamicResource HintColorN}" FontStyle="Italic"/>
                     </StackPanel>
-                    
+
                 </ToggleButton>
-                <TextBlock x:Name="Hint" FontSize="16" Foreground="Green" TextAlignment="Justify" TextWrapping="Wrap" Margin="58,732,100,14">
-    Reservation cancellation is possible no later than 24 hours before the start date, unless the host specified the limit differently. If it exists, the limit can be seen in accommodation details.
+                <TextBlock Text="{ns:Loc CancelHint}" x:Name="Hint" FontSize="16" Foreground="{DynamicResource HintTextColor}" TextAlignment="Justify" TextWrapping="Wrap" Margin="58,732,100,14">
+    
                 </TextBlock>
 
 

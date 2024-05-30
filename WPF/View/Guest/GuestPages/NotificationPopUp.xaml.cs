@@ -31,11 +31,13 @@ namespace BookingApp.View.GuestPages
         public Frame Frame { get; set; }
         public NotificationViewModel ViewModel { get; set; }
         public RequestDetailsViewModel Request { get; set; }
-        public NotificationPopUp(User user, Frame frame)
+        public GuestWindow GuestWindow { get; set; }
+        public NotificationPopUp(User user, Frame frame, GuestWindow guestWindow)
         {
             InitializeComponent();
             User = user;
-            ViewModel = new NotificationViewModel(User);
+            GuestWindow = guestWindow;
+            ViewModel = new NotificationViewModel(User,  GuestWindow);
             DataContext = ViewModel;
             ViewModel.Update();
             Frame = frame;

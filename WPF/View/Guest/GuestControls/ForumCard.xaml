@@ -4,25 +4,27 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestControls"
+               xmlns:ns="clr-namespace:BookingApp"
              mc:Ignorable="d" 
                          d:DesignHeight="103" d:DesignWidth="990">
     <Grid>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Width="980" Height="103">
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="{DynamicResource BorderBackground}" Width="980" Height="103">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Margin="10,10,675,-47" Grid.RowSpan="2" FontSize="22" FontWeight="Bold" Foreground="{StaticResource AccentColorN}">
-
-                    <TextBlock.Text>
+                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" Margin="10,10,675,-47" Grid.RowSpan="2" FontSize="22" FontWeight="Bold">
+<Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding City}"/>
+<Run Text=", "/><Run Text="{Binding Country}"/>
+                    <!--<TextBlock.Text>
                         <MultiBinding StringFormat="{}Location: {0}, {1}">
                             <Binding Path="City"/>
                             <Binding Path="Country"/>
 
                         </MultiBinding>
-                    </TextBlock.Text>
+                    </TextBlock.Text>-->
                 </TextBlock>
 
                 <TextBlock Text="{Binding CommentNumber}" Margin="10,52,868,-86" Grid.RowSpan="2" FontSize="16"></TextBlock>

@@ -63,10 +63,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Forums.Clear();
             switch (ForumBox.SelectedItem)
             {
-                case ComboBoxItem pendingItem when pendingItem.Content.ToString() == "All forums":
+                case ComboBoxItem allForumsItem when allForumsItem.Content.ToString() == "All forums" || allForumsItem.Content.ToString() == "Svi forumi":
                     ShowAllForums(Forums);
                     break;
-                case ComboBoxItem approvedItem when approvedItem.Content.ToString() == "Your forums":
+                case ComboBoxItem yourForumsItem when yourForumsItem.Content.ToString() == "Your forums" || yourForumsItem.Content.ToString() == "Vaši forumi":
                     ShowYourForums(Forums);
                     break;
               

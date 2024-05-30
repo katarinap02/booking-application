@@ -41,13 +41,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
             switch (RequestStatusBox.SelectedItem)
             {
-                case ComboBoxItem pendingItem when pendingItem.Content.ToString() == "Pending":
+                case ComboBoxItem pendingItem when pendingItem.Content.ToString() == "Pending" || pendingItem.Content.ToString() == "Na čekanju":
                     ShowPendingRequests(Requests);
                     break;
-                case ComboBoxItem approvedItem when approvedItem.Content.ToString() == "Approved":
+                case ComboBoxItem approvedItem when approvedItem.Content.ToString() == "Approved" || approvedItem.Content.ToString() == "Prihvaćeni":
                     ShowApprovedRequests(Requests);
                     break;
-                case ComboBoxItem rejectedItem when rejectedItem.Content.ToString() == "Rejected":
+                case ComboBoxItem rejectedItem when rejectedItem.Content.ToString() == "Rejected" || rejectedItem.Content.ToString() == "Odbijeni":
                     ShowRejectedRequests(Requests);
                     break;
             }

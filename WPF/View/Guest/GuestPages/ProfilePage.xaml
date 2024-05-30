@@ -5,34 +5,35 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
       xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
+      xmlns:ns="clr-namespace:BookingApp"
       mc:Ignorable="d" 
       d:DesignHeight="990" d:DesignWidth="1920"
       Title="ProfilePage">
 
     <Grid>
-        <Border Width="396" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="268,98,1256,98">
+        <Border Width="396" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="268,98,1256,98">
             <Grid>
-                <TreeView Name="TreeMenu" Height="692" Margin="10,30,0,67">
+                <TreeView Name="TreeMenu" Height="692" Margin="10,30,0,67" BorderBrush="{DynamicResource BorderBackground}" Background="{DynamicResource BorderBackground}">
                     <LineBreak/>
-                    <TreeViewItem Header="Profile" FontSize="37" Selected="Profile_Click"></TreeViewItem>
+                    <TreeViewItem Header="{ns:Loc Profile}" FontSize="37" Foreground="{DynamicResource TextColorN}" Selected="Profile_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Rate accommodation" FontSize="37" Selected="RateAccommodation_Click"></TreeViewItem>
+                    <TreeViewItem Header="{ns:Loc RateAccommodation}" FontSize="37" Foreground="{DynamicResource TextColorN}" Selected="RateAccommodation_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Rates by host" FontSize="37" Selected="RatesByHost_Click"></TreeViewItem>
+                    <TreeViewItem Header="{ns:Loc RatesByHost}" FontSize="37" Foreground="{DynamicResource TextColorN}" Selected="RatesByHost_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Requests" FontSize="37" Selected="Requests_Click"></TreeViewItem>
+                    <TreeViewItem Header="{ns:Loc Requests}" FontSize="37" Foreground="{DynamicResource TextColorN}" Selected="Requests_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Forums" FontSize="37" Selected="Forums_Click"></TreeViewItem>
+                    <TreeViewItem Header="{ns:Loc Forums}" FontSize="37" Foreground="{DynamicResource TextColorN}" Selected="Forums_Click"></TreeViewItem>
                     <LineBreak/>
-                    <TreeViewItem Header="Settings" FontSize="37" Selected="Settings_Click"></TreeViewItem>
+                    <TreeViewItem Header="{ns:Loc Settings}" FontSize="37" Foreground="{DynamicResource TextColorN}" Selected="Settings_Click"></TreeViewItem>
 
                 </TreeView>
             </Grid>
 
         </Border>
-        
-            <Frame x:Name="Profile" Width="1090" Height="820" Margin="669,85,161,85" NavigationUIVisibility="Hidden"></Frame>
-      
+
+        <Frame x:Name="Profile" Width="1090" Height="820" Margin="669,85,161,85" NavigationUIVisibility="Hidden"></Frame>
+
 
 
     </Grid>

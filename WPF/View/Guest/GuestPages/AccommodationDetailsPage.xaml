@@ -4,37 +4,44 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestPages"
+      xmlns:ns="clr-namespace:BookingApp"
       mc:Ignorable="d" 
       d:DesignHeight="990" d:DesignWidth="1920"
       Title="AccommodationDetailsPage">
 
     <Grid>
-        <Label FontSize="40" Style="{StaticResource HeaderStyleN}" Margin="248,182,1162,724" Content="{Binding SelectedAccommodation.Name}"></Label>
-        <TextBlock FontSize="30" TextWrapping="Wrap" Margin="248,280,1099,495">
-
-            <TextBlock.Text>
+        <Label FontSize="40" Style="{DynamicResource HeaderStyleN}" Margin="248,182,1162,724" Content="{Binding SelectedAccommodation.Name}"></Label>
+        <TextBlock Style="{DynamicResource TextBlockStyleN}" FontSize="30" TextWrapping="Wrap" Margin="248,280,1099,495">
+            <Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding Location}"/>
+            <LineBreak/> 
+            <Run Text="{ns:Loc MaxGuestNumber}"/><Run Text=": "/><Run Text="{Binding SelectedAccommodation.MaxGuestNumber}"/>
+            <LineBreak/> 
+<Run Text="{ns:Loc MinDayNumber}"/><Run Text=": "/><Run Text="{Binding SelectedAccommodation.MinReservationDays}"/>
+            <LineBreak/> 
+<Run Text="{ns:Loc Rate}"/><Run Text=": "/><Run Text="{Binding Rate}"/>
+            <!--<TextBlock.Text>
                 <MultiBinding StringFormat="{}Location: {0}&#x0a;Max. number of guests: {1}&#x0a;Min. number of reservation days: {2}&#x0a;Rate: {3}">
                     <Binding Path="SelectedAccommodation.Location"/>
                     <Binding Path="SelectedAccommodation.MaxGuestNumber"/>
                     <Binding Path="SelectedAccommodation.MinReservationDays"/>
                     <Binding Path="SelectedAccommodation.Rate"/>
                 </MultiBinding>
-            </TextBlock.Text>
+            </TextBlock.Text>-->
         </TextBlock>
 
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2"  Margin="1076,120,212,336">
+        <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="1076,120,212,336">
             <Grid>
                 <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="800" Height="1000" Source="{Binding FirstPicture}"/>
             </Grid>
         </Border>
 
-        <Button Margin="1262,719,554,216" Background="White" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding ChangedPictureCommand}" >
+        <Button Margin="1262,719,554,216" Background="White" Style="{DynamicResource ButtonStyleWindowHost}" Command="{Binding ChangedPictureCommand}" >
             <Image Source="../../../Resources/Images/left_arrow.png" Width="72" Height="45"/>
         </Button>
-        <Button Margin="1416,719,402,216" Background="White" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding ChangedPictureCommand}" >
+        <Button Margin="1416,719,402,216" Background="White" Style="{DynamicResource ButtonStyleWindowHost}" Command="{Binding ChangedPictureCommand}" >
             <Image Source="../../../Resources/Images/right_arrow.png" Width="64" Height="45"/>
         </Button>
-        <Button Content="Reserve" HorizontalAlignment="Left" Margin="427,553,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{StaticResource ButtonStyleN}" Command="{Binding ReserveCommand}"/>
+        <Button Content="{ns:Loc Reserve}" HorizontalAlignment="Left" Margin="427,553,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{StaticResource ButtonStyleN}" Command="{Binding ReserveCommand}"/>
 
     </Grid>
 </Page>

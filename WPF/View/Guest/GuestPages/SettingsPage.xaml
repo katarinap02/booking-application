@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestPages"
+      xmlns:ns="clr-namespace:BookingApp"
      
                     xmlns:controls="clr-namespace:BookingApp.WPF.View.Guest.GuestControls"
       mc:Ignorable="d" 
@@ -17,39 +18,39 @@
                     <RectangleGeometry Rect="0.0,0.0,93.936,93.936"/>
                 </DrawingGroup.ClipGeometry>
                 <DrawingGroup>
-                    <GeometryDrawing Brush="{StaticResource AccentColorN}">
+                    <GeometryDrawing Brush="{DynamicResource AccentColorN}">
                         <GeometryDrawing.Geometry>
                             <PathGeometry Figures="M 80.179 13.758 c -18.342 -18.342 -48.08 -18.342 -66.422 0 c -18.342 18.341 -18.342 48.08 0 66.421 c 18.342 18.342 48.08 18.342 66.422 0 C 98.521 61.837 98.521 32.099 80.179 13.758 z M 44.144 83.117 c -4.057 0 -7.001 -3.071 -7.001 -7.305 c 0 -4.291 2.987 -7.404 7.102 -7.404 c 4.123 0 7.001 3.044 7.001 7.404 C 51.246 80.113 48.326 83.117 44.144 83.117 z M 54.73 44.921 c -4.15 4.905 -5.796 9.117 -5.503 14.088 l 0.097 2.495 c 0.011 0.062 0.017 0.125 0.017 0.188 c 0 0.58 -0.47 1.051 -1.05 1.051 c -0.004 -0.001 -0.008 -0.001 -0.012 0 h -7.867 c -0.549 0 -1.005 -0.423 -1.047 -0.97 l -0.202 -2.623 c -0.676 -6.082 1.508 -12.218 6.494 -18.202 c 4.319 -5.087 6.816 -8.865 6.816 -13.145 c 0 -4.829 -3.036 -7.536 -8.548 -7.624 c -3.403 0 -7.242 1.171 -9.534 2.913 c -0.264 0.201 -0.607 0.264 -0.925 0.173 s -0.575 -0.327 -0.693 -0.636 l -2.42 -6.354 c -0.169 -0.442 -0.02 -0.943 0.364 -1.224 c 3.538 -2.573 9.441 -4.235 15.041 -4.235 c 12.36 0 17.894 7.975 17.894 15.877 C 63.652 33.765 59.785 38.919 54.73 44.921 z" FillRule="Nonzero"/>
                         </GeometryDrawing.Geometry>
                     </GeometryDrawing>
                 </DrawingGroup>
             </DrawingGroup>
-            <DrawingImage Drawing="{StaticResource question_mark_in_a_circle_svgrepo_com_xaml}" x:Key="HintIcon"/>
+            <DrawingImage Drawing="{DynamicResource question_mark_in_a_circle_svgrepo_com_xaml}" x:Key="HintIcon"/>
         </ResourceDictionary>
 
     </Page.Resources>
 
     <Grid>
 
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <Label Content="Profile settings" Style="{StaticResource HeaderStyleN}" FontSize="40" Margin="377,42,377,687"/>
+                <Label Content="{ns:Loc ProfileSettings}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="377,42,377,687"/>
                 <Grid Margin="10,168,-10,471">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="115*"/>
                         <ColumnDefinition Width="97*"/>
                     </Grid.ColumnDefinitions>
 
-                    <!--<Button Content="Close forum"  Style="{StaticResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, 50, 0, 0" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>-->
+                    <!--<Button Content="Close forum"  Style="{DynamicResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, 50, 0, 0" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>-->
 
                 </Grid>
-                <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="265,136,265,248">
+                <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="265,136,265,248" Background="{DynamicResource BorderBackground}">
                     <Grid>
-                        <Label Foreground="{StaticResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="158,0,159,356">Change username</Label>
-                        <Label Foreground="{StaticResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="160,152,159,207">Change password</Label>
-                        <Label Content="Old password " Margin="78,194,304,157" FontSize="20"/>
+                        <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="158,0,159,356" Content="{ns:Loc UsernameChange}"></Label>
+                        <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="160,152,159,207" Content="{ns:Loc PasswordChange}"></Label>
+                        <Label Content="{ns:Loc OldPass}" Margin="78,194,304,157" FontSize="20"/>
                         <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
-                        <Label Content="New password" FontSize="20" HorizontalAlignment="Left" Margin="80,233,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="43" Width="141">
+                        <Label Content="{ns:Loc NewPass}" FontSize="20" HorizontalAlignment="Left" Margin="80,233,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="43" Width="141">
                             <Label.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1"/>
@@ -59,21 +60,21 @@
                                 </TransformGroup>
                             </Label.RenderTransform>
                         </Label>
-                        <Label Content="Confirm new password " Margin="43,276,259,75" FontSize="20"/>
-                        <Label Content="New username " Margin="110,57,272,294" FontSize="20"/>
-                        <TextBox x:Name="newUsername" Height="30" Width="200" Margin="280,62,46,309"/>
-                        <Label Content="Password " Margin="110,102,274,249" FontSize="20"/>
-                        <TextBox x:Name="passwordCheck" Height="30" Width="200" Margin="280,107,46,264"/>
-                        <TextBox x:Name="oldPassword" Height="30" Width="200" Margin="280,198,46,173"/>
-                        <TextBox x:Name="newPassword" Height="30" Width="200" Margin="280,240,46,131"/>
-                        <TextBox x:Name="confirmNewPassword" Height="30" Width="200" Margin="280,286,46,85"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc ConfirmPass}" Margin="43,276,259,75" FontSize="20"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc NewUser}" Margin="110,57,272,294" FontSize="20"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="newUsername" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,62,46,309"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Password}" Margin="110,102,274,249" FontSize="20"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="passwordCheck" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,107,46,264"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="oldPassword" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,198,46,173"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="newPassword" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,240,46,131"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="confirmNewPassword" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,286,46,85"/>
                         <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
                     </Grid>
 
 
                 </Border>
 
-                <Button Content="Save changes" Command="{Binding Path=SaveCommand}" Style="{StaticResource ButtonStyleN}" FontSize="23" Margin="440,602,440,137"/>
+                <Button Content="{ns:Loc Save}" Command="{Binding Path=SaveCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="440,602,440,137"/>
 
 
             </Grid>

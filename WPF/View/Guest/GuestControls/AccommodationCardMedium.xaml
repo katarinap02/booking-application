@@ -123,13 +123,13 @@
 
     </UserControl.Resources>
     <Grid>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Width="570" Height="120">
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="{DynamicResource BorderBackground}" Width="570" Height="120">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="157,0,88,0" Grid.Row="1" FontWeight="Bold" Foreground="{StaticResource TextColorN}"/>
+                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="157,0,88,0" Grid.Row="1" FontWeight="Bold" Foreground="{StaticResource TextColorN}"/>
                 <Image Source="{StaticResource Location}" Height="20" Width="20" Margin="157,37,369,-23" Grid.Row="1"/>
                 <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="184,30,49,-28" Grid.Row="1" Foreground="{StaticResource TextColorN}"/>
 

@@ -4,9 +4,10 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.View"
+        xmlns:ns="clr-namespace:BookingApp"
         mc:Ignorable="d"
         Title="GuestWindow" Height="1080" Width="1920"
-        WindowStartupLocation="CenterScreen" Background="{StaticResource BackgroundColorN}">
+        WindowStartupLocation="CenterScreen" Background="{DynamicResource BackgroundColorN}">
 
     <Window.Resources>
         <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
@@ -29,41 +30,132 @@
                     </GeometryDrawing>
                 </DrawingGroup>
             </DrawingGroup>
-            <DrawingImage Drawing="{StaticResource notification_svgrepo_com_xaml}" x:Key="Bell"/>
+            <DrawingImage Drawing="{DynamicResource notification_svgrepo_com_xaml}" x:Key="Bell"/>
+            <DrawingGroup x:Key="drawing_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,210.0,297.0"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <DrawingGroup Transform="0.67059525,-0.29805428,0.23189009,0.86193329,-19.412086,115.80071" Opacity="0.6">
+                        <GeometryDrawing Brush="{DynamicResource AccentColorN2}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 91.2879 149.38 L 54.404 183.501 L 17.5201 217.621 L 6.41278 168.619 L -4.69448 119.616 L 43.2967 134.498 Z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                    <DrawingGroup Transform="0.01832821,-0.73362008,0.87809601,0.16015435,-104.98701,274.20738" Opacity="0.6">
+                        <GeometryDrawing Brush="LightBlue">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 91.2879 149.38 L 54.404 183.501 L 17.5201 217.621 L 6.41278 168.619 L -4.69448 119.616 L 43.2967 134.498 Z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                    <DrawingGroup Transform="0.9749315000602756,0.22250521384952018,-0.22250521384952018,0.9749315000602756,31.374440583529747,80.83975922242294" Opacity="0.6">
+                        <GeometryDrawing Brush="{DynamicResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 91.2879 149.38 L 54.404 183.501 L 17.5201 217.621 L 6.41278 168.619 L -4.69448 119.616 L 43.2967 134.498 Z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                    <DrawingGroup Transform="0.46379036,0.03165359,-0.10141423,1.4986157,14.350994,-101.50557" Opacity="0.6">
+                        <GeometryDrawing Brush="LightBlue">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 91.2879 149.38 L 54.404 183.501 L 17.5201 217.621 L 6.41278 168.619 L -4.69448 119.616 L 43.2967 134.498 Z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource drawing_xaml}" x:Key="BackgroundDrawing"/>
+            <DrawingGroup x:Key="drawing2_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,210.0,297.0"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <DrawingGroup Transform="-0.66851423,0.30269302,-0.23785602,-0.86030607,229.69299,181.60951" Opacity="0.6">
+                        <GeometryDrawing Brush="{DynamicResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 91.2879 149.38 L 54.404 183.501 L 17.5201 217.621 L 6.41278 168.619 L -4.69448 119.616 L 43.2967 134.498 Z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                    <DrawingGroup Transform="-0.02464408,0.73905448,-0.92030431,-0.16863737,319.35653,24.460107" Opacity="0.6">
+                        <GeometryDrawing Brush="LightBlue">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 91.2879 149.38 L 54.404 183.501 L 17.5201 217.621 L 6.41278 168.619 L -4.69448 119.616 L 43.2967 134.498 Z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                    <DrawingGroup Transform="-0.9764496590730682,-0.21574536680097842,0.21574536680097842,-0.9764496590730682,179.14992102611498,216.92144186991555" Opacity="0.6">
+                        <GeometryDrawing Brush="{DynamicResource AccentColorN2}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 91.2879 149.38 L 54.404 183.501 L 17.5201 217.621 L 6.41278 168.619 L -4.69448 119.616 L 43.2967 134.498 Z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource drawing2_xaml}" x:Key="BackgroundDrawing2"/>
         </ResourceDictionary>
 
 
     </Window.Resources>
 
     <Grid>
+        <Image Source="{DynamicResource BackgroundDrawing}" Margin="-770,107,770,0"/>
+        <Image Source="{DynamicResource BackgroundDrawing2}" Margin="1134,718,-444,-23" RenderTransformOrigin="0.5,0.5">
+            <Image.RenderTransform>
+                <TransformGroup>
+                    <ScaleTransform/>
+                    <SkewTransform/>
+                    <RotateTransform Angle="90.351"/>
+                    <TranslateTransform/>
+                </TransformGroup>
+            </Image.RenderTransform>
+        </Image>
+
         <Viewbox Stretch="Uniform">
             <Grid Margin="10,0,0,0">
-                <Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="1929" Fill="{StaticResource AccentColorN}" Margin="-9,0,0,0"/>
+                <!--<Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="1929" Fill="{DynamicResource AccentColorN}" Margin="-9,0,0,0"/>-->
+                <Border Height="50" BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" Background="{DynamicResource AccentColorN}" Margin="-10,-9,0,991">
+                    <Grid>
+                        <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
 
-                <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
-                    <Button x:Name="HomeButton" Content="Home" Width="150" Style="{StaticResource ButtonStyleN}" Click="HomeClick"/>
-                    <Button Content="Profile" Width="150" Style="{StaticResource ButtonStyleN}" Click="ProfileClick"/>
-                    <Button Content="Accommodations" Width="280" Style="{StaticResource ButtonStyleN}" Click="AccommodationsClick"/>
-                    <Button Content="Forums" Width="150" Style="{StaticResource ButtonStyleN}" Click="ForumsClick"/>
-                    <Button Content="About" Width="150" Style="{StaticResource ButtonStyleN}" Click="AboutClick"/>
-                    <Button Content="Help" Width="150" Style="{StaticResource ButtonStyleN}" Click="HelpClick"/>
+                            <Button x:Name="HomeButton" Content="{ns:Loc Home}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HomeClick"/>
+                            <Button Content="{ns:Loc Profile}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="ProfileClick"/>
+                            <Button Content="{ns:Loc Accommodations}" Width="280" Style="{DynamicResource ButtonStyleN}" Click="AccommodationsClick"/>
+                            <Button Content="{ns:Loc Forums}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="ForumsClick"/>
+                            <Button Content="{ns:Loc About}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="AboutClick"/>
+                            <Button Content="{ns:Loc Help}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HelpClick"/>
 
-                </StackPanel>
+                        </StackPanel>
+                        <Button Content="Lang" Style="{DynamicResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1538,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105" Command ="{Binding SwitchLanguageCommand}"/>
+                        <Button Content="Log out" Style="{DynamicResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1813,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105" Click="LogOut_Click"/>
+                        <ToggleButton x:Name="themeButton" FontSize="20" Checked="ThemeToggleButton_Checked" Unchecked="ThemeToggleButton_Unchecked" Height="45" Background="{DynamicResource AccentColorN}" Margin="1627,1,221,0">
+                            <ToggleButton.Content>
+                                <Label Foreground="White">Theme</Label>
+                            </ToggleButton.Content>
+                        </ToggleButton>
+
+                        <ToggleButton x:Name="notificationsButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Width="45" Height="45" Background="{DynamicResource AccentColorN}" Margin="1733,-1,147,2">
+                            <ToggleButton.Content>
+                                <Image Source="{DynamicResource Bell}" Height="30" Width="30"/>
+                            </ToggleButton.Content>
+                        </ToggleButton>
+                    </Grid>
+
+                </Border>
+
                 <Frame x:Name="Main" Height="990" Width="1920" Margin="0,55,0,-21" NavigationUIVisibility="Hidden"/>
                 <!--<Frame x:Name="Profile" Width="1090" Height="820" Margin="669,85,161,85" NavigationUIVisibility="Hidden"></Frame>-->
-                <Frame x:Name="NotificationFrame" Margin="1605,23,-10,559" Height="450" Width="320" NavigationUIVisibility="Hidden"/>
+                <Frame x:Name="NotificationFrame" Margin="1600,41,0,541" Height="450" Width="320" NavigationUIVisibility="Hidden"/>
                 <!--<Button Content="Dark theme" HorizontalAlignment="Left" Margin="1215,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="DarkTheme_Click"/>-->
                 <!--<Button Content="Light theme" HorizontalAlignment="Left" Margin="1362,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="LightTheme_Click"/>-->
-                <Button Content="Log out" Style="{StaticResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1791,7,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105" Click="LogOut_Click"/>
-                <ToggleButton x:Name="notificationsButton" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked" Width="45" Height="45" Background="{StaticResource AccentColorN}" Margin="1722,5,152,982">
-                    <ToggleButton.Content>
-                        <Image Source="{StaticResource Bell}" Height="30" Width="30"/>
-                    </ToggleButton.Content>
-                </ToggleButton>
+
             </Grid>
         </Viewbox>
-        
-       
+
+
     </Grid>
 
 </Window>

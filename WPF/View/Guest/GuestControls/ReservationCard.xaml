@@ -122,19 +122,19 @@
 
     </UserControl.Resources>
     <Grid>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Width="980" Height="103">
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="{DynamicResource BorderBackground}" Width="980" Height="103">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="179,0,504,27" FontWeight="Bold"/>
+                <TextBlock x:Name="AccommodationName" Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="20" Text="{Binding Name}" Margin="179,0,504,27" FontWeight="Bold"/>
                 <Image Source="{StaticResource Location}" Height="15" Width="20" Margin="473,-10,473,56"/>
 
-                <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="494,0,-24,27"/>
+                <TextBlock x:Name="Location" FontWeight="Bold" FontSize="20" Style="{DynamicResource TextBlockHeaderStyleN}" Text="{Binding Location}" Margin="494,0,-24,27"/>
                 <Image Source="{StaticResource Calendar}" Height="20" Width="20" Margin="259,43,677,16" RenderTransformOrigin="0.216,0.377"/>
 
-                <TextBlock x:Name="ReservationDate" FontSize="20" Text="{Binding DateRangeString}" Margin="290,43,115,16" Grid.RowSpan="2"/>
+                <TextBlock x:Name="ReservationDate" Foreground="{DynamicResource TextColorN}" FontSize="20" Text="{Binding DateRangeString}" Margin="290,43,115,16" Grid.RowSpan="2"/>
                 <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Width="100" Height="70"  Margin="10,0,846,21" Grid.RowSpan="2">
                     <Grid>
                         <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="100" Height="80" Source="{Binding FirstPicture}"/>

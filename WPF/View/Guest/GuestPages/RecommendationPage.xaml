@@ -5,6 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestPages"
             xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
+      xmlns:ns="clr-namespace:BookingApp"
       mc:Ignorable="d" 
       d:DesignHeight="798" d:DesignWidth="1085"
       Title="RateAccommodationForm">
@@ -21,51 +22,51 @@
                 </GeometryDrawing>
             </DrawingGroup>
         </DrawingGroup>
-        <DrawingImage Drawing="{StaticResource exclamation_mark_svgrepo_com_xaml}" x:Key="Warning"/>
+        <DrawingImage Drawing="{DynamicResource exclamation_mark_svgrepo_com_xaml}" x:Key="Warning"/>
     </Page.Resources>
 
     <Grid>
         <Grid>
 
 
-            <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,549,5">
+            <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,549,5">
                 <Grid>
-                    <Button Content="Back" Style="{StaticResource ButtonStyleN}" FontSize="16" Width="60" Height="25" Margin="10,10,452,754" Command="{Binding BackCommand}"/>
+                    <Button Content="Back" Style="{DynamicResource ButtonStyleN}" FontSize="16" Width="60" Height="25" Margin="10,10,452,754" Command="{Binding BackCommand}"/>
 
-                    <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="23,75,25,558">It is necessary to fill in information about what should be renovated. After that, choose the level of urgency.</TextBlock>
-                    <Label Content="Accommodation" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="136,434,-136,312"/>
-                    <Label Content="Host" FontSize="28" Style="{StaticResource HeaderStyleN}" Margin="218,648,218,98"/>
-                    <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15">
-                        <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{StaticResource HeaderStyleN}" Margin="59,-2,63,2"/>
+                    <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc RecommendDesc}" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="23,75,25,558"></TextBlock>
+                    <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="136,434,-136,312"/>
+                    <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="218,648,218,98"/>
+                    <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
+                        <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="59,-2,63,2"/>
                     </Border>
 
                     <controls:AccommodationCardSmaller DataContext="{Binding SelectedAccommodation}" Width="500" Margin="11,168,11,-168"></controls:AccommodationCardSmaller>
                 </Grid>
             </Border>
-            <Border Width="526" Height="517" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="White" CornerRadius="15" Margin="549,1,10,280">
+            <Border Width="526" Height="517" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="549,1,10,280">
 
                 <Grid>
-                    <Label Content="Recommendation:" FontSize="20" HorizontalAlignment="Left" Margin="44,37,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="177" Margin="44,79,0,0"/>
-                    <Button FontSize="15" Content="Save" HorizontalAlignment="Left" Margin="367,454,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{StaticResource ButtonStyleN}" Command="{Binding SaveRateCommand}"/>
-                    <Label Content="Urgency level:" FontSize="20" HorizontalAlignment="Left" Margin="44,276,0,0" VerticalAlignment="Top"/>
+                    <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Recommendation}" FontSize="20" HorizontalAlignment="Left" Margin="44,37,0,0" VerticalAlignment="Top"/>
+                    <TextBox Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}" HorizontalAlignment="Left" TextWrapping="Wrap" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="177" Margin="44,79,0,0"/>
+                    <Button FontSize="15" Content="{ns:Loc Save}" HorizontalAlignment="Left" Margin="367,454,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{DynamicResource ButtonStyleN}" Command="{Binding SaveRateCommand}"/>
+                    <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Level}" FontSize="20" HorizontalAlignment="Left" Margin="44,276,0,0" VerticalAlignment="Top"/>
 
                     <ComboBox x:Name="levelComboBox" Height="40" Width="450" Margin="36,318,36,155" SelectedValuePath="Tag" SelectedValue="{Binding Recommendation.Level, Mode=TwoWay}">
-                        <ComboBoxItem Content="Level 1 - It would be nice to renovate some small things, but everything works fine without it." Tag="LEVEL1"></ComboBoxItem>
-                        <ComboBoxItem Content="Level 2 - There are minor complaints about the accommodation which, if addressed, would make it perfect." Tag="LEVEL2"></ComboBoxItem>
-                        <ComboBoxItem Content="Level 3 - Several things that really bothered should be renovated." Tag="LEVEL3"></ComboBoxItem>
-                        <ComboBoxItem Content="Level 4 - There are many bad things and renovation is really necessary." Tag="LEVEL4"></ComboBoxItem>
-                        <ComboBoxItem Content="Level 5 - The accommodation is in very bad condition and it's not worth renting it at all unless it's renovated." Tag="LEVEL5"></ComboBoxItem>
+                        <ComboBoxItem Content="{ns:Loc Level1}" Tag="LEVEL1"></ComboBoxItem>
+                        <ComboBoxItem Content="{ns:Loc Level2}" Tag="LEVEL2"></ComboBoxItem>
+                        <ComboBoxItem Content="{ns:Loc Level3}" Tag="LEVEL3"></ComboBoxItem>
+                        <ComboBoxItem Content="{ns:Loc Level4}" Tag="LEVEL4"></ComboBoxItem>
+                        <ComboBoxItem Content="{ns:Loc Level5}" Tag="LEVEL5"></ComboBoxItem>
                     </ComboBox>
                     <TextBlock x:Name="commentValidator" FontSize="12" Foreground="red" Margin="44,255,66,237">
-                     
+
 
                         <TextBlock.Inlines>
                             <InlineUIContainer>
-                                <Image Source="{StaticResource Warning}" Width="16" Height="12" Margin="2,0,0,0"/>
+                                <Image Source="{DynamicResource Warning}" Width="16" Height="12" Margin="2,0,0,0"/>
                             </InlineUIContainer>
-                            <Run Text="Comment field can't be empty."/>
-                            
+                            <Run Text="{ns:Loc CommentValid}"/>
+
                         </TextBlock.Inlines>
 
 
