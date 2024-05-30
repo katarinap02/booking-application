@@ -116,6 +116,37 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private int reports;
+        public int Reports
+        {
+            get { return reports; }
+            set
+            {
+                if (reports != value)
+                {
+                    reports = value;
+                    OnPropertyChanged("Reports");
+                }
+            }
+        }
+
+        private bool isReported;
+        public bool IsReported
+        {
+            get { return isReported; }
+            set
+            {
+                if (isReported != value)
+                {
+                    isReported = value;
+                    OnPropertyChanged("IsReported");
+                }
+            }
+
+        }
+
+
+
         public ForumService forumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
         public string DateString => Date.ToString("MM/dd/yyyy");
         public String Location => forumService.GetById(ForumId).City + ", "+ forumService.GetById(ForumId).Country;
@@ -142,11 +173,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             isHost = forumComment.IsHost;
             date = forumComment.Date;
             forumId = forumComment.ForumId;
+            reports = forumComment.Reports;
+            isReported = forumComment.IsReported;
         }
 
         public ForumComment ToForum()
         {
-            ForumComment f = new ForumComment(userId, comment, isSpecial, isHost, date, forumId);
+            ForumComment f = new ForumComment(userId, comment, isSpecial, isHost, date, forumId, reports, isReported);
             f.Id = id;
 
             return f;

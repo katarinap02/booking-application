@@ -5,10 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
       xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
-      xmlns:local="clr-namespace:BookingApp.WPF.View.HostPages"
+      xmlns:local="clr-namespace:BookingApp.WPF.View.HostPages"  xmlns:BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands="clr-namespace:BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="ForumCommentPage">
+
+    <Page.Resources>
+        <BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands:BooleanButtonConverter x:Key="BooleanButtonConverter"/>
+    </Page.Resources>
 
     <Grid>
         <Grid.Background>
@@ -35,14 +39,14 @@
             </TextBlock>
         </StackPanel>
 
-        <ComboBox x:Name="LocationComboBox" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0, 80, 0" SelectedValuePath="Tag" Width="120" Height="30" Style="{StaticResource ComboBoxStyleHost}" SelectedValue="{Binding SelectedLocation, UpdateSourceTrigger=PropertyChanged}" >
+        <ComboBox x:Name="LocationComboBox" HorizontalAlignment="Left" VerticalAlignment="Bottom" Margin="107,0, 0, 0" SelectedValuePath="Tag" Width="120" Height="30" Style="{StaticResource ComboBoxStyleHost}" SelectedValue="{Binding SelectedReport, UpdateSourceTrigger=PropertyChanged}" >
             <i:Interaction.Triggers>
                 <i:EventTrigger EventName="SelectionChanged">
-                    <cmd:EventToCommand Command="{Binding SelectCityCommand}" PassEventArgsToCommand="True"/>
+                    <cmd:EventToCommand Command="{Binding ForumCommand}" PassEventArgsToCommand="True"/>
                 </i:EventTrigger>
             </i:Interaction.Triggers>
             <ComboBoxItem x:Name="Item0" Content="To report"  Tag="Report"></ComboBoxItem>
-            <ComboBoxItem x:Name="ItemAll" Content="All locations" Tag="All"></ComboBoxItem>
+            <ComboBoxItem x:Name="ItemAll" Content="All" Tag="All"></ComboBoxItem>
 
         </ComboBox>
 
@@ -131,24 +135,34 @@ SelectionMode="Single">
                                 Margin="20 10 0 0"
                                 VerticalAlignment="Center" TextWrapping="Wrap" Text="{Binding Comment}" Style="{StaticResource TextBlockHost}" FontSize="20" >
                             </TextBlock>
-                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15 0 30 5">
+                            <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="15 0 40 5">
                                 <Label Content="location:" FontSize="13"  />
                                 <TextBlock FontWeight="Bold" Width="Auto"
                                  Margin="5,0,0,0"
                                  Text="{Binding Location}" 
                                  VerticalAlignment="Center"/>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" Margin="15 0 0 0">
+                            <StackPanel Orientation="Horizontal" Grid.Row="4" VerticalAlignment="Center" HorizontalAlignment="Right" Grid.Column="1" Margin="15 0 3 0">
                                 <Label Content="reports:" FontSize="13" />
                                 <TextBlock FontWeight="Bold" Width="Auto"
-                                Margin="5,0,0,0"
-                                Text="{Binding Correctness}" 
-                                VerticalAlignment="Center"/>
-                            
-                            <Button Content="Report" Grid.Column="1" Width="75" Height="29" Grid.Row="3"  VerticalAlignment="Center"
-                                   Style="{StaticResource ButtonStyleHost}" Margin="10 0 30 10">
+                                Margin="5,7,10,0"
+                                Text="{Binding Reports}" 
+                                />
 
-                            </Button>
+                                <Button Content="Report" Grid.Column="1" Width="75" Height="29" Grid.Row="3" VerticalAlignment="Center"
+                                     Margin="10 0 30 10">
+                                    <Button.Style>
+                                        <Style TargetType="Button" BasedOn="{StaticResource ButtonStyleHost}">
+                                            <Setter Property="IsEnabled" Value="True" />
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding IsSpecial, Converter={StaticResource BooleanButtonConverter}}" Value="False">
+                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </Button.Style>
+
+                                </Button>
                             </StackPanel>
                         </Grid>
                     </Border>
