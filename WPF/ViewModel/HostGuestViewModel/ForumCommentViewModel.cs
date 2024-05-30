@@ -87,6 +87,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
         }
 
+        private bool isUnabled;
+        public bool IsUnabled
+        {
+            get { return isUnabled; }
+            set
+            {
+                if (isUnabled != value)
+                {
+                    isUnabled = value;
+                    OnPropertyChanged("IsUnabled");
+                }
+            }
+
+        }
+
         private DateTime date;
         public DateTime Date
         {
@@ -175,6 +190,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             forumId = forumComment.ForumId;
             reports = forumComment.Reports;
             isReported = forumComment.IsReported;
+            if(forumComment.IsSpecial || forumComment.IsReported) {
+                isUnabled = true;
+            }
+            else
+            {
+                isUnabled = false;
+            }
         }
 
         public ForumComment ToForum()

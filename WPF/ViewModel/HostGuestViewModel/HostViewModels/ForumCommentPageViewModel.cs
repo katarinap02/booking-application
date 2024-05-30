@@ -50,6 +50,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public MyICommand ForumCommand { get; set; }
 
+        public MyICommand<ForumCommentViewModel> ReportCommand { get; set; }
+
         public ForumCommentPageViewModel(User user, NavigationService navService, ForumViewModel forum) {
             NavService = navService;
             User = user;
@@ -57,9 +59,16 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             SelectedReport = "All";
             ToReport = false;
             ForumCommand = new MyICommand(SortByReport);
+            ReportCommand = new MyICommand<ForumCommentViewModel>(ReportComment);
             forumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             Forums = new ObservableCollection<ForumCommentViewModel>();
             forumCommentService = new ForumCommentService(Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+            Update();
+        }
+
+        private void ReportComment(ForumCommentViewModel model)
+        {
+            forumCommentService.ReportCommentById(model.Id);
             Update();
         }
 
@@ -70,9 +79,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             {
                 if(forum.ForumId == ForumViewModel.Id)
                 {
-                    if(!ToReport || !forum.IsSpecial)
+                    ForumCommentViewModel forumVm = new ForumCommentViewModel(forum);
+                    if(!ToReport || !forumVm.IsUnabled)
                     {
-                        Forums.Add(new ForumCommentViewModel(forum));
+                        Forums.Add(forumVm);
                     }
                     
                 }

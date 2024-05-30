@@ -85,5 +85,19 @@ namespace BookingApp.Application.Services.FeatureServices
             }
             return false;
         }
+
+        public void ReportCommentById(int id)
+        {
+            foreach(ForumComment fc in GetAll())
+            {
+                if(fc.Id == id)
+                {
+                    fc.IsReported = true;
+                    fc.Reports = fc.Reports + 1;
+                }
+                Update(fc);
+            }
+            
+        }
     }
 }
