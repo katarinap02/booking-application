@@ -23,7 +23,9 @@
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="105" />
+            <RowDefinition Height="50"/>
             <RowDefinition Height="*" />
+            <RowDefinition Height="115"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
 
@@ -49,10 +51,13 @@
             <ComboBoxItem x:Name="ItemAll" Content="All" Tag="All"></ComboBoxItem>
 
         </ComboBox>
+        <TextBlock Grid.Row="1"  Margin="107,20, 0, 0" VerticalAlignment="Center" 
+         Text="{Binding ForumViewModel.FirstComment}" Style="{StaticResource TextBlockHost}" FontSize="20">
+        </TextBlock>
 
         <ListView
 x:Name="AccommodationsRateListView"
-Grid.Row="1"
+Grid.Row="2"
 Margin="15,10,0,20"
 Padding="0"
 Background="Transparent"
@@ -169,6 +174,9 @@ SelectionMode="Single">
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        <StackPanel Orientation="Horizontal">
+            
+        </StackPanel>
 
     </Grid>
 </Page>

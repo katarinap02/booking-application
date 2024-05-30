@@ -45,8 +45,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             XCommand = new MyICommand<string>(DeletePicture);
             if(acc != null)
             {
-                accommodationDTO.City = acc.City;
-                accommodationDTO.Country = acc.Country;
+                accommodationDTO.CountrySearch = acc.Country;
+                accommodationDTO.CitySearch = acc.City;
             }
             Update();
         }
