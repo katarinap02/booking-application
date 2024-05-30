@@ -18,6 +18,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -37,8 +38,11 @@ namespace BookingApp.View.TouristWindows
             Tour.initializeAllTours();
 
             Tour.RefreshAllToursDataGrid(false);
+            Messenger.Default.Register<NotificationMessage>(this, message =>
+            {
+                MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+            });
         }
-
         private void CanExecute(CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;

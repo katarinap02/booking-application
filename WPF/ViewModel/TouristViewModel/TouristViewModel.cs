@@ -112,6 +112,22 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
+        private bool _hasConqueredVoucher;
+        public bool HasConqueredVoucher
+        {
+            get
+            {
+                return _hasConqueredVoucher;
+            }
+            set
+            {
+                if (_hasConqueredVoucher != value)
+                {
+                    _hasConqueredVoucher = value;
+                    OnPropertyChanged(nameof(HasConqueredVoucher));
+                }
+            }
+        }
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
@@ -132,7 +148,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         public Tourist ToTourist()
         {
-            Tourist tourist = new Tourist(Id, Name, LastName, Age, UserName, Password);
+            Tourist tourist = new Tourist(Id, Name, LastName, Age, UserName, Password, HasConqueredVoucher);
             return tourist;
         }
     }

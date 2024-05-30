@@ -57,11 +57,15 @@ namespace BookingApp.Application.Services.ReservationServices
             return _tourReservationRepository.FindReservationsByUserIdAndTourId(tourId, userId);
         }
 
-        public List<Tour> FindMyTours(int touristId, string touristName, string touristLastName)
+        public List<Tour> FindMyTours(int touristId, string touristName, string touristLastName, bool isForVoucher)
         {
             List<TourReservation> tourReservations = _tourReservationRepository.FindReservationsByTouristId(touristId);
 
             List<Tour> tours = FindToursForTouristWhereHeJoined(tourReservations, touristName, touristLastName);
+            if (isForVoucher)
+            {
+                return tours; // if is for voucher i need all of he tours where he joined, not just finished ones
+            }
             return tours.FindAll(t => t.Status != TourStatus.Finnished);
         }
 

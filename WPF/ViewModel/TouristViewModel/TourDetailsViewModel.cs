@@ -179,7 +179,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                     });
                 })
                 .GeneratePdf($"{directoryPath}\\TourDetails_{maxNumber + 1}.pdf");
-            Messenger.Default.Send(new NotificationMessage($"A PDF is being created on path: Resources/PDFs/TourDetails_{maxNumber + 1}.pdf"));
+            Messenger.Default.Send(new NotificationMessage($"A PDF is created on path: Resources/PDFs/TourDetails_{maxNumber + 1}.pdf"));
         }
 
         private TourViewModel _selectedTour;

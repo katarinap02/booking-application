@@ -35,5 +35,19 @@ namespace BookingApp.Repository.FeatureRepository
             return _tourists.Find(t => t.Id == touristId);
         }
 
+        public void SetTouristConqueredVoucher(int touristId)
+        {
+            _tourists = GetAll();
+            Tourist t = _tourists.Find(t => t.Id == touristId);
+            t.HasConqueredVoucher = true;
+            _serializer.ToCSV(FilePath, _tourists);
+        }
+        public bool isTouristConqueredVoucher(int touristId)
+        {
+            _tourists = GetAll();
+            Tourist t = _tourists.Find(t => t.Id == touristId);
+            return t.HasConqueredVoucher;
+        }
+
     }
 }

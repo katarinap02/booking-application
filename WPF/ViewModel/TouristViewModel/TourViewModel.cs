@@ -618,7 +618,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         public void RefreshMyTours()
         {
             Tours.Clear();
-            List<TourViewModel> tours = ToTourViewModel(_tourService.FindMyTours(UserId));
+            List<TourViewModel> tours = ToTourViewModel(_tourService.FindMyTours(UserId, false));
             foreach (var tour in tours)
             {
                 Tours.Add(tour);
