@@ -30,7 +30,16 @@
           FontWeight="DemiBold"
           IsReadOnly="True"
           AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16"
-          Style="{StaticResource CoolDataGridStyle}">
+          Style="{StaticResource CoolDataGridStyleDetails}">
+            <DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Status}" Value="Invalid">
+                            <Setter Property="Background" Value="LightCoral"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.RowStyle>
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="*" />
                 <DataGridTextColumn Header="City" Binding="{Binding City}" Width="*"/>

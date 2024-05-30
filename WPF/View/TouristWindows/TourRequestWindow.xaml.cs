@@ -35,7 +35,10 @@ namespace BookingApp.WPF.View.TouristWindows
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
-                MessageBox.Show(message.Notification, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (this.IsActive)
+                {
+                    MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             });
             TourRequest.InitFrame("Basic");
         }

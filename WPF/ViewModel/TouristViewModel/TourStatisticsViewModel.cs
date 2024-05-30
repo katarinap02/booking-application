@@ -190,6 +190,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             RequestCountByLanguage = TourRequestService.GetRequestCountByLanguage(UserId);
             RequestCountByCity = TourRequestService.GetRequestCountByCity(UserId);
+
             UpdateChart();
             Years = new List<int> { 0 };
             int currentYear = DateTime.Now.Year;
@@ -208,7 +209,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         }
 
-        private void UpdateChart()
+        public void UpdateChart()
         {
             SeriesCollectionLanguage.Add(new LiveCharts.Wpf.ColumnSeries
             {

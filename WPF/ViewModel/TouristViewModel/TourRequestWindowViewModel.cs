@@ -39,6 +39,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         public RelayCommand AddParticipantCommand { get; set; }
 
+        public RelayCommand SaveToCsvCommand {  get; set; }
+
         Dictionary<string, List<string>> Errors = new Dictionary<string, List<string>>();
 
         private ICommand _addToToursCommand;
@@ -161,20 +163,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
-        private ICommand _saveToCsvCommand;
-        public ICommand SaveToCsvCommand
-        {
-            get
-            {
-                if (_saveToCsvCommand == null)
-                {
-                    _saveToCsvCommand = new RelayCommand(
-                        param => SaveToCsv(),
-                        param => true);
-                }
-                return _saveToCsvCommand;
-            }
-        }
         private void RemoveParticipant(object participant)
         {
             var participantViewModel = participant as TourParticipantViewModel;
@@ -374,6 +362,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         }
 
         private string _complexTourName;
+        [Required(ErrorMessage = "Tour name is Required")]
         public string ComplexTourName
         {
             get
@@ -382,6 +371,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
             set
             {
+                Validate(nameof(ComplexTourName), value);
                 if(_complexTourName != value)
                 {
                     _complexTourName = value;
@@ -703,6 +693,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
 
             AddParticipantCommand.RaiseCanExecuteChanged();
+            SaveToCsvCommand.RaiseCanExecuteChanged();
 
         }
         private bool CanAddParticipant(object obj)
@@ -731,7 +722,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             Age = 1;
         }
 
-        private void SaveToCsv()
+        private void SaveToCsv(object obj)
         {
             if (TourRequestType.Equals("Basic"))
             {
@@ -748,9 +739,20 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 TourRequest request = new TourRequest(UserId, Description, Language, participantIds,
                                                       SelectedStartDate, SelectedEndDate, City, Country);
                 _tourRequestService.SaveRequest(request);
+                Messenger.Default.Send(new NotificationMessage("Tour request successfully created!"));
             }
             else
             {
+                if(NumberOfTours != TourRequests.Count)
+                {
+                    Messenger.Default.Send(new NotificationMessage("Number of tours does not match the number of tours entered"));
+                    return;
+                }
+                if (string.IsNullOrEmpty(ComplexTourName))
+                {
+                    Messenger.Default.Send(new NotificationMessage("Name of the complex tour is required"));
+                    return;
+                }
                 List<int> requestIds = new List<int>();
                 foreach(TourRequestWindowViewModel tr in TourRequests)
                 {
@@ -763,7 +765,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 }
 
                 _tourRequestService.SaveComplexRequest(ToComplexTourRequest(this, requestIds));
-
+                Messenger.Default.Send(new NotificationMessage("Complex tour request successfully created!"));
             }
 
             Messenger.Default.Send(new CloseWindowMessage());
@@ -830,7 +832,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             LoadCountriesFromCSV();
             LoadLanguagesFromCSV();
-            
             if((TourRequests.Count == 0 && TourRequestType.Equals("Complex")) || TourRequestType.Equals("Basic"))
             {
                 SelectedStartDate = DateTime.Now.AddDays(3);
@@ -929,6 +930,13 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
             _requestedTourParticipantService = new RequestedTourParticipantService(Injector.Injector.CreateInstance<IRequestedTourParticipantRepository>());
 
+            AddParticipantCommand = new RelayCommand(ExecuteAddParticipant, CanAddParticipant);
+            SaveToCsvCommand = new RelayCommand(SaveToCsv);
+            Name = string.Empty;
+            LastName = string.Empty;
+            ComplexTourName = string.Empty;
+            NumberOfTours = 1;
+
             SelectedDates = new List<DateTime>();
             TourRequests = new ObservableCollection<TourRequestWindowViewModel>();
             Countries = new ObservableCollection<string>();
@@ -936,7 +944,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             Cities = new ObservableCollection<string>();
 
             SelectTourRequestType = new RelayCommand(ExecuteSelectTourRequestType);
-            AddParticipantCommand = new RelayCommand(ExecuteAddParticipant, CanAddParticipant);
             CloseWindowCommand = new RelayCommand(ExecuteCloseWindow);
 
             TourParticipantDTOs = new List<TourParticipantViewModel>();

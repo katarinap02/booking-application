@@ -32,6 +32,10 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             List<TourRequest> requests = new List<TourRequest>();
             List<int> tourRequestIds = _complexTourRequestRepository.GetAllTourRequests(complexId);
+            if(tourRequestIds == null)
+            {
+                return requests;
+            }
             if(tourRequestIds.Count == 0)
             {
                 return requests;
@@ -41,6 +45,16 @@ namespace BookingApp.Application.Services.FeatureServices
                 requests.Add(_tourRequestService.GetById(id));
             }
             return requests;
+        }
+
+        public List<ComplexTourRequest> GetAll()
+        {
+            return _complexTourRequestRepository.GetAll();
+        }
+
+        public void UpdateComplexRequest(ComplexTourRequest complexTourRequest)
+        {
+            _complexTourRequestRepository.UpdateRequest(complexTourRequest);
         }
     }
 }

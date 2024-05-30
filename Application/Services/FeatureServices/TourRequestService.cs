@@ -352,13 +352,58 @@ namespace BookingApp.Application.Services.FeatureServices
         }
         public void UpdateTourRequests()
         {
+            // update basic tour requests
+            UpdateBasicTourReqeust();
+
+            // update complex tour requests
+            UpdateComplexTourRequest();
+        }
+
+        private void UpdateBasicTourReqeust()
+        {
             List<TourRequest> tourRequests = _tourRequestRepository.GetAll();
-            foreach(TourRequest request in tourRequests)
+            if(tourRequests.Count == 0 )
             {
-                if(request.Status != TourRequestStatus.Accepted && DateTime.Now >= request.StartDate.AddHours(-48))
+                return;
+            }
+            foreach (TourRequest request in tourRequests)
+            {
+                if (request.Status == TourRequestStatus.Pending && DateTime.Now >= request.StartDate.AddHours(-48))
                 {
                     request.Status = TourRequestStatus.Invalid;
                     _tourRequestRepository.UpdateRequest(request);
+                }
+            }
+        }
+
+        private void UpdateComplexTourRequest()
+        {
+            List<ComplexTourRequest> complexTourRequests = _complexTourRequestService.GetAll();
+            if(complexTourRequests.Count == 0)
+            {
+                return;
+            }
+            foreach (ComplexTourRequest complexTourRequest in complexTourRequests)
+            {
+                List<TourRequest> basicRequests = _complexTourRequestService.GetTourRequestsByComplexId(complexTourRequest.Id);
+                if(basicRequests.Count == 0)
+                {
+                    continue;
+                }
+
+                DateTime MinStartDate = basicRequests[0].StartDate;
+
+                foreach (TourRequest basicRequest in basicRequests)
+                {
+                    if (basicRequest.StartDate < MinStartDate)
+                    {
+                        MinStartDate = basicRequest.StartDate;
+                    }
+                }
+                if (complexTourRequest.Status == ComplexTourRequestStatus.Pending && DateTime.Now >= MinStartDate.AddHours(-48))
+                {
+                    complexTourRequest.Status = ComplexTourRequestStatus.Invalid;
+                    _complexTourRequestService.UpdateComplexRequest(complexTourRequest);
                 }
             }
         }

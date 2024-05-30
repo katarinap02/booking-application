@@ -58,5 +58,15 @@ namespace BookingApp.Repository.FeatureRepository
             _complexTourRequests = GetAll();
             return _complexTourRequests.Find(r => r.Id == complexId).TourRequests;
         }
+
+        public void UpdateRequest(ComplexTourRequest request)
+        {
+            _complexTourRequests = GetAll();
+            ComplexTourRequest current = _complexTourRequests.Find(x => x.Id == request.Id);
+            int index = _complexTourRequests.IndexOf(current);
+            _complexTourRequests.Remove(current);
+            _complexTourRequests.Insert(index, request);
+            _serializer.ToCSV(FilePath, _complexTourRequests);
+        }
     }
 }

@@ -16,5 +16,6 @@ namespace BookingApp.Domain.RepositoryInterfaces.Features
         ComplexTourRequest GetById(int id);
         List<ComplexTourRequest> GetAllById(int touristId);
         List<int> GetAllTourRequests(int complexId);
+        void UpdateRequest(ComplexTourRequest request);
     }
 }

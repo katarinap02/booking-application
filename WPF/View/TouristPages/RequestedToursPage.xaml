@@ -84,7 +84,7 @@
                           AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="16">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="Name" Binding="{Binding ComplexTourName}" Width="2*"/>
-                        <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="*"/>
+                        <DataGridTextColumn Header="Status" Binding="{Binding ComplexStatus}" Width="*"/>
                         <DataGridTemplateColumn>
                             <DataGridTemplateColumn.CellTemplate>
                                 <DataTemplate>

@@ -683,7 +683,28 @@
             </Setter.Value>
         </Setter>
     </Style>
-    
+    <Style x:Key="CoolDataGridStyleDetails" TargetType="DataGrid">
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="HorizontalAlignment" Value="Stretch" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="ColumnHeaderStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridColumnHeader">
+                    <Setter Property="Background" Value="#40282D"/>
+                    <Setter Property="Foreground" Value="WhiteSmoke"/>
+                    <Setter Property="FontWeight" Value="Bold"/>
+                </Style>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="CellStyle">
+            <Setter.Value>
+                <Style TargetType="DataGridCell">
+                    <Setter Property="VerticalContentAlignment" Value="Center" />
+                </Style>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
     <Style x:Key="CoolDataGridStyle" TargetType="DataGrid">
         <Setter Property="AlternatingRowBackground" Value="#E8E6A5" />
         <Setter Property="AutoGenerateColumns" Value="False" />

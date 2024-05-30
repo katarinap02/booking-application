@@ -4,10 +4,12 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:BookingApp.WPF.View.TouristPages" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+              xmlns:local1="clr-namespace:BookingApp.WPF.View.TouristWindows"
       mc:Ignorable="d" 
       d:DesignHeight="580" d:DesignWidth="900"
       Title="ComplexTourRequestPage">
     <Page.Resources>
+        <local1:ValidationErrorsConverter x:Key="ValidationErrorsConverter"/>
         <Style x:Key="BasicLabels" TargetType="Label">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Medium"/>
@@ -24,7 +26,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="60"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="20"/>
@@ -34,17 +36,19 @@
         <Label Content="Number of tours:"
                Grid.Column="1"
                Grid.Row="2"
-               Style="{StaticResource BasicLabels}"
-               VerticalAlignment="Center"></Label>
+               VerticalAlignment="Bottom"
+               Style="{StaticResource BasicLabels}"/>
         <xctk:IntegerUpDown x:Name="NumberOfTours"
                             Text="{Binding NumberOfTours, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                             Grid.Row="2"
                             Grid.Column="2"
                             Increment="1"
                             Minimum="1"
+                            Maximum="100"
                             DefaultValue="1"
                             TextAlignment="Justify"
                             HorizontalAlignment="Left"
+                            VerticalAlignment="Bottom"
                             Width="80"
                             Height="35"
                             FontSize="20"
@@ -60,9 +64,21 @@
                  Grid.Row="1"
                  Grid.ColumnSpan="2"
                  HorizontalAlignment="Left"
-                 Width="120"
+                 Width="320"
                  FontSize="20"
-                 Height="35"/>
+                 Height="35"
+                 MaxLength="50"/>
+
+        <Label Content="{Binding ElementName=NameTextBox, Path=(Validation.Errors).Count, Converter={StaticResource ValidationErrorsConverter}, ConverterParameter={x:Reference NameTextBox} }"
+                Foreground="Red"
+                FontWeight="DemiBold"
+                Grid.Row="1"
+                Grid.RowSpan="2"
+                Grid.Column="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Left"
+                FontSize="12" Grid.ColumnSpan="3"/>
+
         <Button Style="{StaticResource EnlargeButtonStyle1}"
                 Grid.Row="4"
                 Grid.Column="1"

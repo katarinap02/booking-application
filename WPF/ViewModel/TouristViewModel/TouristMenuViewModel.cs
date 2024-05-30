@@ -20,6 +20,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
     public class TouristMenuViewModel : INotifyPropertyChanged
     {
         public UserService _userService { get; set; }
+        public VoucherService _voucherService { get; set; }
 
         public ICommand LogoutCommand { get; set; }
 
@@ -196,11 +197,14 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             // initializing tour requests
             _userService.UpdateTourRequests();
+
+            _voucherService.RefreshVouchers();
         }
 
         public TouristMenuViewModel()
         {
             _userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
+            _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
 
             LogoutCommand = new RelayCommand(ExecuteLogoutCommand);
 

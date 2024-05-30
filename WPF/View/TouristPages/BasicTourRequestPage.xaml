@@ -92,6 +92,8 @@
          Grid.RowSpan="2"
          Grid.Row="3"
          Height="78"
+         TextWrapping="Wrap"
+         MaxLength="200"
          Text="{Binding Description, Mode=TwoWay}"
          VerticalAlignment="Top"
          Margin="0, 6, 0, 0"></TextBox>
@@ -121,6 +123,7 @@
                     Grid.Column="2"
                     Increment="1"
                     Minimum="1"
+                    Maximum="200"
                     DefaultValue="1"
                     TextAlignment="Justify"
                     HorizontalAlignment="Left"
@@ -243,6 +246,7 @@
                     Height="30"
                     Increment="1"
                     Minimum="1"
+                    Maximum="100"
                     PreviewTextInput="Integer_PreviewTextInput"/>
 
                 <Button x:Name="AddButton" Style="{StaticResource EnlargeButtonStyle}"
