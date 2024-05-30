@@ -32,7 +32,7 @@
 
     <Grid>
 
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
                 <Label Content="{ns:Loc ProfileSettings}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="377,42,377,687"/>
                 <Grid Margin="10,168,-10,471">
@@ -44,7 +44,7 @@
                     <!--<Button Content="Close forum"  Style="{DynamicResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="750, 50, 0, 0" CommandParameter="{Binding RelativeSource={RelativeSource Self}}"/>-->
 
                 </Grid>
-                <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="265,136,265,248">
+                <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="265,136,265,248" Background="{DynamicResource BorderBackground}">
                     <Grid>
                         <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="158,0,159,356" Content="{ns:Loc UsernameChange}"></Label>
                         <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="160,152,159,207" Content="{ns:Loc PasswordChange}"></Label>
@@ -60,14 +60,14 @@
                                 </TransformGroup>
                             </Label.RenderTransform>
                         </Label>
-                        <Label Content="{ns:Loc ConfirmPass}" Margin="43,276,259,75" FontSize="20"/>
-                        <Label Content="{ns:Loc NewUser}" Margin="110,57,272,294" FontSize="20"/>
-                        <TextBox x:Name="newUsername" Height="30" Width="200" Margin="280,62,46,309"/>
-                        <Label Content="{ns:Loc Password}" Margin="110,102,274,249" FontSize="20"/>
-                        <TextBox x:Name="passwordCheck" Height="30" Width="200" Margin="280,107,46,264"/>
-                        <TextBox x:Name="oldPassword" Height="30" Width="200" Margin="280,198,46,173"/>
-                        <TextBox x:Name="newPassword" Height="30" Width="200" Margin="280,240,46,131"/>
-                        <TextBox x:Name="confirmNewPassword" Height="30" Width="200" Margin="280,286,46,85"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc ConfirmPass}" Margin="43,276,259,75" FontSize="20"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc NewUser}" Margin="110,57,272,294" FontSize="20"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="newUsername" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,62,46,309"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Password}" Margin="110,102,274,249" FontSize="20"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="passwordCheck" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,107,46,264"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="oldPassword" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,198,46,173"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="newPassword" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,240,46,131"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="confirmNewPassword" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,286,46,85"/>
                         <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
                     </Grid>
 

@@ -11,7 +11,7 @@
 
     <Grid>
         <Label FontSize="40" Style="{DynamicResource HeaderStyleN}" Margin="248,182,1162,724" Content="{Binding SelectedAccommodation.Name}"></Label>
-        <TextBlock FontSize="30" TextWrapping="Wrap" Margin="248,280,1099,495">
+        <TextBlock Style="{DynamicResource TextBlockStyleN}" FontSize="30" TextWrapping="Wrap" Margin="248,280,1099,495">
             <Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding Location}"/>
             <LineBreak/> 
             <Run Text="{ns:Loc MaxGuestNumber}"/><Run Text=": "/><Run Text="{Binding SelectedAccommodation.MaxGuestNumber}"/>

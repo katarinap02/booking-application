@@ -31,7 +31,7 @@
 
     <Grid>
 
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
                 <Label Content="{ns:Loc CreateSuccess}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="174,103,154,626"/>
                 <Grid Margin="10,168,-10,471">
@@ -39,7 +39,7 @@
                         <ColumnDefinition Width="115*"/>
                         <ColumnDefinition Width="97*"/>
                     </Grid.ColumnDefinitions>
-                    <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Height="103" Grid.ColumnSpan="2" Margin="0,24,32,24">
+                    <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="{DynamicResource BorderBackground}" Height="103" Grid.ColumnSpan="2" Margin="0,24,32,24">
                         <Grid Margin="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>

@@ -8,14 +8,14 @@
              mc:Ignorable="d" 
                          d:DesignHeight="103" d:DesignWidth="990">
     <Grid>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Width="980" Height="103">
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="{DynamicResource BorderBackground}" Width="980" Height="103">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Margin="10,10,675,-47" Grid.RowSpan="2" FontSize="22" FontWeight="Bold" Foreground="{StaticResource AccentColorN}">
+                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" Margin="10,10,675,-47" Grid.RowSpan="2" FontSize="22" FontWeight="Bold">
 <Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding City}"/>
 <Run Text=", "/><Run Text="{Binding Country}"/>
                     <!--<TextBlock.Text>

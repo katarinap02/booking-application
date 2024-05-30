@@ -11,31 +11,31 @@
       Title="ProfileInfo">
 
     <Grid>
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
                 <Button Content="Back" Style="{DynamicResource ButtonStyleN}" FontSize="18" Width="70" Height="30" Margin="10,10,980,751" Command="{Binding BackCommand}" RenderTransformOrigin="0.678,-0.34"/>
                 <Label x:Name="requestHeader" Style="{DynamicResource HeaderStyleN}" Content="{Binding RequestHeader}" FontSize="40" Margin="300, 10, 0, 0"></Label>
                 <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="160,174,638,573"/>
                 <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="240,396,716,351"/>
-                <Border Width="500" Height="80" Margin="0,445,508,266" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
+                <Border Width="500" Height="80" Margin="0,445,508,266" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
                     <Label Content="{Binding HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="59,-2,63,2"/>
                 </Border>
 
                 <controls:AccommodationCardSmaller DataContext="{Binding Accommodation}" Width="500" Margin="0,-94,508,105"></controls:AccommodationCardSmaller>
                 <Label Content="{ns:Loc HostComment}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="150,554,638,193"/>
-                <Border Width="500" Margin="0,598,508,33" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
+                <Border Width="500" Margin="0,598,508,33" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
                     <Grid>
-                        <TextBlock x:Name="commentTxtBlock" FontSize="20" Text="{Binding Comment}" TextWrapping="Wrap" Margin="10,10,0,0"/>
+                        <TextBlock x:Name="commentTxtBlock" Style="{DynamicResource TextBlockStyleN}" FontSize="20" Text="{Binding Comment}" TextWrapping="Wrap" Margin="10,10,0,0"/>
                     </Grid>
                 </Border>
                 <Label Content="{ns:Loc RequestDetails}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="696,165,108,582"/>
-                <Border Margin="540,216,10,266" Width="500" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
+                <Border Margin="540,216,10,266" Width="500" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
                     <Grid>
-                        <TextBlock TextWrapping="Wrap" Margin="34,49,-84,104" FontSize="22"><LineBreak/><Run Text="{ns:Loc PreviousDates}"></Run><LineBreak/><Run Text="{ns:Loc NewDates}"></Run><LineBreak/><Run Text="{ns:Loc PeopleNum}"></Run><LineBreak/><Run Text="{ns:Loc DayNum}"></Run><LineBreak/></TextBlock>
-                        <Label FontSize="22" Content="{Binding OldDateRange}" Margin="214,74,6,189"/>
-                        <Label FontSize="22" Content="{Binding NewDateRange}" Margin="214,103,6,162"/>
-                        <Label FontSize="22" Content="{Binding NumberOfPeople}" Margin="214,132,6,138"/>
-                        <Label FontSize="22" Content="{Binding NumberOfDays}" Margin="210,162,10,109"/>
+                        <TextBlock Style="{DynamicResource TextBlockStyleN}" TextWrapping="Wrap" Margin="34,49,-84,104" FontSize="22"><LineBreak/><Run Text="{ns:Loc PreviousDates}"></Run><LineBreak/><Run Text="{ns:Loc NewDates}"></Run><LineBreak/><Run Text="{ns:Loc PeopleNum}"></Run><LineBreak/><Run Text="{ns:Loc DayNum}"></Run><LineBreak/></TextBlock>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" FontSize="22" Content="{Binding OldDateRange}" Margin="214,62,6,201"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" FontSize="22" Content="{Binding NewDateRange}" Margin="214,89,6,176"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" FontSize="22" Content="{Binding NumberOfPeople}" Margin="214,118,6,152"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" FontSize="22" Content="{Binding NumberOfDays}" Margin="210,144,10,127"/>
                     </Grid>
                 </Border>
 

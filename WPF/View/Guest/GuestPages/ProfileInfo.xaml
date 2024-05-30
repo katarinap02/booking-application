@@ -30,7 +30,7 @@
     </Page.Resources>
 
     <Grid>
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,11,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
 
                 <ListBox Name="ReservationListBox" Height="377" Margin="26,304,21,109"  ScrollViewer.VerticalScrollBarVisibility="Auto"
@@ -49,7 +49,7 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <Label Content="{Binding User.Username}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="420,10,442,735" Height="100" FontStyle="Italic"/>
-                <TextBlock TextWrapping="Wrap"  FontSize="23" Margin="26,81,276,470"><LineBreak/><Run Text="{ns:Loc TotalRes}"></Run><LineBreak/><Run Text="{ns:Loc ResPastYear}"></Run><LineBreak/><Run Text="{ns:Loc Rating}"></Run><LineBreak/></TextBlock>
+                <TextBlock Style="{DynamicResource TextBlockStyleN}" TextWrapping="Wrap"  FontSize="23" Margin="26,81,276,470"><LineBreak/><Run Text="{ns:Loc TotalRes}"></Run><LineBreak/><Run Text="{ns:Loc ResPastYear}"></Run><LineBreak/><Run Text="{ns:Loc Rating}"></Run><LineBreak/></TextBlock>
                 <Label Content="{ns:Loc Reservation}" FontSize="30" Style="{DynamicResource HeaderStyleN}" Margin="26,254,830,481"/>
 
                 <Label FontSize="23"  Margin="20,70,818,681">
@@ -109,8 +109,8 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                     </Label.Style>
                 </Label>
                 <!--<Label x:Name="statusLabel" Content="{Binding Status}" FontSize="23" Margin="105,75,739,670"/>-->
-                <Label x:Name="totalReservationsLabel" Content="{Binding TotalReservations}" FontSize="23" Margin="295,106,547,641"></Label>
-                <Label x:Name="totalReservationsYearLabel" Content="{Binding Guest.YearlyReservations}" FontSize="23" Margin="410,137,528,603"></Label>
+                <Label Foreground="{DynamicResource TextBlockColorN}" x:Name="totalReservationsLabel" Content="{Binding TotalReservations}" FontSize="23" Margin="295,98,547,653"></Label>
+                <Label Foreground="{DynamicResource TextBlockColorN}" x:Name="totalReservationsYearLabel" Content="{Binding Guest.YearlyReservations}" FontSize="23" Margin="410,125,528,620"></Label>
 
                 <Image VerticalAlignment="Top" HorizontalAlignment="Left" Margin="995,10,0,0" Width="50" Height="50">
                     <Image.Style>
@@ -168,14 +168,14 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                     </Grid>
                 </Border>
 
-                <ToggleButton Height="50" Background="White" BorderBrush="White" Margin="45,682,720,59" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
+                <ToggleButton Height="50" Background="{DynamicResource BorderBackground}" BorderBrush="{DynamicResource BorderBackground}" Margin="45,682,720,59" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{DynamicResource HintIcon}" Height="25" Width="25"/>
-                        <Label x:Name="HintLabel" Content="{ns:Loc ProblemCancel}" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
+                        <Label x:Name="HintLabel" Content="{ns:Loc ProblemCancel}" FontSize="16" Foreground="{DynamicResource HintColorN}" FontStyle="Italic"/>
                     </StackPanel>
 
                 </ToggleButton>
-                <TextBlock Text="{ns:Loc CancelHint}" x:Name="Hint" FontSize="16" Foreground="Green" TextAlignment="Justify" TextWrapping="Wrap" Margin="58,732,100,14">
+                <TextBlock Text="{ns:Loc CancelHint}" x:Name="Hint" FontSize="16" Foreground="{DynamicResource HintTextColor}" TextAlignment="Justify" TextWrapping="Wrap" Margin="58,732,100,14">
     
                 </TextBlock>
 

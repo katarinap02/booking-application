@@ -1,25 +1,43 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
-
     <SolidColorBrush x:Key="ButtonTextN" Color="#F4F4ED"/>
-    <SolidColorBrush x:Key="TextColorN" Color="#F4F4ED"/>
-    <SolidColorBrush x:Key="AccentColorN" Color="#6665DD"/>
-    <SolidColorBrush x:Key="BackgroundColorN" Color="#3423A6"/>
-
+    <SolidColorBrush x:Key="BackgroundColorN" Color="#241c36"/>
+    <SolidColorBrush x:Key="AccentColorN" Color="#8a5de3"/>
+    <SolidColorBrush x:Key="AccentColorN2" Color="#ffab65dd"/>
+    <SolidColorBrush x:Key="TextColorN" Color="#957ec2"/>
+    <SolidColorBrush x:Key="TextBlockColorN" Color="#F4F4ED"/>
+    <SolidColorBrush x:Key="BorderBackground" Color="#382c4f"/>
+    <SolidColorBrush x:Key="HintColorN" Color="DeepSkyBlue"/>
+    <SolidColorBrush x:Key="HintTextColor" Color="MediumAquamarine"/>
+    <SolidColorBrush x:Key="CommentBackgroundN" Color="#1f1e21"/>
     <Style x:Key="ButtonStyleN" TargetType="Button">
         <Setter Property="Foreground" Value="{DynamicResource ButtonTextN}"/>
         <Setter Property="Background" Value="{DynamicResource AccentColorN}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AccentColorN}"/>
-        <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontFamily" Value="Arial"/>
-        <Setter Property="FontSize" Value="30"/>
+
+        <Setter Property="FontSize" Value="28"/>
+
 
     </Style>
+
 
     <Style x:Key="HeaderStyleN" TargetType="Label">
         <Setter Property="Foreground" Value="{DynamicResource TextColorN}"/>
         <Setter Property="FontWeight" Value="Bold"/>
         <Setter Property="FontFamily" Value="Arial"/>
+    </Style>
+
+    <Style x:Key="TextBlockStyleN" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource TextBlockColorN}"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+
+    </Style>
+
+    <Style x:Key="TextBlockHeaderStyleN" TargetType="TextBlock">
+        <Setter Property="Foreground" Value="{DynamicResource TextColorN}"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+
     </Style>
 
 

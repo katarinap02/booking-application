@@ -31,7 +31,7 @@
 
     <Grid>
 
-        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="11,3,10,2">
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
 
                 <ListBox Name="ReservationListBox" Margin="30,34,20,276"  ScrollViewer.VerticalScrollBarVisibility="Auto" Width="1010"

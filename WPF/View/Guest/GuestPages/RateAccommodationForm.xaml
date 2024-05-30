@@ -46,36 +46,36 @@
         <Grid>
 
 
-            <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="10,0,549,5">
+            <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,549,5">
                 <Grid>
                     <Button Content="Back" Style="{DynamicResource ButtonStyleN}" FontSize="16" Width="60" Height="25" Margin="10,3,452,761" Command="{Binding BackCommand}"/>
 
-                    <TextBlock TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="24,28,24,605" Text="{ns:Loc WelcomeRating}"></TextBlock>
-                    <TextBlock TextWrapping="Wrap" FontSize="23" TextAlignment="Center" FontWeight="Bold" Margin="1,184,-1,532" Text="{ns:Loc OptionalMsg}"></TextBlock>
+                    <TextBlock Style="{DynamicResource TextBlockStyleN}" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="24,28,24,605" Text="{ns:Loc WelcomeRating}"></TextBlock>
+                    <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" TextWrapping="Wrap" FontSize="23" TextAlignment="Center" FontWeight="Bold" Margin="1,184,-1,532" Text="{ns:Loc OptionalMsg}"></TextBlock>
                     <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="136,434,-136,312"/>
                     <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="218,648,218,98"/>
-                    <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15">
+                    <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
                         <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="59,-2,63,2"/>
                     </Border>
 
-                    <ToggleButton Height="50" Background="White" BorderBrush="White" Margin="131,272,129,467" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
+                    <ToggleButton Height="50" Background="{DynamicResource BorderBackground}" BorderBrush="{DynamicResource BorderBackground}" Margin="131,272,129,467" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{DynamicResource HintIcon}" Height="25" Width="25"/>
-                            <Label x:Name="HintLabel" Content="{ns:Loc ReviewProblem}" FontSize="16" Foreground="Blue" FontStyle="Italic"/>
+                            <Label x:Name="HintLabel" Content="{ns:Loc ReviewProblem}" FontSize="16" Foreground="{DynamicResource HintColorN}" FontStyle="Italic"/>
                         </StackPanel>
 
                     </ToggleButton>
-                    <TextBlock x:Name="Hint" FontSize="16" Foreground="Green" Text="{ns:Loc RateHint}" Height="150" TextAlignment="Center" TextWrapping="Wrap" Margin="116,320,118,319">
+                    <TextBlock x:Name="Hint" FontSize="16" Foreground="{DynamicResource HintTextColor}" Text="{ns:Loc RateHint}" Height="150" TextAlignment="Center" TextWrapping="Wrap" Margin="116,320,118,319">
                     </TextBlock>
 
                     <controls:AccommodationCardSmaller DataContext="{Binding SelectedAccommodation}" Width="500" Margin="12,168,10,-168"></controls:AccommodationCardSmaller>
                 </Grid>
             </Border>
-            <Border Width="526" Height="517" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="White" CornerRadius="15" Margin="549,1,10,280">
+            <Border Width="526" Height="517" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="549,1,10,280">
 
                 <Grid>
-                    <Label Content="{ns:Loc Cleanliness}" FontSize="20" HorizontalAlignment="Left" Margin="88,33,0,0" VerticalAlignment="Top"/>
-                    <Label Content="{ns:Loc Correctness}" FontSize="20" HorizontalAlignment="Left" Margin="310,33,0,0" VerticalAlignment="Top"/>
+                    <Label Content="{ns:Loc Cleanliness}" Foreground="{DynamicResource TextBlockColorN}" FontSize="20" HorizontalAlignment="Left" Margin="88,33,0,0" VerticalAlignment="Top"/>
+                    <Label Content="{ns:Loc Correctness}" Foreground="{DynamicResource TextBlockColorN}" FontSize="20" HorizontalAlignment="Left" Margin="310,33,0,0" VerticalAlignment="Top"/>
 
                     <ComboBox HorizontalAlignment="Left" Margin="88,72,0,0" VerticalAlignment="Top" Width="120" SelectedValuePath="Tag" SelectedValue="{Binding Cleanliness, Mode=TwoWay}">
 
@@ -94,13 +94,13 @@
                         <ComboBoxItem Content="2" Tag="2"></ComboBoxItem>
                         <ComboBoxItem Content="1" Tag="1"></ComboBoxItem>
                     </ComboBox>
-                    <Label Content="{ns:Loc Comment}" FontSize="20" HorizontalAlignment="Left" Margin="55,115,0,0" VerticalAlignment="Top"/>
-                    <TextBox HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="100" Margin="0,152,0,0"/>
+                    <Label Content="{ns:Loc Comment}" Foreground="{DynamicResource TextBlockColorN}" FontSize="20" HorizontalAlignment="Left" Margin="55,115,0,0" VerticalAlignment="Top"/>
+                    <TextBox Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}" HorizontalAlignment="Center" TextWrapping="Wrap" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Top" Width="412" Height="100" Margin="0,152,0,0"/>
 
                     <Button FontSize="15" Command="{Binding AddPicturesCommand}" Content="{ns:Loc AddPicture}" HorizontalAlignment="Left" Margin="55,284,0,0" VerticalAlignment="Top" Height="31" Width="121" Style="{DynamicResource ButtonStyleN}"/>
                     <Button FontSize="15" Content="{ns:Loc Recommend}" HorizontalAlignment="Left" Margin="55,387,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Height="29" Width="208" Command="{Binding RecommendCommand}"/>
                     <Button FontSize="15" Content="{ns:Loc Save}" HorizontalAlignment="Left" Margin="369,456,0,0" VerticalAlignment="Top" Height="30" Width="121" Style="{DynamicResource ButtonStyleN}" Command="{Binding SaveRateCommand}"/>
-                    <ListBox x:Name="pictureListBox" Margin="186,283,55,135" ScrollViewer.VerticalScrollBarVisibility="Auto"  ItemsSource="{Binding Images, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox  Background="{DynamicResource BackgroundColorN}" x:Name="pictureListBox" Margin="186,283,55,135" ScrollViewer.VerticalScrollBarVisibility="Auto"  ItemsSource="{Binding Images, UpdateSourceTrigger=PropertyChanged}">
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <Grid>

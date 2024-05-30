@@ -8,13 +8,13 @@
              mc:Ignorable="d" 
              d:DesignHeight="103" d:DesignWidth="990">
     <Grid>
-        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="white" Width="980" Height="103">
+        <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="{DynamicResource BorderBackground}" Width="980" Height="103">
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock FontWeight="Bold" FontSize="23" Height="40" Grid.RowSpan="2" Margin="50,5,0,15">
+                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontWeight="Bold" FontSize="23" Height="40" Grid.RowSpan="2" Margin="50,5,0,15">
                                        <Run Text="{Binding HostUsername}"/>
 <Run Text=", "/><Run Text="{ns:Loc Reservation}"/><Run Text=": "/><Run Text="{Binding DateRange}"/>
                     <!--<TextBlock.Text>
@@ -26,7 +26,7 @@
                     </TextBlock.Text>-->
                 </TextBlock>
 
-                <TextBlock FontSize="23" Height="40" Margin="50,40,0,-20" Grid.RowSpan="2">
+                <TextBlock Style="{DynamicResource TextBlockStyleN}" FontSize="23" Height="40" Margin="50,40,0,-20" Grid.RowSpan="2">
                    <Run Text="{ns:Loc Cleanliness}"/><Run Text=": "/><Run Text="{Binding SelectedRate.Cleanliness}"/>
 <Run Text=", "/><Run Text="{ns:Loc RulesFollowing}"/><Run Text=": "/><Run Text="{Binding SelectedRate.RulesFollowing}"/>
                     <!--<TextBlock.Text>

@@ -12,7 +12,7 @@
 
     <Grid>
 
-        <TextBlock  FontSize="40" FontWeight="Bold" Foreground="{DynamicResource AccentColorN}" Margin="574,24,425,873">
+        <TextBlock  FontSize="40" FontWeight="Bold" Foreground="{DynamicResource TextColorN}" Margin="574,24,425,873">
     <Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding SelectedForum.City}"/>
     <Run Text=", "/><Run Text="{Binding SelectedForum.Country}"/>
             <!--<TextBlock.Text>
@@ -24,23 +24,23 @@
             </TextBlock.Text>-->
         </TextBlock>
 
-        <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource AccentColorN}" BorderThickness="2" Margin="574,122,666,687" CornerRadius="30">
+        <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BackgroundColorN}" BorderThickness="2" Margin="574,122,666,687" CornerRadius="30">
             <Grid Margin="0,-3,0,3">
-                <TextBlock FontSize="23" Margin="16,20,530,97" FontWeight="Bold" Foreground="AliceBlue" Text="{Binding Username}"></TextBlock>
-                <TextBlock FontSize="23" Margin="16,42,530,79" Foreground="AliceBlue" Text="{Binding UserType}"></TextBlock>
-                <TextBlock FontSize="16" Margin="16,70,530,56" Foreground="AliceBlue" Text="{Binding SelectedForum.DateString}"></TextBlock>
-                <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" Margin="123,15,14,15" CornerRadius="30" Background="LightPink">
+                <TextBlock FontSize="23" Margin="16,20,530,97" FontWeight="Bold" Foreground="{DynamicResource TextColorN}" Text="{Binding Username}"></TextBlock>
+                <TextBlock FontSize="23" Margin="16,42,530,79" Foreground="{DynamicResource TextColorN}" Text="{Binding UserType}"></TextBlock>
+                <TextBlock FontSize="16" Margin="16,70,530,56" Foreground="{DynamicResource TextColorN}" Text="{Binding SelectedForum.DateString}"></TextBlock>
+                <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" Margin="123,15,14,15" CornerRadius="30" Background="{DynamicResource CommentBackgroundN}">
                     <Grid>
-                        <TextBlock Text="{Binding SelectedForum.FirstComment}" FontSize="16" Margin="28,10,10,10" TextWrapping="Wrap"></TextBlock>
+                        <TextBlock Foreground="{DynamicResource TextBlockColorN}" Text="{Binding SelectedForum.FirstComment}" FontSize="16" Margin="28,10,10,10" TextWrapping="Wrap"></TextBlock>
                     </Grid>
                 </Border>
             </Grid>
 
         </Border>
 
-        <Border x:Name="postCommentSection" BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" Margin="574,332,666,462" CornerRadius="30" Background="{DynamicResource AccentColorN}">
+        <Border x:Name="postCommentSection" BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" Margin="574,332,666,462" CornerRadius="30" Background="{DynamicResource BackgroundColorN}">
             <Grid Margin="6,6,-18,-2">
-                <TextBox Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="26,18,56,49" TextWrapping="Wrap">
+                <TextBox Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BorderBackground}" Text="{Binding Comment, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Margin="26,18,56,49" TextWrapping="Wrap">
 
                 </TextBox>
                 <Button BorderBrush="LightPink" BorderThickness="3" Content="{ns:Loc PostComment}" Command="{Binding PostCommentCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="16" Width="140" Height="30" Margin="492,148,56,10"/>
@@ -52,7 +52,7 @@
 
         <TextBlock x:Name="closedMessage" TextAlignment="Center" TextWrapping="Wrap" FontSize="22" Foreground="{DynamicResource TextColorN}" FontWeight="Bold" Margin="623,389,723,531" Text="{ns:Loc ClosedMessage}"></TextBlock>
 
-        <ListBox ItemsSource="{Binding ForumComments}" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="680" Margin="574,552,666,21">
+        <ListBox Background="{DynamicResource BackgroundColorN}" ItemsSource="{Binding ForumComments}" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="680" Margin="574,552,666,21">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>

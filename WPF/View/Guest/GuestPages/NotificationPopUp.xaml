@@ -11,12 +11,12 @@
       Title="NotificationPopUp">
 
     <Grid>
-        <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" Background="White" Height="400" Width="250">
-            <ListBox x:Name="notificationListBox" ItemsSource="{Binding Notifications}" Margin="6,8,8,8" Width="232" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
+        <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" Background="{DynamicResource BorderBackground}" Height="400" Width="250">
+            <ListBox Background="{DynamicResource BorderBackground}" x:Name="notificationListBox" ItemsSource="{Binding Notifications}" Margin="6,8,8,8" Width="232" ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.HorizontalScrollBarVisibility="Hidden">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="1" Margin="0,0,0,5" CornerRadius="10">
-                            <TextBlock Text="{Binding}" Padding="5">
+                        <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="1" Margin="0,0,0,5" CornerRadius="10" Background="{DynamicResource BorderBackground}">
+                            <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{Binding}" Padding="5">
                             <Button Style="{DynamicResource ButtonStyleN}" Width="40" Height="20" FontSize="10" Content="{ns:Loc Details}" Margin="10, 0, 0, 0" Click="Details_Click"/>
                             </TextBlock>
 

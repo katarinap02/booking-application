@@ -10,7 +10,7 @@
       d:DesignHeight="798" d:DesignWidth="1085"
       Title="ProfileInfo">
 
-    <Grid>
+    <Grid Background="{DynamicResource BorderBackground}">
         <Label Content="{ns:Loc CancelSure}" FontSize="30" Style="{DynamicResource HeaderStyleN}" Margin="170,63,143,675"/>
         <controls:ReservationDetailsCard Margin="0,143,0,247"></controls:ReservationDetailsCard>
 
