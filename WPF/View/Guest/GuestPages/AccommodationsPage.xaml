@@ -138,7 +138,7 @@
 
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,162,1082,393">
             <Grid x:Name="SearchSection">
-                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc SearchAccommodations}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="122,10,-122,-10"/>
+                <Label Foreground="{DynamicResource TextColorN}" Content="{ns:Loc SearchAccommodations}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="122,10,-122,-10"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Name}" HorizontalAlignment="Left" Margin="66,89,0,0" VerticalAlignment="Top" Width="74" FontSize="16" RenderTransformOrigin="0.439,1.63"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc City}" HorizontalAlignment="Left" Margin="66,169,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="-8.542,2.786" FontSize="16"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Type}" HorizontalAlignment="Left" Margin="66,208,0,0" VerticalAlignment="Top" Width="74" FontSize="16"/>
