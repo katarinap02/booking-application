@@ -80,7 +80,7 @@
     
              Height="29" Width="65"/>
             <StackPanel Margin="5,33,59,0">
-                <ComboBox x:Name ="textBoxCountry" SelectedItem="{Binding Path=accommodationDTO.CountrySearch, Mode=TwoWay}" ItemsSource="{Binding Path=accommodationDTO.CountriesSearch}" Height="30" VerticalAlignment="Top" SelectedIndex="0" Width="258"/>
+                <ComboBox x:Name ="textBoxCountry" Tag="{Binding accommodationDTO.CountriesSearch}" SelectedItem="{Binding accommodationDTO.CountrySearch, Mode=TwoWay}" ItemsSource="{Binding accommodationDTO.CountriesSearch}" Height="30" SelectedIndex="0" Width="258"/>
                 <TextBlock Text="country is required" Margin="0 1 0 0" Background="Transparent"  >
                     <TextBlock.Style>
                         <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockValidation}">

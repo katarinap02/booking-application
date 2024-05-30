@@ -155,9 +155,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             return replacedPath;
         }
 
-        public void LoadLocation()
+        public void LoadLocation(AccommodationViewModel acc)
         {
-            accommodationDTO.InitializeAllLocations();
+            if(acc != null) { 
+            accommodationDTO.InitializeAllLocations(acc.Country);
+            }
+            else accommodationDTO.InitializeAllLocations("");
+
+
         }
 
 
