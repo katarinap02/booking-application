@@ -72,7 +72,7 @@
             <StackPanel Grid.Row="2" Margin="5 0 0 0">
                 <Label Content="Explanation:" Style="{StaticResource LableStyleHost}" VerticalAlignment="Bottom" Margin="0,0,0,0" />
             </StackPanel>
-            <TextBox x:Name="ExplanationTextBox" Width="416" Grid.Row="3" Height="100" HorizontalAlignment="Left" Margin="5,0,0,5" FontSize="15" FontFamily="Comic Sans MS"  Text="{Binding Path= Delay.Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+            <TextBox x:Name="ExplanationTextBox" Width="416" Grid.Row="3" Height="100" HorizontalAlignment="Left" Margin="5,0,0,5"  Text="{Binding Path= Delay.Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
 
             <Label Content="Enter an explanation only with request rejection." Style="{StaticResource LableStyleHost}" Grid.Row="4" VerticalAlignment="Bottom">
 
