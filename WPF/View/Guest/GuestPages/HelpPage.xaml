@@ -9,7 +9,7 @@
       d:DesignHeight="990" d:DesignWidth="1920"
       Title="HelpPage">
 
-    <Grid>
+    <Grid Background="{DynamicResource BackgroundColorN}">
         <Label Content="FAQ" Style="{DynamicResource HeaderStyleN}" FontSize="60" Margin="884,28,884,881"/>
         <Label Content="{ns:Loc HowReservation}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="91,146,1220,780"/>
         <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc ReservationHelp}" TextWrapping="Wrap" FontSize="20" Margin="96,185,1323,589" TextAlignment="Justify">
