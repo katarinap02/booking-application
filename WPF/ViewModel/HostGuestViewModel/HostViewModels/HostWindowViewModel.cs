@@ -79,7 +79,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         private void Execute_NavigateToRegisterPageCommand(object obj)
         {
-            RegisterAccommodationPage page = new RegisterAccommodationPage(User);
+            RegisterAccommodationPage page = new RegisterAccommodationPage(User, null, NavService);
             CloseMenu();
             this.NavService.Navigate(page);
         }
@@ -94,7 +94,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToDelayPageCommand(object obj)
         {
             CloseMenu();
-            DelayPage page = new DelayPage(User);
+            DelayPage page = new DelayPage(User, NavService);
             this.NavService.Navigate(page);
         }
 
@@ -108,7 +108,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToGuestRatePageCommand(object obj)
         {
             CloseMenu();
-            GuestRatePage page = new GuestRatePage(User);
+            GuestRatePage page = new GuestRatePage(User, NavService);
             this.NavService.Navigate(page);
         }
 
@@ -129,7 +129,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToSchedulePageCommand(object obj)
         {
             CloseMenu();
-            ScheduleRenovationPage page = new ScheduleRenovationPage(User);
+            ScheduleRenovationPage page = new ScheduleRenovationPage(User, NavService);
             this.NavService.Navigate(page);
         }
 

@@ -18,6 +18,7 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -47,7 +48,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public MyICommand RejectCommand { get; set; }
 
-        public DelayPageViewModel(User user)
+        public DelayPageViewModel(User user, NavigationService NavigationService)
         {
             Delays = new ObservableCollection<DelayRequestViewModel>();
             Notifications = new ObservableCollection<string>();

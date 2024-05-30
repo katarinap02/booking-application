@@ -18,4 +18,5 @@
 20|Hotel Romulus|Rome|Italy|COTTAGE|2|4|1||5/8/2024 12:00:00 AM-5/11/2024 12:00:00 AM,5/19/2024 12:00:00 AM-5/23/2024 12:00:00 AM,6/10/2024 12:00:00 AM-6/20/2024 12:00:00 AM,5/28/2024 12:00:00 AM-5/31/2024 12:00:00 AM,7/2/2024 12:00:00 AM-7/5/2024 12:00:00 AM|6|False
 21|Vila Andjelic|Novi Sad|Serbia|COTTAGE|9|3|2|Resources\Images\cottage.jpg,Resources\Images\example.jpg||2|False
 22|New Hotel|Bredsten|Denmark|COTTAGE|20|3|10|Resources\Images\Tokyo1.jpg||2|False
-23|Hotel Star|Zlatibor|Serbia|APARTMENT|20|4|4|Resources\Images\Istanbul1.jpg,Resources\Images\house.jpg||2|False
+23|Hotel Star|Zlatibor|Serbia|COTTAGE|20|4|4|Resources\Images\Istanbul1.jpg,Resources\Images\house.jpg||2|False
+24|My Home|Lažani|"Macedonia|COTTAGE|5|2|3|Resources\Images\cottage.jpg||2|False

@@ -55,7 +55,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToForumPageCommand(ForumViewModel forum)
         {
             ForumCommentPage page = new ForumCommentPage(User, NavService, forum);
-            this.NavService.Navigate(page);
+            this.NavService.Navigate(page, NavService);
         }
 
         public ForumPageViewModel(User user, NavigationService navService)
