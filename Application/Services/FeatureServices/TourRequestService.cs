@@ -368,6 +368,20 @@ namespace BookingApp.Application.Services.FeatureServices
             return _complexTourRequestService.GetTourRequestsByComplexId(complexId);
         }
 
+        public List<DateTime> getUnavailableDates(int guide_id, DateTime begin, DateTime end)
+        {
+            List<TourRequest> requests = _tourRequestRepository.GetAll().FindAll(r => r.GuideId == guide_id);
+            List<DateTime> dates = new List<DateTime>();
+            foreach(TourRequest request in requests)
+            {
+                if(request.AcceptedDate <end && request.AcceptedDate > begin)
+                {
+                    dates.Add(request.AcceptedDate);
+                }
+            }
+            return null;
+        }
+
         public TourRequest GetById(int id)
         {
             return _tourRequestRepository.GetById(id);
