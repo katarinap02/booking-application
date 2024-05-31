@@ -42,5 +42,36 @@ namespace BookingApp.Application.Services.FeatureServices
             }
             return requests;
         }
+
+        public List<TourRequest> GetAllPending(int id) // potrebne su mi one koje su pending i gde nisam primila nijedan iz grupe
+        {
+            List<TourRequest> requests = new List<TourRequest>();
+            List<ComplexTourRequest> complexTourRequests = _complexTourRequestRepository.GetAll();
+            foreach(var  complexTourRequest in complexTourRequests)
+            {
+                if(complexTourRequest.Status == ComplexTourRequestStatus.Pending)
+                {
+                    requests.AddRange(GetAllPendingRequests(complexTourRequest.TourRequests, id)); // provera za null!
+                }
+            }
+            return null;
+        }
+
+        public List<TourRequest> GetAllPendingRequests(List<int> ints, int guideID) // clean codovati
+        {
+            List < TourRequest > requests = new List <TourRequest >();
+            foreach (int id in ints)
+            {
+                
+                TourRequest tourRequest = _tourRequestService.GetById(id);
+                requests.Add(tourRequest);
+            }
+            List<TourRequest> requests1 = requests.FindAll(x => x.GuideId == guideID);
+            if (requests1.Count > 0)
+            {
+                return null;
+            }
+            return requests.FindAll(r => r.Status == TourRequestStatus.Pending);
+        }
     }
 }
