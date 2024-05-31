@@ -62,12 +62,12 @@
                         </Label>
                         <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc ConfirmPass}" Margin="43,276,259,75" FontSize="20"/>
                         <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc NewUser}" Margin="110,57,272,294" FontSize="20"/>
-                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="newUsername" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,62,46,309"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="newUsername" Background="{DynamicResource BackgroundColorN}" Height="30" Width="200" Margin="280,62,46,309"/>
                         <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Password}" Margin="110,102,274,249" FontSize="20"/>
-                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="passwordCheck" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,107,46,264"/>
-                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="oldPassword" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,198,46,173"/>
-                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="newPassword" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,240,46,131"/>
-                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="confirmNewPassword" Background="{DynamicResource BorderBackground}" Height="30" Width="200" Margin="280,286,46,85"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="passwordCheck" Background="{DynamicResource BackgroundColorN}" Height="30" Width="200" Margin="280,107,46,264"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="oldPassword" Background="{DynamicResource BackgroundColorN}" Height="30" Width="200" Margin="280,198,46,173"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="newPassword" Background="{DynamicResource BackgroundColorN}" Height="30" Width="200" Margin="280,240,46,131"/>
+                        <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="confirmNewPassword" Background="{DynamicResource BackgroundColorN}" Height="30" Width="200" Margin="280,286,46,85"/>
                         <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
                     </Grid>
 

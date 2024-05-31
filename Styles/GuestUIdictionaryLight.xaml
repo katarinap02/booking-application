@@ -11,14 +11,44 @@
     <SolidColorBrush x:Key="HintTextColor" Color="Green"/>
     <SolidColorBrush x:Key="BlackoutColorN" Color="Black"/>
     <SolidColorBrush x:Key="CommentBackgroundN" Color="Beige"/>
+    <!--<SolidColorBrush x:Key="DisabledButtonColor" Color="{DynamicResource BackgroundColorN}"-->
+
+  
     <Style x:Key="ButtonStyleN" TargetType="Button">
         <Setter Property="Foreground" Value="{DynamicResource ButtonTextN}"/>
         <Setter Property="Background" Value="{DynamicResource AccentColorN}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AccentColorN}"/>
         <Setter Property="FontFamily" Value="Arial"/>
-        
-        <Setter Property="FontSize" Value="28"/>
        
+        <Setter Property="FontSize" Value="28"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter x:Name="MyContentPresenter" 
+                                          Content="{TemplateBinding Content}"
+                                          HorizontalAlignment="Center" 
+                                          VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{DynamicResource BackgroundColorN}"/>
+                <Setter Property="Foreground" Value="#706f73"/>
+                
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AccentColorN2}"/>
+
+
+            </Trigger>
+           
+        </Style.Triggers>
+
 
     </Style>
    

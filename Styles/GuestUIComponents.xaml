@@ -801,9 +801,77 @@
     </Style>
 
 
-    
+    <Style x:Key="MenuBtnStyleN"
+   TargetType="RadioButton">
 
-   
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="RadioButton">
+
+                    <Border x:Name="border"
+                    Height="90"
+                    Width="500"
+                    BorderThickness="0" Background="{DynamicResource BorderBackground}">
+                   
+                       
+
+                        <Grid>
+
+                            <Border x:Name="Indicator"
+                            Height="35"
+                            Width="4"
+                            HorizontalAlignment="Left"
+                            VerticalAlignment="Center"
+                            Background="{DynamicResource AccentColorN2}"
+                            Visibility="Collapsed"
+                            CornerRadius="2" />
+
+                            <ContentPresenter />
+
+                        </Grid>
+
+                    </Border>
+
+                    <ControlTemplate.Triggers>
+
+                        <Trigger Property="IsMouseOver"
+                         Value="True">
+
+                           
+
+                            <Setter Property="Visibility"
+                            TargetName="Indicator"
+                            Value="Visible" />
+                            <Setter Property="Background" TargetName="border" Value="{DynamicResource BackgroundColorN}"/>
+
+
+                        </Trigger>
+                       
+
+
+
+                        <Trigger Property="IsChecked"
+                         Value="True">
+
+                            <Setter Property="Background"
+                            TargetName="border"
+                            Value="{DynamicResource BackgroundColorN}" />
+
+                            <Setter Property="Visibility"
+                            TargetName="Indicator"
+                            Value="Visible" />
+
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+    </Style>
+
+
 
 
 </ResourceDictionary>
