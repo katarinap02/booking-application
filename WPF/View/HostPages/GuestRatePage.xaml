@@ -141,7 +141,7 @@
                 <TextBlock Text="additional comment:" Style="{StaticResource TextBlockHost}" VerticalAlignment="Top" Margin="5,0,0,0" />
 
             </StackPanel>
-            <TextBox x:Name="CommentTextBox" Grid.Row="6" Style="{StaticResource TextBoxStyleHost}" Margin="56,0,108,10"  Text="{Binding Path= guestRateViewModel.AdditionalComment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
+            <TextBox x:Name="CommentTextBox" Grid.Row="6" TextWrapping="Wrap" Style="{StaticResource TextBoxStyleHost}" Margin="56,0,108,10"  Text="{Binding Path= guestRateViewModel.AdditionalComment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
 
 
 

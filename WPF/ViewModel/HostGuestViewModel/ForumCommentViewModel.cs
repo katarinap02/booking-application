@@ -125,7 +125,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             {
                 if (forumId != value)
                 {
-                    id = value;
+                    forumId = value;
                     OnPropertyChanged("ForumId");
                 }
             }
@@ -179,6 +179,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public UserService userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
         public string Username => userService.GetById(UserId).Username;
         public string UserType => userService.GetById(UserId).Type.ToString();
+
+        public ForumCommentViewModel()
+        { }
         public ForumCommentViewModel(ForumComment forumComment)
         {
             id = forumComment.Id;

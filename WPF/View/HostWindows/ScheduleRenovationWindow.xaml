@@ -45,7 +45,7 @@
 
         <StackPanel Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" Margin="30 0 0 0">
             <TextBlock Text="Description:"  Style="{StaticResource TextBlockHost}" VerticalAlignment="Top" Margin="5,8,0,0" />
-            <TextBox x:Name="CommentTextBox" Style="{StaticResource TextBoxStyleHost}" Width="440" Height="62" Margin="5 0 0 0"  Text="{Binding Path= Renovation.Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
+            <TextBox x:Name="CommentTextBox" TextWrapping="Wrap" Style="{StaticResource TextBoxStyleHost}" Width="440" Height="62" Margin="5 0 0 0"  Text="{Binding Path= Renovation.Description, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"></TextBox>
         </StackPanel>
         <StackPanel Orientation="Horizontal" Grid.Row="3" Margin="30 0 0 0">
             <TextBlock Text="days to select:"  Style="{StaticResource TextBlockHost}" VerticalAlignment="Center" Margin="5,0,0,0" />

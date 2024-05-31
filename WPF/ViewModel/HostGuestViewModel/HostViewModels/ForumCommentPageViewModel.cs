@@ -3,6 +3,7 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Observer;
+using BookingApp.WPF.View.HostPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using System;
 using System.Collections.Generic;
@@ -11,6 +12,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
@@ -48,7 +50,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public ForumViewModel ForumViewModel { get; set; }
 
+        public ForumCommentViewModel ForumCommentViewModel { get; set; }
+
         public MyICommand ForumCommand { get; set; }
+
+        public MyICommand AddCommentCommand { get; set; }
 
         public MyICommand<ForumCommentViewModel> ReportCommand { get; set; }
 
@@ -56,9 +62,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             NavService = navService;
             User = user;
             ForumViewModel = forum;
+            ForumCommentViewModel = new ForumCommentViewModel();
             SelectedReport = "All";
             ToReport = false;
             ForumCommand = new MyICommand(SortByReport);
+            AddCommentCommand = new MyICommand(AddForumCommentHost);
             ReportCommand = new MyICommand<ForumCommentViewModel>(ReportComment);
             forumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             Forums = new ObservableCollection<ForumCommentViewModel>();
@@ -103,6 +111,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             }
             
             Update();
+
+        }
+
+        public void AddForumCommentHost()
+        {
+            ForumComment f = forumCommentService.CreateComment(User.Id, ForumCommentViewModel.Comment,
+                ForumViewModel.City, ForumViewModel.Country,
+                ForumViewModel.Id);
+            forumService.CalculateGuestHostComments(ForumViewModel.ToForum());
+            ForumViewModel.Comments.Add(f.Id);
+            forumService.Update(ForumViewModel.ToForum());
+            Update();
+
+            ForumCommentPage page = new ForumCommentPage(User, NavService, ForumViewModel);
+            this.NavService.Navigate(page, NavService);
 
         }
 
