@@ -11,6 +11,7 @@ using BookingApp.WPF.ViewModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using BookingApp.Application.Services.FeatureServices;
 
 namespace BookingApp.View
 {
@@ -45,6 +46,8 @@ namespace BookingApp.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public GuideInfoService GuideInformation;
+
         public SignInForm()
         {
             InitializeComponent();
@@ -52,7 +55,7 @@ namespace BookingApp.View
             _repository = new UserRepository();
             _guidedTourRepository = new GuidedTourRepository();
             _tourRepository = new TourRepository();
-          
+            GuideInformation = new GuideInfoService();        
 
         }
 
@@ -93,8 +96,10 @@ namespace BookingApp.View
                         HostWindow hostWindow = new HostWindow(user);
                         hostWindow.ShowDialog();
                     }
-                    else if (user.Type.ToString().Equals("guide"))
+                    else if (user.Type.ToString().Equals("guide")) 
                     {
+                        if (GuideInformation.CanLogIn(user.Id))
+                        {
                         if(_guidedTourRepository.HasTourCurrently(user.Id) && user.Username != "test") {
                             Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
                             GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourViewModel(tour), user);
@@ -122,7 +127,11 @@ namespace BookingApp.View
                             }
                             
                         }
-
+                        }
+                        else
+                        {
+                            MessageBox.Show("This user has been deleted");
+                        }
                     }
 
                     else if (user.Type.ToString().Equals("guest"))
