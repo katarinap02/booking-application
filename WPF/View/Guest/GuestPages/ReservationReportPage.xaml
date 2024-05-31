@@ -52,7 +52,7 @@
                         <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="182,133,182,143" Content="{ns:Loc TimePeriod}"></Label>
                         <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc StartDate}" Margin="119,188,306,91" FontSize="20"/>
                         <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
-                        <DatePicker x:Name="txtStartDate" Background="{DynamicResource BorderBackground}" Margin="229,196,149,98"  RenderTransformOrigin="0.697,-0.222"/>
+                        <DatePicker Style="{DynamicResource DatePickerStyleN}" x:Name="txtStartDate" Background="{DynamicResource BackgroundColorN}" Margin="229,196,149,98"  RenderTransformOrigin="0.697,-0.222"/>
                         <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc EndDate}" FontSize="20" HorizontalAlignment="Left" Margin="121,227,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="43" Width="93">
                             <Label.RenderTransform>
                                 <TransformGroup>
@@ -64,7 +64,7 @@
                             </Label.RenderTransform>
                         </Label>
                         <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
-                        <DatePicker x:Name="txtEndDate" Background="{DynamicResource BorderBackground}" Margin="229,240,149,58"/>
+                        <DatePicker Style="{DynamicResource DatePickerStyleN}" x:Name="txtEndDate" Background="{DynamicResource BackgroundColorN}" Margin="229,240,149,58"/>
                     </Grid>
 
 

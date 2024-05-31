@@ -55,10 +55,12 @@
         </Border>
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="960,92,289,162" Width="671">
             <Grid x:Name="CalendarSection">
-                <Calendar x:Name="ReservationCalendar"  BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"  Background="White" SelectionMode="SingleRange" Height="371" Margin="65,142,65,218" RenderTransformOrigin="0.515,0.5">
+                <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyleN}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyleN}"  Style="{DynamicResource CalendarStyleN}" x:Name="ReservationCalendar"  BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"  Background="White" SelectionMode="SingleRange" Height="371" Margin="65,142,65,218" RenderTransformOrigin="0.515,0.5">
                     <Calendar.LayoutTransform>
                         <ScaleTransform ScaleX="2" ScaleY="2"/>
                     </Calendar.LayoutTransform>
+                   
+
 
                 </Calendar>
                 <Button x:Name="reserveButton" Content="{ns:Loc SelectDates}" HorizontalAlignment="Center" Margin="0,520,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{DynamicResource ResourceKey=ButtonStyleN}"/>

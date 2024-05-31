@@ -36,20 +36,42 @@ ItemsSource="{Binding Forums}" Background="{DynamicResource BackgroundColorN}" S
                 <Label Content="{ns:Loc SearchForums}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="131,10,151,136"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc City}" HorizontalAlignment="Left" Margin="142,97,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="-8.542,2.786" FontSize="16"/>
                 <!--<TextBox x:Name="txtSearchCity" HorizontalAlignment="Left" Margin="382,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>-->
-                <ComboBox x:Name="txtSearchCity"  HorizontalAlignment="Left" Margin="255,103,0,74" Width="118" Height="20" ItemsSource="{Binding CitiesSearch}"  SelectedItem="{Binding CitySearch, Mode=TwoWay}" RenderTransformOrigin="0.458,-0.9"/>
+                <ComboBox Style="{DynamicResource ComboBoxStyleN}" x:Name="txtSearchCity"  HorizontalAlignment="Left" Margin="255,103,0,74" Width="118" Height="20" ItemsSource="{Binding CitiesSearch}"  SelectedItem="{Binding CitySearch, Mode=TwoWay}" RenderTransformOrigin="0.458,-0.9">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="{DynamicResource BackgroundColorN}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource BackgroundColorN}"/>
+                        </Style>
+
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
                 <Button Content="{ns:Loc Search}" HorizontalAlignment="Left" Margin="178,141,0,0" VerticalAlignment="Top" Width="142" Command="{Binding SearchCommand}" RenderTransformOrigin="-2.474,0.401" Style="{DynamicResource ButtonStyleN}" FontSize="20" Height="33"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" FontSize="16" Content="{ns:Loc Country}" HorizontalAlignment="Left" Margin="141,66,0,0"  VerticalAlignment="Top" Width="74"/>
                 <!--<TextBox x:Name="txtSearchCountry" HorizontalAlignment="Left" Margin="382,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>-->
-                <ComboBox x:Name="txtSearchCountry"  HorizontalAlignment="Left" Margin="255,72,0,105" Width="118" Height="20" ItemsSource="{Binding CountriesSearch}"  SelectedItem="{Binding CountrySearch, Mode=TwoWay}"/>
+                <ComboBox Style="{DynamicResource ComboBoxStyleN}" x:Name="txtSearchCountry"  HorizontalAlignment="Left" Margin="255,72,0,105" Width="118" Height="20" ItemsSource="{Binding CountriesSearch}"  SelectedItem="{Binding CountrySearch, Mode=TwoWay}">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="{DynamicResource BackgroundColorN}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource BackgroundColorN}"/>
+                        </Style>
+
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
 
 
             </Grid>
         </Border>
         <Label FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="896,108,942,842">Filter</Label>
-        <ComboBox x:Name="forumTypeBox" HorizontalAlignment="Left" Margin="980,112,0,0" VerticalAlignment="Top" Width="148" Height="28"  SelectionChanged="ForumBox_SelectionChanged">
+        <ComboBox  Style="{DynamicResource ComboBoxStyleN}" x:Name="forumTypeBox" HorizontalAlignment="Left" Margin="980,112,0,0" VerticalAlignment="Top" Width="148" Height="28"  SelectionChanged="ForumBox_SelectionChanged">
             <ComboBoxItem Content="{ns:Loc AllForums}" Tag="0"></ComboBoxItem>
             <ComboBoxItem Content="{ns:Loc YourForums}" Tag="1"></ComboBoxItem>
+            <ComboBox.ItemContainerStyle>
+                <Style TargetType="ComboBoxItem">
+                    <Setter Property="Background" Value="{DynamicResource BackgroundColorN}"/>
+                    <Setter Property="BorderBrush" Value="{DynamicResource BackgroundColorN}"/>
+                </Style>
 
+            </ComboBox.ItemContainerStyle>
         </ComboBox>
 
 

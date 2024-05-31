@@ -75,7 +75,7 @@
             <Border Width="526" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="549,1,10,0">
 
                 <Grid>
-                    <Calendar x:Name="ReservationCalendar"  BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"  Background="White" SelectionMode="SingleRange" Height="371" Margin="65,180,65,242" RenderTransformOrigin="0.515,0.5">
+                    <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyleN}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyleN}"  Style="{DynamicResource CalendarStyleN}" x:Name="ReservationCalendar"  BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"  Background="White" SelectionMode="SingleRange" Height="371" Margin="65,180,65,242" RenderTransformOrigin="0.515,0.5">
                         <Calendar.LayoutTransform>
                             <ScaleTransform ScaleX="2" ScaleY="2"/>
                         </Calendar.LayoutTransform>

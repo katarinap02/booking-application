@@ -9,6 +9,7 @@
     <SolidColorBrush x:Key="BorderBackground" Color="#382c4f"/>
     <SolidColorBrush x:Key="HintColorN" Color="DeepSkyBlue"/>
     <SolidColorBrush x:Key="HintTextColor" Color="MediumAquamarine"/>
+    <SolidColorBrush x:Key="BlackoutColorN" Color="White"/>
     <SolidColorBrush x:Key="CommentBackgroundN" Color="#1f1e21"/>
     <Style x:Key="ButtonStyleN" TargetType="Button">
         <Setter Property="Foreground" Value="{DynamicResource ButtonTextN}"/>
