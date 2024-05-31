@@ -38,7 +38,7 @@
         <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="1" Margin="5 0 35 0" HorizontalAlignment="Right">
             <fa:IconImage Icon="Bell" Foreground="#1A1A1A" Height="25" HorizontalAlignment="Left"/>
             <TextBlock VerticalAlignment="Center" Margin="7 0 0 0">
-                <Hyperlink Style="{StaticResource HyperlinkStyle}" Command="{Binding NavigateToRateGuestPageCommand}"  RequestNavigate="RateGuest_RequestNavigate" >
+                <Hyperlink Style="{StaticResource HyperlinkStyle}" Command="{Binding NavigateToRateGuestPageCommand}" >
                     Rate guest
                 </Hyperlink>
             </TextBlock>
@@ -54,7 +54,8 @@
     BorderThickness="0"
     ItemsSource="{Binding Accommodations}"
     ScrollViewer.VerticalScrollBarVisibility="Auto"
-    SelectionMode="Single">
+    SelectionMode="Single"
+    >
                 <ListView.ItemContainerStyle>
                 <Style TargetType="ListViewItem">
                     <Setter Property="Width" Value="460"/>

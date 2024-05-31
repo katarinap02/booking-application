@@ -52,7 +52,7 @@ Style="{StaticResource TextBlockStyleMSHost}"
                 <Label x:Name="YearLabel" VerticalAlignment="Center" Style="{StaticResource LableStyleHost}" Margin="15 0 10 0 ">
                     Year
                 </Label>
-                <ComboBox x:Name="YearComboBox" SelectedValuePath="Tag" Width="60" Height="30" SelectedValue="{Binding SelectedYear, UpdateSourceTrigger=PropertyChanged}" >
+                <ComboBox x:Name="YearComboBox" Style="{StaticResource ComboBoxStyleHost}" SelectedValuePath="Tag" Width="70" Height="30" SelectedValue="{Binding SelectedYear, UpdateSourceTrigger=PropertyChanged}" >
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="SelectionChanged">
                             <cmd:EventToCommand Command="{Binding SelectionChangedCommand}" PassEventArgsToCommand="True"/>

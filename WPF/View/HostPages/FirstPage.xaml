@@ -105,7 +105,7 @@
             <StackPanel Orientation="Horizontal" Grid.Row="2" Margin="5 0 0 0">
                 <fa:IconImage Icon="UsersViewfinder" Foreground="#1A1A1A" Height="22" HorizontalAlignment="Left" Margin="5, 0, 0, 0"/>
                 <TextBlock VerticalAlignment="Center" Margin="10 0 0 0">
-        <Hyperlink Style="{StaticResource HyperlinkStyle}"   >
+        <Hyperlink Style="{StaticResource HyperlinkStyle}" Command="{Binding NavigateToForumPageCommand}"  >
             View new forums
         </Hyperlink>
                 </TextBlock>

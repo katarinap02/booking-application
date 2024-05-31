@@ -48,9 +48,9 @@
                     <Grid>
                         <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="158,0,159,356" Content="{ns:Loc UsernameChange}"></Label>
                         <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="160,152,159,207" Content="{ns:Loc PasswordChange}"></Label>
-                        <Label Content="{ns:Loc OldPass}" Margin="78,194,304,157" FontSize="20"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc OldPass}" Margin="78,194,304,157" FontSize="20"/>
                         <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
-                        <Label Content="{ns:Loc NewPass}" FontSize="20" HorizontalAlignment="Left" Margin="80,233,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="43" Width="141">
+                        <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc NewPass}" FontSize="20" HorizontalAlignment="Left" Margin="80,233,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="43" Width="141">
                             <Label.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1"/>
