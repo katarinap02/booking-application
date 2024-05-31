@@ -354,6 +354,9 @@
   <data name="InputProblem" xml:space="preserve">
     <value>Problem sa unosom podataka</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Srpski</value>
+  </data>
   <data name="Level" xml:space="preserve">
     <value>Nivo hitnosti</value>
   </data>

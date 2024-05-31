@@ -23,10 +23,12 @@ namespace BookingApp.Domain.Model.Reservations
         public string City { get; set; }
         public string Country { get; set; }
 
+        public DateTime DateCreated { get; set; }
+
 
         public AccommodationReservation() { }
 
-        public AccommodationReservation(int guestId, int accommodationId, DateTime startDate, DateTime endDate, int numberOfPeople, string name, string city, string country)
+        public AccommodationReservation(int guestId, int accommodationId, DateTime startDate, DateTime endDate, int numberOfPeople, string name, string city, string country, DateTime dateCreated)
         {
             GuestId = guestId;
             AccommodationId = accommodationId;
@@ -36,6 +38,7 @@ namespace BookingApp.Domain.Model.Reservations
             Name = name;
             City = city;
             Country = country;
+            DateCreated = dateCreated;
         }
         public string[] ToCSV()
         {
@@ -48,7 +51,8 @@ namespace BookingApp.Domain.Model.Reservations
                 NumberOfPeople.ToString(),
                 Name,
                 City,
-                Country
+                Country,
+                DateCreated.ToString()
 
             };
             return csvValues;
@@ -67,6 +71,7 @@ namespace BookingApp.Domain.Model.Reservations
             Name = values[5];
             City = values[6];
             Country = values[7];
+            DateCreated = Convert.ToDateTime(values[8]);
 
         }
 

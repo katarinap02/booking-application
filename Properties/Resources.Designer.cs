@@ -117,6 +117,14 @@ namespace BookingApp.Properties
             }
         }
 
+        internal static string Language
+        {
+            get
+            {
+                return ResourceManager.GetString("Language", resourceCulture);
+            }
+        }
+
         internal static string Adventure
         {
             get

@@ -31,6 +31,7 @@ namespace BookingApp.View.GuestPages
       
 
         public Frame Frame { get; set; }
+       
 
         public ProfilePage(User user, Frame frame)
         {

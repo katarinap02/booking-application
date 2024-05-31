@@ -34,6 +34,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public Guest Guest { get; set; }
 
+
         public GuestService GuestService { get; set; }
         public AccommodationService AccommodationService { get; set; }
         public AccommodationReservationViewModel SelectedReservation { get; set; }

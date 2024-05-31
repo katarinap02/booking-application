@@ -356,6 +356,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   <data name="InputProblem" xml:space="preserve">
     <value>Problem with data input</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>English</value>
+  </data>
   <data name="Level" xml:space="preserve">
     <value>Urgency level</value>
   </data>

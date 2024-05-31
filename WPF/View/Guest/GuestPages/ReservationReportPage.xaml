@@ -65,6 +65,8 @@
                         </Label>
                         <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
                         <DatePicker Style="{DynamicResource DatePickerStyleN}" x:Name="txtEndDate" Background="{DynamicResource BackgroundColorN}" Margin="229,240,149,58"/>
+                        <TextBlock FontSize="16" x:Name="langTextBlock" Style="{DynamicResource TextBlockHeaderStyleN}" Margin="303,302,-16,0"><Run Text="Current language: "/></TextBlock>
+                        <Label FontSize="16" x:Name="langLabel" Foreground="{DynamicResource TextColorN}" Content="{ns:Loc Language}" Margin="434,295,29,-4"/>
                     </Grid>
 
 
