@@ -24,7 +24,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public UserService UserService { get; set; }
 
         public AccommodationReservationService AccommodationReservationService { get; set; }
-
+       
         public User User { get; set; }
         public ReservationCancellationViewModel(User user)
         {
@@ -33,6 +33,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             UserService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             User = user;
+           
+
+           
             Update();
         }
         public void Update()

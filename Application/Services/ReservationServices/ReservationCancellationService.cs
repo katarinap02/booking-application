@@ -1,4 +1,5 @@
-﻿using BookingApp.Domain.Model.Reservations;
+﻿using BookingApp.Domain.Model.Features;
+using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
 using System;
@@ -112,6 +113,18 @@ namespace BookingApp.Application.Services.ReservationServices
                 list.Add(GetNumOfCancellationsByMonth(accId, month, year));
             }
             return list;
+        }
+
+        internal List<ReservationCancellation> GetCancelledReservationsReport(User user, DateTime startDate, DateTime endDate)
+        {
+            List<ReservationCancellation> result = new List<ReservationCancellation>();
+
+            foreach(ReservationCancellation cancellation in GetAll())
+            {
+                if(cancellation.GuestId == user.Id && cancellation.CancellationDate >= startDate && cancellation.CancellationDate <= endDate)
+                    result.Add(cancellation);
+            }
+            return result;
         }
     }
 }

@@ -47,8 +47,8 @@
                 <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="265,192,265,267" Background="{DynamicResource BorderBackground}">
                     <Grid>
                         <Label  Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="182,0,182,277" Content="{ns:Loc ReportType}"></Label>
-                        <RadioButton Foreground="{DynamicResource TextBlockColorN}" FontSize="18" Height="20" Margin="126,49,-126,257" Content="{ns:Loc CreatedRes}"></RadioButton>
-                        <RadioButton Foreground="{DynamicResource TextBlockColorN}" FontSize="18" Height="20" Margin="126,85,-126,221" Content="{ns:Loc CancelledRes}"></RadioButton>
+                        <RadioButton x:Name="createdRadioBtn" IsChecked="True" Foreground="{DynamicResource TextBlockColorN}" FontSize="18" Height="20" Margin="126,49,-126,257" Content="{ns:Loc CreatedRes}"></RadioButton>
+                        <RadioButton x:Name="cancelledRadioBtn" Foreground="{DynamicResource TextBlockColorN}" FontSize="18" Height="20" Margin="126,85,-126,221" Content="{ns:Loc CancelledRes}"></RadioButton>
                         <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="182,133,182,143" Content="{ns:Loc TimePeriod}"></Label>
                         <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc StartDate}" Margin="119,188,306,91" FontSize="20"/>
                         <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
@@ -72,7 +72,7 @@
 
                 </Border>
 
-                <Button Content="{ns:Loc YourProfile}" Command="{Binding Path=ViewProfileCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="18" Width="150" Margin="286,600,616,139"/>
+                <Button Content="{ns:Loc YourProfile}" Command="{Binding Path=YourProfileCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="18" Width="150" Margin="286,600,616,139"/>
                 <Button  Content="{ns:Loc CreateReport}" Command="{Binding Path=CreateReportCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="18" Margin="620,600,282,139"/>
 
 

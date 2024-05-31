@@ -125,6 +125,14 @@ namespace BookingApp.Properties
             }
         }
 
+        internal static string Path
+        {
+            get
+            {
+                return ResourceManager.GetString("Path", resourceCulture);
+            }
+        }
+
         internal static string Adventure
         {
             get

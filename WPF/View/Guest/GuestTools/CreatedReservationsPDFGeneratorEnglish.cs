@@ -24,6 +24,7 @@ namespace BookingApp.WPF.View.Guest.GuestTools
         public DateTime EndDate { get; set; }
         public User User { get; set; }
 
+        public string SavedPath { get; set; }
         public AccommodationReservationService AccommodationReservationService { get; set; }
 
         public CreatedReservationsPDFGeneratorEnglish(User user, DateTime startDate, DateTime endDate)
@@ -61,15 +62,20 @@ namespace BookingApp.WPF.View.Guest.GuestTools
 
             string filePath = Path.Combine(directoryPath, "CreatedReservations_" + index + ".pdf");
             Document pdfDoc = new Document();
-            PdfWriter.GetInstance(pdfDoc, new FileStream(filePath, FileMode.Create));
+            PdfWriter writer = PdfWriter.GetInstance(pdfDoc, new FileStream(filePath, FileMode.Create));
+            string backgroundImagePath = "../../../WPF/Resources/Images/reportBackgroundGuest.png";
+            writer.PageEvent = new BackgroundImageHandler(backgroundImagePath);
             pdfDoc.Open();
             GeneratePdfContent(pdfDoc);
             pdfDoc.Close();
+            SavedPath = "Resources/PDFs/GuestResources/CreatedReservations_" + index + ".pdf";
            
         }
 
         private void GeneratePdfContent(Document pdfDoc)
         {
+
+           
 
             string imagePath = "../../../WPF/Resources/Images/logo.png";
             Image img = Image.GetInstance(imagePath);
@@ -127,7 +133,7 @@ namespace BookingApp.WPF.View.Guest.GuestTools
         private void CreateTable(Document pdfDoc)
         {
             BaseColor headerCellColor = new BaseColor(119, 71, 214);
-            BaseColor cellColor = new BaseColor(227, 250, 255);
+            BaseColor cellColor = new BaseColor(227, 250, 255, 191);
 
             PdfPTable table = new PdfPTable(5)
             {

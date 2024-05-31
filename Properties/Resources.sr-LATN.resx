@@ -426,6 +426,9 @@
   <data name="PasswordChange" xml:space="preserve">
     <value>Promeni lozinku</value>
   </data>
+  <data name="Path" xml:space="preserve">
+    <value>Putanja</value>
+  </data>
   <data name="Pending" xml:space="preserve">
     <value>Na čekanju</value>
   </data>
