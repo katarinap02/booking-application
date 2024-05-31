@@ -119,6 +119,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             NavigationService = Frame.NavigationService;
             GuestNumber = 1;
 
+
+
            // Page.finishReservation.IsEnabled = false;
 
         }
@@ -192,14 +194,17 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Page.PeopleNumberSection.IsEnabled = true;
             SelectedDatesCollection selectedDates = ReservationCalendar.SelectedDates;
             SelectedDateRange = new CalendarDateRange(selectedDates[0], selectedDates[selectedDates.Count - 1]);
-            Page.HintLabel.Content = "Problem with guest number input";
-            Page.Hint.Text = "Number of guests cannot be larger than specified maximal number of guests.";
-            Page.Hint.Visibility = Visibility.Collapsed;
+            UpdateHintContent();
+            Page.langTextbox.TextChanged += ContentChanged;
 
         }
 
-       
 
+        private void ContentChanged(object sender, EventArgs e)
+        {
+            UpdateHintContent();
+            // ViewModel.UpdateHintContent();
+        }
         public void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
 
@@ -222,6 +227,22 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Mouse.Capture(null);
         }
 
-       
+        internal void UpdateHintContent()
+        {
+            if (Page.langTextbox.Text == "English")
+            {
+                Page.HintLabel.Content = "Problem with guest number input";
+                Page.Hint.Text = "Number of guests cannot be larger than specified maximal number of guests.";
+                Page.Hint.Visibility = Visibility.Collapsed;
+            }
+
+            if (Page.langTextbox.Text == "Srpski")
+            {
+                Page.HintLabel.Content = "Problem sa unosom broja gostiju";
+                Page.Hint.Text = "Broj gostiju ne može biti veći od specificiranog broja gostiju.";
+                Page.Hint.Visibility = Visibility.Collapsed;
+            }
+
+        }
     }
 }

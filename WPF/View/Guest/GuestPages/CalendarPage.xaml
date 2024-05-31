@@ -93,7 +93,7 @@
                 </TextBlock>
 
                 <Button x:Name="reserveButton" Content="{ns:Loc SelectDates}" HorizontalAlignment="Center" Margin="0,457,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{DynamicResource ResourceKey=ButtonStyleN}"/>
-
+                <TextBox x:Name="langTextbox" TextChanged="ContentChanged" Text="{ns:Loc Language}" Visibility="Hidden" Foreground="{DynamicResource BorderBackground}" Margin="27,10,513,526"></TextBox>
             </Grid>
         </Border>
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="30, 30, 30, 30" Margin="981,665,268,162" Width="671" Height="163">

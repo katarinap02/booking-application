@@ -36,10 +36,16 @@ namespace BookingApp.View.GuestPages
             Frame = frame;
             SelectedRequest = selectedRequest;
             ViewModel = new RequestDetailsViewModel(SelectedRequest, this);
-            
+           
             DataContext = ViewModel;
+          
         }
 
-        
+        private void ContentChanged(object sender, EventArgs e)
+        {
+          
+        }
+
+
     }
 }

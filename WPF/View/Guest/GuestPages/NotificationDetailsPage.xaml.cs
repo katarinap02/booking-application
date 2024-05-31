@@ -50,5 +50,11 @@ namespace BookingApp.WPF.View.Guest.GuestPages
         {
             NavigationService.GoBack();
         }
+
+        private void ContentChanged(object sender, EventArgs e)
+        {
+            
+        }
+
     }
 }

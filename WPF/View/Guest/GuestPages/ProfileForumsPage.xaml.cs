@@ -28,6 +28,7 @@ namespace BookingApp.WPF.View.Guest.GuestPages
 
         public ProfileForumsViewModel ViewModel { get; set; }
         
+        
         public ProfileForumsPage(User user, Frame frame)
         {
             InitializeComponent();
