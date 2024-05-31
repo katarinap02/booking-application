@@ -26,6 +26,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
         private readonly TourParticipantService _tourParticipantService;
         private readonly VoucherService _voucherService;
+        private readonly GuideInfoService _guideInfoService;
         private readonly TourReservationService _tourReservationService;
 
         private TouristService _touristService;
@@ -36,6 +37,7 @@ namespace BookingApp.Application.Services.FeatureServices
             _touristService = new TouristService(Injector.Injector.CreateInstance<ITouristRepository>());
             _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
             _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
+            _guideInfoService = new GuideInfoService();
         }
 
         public List<Tour> GetAllTours()
@@ -166,12 +168,11 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public List<Tour> sortBySuperGuide(List<Tour> tours)
         {
-            bool SuperGuide = true;
             List < Tour > isSuperGuide = new List<Tour> ();
             List < Tour > notSuperGuide = new List<Tour> ();
             foreach (Tour tour in tours)
             {
-                if (SuperGuide)
+                if (_guideInfoService.GetByGuideId(tour.GuideId).Status == GuideStatus.Super)
                 {
                     isSuperGuide.Add(tour);
                 }
@@ -180,8 +181,8 @@ namespace BookingApp.Application.Services.FeatureServices
                     notSuperGuide.Add(tour);
                 }
             }
-            // isSuperGuide.Append(notSuperGuide);
-            return null;
+            isSuperGuide.AddRange(notSuperGuide);
+            return isSuperGuide;
         }
 
         public void cancelTour(int tour_id, int guide_id)
@@ -193,7 +194,7 @@ namespace BookingApp.Application.Services.FeatureServices
             string reason = "Tour " + tour.Name + " has been canceled";
             DateOnly expireDate = new DateOnly(DateTime.Now.Year + 1, DateTime.Now.Month, DateTime.Now.Day);
             grantVoucher(reason, expireDate, tour_id, guide_id);
-            MessageBox.Show(reason);
+            MessageBox.Show(reason, "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
             _tourRepository.save(tour);
         }
 
@@ -293,8 +294,75 @@ namespace BookingApp.Application.Services.FeatureServices
 
         public List<Tour> getToursByGuide(int guide_ID)
         {
-            List < Tour > tours = GetAllTours();
-            return tours.FindAll(x => x.GuideId == guide_ID ); // && x.Status == TourStatus.Finnished
+            List < Tour > tours = _tourRepository.GetAll();
+            return tours.FindAll(x => x.GuideId == guide_ID ); 
+        }
+
+        public string FindMostUsedLanguageForGuide(int guide_id)            
+        {
+            List<Tour> tours = _tourRepository.GetAll().FindAll(x => x.GuideId == guide_id && x.Status != TourStatus.Canceled);
+            var languageCounts = tours
+                .GroupBy(t => t.Language)
+                .Select(g => new { Language = g.Key, Count = g.Count() })
+                .OrderByDescending(g => g.Count)
+                .ToList();
+
+            return languageCounts.FirstOrDefault()?.Language;
+        }
+
+        public List<string> FindLanguagesWithMoreThan20ToursInPastYear(int guide_id)
+        {
+            List<Tour> tours = _tourRepository.GetAll().FindAll(t => t.GuideId == guide_id && t.Status == TourStatus.Finnished);
+            if (tours == null || tours.Count == 0)
+            {
+                return null;
+            }
+
+            var recentTours = filterToursInPastYear(tours);
+
+            var languageCounts = recentTours
+                .GroupBy(t => t.Language)
+                .Select(g => new { Language = g.Key, Count = g.Count() })
+                .Where(g => g.Count > 20) // preko 20 tura
+                .Select(g => g.Language)
+                .ToList();
+
+            return languageCounts;
+        }
+
+        public List<Tour> getPendingToursByGuide(int guide_id)
+        {
+            List<Tour> tours = getToursByGuide(guide_id);
+            return tours.FindAll(t => t.Status == TourStatus.inPreparation);
+        }
+
+        public void CancelMultipleForQuitting(List<Tour> tours, int guide_id)
+        {
+            foreach(var tour in tours)
+            {
+                tour.Status = TourStatus.Canceled;
+                _tourRepository.save(tour);
+                string reason = "Guide which created this tour has quit.";
+                DateOnly expireDate = new DateOnly(DateTime.Now.Year + 2, DateTime.Now.Month, DateTime.Now.Day);
+                grantVoucher(reason, expireDate, tour.Id, guide_id);
+            }
+        }
+
+        public List<Tour> findToursByLanguageAndGuide(string language, int guide_id)
+        {
+            return _tourRepository.GetAll().FindAll(x => x.Language.Equals(language) &&  x.GuideId == guide_id);
+        }
+
+        public List<Tour> filterToursInPastYear(List<Tour> tours)
+        {
+            DateTime oneYearAgo = DateTime.Now.AddDays(-365);
+            return tours.Where(t => t.Date >= oneYearAgo).ToList();
+        }
+
+        public int GetNonCanceledToursGyGuide(int guide_ID)
+        {
+            List<Tour> tours = _tourRepository.GetAll();
+            return tours.FindAll(x => x.GuideId == guide_ID && x.Status != TourStatus.Canceled).Count; 
         }
 
     }
