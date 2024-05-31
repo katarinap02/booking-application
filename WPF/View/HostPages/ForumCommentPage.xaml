@@ -174,9 +174,19 @@ SelectionMode="Single">
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
-        <StackPanel Orientation="Horizontal">
-            
+        <StackPanel Orientation="Horizontal" Grid.Row="3" VerticalAlignment="Center" Margin="140 0 0 30">
+                        <Image
+            Height="75"
+            VerticalAlignment="Center"
+            HorizontalAlignment="Center"
+            Source="../../Resources/Images/person.jpg" />
+            <TextBox Width="500" Height="75" Margin="20 0 0 0">
+
+            </TextBox>
+            <Button Content="Report" Width="75" Height="29" VerticalAlignment="Center" Style="{StaticResource ButtonStyleHost}"
+     Margin="20 0 0 0"/>
         </StackPanel>
+        
 
     </Grid>
 </Page>
