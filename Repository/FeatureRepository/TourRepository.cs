@@ -188,7 +188,6 @@ namespace BookingApp.Repository.FeatureRepository
             _tours.Remove(current);
             _tours.Insert(index, tour);
             _serializer.ToCSV(FilePath, _tours);
-            // notify observers
         }        
 
         public List<Tour> findFinnishedToursByGuide(int guide_id) // izmeniti pozivanja
