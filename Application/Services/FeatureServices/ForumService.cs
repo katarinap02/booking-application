@@ -59,7 +59,7 @@ namespace BookingApp.Application.Services.FeatureServices
             {
                 if(forumComment.ForumId == forum.Id)
                 {
-                    if (forumComment.IsHost && HostService.HasAccommodation(forum.UserId, forum.City, forum.Country))
+                    if (forumComment.IsHost)
                         hostComments++;
 
                     if (!forumComment.IsHost && ForumCommentService.HasReservation(forum.UserId, forum.City, forum.Country))
@@ -74,7 +74,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
         private void CheckForumUsefulness(Forum forum, int guestComments, int hostComments)
         {
-            if (guestComments >= 10 && hostComments >= 20)
+            if (guestComments >= 20 && hostComments >= 10)
                 forum.IsVeryUseful = true;
             else
                 forum.IsVeryUseful = false;

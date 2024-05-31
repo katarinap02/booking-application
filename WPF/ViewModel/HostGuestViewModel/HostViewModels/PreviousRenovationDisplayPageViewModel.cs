@@ -44,7 +44,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         private void Execute_NavigateToSchedulePageCommand(object obj)
         {
-            ScheduleRenovationPage page = new ScheduleRenovationPage(User);
+            ScheduleRenovationPage page = new ScheduleRenovationPage(User, NavService);
             this.NavService.Navigate(page);
         }
 

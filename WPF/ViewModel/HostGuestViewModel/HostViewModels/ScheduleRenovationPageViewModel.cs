@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -30,7 +31,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public User User { get; set; }
 
         public MyICommand ScheduleCommand { get; set; }
-        public ScheduleRenovationPageViewModel(User user)
+        public ScheduleRenovationPageViewModel(User user, NavigationService NavigationService)
         {
             Accommodations = new ObservableCollection<AccommodationViewModel>();
             accommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());

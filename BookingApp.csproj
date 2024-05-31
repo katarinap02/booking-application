@@ -39,6 +39,7 @@
     <None Remove="WPF\Resources\Images\lock.png" />
     <None Remove="WPF\Resources\Images\minus.png" />
     <None Remove="WPF\Resources\Images\person.jpg" />
+    <None Remove="WPF\Resources\Images\person_no_white.psd" />
     <None Remove="WPF\Resources\Images\planeComputer.jpg" />
     <None Remove="WPF\Resources\Images\play_button.png" />
     <None Remove="WPF\Resources\Images\plus.png" />
@@ -125,6 +126,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="WPF\Resources\Images\person.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WPF\Resources\Images\person_no_white.psd">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="WPF\Resources\Images\plus.png">
