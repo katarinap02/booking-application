@@ -66,10 +66,27 @@ namespace BookingApp.Application.Services.RateServices
 
             return rates;
         }
+
+        public List<GuideRate> GetGuideRates(int guide_id) {
+            return _guideRateRepository.GetAll().FindAll(r => r.GuideId == guide_id);
+        }
         
         public void markAsInvalid(int id)
         {
             _guideRateRepository.markAsInvalid(id);
+        }
+
+        public double findAverageRateByTours(List<Tour> tours)
+        {
+            List<int> grades = new List<int>();
+            foreach (var tour in tours)
+            {
+                GuideRate guideRate = _guideRateRepository.GetAll().Find(r => r.TourId == tour.Id);
+                grades.Add(guideRate.Language);
+                grades.Add(guideRate.TourInterest);
+                grades.Add(guideRate.Knowledge);
+            }
+            return grades.Average();
         }
 
     }
