@@ -184,8 +184,19 @@ SelectionMode="Single">
             <TextBox Width="554" Height="75" Margin="10 0 0 0" TextWrapping="Wrap"
                      Text="{Binding Path= ForumCommentViewModel.Comment, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}"/>
             <Button Content="Reply" Width="75" Height="29" VerticalAlignment="Center"
-             Style="{StaticResource ButtonStyleHost}"  Command="{Binding AddCommentCommand}"
-     Margin="10 45 0 0"/>
+               Command="{Binding AddCommentCommand}"
+     Margin="10 45 0 0">
+                <Button.Style>
+                    <Style TargetType="Button" BasedOn="{StaticResource ButtonStyleHost}">
+                        <Setter Property="IsEnabled" Value="True" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding ForumViewModel.IsClosed, Converter={StaticResource BooleanButtonConverter}}" Value="False">
+                                <Setter Property="IsEnabled" Value="False"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Button.Style>
+            </Button>
         </StackPanel>
         
 

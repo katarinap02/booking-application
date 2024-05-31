@@ -96,6 +96,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 }
                 
             }
+            if(ForumViewModel.IsClosed)
+            {
+                MessageBox.Show("This forum is closed.");
+            }
         }
 
         public void SortByReport()
@@ -116,6 +120,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public void AddForumCommentHost()
         {
+            if(!ForumViewModel.IsClosed) { 
             ForumComment f = forumCommentService.CreateComment(User.Id, ForumCommentViewModel.Comment,
                 ForumViewModel.City, ForumViewModel.Country,
                 ForumViewModel.Id);
@@ -126,6 +131,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
             ForumCommentPage page = new ForumCommentPage(User, NavService, ForumViewModel);
             this.NavService.Navigate(page, NavService);
+            }
 
         }
 
