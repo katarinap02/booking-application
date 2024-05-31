@@ -4,7 +4,7 @@
     <SolidColorBrush x:Key="BackgroundColorN" Color="#241c36"/>
     <SolidColorBrush x:Key="AccentColorN" Color="#8a5de3"/>
     <SolidColorBrush x:Key="AccentColorN2" Color="#ffab65dd"/>
-    <SolidColorBrush x:Key="TextColorN" Color="#957ec2"/>
+    <SolidColorBrush x:Key="TextColorN" Color="#b6a2de"/>
     <SolidColorBrush x:Key="TextBlockColorN" Color="#F4F4ED"/>
     <SolidColorBrush x:Key="BorderBackground" Color="#382c4f"/>
     <SolidColorBrush x:Key="HintColorN" Color="DeepSkyBlue"/>

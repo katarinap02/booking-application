@@ -102,20 +102,21 @@
     </Window.Resources>
 
     <Grid>
-        <Image Source="{DynamicResource BackgroundDrawing}" Margin="-770,107,770,0"/>
-        <Image Source="{DynamicResource BackgroundDrawing2}" Margin="1134,718,-444,-23" RenderTransformOrigin="0.5,0.5">
-            <Image.RenderTransform>
-                <TransformGroup>
-                    <ScaleTransform/>
-                    <SkewTransform/>
-                    <RotateTransform Angle="90.351"/>
-                    <TranslateTransform/>
-                </TransformGroup>
-            </Image.RenderTransform>
-        </Image>
+       
 
         <Viewbox Stretch="Uniform">
             <Grid Margin="10,0,0,0">
+                <Image Source="{DynamicResource BackgroundDrawing}" Margin="-786,124,786,-17"/>
+                <Image Source="{DynamicResource BackgroundDrawing2}" Margin="1144,734,-454,-39" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="90.351"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
                 <!--<Rectangle HorizontalAlignment="Left" Height="50" Stroke="Black" VerticalAlignment="Top" Width="1929" Fill="{DynamicResource AccentColorN}" Margin="-9,0,0,0"/>-->
                 <Border Height="50" BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" Background="{DynamicResource AccentColorN}" Margin="-10,-9,0,991">
                     <Grid>
