@@ -180,7 +180,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         UserService userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
         public event PropertyChangedEventHandler PropertyChanged;
 
-
+        
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

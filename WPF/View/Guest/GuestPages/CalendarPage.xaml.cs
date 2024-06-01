@@ -131,5 +131,6 @@ namespace BookingApp.View.GuestPages
             Hint.Visibility = Visibility.Hidden;
         }
 
+      
     }
 }

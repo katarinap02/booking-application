@@ -46,12 +46,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         {
             Frame.Content = new AboutPage(Frame);
             GuestWindow.backButton.Visibility = Visibility.Visible;
+            GuestWindow.aboutMenu.IsChecked = true;
         }
 
         private void OnHelp()
         {
             Frame.Content = new HelpPage(Frame);
             GuestWindow.backButton.Visibility = Visibility.Visible;
+            GuestWindow.helpMenu.IsChecked = true;
         }
 
         private void OnReserve()
@@ -59,6 +61,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
             Frame.Content = new AccommodationsPage(User, Frame);
             GuestWindow.backButton.Visibility = Visibility.Visible;
+            GuestWindow.accommodationsMenu.IsChecked = true;
         }
     }
 }

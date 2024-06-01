@@ -74,7 +74,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
         private void CheckForumUsefulness(Forum forum, int guestComments, int hostComments)
         {
-            if (guestComments >= 10 && hostComments >= 20)
+            if (guestComments >= 20 && hostComments >= 10)
                 forum.IsVeryUseful = true;
             else
                 forum.IsVeryUseful = false;

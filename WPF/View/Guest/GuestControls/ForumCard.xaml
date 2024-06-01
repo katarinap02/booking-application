@@ -7,6 +7,83 @@
                xmlns:ns="clr-namespace:BookingApp"
              mc:Ignorable="d" 
                          d:DesignHeight="103" d:DesignWidth="990">
+    <UserControl.Resources>
+        <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <DrawingGroup x:Key="comment_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0,0,32.0,32.0"/>
+                </DrawingGroup.ClipGeometry>
+                <GeometryDrawing Brush="{DynamicResource AccentColorN}">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry Figures="M 5.078 24.482 A 19.813 19.813 0 0 1 1.812 30 c 3.198 0 7.312 -0.42 10.482 -2.364 A 19.52 19.52 0 0 0 16 28 c 8.836 0 16 -5.82 16 -13 S 24.836 2 16 2 S 0 7.82 0 15 c 0 3.744 1.96 7.11 5.078 9.482 z" FillRule="Nonzero"/>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource comment_xaml}" x:Key="Comment"/>
+            <DrawingGroup x:Key="medal_svgrepo_com_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,296.193,296.193"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="{DynamicResource AccentColorN}">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 213.764 95.654 V 10 c 0 -5.523 -4.145 -10 -9.667 -10 h -49.333 v 75.687 C 176.764 76.927 196.764 83.822 213.764 95.654 z" FillRule="Nonzero"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="{DynamicResource AccentColorN}">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 139.764 0 H 91.097 c -5.522 0 -10.333 4.477 -10.333 10 v 86.341 c 18 -12.063 38 -19.171 59 -20.594 V 0 z" FillRule="Nonzero"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="{DynamicResource AccentColorN}">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 148.096 90.475 c -56.807 0 -102.857 46.051 -102.857 102.859 s 46.051 102.859 102.857 102.859 c 56.809 0 102.859 -46.051 102.859 -102.859 S 204.904 90.475 148.096 90.475 z M 197.507 209.379 l 6.593 38.447 c 0.965 5.628 -1.349 11.314 -5.968 14.671 c -2.613 1.898 -5.708 2.864 -8.818 2.864 c -2.387 0 -4.784 -0.569 -6.979 -1.724 l -34.522 -18.151 l -34.527 18.152 c -2.195 1.153 -4.592 1.723 -6.979 1.723 c -3.11 0 -6.206 -0.966 -8.819 -2.865 c -4.619 -3.355 -6.932 -9.044 -5.967 -14.671 l 6.597 -38.446 l -27.934 -27.226 c -4.089 -3.985 -5.561 -9.947 -3.796 -15.377 c 1.765 -5.431 6.459 -9.389 12.109 -10.21 l 38.601 -5.607 l 17.264 -34.979 c 2.527 -5.12 7.742 -8.361 13.451 -8.361 c 5.71 0 10.924 3.241 13.451 8.361 l 17.263 34.98 l 38.599 5.607 c 5.65 0.82 10.345 4.778 12.109 10.208 c 1.765 5.431 0.293 11.392 -3.796 15.377 L 197.507 209.379 z" FillRule="Nonzero"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="{DynamicResource AccentColorN}">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 147.813 228.539 L 189.315 250.361 L 181.39 204.142 L 214.969 171.411 L 168.566 164.67 L 147.813 122.619 L 127.059 164.67 L 80.653 171.411 L 114.234 204.142 L 106.305 250.361 Z"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource medal_svgrepo_com_xaml}" x:Key="UsefulIcon"/>
+            <DrawingGroup x:Key="closed_food_and_restaurant_svgrepo_com_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,512.0,512.0"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <DrawingGroup>
+                        <GeometryDrawing Brush="{DynamicResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 219.656 233.066 c -3.663 0 -5.573 0.293 -5.573 6.627 v 32.614 c 0.001 6.432 1.912 6.732 5.573 6.732 c 3.666 0 5.581 -0.3 5.581 -6.732 v -32.614 C 225.236 233.36 223.323 233.066 219.656 233.066 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup>
+                        <GeometryDrawing Brush="{DynamicResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 415.081 233.067 h -5.468 v 45.344 h 5.468 c 3.522 -0.001 5.681 -0.326 5.681 -6.735 v -31.983 C 420.762 233.374 418.71 233.067 415.081 233.067 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingGroup>
+                <DrawingGroup>
+                    <DrawingGroup>
+                        <GeometryDrawing Brush="{DynamicResource AccentColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 493.268 90.934 H 18.732 C 8.387 90.934 0 99.321 0 109.666 v 292.668 c 0 10.344 8.387 18.732 18.732 18.732 h 474.537 c 10.345 0 18.732 -8.388 18.732 -18.732 V 109.666 C 512 99.321 503.613 90.934 493.268 90.934 z M 97.445 279.039 c 4.424 0 4.448 -0.179 5.015 -4.733 c 0.814 -6.545 5.945 -10.946 12.768 -10.946 c 6.205 0 12.835 3.593 12.835 13.678 c 0 13.491 -10.769 27.148 -31.351 27.148 c -19.214 0 -31.15 -12.217 -31.15 -31.88 v -32.614 c 0 -19.6 12.055 -31.775 31.461 -31.775 c 20.378 0 31.04 13.551 31.04 26.936 c 0 10.004 -6.631 13.568 -12.835 13.568 c -7.061 0 -12.33 -4.654 -12.815 -11.319 c -0.005 -0.081 -0.01 -0.164 -0.015 -0.244 c -0.102 -2.203 -0.176 -3.793 -5.376 -3.793 c -4.012 0 -5.786 0.267 -5.786 6.627 v 32.614 C 91.237 278.517 92.753 279.039 97.445 279.039 z M 178.121 303.558 H 144.35 c -7.021 0 -12.52 -5.317 -12.52 -12.102 v -71.654 c 0 -6.777 5.518 -11.886 12.835 -11.886 c 7.318 0 12.837 5.109 12.837 11.886 v 58.608 h 20.619 c 6.661 0 11.685 5.383 11.685 12.522 C 189.806 298.13 184.782 303.558 178.121 303.558 z M 250.909 272.309 c 0 19.663 -11.975 31.88 -31.252 31.88 c -19.272 0 -31.245 -12.217 -31.245 -31.88 v -32.614 c 0 -19.6 11.972 -31.775 31.245 -31.775 c 19.279 0 31.252 12.176 31.252 31.775 V 272.309 z M 284.452 304.297 c -18.233 0 -30.94 -10.927 -30.94 -20.732 c 0 -6.27 5.144 -13.256 12.524 -13.256 c 4.941 0 7.864 3.147 9.608 5.026 c 1.921 2.07 3.438 3.705 8.382 3.705 c 6.313 0 6.313 -2.39 6.313 -5.156 c 0 -4.05 -0.928 -5.266 -10.776 -8.966 c -9.034 -3.394 -24.156 -9.076 -24.156 -28.699 c 0 -17.321 12.432 -28.512 31.673 -28.512 c 10.044 0 27.041 3.324 27.041 15.786 c 0 6.403 -4.988 13.258 -12.414 13.258 c -2.905 0 -5.141 -1.153 -6.776 -1.994 c -1.919 -0.989 -3.905 -2.011 -7.958 -2.011 c -5.888 0 -5.888 1.578 -5.888 2.846 c 0 1.617 0.335 2.398 8.736 5.486 c 9.795 3.599 26.191 9.623 26.191 32.179 C 316.011 292.113 303.624 304.297 284.452 304.297 z M 352.919 243.268 v 0.001 c 6.73 0 11.998 5.5 11.998 12.522 c 0 6.846 -5.269 12.209 -11.998 12.209 h -7.147 v 10.41 h 24.3 c 6.73 0 11.997 5.546 11.997 12.626 c 0 7.021 -5.269 12.522 -11.997 12.522 h -37.453 c -7.022 0 -12.524 -5.317 -12.524 -12.102 v -71.545 c 0 -6.726 5.502 -11.993 12.524 -11.993 h 37.453 c 6.842 0 11.997 5.336 11.997 12.412 c 0 7.142 -5.269 12.736 -11.997 12.736 h -24.3 v 10.203 H 352.919 z M 446.438 271.675 c 0 19.666 -12.015 31.883 -31.358 31.883 H 396.46 c -6.904 0.001 -12.522 -5.38 -12.522 -11.992 v -71.762 c 0 -6.666 5.5 -11.886 12.522 -11.886 h 18.619 c 19.344 0 31.358 12.176 31.358 31.775 V 271.675 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource closed_food_and_restaurant_svgrepo_com_xaml}" x:Key="Closed"/>
+        </ResourceDictionary>
+
+    </UserControl.Resources>
     <Grid>
         <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="{DynamicResource BorderBackground}" Width="980" Height="103">
             <Grid Margin="10">
@@ -15,7 +92,62 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" Margin="10,10,675,-47" Grid.RowSpan="2" FontSize="22" FontWeight="Bold">
+                <Image Source="{DynamicResource Comment}" Height="20" Margin="57,56,859,2" Grid.Row="1"/>
+
+                <Image  VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Margin="206,52,0,0" Width="24" Grid.Row="1">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Source" Value="{x:Null}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsVeryUseful}" Value="True">
+                                    <Setter Property="Source" Value="{DynamicResource UsefulIcon}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsVeryUseful}" Value="False">
+                                    <Setter Property="Source" Value="{x:Null}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+                <TextBlock Text="very useful" Foreground="{DynamicResource TextColorN}" FontSize="18" FontStyle="Italic" Margin="236,54,550,-1" Grid.Row="1">
+                    <TextBlock.Style>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsVeryUseful}" Value="True">
+                                    <Setter Property="Visibility" Value="Visible"/>
+
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </TextBlock.Style>
+                </TextBlock>
+
+
+
+
+
+
+
+                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="20" Text="{Binding NumOfComments}" Margin="102,54,814,0" Grid.Row="1"></TextBlock>
+                <Image  Margin="10,6,906,42" Grid.Row="1">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Source" Value="{x:Null}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsClosed}" Value="True">
+                                    <Setter Property="Source" Value="{DynamicResource Closed}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsClosed}" Value="False">
+                                    <Setter Property="Source" Value="{x:Null}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
+
+                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" Margin="56,7,396,-44" Grid.RowSpan="2" FontSize="22" FontWeight="Bold">
 <Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding City}"/>
 <Run Text=", "/><Run Text="{Binding Country}"/>
                     <!--<TextBlock.Text>
@@ -27,7 +159,7 @@
                     </TextBlock.Text>-->
                 </TextBlock>
 
-                <TextBlock Text="{Binding CommentNumber}" Margin="10,52,868,-86" Grid.RowSpan="2" FontSize="16"></TextBlock>
+                <TextBlock Text="{Binding CommentNumber}" Margin="10,27,868,-82" FontSize="16" Grid.Row="1"/>
 
             </Grid>
 

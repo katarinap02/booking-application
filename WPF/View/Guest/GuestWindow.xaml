@@ -166,12 +166,12 @@
                     <Grid>
                         <StackPanel Orientation="Horizontal" Height="50" VerticalAlignment="Top">
 
-                            <Button x:Name="HomeButton" Content="{ns:Loc Home}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HomeClick"/>
-                            <Button Content="{ns:Loc Profile}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="ProfileClick"/>
-                            <Button Content="{ns:Loc Accommodations}" Width="280" Style="{DynamicResource ButtonStyleN}" Click="AccommodationsClick"/>
-                            <Button Content="{ns:Loc Forums}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="ForumsClick"/>
-                            <Button Content="{ns:Loc About}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="AboutClick"/>
-                            <Button Content="{ns:Loc Help}" Width="150" Style="{DynamicResource ButtonStyleN}" Click="HelpClick"/>
+                            <RadioButton x:Name="HomeButton" Content="{ns:Loc Home}" Width="150" Style="{DynamicResource ToggleButtonStyleN}" Click="HomeClick"/>
+                            <RadioButton x:Name="profileMenu" Content="{ns:Loc Profile}" Width="150" Style="{DynamicResource ToggleButtonStyleN}" Click="ProfileClick"/>
+                            <RadioButton x:Name="accommodationsMenu" Content="{ns:Loc Accommodations}" Width="280" Style="{DynamicResource ToggleButtonStyleN}" Click="AccommodationsClick"/>
+                            <RadioButton Content="{ns:Loc Forums}" Width="150" Style="{DynamicResource ToggleButtonStyleN}" Click="ForumsClick"/>
+                            <RadioButton x:Name="aboutMenu" Content="{ns:Loc About}" Width="150" Style="{DynamicResource ToggleButtonStyleN}" Click="AboutClick"/>
+                            <RadioButton x:Name="helpMenu" Content="{ns:Loc Help}" Width="150" Style="{DynamicResource ToggleButtonStyleN}" Click="HelpClick"/>
 
                         </StackPanel>
                         <Button Content="{ns:Loc LanguageBtn}" Style="{DynamicResource ButtonStyleN}" HorizontalAlignment="Left" Margin="1538,5,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.587,-0.105" Command ="{Binding SwitchLanguageCommand}"/>

@@ -12,6 +12,8 @@
     <SolidColorBrush x:Key="BlackoutColorN" Color="Black"/>
     <SolidColorBrush x:Key="CommentBackgroundN" Color="Beige"/>
     <SolidColorBrush x:Key="HoverColorN" Color="#ffab65dd"/>
+    <SolidColorBrush x:Key="MenuHighlightN" Color="#492c82"/>
+    <SolidColorBrush x:Key="MenuForegroundN" Color="#F4F4ED"/>
     <!--<SolidColorBrush x:Key="DisabledButtonColor" Color="{DynamicResource BackgroundColorN}"-->
 
   
@@ -47,13 +49,63 @@
 
 
             </Trigger>
-           
+
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AccentColorN2}"/>
+
+
+            </Trigger>
+
         </Style.Triggers>
 
 
     </Style>
-    
-    
+
+    <Style x:Key="ToggleButtonStyleN" TargetType="ToggleButton">
+        <Setter Property="Foreground" Value="{DynamicResource ButtonTextN}"/>
+        <Setter Property="Background" Value="{DynamicResource AccentColorN}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource AccentColorN}"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+
+        <Setter Property="FontSize" Value="28"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter x:Name="MyContentPresenter" 
+                                       Content="{TemplateBinding Content}"
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="Background" Value="{DynamicResource BackgroundColorN}"/>
+                <Setter Property="Foreground" Value="#706f73"/>
+
+            </Trigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AccentColorN2}"/>
+
+
+            </Trigger>
+
+            <Trigger Property="IsChecked" Value="True">
+                <Setter Property="Background" Value="{DynamicResource AccentColorN2}"/>
+
+
+            </Trigger>
+
+        </Style.Triggers>
+
+
+    </Style>
+
+
     <Style x:Key="ButtonStyleN2" TargetType="Button">
         <Setter Property="Foreground" Value="{DynamicResource ButtonTextN}"/>
         <Setter Property="Background" Value="{DynamicResource AccentColorN}"/>

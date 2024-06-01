@@ -436,6 +436,22 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
         }
 
+        public Accommodation ToAccommodationWithoutSearch()
+        {
+            if (type == AccommodationType.APARTMENT && (isCheckedCottage || isCheckedHouse))
+            {
+                type = ConvertToType();
+            }
+
+            Accommodation a = new Accommodation(name, country, city, type, maxGuestNumber, minReservationDays, reservationDaysLimit, hostId);
+            a.Id = id;
+            a.UnavailableDates = unavailableDates;
+            a.Pictures = picture;
+
+            return a;
+
+        }
+
         private void LoadCountriesFromCSV()
         {
             string csvFilePath = "../../../Resources/Data/european_countries.csv";

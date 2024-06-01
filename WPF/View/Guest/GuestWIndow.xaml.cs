@@ -31,9 +31,10 @@ namespace BookingApp.View
 
     public partial class GuestWindow : Window
     {
-      
+
         public User User { get; set; }
 
+        
         private string currentLanguage;
         public string CurrentLanguage
         {
@@ -63,10 +64,11 @@ namespace BookingApp.View
             Main.DataContext = this;
             SetTheme(new Uri("/Styles/GuestUIdictionaryLight.xaml", UriKind.Relative));
             CurrentLanguage = "en-US";
-
+            HomeButton.Focus();
             SwitchLanguageCommand = new GuestICommand(OnSwitchLanguage);
             BackCommand = new GuestICommand(OnBack);
             NavigationService = Main.NavigationService;
+           
          
 ;
             DataContext = this;
@@ -79,7 +81,11 @@ namespace BookingApp.View
 
            
             if(NavigationService.CanGoBack)
+            {
                 NavigationService.GoBack();
+               
+            }
+               
           
             
 
@@ -118,6 +124,7 @@ namespace BookingApp.View
             BackCommand.RaiseCanExecuteChanged();
 
             backButton.Visibility = Visibility.Visible;
+          
         }
 
         private void AccommodationsClick(object sender, RoutedEventArgs e)

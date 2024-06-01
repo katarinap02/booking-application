@@ -33,7 +33,7 @@ namespace BookingApp.View.GuestPages
 
         public Frame Frame { get; set; }
        
-
+        public GuestWindow GuestWindow { get; set; }
         public ProfilePage(User user, Frame frame)
         {
             InitializeComponent();
@@ -63,31 +63,37 @@ namespace BookingApp.View.GuestPages
         public void RateAccommodation_Click(object sender, RoutedEventArgs e)
         {
             Profile.Content = new RateAccommodationPage(User, Profile);
+           // GuestWindow.profileMenu.Focus();
         }
 
         public void RatesByHost_Click(object sender, RoutedEventArgs e)
         {
             Profile.Content = new RatesByHostPage(User, Profile);
+            //GuestWindow.profileMenu.Focus();
         }
 
         public void Requests_Click(object sender, RoutedEventArgs e)
         {
             Profile.Content = new RequestsPage(User, Profile);
+           // GuestWindow.profileMenu.Focus();
         }
 
         public void Profile_Click(object sender, RoutedEventArgs e)
         {
             Profile.Content = new ProfileInfo(User, Profile);
+          //  GuestWindow.profileMenu.Focus();
         }
 
         public void Forums_Click(object sender, RoutedEventArgs e)
         {
             Profile.Content = new ProfileForumsPage(User, Profile);
+        //    GuestWindow.profileMenu.Focus();
         }
 
         public void Settings_Click(object sender, RoutedEventArgs e)
         {
             Profile.Content = new SettingsPage(User, Profile);
+           // GuestWindow.profileMenu.Focus();
         }
 
 
