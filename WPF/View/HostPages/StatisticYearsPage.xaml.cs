@@ -28,7 +28,7 @@ namespace BookingApp.WPF.View.HostPages
         public StatisticYearsPage(User user, AccommodationViewModel acc, NavigationService navService)
         {
             InitializeComponent();
-            StatisticYearsPageViewModel = new StatisticYearsPageViewModel(user, acc, navService);
+            StatisticYearsPageViewModel = new StatisticYearsPageViewModel(user, acc, navService, secondChart);
             DataContext = StatisticYearsPageViewModel;
             
         }
