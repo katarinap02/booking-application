@@ -15,6 +15,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
@@ -108,15 +110,26 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         {
             if (ValidateDayNumber(DayNumber))
             {
-                ReservationInfoPage.dayNumberValidator.Visibility = Visibility.Hidden;
+               
+                var hideHint = (Storyboard)ReservationInfoPage.FindResource("HideTextBlock");
+                hideHint.Completed += (s, a) => ReservationInfoPage.dayNumberValidator.Visibility = Visibility.Hidden;
+                hideHint.Begin(ReservationInfoPage.dayNumberValidator);
+                ReservationInfoPage.txtDayNumber.BorderBrush = SystemColors.ControlDarkBrush;
+                ReservationInfoPage.txtDayNumber.BorderThickness = new Thickness(1);
 
             }
 
 
             else
             {
-                ReservationInfoPage.dayNumberValidator.Visibility = Visibility.Visible;
                
+                ReservationInfoPage.dayNumberValidator.Visibility = Visibility.Visible;
+                ReservationInfoPage.txtDayNumber.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                ReservationInfoPage.txtDayNumber.BorderThickness = new Thickness(2);
+                var showHint = (Storyboard)ReservationInfoPage.FindResource("ShowTextBlock");
+                showHint.Begin(ReservationInfoPage.dayNumberValidator);
+                
+
             }
         }
 

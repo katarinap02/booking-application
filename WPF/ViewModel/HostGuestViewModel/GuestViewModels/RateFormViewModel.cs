@@ -24,6 +24,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 
@@ -199,25 +201,67 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         private void ToggleCommentValidationMessages()
         {
             if (string.IsNullOrEmpty(Comment))
+            { 
+                
                 Page.commentValidator.Visibility = Visibility.Visible;
+                var showHint = (Storyboard)Page.FindResource("ShowTextBlock");
+                showHint.Begin(Page.commentValidator);
+
+                Page.txtComment.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Page.txtComment.BorderThickness = new Thickness(2);
+            }
             else
-                Page.commentValidator.Visibility = Visibility.Hidden;
+            { 
+               
+                var hideHint = (Storyboard)Page.FindResource("HideTextBlock");
+                hideHint.Completed += (s, a) => Page.commentValidator.Visibility = Visibility.Hidden;
+                hideHint.Begin(Page.commentValidator);
+                Page.txtComment.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.txtComment.BorderThickness = new Thickness(1);
+            }
         }
 
         private void ToggleCorrectnessValidationMessages()
         {
             if (Correctness == 0)
+            { 
+               
                 Page.correctnessValidator.Visibility = Visibility.Visible;
+                var showHint = (Storyboard)Page.FindResource("ShowTextBlock");
+                showHint.Begin(Page.correctnessValidator);
+                Page.cbCorrectness.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Page.cbCorrectness.BorderThickness = new Thickness(2);
+            }
             else
-                Page.correctnessValidator.Visibility = Visibility.Hidden;
+            {
+                var hideHint = (Storyboard)Page.FindResource("HideTextBlock");
+                hideHint.Completed += (s, a) => Page.correctnessValidator.Visibility = Visibility.Hidden;
+                hideHint.Begin(Page.correctnessValidator);
+                Page.cbCorrectness.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.cbCorrectness.BorderThickness = new Thickness(1);
+
+            }
         }
 
         private void ToggleCleanlinessValidationMessages()
         {
             if (Cleanliness == 0)
+            {
+
                 Page.cleanlinessValidator.Visibility = Visibility.Visible;
+                var showHint = (Storyboard)Page.FindResource("ShowTextBlock");
+                showHint.Begin(Page.cleanlinessValidator);
+                Page.cbCleanliness.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Page.cbCleanliness.BorderThickness = new Thickness(2);
+            }
             else
-                Page.cleanlinessValidator.Visibility = Visibility.Hidden;
+            {
+                var hideHint = (Storyboard)Page.FindResource("HideTextBlock");
+                hideHint.Completed += (s, a) => Page.cleanlinessValidator.Visibility = Visibility.Hidden;
+                hideHint.Begin(Page.cleanlinessValidator);
+                Page.cbCleanliness.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.cbCleanliness.BorderThickness = new Thickness(1);
+            }
 
         }
 

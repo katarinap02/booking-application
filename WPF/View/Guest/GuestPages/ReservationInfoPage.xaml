@@ -97,7 +97,7 @@
             <Grid Margin="2,-58,-2,58">
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc DayNumber}" FontSize="30" Margin="120,238,-105,-238"/>
                 <!--<TextBox x:Name="txtDayNumber" TextWrapping="Wrap" Margin="352,251,160,444"/>-->
-                <xctk:IntegerUpDown Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}" Name="txtDayNumber" Text="{Binding ViewModel.DayNumber}" Margin="352,237,160,458"/>
+                <xctk:IntegerUpDown  Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}" Name="txtDayNumber" Text="{Binding ViewModel.DayNumber}" Margin="352,237,160,458"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc StartDate}" Margin="120,319,-136,-319" FontSize="30"/>
                 <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
                 <DatePicker  Style="{DynamicResource DatePickerStyleN}" x:Name="txtStartDate" Background="{DynamicResource BackgroundColorN}" Margin="352,329,160,376" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
@@ -126,6 +126,7 @@
 
                         <Run Text="{ns:Loc Days}" />
                     </TextBlock.Inlines>
+                  
 
 
 
