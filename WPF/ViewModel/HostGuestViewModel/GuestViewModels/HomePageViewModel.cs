@@ -3,6 +3,7 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.Repository;
+using BookingApp.View;
 using BookingApp.View.GuestPages;
 using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
@@ -11,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
@@ -24,8 +26,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public GuestICommand ReserveCommand { get; set; }
         public GuestICommand AboutCommand { get; set; }
         public GuestICommand HelpCommand { get; set; }
-     
-        public HomePageViewModel(User user, Frame frame) { 
+        public GuestWindow GuestWindow { get; set; }
+        public HomePageViewModel(User user, Frame frame, GuestWindow guestWindow) { 
             
             User = user;
             Frame = frame;
@@ -35,6 +37,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ReserveCommand = new GuestICommand(OnReserve);
             AboutCommand = new GuestICommand(OnAbout);
             HelpCommand = new GuestICommand(OnHelp);
+            GuestWindow = guestWindow;
           
 
         }
@@ -42,17 +45,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         private void OnAbout()
         {
             Frame.Content = new AboutPage();
+            GuestWindow.backButton.Visibility = Visibility.Visible;
         }
 
         private void OnHelp()
         {
             Frame.Content = new HelpPage();
+            GuestWindow.backButton.Visibility = Visibility.Visible;
         }
 
         private void OnReserve()
         {
 
             Frame.Content = new AccommodationsPage(User, Frame);
+            GuestWindow.backButton.Visibility = Visibility.Visible;
         }
     }
 }

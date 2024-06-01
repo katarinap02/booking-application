@@ -32,7 +32,6 @@
     </Page.Resources>
 
     <Grid>
-        <Button Content="Back" Style="{DynamicResource ButtonStyleN}" Width="100" Height="50" Margin="80,92,1740,848" Command="{Binding BackCommand}"/>
 
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="269,85,980,161" Width="671" Background="{DynamicResource BorderBackground}">
             <Grid>

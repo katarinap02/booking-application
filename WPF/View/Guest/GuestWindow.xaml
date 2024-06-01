@@ -106,6 +106,7 @@
 
         <Viewbox Stretch="Uniform">
             <Grid Margin="10,0,0,0">
+                <Button x:Name ="backButton" Content="{ns:Loc Back}" Style="{DynamicResource ButtonStyleN}" Width="100" Height="50" Margin="-2,51,1822,931" Command="{Binding BackCommand}"/>
                 <Image Source="{DynamicResource BackgroundDrawing}" Margin="-786,124,786,-17"/>
                 <Image Source="{DynamicResource BackgroundDrawing2}" Margin="1144,734,-454,-39" RenderTransformOrigin="0.5,0.5">
                     <Image.RenderTransform>
@@ -147,7 +148,7 @@
 
                 </Border>
 
-                <Frame x:Name="Main" Height="990" Width="1920" Margin="0,55,0,-21" NavigationUIVisibility="Hidden"/>
+                <Frame x:Name="Main" Height="990" Width="1920" Margin="0,59,0,-17" NavigationUIVisibility="Hidden"/>
                 <!--<Frame x:Name="Profile" Width="1090" Height="820" Margin="669,85,161,85" NavigationUIVisibility="Hidden"></Frame>-->
                 <Frame x:Name="NotificationFrame" Margin="1600,41,0,541" Height="450" Width="320" NavigationUIVisibility="Hidden"/>
                 <!--<Button Content="Dark theme" HorizontalAlignment="Left" Margin="1215,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="DarkTheme_Click"/>-->

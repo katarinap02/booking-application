@@ -165,6 +165,9 @@
   <data name="Approved" xml:space="preserve">
     <value>Prihvaćeni</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Nazad</value>
+  </data>
   <data name="BonusPoints" xml:space="preserve">
     <value>Bonus poeni:</value>
   </data>

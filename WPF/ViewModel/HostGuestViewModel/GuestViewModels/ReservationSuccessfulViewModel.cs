@@ -28,7 +28,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public Frame Frame { get; set; }
 
         // KOMANDE
-        public GuestICommand GoHomeCommand { get; set; }
+        public GuestICommand AccommodationsCommand { get; set; }
         public GuestICommand ProfileCommand { get; set; }
 
 
@@ -41,7 +41,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Guest = GuestService.GetById(User.Id);
             GuestService.CalculateGuestStats(Guest);
             Reservation = reservation;
-            GoHomeCommand = new GuestICommand(OnGoHome);
+            AccommodationsCommand = new GuestICommand(OnGoAccommodations);
             ProfileCommand = new GuestICommand(OnProfile);
 
 
@@ -52,9 +52,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Frame.Content = new ProfilePage(User, Frame);
         }
 
-        private void OnGoHome()
+        private void OnGoAccommodations()
         {
-            Frame.Content = new HomePage(User, Frame);
+            Frame.Content = new AccommodationsPage(User, Frame);
         }
 
      

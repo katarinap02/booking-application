@@ -32,18 +32,22 @@ namespace BookingApp.View.GuestPages
         public User User { get; set; }
 
         public Frame Frame { get; set; }    
-        
+        public GuestWindow GuestWindow { get; set; }
         public HomePageViewModel ViewModel { get; set; }
+
+        
 
         //KOMANDE
        
-        public HomePage(User user, Frame frame)
+        public HomePage(User user, Frame frame, GuestWindow guestWindow)
         {
             InitializeComponent();
             this.User = user;
             this.Frame = frame;
-            ViewModel = new HomePageViewModel(User, Frame);
+            GuestWindow = guestWindow;
+            ViewModel = new HomePageViewModel(User, Frame, GuestWindow);
            
+            guestWindow.backButton.Visibility = Visibility.Hidden;
             DataContext = ViewModel;
             
         }

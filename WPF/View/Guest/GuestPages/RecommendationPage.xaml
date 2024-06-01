@@ -31,8 +31,7 @@
 
             <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,549,5">
                 <Grid>
-                    <Button Content="Back" Style="{DynamicResource ButtonStyleN}" FontSize="16" Width="60" Height="25" Margin="10,10,452,754" Command="{Binding BackCommand}"/>
-
+                   
                     <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc RecommendDesc}" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="23,75,25,558"></TextBlock>
                     <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="136,434,-136,312"/>
                     <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="218,648,218,98"/>

@@ -20,6 +20,8 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.View.Guest.GuestPages;
 using System.Windows.Controls.DataVisualization;
 using BookingApp.WPF.ViewModel.Commands;
+using System.Windows.Navigation;
+using System.ComponentModel;
 
 namespace BookingApp.View
 {
@@ -38,22 +40,48 @@ namespace BookingApp.View
                 currentLanguage = value;
             }
         }
+      
+     
 
         public GuestICommand SwitchLanguageCommand { get; set; }
+
+        public GuestICommand BackCommand { get; set; }
+        public NavigationService NavigationService { get; set; }
+
+        public HomePage HomePage { get; set; }
         public GuestWindow(User user)
         {
             InitializeComponent();
         
             this.User = user;
-            Main.Content = new HomePage(User, Main);
+            HomePage = new HomePage(User, Main, this);
+            Main.Content = HomePage;
             Main.DataContext = this;
             SetTheme(new Uri("/Styles/GuestUIdictionaryLight.xaml", UriKind.Relative));
             CurrentLanguage = "en-US";
 
             SwitchLanguageCommand = new GuestICommand(OnSwitchLanguage);
+            BackCommand = new GuestICommand(OnBack);
+            NavigationService = Main.NavigationService;
+            
             DataContext = this;
 
         }
+
+       
+        private void OnBack()
+        {
+
+           
+            if(NavigationService.CanGoBack)
+                NavigationService.GoBack();
+          
+            
+
+
+        }
+
+     
 
         private void OnSwitchLanguage()
         {
@@ -75,17 +103,22 @@ namespace BookingApp.View
 
         private void HomeClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new HomePage(User, Main);
+            Main.Content = new HomePage(User, Main, this);
+            
         }
 
         private void ProfileClick(object sender, RoutedEventArgs e)
         {
             Main.Content = new ProfilePage(User, Main);
+            BackCommand.RaiseCanExecuteChanged();
+
+            backButton.Visibility = Visibility.Visible;
         }
 
         private void AccommodationsClick(object sender, RoutedEventArgs e)
         {
             Main.Content = new AccommodationsPage(User, Main);
+            backButton.Visibility = Visibility.Visible;
         }
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
@@ -133,33 +166,23 @@ namespace BookingApp.View
         private void ForumsClick(object sender, RoutedEventArgs e)
         {
             Main.Content = new AllForumsPage(User, Main);
-
+            backButton.Visibility = Visibility.Visible;
         }
 
         private void AboutClick(object sender, RoutedEventArgs e)
         {
             Main.Content = new AboutPage();
+            backButton.Visibility = Visibility.Visible;
 
         }
 
         private void HelpClick(object sender, RoutedEventArgs e)
         {
             Main.Content = new HelpPage();
+            backButton.Visibility = Visibility.Visible;
         }
 
-        private void DarkTheme_Click(object sender, RoutedEventArgs e)
-        {
-
-          
-
-        }
-
-        private void LightTheme_Click(object sender, RoutedEventArgs e)
-        {
-            
-
-
-        }
+       
 
         private void LogOut_Click(object sender, RoutedEventArgs e)
         {

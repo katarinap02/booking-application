@@ -165,6 +165,9 @@
   <data name="Approved" xml:space="preserve">
     <value>Approved</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
   <data name="BonusPoints" xml:space="preserve">
     <value>Bonus points:</value>
   </data>
