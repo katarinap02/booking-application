@@ -61,6 +61,7 @@ namespace BookingApp.Application.Services.FeatureServices
             Domain.Model.Features.User user = UserService.GetById(id);
             if (user.Type == UserType.host)
                 result.IsHost = true;
+                result.IsSpecial = true;
 
             if(user.Type == UserType.guest)
             {
@@ -70,6 +71,8 @@ namespace BookingApp.Application.Services.FeatureServices
 
             result.Date = DateTime.Now;
             result.ForumId = forumId;
+            result.IsReported = false;
+            result.Reports = 0;
             return this.Add(result);
           
 
@@ -84,6 +87,20 @@ namespace BookingApp.Application.Services.FeatureServices
                     return true;
             }
             return false;
+        }
+
+        public void ReportCommentById(int id)
+        {
+            foreach(ForumComment fc in GetAll())
+            {
+                if(fc.Id == id)
+                {
+                    fc.IsReported = true;
+                    fc.Reports = fc.Reports + 1;
+                }
+                Update(fc);
+            }
+            
         }
     }
 }

@@ -18,6 +18,7 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -47,9 +48,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public MyICommand RejectCommand { get; set; }
 
-        public DelayPageViewModel(User user)
+        public NavigationService NavService { get; set; }
+
+        public DelayPageViewModel(User user, NavigationService navigationService)
         {
             Delays = new ObservableCollection<DelayRequestViewModel>();
+            NavService = navigationService;
             Notifications = new ObservableCollection<string>();
             ReservationCancellationService = new ReservationCancellationService(Injector.Injector.CreateInstance<IReservationCancellationRepository>());
             DelayRequestService = new DelayRequestService(Injector.Injector.CreateInstance<IDelayRequestRepository>());
@@ -121,6 +125,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 ReplaceDates(accommodation, Delay);
                 AccommodationService.Update(accommodation);
                 Update();
+                DelayPage page = new DelayPage(User, NavService);
+                this.NavService.Navigate(page);
             }
         }
 
@@ -154,6 +160,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 Delay.EndLastDate = SelectedDelay.EndLastDate;
                 DelayRequestService.Update(Delay.ToDelayRequest());
                 Update();
+                DelayPage page = new DelayPage(User, NavService);
+                this.NavService.Navigate(page);
             }
 
         }

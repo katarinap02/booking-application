@@ -4,6 +4,7 @@ using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Observer;
 using BookingApp.Repository;
+using BookingApp.View.HostPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -35,13 +37,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public MyICommand SaveCommand { get; set; }
 
-        public GuestRatePageViewModel(User user)
+        public User User { get; set; }
+
+        public NavigationService NavService { get; set; }
+
+        public GuestRatePageViewModel(User user, NavigationService navigationService)
         {
             Accommodations = new ObservableCollection<AccommodationReservationViewModel>();
             accommodationRepository = new AccommodationRepository();
             accommodationReservationRepository = new AccommodationReservationRepository();
             guestRateRepository = new GuestRateRepository();
             guestRateViewModel = new GuestRateViewModel();
+            User = user;
+            NavService = navigationService;
             hostService = new HostService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             host = hostService.GetByUsername(user.Username);
             SaveCommand = new MyICommand(Save_Click);
@@ -70,6 +78,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 MessageBox.Show("Guest rate added.");
             }
             Update();
+            GuestRatePage page = new GuestRatePage(User, NavService);
+            this.NavService.Navigate(page);
 
         }
     }

@@ -59,7 +59,7 @@ namespace BookingApp.Application.Services.FeatureServices
             {
                 if(forumComment.ForumId == forum.Id)
                 {
-                    if (forumComment.IsHost && HostService.HasAccommodation(forum.UserId, forum.City, forum.Country))
+                    if (forumComment.IsHost)
                         hostComments++;
 
                     if (!forumComment.IsHost && ForumCommentService.HasReservation(forum.UserId, forum.City, forum.Country))

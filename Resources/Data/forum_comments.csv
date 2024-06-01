@@ -1,55 +1,16 @@
-1|4|Best store is located on the edge of town and is called Univer. It can be reached by bus 5|True|False|5/21/2024 7:50:58 PM|1
-2|4|bbbb|True|False|5/21/2024 7:51:01 PM|1
-3|4|cccc|True|False|5/21/2024 7:51:05 PM|1
-4|4|aaa|True|False|5/21/2024 8:27:50 PM|1
-5|4|dddd|True|False|5/21/2024 8:29:12 PM|1
-6|4|komentar :)|True|False|5/21/2024 8:44:45 PM|1
-7|8|evo radi|False|False|5/22/2024 10:46:48 AM|1
-8|8|aaaa|False|False|5/22/2024 11:09:55 AM|1
-9|4|eeee|False|False|5/22/2024 11:57:29 AM|7
-10|4|aa|True|False|5/22/2024 12:36:07 PM|1
-11|8|aaa|False|False|5/23/2024 6:05:38 PM|8
-12|8|aaaaa|False|False|5/23/2024 6:08:01 PM|8
-13|4|asad|False|False|5/29/2024 9:57:44 PM|12
-14|4|asadasas|False|False|5/29/2024 9:57:45 PM|12
-15|4|tyty|False|False|6/1/2024 12:16:30 AM|14
-16|4|1|False|False|6/1/2024 12:10:24 PM|15
-17|4|1|False|False|6/1/2024 12:10:27 PM|15
-18|4|1|False|False|6/1/2024 12:10:28 PM|15
-19|4|1|False|False|6/1/2024 12:10:30 PM|15
-20|4|1|False|False|6/1/2024 12:10:31 PM|15
-21|4|1|False|False|6/1/2024 12:10:32 PM|15
-22|4|1|False|False|6/1/2024 12:10:33 PM|15
-23|4|1|False|False|6/1/2024 12:10:34 PM|15
-24|4|1|False|False|6/1/2024 12:10:34 PM|15
-25|4|1|False|False|6/1/2024 12:10:35 PM|15
-26|4|1|False|False|6/1/2024 12:10:36 PM|15
-27|4|1|False|False|6/1/2024 12:10:37 PM|15
-28|4|1|False|False|6/1/2024 12:10:37 PM|15
-29|4|1|False|False|6/1/2024 12:10:38 PM|15
-30|4|1|False|False|6/1/2024 12:10:38 PM|15
-31|4|1|False|False|6/1/2024 12:10:39 PM|15
-32|4|1|False|False|6/1/2024 12:10:40 PM|15
-33|4|1|False|False|6/1/2024 12:10:40 PM|15
-34|4|1|False|False|6/1/2024 12:10:41 PM|15
-35|4|1|False|False|6/1/2024 12:10:42 PM|15
-36|4|1|True|False|6/1/2024 12:12:18 PM|16
-37|4|1|True|False|6/1/2024 12:12:19 PM|16
-38|4|1|True|False|6/1/2024 12:12:20 PM|16
-39|4|1|True|False|6/1/2024 12:12:20 PM|16
-40|4|1|True|False|6/1/2024 12:12:21 PM|16
-41|4|1|True|False|6/1/2024 12:12:21 PM|16
-42|4|1|True|False|6/1/2024 12:12:22 PM|16
-43|4|1|True|False|6/1/2024 12:12:22 PM|16
-44|4|1|True|False|6/1/2024 12:12:23 PM|16
-45|4|1|True|False|6/1/2024 12:12:23 PM|16
-46|4|1|True|False|6/1/2024 12:12:24 PM|16
-47|4|1|True|False|6/1/2024 12:12:24 PM|16
-48|4|1|True|False|6/1/2024 12:12:25 PM|16
-49|4|1|True|False|6/1/2024 12:12:25 PM|16
-50|4|1|True|False|6/1/2024 12:12:26 PM|16
-51|4|1|True|False|6/1/2024 12:12:27 PM|16
-52|4|1|True|False|6/1/2024 12:12:27 PM|16
-53|4|1|True|False|6/1/2024 12:12:28 PM|16
-54|4|1|True|False|6/1/2024 12:12:28 PM|16
-55|4|1|True|False|6/1/2024 12:12:29 PM|16
+1|4|Best store is located on the edge of town and is called Univer. It can be reached by bus 5|True|False|5/21/2024 7:50:58 PM|1|0|False
+2|4|bbbb|True|False|5/21/2024 7:51:01 PM|1|0|False
+3|4|cccc|True|False|5/21/2024 7:51:05 PM|1|0|False
+4|4|aaa|True|False|5/21/2024 8:27:50 PM|1|0|False
+5|4|dddd|True|False|5/21/2024 8:29:12 PM|1|0|False
+6|4|komentar :)|True|False|5/21/2024 8:44:45 PM|1|0|False
+7|8|evo radi|False|False|5/22/2024 10:46:48 AM|1|1|False
+8|8|aaaa|False|False|5/22/2024 11:09:55 AM|1|3|False
+9|4|eeee|False|False|5/22/2024 11:57:29 AM|7|0|False
+10|4|aa|True|False|5/22/2024 12:36:07 PM|1|0|False
+11|8|aaa|False|False|5/23/2024 6:05:38 PM|8|0|False
+12|8|aaaaa|False|False|5/23/2024 6:08:01 PM|8|0|False
+13|4|asad|False|False|5/29/2024 9:57:44 PM|12|0|False
+14|4|asadasas|False|False|5/29/2024 9:57:45 PM|12|0|False
+15|2|Novi Sad has a large selection of groceries in all supermarkets, so there is no need to go to the biggest supermarkets at all.|True|True|5/21/2024 12:22:23 PM|1|0|False
+16|2|Don't worry about the supermarket. There are enough big ones in every part of the city.|True|True|5/21/2024 12:22:23 PM|1|0|False

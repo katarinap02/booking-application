@@ -23,10 +23,10 @@ namespace BookingApp.WPF.View.HostPages
     public partial class ScheduleRenovationPage : Page
     {
         public ScheduleRenovationPageViewModel ScheduleRenovationPageViewModel { get; set; }
-        public ScheduleRenovationPage(User user)
+        public ScheduleRenovationPage(User user, NavigationService NavigationService)
         {
             InitializeComponent();
-            ScheduleRenovationPageViewModel = new ScheduleRenovationPageViewModel(user);
+            ScheduleRenovationPageViewModel = new ScheduleRenovationPageViewModel(user, NavigationService);
             DataContext = ScheduleRenovationPageViewModel;
         }
     }

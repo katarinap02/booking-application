@@ -374,9 +374,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         }
 
 
-        public void InitializeAllLocations()
+        public void InitializeAllLocations(String country = "")
         {
+            if(country== "")
             CountriesSearch.Add("");
+            else
+                CountriesSearch.Add(country);
             LoadCountriesFromCSV();
         }
         public AccommodationViewModel(Accommodation accommodation)
@@ -483,7 +486,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
                         CitiesSearch.Add(values[0]);
                 }
             }
-            CitySearch = CitiesSearch[0];
+           // CitySearch = CitiesSearch[0];
         }
 
 

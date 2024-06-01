@@ -1,6 +1,8 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Observer;
 using BookingApp.Repository;
+using BookingApp.View.HostPages;
+using BookingApp.WPF.View.HostPages;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using Microsoft.Win32;
 using System;
@@ -15,6 +17,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using Wpf.Ui.Controls;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -34,7 +38,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public MyICommand<string> XCommand { get; set; }
 
-        public RegisterAccommodationPageViewModel(User us, AccommodationViewModel acc)
+        public NavigationService NavigationService { get; set; }
+
+        public RegisterAccommodationPageViewModel(User us, AccommodationViewModel acc, NavigationService navigationService)
         {
             this.user = us;
             accommodationDTO = new AccommodationViewModel();
@@ -42,11 +48,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             SaveCommand = new MyICommand(Save_Click);
             PictureCommand = new MyICommand(Picture_Click);
             Pictures = new ObservableCollection<string>();
+            NavigationService = navigationService;
             XCommand = new MyICommand<string>(DeletePicture);
             if(acc != null)
             {
-                accommodationDTO.City = acc.City;
-                accommodationDTO.Country = acc.Country;
+                accommodationDTO.CountrySearch = acc.Country;
+                accommodationDTO.CitySearch = acc.City;
             }
             Update();
         }
@@ -56,7 +63,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             Accommodation accommodation = accommodationDTO.ToAccommodation();
             accommodation.HostId = user.Id;
             accommodationRepository.Add(accommodation);
-            MessageBox.Show("Accommodation added.");
+            System.Windows.MessageBox.Show("Accommodation added.");
+            if(NavigationService != null) { 
+            RegisterAccommodationPage page = new RegisterAccommodationPage(user, null, NavigationService);
+            this.NavigationService.Navigate(page);
+            }
+
+
 
         }
 
@@ -80,7 +93,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show($"Error loading image: {ex.Message}");
+                    System.Windows.MessageBox.Show($"Error loading image: {ex.Message}");
                 }
             }
         }
@@ -94,7 +107,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             }
             else
             {
-                MessageBox.Show("Please select an image from the resources privided within this app!");
+                System.Windows.MessageBox.Show("Please select an image from the resources privided within this app!");
                 return input;
             }
         }
@@ -155,9 +168,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             return replacedPath;
         }
 
-        public void LoadLocation()
+        public void LoadLocation(AccommodationViewModel acc)
         {
-            accommodationDTO.InitializeAllLocations();
+            if(acc != null) { 
+            accommodationDTO.InitializeAllLocations(acc.Country);
+            }
+            else accommodationDTO.InitializeAllLocations("");
+
+
         }
 
 

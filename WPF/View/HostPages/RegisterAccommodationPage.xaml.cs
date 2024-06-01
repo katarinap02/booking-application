@@ -26,17 +26,17 @@ namespace BookingApp.View.HostPages
     public partial class RegisterAccommodationPage : Page
     {
         public RegisterAccommodationPageViewModel RegisterAccommodationPageViewModel { get; set; }
-        public RegisterAccommodationPage(User us, AccommodationViewModel acc = null)
+        public RegisterAccommodationPage(User us, AccommodationViewModel acc = null, NavigationService NavigationService = null)
         {
             InitializeComponent();
-            RegisterAccommodationPageViewModel = new RegisterAccommodationPageViewModel(us, acc);
-            RegisterAccommodationPageViewModel.LoadLocation();
+            RegisterAccommodationPageViewModel = new RegisterAccommodationPageViewModel(us, acc, NavigationService);
+            RegisterAccommodationPageViewModel.LoadLocation(acc);
             DataContext = RegisterAccommodationPageViewModel;
-            
-            
-            
-            
+
+
         }
+
+
     }
 }
 

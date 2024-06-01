@@ -87,6 +87,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
         }
 
+        private bool isUnabled;
+        public bool IsUnabled
+        {
+            get { return isUnabled; }
+            set
+            {
+                if (isUnabled != value)
+                {
+                    isUnabled = value;
+                    OnPropertyChanged("IsUnabled");
+                }
+            }
+
+        }
+
         private DateTime date;
         public DateTime Date
         {
@@ -110,11 +125,42 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             {
                 if (forumId != value)
                 {
-                    id = value;
+                    forumId = value;
                     OnPropertyChanged("ForumId");
                 }
             }
         }
+
+        private int reports;
+        public int Reports
+        {
+            get { return reports; }
+            set
+            {
+                if (reports != value)
+                {
+                    reports = value;
+                    OnPropertyChanged("Reports");
+                }
+            }
+        }
+
+        private bool isReported;
+        public bool IsReported
+        {
+            get { return isReported; }
+            set
+            {
+                if (isReported != value)
+                {
+                    isReported = value;
+                    OnPropertyChanged("IsReported");
+                }
+            }
+
+        }
+
+
 
         public ForumService forumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
         public string DateString => Date.ToString("MM/dd/yyyy");
@@ -133,6 +179,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public UserService userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
         public string Username => userService.GetById(UserId).Username;
         public string UserType => userService.GetById(UserId).Type.ToString();
+
+        public ForumCommentViewModel()
+        { }
         public ForumCommentViewModel(ForumComment forumComment)
         {
             id = forumComment.Id;
@@ -142,11 +191,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             isHost = forumComment.IsHost;
             date = forumComment.Date;
             forumId = forumComment.ForumId;
+            reports = forumComment.Reports;
+            isReported = forumComment.IsReported;
+            if(forumComment.IsSpecial || forumComment.IsReported) {
+                isUnabled = true;
+            }
+            else
+            {
+                isUnabled = false;
+            }
         }
 
         public ForumComment ToForum()
         {
-            ForumComment f = new ForumComment(userId, comment, isSpecial, isHost, date, forumId);
+            ForumComment f = new ForumComment(userId, comment, isSpecial, isHost, date, forumId, reports, isReported);
             f.Id = id;
 
             return f;
