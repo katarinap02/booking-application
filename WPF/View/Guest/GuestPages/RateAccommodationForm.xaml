@@ -38,6 +38,25 @@
                 </DrawingGroup>
             </DrawingGroup>
             <DrawingImage Drawing="{DynamicResource exclamation_mark_svgrepo_com_xaml}" x:Key="Warning"/>
+            <Storyboard x:Key="ShowTextBlock">
+                <DoubleAnimation
+     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+     From="-30" To="0" Duration="0:0:0.3" />
+                <DoubleAnimation
+     Storyboard.TargetProperty="Opacity"
+     From="0" To="1" Duration="0:0:0.3" />
+            </Storyboard>
+
+
+            <Storyboard x:Key="HideTextBlock">
+                <DoubleAnimation
+     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+     From="0" To="-30" Duration="0:0:0.3" />
+                <DoubleAnimation
+     Storyboard.TargetProperty="Opacity"
+     From="1" To="0" Duration="0:0:0.3" />
+            </Storyboard>
+
         </ResourceDictionary>
 
     </Page.Resources>
@@ -57,7 +76,7 @@
                         <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="59,-2,63,2"/>
                     </Border>
 
-                    <ToggleButton Height="50" Background="{DynamicResource BorderBackground}" BorderBrush="{DynamicResource BorderBackground}" Margin="131,272,129,467" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
+                    <ToggleButton Height="50"  Style="{DynamicResource HintButtonStyleN}" Margin="131,272,129,467" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{DynamicResource HintIcon}" Height="25" Width="25"/>
                             <Label x:Name="HintLabel" Content="{ns:Loc ReviewProblem}" FontSize="16" Foreground="{DynamicResource HintColorN}" FontStyle="Italic"/>
@@ -65,6 +84,9 @@
 
                     </ToggleButton>
                     <TextBlock x:Name="Hint" FontSize="16" Foreground="{DynamicResource HintTextColor}" Text="{ns:Loc RateHint}" Height="150" TextAlignment="Center" TextWrapping="Wrap" Margin="116,320,118,319">
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform Y="0"/>
+                        </TextBlock.RenderTransform>
                     </TextBlock>
 
                     <controls:AccommodationCardSmaller DataContext="{Binding SelectedAccommodation}" Width="500" Margin="12,168,10,-168"></controls:AccommodationCardSmaller>

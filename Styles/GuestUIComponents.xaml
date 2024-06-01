@@ -871,7 +871,41 @@
 
     </Style>
 
-    
+    <Style x:Key="HintButtonStyleN" TargetType="ToggleButton">
+
+        <Setter Property="Background" Value="{DynamicResource BorderBackground}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource BorderBackground}"/>
+        <Setter Property="FontFamily" Value="Arial"/>
+        
+        <Setter Property="FontSize" Value="28"/>
+
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type ToggleButton}">
+                    <Grid Background="{TemplateBinding Background}">
+                        <ContentPresenter x:Name="MyContentPresenter" 
+                                    Content="{TemplateBinding Content}"
+                                    HorizontalAlignment="Center" 
+                                    VerticalAlignment="Center" />
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <Style.Triggers>
+
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource BackgroundColorN}"/>
+
+
+            </Trigger>
+
+
+
+        </Style.Triggers>
+
+
+    </Style>
 
 
 
