@@ -275,7 +275,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             iTextSharp.text.Paragraph additionalParagraph = new iTextSharp.text.Paragraph(additionalParagraphText, paragraphFont);
             additionalParagraph.Alignment = Element.ALIGN_LEFT;
             additionalParagraph.SpacingBefore = 20f;
-            additionalParagraph.IndentationLeft = 50f;
+            additionalParagraph.IndentationLeft = 53f;
             pdfDoc.Add(additionalParagraph);
 
         }
