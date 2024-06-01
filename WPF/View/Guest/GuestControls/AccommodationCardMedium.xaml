@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookingApp.View.GuestControls"
+                  xmlns:ns="clr-namespace:BookingApp"
              mc:Ignorable="d" 
                           d:DesignHeight="120" d:DesignWidth="570">
 
@@ -130,14 +131,14 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="157,0,88,0" Grid.Row="1" FontWeight="Bold" Foreground="{DynamicResource TextColorN}"/>
-                <Image Source="{DynamicResource Location}" Height="20" Width="20" Margin="157,37,369,-23" Grid.Row="1"/>
+                <Image ToolTip="{ns:Loc Location}" Source="{DynamicResource Location}" Height="20" Width="20" Margin="157,37,369,-23" Grid.Row="1"/>
                 <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="184,30,49,-28" Grid.Row="1" Foreground="{DynamicResource TextColorN}"/>
 
-                <Image Source="{DynamicResource Star}" Height="20" Width="20" Margin="157,66,369,-52" Grid.Row="1"/>
+                <Image ToolTip="{ns:Loc Rate}" Source="{DynamicResource Star}" Height="20" Width="20" Margin="157,66,369,-52" Grid.Row="1"/>
                 <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{Binding Rate}" Margin="193,64,273,-63" Grid.Row="1" Foreground="{DynamicResource TextColorN}"/>
-                <Image Source="{DynamicResource Calendar}" Height="20" Width="20" RenderTransformOrigin="0.948,2.773" Margin="220,66,236,-52" Grid.Row="1"/>
+                <Image ToolTip="{ns:Loc MinDayNumber}" Source="{DynamicResource Calendar}" Height="20" Width="20" RenderTransformOrigin="0.948,2.773" Margin="220,66,236,-52" Grid.Row="1"/>
                 <TextBlock x:Name="AccommodationDays" FontSize="20" Text="{Binding MinReservationDays}" Margin="290,62,156,-62" Grid.Row="1" Foreground="{DynamicResource TextColorN}"/>
-                <Image Source="{DynamicResource Person}" Height="20" Width="20" Margin="270,66,107,-52" Grid.Row="1"/>
+                <Image ToolTip="{ns:Loc MAxGuestNumber}" Source="{DynamicResource Person}" Height="20" Width="20" Margin="270,66,107,-52" Grid.Row="1"/>
                 <TextBlock x:Name="AccommodationGuests" FontSize="20" Text="{Binding MaxGuestNumber}" Margin="370,60,10,-57" Grid.Row="1" Foreground="{DynamicResource TextColorN}"/>
                 <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2"  Margin="10,0,406,-66" Grid.Row="1" Width="130" Height="100">
                     <Grid>

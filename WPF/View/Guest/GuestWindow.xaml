@@ -248,7 +248,7 @@
 
                 <Frame x:Name="Main" Height="990" Width="1920" Margin="0,59,0,-17" NavigationUIVisibility="Hidden"/>
                 <!--<Frame x:Name="Profile" Width="1090" Height="820" Margin="669,85,161,85" NavigationUIVisibility="Hidden"></Frame>-->
-                <Frame x:Name="NotificationFrame" Margin="1600,41,0,541" Height="450" Width="320" NavigationUIVisibility="Hidden"/>
+                <Frame x:Name="NotificationFrame" Margin="1600,27,0,555" Height="450" Width="320" NavigationUIVisibility="Hidden"/>
                 <!--<Button Content="Dark theme" HorizontalAlignment="Left" Margin="1215,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="DarkTheme_Click"/>-->
                 <!--<Button Content="Light theme" HorizontalAlignment="Left" Margin="1362,5,0,0" VerticalAlignment="Top" Height="40" Width="108" FontSize="20" Click="LightTheme_Click"/>-->
 

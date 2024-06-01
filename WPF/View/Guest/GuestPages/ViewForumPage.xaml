@@ -43,7 +43,7 @@
     </Page.Resources>
 
     <Grid>
-        <Image  VerticalAlignment="Top" HorizontalAlignment="Left" Height="45" Margin="601,64,0,0" Width="50">
+        <Image  VerticalAlignment="Top" HorizontalAlignment="Left" Height="45" Margin="645,64,0,0" Width="50">
             <Image.Style>
                 <Style TargetType="Image">
                     <Setter Property="Source" Value="{x:Null}"/>
@@ -59,7 +59,7 @@
             </Image.Style>
         </Image>
 
-        <TextBlock  FontSize="35" FontWeight="Bold" Foreground="{DynamicResource TextColorN}" Margin="668,64,331,868">
+        <TextBlock  FontSize="35" FontWeight="Bold" Foreground="{DynamicResource TextColorN}" Margin="690,64,331,868">
     <Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding SelectedForum.City}"/>
     <Run Text=", "/><Run Text="{Binding SelectedForum.Country}"/>
             <!--<TextBlock.Text>

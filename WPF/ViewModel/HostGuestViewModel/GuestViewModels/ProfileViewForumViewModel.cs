@@ -88,6 +88,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                 ForumService.Update(SelectedForum.ToForum());
 
                 Update();
+                Comment = "";
             }
            
 
