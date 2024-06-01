@@ -362,6 +362,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   <data name="Language" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="LanguageBtn" xml:space="preserve">
+    <value>ENG</value>
+  </data>
   <data name="Level" xml:space="preserve">
     <value>Urgency level</value>
   </data>

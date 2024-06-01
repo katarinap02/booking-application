@@ -124,6 +124,14 @@ namespace BookingApp.Properties
                 return ResourceManager.GetString("Back", resourceCulture);
             }
         }
+
+        internal static string LanguageBtn
+        {
+            get
+            {
+                return ResourceManager.GetString("LanguageBtn", resourceCulture);
+            }
+        }
         internal static string Language
         {
             get

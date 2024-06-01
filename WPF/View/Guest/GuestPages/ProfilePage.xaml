@@ -12,7 +12,7 @@
       Title="ProfilePage">
 
     <Grid>
-        <Border Width="396" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="268,98,1256,98">
+        <Border x:Name="menuBorder" Width="396" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="268,98,1256,98">
             <Grid>
                 <Menu:Btn   x:Name="ProfileButton"
                      Style="{DynamicResource MenuBtnStyleN}"

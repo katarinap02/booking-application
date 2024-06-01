@@ -11,6 +11,7 @@
     <SolidColorBrush x:Key="HintTextColor" Color="Green"/>
     <SolidColorBrush x:Key="BlackoutColorN" Color="Black"/>
     <SolidColorBrush x:Key="CommentBackgroundN" Color="Beige"/>
+    <SolidColorBrush x:Key="HoverColorN" Color="#ffab65dd"/>
     <!--<SolidColorBrush x:Key="DisabledButtonColor" Color="{DynamicResource BackgroundColorN}"-->
 
   
@@ -51,6 +52,8 @@
 
 
     </Style>
+    
+    
     <Style x:Key="ButtonStyleN2" TargetType="Button">
         <Setter Property="Foreground" Value="{DynamicResource ButtonTextN}"/>
         <Setter Property="Background" Value="{DynamicResource AccentColorN}"/>

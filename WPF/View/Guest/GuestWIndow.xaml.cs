@@ -22,6 +22,9 @@ using System.Windows.Controls.DataVisualization;
 using BookingApp.WPF.ViewModel.Commands;
 using System.Windows.Navigation;
 using System.ComponentModel;
+using System.Windows.Media.Animation;
+
+using Page = System.Windows.Controls.Page;
 
 namespace BookingApp.View
 {
@@ -52,7 +55,8 @@ namespace BookingApp.View
         public GuestWindow(User user)
         {
             InitializeComponent();
-        
+
+            
             this.User = user;
             HomePage = new HomePage(User, Main, this);
             Main.Content = HomePage;
@@ -63,7 +67,8 @@ namespace BookingApp.View
             SwitchLanguageCommand = new GuestICommand(OnSwitchLanguage);
             BackCommand = new GuestICommand(OnBack);
             NavigationService = Main.NavigationService;
-            
+         
+;
             DataContext = this;
 
         }
@@ -134,12 +139,12 @@ namespace BookingApp.View
 
         private void ThemeToggleButton_Checked(object sender, RoutedEventArgs e)
         {
-            SetTheme(new Uri("/Styles/GuestUIdictionaryDark.xaml", UriKind.Relative));
+            SwitchThemeAsync(new Uri("/Styles/GuestUIdictionaryDark.xaml", UriKind.Relative));
         }
 
         private void ThemeToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            SetTheme(new Uri("/Styles/GuestUIdictionaryLight.xaml", UriKind.Relative));
+            SwitchThemeAsync(new Uri("/Styles/GuestUIdictionaryLight.xaml", UriKind.Relative));
         }
 
         private void SetTheme(Uri themeUri)
@@ -163,6 +168,21 @@ namespace BookingApp.View
           
             
         }
+
+        private async Task SwitchThemeAsync(Uri themeUri)
+        {
+            var fadeOutAnimation = new DoubleAnimation(1, 0.5, TimeSpan.FromSeconds(0.2));
+            BeginAnimation(UIElement.OpacityProperty, fadeOutAnimation);
+            await Task.Delay(200);
+
+            SetTheme(themeUri);
+
+            var fadeInAnimation = new DoubleAnimation(0.5, 1, TimeSpan.FromSeconds(0.2));
+            BeginAnimation(UIElement.OpacityProperty, fadeInAnimation);
+        }
+
+      
+
         private void ForumsClick(object sender, RoutedEventArgs e)
         {
             Main.Content = new AllForumsPage(User, Main);
@@ -171,14 +191,14 @@ namespace BookingApp.View
 
         private void AboutClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new AboutPage();
+            Main.Content = new AboutPage(Main);
             backButton.Visibility = Visibility.Visible;
 
         }
 
         private void HelpClick(object sender, RoutedEventArgs e)
         {
-            Main.Content = new HelpPage();
+            Main.Content = new HelpPage(Main);
             backButton.Visibility = Visibility.Visible;
         }
 

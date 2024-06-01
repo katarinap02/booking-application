@@ -22,6 +22,7 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
 using BookingApp.Observer;
 using System.ComponentModel;
+using System.Windows.Media.Animation;
 
 namespace BookingApp.View.GuestPages
 {
@@ -67,8 +68,21 @@ namespace BookingApp.View.GuestPages
             }
             langTextbox.TextChanged += ContentChanged;
             guestNumberValidator.Visibility = Visibility.Hidden;
-           
 
+
+            Loaded += Page_Loaded;
+
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
+
+
+            Frame.BeginAnimation(Frame.OpacityProperty, fadeInAnimation);
+
+            await Task.Delay(500);
         }
 
 

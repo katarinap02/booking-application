@@ -19,6 +19,8 @@ using BookingApp.Application.Services;
 using BookingApp.WPF.ViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using BookingApp.Domain.Model.Features;
+using System.Windows.Media.Animation;
+using Wpf.Ui.Controls;
 
 namespace BookingApp.View.GuestPages
 {
@@ -47,11 +49,23 @@ namespace BookingApp.View.GuestPages
             this.Frame = frame;
             ViewModel = new ShowAccommodationsViewModel(User, Frame, this);
             DataContext = ViewModel;
+        
             ViewModel.Update();
-           
+            Loaded += AccommodationPage_Loaded;
           
         }
-      
+
+        private async void AccommodationPage_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
+
+
+            Frame.BeginAnimation(Frame.OpacityProperty, fadeInAnimation);
+
+            await Task.Delay(500);
+        }
+
 
 
     }

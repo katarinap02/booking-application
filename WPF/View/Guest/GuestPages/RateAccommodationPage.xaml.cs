@@ -20,6 +20,7 @@ using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using BookingApp.Domain.Model.Features;
+using System.Windows.Media.Animation;
 
 namespace BookingApp.View.GuestPages
 {
@@ -51,10 +52,24 @@ namespace BookingApp.View.GuestPages
             Hint.Visibility = Visibility.Hidden;
             ViewModel.Update();
 
+            Loaded += Page_Loaded;
+
+
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
+
+
+            Frame.BeginAnimation(Frame.OpacityProperty, fadeInAnimation);
+
+            await Task.Delay(500);
         }
 
 
-    
+
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {

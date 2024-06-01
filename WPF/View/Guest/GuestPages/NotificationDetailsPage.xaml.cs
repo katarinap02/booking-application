@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.Commands;
+using System.Windows.Media.Animation;
 
 namespace BookingApp.WPF.View.Guest.GuestPages
 {
@@ -43,7 +44,21 @@ namespace BookingApp.WPF.View.Guest.GuestPages
             DataContext = ViewModel;
             ViewModel.BackCommand = new GuestICommand(OnBack);
             NavigationService = Frame.NavigationService;
-            
+
+            Loaded += Page_Loaded;
+
+
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
+
+
+            Frame.BeginAnimation(Frame.OpacityProperty, fadeInAnimation);
+
+            await Task.Delay(500);
         }
 
         private void OnBack()

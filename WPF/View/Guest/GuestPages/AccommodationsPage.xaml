@@ -136,7 +136,7 @@
 
 
 
-        <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,162,1082,393">
+        <Border x:Name="searchBorder" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,162,1082,393">
             <Grid x:Name="SearchSection">
                 <Label Foreground="{DynamicResource TextColorN}" Content="{ns:Loc SearchAccommodations}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="122,10,-122,-10"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Name}" HorizontalAlignment="Left" Margin="66,89,0,0" VerticalAlignment="Top" Width="74" FontSize="16" RenderTransformOrigin="0.439,1.63"/>
@@ -175,7 +175,7 @@
             </Grid>
         </Border>
 
-        <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,618,1082,92">
+        <Border x:Name="anywhereAnytimeBorder" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,618,1082,92">
             <Grid Margin="0,-2,0,-26">
                 <Label Content="{ns:Loc AnywhereAnytime}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="130,10,130,235"/>
                 <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc AnywhereAnytimeDesc}" TextWrapping="Wrap" FontSize="20" Margin="81,85,93,-51" TextAlignment="Center">

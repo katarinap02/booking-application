@@ -44,13 +44,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         private void OnAbout()
         {
-            Frame.Content = new AboutPage();
+            Frame.Content = new AboutPage(Frame);
             GuestWindow.backButton.Visibility = Visibility.Visible;
         }
 
         private void OnHelp()
         {
-            Frame.Content = new HelpPage();
+            Frame.Content = new HelpPage(Frame);
             GuestWindow.backButton.Visibility = Visibility.Visible;
         }
 
