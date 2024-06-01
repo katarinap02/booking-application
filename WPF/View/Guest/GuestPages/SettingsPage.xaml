@@ -75,7 +75,8 @@
                 </Border>
 
                 <Button x:Name="saveBtn" Content="{ns:Loc Save}" Command="{Binding Path=SaveCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="23" Margin="440,602,440,137"/>
-
+                <TextBlock x:Name="ErrorMessage" Visibility="Hidden" TextAlignment="Center" Text="{ns:Loc SettingsError}" FontSize="25" Style="{DynamicResource TextBlockHeaderStyleN}" Margin="0,682,0,69"></TextBlock>
+                <TextBlock x:Name="SuccessMessage" Visibility="Hidden" TextAlignment="Center" Text="{ns:Loc SettingsSuccess}" FontSize="25" Style="{DynamicResource TextBlockHeaderStyleN}" Margin="0,682,0,69"></TextBlock>
 
             </Grid>
 

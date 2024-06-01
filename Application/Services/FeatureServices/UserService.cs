@@ -24,7 +24,10 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             return UserRepository.GetByUsername(username);
         }
-
+        public User Update(User user)
+        {
+            return UserRepository.Update(user); 
+        }
         public User GetById(int id)
         {
             return UserRepository.GetById(id);
@@ -34,5 +37,7 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             tourRequestService.UpdateTourRequests();
         }
+
+
     }
 }

@@ -580,6 +580,12 @@
   <data name="Settings" xml:space="preserve">
     <value>Podešavanja</value>
   </data>
+  <data name="SettingsError" xml:space="preserve">
+    <value>Unos nije validan.</value>
+  </data>
+  <data name="SettingSuccess" xml:space="preserve">
+    <value>Promene su uspešno sačuvane.</value>
+  </data>
   <data name="Special" xml:space="preserve">
     <value>specijalno</value>
   </data>

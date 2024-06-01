@@ -578,6 +578,12 @@ which will give you all available accommodations according to your needs.</value
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="SettingsError" xml:space="preserve">
+    <value>Input is invalid.</value>
+  </data>
+  <data name="SettingsSuccess" xml:space="preserve">
+    <value>Changes successfully saved.</value>
+  </data>
   <data name="Special" xml:space="preserve">
     <value>special</value>
   </data>

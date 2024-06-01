@@ -148,6 +148,22 @@ namespace BookingApp.Properties
             }
         }
 
+        internal static string SettingsSuccess
+        {
+            get
+            {
+                return ResourceManager.GetString("SettingsSuccess", resourceCulture);
+            }
+        }
+
+        internal static string SettingsError
+        {
+            get
+            {
+                return ResourceManager.GetString("SettingsError", resourceCulture);
+            }
+        }
+
         internal static string Adventure
         {
             get
