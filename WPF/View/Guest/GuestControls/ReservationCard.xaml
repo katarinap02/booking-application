@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookingApp.View.GuestControls"
              mc:Ignorable="d" 
+                  xmlns:ns="clr-namespace:BookingApp"
              d:DesignHeight="103" d:DesignWidth="990">
     <UserControl.Resources>
         <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
@@ -129,10 +130,10 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock x:Name="AccommodationName" Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="20" Text="{Binding Name}" Margin="179,0,504,27" FontWeight="Bold"/>
-                <Image Source="{StaticResource Location}" Height="15" Width="20" Margin="473,-10,473,56"/>
+                <Image ToolTip="{ns:Loc Location}" Source="{StaticResource Location}" Height="15" Width="20" Margin="473,-10,473,56"/>
 
                 <TextBlock x:Name="Location" FontWeight="Bold" FontSize="20" Style="{DynamicResource TextBlockHeaderStyleN}" Text="{Binding Location}" Margin="494,0,-24,27"/>
-                <Image Source="{StaticResource Calendar}" Height="20" Width="20" Margin="259,43,677,16" RenderTransformOrigin="0.216,0.377"/>
+                <Image ToolTip="{ns:Loc Date}" Source="{StaticResource Calendar}" Height="20" Width="20" Margin="259,43,677,16" RenderTransformOrigin="0.216,0.377"/>
 
                 <TextBlock x:Name="ReservationDate" Foreground="{DynamicResource TextColorN}" FontSize="20" Text="{Binding DateRangeString}" Margin="290,43,115,16" Grid.RowSpan="2"/>
                 <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Width="100" Height="70"  Margin="10,0,846,21" Grid.RowSpan="2">

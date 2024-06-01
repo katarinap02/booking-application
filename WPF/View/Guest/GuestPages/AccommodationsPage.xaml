@@ -136,7 +136,7 @@
 
 
 
-        <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,162,1082,393">
+        <Border x:Name="searchBorder" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,162,1082,393">
             <Grid x:Name="SearchSection">
                 <Label Foreground="{DynamicResource TextColorN}" Content="{ns:Loc SearchAccommodations}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="122,10,-122,-10"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Name}" HorizontalAlignment="Left" Margin="66,89,0,0" VerticalAlignment="Top" Width="74" FontSize="16" RenderTransformOrigin="0.439,1.63"/>
@@ -146,20 +146,36 @@
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc MinDayNumber}" HorizontalAlignment="Left" Margin="66,287,0,0" VerticalAlignment="Top" Width="266" FontSize="16"/>
                 <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="txtSearchName" Background="{DynamicResource BackgroundColorN}" HorizontalAlignment="Left" Margin="382,96,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118" />
                 <!--<TextBox x:Name="txtSearchCity" HorizontalAlignment="Left" Margin="382,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>-->
-                <ComboBox  x:Name="txtSearchCity"  HorizontalAlignment="Left" Margin="382,175,0,236" Width="118" Height="20" ItemsSource="{Binding CitiesSearch}"  SelectedItem="{Binding CitySearch, Mode=TwoWay}"/>
+                <ComboBox Style="{DynamicResource ComboBoxStyleN}" x:Name="txtSearchCity"  HorizontalAlignment="Left" Margin="382,175,0,236" Width="118" Height="20" ItemsSource="{Binding CitiesSearch}"  SelectedItem="{Binding CitySearch, Mode=TwoWay}">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="{DynamicResource BackgroundColorN}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource BackgroundColorN}"/>
+                        </Style>
+
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
                 <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="txtSearchGuestNumber" Background="{DynamicResource BackgroundColorN}" HorizontalAlignment="Left" Margin="382,256,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
                 <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="txtSearchReservationDays" Background="{DynamicResource BackgroundColorN}" HorizontalAlignment="Left" Margin="382,294,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>
                 <Button Content="{ns:Loc Search}" HorizontalAlignment="Center" Margin="0,362,0,0" VerticalAlignment="Top" Width="142" Command="{Binding SearchCommand}" RenderTransformOrigin="-2.474,0.401" Style="{DynamicResource ButtonStyleN}" FontSize="20" Height="33"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" FontSize="16" Content="{ns:Loc Country}" HorizontalAlignment="Left" Margin="66,129,0,0"  VerticalAlignment="Top" Width="74"/>
                 <!--<TextBox x:Name="txtSearchCountry" HorizontalAlignment="Left" Margin="382,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>-->
-                <ComboBox x:Name="txtSearchCountry"  HorizontalAlignment="Left" Margin="382,135,0,276" Width="118" Height="20" ItemsSource="{Binding CountriesSearch}"  SelectedItem="{Binding CountrySearch, Mode=TwoWay}"/>
+                <ComboBox Style="{DynamicResource ComboBoxStyleN}"  x:Name="txtSearchCountry"  HorizontalAlignment="Left" Margin="382,135,0,276" Width="118" Height="20" ItemsSource="{Binding CountriesSearch}"  SelectedItem="{Binding CountrySearch, Mode=TwoWay}">
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="{DynamicResource BackgroundColorN}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource BackgroundColorN}"/>
+                        </Style>
+
+                    </ComboBox.ItemContainerStyle>
+                </ComboBox>
                 <TextBox Foreground="{DynamicResource TextBlockColorN}" x:Name="txtSearchType" Background="{DynamicResource BackgroundColorN}" HorizontalAlignment="Left" Margin="382,215,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
 
 
             </Grid>
         </Border>
 
-        <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,618,1082,92">
+        <Border x:Name="anywhereAnytimeBorder" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,618,1082,92">
             <Grid Margin="0,-2,0,-26">
                 <Label Content="{ns:Loc AnywhereAnytime}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="130,10,130,235"/>
                 <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc AnywhereAnytimeDesc}" TextWrapping="Wrap" FontSize="20" Margin="81,85,93,-51" TextAlignment="Center">

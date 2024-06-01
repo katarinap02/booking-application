@@ -9,10 +9,57 @@
  mc:Ignorable="d" 
       d:DesignHeight="990" d:DesignWidth="1920"
       Title="ViewForumPage">
+    <Page.Resources>
+        <ResourceDictionary>
+            <DrawingGroup x:Key="medal_svgrepo_com_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,296.193,296.193"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <GeometryDrawing Brush="{DynamicResource TextColorN}">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 213.764 95.654 V 10 c 0 -5.523 -4.145 -10 -9.667 -10 h -49.333 v 75.687 C 176.764 76.927 196.764 83.822 213.764 95.654 z" FillRule="Nonzero"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="{DynamicResource TextColorN}">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 139.764 0 H 91.097 c -5.522 0 -10.333 4.477 -10.333 10 v 86.341 c 18 -12.063 38 -19.171 59 -20.594 V 0 z" FillRule="Nonzero"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="{DynamicResource TextColorN}">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 148.096 90.475 c -56.807 0 -102.857 46.051 -102.857 102.859 s 46.051 102.859 102.857 102.859 c 56.809 0 102.859 -46.051 102.859 -102.859 S 204.904 90.475 148.096 90.475 z M 197.507 209.379 l 6.593 38.447 c 0.965 5.628 -1.349 11.314 -5.968 14.671 c -2.613 1.898 -5.708 2.864 -8.818 2.864 c -2.387 0 -4.784 -0.569 -6.979 -1.724 l -34.522 -18.151 l -34.527 18.152 c -2.195 1.153 -4.592 1.723 -6.979 1.723 c -3.11 0 -6.206 -0.966 -8.819 -2.865 c -4.619 -3.355 -6.932 -9.044 -5.967 -14.671 l 6.597 -38.446 l -27.934 -27.226 c -4.089 -3.985 -5.561 -9.947 -3.796 -15.377 c 1.765 -5.431 6.459 -9.389 12.109 -10.21 l 38.601 -5.607 l 17.264 -34.979 c 2.527 -5.12 7.742 -8.361 13.451 -8.361 c 5.71 0 10.924 3.241 13.451 8.361 l 17.263 34.98 l 38.599 5.607 c 5.65 0.82 10.345 4.778 12.109 10.208 c 1.765 5.431 0.293 11.392 -3.796 15.377 L 197.507 209.379 z" FillRule="Nonzero"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                    <GeometryDrawing Brush="{DynamicResource TextColorN}">
+                        <GeometryDrawing.Geometry>
+                            <PathGeometry Figures="M 147.813 228.539 L 189.315 250.361 L 181.39 204.142 L 214.969 171.411 L 168.566 164.67 L 147.813 122.619 L 127.059 164.67 L 80.653 171.411 L 114.234 204.142 L 106.305 250.361 Z"/>
+                        </GeometryDrawing.Geometry>
+                    </GeometryDrawing>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource medal_svgrepo_com_xaml}" x:Key="UsefulIcon"/>
+        </ResourceDictionary>
+    </Page.Resources>
 
     <Grid>
+        <Image  VerticalAlignment="Top" HorizontalAlignment="Left" Height="45" Margin="645,64,0,0" Width="50">
+            <Image.Style>
+                <Style TargetType="Image">
+                    <Setter Property="Source" Value="{x:Null}"/>
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding SelectedForum.IsVeryUseful}" Value="True">
+                            <Setter Property="Source" Value="{DynamicResource UsefulIcon}"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding SelectedForum.IsVeryUseful}" Value="False">
+                            <Setter Property="Source" Value="{x:Null}"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Image.Style>
+        </Image>
 
-        <TextBlock  FontSize="40" FontWeight="Bold" Foreground="{DynamicResource TextColorN}" Margin="574,24,425,873">
+        <TextBlock  FontSize="35" FontWeight="Bold" Foreground="{DynamicResource TextColorN}" Margin="690,64,331,868">
     <Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding SelectedForum.City}"/>
     <Run Text=", "/><Run Text="{Binding SelectedForum.Country}"/>
             <!--<TextBlock.Text>

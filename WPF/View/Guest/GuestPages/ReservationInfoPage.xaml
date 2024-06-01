@@ -47,7 +47,6 @@
     </Page.Resources>
 
     <Grid>
-        <Button Content="Back" Style="{StaticResource ButtonStyleN}" Width="100" Height="50" Margin="80,92,1740,848" Command="{Binding ViewModel.BackCommand}"/>
 
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="269,85,980,161" Width="671" Background="{DynamicResource BorderBackground}">
             <Grid>
@@ -78,10 +77,19 @@
                 <xctk:IntegerUpDown Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}" Name="txtDayNumber" Text="{Binding ViewModel.DayNumber}" Margin="352,237,160,458"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc StartDate}" Margin="120,319,-136,-319" FontSize="30"/>
                 <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
-                <DatePicker x:Name="txtStartDate" Background="{DynamicResource BackgroundColorN}" Margin="352,329,160,366" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                <DatePicker  Style="{DynamicResource DatePickerStyleN}" x:Name="txtStartDate" Background="{DynamicResource BackgroundColorN}" Margin="352,329,160,376" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc EndDate}" FontSize="30" HorizontalAlignment="Left" Margin="125,417,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
                 <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
-                <DatePicker x:Name="txtEndDate" Background="{DynamicResource BackgroundColorN}" Margin="352,424,160,273" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                <DatePicker  Style="{DynamicResource DatePickerStyleN}" x:Name="txtEndDate" Background="{DynamicResource BackgroundColorN}" Margin="352,426,160,282" SelectedDateChanged="DatePicker_SelectedDateChanged" RenderTransformOrigin="0.5,0.5">
+                    <DatePicker.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform AngleX="0"/>
+                            <RotateTransform/>
+                            <TranslateTransform X="0"/>
+                        </TransformGroup>
+                    </DatePicker.RenderTransform>
+                </DatePicker>
                 <Button x:Name="ContinueButton" Content="{ns:Loc Continue}" HorizontalAlignment="Center" Margin="0,545,0,0" VerticalAlignment="Top" Command="{Binding ViewModel.ContinueCommand}" Width="200" Height="50" Style="{StaticResource ButtonStyleN}"/>
                 <TextBlock x:Name="dayNumberValidator" FontSize="12" Foreground="red" Margin="352,282,160,440">
 

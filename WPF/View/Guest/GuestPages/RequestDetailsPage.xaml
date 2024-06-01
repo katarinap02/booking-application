@@ -13,6 +13,7 @@
     <Grid>
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
+                <TextBox x:Name="langTextbox" TextChanged="ContentChanged" Text="{ns:Loc Language}" Visibility="Hidden"  Foreground="{DynamicResource BorderBackground}" Margin="10,10,1030,755"></TextBox>
                 <Label x:Name="requestHeader" Style="{DynamicResource HeaderStyleN}" Content="{Binding RequestHeader}" FontSize="40" Margin="300, 10, 0, 0"></Label>
                 <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="160,174,638,573"/>
                 <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="240,396,716,351"/>

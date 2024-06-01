@@ -165,6 +165,9 @@
   <data name="Approved" xml:space="preserve">
     <value>Prihvaćeni</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Nazad</value>
+  </data>
   <data name="BonusPoints" xml:space="preserve">
     <value>Bonus poeni:</value>
   </data>
@@ -354,6 +357,12 @@
   <data name="InputProblem" xml:space="preserve">
     <value>Problem sa unosom podataka</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>Srpski</value>
+  </data>
+  <data name="LanguageBtn" xml:space="preserve">
+    <value>SRB</value>
+  </data>
   <data name="Level" xml:space="preserve">
     <value>Nivo hitnosti</value>
   </data>
@@ -422,6 +431,9 @@
   </data>
   <data name="PasswordChange" xml:space="preserve">
     <value>Promeni lozinku</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Putanja</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Na čekanju</value>

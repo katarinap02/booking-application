@@ -6,14 +6,76 @@
       xmlns:local="clr-namespace:BookingApp.View.GuestPages"
       xmlns:controls="clr-namespace:BookingApp.View.GuestControls"
       xmlns:ns="clr-namespace:BookingApp"
+       xmlns:Menu="clr-namespace:BookingApp.Utilities"
       mc:Ignorable="d" 
       d:DesignHeight="990" d:DesignWidth="1920"
       Title="ProfilePage">
 
     <Grid>
-        <Border Width="396" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="268,98,1256,98">
+        <Border x:Name="menuBorder" Width="396" Height="793" BorderThickness="2" BorderBrush="{StaticResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="268,98,1256,98">
             <Grid>
-                <TreeView Name="TreeMenu" Height="692" Margin="10,30,0,67" BorderBrush="{DynamicResource BorderBackground}" Background="{DynamicResource BorderBackground}">
+                <Menu:Btn   x:Name="ProfileButton"
+                     Style="{DynamicResource MenuBtnStyleN}"
+                     FontSize="37"
+                    Foreground="{DynamicResource TextColorN}"
+                     Click="Profile_Click"
+                     IsChecked="True" Margin="0,31,0,675">
+                    <TextBlock Text="{ns:Loc Profile}"
+                         VerticalAlignment="Center"
+                         Margin="20,0,0,0"/>
+                </Menu:Btn>
+                <Menu:Btn   x:Name="RateAccommodationButton"
+      Style="{DynamicResource MenuBtnStyleN}"
+      FontSize="37"
+     Foreground="{DynamicResource TextColorN}"
+      Click="RateAccommodation_Click"
+      Margin="0,-236,0,236">
+                    <TextBlock Text="{ns:Loc RateAccommodation}"
+          VerticalAlignment="Center"
+          Margin="20,0,0,0"/>
+                </Menu:Btn>
+                <Menu:Btn   x:Name="HostRatesButton"
+Style="{DynamicResource MenuBtnStyleN}"
+FontSize="37"
+Foreground="{DynamicResource TextColorN}"
+Click="RatesByHost_Click"
+Margin="0,-146,0,146">
+                    <TextBlock Text="{ns:Loc RatesByHost}"
+    VerticalAlignment="Center"
+    Margin="20,0,0,0"/>
+                </Menu:Btn>
+                <Menu:Btn   x:Name="RequestsButton"
+Style="{DynamicResource MenuBtnStyleN}"
+FontSize="37"
+Foreground="{DynamicResource TextColorN}"
+Click="Requests_Click"
+Margin="0,41,0,157">
+                    <TextBlock Text="{ns:Loc Requests}"
+    VerticalAlignment="Center"
+    Margin="20,0,0,0"/>
+                </Menu:Btn>
+
+                <Menu:Btn   x:Name="ForumsButton"
+Style="{DynamicResource MenuBtnStyleN}"
+FontSize="37"
+Foreground="{DynamicResource TextColorN}"
+Click="Forums_Click"
+Margin="0,31,0,-31">
+                    <TextBlock Text="{ns:Loc Forums}"
+    VerticalAlignment="Center"
+    Margin="20,0,0,0"/>
+                </Menu:Btn>
+                <Menu:Btn   x:Name="SettingsButton"
+Style="{DynamicResource MenuBtnStyleN}"
+FontSize="37"
+Foreground="{DynamicResource TextColorN}"
+Click="Settings_Click"
+Margin="0,119,0,-119">
+                    <TextBlock Text="{ns:Loc Settings}"
+    VerticalAlignment="Center"
+    Margin="20,0,0,0"/>
+                </Menu:Btn>
+                <!--<TreeView Name="TreeMenu" Height="692" Margin="10,30,0,67" BorderBrush="{DynamicResource BorderBackground}" Background="{DynamicResource BorderBackground}">
                     <LineBreak/>
                     <TreeViewItem Header="{ns:Loc Profile}" FontSize="37" Foreground="{DynamicResource TextColorN}" Selected="Profile_Click"></TreeViewItem>
                     <LineBreak/>
@@ -27,7 +89,7 @@
                     <LineBreak/>
                     <TreeViewItem Header="{ns:Loc Settings}" FontSize="37" Foreground="{DynamicResource TextColorN}" Selected="Settings_Click"></TreeViewItem>
 
-                </TreeView>
+                </TreeView>-->
             </Grid>
 
         </Border>

@@ -91,9 +91,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         private void ReserveAccommodation()
         {
-            Reservation = new AccommodationReservation(User.Id, SelectedAccommodation.Id, SelectedDateRange.Start, SelectedDateRange.End, GuestNumber, SelectedAccommodation.Name, SelectedAccommodation.City, SelectedAccommodation.Country);
+            Reservation = new AccommodationReservation(User.Id, SelectedAccommodation.Id, SelectedDateRange.Start, SelectedDateRange.End, GuestNumber, SelectedAccommodation.Name, SelectedAccommodation.City, SelectedAccommodation.Country, DateTime.Now);
             SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
-            AccommodationService.Update(SelectedAccommodation.ToAccommodation());
+            AccommodationService.Update(SelectedAccommodation.ToAccommodationWithoutSearch());
             AccommodationReservationService.Add(Reservation);
             if (Guest.BonusPoints > 0)
             {

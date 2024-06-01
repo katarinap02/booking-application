@@ -311,5 +311,19 @@ namespace BookingApp.Application.Services.ReservationServices
 
             return number;
         }
+
+        public List<AccommodationReservationViewModel> GetCreatedReservationsReport(User user, DateTime startDate, DateTime endDate)
+        {
+            List<AccommodationReservationViewModel> result = new List<AccommodationReservationViewModel>();
+
+            foreach(AccommodationReservation reservation in GetAll())
+            {
+                if(reservation.GuestId == user.Id && reservation.DateCreated >= startDate && reservation.DateCreated <= endDate)
+                    result.Add(new AccommodationReservationViewModel(reservation));
+            }
+
+            return result;
+           
+        }
     }
 }

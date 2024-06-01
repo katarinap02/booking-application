@@ -20,6 +20,7 @@ using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.View.Guest.GuestPages;
+using System.Windows.Media.Animation;
 
 namespace BookingApp.View.GuestPages
 {
@@ -47,6 +48,7 @@ namespace BookingApp.View.GuestPages
             ViewModel = new RatesByHostViewModel(User, Frame);
             DataContext = ViewModel;
             ViewModel.Update();
+            Loaded += Page_Loaded;
 
         }
         
@@ -57,7 +59,21 @@ namespace BookingApp.View.GuestPages
             SelectedRate = tmpSelectedRate.SelectedRate;
             Frame.Content = new RateDetailsPage(SelectedRate, User, Frame);
 
+           
+
+
         }
-        
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
+
+
+            Frame.BeginAnimation(Frame.OpacityProperty, fadeInAnimation);
+
+            await Task.Delay(500);
+        }
+
     }
 }

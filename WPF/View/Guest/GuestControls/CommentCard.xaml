@@ -6,13 +6,46 @@
              xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestControls"
              mc:Ignorable="d" 
              d:DesignHeight="165" d:DesignWidth="670">
+    <UserControl.Resources>
+        <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <DrawingGroup x:Key="check_mark_svgrepo_com_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,490.05,490.05"/>
+                </DrawingGroup.ClipGeometry>
+                <DrawingGroup>
+                    <DrawingGroup>
+                        <GeometryDrawing Brush="{DynamicResource TextColorN}">
+                            <GeometryDrawing.Geometry>
+                                <PathGeometry Figures="M 418.275 418.275 c 95.7 -95.7 95.7 -250.8 0 -346.5 s -250.8 -95.7 -346.5 0 s -95.7 250.8 0 346.5 S 322.675 513.975 418.275 418.275 z M 157.175 207.575 l 55.1 55.1 l 120.7 -120.6 l 42.7 42.7 l -120.6 120.6 l -42.8 42.7 l -42.7 -42.7 l -55.1 -55.1 L 157.175 207.575 z" FillRule="Nonzero"/>
+                            </GeometryDrawing.Geometry>
+                        </GeometryDrawing>
+                    </DrawingGroup>
+                </DrawingGroup>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource check_mark_svgrepo_com_xaml}" x:Key="Check"/>
+        </ResourceDictionary>
+    </UserControl.Resources>
     <Grid>
         <Border Width="650" Height="155" BorderBrush="{StaticResource AccentColorN}" Background="{DynamicResource BackgroundColorN}" BorderThickness="2" Margin="0,0,10,10" CornerRadius="30">
             <Grid>
                 <TextBlock FontSize="23" Margin="16,20,530,97" FontWeight="Bold" Foreground="{DynamicResource TextColorN}" Text="{Binding Username}"></TextBlock>
                 <TextBlock FontSize="23" Margin="16,42,530,79" Foreground="{DynamicResource TextColorN}" Text="{Binding UserType}"></TextBlock>
                 <TextBlock FontSize="16" Margin="16,70,530,56" Foreground="{DynamicResource TextColorN}" Text="{Binding DateString}"></TextBlock>
-
+                <Image Margin="10,108,607,6" ToolTip="The user has visited this location.">
+                    <Image.Style>
+                        <Style TargetType="Image">
+                            <Setter Property="Source" Value="{x:Null}"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsSpecial}" Value="True">
+                                    <Setter Property="Source" Value="{DynamicResource Check}"/>
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding IsSpecial}" Value="False">
+                                    <Setter Property="Source" Value="{x:Null}"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Image.Style>
+                </Image>
                 <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" Margin="123,15,14,15" CornerRadius="30" Background="{DynamicResource CommentBackgroundN}">
                     <Grid>
                         <TextBlock Foreground="{DynamicResource TextBlockColorN}" Text="{Binding Comment}" FontSize="16" Margin="28,10,10,10" TextWrapping="Wrap"></TextBlock>

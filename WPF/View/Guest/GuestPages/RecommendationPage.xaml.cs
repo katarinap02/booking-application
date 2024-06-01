@@ -12,6 +12,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
@@ -42,8 +43,22 @@ namespace BookingApp.WPF.View.Guest.GuestPages
             ViewModel = new RecommendationPageViewModel(User, Frame, SelectedReservation, SelectedAccommodation, AccommodationRate, this);
             DataContext = ViewModel;
 
+            Loaded += Page_Loaded;
+
+
         }
 
-        
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
+
+
+            Frame.BeginAnimation(Frame.OpacityProperty, fadeInAnimation);
+
+            await Task.Delay(500);
+        }
+
+
     }
 }

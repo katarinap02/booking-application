@@ -31,10 +31,17 @@ ItemsSource="{Binding Requests}" Background="{DynamicResource BackgroundColorN}"
                 </ListBox>
                 <Label FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="36,239,930,500" RenderTransformOrigin="-4.944,2.36">Filter</Label>
 
-                <ComboBox x:Name="requestStatusBox" HorizontalAlignment="Left" Margin="123,244,0,0" VerticalAlignment="Top" Width="148" Height="28"  SelectionChanged="RequestStatusBox_SelectionChanged">
+                <ComboBox  Style="{DynamicResource ComboBoxStyleN}" x:Name="requestStatusBox" HorizontalAlignment="Left" Margin="123,244,0,0" VerticalAlignment="Top" Width="148" Height="28"  SelectionChanged="RequestStatusBox_SelectionChanged">
                     <ComboBoxItem Content="{ns:Loc Pending}" Tag="0"></ComboBoxItem>
                     <ComboBoxItem Content="{ns:Loc Approved}" Tag="1"></ComboBoxItem>
                     <ComboBoxItem Content="{ns:Loc Rejected}" Tag="2"></ComboBoxItem>
+                    <ComboBox.ItemContainerStyle>
+                        <Style TargetType="ComboBoxItem">
+                            <Setter Property="Background" Value="{DynamicResource BackgroundColorN}"/>
+                            <Setter Property="BorderBrush" Value="{DynamicResource BackgroundColorN}"/>
+                        </Style>
+
+                    </ComboBox.ItemContainerStyle>
                 </ComboBox>
 
             </Grid>

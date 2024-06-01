@@ -20,6 +20,9 @@ using BookingApp.WPF.ViewModel.HostGuestViewModel;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
+using BookingApp.Observer;
+using System.ComponentModel;
+using System.Windows.Media.Animation;
 
 namespace BookingApp.View.GuestPages
 {
@@ -42,9 +45,9 @@ namespace BookingApp.View.GuestPages
 
         public Frame Frame { get; set; }
         public int DayNumber { get; set; }
-
-
      
+
+
         public CalendarPage(AccommodationViewModel selectedAccommodation, int dayNumber, User user, DateTime start, DateTime end, Frame frame)
         {
             InitializeComponent();
@@ -58,22 +61,57 @@ namespace BookingApp.View.GuestPages
 
             ViewModel = new ReservationCalendarViewModel(SelectedAccommodation, DayNumber, User, StartDate, EndDate, Frame, this);
             DataContext = ViewModel;
-
-            if(PeopleNumberSection.IsEnabled == false)
+            if (PeopleNumberSection.IsEnabled == false)
             {
-                HintLabel.Content = "Problem with choosing dates";
-                Hint.Text = "It is neccessary to choose the same number of days you entered on the previous page.";
-                Hint.Visibility = Visibility.Hidden;
-
-
+                UpdateHintContent();
+               
             }
-
+            langTextbox.TextChanged += ContentChanged;
             guestNumberValidator.Visibility = Visibility.Hidden;
-           
+
+
+            Loaded += Page_Loaded;
 
         }
 
-        
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+
+            var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
+
+
+            Frame.BeginAnimation(Frame.OpacityProperty, fadeInAnimation);
+
+            await Task.Delay(500);
+        }
+
+
+        private void ContentChanged(object sender, EventArgs e)
+        {
+            UpdateHintContent();
+           // ViewModel.UpdateHintContent();
+        }
+
+        public void UpdateHintContent()
+        {
+           
+                if (langTextbox.Text == "English")
+                {
+                    HintLabel.Content = "Problem with choosing dates";
+                    Hint.Text = "It is neccessary to choose the same number of days you entered on the previous page.";
+                    Hint.Visibility = Visibility.Hidden;
+                }
+                if (langTextbox.Text == "Srpski")
+                {
+                    HintLabel.Content = "Problem sa biranjem datuma";
+                    Hint.Text = "Potrebno je izabrati onoliko dana koliko je uneto na prethodnoj strani.";
+                    Hint.Visibility = Visibility.Hidden;
+                }
+
+
+            
+
+        }
 
         private void Calendar_SelectedDatesChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -92,5 +130,7 @@ namespace BookingApp.View.GuestPages
         {
             Hint.Visibility = Visibility.Hidden;
         }
+
+      
     }
 }

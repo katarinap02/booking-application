@@ -9,6 +9,23 @@
       d:DesignHeight="990" d:DesignWidth="1920"
       Title="AccommodationDetailsPage">
 
+    <Page.Resources>
+        <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+            <DrawingGroup x:Key="reshot_icon_left_bold_arrow_E4AQ8STN9B_71d41_xaml">
+                <DrawingGroup.ClipGeometry>
+                    <RectangleGeometry Rect="0.0,0.0,20.018,18.0"/>
+                </DrawingGroup.ClipGeometry>
+                <GeometryDrawing Brush="{DynamicResource ButtonTextN}">
+                    <GeometryDrawing.Geometry>
+                        <PathGeometry Figures="M 10.018 18 L 10.018 13 L 20.018 13 L 20.018 5 L 10.018 5 L 10.018 0 L 0 8.939 L 10.018 18 Z"/>
+                    </GeometryDrawing.Geometry>
+                </GeometryDrawing>
+            </DrawingGroup>
+            <DrawingImage Drawing="{StaticResource reshot_icon_left_bold_arrow_E4AQ8STN9B_71d41_xaml}" x:Key="arrow"/>
+        </ResourceDictionary>
+
+    </Page.Resources>
+
     <Grid>
         <Label FontSize="40" Style="{DynamicResource HeaderStyleN}" Margin="248,182,1162,724" Content="{Binding SelectedAccommodation.Name}"></Label>
         <TextBlock Style="{DynamicResource TextBlockStyleN}" FontSize="30" TextWrapping="Wrap" Margin="248,280,1099,495">
@@ -35,11 +52,20 @@
             </Grid>
         </Border>
 
-        <Button Margin="1262,719,554,216" Background="White" Style="{DynamicResource ButtonStyleWindowHost}" Command="{Binding ChangedPictureCommand}" >
-            <Image Source="../../../Resources/Images/left_arrow.png" Width="72" Height="45"/>
+        <Button Margin="1262,719,554,216" Style="{DynamicResource ButtonStyleN}" Command="{Binding ChangedPictureCommand}" >
+            <Image Source="{DynamicResource arrow}" Width="72" Height="35"/>
         </Button>
-        <Button Margin="1416,719,402,216" Background="White" Style="{DynamicResource ButtonStyleWindowHost}" Command="{Binding ChangedPictureCommand}" >
-            <Image Source="../../../Resources/Images/right_arrow.png" Width="64" Height="45"/>
+        <Button Margin="1416,719,402,216" Style="{DynamicResource ButtonStyleN}" Command="{Binding ChangedPictureCommand}" >
+            <Image Source="{DynamicResource arrow}" Width="72" Height="35" RenderTransformOrigin="0.5,0.5">
+                <Image.RenderTransform>
+                    <TransformGroup>
+                        <ScaleTransform/>
+                        <SkewTransform/>
+                        <RotateTransform Angle="179.38"/>
+                        <TranslateTransform/>
+                    </TransformGroup>
+                </Image.RenderTransform>
+            </Image>
         </Button>
         <Button Content="{ns:Loc Reserve}" HorizontalAlignment="Left" Margin="427,553,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{StaticResource ButtonStyleN}" Command="{Binding ReserveCommand}"/>
 

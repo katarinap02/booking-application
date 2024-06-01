@@ -19,6 +19,7 @@ using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using BookingApp.WPF.ViewModel.Commands;
 using BookingApp.WPF.View.Guest.GuestPages;
+using System.Windows.Media.Animation;
 
 namespace BookingApp.View.GuestPages
 {
@@ -32,24 +33,47 @@ namespace BookingApp.View.GuestPages
         public User User { get; set; }
 
         public Frame Frame { get; set; }    
-        
+        public GuestWindow GuestWindow { get; set; }
         public HomePageViewModel ViewModel { get; set; }
+
+        
 
         //KOMANDE
        
-        public HomePage(User user, Frame frame)
+        public HomePage(User user, Frame frame, GuestWindow guestWindow)
         {
             InitializeComponent();
             this.User = user;
             this.Frame = frame;
-            ViewModel = new HomePageViewModel(User, Frame);
+            GuestWindow = guestWindow;
+            ViewModel = new HomePageViewModel(User, Frame, GuestWindow);
            
+            guestWindow.backButton.Visibility = Visibility.Hidden;
             DataContext = ViewModel;
+            Loaded += HomePage_Loaded;
             
         }
 
-       
-
       
+        private async void HomePage_Loaded(object sender, RoutedEventArgs e)
+        {
+          
+            var fadeInAnimation = new DoubleAnimation(0, 1, TimeSpan.FromSeconds(0.5));
+
+          
+            findPerfectTB.BeginAnimation(TextBlock.OpacityProperty, fadeInAnimation);
+            loggedLabel.BeginAnimation(Label.OpacityProperty, fadeInAnimation);
+            adventureLabel.BeginAnimation(Label.OpacityProperty, fadeInAnimation);
+            logoImg.BeginAnimation(Label.OpacityProperty, fadeInAnimation);
+            welcomeTB.BeginAnimation(Label.OpacityProperty, fadeInAnimation);
+            reserveBtn.BeginAnimation(Button.OpacityProperty, fadeInAnimation);
+            helpBtn.BeginAnimation(Button.OpacityProperty, fadeInAnimation);
+            aboutBtn.BeginAnimation(Button.OpacityProperty, fadeInAnimation);
+          
+            await Task.Delay(500);
+        }
+
+
+
     }
 }

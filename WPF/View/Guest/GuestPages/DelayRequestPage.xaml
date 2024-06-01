@@ -48,7 +48,6 @@
 
             <Border Width="526" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,549,5">
                 <Grid>
-                    <Button Content="Back" Style="{DynamicResource ButtonStyleN}" FontSize="16" Width="60" Height="25" Margin="10,10,452,754" Command="{Binding BackCommand}"/>
                     <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc PleaseChooseDelay}" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="36,41,38,507"></TextBlock>
 
                     <ToggleButton Height="50" Background="{DynamicResource BorderBackground}" BorderBrush="{DynamicResource BorderBackground}" Margin="129,232,131,507" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
@@ -75,7 +74,7 @@
             <Border Width="526" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="549,1,10,0">
 
                 <Grid>
-                    <Calendar x:Name="ReservationCalendar"  BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"  Background="White" SelectionMode="SingleRange" Height="371" Margin="65,180,65,242" RenderTransformOrigin="0.515,0.5">
+                    <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyleN}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyleN}"  Style="{DynamicResource CalendarStyleN}" x:Name="ReservationCalendar"  BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"  Background="White" SelectionMode="SingleRange" Height="371" Margin="65,180,65,242" RenderTransformOrigin="0.515,0.5">
                         <Calendar.LayoutTransform>
                             <ScaleTransform ScaleX="2" ScaleY="2"/>
                         </Calendar.LayoutTransform>

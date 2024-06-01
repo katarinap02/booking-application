@@ -9,6 +9,7 @@ using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +19,7 @@ using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
-    public class NotificationDetailsViewModel
+    public class NotificationDetailsViewModel : INotifyPropertyChanged
     {
         public DelayRequestViewModel SelectedRequest { get; set; }
 
@@ -31,7 +32,29 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public int NumberOfDays { get; set; }
 
         public NotificationDetailsPage Page { get; set; }
-        public string RequestHeader { get; set; }
+
+        private string requestHeader;
+        public string RequestHeader
+        {
+            get { return requestHeader; }
+            set
+            {
+                if (requestHeader != value)
+                {
+
+                    requestHeader = value;
+                    OnPropertyChanged("RequestHeader");
+                }
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
         public AccommodationViewModel Accommodation { get; set; }
 
         public DelayRequestService DelayRequestService { get; set; }
@@ -40,7 +63,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public AccommodationService AccommodationService { get; set; }
 
-        public string Comment { get; set; }
+        private string comment;
+        public string Comment
+        {
+            get { return comment; }
+            set
+            {
+                if (comment != value)
+                {
+
+                    comment = value;
+                    OnPropertyChanged("Comment");
+                }
+            }
+        }
         public ComboBox RequestStatusBox { get; set; }
         public GuestICommand BackCommand { get; set; }
 
@@ -62,14 +98,30 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             Comment = SelectedRequest.Comment;
             NumberOfDays = (reservation.EndDate - reservation.StartDate).Days + 1;
             Page = page;
-            RequestHeader = CreateRequestHeader(SelectedRequest);
-            
+            UpdateHeaderContent();
+            Page.langTextbox.TextChanged += ContentChanged;
+
 
 
 
 
         }
-        private string? CreateRequestHeader(DelayRequestViewModel selectedRequest)
+
+        private void ContentChanged(object sender, EventArgs e)
+        {
+            UpdateHeaderContent();
+        }
+
+        public void UpdateHeaderContent()
+        {
+            if (Page.langTextbox.Text == "English")
+            { RequestHeader = CreateRequestHeaderEnglish(SelectedRequest); }
+            if (Page.langTextbox.Text == "Srpski")
+            { RequestHeader = CreateRequestHeaderSerbian(SelectedRequest); }
+
+        }
+
+        private string? CreateRequestHeaderEnglish(DelayRequestViewModel selectedRequest)
         {
             if (selectedRequest.Status == RequestStatus.PENDING)
             {
@@ -101,6 +153,43 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                 Page.requestHeader.Foreground = Brushes.Red;
 
                 return "Your request is rejected";
+            }
+
+        }
+
+        private string? CreateRequestHeaderSerbian(DelayRequestViewModel selectedRequest)
+        {
+
+            if (selectedRequest.Status == RequestStatus.PENDING)
+            {
+                Comment = "Čekanje komentara vlasnika...";
+                Page.requestHeader.Foreground = Brushes.Orange;
+                Page.commentTxtBlock.Foreground = Brushes.Gray;
+                return "Vaš zahtev je na čekanju.";
+
+            }
+
+            else if (selectedRequest.Status == RequestStatus.APPROVED)
+            {
+                if (Comment == "")
+                {
+                    Comment = "Nema komentara";
+                    Page.commentTxtBlock.Foreground = Brushes.Gray;
+                }
+                Page.requestHeader.Foreground = Brushes.LimeGreen;
+                return "Vaš zahtev je prihvaćen.";
+            }
+
+            else
+            {
+                if (Comment == "")
+                {
+                    Comment = "Nema komentara";
+                    Page.commentTxtBlock.Foreground = Brushes.Gray;
+                }
+                Page.requestHeader.Foreground = Brushes.Red;
+
+                return "Vaš zahtev je odbijen.";
             }
 
         }

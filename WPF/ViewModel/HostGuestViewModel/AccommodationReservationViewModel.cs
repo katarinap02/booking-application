@@ -173,6 +173,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private DateTime dateCreated;
+        public DateTime DateCreated
+        {
+            get { return dateCreated; }
+            set
+            {
+                if (dateCreated != value)
+                {
+
+                    dateCreated = value;
+                    OnPropertyChanged("DateCreated");
+                }
+            }
+        }
+
 
 
         private HostService hostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
@@ -221,6 +236,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
             else
                 OnePicture = "../../Resources/Images/no_image.jpg";
+            dateCreated = ac.DateCreated;
 
 
         }
@@ -228,7 +244,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public AccommodationReservation ToAccommodationReservation()
         {
 
-            AccommodationReservation a = new AccommodationReservation(guestId, accommodationId, startDate, endDate, numberOfPeople, name, city, country);
+            AccommodationReservation a = new AccommodationReservation(guestId, accommodationId, startDate, endDate, numberOfPeople, name, city, country, dateCreated);
             a.Id = id;
 
             return a;

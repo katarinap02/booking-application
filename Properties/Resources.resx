@@ -165,6 +165,9 @@
   <data name="Approved" xml:space="preserve">
     <value>Approved</value>
   </data>
+  <data name="Back" xml:space="preserve">
+    <value>Back</value>
+  </data>
   <data name="BonusPoints" xml:space="preserve">
     <value>Bonus points:</value>
   </data>
@@ -356,6 +359,12 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   <data name="InputProblem" xml:space="preserve">
     <value>Problem with data input</value>
   </data>
+  <data name="Language" xml:space="preserve">
+    <value>English</value>
+  </data>
+  <data name="LanguageBtn" xml:space="preserve">
+    <value>ENG</value>
+  </data>
   <data name="Level" xml:space="preserve">
     <value>Urgency level</value>
   </data>
@@ -424,6 +433,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   </data>
   <data name="PasswordChange" xml:space="preserve">
     <value>Change password</value>
+  </data>
+  <data name="Path" xml:space="preserve">
+    <value>Path</value>
   </data>
   <data name="Pending" xml:space="preserve">
     <value>Pending</value>

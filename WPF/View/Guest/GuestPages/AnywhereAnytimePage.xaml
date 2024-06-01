@@ -32,7 +32,6 @@
     </Page.Resources>
 
     <Grid>
-        <Button Content="Back" Style="{DynamicResource ButtonStyleN}" Width="100" Height="50" Margin="80,92,1740,848" Command="{Binding BackCommand}"/>
 
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="269,85,980,161" Width="671" Background="{DynamicResource BorderBackground}">
             <Grid>
@@ -60,10 +59,10 @@
                 </Border>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc StartDate}" Margin="106,441,396,221" FontSize="30"/>
                 <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
-                <DatePicker Background="{DynamicResource BackgroundColorN}" x:Name="txtStartDate" Margin="392,441,120,254"  RenderTransformOrigin="0.697,-0.222"/>
+                <DatePicker Style="{DynamicResource DatePickerStyleN}" Background="{DynamicResource BackgroundColorN}" x:Name="txtStartDate" Margin="392,441,120,254"  RenderTransformOrigin="0.697,-0.222"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc EndDate}" FontSize="30" HorizontalAlignment="Left" Margin="110,505,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
                 <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
-                <DatePicker Background="{DynamicResource BackgroundColorN}" x:Name="txtEndDate" Margin="392,511,120,186"/>
+                <DatePicker Style="{DynamicResource DatePickerStyleN}" Background="{DynamicResource BackgroundColorN}" x:Name="txtEndDate" Margin="392,511,120,186"/>
                 <Button x:Name="ContinueButton" Content="{ns:Loc Continue}" HorizontalAlignment="Left" Margin="238,664,0,0" VerticalAlignment="Top" Command="{Binding ContinueCommand}" Width="200" Height="50" Style="{DynamicResource ButtonStyleN}"/>
 
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc DayNumber}" FontSize="30" Margin="118,235,312,441" RenderTransformOrigin="0.5,0.5">

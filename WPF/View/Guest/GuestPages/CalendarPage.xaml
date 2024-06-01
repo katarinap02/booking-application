@@ -45,7 +45,6 @@
 
     </Page.Resources>
     <Grid>
-        <Button Content="Back" Style="{DynamicResource ButtonStyleN}" Width="100" Height="50" Margin="80,92,1740,848" Command="{Binding BackCommand}"/>
 
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="218,92,1031,162" Width="671" Height="736">
             <Grid>
@@ -69,7 +68,7 @@
         </Border>
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="981,92,268,339" Width="671" Height="559">
             <Grid x:Name="CalendarSection">
-                <Calendar x:Name="ReservationCalendar"  BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"  Background="White" SelectionMode="SingleRange" Height="371" Margin="65,51,65,133" RenderTransformOrigin="0.515,0.5">
+                <Calendar CalendarItemStyle="{DynamicResource CalendarCalendarItemStyleN}" CalendarDayButtonStyle="{DynamicResource CalendarCalendarDayButtonStyleN}"  Style="{DynamicResource CalendarStyleN}" x:Name="ReservationCalendar"  BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" SelectedDatesChanged="Calendar_SelectedDatesChanged"  Background="White" SelectionMode="SingleRange" Height="371" Margin="65,51,65,133" RenderTransformOrigin="0.515,0.5">
                     <Calendar.LayoutTransform>
                         <ScaleTransform ScaleX="2" ScaleY="2"/>
                     </Calendar.LayoutTransform>
@@ -93,7 +92,7 @@
                 </TextBlock>
 
                 <Button x:Name="reserveButton" Content="{ns:Loc SelectDates}" HorizontalAlignment="Center" Margin="0,457,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{DynamicResource ResourceKey=ButtonStyleN}"/>
-
+                <TextBox x:Name="langTextbox" TextChanged="ContentChanged" Text="{ns:Loc Language}" Visibility="Hidden" Foreground="{DynamicResource BorderBackground}" Margin="27,10,513,526"></TextBox>
             </Grid>
         </Border>
         <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="30, 30, 30, 30" Margin="981,665,268,162" Width="671" Height="163">
@@ -102,7 +101,7 @@
                 <!--<TextBox x:Name="txtGuestNumber" HorizontalAlignment="Left" Margin="439,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="151" Height="40"/>-->
                 <xctk:IntegerUpDown Foreground="{DynamicResource TextBlockColorN}" Name="txtGuestNumber" Margin="457,25,55,88" Text="{Binding GuestNumber}" Background="{DynamicResource BackgroundColorN}" />
                 <Button x:Name="finishReservation" Content="{ns:Loc Reserve}" HorizontalAlignment="Center" Margin="0,98,0,0" VerticalAlignment="Top" Width="140" FontSize="25" Command="{Binding FinishReservationCommand}" Height="50" Style="{DynamicResource ResourceKey=ButtonStyleN}"/>
-                <Button Content="Back" FontSize="23" Style="{DynamicResource ButtonStyleN}" Width="80" Height="40" Margin="10,17,557,92" Command="{Binding BackToCalendarCommand}"/>
+                <Button Content="{ns:Loc Back}" FontSize="23" Style="{DynamicResource ButtonStyleN}" Width="80" Height="40" Margin="10,17,557,92" Command="{Binding BackToCalendarCommand}"/>
                 <TextBlock x:Name="guestNumberValidator" FontSize="16" Foreground="red" Margin="439,74,10,37">
 
 
