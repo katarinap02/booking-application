@@ -184,26 +184,17 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             {
                 saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
                 saveFileDialog.Title = "Save PDF File";
-                saveFileDialog.FileName = "StatisticMonth_1.pdf";
+                saveFileDialog.FileName = "StatisticMonth.pdf";
 
                 if (saveFileDialog.ShowDialog() == DialogResult.OK)
                 {
                     directoryPath = Path.GetDirectoryName(saveFileDialog.FileName);
                     string fileName = Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
 
-                    var pdfFiles = Directory.GetFiles(directoryPath, $"{fileName}_*.pdf");
+                    var pdfFiles = Directory.GetFiles(directoryPath, $"{fileName}.pdf");
 
-                    Regex regex = new Regex($@"{fileName}_(\d+).pdf");
-                    if (pdfFiles.Any())
-                    {
-                        maxNumber = pdfFiles
-                            .Select(Path.GetFileNameWithoutExtension)
-                            .Select(name => int.TryParse(regex.Match(name).Groups[1].Value, out var number) ? number : 0)
-                            .Max();
-                    }
-                    index = ++maxNumber;
 
-                    string filePath = Path.Combine(directoryPath, $"{fileName}_{index}.pdf");
+                    string filePath = Path.Combine(directoryPath, $"{fileName}.pdf");
                     Document pdfDoc = new Document();
                     PdfWriter writer = PdfWriter.GetInstance(pdfDoc, new FileStream(filePath, FileMode.Create));
                     string backgroundImagePath = "../../../WPF/Resources/Images/pink8.jpg";
@@ -277,6 +268,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             additionalParagraph.SpacingBefore = 20f;
             additionalParagraph.IndentationLeft = 53f;
             pdfDoc.Add(additionalParagraph);
+
+            iTextSharp.text.Paragraph publisherParagraph = new iTextSharp.text.Paragraph("Published by " + $"{User.Username}", paragraphFont);
+            publisherParagraph.Alignment = Element.ALIGN_RIGHT;
+            publisherParagraph.SpacingBefore = 10f;
+            publisherParagraph.IndentationRight = 7f;
+            pdfDoc.Add(publisherParagraph);
+
+
+            string currentDate = DateTime.Now.ToString("MMMM dd, yyyy");
+            iTextSharp.text.Paragraph dateParagraph = new iTextSharp.text.Paragraph(currentDate, paragraphFont);
+            dateParagraph.Alignment = Element.ALIGN_RIGHT;
+            dateParagraph.IndentationRight = 7f;
+            pdfDoc.Add(dateParagraph);
 
         }
 
