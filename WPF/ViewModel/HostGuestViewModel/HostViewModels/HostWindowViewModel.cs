@@ -19,6 +19,7 @@ using System.Runtime.CompilerServices;
 using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -196,8 +197,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public void BackCommand(object obj)
         {
             if(NavService.CanGoBack)
+            {
                 NavService.GoBack();
+            }
+                
         }
+
+       
         public void Update()
         {
             FirstPage page = new FirstPage(User, NavService);

@@ -1,5 +1,6 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.ViewModel.Commands;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,7 +38,7 @@ namespace BookingApp.WPF.View.Guest.GuestPages
             DataContext = new SettingsViewModel(user);
             Loaded += Page_Loaded;
             
-            SaveCommand = new GuestICommand(OnSave);
+           // SaveCommand = new GuestICommand(OnSave);
 
 
 

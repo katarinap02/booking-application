@@ -14,6 +14,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -150,9 +151,16 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 StatisticMonthsPage page = new StatisticMonthsPage(User, AccommodationViewModel, SelectedYear, NavService);
                 this.NavService.Navigate(page);
             }
-               
-             
-            
+        }
+
+        public void GeneratePDF()
+        {
+            string directoryPath = "../../../Resources/PDFs/GuestPDFs";
+            if (!Directory.Exists(directoryPath))
+            {
+
+                Directory.CreateDirectory(directoryPath);
+            }
         }
 
 
