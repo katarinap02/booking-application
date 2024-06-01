@@ -6,7 +6,7 @@
     <SolidColorBrush x:Key="AccentColorN2" Color="#ffab65dd"/>
     <SolidColorBrush x:Key="TextColorN" Color="#492c82"/>
     <SolidColorBrush x:Key="TextBlockColorN" Color="Black"/>
-    <SolidColorBrush x:Key="BorderBackground" Color="White"/>
+    <SolidColorBrush x:Key="BorderBackground" Color="White" Opacity="0.9"/>
     <SolidColorBrush x:Key="HintColorN" Color="Blue"/>
     <SolidColorBrush x:Key="HintTextColor" Color="Green"/>
     <SolidColorBrush x:Key="BlackoutColorN" Color="Black"/>
@@ -21,7 +21,7 @@
         <Setter Property="Foreground" Value="{DynamicResource ButtonTextN}"/>
         <Setter Property="Background" Value="{DynamicResource AccentColorN}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AccentColorN}"/>
-        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
        
         <Setter Property="FontSize" Value="28"/>
 
@@ -65,7 +65,7 @@
         <Setter Property="Foreground" Value="{DynamicResource ButtonTextN}"/>
         <Setter Property="Background" Value="{DynamicResource AccentColorN}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AccentColorN}"/>
-        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
 
         <Setter Property="FontSize" Value="28"/>
 
@@ -150,18 +150,18 @@
     <Style x:Key="HeaderStyleN" TargetType="Label">
         <Setter Property="Foreground" Value="{DynamicResource TextColorN}"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
     </Style>
 
     <Style x:Key="TextBlockStyleN" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{DynamicResource TextBlockColorN}"/>
-        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
 
     </Style>
 
     <Style x:Key="TextBlockHeaderStyleN" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{DynamicResource TextColorN}"/>
-        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
 
     </Style>
     

@@ -803,7 +803,8 @@
 
     <Style x:Key="MenuBtnStyleN"
    TargetType="RadioButton">
-
+        <Setter Property="FontFamily" Value="Segoe UI"/>
+        <Setter Property="FontSize" Value="28"/>
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="RadioButton">
@@ -811,7 +812,7 @@
                     <Border x:Name="border"
                     Height="90"
                     Width="500"
-                    BorderThickness="0" Background="{DynamicResource BorderBackground}">
+                    BorderThickness="0" Background="{DynamicResource BorderBackground}" Opacity="0.9">
                    
                        
 
@@ -875,7 +876,7 @@
 
         <Setter Property="Background" Value="{DynamicResource BorderBackground}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource BorderBackground}"/>
-        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
         
         <Setter Property="FontSize" Value="28"/>
 

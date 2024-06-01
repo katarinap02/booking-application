@@ -23,7 +23,7 @@ ItemsSource="{Binding GuestRates}" Background="{DynamicResource BackgroundColorN
                         <DataTemplate>
                             <Grid>
                                 <controls:GuestRateCard/>
-                                <Button Content="{ns:Loc Details}" Click="Details_Click" Style="{DynamicResource ButtonStyleN}" Width="100" Height="50" Margin="800, 0, 0, 0"/>
+                                <Button Content="{ns:Loc Details}"  FontSize="16" Click="Details_Click" Style="{DynamicResource ButtonStyleN}" Width="100" Height="50" Margin="800, 0, 0, 0"/>
 
                             </Grid>
                         </DataTemplate>
