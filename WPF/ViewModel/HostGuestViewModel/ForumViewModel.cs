@@ -175,7 +175,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
-        public string DateString => Date.ToString("MM/dd/yyyy");
+
+
+        public string DateString { get; set; }
         public string Location => City + ", " + Country;
         UserService userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
         public event PropertyChangedEventHandler PropertyChanged;
@@ -203,6 +205,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             date = forum.Date;
             guestUsername = userService.GetById(userId).Username;
             numOfComments = forum.Comments.Count;
+            DateString = Date.ToString("MM/dd/yyyy");
 
         }
 

@@ -14,6 +14,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
     public class AnywhereAnytimeViewModel : INotifyPropertyChanged
     {
+       
+        public Frame Frame { get; set; }
+        public User User { get; set; }
+        public AnywhereAnytimePage Page { get; set; }
+
+        // KOMANDE
+        public GuestICommand ContinueCommand { get; set; }
         private int dayNumber;
         public int DayNumber
         {
@@ -27,9 +34,26 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
                 }
 
-                
+                ContinueCommand.RaiseCanExecuteChanged();
             }
 
+        }
+        
+        private int guestNumber;
+
+        public int GuestNumber
+        {
+            get { return guestNumber; }
+            set
+            {
+                if (guestNumber != value)
+                {
+                    guestNumber = value;
+                    OnPropertyChanged("GuestNumber");
+
+                }
+                ContinueCommand.RaiseCanExecuteChanged();
+            }
         }
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -38,36 +62,47 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        private int guestNumber;
-
-        public int GuestNumber {
-            get { return guestNumber;  }
-            set
-            {
-                if( guestNumber != value)
-                {
-                    guestNumber = value;
-                    OnPropertyChanged("GuestNumber");
-                }
-            }
-        }  
-        public Frame Frame { get; set; }
-        public User User { get; set; }
-        public AnywhereAnytimePage Page { get; set; }
-
-        // KOMANDE
-        public GuestICommand ContinueCommand { get; set; }
-
 
         public AnywhereAnytimeViewModel(User user, Frame frame, AnywhereAnytimePage page)
         {
             User = user;
             Frame = frame;
-            DayNumber = 1;
-            GuestNumber = 1;
+           
             Page = page;
            
-            ContinueCommand = new GuestICommand(OnContinue);
+            ContinueCommand = new GuestICommand(OnContinue, CanContinue);
+            DayNumber = 1;
+            GuestNumber = 1;
+        }
+
+        private bool CanContinue()
+        {
+           
+            
+            if (ValidateGuestNumber(GuestNumber) && ValidateDayNumber(DayNumber))
+                return true;
+            else
+                return false;
+        }
+
+       
+
+        private bool ValidateDayNumber(int dayNumber)
+        {
+            if (DayNumber <= 0)
+                return false;
+
+            else
+                return true;
+        }
+
+        private bool ValidateGuestNumber(int guestNumber)
+        {
+            if (GuestNumber <= 0)
+                return false;
+
+            else
+                return true;
         }
 
         private void OnContinue()

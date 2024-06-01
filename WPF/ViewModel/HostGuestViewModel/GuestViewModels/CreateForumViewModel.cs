@@ -31,6 +31,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
                     city = value;
                     OnPropertyChanged("City");
+                    SaveCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -46,6 +47,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
                     country = value;
                     OnPropertyChanged("Country");
+                    SaveCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -61,6 +63,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
                     firstComment = value;
                     OnPropertyChanged("FirstComment");
+                    SaveCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -83,10 +86,22 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             
             User = user;
             Frame = frame;
-            SaveCommand = new GuestICommand(OnSave);
+            SaveCommand = new GuestICommand(OnSave, CanSave);
             ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             
         
+        }
+
+        private bool CanSave()
+        {
+            if(string.IsNullOrEmpty(FirstComment) || string.IsNullOrEmpty(City) || string.IsNullOrEmpty(Country))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void OnSave()

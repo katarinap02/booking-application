@@ -151,7 +151,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                                                                           
                                                                            ).ToList();
            
-            return filteredForums;
+            return filteredForums.OrderByDescending(x => x.Date).ToList();
         }
         private List<ForumViewModel> FilterUserForums(ObservableCollection<ForumViewModel> totalForums, List<string> queries)
         {
@@ -162,7 +162,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
                                                                            ).ToList();
 
-            return filteredForums;
+            return filteredForums.OrderByDescending(x => x.Date).ToList();
         }
 
 
@@ -197,7 +197,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         private void ShowYourForums(ObservableCollection<ForumViewModel> forums)
         {
-            foreach (Forum forum in ForumService.GetAll())
+            List<Forum> sortedForums = ForumService.GetAll().OrderByDescending(x => x.Date).ToList(); 
+            foreach (Forum forum in sortedForums)
             {
                 if(forum.UserId == User.Id)
                 {
@@ -210,7 +211,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         private void ShowAllForums(ObservableCollection<ForumViewModel> forums)
         {
-            foreach (Forum forum in ForumService.GetAll())
+            List<Forum> sortedForums = ForumService.GetAll().OrderByDescending(x => x.Date).ToList();
+            foreach (Forum forum in sortedForums)
             {
                 ForumService.CalculateGuestHostComments(forum);
                 Forums.Add(new ForumViewModel(forum));

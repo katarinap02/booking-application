@@ -131,7 +131,15 @@
 
 
                 <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="20" Text="{Binding NumOfComments}" Margin="102,45,814,0" Grid.Row="1"></TextBlock>
-                <Image  Margin="10,6,906,42" Grid.Row="1">
+                <Image  Margin="-16,21,908,17" Grid.Row="1" RenderTransformOrigin="0.5,0.5">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform/>
+                            <SkewTransform/>
+                            <RotateTransform Angle="-90"/>
+                            <TranslateTransform/>
+                        </TransformGroup>
+                    </Image.RenderTransform>
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Source" Value="{x:Null}"/>
@@ -148,8 +156,7 @@
                 </Image>
 
                 <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" Margin="56,7,396,-44" Grid.RowSpan="2" FontSize="22" FontWeight="Bold">
-<Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding City}"/>
-<Run Text=", "/><Run Text="{Binding Country}"/>
+<Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding City}"/><Run Text=", "/><Run Text="{Binding Country}"/><Run Text="      Date:"/><Run Text="{Binding DateString}"/>
                     <!--<TextBlock.Text>
                         <MultiBinding StringFormat="{}Location: {0}, {1}">
                             <Binding Path="City"/>
