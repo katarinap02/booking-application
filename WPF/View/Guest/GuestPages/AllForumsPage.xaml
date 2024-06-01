@@ -17,7 +17,7 @@
             
         </TextBlock>
 
-        <ListBox Name="ReservationListBox" Margin="868,153,42,37"  ScrollViewer.VerticalScrollBarVisibility="Auto" Width="1010"
+        <ListBox Name="ForumListBox" Margin="868,153,42,37"  ScrollViewer.VerticalScrollBarVisibility="Auto" Width="1010"
 ItemsSource="{Binding Forums}" Background="{DynamicResource BackgroundColorN}" SelectedItem="{Binding SelectedForum}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
