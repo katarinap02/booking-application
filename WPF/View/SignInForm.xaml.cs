@@ -46,7 +46,7 @@ namespace BookingApp.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public GuideInfoService GuideInformation;
+        public GuideInfoService GuideInformationS;
 
         public SignInForm()
         {
@@ -55,7 +55,7 @@ namespace BookingApp.View
             _repository = new UserRepository();
             _guidedTourRepository = new GuidedTourRepository();
             _tourRepository = new TourRepository();
-            GuideInformation = new GuideInfoService();        
+            GuideInformationS = new GuideInfoService();        
 
         }
 
@@ -98,39 +98,42 @@ namespace BookingApp.View
                     }
                     else if (user.Type.ToString().Equals("guide")) 
                     {
-                        if (GuideInformation.CanLogIn(user.Id))
+                        if (GuideInformationS.CanLogIn(user.Id))
                         {
-                        if(_guidedTourRepository.HasTourCurrently(user.Id) && user.Username != "test") {
-                            Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
-                            GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourViewModel(tour), user);
-                            guideWithTourWindow.ShowDialog();
-                        }
-                        else
-                        {
-                            if (user.Username == "test") // prostor za testiranje prozora
-                            {
-                                RandomTest randomTest = new RandomTest(user.Id);
-                                randomTest.Show();
-                                /*GridTest gridtest = new GridTest();
-                                gridtest.Show();
-                                AddingTourWindow addingTourWindow = new AddingTourWindow();
-                                addingTourWindow.Show();
-                                RequestTest requestTest = new RequestTest();
-                                requestTest.Show();*/                                
+                            if(_guidedTourRepository.HasTourCurrently(user.Id) && user.Username != "test") {
+                                Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
+                                GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourViewModel(tour), user);
+                                guideWithTourWindow.ShowDialog();
                             }
                             else
                             {
-                                /*GuideMainWindow guideMainWindow = new GuideMainWindow(user);
-                                guideMainWindow.ShowDialog();*/
-                                RequestTest requestTest = new RequestTest(user.Id);
-                                requestTest.ShowDialog();
-                            }
+                                GuideInformationS.UpdateSuperGuide(user.Id);
+                                GuideInformation i = GuideInformationS.GetByGuideId(user.Id);
+                                MessageBox.Show(i.Status.ToString(), "Provera za super-a");
+                                if (user.Username == "test") // prostor za testiranje prozora
+                                {
+                                    RandomTest randomTest = new RandomTest(user.Id);
+                                    randomTest.Show();
+                                    /*GridTest gridtest = new GridTest();
+                                    gridtest.Show();
+                                    AddingTourWindow addingTourWindow = new AddingTourWindow();
+                                    addingTourWindow.Show();
+                                    RequestTest requestTest = new RequestTest();
+                                    requestTest.Show();*/                                
+                                }
+                                else
+                                {
+                                    /*GuideMainWindow guideMainWindow = new GuideMainWindow(user);
+                                    guideMainWindow.ShowDialog();*/
+                                    RequestTest requestTest = new RequestTest(user.Id);
+                                    requestTest.ShowDialog();
+                                }
                             
                         }
                         }
                         else
                         {
-                            MessageBox.Show("This user has been deleted");
+                            MessageBox.Show("This user has been deleted", "Error while logging in", MessageBoxButton.OK, MessageBoxImage.Exclamation);
                         }
                     }
 

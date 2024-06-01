@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -96,7 +97,11 @@ namespace BookingApp.Domain.Model.Features
             }
 
             HasQuit = bool.Parse(values[10]);
-            EndSuperGuide = DateTime.Parse(values[11]);
+            string dateFormat = "M/d/yyyy h:mm:ss tt";
+            if (DateTime.TryParseExact(values[10], dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+            {
+                EndSuperGuide = parsedDate;
+            }
         }
 
     }

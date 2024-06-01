@@ -9,6 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace BookingApp.Application.Services.FeatureServices
 {   
@@ -38,24 +39,20 @@ namespace BookingApp.Application.Services.FeatureServices
         public void UpdateSuperGuide(int id)
         {
             GuideInformation guideInformation = informationRepository.GetByGuideId(id);
-            if(guideInformation.Status == GuideStatus.Super)
-            {
-                if(DateTime.Now >= guideInformation.EndSuperGuide)
-                {
-                    CheckSuperGuide(id);
-                }
-            }
-            else
+
+            bool isSuperGuideExpired = guideInformation.Status == GuideStatus.Super && DateTime.Now >= guideInformation.EndSuperGuide;
+
+            if (isSuperGuideExpired || guideInformation.Status != GuideStatus.Super)
             {
                 CheckSuperGuide(id);
             }
         }
 
+
         public void CheckSuperGuide(int id)
         {
             List<string> languages = tourService.FindLanguagesWithMoreThan20ToursInPastYear(id); // poslednjih 365 dana + preko 20 tura
-
-            if(languages.Count > 0)
+            if (languages.Count > 0)
             {
                 foreach(string language in languages)
                 {                    

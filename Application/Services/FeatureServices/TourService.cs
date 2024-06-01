@@ -26,7 +26,7 @@ namespace BookingApp.Application.Services.FeatureServices
 
         private readonly TourParticipantService _tourParticipantService;
         private readonly VoucherService _voucherService;
-        private readonly GuideInfoService _guideInfoService;
+        private static readonly GuideInfoService _guideInfoService = new GuideInfoService();
         private readonly TourReservationService _tourReservationService;
 
         private TouristService _touristService;
@@ -37,7 +37,6 @@ namespace BookingApp.Application.Services.FeatureServices
             _touristService = new TouristService(Injector.Injector.CreateInstance<ITouristRepository>());
             _tourReservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>());
             _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
-            _guideInfoService = new GuideInfoService();
         }
 
         public List<Tour> GetAllTours()
@@ -323,7 +322,7 @@ namespace BookingApp.Application.Services.FeatureServices
             var languageCounts = recentTours
                 .GroupBy(t => t.Language)
                 .Select(g => new { Language = g.Key, Count = g.Count() })
-                .Where(g => g.Count > 20) // preko 20 tura
+                .Where(g => g.Count >= 20) // preko 20 tura
                 .Select(g => g.Language)
                 .ToList();
 

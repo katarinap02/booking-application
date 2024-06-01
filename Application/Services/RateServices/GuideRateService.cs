@@ -82,6 +82,10 @@ namespace BookingApp.Application.Services.RateServices
             foreach (var tour in tours)
             {
                 GuideRate guideRate = _guideRateRepository.GetAll().Find(r => r.TourId == tour.Id);
+                if(guideRate == null)
+                {
+                    continue;
+                }
                 grades.Add(guideRate.Language);
                 grades.Add(guideRate.TourInterest);
                 grades.Add(guideRate.Knowledge);
