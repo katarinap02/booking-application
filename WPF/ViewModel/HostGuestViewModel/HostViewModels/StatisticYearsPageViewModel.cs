@@ -30,6 +30,7 @@ using System.Windows;
 using System.Windows.Documents;
 using BookingApp.Domain.Model.Rates;
 using System.Windows.Controls.DataVisualization;
+using System.Windows.Forms;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -174,36 +175,50 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public void GeneratePDF()
         {
-            string directoryPath = "../../../Resources/PDFs/HostPDFs";
+            string directoryPath;
             int index = 0;
             int maxNumber = 0;
-            if (!Directory.Exists(directoryPath))
+
+           
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
             {
+                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                saveFileDialog.Title = "Save PDF File";
+                saveFileDialog.FileName = "StatisticYear_1.pdf";
 
-                Directory.CreateDirectory(directoryPath);
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    directoryPath = Path.GetDirectoryName(saveFileDialog.FileName);
+                    string fileName = Path.GetFileNameWithoutExtension(saveFileDialog.FileName);
+
+                    var pdfFiles = Directory.GetFiles(directoryPath, $"{fileName}_*.pdf");
+
+                    Regex regex = new Regex($@"{fileName}_(\d+).pdf");
+                    if (pdfFiles.Any())
+                    {
+                        maxNumber = pdfFiles
+                            .Select(Path.GetFileNameWithoutExtension)
+                            .Select(name => int.TryParse(regex.Match(name).Groups[1].Value, out var number) ? number : 0)
+                            .Max();
+                    }
+                    index = ++maxNumber;
+
+                    string filePath = Path.Combine(directoryPath, $"{fileName}_{index}.pdf");
+                    Document pdfDoc = new Document();
+                    PdfWriter writer = PdfWriter.GetInstance(pdfDoc, new FileStream(filePath, FileMode.Create));
+                    string backgroundImagePath = "../../../WPF/Resources/Images/pink8.jpg";
+                    writer.PageEvent = new BackgroundImageHandler(backgroundImagePath);
+                    pdfDoc.Open();
+                    GeneratePdfContent(pdfDoc);
+                    pdfDoc.Close();
+                    SavedPath = Path.Combine(directoryPath, $"{fileName}_{index}.pdf");
+                }
+                else
+                {
+                    
+                    return;
+                }
             }
-
-            var pdfFiles = Directory.GetFiles(directoryPath, "StatisticYear_*.pdf");
-
-            Regex regex = new Regex(@"StatisticYear_(\d+).pdf");
-            if (pdfFiles.Any())
-            {
-                maxNumber = pdfFiles
-                    .Select(Path.GetFileNameWithoutExtension)
-                    .Select(name => int.TryParse(name.Substring("StatisticYear_".Length), out var number) ? number : 0)
-                    .Max();
-            }
-            index = ++maxNumber;
-
-            string filePath = Path.Combine(directoryPath, "StatisticYear_" + index + ".pdf");
-            Document pdfDoc = new Document();
-            PdfWriter writer = PdfWriter.GetInstance(pdfDoc, new FileStream(filePath, FileMode.Create));
-            string backgroundImagePath = "../../../WPF/Resources/Images/pink8.jpg";
-            writer.PageEvent = new BackgroundImageHandler(backgroundImagePath);
-            pdfDoc.Open();
-            GeneratePdfContent(pdfDoc);
-            pdfDoc.Close();
-            SavedPath = "Resources/PDFs/HostPDFs/StatisticYear_" + index + ".pdf";
         }
 
         public void GeneratePdfContent(Document pdfDoc)
