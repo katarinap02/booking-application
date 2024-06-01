@@ -243,4 +243,8 @@
     <Resource Include="WPF\Resources\Images\user.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\TestData\" />
+  </ItemGroup>
+
 </Project>
