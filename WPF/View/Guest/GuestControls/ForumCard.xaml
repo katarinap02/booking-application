@@ -92,9 +92,9 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <Image Source="{DynamicResource Comment}" Height="20" Margin="57,56,859,2" Grid.Row="1"/>
+                <Image Source="{DynamicResource Comment}" Height="20" Margin="57,40,859,2" Grid.Row="1"/>
 
-                <Image  VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Margin="206,52,0,0" Width="24" Grid.Row="1">
+                <Image  VerticalAlignment="Top" HorizontalAlignment="Left" Height="26" Margin="206,42,0,0" Width="24" Grid.Row="1">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Source" Value="{x:Null}"/>
@@ -109,7 +109,7 @@
                         </Style>
                     </Image.Style>
                 </Image>
-                <TextBlock Text="very useful" Foreground="{DynamicResource TextColorN}" FontSize="18" FontStyle="Italic" Margin="236,54,550,-1" Grid.Row="1">
+                <TextBlock Text="{ns:Loc VeryUseful}" Foreground="{DynamicResource TextColorN}" FontSize="20" FontStyle="Italic" Margin="236,41,550,-1" Grid.Row="1">
                     <TextBlock.Style>
                         <Style TargetType="TextBlock">
                             <Setter Property="Visibility" Value="Collapsed"/>
@@ -130,7 +130,7 @@
 
 
 
-                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="20" Text="{Binding NumOfComments}" Margin="102,54,814,0" Grid.Row="1"></TextBlock>
+                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="20" Text="{Binding NumOfComments}" Margin="102,45,814,0" Grid.Row="1"></TextBlock>
                 <Image  Margin="10,6,906,42" Grid.Row="1">
                     <Image.Style>
                         <Style TargetType="Image">
