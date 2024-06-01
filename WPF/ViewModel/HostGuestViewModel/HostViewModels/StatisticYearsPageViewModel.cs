@@ -255,7 +255,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             string accommodationType = AccommodationViewModel.Type.ToString().ToLower();
             string accommodationMax = AccommodationViewModel.MaxGuestNumber.ToString();
             string accommodationCancel = AccommodationViewModel.ReservationDaysLimit.ToString();
-            string paragraphText = "" + $"{accommodationName} is located in " + $"{accommodationCity} - " 
+            string paragraphText = "" + $"{accommodationName} is located in " + $"{accommodationCity}, " 
                 + $"{accommodationCountry} and is one of the most famous " + $"{accommodationType}s. " +
                 $"It can accommodate "+ $"{accommodationMax} people and it is possible to cancel the reservation" +
                 $" even " + $"{accommodationCancel} day before the start of the reservation.";

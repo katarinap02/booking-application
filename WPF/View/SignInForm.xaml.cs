@@ -90,8 +90,12 @@ namespace BookingApp.View
                     }
                     else if (user.Type.ToString().Equals("host"))
                     {
+                        
                         HostWindow hostWindow = new HostWindow(user);
                         hostWindow.ShowDialog();
+                        username.Text = "";
+                        txtPassword.Password = "";
+
                     }
                     else if (user.Type.ToString().Equals("guide"))
                     {
