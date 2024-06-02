@@ -13,7 +13,7 @@
     <Grid>
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,11,2">
             <Grid>
-                <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc RatesByHostDesc}" TextWrapping="Wrap" FontSize="25" Margin="187,114,187,629">
+                <TextBlock Style="{DynamicResource TextBlockStyleN}" TextAlignment="Center" Text="{ns:Loc RatesByHostDesc}" TextWrapping="Wrap" FontSize="25" Margin="0,114,0,629">
 </TextBlock>
 
 

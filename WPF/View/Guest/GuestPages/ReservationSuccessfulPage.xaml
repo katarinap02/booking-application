@@ -11,10 +11,10 @@
       Title="AccommodationSuccessfulPage">
 
     <Grid>
-        <Label FontSize="50" Content="{ns:Loc ReservationSuccess}" Style="{DynamicResource HeaderStyleN}" Margin="445,161,377,751"/>
+        <TextBlock FontSize="50" Text="{ns:Loc ReservationSuccess}" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="0,161,0,751"/>
         <controls:ReservationDetailsCard x:Name="reservationDetailsCard" Margin="0,291,799,291"></controls:ReservationDetailsCard>
-        <Button Content="{ns:Loc Accommodations}" HorizontalAlignment="Left" Margin="1340,386,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Height="72" Width="203" Command="{Binding AccommodationsCommand}"/>
-        <Button Content="{ns:Loc YourProfile}" HorizontalAlignment="Left" Margin="1340,495,0,0" VerticalAlignment="Top" Style="{DynamicResource ResourceKey=ButtonStyleN}" Height="72" Width="203" Command="{Binding ProfileCommand}"/>
+        <Button Content="{ns:Loc Accommodations}" HorizontalAlignment="Left" Margin="1298,386,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Height="72" Width="245" Command="{Binding AccommodationsCommand}"/>
+        <Button Content="{ns:Loc YourProfile}" HorizontalAlignment="Left" Margin="1298,495,0,0" VerticalAlignment="Top" Style="{DynamicResource ResourceKey=ButtonStyleN}" Height="72" Width="245" Command="{Binding ProfileCommand}"/>
         <Image VerticalAlignment="Top" HorizontalAlignment="Left" Margin="743,316,0,0" Width="40" Height="40">
             <Image.Style>
                 <Style TargetType="Image">

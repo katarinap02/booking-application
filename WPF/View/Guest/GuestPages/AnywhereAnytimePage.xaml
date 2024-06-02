@@ -36,36 +36,36 @@
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="269,85,980,161" Width="671" Background="{DynamicResource BorderBackground}">
             <Grid>
 
-                <Label Content="{ns:Loc AnywhereAnytime}" FontSize="55" Margin="52,42,83,288" Style="{DynamicResource ResourceKey=HeaderStyleN}"/>
+                <TextBlock Text="{ns:Loc AnywhereAnytime}" FontSize="55" Margin="0,42,0,288" Style="{DynamicResource ResourceKey=TextBlockHeaderStyleN}" TextAlignment="Center"/>
 
-                <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc WelcomeAA}" TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Height="323" Margin="61,121,71,296"></TextBlock>
+                <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc WelcomeAA}" TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Margin="24,142,24,296"/>
 
                 <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" Margin="24,466,24,22" CornerRadius="20">
                     <Grid>
-                        <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc TheSystemAA}" TextWrapping="Wrap" TextAlignment="Center" FontSize="35" Margin="42,54,42,48"></TextBlock>
+                        <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc TheSystemAA}" TextWrapping="Wrap" TextAlignment="Center" FontSize="35" Margin="36,54,35,48"></TextBlock>
                     </Grid>
                 </Border>
             </Grid>
         </Border>
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="980,85,269,161" Width="671" Background="{DynamicResource BorderBackground}">
             <Grid Margin="2,-58,-2,58">
-                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc GuestNumber}" FontSize="30" Margin="98,160,311,516"/>
+                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc GuestNumber}" FontSize="30" Margin="110,166,299,510"/>
                 <!--<TextBox x:Name="txtDayNumber" TextWrapping="Wrap" Margin="352,251,160,444"/>-->
-                <xctk:IntegerUpDown  Foreground="{DynamicResource TextBlockColorN}"  Name="txtGuestNumber" Text="{Binding DayNumber}" Background="{DynamicResource BackgroundColorN}" Margin="392,166,120,530" RenderTransformOrigin="0.903,-0.489" Minimum="1"/>
+                <xctk:IntegerUpDown  Foreground="{DynamicResource TextBlockColorN}" FontSize="20"  Name="txtGuestNumber" Text="{Binding DayNumber}" Background="{DynamicResource BackgroundColorN}" Margin="392,166,120,530" RenderTransformOrigin="0.903,-0.489" Minimum="1"/>
                 <Label  Content="{ns:Loc Optional}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="50,356,478,333"/>
                 <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="50,407,47,147">
                     <Grid Margin="0,154,0,0">
                     </Grid>
                 </Border>
-                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc StartDate}" Margin="106,441,396,221" FontSize="30"/>
+                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc StartDate}" Margin="120,441,333,241" FontSize="30"/>
                 <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
-                <DatePicker Style="{DynamicResource DatePickerStyleN}" Background="{DynamicResource BackgroundColorN}" x:Name="txtStartDate" Margin="392,441,120,254" SelectedDateChanged="DatePicker_SelectedDateChanged"  RenderTransformOrigin="0.697,-0.222"/>
-                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc EndDate}" FontSize="30" HorizontalAlignment="Left" Margin="110,505,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
+                <DatePicker FontSize="20" Style="{DynamicResource DatePickerStyleN}" Background="{DynamicResource BackgroundColorN}" x:Name="txtStartDate" Margin="392,441,120,254" SelectedDateChanged="DatePicker_SelectedDateChanged"  RenderTransformOrigin="0.697,-0.222"/>
+                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc EndDate}" FontSize="30" HorizontalAlignment="Left" Margin="120,504,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Width="215"/>
                 <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
-                <DatePicker Style="{DynamicResource DatePickerStyleN}" Background="{DynamicResource BackgroundColorN}" x:Name="txtEndDate" Margin="392,511,120,186" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                <DatePicker FontSize="20" Style="{DynamicResource DatePickerStyleN}" Background="{DynamicResource BackgroundColorN}" x:Name="txtEndDate" Margin="392,511,120,186" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
                 <Button x:Name="ContinueButton" Content="{ns:Loc Continue}" HorizontalAlignment="Left" Margin="238,664,0,0" VerticalAlignment="Top" Command="{Binding ContinueCommand}" Width="200" Height="50" Style="{DynamicResource ButtonStyleN}"/>
 
-                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc DayNumber}" FontSize="30" Margin="118,235,312,441" RenderTransformOrigin="0.5,0.5">
+                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc DayNumber}" FontSize="30" Margin="110,228,320,448" RenderTransformOrigin="0.5,0.5">
                     <Label.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -75,7 +75,7 @@
                         </TransformGroup>
                     </Label.RenderTransform>
                 </Label>
-                <xctk:IntegerUpDown Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}" x:Name="txtDayNumber_Copy" Text="{Binding GuestNumber}" Margin="392,247,120,449" RenderTransformOrigin="0.903,-0.489" Minimum="1"/>
+                <xctk:IntegerUpDown FontSize="20" Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}" x:Name="txtDayNumber_Copy" Text="{Binding GuestNumber}" Margin="392,234,120,462" RenderTransformOrigin="0.903,-0.489" Minimum="1"/>
             </Grid>
         </Border>
 

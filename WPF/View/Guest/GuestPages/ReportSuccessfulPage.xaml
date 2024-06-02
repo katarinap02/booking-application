@@ -34,7 +34,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <Label Content="{ns:Loc ReportSuccess}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="213,126,61,603"/>
+                <TextBlock Text="{ns:Loc ReportSuccess}" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" FontSize="40" Margin="0,126,0,603"/>
                 <TextBlock Style="{DynamicResource TextBlockStyleN}" TextAlignment="center" TextWrapping="Wrap" FontSize="30" Margin="265,246,265,434" Text="{ns:Loc LocatedReport}"/>
                 <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="center" TextWrapping="Wrap" FontSize="30" Margin="196,360,200,320">
                     <Run Text="{ns:Loc Path}"/><Run Text=": "/><Run Text="{Binding Path}"/>

@@ -323,6 +323,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   <data name="GiveUp" xml:space="preserve">
     <value>Give up</value>
   </data>
+  <data name="GuestHas" xml:space="preserve">
+    <value>The guest has visited this location.</value>
+  </data>
   <data name="GuestNumber" xml:space="preserve">
     <value>Number of guests</value>
   </data>
@@ -349,6 +352,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   </data>
   <data name="HostComment" xml:space="preserve">
     <value>Comment by host</value>
+  </data>
+  <data name="HostHas" xml:space="preserve">
+    <value>The host has an accommodation on this location.</value>
   </data>
   <data name="HowCancel" xml:space="preserve">
     <value>How to cancel or delay reservation?</value>
@@ -501,8 +507,7 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
     <value>Rate</value>
   </data>
   <data name="RateHelp" xml:space="preserve">
-    <value>You can rate accommodation and host by going to the Profile page on Menu bar, and choosing Rate accommodation tab from side menu. 
-        Next step is to pick a reservation from provided reservations. You can only rate accommodation within five days after the reservation is finished.</value>
+    <value>You can rate accommodation and host by going to the Profile page on Menu bar, and choosing Rate accommodation tab from side menu. Next step is to pick a reservation from provided reservations. You can only rate accommodation within five days after the reservation is finished.</value>
   </data>
   <data name="RateHint" xml:space="preserve">
     <value>Please enter rates for cleanliness and correctness. To recommend a renovation, you need to enter all mandatory values and then click on the "Recommend renovation" button."</value>

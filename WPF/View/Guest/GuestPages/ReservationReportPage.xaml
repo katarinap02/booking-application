@@ -60,14 +60,14 @@
                 </Grid>
                 <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="265,192,265,267" Background="{DynamicResource BorderBackground}">
                     <Grid>
-                        <Label  Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="182,0,182,277" Content="{ns:Loc ReportType}"></Label>
+                        <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" FontSize="23"  Margin="0,0,0,277" Text="{ns:Loc ReportType}"></TextBlock>
                         <RadioButton x:Name="createdRadioBtn" IsChecked="True" Foreground="{DynamicResource TextBlockColorN}" FontSize="18" Height="20" Margin="126,49,-126,257" Content="{ns:Loc CreatedRes}"></RadioButton>
                         <RadioButton x:Name="cancelledRadioBtn" Foreground="{DynamicResource TextBlockColorN}" FontSize="18" Height="20" Margin="126,85,-126,221" Content="{ns:Loc CancelledRes}"></RadioButton>
-                        <Label Foreground="{DynamicResource TextColorN}" FontSize="23" FontWeight="Bold" Margin="182,133,182,143" Content="{ns:Loc TimePeriod}"></Label>
-                        <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc StartDate}" Margin="119,188,306,91" FontSize="20"/>
+                        <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" FontSize="23"  Margin="0,133,0,143" Text="{ns:Loc TimePeriod}"></TextBlock>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc StartDate}" Margin="110,192,282,94" FontSize="20"/>
                         <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
-                        <DatePicker Style="{DynamicResource DatePickerStyleN}" x:Name="txtStartDate" Background="{DynamicResource BackgroundColorN}" Margin="229,196,149,98" SelectedDateChanged="DatePicker_SelectedDateChanged" RenderTransformOrigin="0.697,-0.222"/>
-                        <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc EndDate}" FontSize="20" HorizontalAlignment="Left" Margin="121,227,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="43" Width="93">
+                        <DatePicker FontSize="18" Style="{DynamicResource DatePickerStyleN}" x:Name="txtStartDate" Background="{DynamicResource BackgroundColorN}" Margin="275,196,103,98" SelectedDateChanged="DatePicker_SelectedDateChanged" RenderTransformOrigin="0.697,-0.222"/>
+                        <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc EndDate}" FontSize="20" HorizontalAlignment="Left" Margin="110,232,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12" Height="38" Width="134">
                             <Label.RenderTransform>
                                 <TransformGroup>
                                     <ScaleTransform ScaleY="1"/>
@@ -78,10 +78,10 @@
                             </Label.RenderTransform>
                         </Label>
                         <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
-                        <DatePicker Style="{DynamicResource DatePickerStyleN}" x:Name="txtEndDate" Background="{DynamicResource BackgroundColorN}" SelectedDateChanged="DatePicker_SelectedDateChanged" Margin="229,240,149,58"/>
+                        <DatePicker FontSize="18" Style="{DynamicResource DatePickerStyleN}" x:Name="txtEndDate" Background="{DynamicResource BackgroundColorN}" SelectedDateChanged="DatePicker_SelectedDateChanged" Margin="275,233,103,63"/>
                         <!--<TextBlock FontSize="16" x:Name="langTextBlock" Foreground="{DynamicResource BorderColorN}" Margin="303,302,-16,0"><Run Text="Current language: "/></TextBlock>-->
                         <Label FontSize="16" x:Name="langLabel" Foreground="{DynamicResource BorderBackground}" Content="{ns:Loc Language}"  Margin="434,295,29,-4"/>
-                        <TextBlock x:Name="dateValidator" FontSize="14" Foreground="red" Margin="229,282,115,10">
+                        <TextBlock x:Name="dateValidator" FontSize="14" Foreground="red" Margin="196,282,196,10">
 
                             <TextBlock.Inlines>
                                 <InlineUIContainer>
@@ -93,13 +93,13 @@
 
                         </TextBlock>
                     </Grid>
-                   
+
 
                 </Border>
 
                 <Button Content="{ns:Loc YourProfile}" Command="{Binding Path=YourProfileCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="18" Width="150" Margin="286,600,616,139"/>
                 <Button  Content="{ns:Loc CreateReport}" Command="{Binding Path=CreateReportCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="18" Margin="620,600,282,139"/>
-          
+
 
             </Grid>
 

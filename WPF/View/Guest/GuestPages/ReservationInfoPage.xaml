@@ -49,7 +49,7 @@
                 From="0" To="1" Duration="0:0:0.3" />
             </Storyboard>
 
-          
+
             <Storyboard x:Key="HideTextBlock">
                 <DoubleAnimation
                 Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
@@ -60,10 +60,10 @@
             </Storyboard>
         </ResourceDictionary>
 
-       
 
-       
-       
+
+
+
 
     </Page.Resources>
 
@@ -72,7 +72,7 @@
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="269,85,980,161" Width="671" Background="{DynamicResource BorderBackground}">
             <Grid>
 
-                <Label Content="{ns:Loc Reservation}" FontSize="55" Margin="158,16,-24,315" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+                <TextBlock Text="{ns:Loc Reservation}" FontSize="55" Margin="0,16,0,315" Style="{DynamicResource ResourceKey=TextBlockHeaderStyleN}" TextAlignment="Center"/>
 
                 <TextBlock Style="{DynamicResource TextBlockStyleN}" TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Height="323" Width="663" Margin="-2,98,6,318"><Run Text="{ns:Loc WelcomeRes}"/><LineBreak/><Run Text="{ns:Loc Required}"/></TextBlock>
 
@@ -83,27 +83,27 @@
                     </StackPanel>
 
                 </ToggleButton>
-                <TextBlock  x:Name="Hint" Text="{ns:Loc InputHint}" FontSize="16" Foreground="{DynamicResource HintTextColor}" Height="150" Width="400" TextAlignment="Center" TextWrapping="Wrap" Margin="140,310,127,280">
+                <TextBlock  x:Name="Hint" Text="{ns:Loc InputHint}" FontSize="16" Foreground="{DynamicResource HintTextColor}" Height="150" TextAlignment="Center" TextWrapping="Wrap" Margin="111,310,127,280">
                     <TextBlock.RenderTransform>
                         <TranslateTransform Y="0"/>
                     </TextBlock.RenderTransform>
                 </TextBlock>
-                <Label Content="{ns:Loc Accommodation}" FontSize="40" Margin="168,470,-34,-75" Style="{StaticResource ResourceKey=HeaderStyleN}"/>
+                <TextBlock Text="{ns:Loc Accommodation}" FontSize="40" Margin="-2,470,0,-75" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center"/>
                 <controls:AccommodationCardSmall DataContext="{Binding SelectedAccommodation}" Margin="6,258,-6,-258"/>
 
             </Grid>
         </Border>
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="980,85,269,161" Width="671" Background="{DynamicResource BorderBackground}">
             <Grid Margin="2,-58,-2,58">
-                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc DayNumber}" FontSize="30" Margin="120,238,-105,-238"/>
+                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc DayNumber}" FontSize="30" Margin="104,237,-89,-237"/>
                 <!--<TextBox x:Name="txtDayNumber" TextWrapping="Wrap" Margin="352,251,160,444"/>-->
-                <xctk:IntegerUpDown  Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}" Name="txtDayNumber" Text="{Binding ViewModel.DayNumber}" Margin="352,237,160,458" Minimum="1"/>
-                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc StartDate}" Margin="120,319,-136,-319" FontSize="30"/>
+                <xctk:IntegerUpDown  Foreground="{DynamicResource TextBlockColorN}" FontSize="20" Background="{DynamicResource BackgroundColorN}" Name="txtDayNumber" Text="{Binding ViewModel.DayNumber}" Margin="352,237,160,458" Minimum="1"/>
+                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc StartDate}" Margin="104,316,-120,-316" FontSize="30"/>
                 <!--<TextBox x:Name="txtStartDate" TextWrapping="Wrap" Margin="352,329,160,366" RenderTransformOrigin="0.716,0.486"/>-->
-                <DatePicker  Style="{DynamicResource DatePickerStyleN}" x:Name="txtStartDate" Background="{DynamicResource BackgroundColorN}" Margin="352,329,160,376" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
-                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc EndDate}" FontSize="30" HorizontalAlignment="Left" Margin="125,417,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
+                <DatePicker  Style="{DynamicResource DatePickerStyleN}" FontSize="20" x:Name="txtStartDate" Background="{DynamicResource BackgroundColorN}" Margin="352,329,160,376" SelectedDateChanged="DatePicker_SelectedDateChanged"/>
+                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc EndDate}" FontSize="30" HorizontalAlignment="Left" Margin="104,421,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.172,-0.12"/>
                 <!--<TextBox x:Name="txtEndDate" HorizontalAlignment="Left" Margin="352,424,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="155" Height="35"/>-->
-                <DatePicker  Style="{DynamicResource DatePickerStyleN}" x:Name="txtEndDate" Background="{DynamicResource BackgroundColorN}" Margin="352,426,160,282" SelectedDateChanged="DatePicker_SelectedDateChanged" RenderTransformOrigin="0.5,0.5">
+                <DatePicker  Style="{DynamicResource DatePickerStyleN}" FontSize="20" x:Name="txtEndDate" Background="{DynamicResource BackgroundColorN}" Margin="352,426,160,282" SelectedDateChanged="DatePicker_SelectedDateChanged" RenderTransformOrigin="0.5,0.5">
                     <DatePicker.RenderTransform>
                         <TransformGroup>
                             <ScaleTransform/>
@@ -126,7 +126,7 @@
 
                         <Run Text="{ns:Loc Days}" />
                     </TextBlock.Inlines>
-                  
+
 
 
 

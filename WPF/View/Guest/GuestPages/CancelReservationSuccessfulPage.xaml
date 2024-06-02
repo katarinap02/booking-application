@@ -11,7 +11,7 @@
       Title="ProfileInfo">
 
     <Grid Background="{DynamicResource BorderBackground}">
-        <Label Content="{ns:Loc CancelSuccess}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="295,63,143,675"/>
+        <TextBlock Text="{ns:Loc CancelSuccess}" FontSize="28" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="0,63,0,675"/>
         <controls:ReservationDetailsCard Margin="0,143,0,247"></controls:ReservationDetailsCard>
         <Button Content="{ns:Loc YourProfile}" Style="{DynamicResource ButtonStyleN}" Width="200" Height="45" Margin="442,585,443,168" Command="{Binding BackToProfileCommand}"/>
 

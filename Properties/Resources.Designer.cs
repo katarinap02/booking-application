@@ -194,6 +194,21 @@ namespace BookingApp.Properties
             }
         }
 
+        internal static string HostHas
+        {
+            get
+            {
+                return ResourceManager.GetString("HostHas", resourceCulture);
+            }
+        }
+        internal static string GuestHas
+        {
+            get
+            {
+                return ResourceManager.GetString("GuestHas", resourceCulture);
+            }
+        }
+
         internal static string LanguageBtn
         {
             get

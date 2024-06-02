@@ -33,7 +33,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <Label Content="{ns:Loc CreateSuccess}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="174,103,154,626"/>
+                <TextBlock Text="{ns:Loc CreateForumSuccess}" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" FontSize="40" Margin="0,103,0,626"/>
                 <Grid Margin="10,168,-10,471">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="115*"/>

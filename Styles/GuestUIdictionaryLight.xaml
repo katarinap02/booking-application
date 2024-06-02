@@ -149,7 +149,7 @@
 
     <Style x:Key="HeaderStyleN" TargetType="Label">
         <Setter Property="Foreground" Value="{DynamicResource TextColorN}"/>
-        <Setter Property="FontWeight" Value="Bold"/>
+        
         <Setter Property="FontFamily" Value="Segoe UI"/>
     </Style>
 

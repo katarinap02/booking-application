@@ -321,6 +321,9 @@
   <data name="GiveUp" xml:space="preserve">
     <value>Odustani</value>
   </data>
+  <data name="GuestHas" xml:space="preserve">
+    <value>Gost je posetio ovu lokaciju.</value>
+  </data>
   <data name="GuestNumber" xml:space="preserve">
     <value>Broj gostiju</value>
   </data>
@@ -347,6 +350,9 @@
   </data>
   <data name="HostComment" xml:space="preserve">
     <value>Komentar vlasnika</value>
+  </data>
+  <data name="HostHas" xml:space="preserve">
+    <value>Vlasnik ima smeštaj na ovoj lokaciji.</value>
   </data>
   <data name="HowCancel" xml:space="preserve">
     <value>Kako otkazati ili pomeriti rezervaciju?</value>

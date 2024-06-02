@@ -73,7 +73,7 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                     </StackPanel>
 
                 </ToggleButton>
-                <TextBlock Text="{ns:Loc ChooseHint}" x:Name="Hint" FontSize="16" Foreground="{DynamicResource HintTextColor}" TextAlignment="Justify" TextWrapping="Wrap" Margin="657,559,30,154">
+                <TextBlock Text="{ns:Loc ChooseHint}" x:Name="Hint" FontSize="16" Foreground="{DynamicResource HintTextColor}" TextAlignment="Left" TextWrapping="Wrap" Margin="651,545,30,168">
                     <TextBlock.RenderTransform>
                         <TranslateTransform Y="0"/>
                     </TextBlock.RenderTransform>

@@ -76,16 +76,16 @@
                         </StackPanel>
 
                     </ToggleButton>
-                    <TextBlock x:Name="Hint" Text="{ns:Loc PleaseChooseDelay}" FontSize="16" Foreground="{DynamicResource HintTextColor}" Height="150" TextAlignment="Center" TextWrapping="Wrap" Margin="129,287,105,352">
+                    <TextBlock x:Name="Hint" Text="{ns:Loc PleaseChooseDelay}" FontSize="16" Foreground="{DynamicResource HintTextColor}" Height="150" TextAlignment="Center" TextWrapping="Wrap" Margin="117,287,117,352">
                         <TextBlock.RenderTransform>
                             <TranslateTransform Y="0"/>
                         </TextBlock.RenderTransform>
                     </TextBlock>
 
-                    <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="136,434,-136,312"/>
-                    <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="218,648,218,98"/>
+                    <TextBlock Text="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="0,434,0,312"/>
+                    <TextBlock Text="{ns:Loc Host}" FontSize="28" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="0,648,0,98"/>
                     <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
-                        <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="8,2,114,-2"/>
+                        <TextBlock Text="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="-2,2,-2,-2"/>
                     </Border>
 
                     <controls:AccommodationCardSmaller DataContext="{Binding SelectedAccommodation}" Width="500" Margin="11,168,11,-168"></controls:AccommodationCardSmaller>

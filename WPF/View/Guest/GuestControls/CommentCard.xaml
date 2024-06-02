@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookingApp.WPF.View.Guest.GuestControls"
+              xmlns:ns="clr-namespace:BookingApp"
              mc:Ignorable="d" 
              d:DesignHeight="165" d:DesignWidth="670">
     <UserControl.Resources>
@@ -46,7 +47,7 @@
                 <TextBlock FontSize="23" Margin="16,20,530,97" FontWeight="Bold" Foreground="{DynamicResource TextColorN}" Text="{Binding Username}"></TextBlock>
                 <TextBlock FontSize="23" Margin="16,42,530,79" Foreground="{DynamicResource TextColorN}" Text="{Binding UserType}"></TextBlock>
                 <TextBlock FontSize="16" Margin="16,70,530,56" Foreground="{DynamicResource TextColorN}" Text="{Binding DateString}"></TextBlock>
-                <Image Margin="10,108,607,6" ToolTip="The guest has visited this location.">
+                <Image Margin="10,108,607,6" ToolTip="{ns:Loc GuestHas}">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Source" Value="{x:Null}"/>
@@ -61,7 +62,7 @@
                         </Style>
                     </Image.Style>
                 </Image>
-                <Image Margin="10,108,607,6" ToolTip="The host has an accommodation on this location.">
+                <Image Margin="10,108,607,6" ToolTip="{ns:Loc HostHas}">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Source" Value="{x:Null}"/>
