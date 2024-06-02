@@ -15,7 +15,7 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Label Content="{ns:Loc ReservationDetails}" HorizontalAlignment="Left" Margin="104,39,0,0" Grid.Row="1" VerticalAlignment="Top" Style="{StaticResource HeaderStyleN}" FontSize="30"/>
-                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="17" FontWeight="Bold" TextWrapping="Wrap" Margin="50,150,263,-143" Grid.Row="1" LineHeight="25"><Run Text="{ns:Loc Accommodation}"/><Run Text=":"/><LineBreak/><Run Text="{ns:Loc Date}"/><Run Text=":"/><LineBreak/><Run Text="{ns:Loc GuestNumber}"/><Run Text=":"/><LineBreak/><Run Text="{ns:Loc DayNumber}"/><Run Text=":"/><LineBreak/></TextBlock>
+                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="17" FontStyle="Italic" TextWrapping="Wrap" Margin="50,150,263,-143" Grid.Row="1" LineHeight="25"><Run Text="{ns:Loc Accommodation}"/><Run Text=":"/><LineBreak/><Run Text="{ns:Loc Date}"/><Run Text=":"/><LineBreak/><Run Text="{ns:Loc GuestNumber}"/><Run Text=":"/><LineBreak/><Run Text="{ns:Loc DayNumber}"/><Run Text=":"/><LineBreak/></TextBlock>
                 <TextBlock Style="{DynamicResource TextBlockStyleN}" FontSize="17" Margin="220,150,0,-115" Grid.Row="1" TextWrapping="Wrap" LineHeight="25">
                     <TextBlock.Text>
                         <MultiBinding StringFormat="{}{0}&#x0a;{1}&#x0a;{2}&#x0a;{3}">

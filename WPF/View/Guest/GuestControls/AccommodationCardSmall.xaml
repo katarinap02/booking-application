@@ -130,7 +130,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="155,14,89,-13" Grid.Row="1" FontWeight="Bold" Foreground="{DynamicResource TextColorN}"/>
+                <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="155,14,89,-13" Grid.Row="1" FontStyle="Italic" Foreground="{DynamicResource TextColorN}"/>
                 <Image ToolTip="{ns:Loc Location}" Source="{DynamicResource Location}" Height="20" Width="20" Margin="142,65,416,-51" Grid.Row="1"/>
                 <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="166,58,67,-56" Grid.Row="1" Foreground="{DynamicResource TextColorN}"/>
 

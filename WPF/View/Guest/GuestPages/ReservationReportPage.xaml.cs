@@ -51,5 +51,10 @@ namespace BookingApp.WPF.View.Guest.GuestPages
 
             await Task.Delay(500);
         }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ViewModel.CreateReportCommand.RaiseCanExecuteChanged();
+        }
     }
 }

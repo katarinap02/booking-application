@@ -18,6 +18,9 @@ using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.WPF.ViewModel.Commands;
 using System.ComponentModel;
 using System.Windows.Navigation;
+using System.Windows.Media.Animation;
+
+using System.Windows.Media;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -101,7 +104,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             page.reserveButton.IsEnabled = false;
             page.PeopleNumberSection.IsEnabled = false;
             Reservation = new AccommodationReservation();
-
+          
             SelectDatesCommand = new GuestICommand(OnSelectDates);
             FinishReservationCommand = new GuestICommand(OnFinishReservation, CanFinishReservation);
             BackCommand = new GuestICommand(OnBack);
@@ -153,16 +156,26 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         {
             if (GuestNumber > SelectedAccommodation.MaxGuestNumber || GuestNumber <= 0)
             {
-                
+
                 if (Page.PeopleNumberSection.IsEnabled == true)
+                {
+                   
                     Page.guestNumberValidator.Visibility = Visibility.Visible;
-              
+                    var showHint = (Storyboard)Page.FindResource("ShowTextBlock");
+                    Page.txtGuestNumber.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                    Page.txtGuestNumber.BorderThickness = new Thickness(2);
+                    showHint.Begin(Page.guestNumberValidator);
+                }
             }
             else
             {
-                Page.guestNumberValidator.Visibility = Visibility.Hidden;
+               
+                var hideHint = (Storyboard)Page.FindResource("HideTextBlock");
+                hideHint.Completed += (s, a) => Page.guestNumberValidator.Visibility = Visibility.Hidden;
+                hideHint.Begin(Page.guestNumberValidator);
+                Page.txtGuestNumber.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.txtGuestNumber.BorderThickness = new Thickness(1);
 
-                
             }
         }
 
@@ -214,13 +227,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             if (selectedDatesCount != DayNumber)
             {
                 Page.reserveButton.IsEnabled = false;
+                
                 Page.dayNumberValidator.Visibility = Visibility.Visible;
+                var showHint = (Storyboard)Page.FindResource("ShowTextBlock");
+                showHint.Begin(Page.dayNumberValidator);
 
             }
             else
             {
                 Page.reserveButton.IsEnabled = true;
-                Page.dayNumberValidator.Visibility = Visibility.Hidden;
+               
+                var hideHint = (Storyboard)Page.FindResource("HideTextBlock");
+                hideHint.Completed += (s, a) => Page.dayNumberValidator.Visibility = Visibility.Hidden;
+                hideHint.Begin(Page.dayNumberValidator);
+
 
             }
 

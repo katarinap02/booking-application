@@ -147,6 +147,9 @@
   <data name="AfterClosing" xml:space="preserve">
     <value>Nakon što ga zatvorite, neće biti moguće ostaviti nove komentare.</value>
   </data>
+  <data name="AllDates" xml:space="preserve">
+    <value>Svi datumi u izabranom opsegu su zauzeti. Prikazani su svi slobodni datumi.</value>
+  </data>
   <data name="AllForums" xml:space="preserve">
     <value>Svi forumi</value>
   </data>
@@ -198,6 +201,9 @@
   <data name="City" xml:space="preserve">
     <value>Grad</value>
   </data>
+  <data name="CityValid" xml:space="preserve">
+    <value>Polje za grad ne može biti prazno.</value>
+  </data>
   <data name="Cleanliness" xml:space="preserve">
     <value>Čistoća</value>
   </data>
@@ -238,7 +244,10 @@
     <value>Polje za korektnost ne može biti prazno.</value>
   </data>
   <data name="Country" xml:space="preserve">
-    <value>Drzava</value>
+    <value>Država</value>
+  </data>
+  <data name="CountryValid" xml:space="preserve">
+    <value>Polje za državu ne može biti prazno.</value>
   </data>
   <data name="CreatedRes" xml:space="preserve">
     <value>Izveštaj o napravljenim rezervacijama</value>
@@ -260,6 +269,9 @@
   </data>
   <data name="DatesProblem" xml:space="preserve">
     <value>Problem sa biranjem dana.</value>
+  </data>
+  <data name="DateValid" xml:space="preserve">
+    <value>Unesite ispravne datume.</value>
   </data>
   <data name="DayNum" xml:space="preserve">
     <value>Broj dana:</value>
@@ -309,6 +321,9 @@
   <data name="GiveUp" xml:space="preserve">
     <value>Odustani</value>
   </data>
+  <data name="GuestHas" xml:space="preserve">
+    <value>Gost je posetio ovu lokaciju.</value>
+  </data>
   <data name="GuestNumber" xml:space="preserve">
     <value>Broj gostiju</value>
   </data>
@@ -335,6 +350,9 @@
   </data>
   <data name="HostComment" xml:space="preserve">
     <value>Komentar vlasnika</value>
+  </data>
+  <data name="HostHas" xml:space="preserve">
+    <value>Vlasnik ima smeštaj na ovoj lokaciji.</value>
   </data>
   <data name="HowCancel" xml:space="preserve">
     <value>Kako otkazati ili pomeriti rezervaciju?</value>
@@ -416,6 +434,21 @@
   </data>
   <data name="NewUser" xml:space="preserve">
     <value>Novo korisničko ime</value>
+  </data>
+  <data name="NoAccommodations" xml:space="preserve">
+    <value>Trenutno nema slobodnih smeštaja.</value>
+  </data>
+  <data name="NoAccommodationsRate" xml:space="preserve">
+    <value>Trenutno nema smeštaja za ocenjivanje.</value>
+  </data>
+  <data name="NoForums" xml:space="preserve">
+    <value>Trenutno nema foruma.</value>
+  </data>
+  <data name="NoRates" xml:space="preserve">
+    <value>Trenutno nema ocena od strane vlasnika.</value>
+  </data>
+  <data name="NoReservations" xml:space="preserve">
+    <value>Trenutno nema rezervacija.</value>
   </data>
   <data name="OldPass" xml:space="preserve">
     <value>Stara lozinka</value>
@@ -580,6 +613,12 @@
   <data name="Settings" xml:space="preserve">
     <value>Podešavanja</value>
   </data>
+  <data name="SettingsError" xml:space="preserve">
+    <value>Unos nije validan.</value>
+  </data>
+  <data name="SettingSuccess" xml:space="preserve">
+    <value>Promene su uspešno sačuvane.</value>
+  </data>
   <data name="Special" xml:space="preserve">
     <value>specijalno</value>
   </data>
@@ -587,6 +626,9 @@
     <value>Početni datum</value>
   </data>
   <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="String2" xml:space="preserve">
     <value />
   </data>
   <data name="SuperGuestHelp" xml:space="preserve">

@@ -181,7 +181,7 @@
                                 <Style TargetType="ToggleButton">
                                     <Setter Property="Content">
                                         <Setter.Value>
-                                            <Image Height="35" Source="{DynamicResource moon}" />
+                                            <Image Height="35" Source="{DynamicResource sun}" />
                                         </Setter.Value>
                                     </Setter>
 
@@ -204,7 +204,7 @@
                                         <Trigger Property="IsChecked" Value="True">
                                             <Setter Property="Content">
                                                 <Setter.Value>
-                                                    <Image Source="{DynamicResource sun}" />
+                                                    <Image Source="{DynamicResource moon}" Height="35" />
                                                 </Setter.Value>
                                             </Setter>
                                         </Trigger>

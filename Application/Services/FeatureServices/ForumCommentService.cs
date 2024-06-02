@@ -83,7 +83,7 @@ namespace BookingApp.Application.Services.FeatureServices
         {
             foreach(AccommodationReservation reservation in AccommodationReservationService.GetAll())
             {
-                if (reservation.GuestId == id && reservation.City == city && reservation.Country == country)
+                if (reservation.GuestId == id && reservation.City == city && reservation.Country == country && reservation.EndDate <= DateTime.Now)
                     return true;
             }
             return false;

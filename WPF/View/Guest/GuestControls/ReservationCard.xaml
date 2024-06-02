@@ -129,10 +129,10 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock x:Name="AccommodationName" Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="20" Text="{Binding Name}" Margin="179,0,504,27" FontWeight="Bold"/>
-                <Image ToolTip="{ns:Loc Location}" Source="{StaticResource Location}" Height="15" Width="20" Margin="473,-10,473,56"/>
+                <TextBlock x:Name="AccommodationName" Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="20" Text="{Binding Name}" Margin="179,0,504,27" FontStyle="Italic"/>
+                <Image ToolTip="{ns:Loc Location}" Source="{StaticResource Location}" Height="20" Width="20" Margin="464,0,472,65"/>
 
-                <TextBlock x:Name="Location" FontWeight="Bold" FontSize="20" Style="{DynamicResource TextBlockHeaderStyleN}" Text="{Binding Location}" Margin="494,0,-24,27"/>
+                <TextBlock x:Name="Location" FontStyle="Italic" FontSize="20" Style="{DynamicResource TextBlockHeaderStyleN}" Text="{Binding Location}" Margin="494,0,-24,27"/>
                 <Image ToolTip="{ns:Loc Date}" Source="{StaticResource Calendar}" Height="20" Width="20" Margin="259,43,677,16" RenderTransformOrigin="0.216,0.377"/>
 
                 <TextBlock x:Name="ReservationDate" Foreground="{DynamicResource TextColorN}" FontSize="20" Text="{Binding DateRangeString}" Margin="290,43,115,16" Grid.RowSpan="2"/>

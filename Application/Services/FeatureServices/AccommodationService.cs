@@ -75,14 +75,19 @@ namespace BookingApp.Application.Services.FeatureServices
            List<Accommodation> result = new List<Accommodation>();
            foreach(Accommodation accommodation in this.GetAll())
             {
-                if(endDate == DateTime.MaxValue)
+                if(endDate != DateTime.MaxValue)
                 {
                     if (CheckParameters(accommodation, dayNumber, guestNumber, startDate, endDate))
-                        result.Add(accommodation);
+                    {
+                       
+                        result.Add(accommodation); 
+                    }
                 }
                 else
                 {
-                    result.Add(accommodation);
+                  
+                    if(CheckDayGuestNumber(accommodation, dayNumber, guestNumber))
+                        result.Add(accommodation);
                 }
                
             }
@@ -94,6 +99,8 @@ namespace BookingApp.Application.Services.FeatureServices
             if (CheckDayGuestNumber(accommodation, dayNumber, guestNumber))
             {
                 List<DateTime> chosenDates = RemoveDates(accommodation, startDate, endDate);
+             /*  foreach (DateTime chosenDate in chosenDates)
+                    System.Windows.MessageBox.Show(accommodation.Name + " " + chosenDate.ToString());*/
                 if (CheckAvailability(chosenDates, dayNumber))
                     return true;
                 else
@@ -105,15 +112,19 @@ namespace BookingApp.Application.Services.FeatureServices
 
         private bool CheckAvailability(List<DateTime> chosenDates, int dayNumber)
         {
-            int dayCounter = 1;
+            int dayCounter = 0;
             for(int i = 0; i < chosenDates.Count-1; i++)
             {
-               
+
                 if ((chosenDates[i + 1] - chosenDates[i]).Days == 1)
-                    dayCounter++;
+                { dayCounter++; /*System.Windows.MessageBox.Show(dayCounter + " " + chosenDates[i].ToString() + " " + chosenDates[i+1].ToString() + dayNumber.ToString());*/  }
+                else
+                { dayCounter = 0;  }
 
                 if(dayCounter >= dayNumber)
                     return true;
+
+               
             }
 
             return false;
@@ -141,7 +152,7 @@ namespace BookingApp.Application.Services.FeatureServices
                 foreach (DateTime unavailableDate in unavailableDates)
                 {
                     if (unavailableDate >= startDate && unavailableDate <= endDate)
-                        chosenDates.Remove(unavailableDate);
+                    { chosenDates.Remove(unavailableDate);  }
                 }
             }
 
