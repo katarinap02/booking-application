@@ -133,6 +133,43 @@ namespace BookingApp.Properties
             }
         }
 
+        internal static string NoReservations
+        {
+            get
+            {
+                return ResourceManager.GetString("NoReservations", resourceCulture);
+            }
+        }
+        internal static string NoForums
+        {
+            get
+            {
+                return ResourceManager.GetString("NoForums", resourceCulture);
+            }
+        }
+
+        internal static string NoAccommodations
+        {
+            get
+            {
+                return ResourceManager.GetString("NoAccommodations", resourceCulture);
+            }
+        }
+        internal static string NoAccommodationsRate
+        {
+            get
+            {
+                return ResourceManager.GetString("NoAccommodationsRate", resourceCulture);
+            }
+        }
+
+        internal static string NoRates
+        {
+            get
+            {
+                return ResourceManager.GetString("NoRates", resourceCulture);
+            }
+        }
         internal static string AddPicture
         {
             get
@@ -146,6 +183,14 @@ namespace BookingApp.Properties
             get
             {
                 return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+
+        internal static string AllDates
+        {
+            get
+            {
+                return ResourceManager.GetString("AllDates", resourceCulture);
             }
         }
 

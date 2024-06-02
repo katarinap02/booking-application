@@ -111,6 +111,7 @@
 
 
                 </TextBlock>
+                <TextBlock x:Name="txtAllDates" Text="{ns:Loc AllDates}" FontSize="17" Style="{DynamicResource TextBlockHeaderStyleN}" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Center" Margin="0,20,0,489"/>
 
                 <Button x:Name="reserveButton" Content="{ns:Loc SelectDates}" HorizontalAlignment="Center" Margin="0,457,0,0" VerticalAlignment="Top" Command="{Binding SelectDatesCommand}" Width="198" Height="55" Style="{DynamicResource ResourceKey=ButtonStyleN}"/>
                 <TextBox x:Name="langTextbox" TextChanged="ContentChanged" Text="{ns:Loc Language}" Visibility="Hidden" Foreground="{DynamicResource BorderBackground}" Margin="27,10,513,526"></TextBox>

@@ -44,12 +44,12 @@ namespace BookingApp.View.GuestPages
           
             this.User = user;
             this.Frame = frame;
-            ViewModel = new ProfileInfoViewModel(User, Frame);
+            ViewModel = new ProfileInfoViewModel(User, Frame, this);
             DataContext = ViewModel;
             Hint.Visibility = Visibility.Hidden;
             ViewModel.Update();
             Loaded += Page_Loaded;
-
+          
 
         }
 

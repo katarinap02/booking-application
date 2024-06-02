@@ -147,6 +147,9 @@
   <data name="AfterClosing" xml:space="preserve">
     <value>Nakon što ga zatvorite, neće biti moguće ostaviti nove komentare.</value>
   </data>
+  <data name="AllDates" xml:space="preserve">
+    <value>Svi datumi u izabranom opsegu su zauzeti. Prikazani su svi slobodni datumi.</value>
+  </data>
   <data name="AllForums" xml:space="preserve">
     <value>Svi forumi</value>
   </data>
@@ -426,6 +429,21 @@
   <data name="NewUser" xml:space="preserve">
     <value>Novo korisničko ime</value>
   </data>
+  <data name="NoAccommodations" xml:space="preserve">
+    <value>Trenutno nema slobodnih smeštaja.</value>
+  </data>
+  <data name="NoAccommodationsRate" xml:space="preserve">
+    <value>Trenutno nema smeštaja za ocenjivanje.</value>
+  </data>
+  <data name="NoForums" xml:space="preserve">
+    <value>Trenutno nema foruma.</value>
+  </data>
+  <data name="NoRates" xml:space="preserve">
+    <value>Trenutno nema ocena od strane vlasnika.</value>
+  </data>
+  <data name="NoReservations" xml:space="preserve">
+    <value>Trenutno nema rezervacija.</value>
+  </data>
   <data name="OldPass" xml:space="preserve">
     <value>Stara lozinka</value>
   </data>
@@ -602,6 +620,9 @@
     <value>Početni datum</value>
   </data>
   <data name="String1" xml:space="preserve">
+    <value />
+  </data>
+  <data name="String2" xml:space="preserve">
     <value />
   </data>
   <data name="SuperGuestHelp" xml:space="preserve">

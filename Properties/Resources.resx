@@ -147,6 +147,9 @@
   <data name="AfterClosing" xml:space="preserve">
     <value>After you close it, it won't be possible to post new comments.</value>
   </data>
+  <data name="AllDates" xml:space="preserve">
+    <value>All dates in the chosen date range are unavailable. All available dates are shown.</value>
+  </data>
   <data name="AllForums" xml:space="preserve">
     <value>All forums</value>
   </data>
@@ -427,6 +430,21 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   </data>
   <data name="NewUser" xml:space="preserve">
     <value>New username</value>
+  </data>
+  <data name="NoAccommodations" xml:space="preserve">
+    <value>There are currently no available accommodations.</value>
+  </data>
+  <data name="NoAccommodationsRate" xml:space="preserve">
+    <value>There are currently no accommodations for rating.</value>
+  </data>
+  <data name="NoForums" xml:space="preserve">
+    <value>There are currently no forums.</value>
+  </data>
+  <data name="NoRates" xml:space="preserve">
+    <value>There are currently no rates.</value>
+  </data>
+  <data name="NoReservations" xml:space="preserve">
+    <value>There are currently no reservations.</value>
   </data>
   <data name="OldPass" xml:space="preserve">
     <value>Old password</value>

@@ -49,7 +49,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public GuestICommand<object> DetailsCommand { get; set; }
 
         public GuestICommand CreateReportCommand { get; set; }
-        public ProfileInfoViewModel(User user, Frame frame)
+        public ProfileInfoViewModel(User user, Frame frame, ProfileInfo page)
         {
             Frame = frame;
             User = user;
@@ -67,6 +67,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             CreateReportCommand = new GuestICommand(OnCreateReport);
             CancelCommand.RaiseCanExecuteChanged();
             DelayCommand.RaiseCanExecuteChanged();
+          
+
         }
 
         private void OnDetails(object sender)

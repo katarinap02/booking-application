@@ -61,6 +61,15 @@ namespace BookingApp.View.GuestPages
 
             ViewModel = new ReservationCalendarViewModel(SelectedAccommodation, DayNumber, User, StartDate, EndDate, Frame, this);
             DataContext = ViewModel;
+
+            if(ViewModel.ReservationCalendar.DisplayDateEnd == DateTime.MaxValue)
+            {
+                txtAllDates.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txtAllDates.Visibility = Visibility.Collapsed;
+            }
             if (PeopleNumberSection.IsEnabled == false)
             {
                 UpdateHintContent();
