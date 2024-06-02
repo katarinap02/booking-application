@@ -18,6 +18,7 @@ using QuestPDF.Helpers;
 using QuestPDF.Infrastructure;
 using System.IO;
 using Syncfusion.Pdf;
+using Syncfusion.Pdf.Graphics;
 
 namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
@@ -168,7 +169,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                                         {
                                             if (imageCount >= 2) break;
                                             String p = picture.Replace("../../", "../../../WPF/");
-                                            row.RelativeColumn().Container().Height(180).Width(200).Image(p.Replace("\\", "/"), ImageScaling.FitArea);
+                                            row.RelativeColumn().Container().Height(160).Width(200).Image(p.Replace("\\", "/"), ImageScaling.FitArea);
                                             imageCount++;
                                         }
                                     });
@@ -179,7 +180,13 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                     });
                 })
                 .GeneratePdf($"{directoryPath}\\TourDetails_{maxNumber + 1}.pdf");
+            string pdfPath = $"{directoryPath}\\TourDetails_{maxNumber + 1}.pdf";
             Messenger.Default.Send(new NotificationMessage($"A PDF is created on path: Resources/PDFs/TourDetails_{maxNumber + 1}.pdf"));
+            OpenPdf(pdfPath);
+        }
+        private void OpenPdf(string pdfPath)
+        {
+            System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo(pdfPath) { UseShellExecute = true });
         }
 
         private TourViewModel _selectedTour;

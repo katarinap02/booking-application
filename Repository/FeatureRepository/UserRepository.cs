@@ -1,5 +1,6 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
+using BookingApp.Observer;
 using BookingApp.Serializer;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,11 +14,13 @@ namespace BookingApp.Repository
         private readonly Serializer<User> _serializer;
 
         private List<User> _users;
+        public Subject UserSubject { get; set; }
 
         public UserRepository()
         {
             _serializer = new Serializer<User>();
             _users = _serializer.FromCSV(FilePath);
+            UserSubject = new Subject();
         }
 
         public User GetByUsername(string username)
@@ -35,5 +38,18 @@ namespace BookingApp.Repository
 
             return null;
         }
+
+        public User Update(User user)
+        {
+            _users = _serializer.FromCSV(FilePath);
+            User current = _users.Find(a => a.Id == user.Id);
+            int index = _users.IndexOf(current);
+            _users.Remove(current);
+            _users.Insert(index, user);
+            _serializer.ToCSV(FilePath, _users);
+            UserSubject.NotifyObservers();
+            return user;
+        }
+
     }
 }

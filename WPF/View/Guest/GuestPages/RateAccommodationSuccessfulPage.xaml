@@ -12,9 +12,9 @@
     <Grid>
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
-                <Label x:Name="requestHeader" Style="{DynamicResource HeaderStyleN}" Content="{ns:Loc RateSuccess}" FontSize="35" Margin="78,64,15,-53"></Label>
-                <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="160,174,638,573"/>
-                <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="240,396,716,351"/>
+                <TextBlock x:Name="requestHeader" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Text="{ns:Loc RateSuccess}" FontSize="35" Margin="0,64,0,-53"></TextBlock>
+                <TextBlock Text="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="26,174,534,573"/>
+                <TextBlock Text="{ns:Loc Host}" FontSize="28" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="26,406,534,351"/>
                 <Border Width="500" Height="80" Margin="0,445,508,266" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
                     <Label Content="{Binding HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="59,-2,63,2"/>
                 </Border>

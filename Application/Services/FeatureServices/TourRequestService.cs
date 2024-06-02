@@ -353,13 +353,13 @@ namespace BookingApp.Application.Services.FeatureServices
         public void UpdateTourRequests()
         {
             // update basic tour requests
-            UpdateBasicTourReqeust();
+            UpdateBasicTourRequest();
 
             // update complex tour requests
             UpdateComplexTourRequest();
         }
 
-        private void UpdateBasicTourReqeust()
+        private void UpdateBasicTourRequest()
         {
             List<TourRequest> tourRequests = _tourRequestRepository.GetAll();
             if(tourRequests.Count == 0 )
@@ -391,16 +391,28 @@ namespace BookingApp.Application.Services.FeatureServices
                     continue;
                 }
 
-                DateTime MinStartDate = basicRequests[0].StartDate;
+                DateTime minStartDate = basicRequests[0].StartDate;
+                int invalidCount = 0;
 
                 foreach (TourRequest basicRequest in basicRequests)
                 {
-                    if (basicRequest.StartDate < MinStartDate)
+                    if (basicRequest.StartDate < minStartDate)
                     {
-                        MinStartDate = basicRequest.StartDate;
+                        minStartDate = basicRequest.StartDate;
                     }
+                    if(basicRequest.Status == TourRequestStatus.Invalid)
+                    {
+                        invalidCount++;
+                    }
+
                 }
-                if (complexTourRequest.Status == ComplexTourRequestStatus.Pending && DateTime.Now >= MinStartDate.AddHours(-48))
+                if (complexTourRequest.Status == ComplexTourRequestStatus.Pending && DateTime.Now >= minStartDate.AddHours(-48))
+                {
+                    complexTourRequest.Status = ComplexTourRequestStatus.Invalid;
+                    _complexTourRequestService.UpdateComplexRequest(complexTourRequest);
+                }
+
+                if (invalidCount == basicRequests.Count) // if all basic requests are invalid, complex request is invalid
                 {
                     complexTourRequest.Status = ComplexTourRequestStatus.Invalid;
                     _complexTourRequestService.UpdateComplexRequest(complexTourRequest);

@@ -20,7 +20,7 @@ namespace BookingApp.WPF.View.TouristWindows
         {
             InitializeComponent();
             TourRequest = new ComplexTourRequestDetailsViewModel();
-            TourRequest = TourRequest.ToComplexDetiailsViewModel(selectedTourRequest);
+            TourRequest = TourRequest.ToComplexDetailsViewModel(selectedTourRequest);
             DataContext = TourRequest;
 
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);

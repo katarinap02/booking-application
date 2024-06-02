@@ -33,22 +33,20 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <Label Content="{ns:Loc CloseSuccess}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="174,103,154,626"/>
+                <TextBlock Text="{ns:Loc CloseSuccess}" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" FontSize="40" Margin="0,103,0,626"/>
                 <Grid Margin="10,168,-10,471">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="115*"/>
                         <ColumnDefinition Width="97*"/>
                     </Grid.ColumnDefinitions>
-                    <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="{DynamicResource BorderBackground}" Height="103" Grid.ColumnSpan="2" Margin="0,24,32,24">
+                    <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="{DynamicResource BorderBackground}" Grid.ColumnSpan="2" Margin="10,75,22,-7">
                         <Grid Margin="10">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="auto"/>
                                 <RowDefinition Height="auto"/>
                             </Grid.RowDefinitions>
 
-                            <TextBlock Margin="10,10,675,-47" Grid.RowSpan="2" FontSize="22" FontWeight="Bold" Foreground="{DynamicResource AccentColorN}">
-<Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding NewForum.City}"/>
-<Run Text=", "/><Run Text="{Binding NewForum.Country}"/>
+                            <TextBlock Margin="10,10,168,-47" Grid.RowSpan="2" FontSize="22" FontStyle="Italic" Foreground="{DynamicResource TextColorN}"><Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding NewForum.City}"/><Run Text=", "/><Run Text="{Binding NewForum.Country}"/><Run Text="      Date: "/><Run Text="{Binding NewForum.DateString}"/>
                                 <!--<TextBlock.Text>
                                     <MultiBinding StringFormat="{}Location: {0}, {1}">
                                         <Binding Path="NewForum.City"/>
@@ -58,8 +56,8 @@
                                 </TextBlock.Text>-->
                             </TextBlock>
 
-                            <TextBlock Text="{Binding NewForum.CommentNumber}" Margin="10,52,868,-86" Grid.RowSpan="2" FontSize="16"></TextBlock>
-                            <Button Content="{ns:Loc ViewForum}" Command="{Binding Path=ViewForumCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="864,25,10,85"/>
+
+                            <Button Content="{ns:Loc ViewForum}" Command="{Binding Path=ViewForumCommand}" Style="{DynamicResource ButtonStyleN}" FontSize="20" Width="130" Height="40" Margin="864,10,10,100"/>
 
 
                         </Grid>

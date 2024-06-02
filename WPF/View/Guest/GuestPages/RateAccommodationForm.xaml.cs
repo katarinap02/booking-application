@@ -68,11 +68,17 @@ namespace BookingApp.View.GuestPages
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             Hint.Visibility = Visibility.Visible;
+            var showHint = (Storyboard)FindResource("ShowTextBlock");
+            showHint.Begin(Hint);
         }
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            Hint.Visibility = Visibility.Hidden;
+
+            var hideHint = (Storyboard)FindResource("HideTextBlock");
+            hideHint.Completed += (s, a) => Hint.Visibility = Visibility.Hidden;
+            hideHint.Begin(Hint);
+
         }
     }
 }

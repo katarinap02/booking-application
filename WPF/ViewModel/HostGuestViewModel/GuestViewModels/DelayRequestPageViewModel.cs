@@ -18,6 +18,7 @@ using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using BookingApp.WPF.View.Guest.GuestPages;
 using BookingApp.WPF.ViewModel.Commands;
 using System.Windows.Navigation;
+using System.Windows.Media.Animation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -101,13 +102,22 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             int selectedDatesCount = calendar.SelectedDates.Count;
             if (selectedDatesCount != DayNumber)
             {
-                reserveButton.IsEnabled = false;
+                Page.reserveButton.IsEnabled = false;
+
                 Page.dayNumberValidator.Visibility = Visibility.Visible;
+                var showHint = (Storyboard)Page.FindResource("ShowTextBlock");
+                showHint.Begin(Page.dayNumberValidator);
+
             }
             else
             {
-                reserveButton.IsEnabled = true; 
-                Page.dayNumberValidator.Visibility = Visibility.Hidden;
+                Page.reserveButton.IsEnabled = true;
+
+                var hideHint = (Storyboard)Page.FindResource("HideTextBlock");
+                hideHint.Completed += (s, a) => Page.dayNumberValidator.Visibility = Visibility.Hidden;
+                hideHint.Begin(Page.dayNumberValidator);
+
+
             }
 
             Mouse.Capture(null);

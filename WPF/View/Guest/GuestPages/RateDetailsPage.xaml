@@ -14,9 +14,18 @@
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,11,2">
             <Grid Margin="0,0,0,-2">
 
-                <Label Content="{ns:Loc Reservation}" FontSize="40" Width="250" Height="80" Margin="210,44,600,667" Style="{DynamicResource HeaderStyleN}"/>
-                <Label Content="{Binding DateRange}" FontSize="40" Height="80" Margin="465,44,29,667" Style="{DynamicResource HeaderStyleN}"/>
-                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="30" Height="80" TextAlignment="Center" Margin="10,111,-10,600" FontWeight="Bold">
+                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="40" Height="80" TextAlignment="Center" Margin="0,31,0,680">
+    <Run Text="{ns:Loc Reservation}"/><Run Text=" "></Run><Run Text="{Binding DateRange}"/>
+    <!--<TextBlock.Text>
+        <MultiBinding StringFormat="{}{0} has rated you: ">
+            <Binding Path="HostUsername"/>
+
+        </MultiBinding>
+    </TextBlock.Text>-->
+                </TextBlock>
+
+              
+                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="30" Height="80" TextAlignment="Center" Margin="0,111,0,600">
                     <Run Text="{Binding HostUsername}"/><Run Text=" "></Run><Run Text="{ns:Loc HasRated}"/>
                     <!--<TextBlock.Text>
                         <MultiBinding StringFormat="{}{0} has rated you: ">
@@ -26,7 +35,7 @@
                     </TextBlock.Text>-->
                 </TextBlock>
 
-                <TextBlock Style="{DynamicResource TextBlockStyleN}" FontSize="30" Height="80" TextAlignment="Center" Margin="10,191,-10,520">
+                <TextBlock Style="{DynamicResource TextBlockStyleN}" FontSize="30" Height="80" TextAlignment="Center" Margin="0,191,0,520">
                      <Run Text="{ns:Loc Cleanliness}"/><Run Text=": "></Run><Run Text="{Binding SelectedRate.Cleanliness}"/>
                     <!--<TextBlock.Text>
                         <MultiBinding StringFormat="{}Cleanliness: {0}">
@@ -36,8 +45,8 @@
                     </TextBlock.Text>-->
                 </TextBlock>
 
-                <TextBlock Style="{DynamicResource TextBlockStyleN}" FontSize="30" Height="80" TextAlignment="Center" Margin="10,271,-10,440">
-                     <Run Text="{ns:Loc RulesFollowing}"/><Run Text=" "></Run><Run Text="{Binding SelectedRate.RulesFollowing}"/>
+                <TextBlock Style="{DynamicResource TextBlockStyleN}" FontSize="30" Height="80" TextAlignment="Center" Margin="0,271,0,440">
+                     <Run Text="{ns:Loc RulesFollowing}"/><Run Text=": "></Run><Run Text="{Binding SelectedRate.RulesFollowing}"/>
                     <!--<TextBlock.Text>
                         <MultiBinding StringFormat="{}Rules-following: {0}">
                             <Binding Path="SelectedRate.RulesFollowing"/>
@@ -46,7 +55,7 @@
                     </TextBlock.Text>-->
                 </TextBlock>
 
-                <Label Content="{ns:Loc HostComment}" FontSize="35" Height="80" Margin="363,411,363,300" Style="{DynamicResource HeaderStyleN}"/>
+                <TextBlock Text="{ns:Loc HostComment}" FontSize="35" Height="80" Margin="0,411,0,300" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center"/>
                 <Border Margin="225,491,225,57" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
                     <Grid>
                         <TextBlock Style="{DynamicResource TextBlockStyleN}" x:Name="commentTxtBlock" FontSize="20" Text="{Binding SelectedRate.AdditionalComment}" TextWrapping="Wrap" Margin="10,10,0,0"/>

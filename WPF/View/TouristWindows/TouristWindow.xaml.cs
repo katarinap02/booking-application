@@ -46,7 +46,10 @@ namespace BookingApp.View.TouristWindows
             MainFrame.Content = new AllToursPage(Tour.getUserId(Tour.UserName));
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
-                MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (IsActive)
+                {
+                    MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             });
 
         }

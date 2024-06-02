@@ -134,9 +134,9 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
 
-                <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="157,6,290,-5" FontWeight="Bold" Foreground="{DynamicResource TextColorN}" Grid.RowSpan="2"/>
-                <Image ToolTip="{ns:Loc Location}" Source="{DynamicResource Location}" Height="15" Width="20" Margin="426,9,266,12"/>
-                <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="450,6,69,-5" FontWeight="Bold" Foreground="{DynamicResource TextColorN}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                <TextBlock x:Name="AccommodationName" FontSize="20" Text="{Binding Name}" Margin="157,6,290,-5" FontStyle="Italic" Foreground="{DynamicResource TextColorN}" Grid.RowSpan="2"/>
+                <Image ToolTip="{ns:Loc Location}" Source="{DynamicResource Location}" Height="20" Width="20" Margin="426,9,266,12"/>
+                <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="450,6,69,-5" FontStyle="Italic" Foreground="{DynamicResource TextColorN}" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
 
                 <Image ToolTip="{ns:Loc Rate}" Source="{DynamicResource Star}" Height="20" Width="20" Margin="158,8,534,27" Grid.Row="1"/>
                 <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{Binding Rate, StringFormat={}{0:N2}}" Margin="190,6,451,-36" Grid.Row="1" Foreground="{DynamicResource TextColorN}"/>

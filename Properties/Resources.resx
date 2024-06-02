@@ -147,6 +147,9 @@
   <data name="AfterClosing" xml:space="preserve">
     <value>After you close it, it won't be possible to post new comments.</value>
   </data>
+  <data name="AllDates" xml:space="preserve">
+    <value>All dates in the chosen date range are unavailable. All available dates are shown.</value>
+  </data>
   <data name="AllForums" xml:space="preserve">
     <value>All forums</value>
   </data>
@@ -200,6 +203,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
+  <data name="CityValid" xml:space="preserve">
+    <value>City field can't be empty.</value>
+  </data>
   <data name="Cleanliness" xml:space="preserve">
     <value>Cleanliness</value>
   </data>
@@ -242,6 +248,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="CountryValid" xml:space="preserve">
+    <value>Country field can't be empty.</value>
+  </data>
   <data name="CreatedRes" xml:space="preserve">
     <value>Created reservations report</value>
   </data>
@@ -262,6 +271,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   </data>
   <data name="DatesProblem" xml:space="preserve">
     <value>Problem with choosing dates</value>
+  </data>
+  <data name="DateValid" xml:space="preserve">
+    <value>Enter valid dates.</value>
   </data>
   <data name="DayNum" xml:space="preserve">
     <value>Number of days</value>
@@ -311,6 +323,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   <data name="GiveUp" xml:space="preserve">
     <value>Give up</value>
   </data>
+  <data name="GuestHas" xml:space="preserve">
+    <value>The guest has visited this location.</value>
+  </data>
   <data name="GuestNumber" xml:space="preserve">
     <value>Number of guests</value>
   </data>
@@ -337,6 +352,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   </data>
   <data name="HostComment" xml:space="preserve">
     <value>Comment by host</value>
+  </data>
+  <data name="HostHas" xml:space="preserve">
+    <value>The host has an accommodation on this location.</value>
   </data>
   <data name="HowCancel" xml:space="preserve">
     <value>How to cancel or delay reservation?</value>
@@ -419,6 +437,21 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   <data name="NewUser" xml:space="preserve">
     <value>New username</value>
   </data>
+  <data name="NoAccommodations" xml:space="preserve">
+    <value>There are currently no available accommodations.</value>
+  </data>
+  <data name="NoAccommodationsRate" xml:space="preserve">
+    <value>There are currently no accommodations for rating.</value>
+  </data>
+  <data name="NoForums" xml:space="preserve">
+    <value>There are currently no forums.</value>
+  </data>
+  <data name="NoRates" xml:space="preserve">
+    <value>There are currently no rates.</value>
+  </data>
+  <data name="NoReservations" xml:space="preserve">
+    <value>There are currently no reservations.</value>
+  </data>
   <data name="OldPass" xml:space="preserve">
     <value>Old password</value>
   </data>
@@ -474,8 +507,7 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
     <value>Rate</value>
   </data>
   <data name="RateHelp" xml:space="preserve">
-    <value>You can rate accommodation and host by going to the Profile page on Menu bar, and choosing Rate accommodation tab from side menu. 
-        Next step is to pick a reservation from provided reservations. You can only rate accommodation within five days after the reservation is finished.</value>
+    <value>You can rate accommodation and host by going to the Profile page on Menu bar, and choosing Rate accommodation tab from side menu. Next step is to pick a reservation from provided reservations. You can only rate accommodation within five days after the reservation is finished.</value>
   </data>
   <data name="RateHint" xml:space="preserve">
     <value>Please enter rates for cleanliness and correctness. To recommend a renovation, you need to enter all mandatory values and then click on the "Recommend renovation" button."</value>
@@ -493,7 +525,7 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
     <value>The accommodation is successfully rated.</value>
   </data>
   <data name="Rating" xml:space="preserve">
-    <value>Ratng:</value>
+    <value>Rating:</value>
   </data>
   <data name="Recommend" xml:space="preserve">
     <value>Recommend renovation</value>
@@ -577,6 +609,12 @@ which will give you all available accommodations according to your needs.</value
   </data>
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
+  </data>
+  <data name="SettingsError" xml:space="preserve">
+    <value>Input is invalid.</value>
+  </data>
+  <data name="SettingsSuccess" xml:space="preserve">
+    <value>Changes successfully saved.</value>
   </data>
   <data name="Special" xml:space="preserve">
     <value>special</value>
