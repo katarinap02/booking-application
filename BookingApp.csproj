@@ -33,6 +33,7 @@
     <None Remove="Resources\Images\view.png" />
     <None Remove="WPF\Resources\Images\arrow-to-line-right.png" />
     <None Remove="WPF\Resources\Images\cancelHelp.png" />
+    <None Remove="WPF\Resources\Images\colorful-watercolor-abstract-background.jpg" />
     <None Remove="WPF\Resources\Images\empty.png" />
     <None Remove="WPF\Resources\Images\forumHelp.png" />
     <None Remove="WPF\Resources\Images\left_arrow.png" />
@@ -270,6 +271,7 @@
   <ItemGroup>
     <Folder Include="Resources\PDFs\GuestPDFs\" />
     <Folder Include="WPF\View\Guest\GuestPDFs\" />
+    <Folder Include="Resources\TestData\" />
   </ItemGroup>
 
 </Project>

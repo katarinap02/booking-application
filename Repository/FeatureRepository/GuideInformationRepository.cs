@@ -1,5 +1,6 @@
 ﻿using BookingApp.Domain.Model.Features;
 using BookingApp.Serializer;
+using BookingApp.WPF.View.GuideTestWindows.GuideControls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,16 @@ namespace BookingApp.Repository.FeatureRepository
         public GuideInformation GetByGuideId(int id)
         {
             return _guideInformation.Find(x => x.UserId ==  id);
+        }
+
+        public void save(GuideInformation guide)
+        {
+            _guideInformation = _serializer.FromCSV(FilePath);
+            GuideInformation current = _guideInformation.Find(t => t.Id == guide.Id);
+            int index = _guideInformation.IndexOf(current);
+            _guideInformation.Remove(current);
+            _guideInformation.Insert(index, guide);
+            _serializer.ToCSV(FilePath, _guideInformation);
         }
     }
 }

@@ -832,7 +832,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             LoadCountriesFromCSV();
             LoadLanguagesFromCSV();
-            if((TourRequests.Count == 0 && TourRequestType.Equals("Complex")) || TourRequestType.Equals("Basic"))
+
+            TourParticipantDTOs.Clear();
+            ParticipantsListBox.Clear();
+            TourParticipantsListBox.Clear();
+            if ((TourRequests.Count == 0 && TourRequestType.Equals("Complex")) || TourRequestType.Equals("Basic"))
             {
                 SelectedStartDate = DateTime.Now.AddDays(3);
                 MinDateStart = DateTime.Now.AddDays(3);

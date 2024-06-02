@@ -114,7 +114,7 @@ namespace BookingApp.WPF.ViewModel.TouristViewModel
             Messenger.Default.Send(new CloseWindowMessage());
 
         }
-        public ComplexTourRequestDetailsViewModel ToComplexDetiailsViewModel(TourRequestViewModel tourRequestViewModel)
+        public ComplexTourRequestDetailsViewModel ToComplexDetailsViewModel(TourRequestViewModel tourRequestViewModel)
         {
             ComplexTourRequestDetailsViewModel viewModel = new ComplexTourRequestDetailsViewModel();
             viewModel.AcceptedDate = tourRequestViewModel.AcceptedDate;
@@ -122,7 +122,9 @@ namespace BookingApp.WPF.ViewModel.TouristViewModel
             viewModel.Country = tourRequestViewModel.Country;
             viewModel.City = tourRequestViewModel.City;
             viewModel.Language = tourRequestViewModel.Language;
-            viewModel.TourRequests = tourRequestViewModel.TourRequestsForComplex;
+
+            var sortedRequests = new ObservableCollection<TourRequestViewModel>(tourRequestViewModel.TourRequestsForComplex.OrderBy(request => request.StartDate));
+            viewModel.TourRequests = sortedRequests;
             return viewModel;
         }
         public ComplexTourRequestDetailsViewModel()

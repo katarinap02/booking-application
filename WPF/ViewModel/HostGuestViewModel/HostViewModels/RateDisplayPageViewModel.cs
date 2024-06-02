@@ -51,6 +51,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         {
             GuestRatePage page = new GuestRatePage(User, NavService);
             this.NavService.Navigate(page);
+            Update();
         }
 
         private bool CanExecute_NavigateCommand(object obj)

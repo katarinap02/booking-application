@@ -37,7 +37,8 @@ namespace BookingApp.WPF.View.Guest.GuestPages
             DataContext = new SettingsViewModel(user, this);
             Loaded += Page_Loaded;
             
-          
+           // SaveCommand = new GuestICommand(OnSave);
+
 
 
 

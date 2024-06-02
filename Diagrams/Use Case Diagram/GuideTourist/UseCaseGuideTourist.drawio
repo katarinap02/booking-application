@@ -1,0 +1,276 @@
+<mxfile host="app.diagrams.net" modified="2024-06-02T14:12:16.563Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36" etag="JuJTpx-vUVC5xtYtI6Yk" version="24.4.13" type="device" pages="8">
+  <diagram name="Main" id="xv4Pc27WimmElDL1eTF2">
+    <mxGraphModel dx="1500" dy="807" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="800" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="fqmn3Sz_hP65knO8LHAP-2" value="" style="swimlane;startSize=0;fillColor=#d5e8d4;strokeColor=#82b366;strokeWidth=2;" vertex="1" parent="1">
+          <mxGeometry x="130" y="20" width="580" height="760" as="geometry">
+            <mxRectangle x="130" y="20" width="50" height="40" as="alternateBounds" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zYmTOCkg64a3XALhGTWf-8" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;labelBackgroundColor=none;strokeColor=#A8201A;fontColor=default;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-1" target="E0GFEq4NIAbBcgeDE9Wb-9" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="170" y="188" />
+              <mxPoint x="170" y="68" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="zYmTOCkg64a3XALhGTWf-9" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;labelBackgroundColor=none;strokeColor=#A8201A;fontColor=default;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-1" target="E0GFEq4NIAbBcgeDE9Wb-10" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="zYmTOCkg64a3XALhGTWf-10" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;labelBackgroundColor=none;strokeColor=#A8201A;fontColor=default;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-1" target="E0GFEq4NIAbBcgeDE9Wb-11" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="180" y="248" />
+              <mxPoint x="180" y="268" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jJQlSMJE2KEjGMPYt0HS-1" value="Guide&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="70" y="190" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="jJQlSMJE2KEjGMPYt0HS-2" value="Super Guide" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="70" y="40" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="BXKQBRwEEvgqKkyGGlb5-4" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;labelBackgroundColor=none;strokeColor=#A8201A;fontColor=default;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-3" target="BXKQBRwEEvgqKkyGGlb5-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="765" y="338" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BXKQBRwEEvgqKkyGGlb5-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;labelBackgroundColor=none;strokeColor=#A8201A;fontColor=default;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-3" target="BXKQBRwEEvgqKkyGGlb5-3" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="700" y="368" />
+              <mxPoint x="700" y="438" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BXKQBRwEEvgqKkyGGlb5-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;labelBackgroundColor=none;strokeColor=#A8201A;fontColor=default;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-3" target="BXKQBRwEEvgqKkyGGlb5-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="730" y="408" />
+              <mxPoint x="730" y="528" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VeFpLdR2M0Eh6wdW8BvJ-2" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.3333333333333333;exitDx=0;exitDy=0;exitPerimeter=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;endArrow=none;endFill=0;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-3" target="VeFpLdR2M0Eh6wdW8BvJ-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="790" y="368" />
+              <mxPoint x="790" y="248" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jJQlSMJE2KEjGMPYt0HS-3" value="System" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="750" y="348" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="E0GFEq4NIAbBcgeDE9Wb-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.75;exitY=0.1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;labelBackgroundColor=none;strokeColor=#A8201A;fontColor=default;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-5" target="jJQlSMJE2KEjGMPYt0HS-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="E0GFEq4NIAbBcgeDE9Wb-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;labelBackgroundColor=none;strokeColor=#A8201A;fontColor=default;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-5" target="YeHAOv9dbyKQ0j_c4Zro-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="140" y="418" />
+              <mxPoint x="140" y="578" />
+              <mxPoint x="225" y="578" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="E0GFEq4NIAbBcgeDE9Wb-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=0.5;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;endArrow=none;endFill=0;labelBackgroundColor=none;strokeColor=#A8201A;fontColor=default;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-5" target="E0GFEq4NIAbBcgeDE9Wb-6" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="160" y="388" />
+              <mxPoint x="160" y="488" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="jJQlSMJE2KEjGMPYt0HS-5" value="Tourist&lt;div&gt;&lt;br&gt;&lt;/div&gt;" style="shape=umlActor;verticalLabelPosition=bottom;verticalAlign=top;html=1;outlineConnect=0;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="60" y="360" width="30" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="4UjJbnJk2DT_iQz4OYha-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;dashed=1;dashPattern=8 8;startArrow=classic;startFill=1;endArrow=none;endFill=0;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-8" target="4UjJbnJk2DT_iQz4OYha-5" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="v6QKsvkec5Tq3xKeoSjt-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=1;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;dashed=1;dashPattern=8 8;startArrow=none;startFill=0;endArrow=classic;endFill=1;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-8" target="BXKQBRwEEvgqKkyGGlb5-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="420" y="416" />
+              <mxPoint x="420" y="528" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <UserObject label="Winning a voucher" link="data:page/id,LhIGpK9mpF-W3luAgfBw" id="jJQlSMJE2KEjGMPYt0HS-8">
+          <mxCell style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+            <mxGeometry x="230" y="348" width="120" height="80" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="E0GFEq4NIAbBcgeDE9Wb-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;labelBackgroundColor=none;strokeColor=#A8201A;fontColor=default;startArrow=none;startFill=0;endArrow=classic;endFill=1;" parent="1" source="YeHAOv9dbyKQ0j_c4Zro-1" target="YeHAOv9dbyKQ0j_c4Zro-2" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="Creating complex tour request" link="data:page/id,m2S-BG1hf2UMqBSPIko9" id="YeHAOv9dbyKQ0j_c4Zro-1">
+          <mxCell style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+            <mxGeometry x="225" y="548" width="130" height="80" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="YeHAOv9dbyKQ0j_c4Zro-2" value="Creating regular tour request" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="230" y="693" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="E0GFEq4NIAbBcgeDE9Wb-4" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="225" y="638" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="E0GFEq4NIAbBcgeDE9Wb-6" value="View complex tour request" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="230" y="448" width="120" height="80" as="geometry" />
+        </mxCell>
+        <UserObject label="Quitting" link="data:page/id,4EKFyU_vz8kh2ptoiXEz" id="E0GFEq4NIAbBcgeDE9Wb-9">
+          <mxCell style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+            <mxGeometry x="250" y="28" width="120" height="80" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="zYmTOCkg64a3XALhGTWf-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0.5;entryY=1;entryDx=0;entryDy=0;dashed=1;dashPattern=8 8;labelBackgroundColor=none;strokeColor=#A8201A;fontColor=default;" parent="1" source="E0GFEq4NIAbBcgeDE9Wb-10" target="zYmTOCkg64a3XALhGTWf-1" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <UserObject label="Becoming a super Guide" link="data:page/id,c0-AOZso9_4ptdLk-90k" id="E0GFEq4NIAbBcgeDE9Wb-10">
+          <mxCell style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+            <mxGeometry x="250" y="128" width="120" height="80" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <UserObject label="Accepting a part of the complex tour" link="data:page/id,VEJd8Lyp5_0mRFxrbIyB" id="E0GFEq4NIAbBcgeDE9Wb-11">
+          <mxCell style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+            <mxGeometry x="250" y="228" width="120" height="80" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="zYmTOCkg64a3XALhGTWf-1" value="Check Eligibility" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="374" y="68" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="zYmTOCkg64a3XALhGTWf-4" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="404" y="168" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="zYmTOCkg64a3XALhGTWf-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=1;exitDx=0;exitDy=0;exitPerimeter=0;entryX=0;entryY=0.3333333333333333;entryDx=0;entryDy=0;entryPerimeter=0;labelBackgroundColor=none;strokeColor=#A8201A;fontColor=default;" parent="1" source="jJQlSMJE2KEjGMPYt0HS-2" target="jJQlSMJE2KEjGMPYt0HS-1" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="20" y="100" />
+              <mxPoint x="20" y="210" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="4UjJbnJk2DT_iQz4OYha-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0;entryDx=0;entryDy=0;strokeColor=#A8201A;fontColor=#143642;fillColor=#FAE5C7;dashed=1;dashPattern=8 8;startArrow=none;startFill=0;endArrow=classic;endFill=1;" parent="1" source="BXKQBRwEEvgqKkyGGlb5-1" target="E0GFEq4NIAbBcgeDE9Wb-9" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <Array as="points">
+              <mxPoint x="520" y="338" />
+              <mxPoint x="520" y="40" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BXKQBRwEEvgqKkyGGlb5-1" value="Cancel tours" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="560" y="298" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="BXKQBRwEEvgqKkyGGlb5-2" value="Issue vouchers" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="560" y="488" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="BXKQBRwEEvgqKkyGGlb5-3" value="Set request as invalid" style="ellipse;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#FAE5C7;strokeColor=#0F8B8D;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="560" y="398" width="120" height="80" as="geometry" />
+        </mxCell>
+        <UserObject label="Losing Super Guide Status" link="data:page/id,WQEzvPkkD7xEzkqkL0SX" id="VeFpLdR2M0Eh6wdW8BvJ-1">
+          <mxCell style="ellipse;whiteSpace=wrap;html=1;strokeColor=#0F8B8D;fontColor=#143642;fillColor=#FAE5C7;" parent="1" vertex="1">
+            <mxGeometry x="560" y="208" width="120" height="80" as="geometry" />
+          </mxCell>
+        </UserObject>
+        <mxCell id="4UjJbnJk2DT_iQz4OYha-2" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="530" y="68" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="4UjJbnJk2DT_iQz4OYha-5" value="Using a voucher" style="ellipse;whiteSpace=wrap;html=1;strokeColor=#0F8B8D;fontColor=#143642;fillColor=#FAE5C7;" parent="1" vertex="1">
+          <mxGeometry x="420" y="348" width="120" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="v6QKsvkec5Tq3xKeoSjt-2" value="&amp;lt;&amp;lt;include&amp;gt;&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#143642;" parent="1" vertex="1">
+          <mxGeometry x="440" y="498" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fqmn3Sz_hP65knO8LHAP-1" value="&amp;lt;&amp;lt;extend&amp;gt;&amp;gt;" style="text;html=1;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;labelBackgroundColor=none;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="355" y="360" width="60" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="fqmn3Sz_hP65knO8LHAP-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="fqmn3Sz_hP65knO8LHAP-2" target="fqmn3Sz_hP65knO8LHAP-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="LhIGpK9mpF-W3luAgfBw" name="Voucher">
+    <mxGraphModel dx="1024" dy="565" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="WSKr44XlUrgMwmOKJWpj-4" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Winning a voucher&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Preconditions&lt;/strong&gt;: Tourist has participated in tours.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Postconditions&lt;/strong&gt;: Tourist earns a voucher after completing 5 tours within a year.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Basic Flow&lt;/strong&gt;:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;System tracks the number of tours completed by the tourist.&lt;/li&gt;&lt;li&gt;When 5 tours are completed within a year, the system issues a voucher which lasts up to 6 months.&lt;/li&gt;&lt;li&gt;Tourist can view and use the voucher for future tours.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;strong&gt;Alternate Flows&lt;/strong&gt;:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;If the tourist does not complete 5 tours in a year, no voucher is issued.&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="130" width="480" height="290" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="m2S-BG1hf2UMqBSPIko9" name="Create complex">
+    <mxGraphModel dx="1024" dy="565" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="XzThezfcB_QYG0gG_SXf-1" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;Creating complex tour request&amp;nbsp;&lt;/span&gt;&lt;/h1&gt;&lt;div&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Preconditions&lt;/strong&gt;: Tourist is logged in.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Postconditions&lt;/strong&gt;: Complex tour request is created and visible in the tourist’s list of requests.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Basic Flow&lt;/strong&gt;:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Tourist initiates the creation of a complex tour request.&lt;/li&gt;&lt;li&gt;Tourist enters details for each part of the complex tour.&lt;/li&gt;&lt;li&gt;System saves the request and displays it in the tourist’s list with status &quot;pending.&quot;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;strong&gt;Alternate Flows&lt;/strong&gt;:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;If details are incomplete, the system prompts for completion.&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="180" width="520" height="260" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="YkM5oa3m5T7ViGHzh31y" name="View complex">
+    <mxGraphModel dx="706" dy="390" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BjilC-5oNflctGf9wbcG-1" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;View complex tour request&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Preconditions&lt;/strong&gt;: Tourist has created complex tour requests.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Postconditions&lt;/strong&gt;: Tourist views the status of each part of the complex tour.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Basic Flow&lt;/strong&gt;:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Tourist views the list of complex tour requests.&lt;/li&gt;&lt;li&gt;Tourist selects a specific request to view details.&lt;/li&gt;&lt;li&gt;System displays the status of each part and accepted times.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;strong&gt;Alternate Flows&lt;/strong&gt;:&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;4a. If not all parts are accepted, the system shows status as &quot;pending.&quot;&lt;/span&gt;&lt;/p&gt;&lt;p&gt;&lt;span style=&quot;background-color: initial;&quot;&gt;&lt;span style=&quot;white-space: pre;&quot;&gt;&#x9;&lt;/span&gt;4b.&amp;nbsp;If not all parts are accepted up till the date of the request, the system shows status as &quot;invalid.&quot;&lt;/span&gt;&lt;/p&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="133" y="190" width="561" height="250" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="4EKFyU_vz8kh2ptoiXEz" name="Quit">
+    <mxGraphModel dx="706" dy="390" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="2hW_ZyIn93Bqd05cIYAu-1" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Quitting&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Preconditions&lt;/strong&gt;: Tour Guide is logged in and has scheduled tours.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Postconditions&lt;/strong&gt;: All scheduled tours by the guide are canceled, vouchers are issued to tourists.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Basic Flow&lt;/strong&gt;:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Tour Guide selects the option to resign.&lt;/li&gt;&lt;li&gt;System cancels all scheduled tours by the guide.&lt;/li&gt;&lt;li&gt;System issues vouchers to tourists for the canceled tours.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;strong&gt;Alternate Flows&lt;/strong&gt;:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;If no scheduled tours exist, the system proceeds to issue vouchers only if there are existing vouchers to update.&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="149" y="190" width="530" height="300" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="c0-AOZso9_4ptdLk-90k" name="SuperGuide">
+    <mxGraphModel dx="706" dy="390" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="nICJ9m0Zwh0iuAh1i_Ly-1" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Becoming a super-guide&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Preconditions&lt;/strong&gt;: Tour Guide is logged in and has guided tours in the last year.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Postconditions&lt;/strong&gt;: Guide’s status is updated to Super Guide if eligibility criteria are met.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Basic Flow&lt;/strong&gt;:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;System checks the eligibility criteria (20 tours in the last year for a single language, average rating above 4.0).&lt;/li&gt;&lt;li&gt;System updates the guide’s status to Super Guide if criteria are met.&lt;br&gt;&lt;/li&gt;&lt;/ol&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="180" y="80" width="550" height="230" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="VEJd8Lyp5_0mRFxrbIyB" name="Accept">
+    <mxGraphModel dx="1024" dy="565" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="Y12bIeE39MP_dqnT65IH-1" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;Accepting a part of complex tour request&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;&lt;strong&gt;Preconditions&lt;/strong&gt;: Tour Guide is logged in and has available slots in their schedule.&lt;/li&gt;&lt;li&gt;&lt;strong&gt;Postconditions&lt;/strong&gt;: Part of the complex tour is accepted by the guide, and the system prevents schedule overlap.&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;strong&gt;Basic Flow&lt;/strong&gt;:&lt;/p&gt;&lt;ol&gt;&lt;li&gt;Tour Guide views available parts of the complex tour.&lt;/li&gt;&lt;li&gt;System displays available slots for the guide.&lt;/li&gt;&lt;li&gt;Tour Guide accepts a part of the tour.&lt;/li&gt;&lt;li&gt;System prevents any scheduling overlaps.&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;strong&gt;Alternate Flows&lt;/strong&gt;:&lt;/p&gt;&lt;ul&gt;&lt;li&gt;If no available slots, system notifies the guide and prevents acceptance.&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="160" y="80" width="466" height="300" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+  <diagram id="WQEzvPkkD7xEzkqkL0SX" name="Losing Super">
+    <mxGraphModel dx="853" dy="471" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="ijksTbKZHWLMlHdnkGWL-1" value="&lt;h1 style=&quot;margin-top: 0px;&quot;&gt;&lt;font color=&quot;#000000&quot;&gt;Losing Super Guide Status&lt;/font&gt;&lt;/h1&gt;&lt;ul&gt;&lt;li&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;strong&gt;Preconditions&lt;/strong&gt;: Guide has had Super Guide Status for a year.&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;strong&gt;Postconditions&lt;/strong&gt;: Guide&#39;s status is updated to Regular&amp;nbsp;Guide if eligibility criteria are not met.&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;&lt;p&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;strong&gt;Basic Flow&lt;/strong&gt;:&lt;/font&gt;&lt;/p&gt;&lt;ol&gt;&lt;li&gt;&lt;font color=&quot;#000000&quot;&gt;System periodically checks the eligibility criteria for Super Guide status for all guides.&lt;/font&gt;&lt;/li&gt;&lt;li&gt;&lt;font color=&quot;#000000&quot;&gt;For each guide:&lt;br&gt;a. System verifies if the guide has completed at least 20 tours in the last year.&lt;br&gt;b. System calculates the average rating of the guide&#39;s tours.&lt;br&gt;c. If the criteria are not met (either less than 20 tours or average rating below 4.0), the system updates the guide&#39;s status to Regular Guide.&lt;/font&gt;&lt;/li&gt;&lt;/ol&gt;&lt;p&gt;&lt;font color=&quot;#000000&quot;&gt;&lt;strong&gt;Alternate Flows&lt;/strong&gt;:&lt;/font&gt;&lt;/p&gt;&lt;ul&gt;&lt;li&gt;&lt;font color=&quot;#000000&quot;&gt;If the guide meets the eligibility criteria, the system does not take any action.&lt;/font&gt;&lt;/li&gt;&lt;/ul&gt;" style="text;html=1;whiteSpace=wrap;overflow=hidden;rounded=0;fontColor=#143642;" vertex="1" parent="1">
+          <mxGeometry x="74" y="90" width="680" height="340" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

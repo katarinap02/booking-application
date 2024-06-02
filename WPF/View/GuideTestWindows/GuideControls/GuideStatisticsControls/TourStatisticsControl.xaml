@@ -41,7 +41,14 @@
                         <RowDefinition Height="auto"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding Caption}" FontSize="20" Margin="20 2"></TextBlock>
+                    <Grid Margin="20 5">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="auto"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding Caption}" FontSize="20"></TextBlock>
+                        <Button Grid.Column="1" Style="{StaticResource generalButton}" Content=" Generate PDF " Width="120" Height="22"></Button>
+                    </Grid>                    
                     <lvc:PieChart Grid.Row="1" Series="{Binding series}" Hoverable="True" InnerRadius="20" Margin="20" LegendLocation="Right">
                         <lvc:PieChart.ChartLegend>
                             <lvc:DefaultLegend BulletSize="15" TextBlock.FontSize="10" Foreground="LightGray" FontSize="15"></lvc:DefaultLegend>

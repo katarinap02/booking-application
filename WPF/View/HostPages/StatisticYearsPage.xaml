@@ -27,7 +27,7 @@
         <Grid.ColumnDefinitions>
 
         </Grid.ColumnDefinitions>
-<Button Content="PDF" HorizontalAlignment="Left" Margin="15 30 0 0" Style="{StaticResource ButtonStyleHost}" Width="50" Height="25"/>
+        <Button Content="PDF" HorizontalAlignment="Left" Margin="15 30 0 0" Style="{StaticResource ButtonStyleHost}" Command="{Binding GeneratePdf}" Width="50" Height="25"/>
         <TextBlock
     x:Name="TitleLabel"
     Grid.ColumnSpan="2"
@@ -137,7 +137,7 @@
             </Border>
         
 
-        <lvc:CartesianChart Series="{Binding SeriesCollection}" Margin="15 10 30 30" LegendLocation ="Top"  Grid.Column="1" Grid.Row="1">
+        <lvc:CartesianChart x:Name="firstChart" Series="{Binding SeriesCollection}" Margin="15 10 30 30" LegendLocation ="Top"  Grid.Column="1" Grid.Row="1">
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis Labels="{Binding Years}">
                         
@@ -150,7 +150,7 @@
                 </lvc:CartesianChart.AxisY>
             </lvc:CartesianChart>
 
-            <lvc:CartesianChart Series="{Binding SeriesCollectionCancel}" Margin="15 10 30 30" LegendLocation ="Top"  Grid.Column="0" Grid.Row="2">
+            <lvc:CartesianChart x:Name="secondChart" Series="{Binding SeriesCollectionCancel}" Margin="15 10 30 30" LegendLocation ="Top"  Grid.Column="0" Grid.Row="2">
                 <lvc:CartesianChart.AxisX>
                     <lvc:Axis Labels="{Binding AllYears}">
 
