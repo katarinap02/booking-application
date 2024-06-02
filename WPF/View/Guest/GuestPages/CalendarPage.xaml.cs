@@ -61,6 +61,15 @@ namespace BookingApp.View.GuestPages
 
             ViewModel = new ReservationCalendarViewModel(SelectedAccommodation, DayNumber, User, StartDate, EndDate, Frame, this);
             DataContext = ViewModel;
+
+            if(ViewModel.ReservationCalendar.DisplayDateEnd == DateTime.MaxValue)
+            {
+                txtAllDates.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                txtAllDates.Visibility = Visibility.Collapsed;
+            }
             if (PeopleNumberSection.IsEnabled == false)
             {
                 UpdateHintContent();
@@ -119,18 +128,24 @@ namespace BookingApp.View.GuestPages
            ViewModel.Calendar_SelectedDatesChanged(sender, e);
         }
 
-     
+
 
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             Hint.Visibility = Visibility.Visible;
+            var showHint = (Storyboard)FindResource("ShowTextBlock");
+            showHint.Begin(Hint);
         }
 
         private void ToggleButton_Unchecked(object sender, RoutedEventArgs e)
         {
-            Hint.Visibility = Visibility.Hidden;
+
+            var hideHint = (Storyboard)FindResource("HideTextBlock");
+            hideHint.Completed += (s, a) => Hint.Visibility = Visibility.Hidden;
+            hideHint.Begin(Hint);
+
         }
 
-      
+
     }
 }

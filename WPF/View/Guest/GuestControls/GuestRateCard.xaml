@@ -14,7 +14,7 @@
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
-                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontWeight="Bold" FontSize="23" Height="40" Grid.RowSpan="2" Margin="50,5,0,15">
+                <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontStyle="Italic"  FontSize="23" Height="40" Grid.RowSpan="2" Margin="50,5,0,15">
                                        <Run Text="{Binding HostUsername}"/>
 <Run Text=", "/><Run Text="{ns:Loc Reservation}"/><Run Text=": "/><Run Text="{Binding DateRange}"/>
                     <!--<TextBlock.Text>

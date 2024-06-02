@@ -25,6 +25,25 @@
                 </DrawingGroup>
             </DrawingGroup>
             <DrawingImage Drawing="{DynamicResource question_mark_in_a_circle_svgrepo_com_xaml}" x:Key="HintIcon"/>
+            <Storyboard x:Key="ShowTextBlock">
+                <DoubleAnimation
+     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+     From="-30" To="0" Duration="0:0:0.3" />
+                <DoubleAnimation
+     Storyboard.TargetProperty="Opacity"
+     From="0" To="1" Duration="0:0:0.3" />
+            </Storyboard>
+
+
+            <Storyboard x:Key="HideTextBlock">
+                <DoubleAnimation
+     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+     From="0" To="-30" Duration="0:0:0.3" />
+                <DoubleAnimation
+     Storyboard.TargetProperty="Opacity"
+     From="1" To="0" Duration="0:0:0.3" />
+            </Storyboard>
+
         </ResourceDictionary>
 
     </Page.Resources>
@@ -47,14 +66,17 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                     </ListBox.ItemTemplate>
                 </ListBox>
                 <Button Style="{DynamicResource ButtonStyleN}" Content="{ns:Loc RateButton}" Width="100" Height="50" Margin="480,654,480,85" Command="{Binding RateCommand}"/>
-                <ToggleButton Height="50" Background="{DynamicResource BorderBackground}" BorderBrush="{DynamicResource BorderBackground}" Margin="20,545,726,194" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
+                <ToggleButton Height="50"  Style="{DynamicResource HintButtonStyleN}" Margin="20,545,726,194" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                     <StackPanel Orientation="Horizontal">
                         <Image Source="{DynamicResource HintIcon}" Height="25" Width="25"/>
                         <Label x:Name="HintLabel" Content="{ns:Loc RateProblem}" FontSize="16" Foreground="{DynamicResource HintColorN}" FontStyle="Italic"/>
                     </StackPanel>
 
                 </ToggleButton>
-                <TextBlock Text="{ns:Loc ChooseHint}" x:Name="Hint" FontSize="16" Foreground="{DynamicResource HintTextColor}" TextAlignment="Justify" TextWrapping="Wrap" Margin="657,559,30,154">
+                <TextBlock Text="{ns:Loc ChooseHint}" x:Name="Hint" FontSize="16" Foreground="{DynamicResource HintTextColor}" TextAlignment="Left" TextWrapping="Wrap" Margin="651,545,30,168">
+                    <TextBlock.RenderTransform>
+                        <TranslateTransform Y="0"/>
+                    </TextBlock.RenderTransform>
                 </TextBlock>
 
             </Grid>

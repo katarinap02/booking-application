@@ -49,6 +49,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                     comment = value;
                     OnPropertyChanged("Comment");
                 }
+                PostCommentCommand.RaiseCanExecuteChanged();
             }
         }
 
@@ -68,12 +69,24 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             User = user;
             Frame = frame;
             SelectedForum = selectedForum;
-            PostCommentCommand = new GuestICommand(OnPostComment);
+            PostCommentCommand = new GuestICommand(OnPostComment, CanPost);
             ForumCommentService = new ForumCommentService(Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             ForumComments = new ObservableCollection<ForumCommentViewModel>();
             Update();
             
+        }
+
+        private bool CanPost()
+        {
+            if(string.IsNullOrEmpty(Comment))
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
 
         private void OnPostComment()
@@ -88,6 +101,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                 ForumService.Update(SelectedForum.ToForum());
 
                 Update();
+                ForumService.CalculateGuestHostComments(SelectedForum.ToForum());
                 Comment = "";
             }
            

@@ -11,6 +11,7 @@ namespace BookingApp.Domain.RepositoryInterfaces.Features
     {
         User GetByUsername(string username);
         User GetById(int id);
+        User Update(User user);
 
     }
 }

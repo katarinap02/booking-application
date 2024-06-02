@@ -10,7 +10,7 @@
     <Grid>
         <Border BorderBrush="{StaticResource AccentColorN}" BorderThickness="2" CornerRadius="30"  Background="{DynamicResource BorderBackground}" Width="990" Height="103">
             <Grid Margin="10">
-                <Label Content="{ns:Loc DelayRequest}" FontSize ="23" Style="{StaticResource HeaderStyleN}" HorizontalAlignment="Left" Margin="29,-5,0,0" VerticalAlignment="Top"/>
+                <Label Content="{ns:Loc DelayRequest}" FontStyle="Italic" FontSize ="23" Style="{StaticResource HeaderStyleN}" HorizontalAlignment="Left" Margin="29,-5,0,0" VerticalAlignment="Top"/>
                 <Label Content="{Binding AccommodationName}" FontSize ="23" Foreground="{DynamicResource TextBlockColorN}" HorizontalAlignment="Left" Margin="29,18,0,0" VerticalAlignment="Top"  Height="50"/>
                 <Label Content="{Binding DateRange}" FontSize="23" Foreground="{DynamicResource TextBlockColorN}" HorizontalAlignment="Left" Margin="29,43,0,0" VerticalAlignment="Top" Height="50"/>
 

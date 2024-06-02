@@ -33,7 +33,7 @@
 
         <Border  Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <Label Content="{ns:Loc CloseSure}" Style="{DynamicResource HeaderStyleN}" FontSize="40" Margin="96,80,124,649"/>
+                <TextBlock Text="{ns:Loc CloseSure}" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" FontSize="40" Margin="0,80,0,649" HorizontalAlignment="Center" Width="1060"/>
                 <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc AfterClosing}" TextAlignment="center" TextWrapping="Wrap" FontSize="23" Margin="251,168,279,546"></TextBlock>
                 <Grid Margin="10,168,-10,471">
                     <Grid.ColumnDefinitions>

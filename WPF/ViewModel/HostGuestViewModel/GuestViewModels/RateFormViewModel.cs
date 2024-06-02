@@ -24,6 +24,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 
@@ -199,25 +201,60 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         private void ToggleCommentValidationMessages()
         {
             if (string.IsNullOrEmpty(Comment))
+            {
+
                 Page.commentValidator.Visibility = Visibility.Visible;
+
+
+                Page.txtComment.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Page.txtComment.BorderThickness = new Thickness(2);
+            }
             else
+            {
                 Page.commentValidator.Visibility = Visibility.Hidden;
+
+                Page.txtComment.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.txtComment.BorderThickness = new Thickness(1);
+            }
         }
 
         private void ToggleCorrectnessValidationMessages()
         {
             if (Correctness == 0)
+            { 
+               
                 Page.correctnessValidator.Visibility = Visibility.Visible;
+              
+                Page.cbCorrectness.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Page.cbCorrectness.BorderThickness = new Thickness(2);
+            }
             else
+            {
                 Page.correctnessValidator.Visibility = Visibility.Hidden;
+               
+                Page.cbCorrectness.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.cbCorrectness.BorderThickness = new Thickness(1);
+
+            }
         }
 
         private void ToggleCleanlinessValidationMessages()
         {
             if (Cleanliness == 0)
+            {
+
                 Page.cleanlinessValidator.Visibility = Visibility.Visible;
+               
+                Page.cbCleanliness.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Page.cbCleanliness.BorderThickness = new Thickness(2);
+            }
             else
+            {
                 Page.cleanlinessValidator.Visibility = Visibility.Hidden;
+               
+                Page.cbCleanliness.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.cbCleanliness.BorderThickness = new Thickness(1);
+            }
 
         }
 

@@ -1,56 +1,28 @@
-1|4|Best store is located on the edge of town and is called Univer. It can be reached by bus 5|True|False|5/21/2024 7:50:58 PM|1|0|False
-2|4|bbbb|True|False|5/21/2024 7:51:01 PM|1|0|False
-3|4|cccc|True|False|5/21/2024 7:51:05 PM|1|0|False
-4|4|aaa|True|False|5/21/2024 8:27:50 PM|1|0|False
-5|4|dddd|True|False|5/21/2024 8:29:12 PM|1|0|False
-6|4|komentar :)|True|False|5/21/2024 8:44:45 PM|1|0|False
-7|8|evo radi|False|False|5/22/2024 10:46:48 AM|1|1|False
-8|8|aaaa|False|False|5/22/2024 11:09:55 AM|1|3|False
-9|4|eeee|False|False|5/22/2024 11:57:29 AM|7|0|False
-10|4|aa|True|False|5/22/2024 12:36:07 PM|1|0|False
-11|8|aaa|False|False|5/23/2024 6:05:38 PM|8|0|False
-12|8|aaaaa|False|False|5/23/2024 6:08:01 PM|8|0|False
-13|4|asad|False|False|5/29/2024 9:57:44 PM|12|0|False
-14|4|asadasas|False|False|5/29/2024 9:57:45 PM|12|0|False
 15|2|Novi Sad has a large selection of groceries in all supermarkets, so there is no need to go to the biggest supermarkets at all.|True|True|5/21/2024 12:22:23 PM|1|0|False
 16|2|Don't worry about the supermarket. There are enough big ones in every part of the city.|True|True|5/21/2024 12:22:23 PM|1|0|False
-17|4|1|True|False|6/1/2024 12:23:56 PM|16|0|False
-18|4|1|True|False|6/1/2024 12:23:57 PM|16|0|False
-19|4|1|True|False|6/1/2024 12:23:58 PM|16|0|False
-20|4|1|True|False|6/1/2024 12:23:58 PM|16|0|False
-21|4|1|True|False|6/1/2024 12:23:59 PM|16|0|False
-22|4|1|True|False|6/1/2024 12:23:59 PM|16|0|False
-23|4|1|True|False|6/1/2024 12:24:00 PM|16|0|False
-24|4|1|True|False|6/1/2024 12:24:00 PM|16|0|False
-25|4|1|True|False|6/1/2024 12:24:01 PM|16|0|False
-26|4|1|True|False|6/1/2024 12:24:01 PM|16|0|False
-27|4|1|True|False|6/1/2024 12:24:02 PM|16|0|False
-28|4|1|True|False|6/1/2024 12:24:02 PM|16|0|False
-29|4|1|True|False|6/1/2024 12:24:03 PM|16|0|False
-30|4|1|True|False|6/1/2024 12:24:03 PM|16|0|False
-31|4|1|True|False|6/1/2024 12:24:04 PM|16|0|False
-32|4|1|True|False|6/1/2024 12:24:04 PM|16|0|False
-33|4|1|True|False|6/1/2024 12:24:05 PM|16|0|False
-34|4|1|True|False|6/1/2024 12:24:05 PM|16|0|False
-35|4|1|True|False|6/1/2024 12:24:06 PM|16|0|False
-36|4|1|True|False|6/1/2024 12:24:06 PM|16|0|False
-37|2|1|True|True|6/1/2024 12:24:52 PM|16|0|False
-38|2|1|True|True|6/1/2024 12:24:53 PM|16|0|False
-39|2|1|True|True|6/1/2024 12:24:54 PM|16|0|False
-40|2|1|True|True|6/1/2024 12:24:55 PM|16|0|False
-41|2|1|True|True|6/1/2024 12:24:57 PM|16|0|False
-42|2|1|True|True|6/1/2024 12:24:58 PM|16|0|False
-43|2|1|True|True|6/1/2024 12:25:00 PM|16|0|False
-44|2|1|True|True|6/1/2024 12:25:01 PM|16|0|False
-45|2|1|True|True|6/1/2024 12:25:02 PM|16|0|False
-46|2|1|True|True|6/1/2024 12:25:03 PM|16|0|False
-47|2|1|True|True|6/1/2024 12:25:04 PM|16|0|False
-48|2|1|True|True|6/1/2024 12:25:06 PM|16|0|False
-49|2|1|True|True|6/1/2024 12:25:07 PM|16|0|False
-50|2|1|True|True|6/1/2024 12:25:09 PM|16|0|False
-51|4|aaa|True|False|6/1/2024 1:12:26 PM|1|0|False
-52|2|proba|True|True|6/1/2024 2:27:31 PM|1|0|False
-53|2|proba2|True|True|6/1/2024 2:29:34 PM|1|0|False
-54|2|proba3|True|True|6/1/2024 2:32:44 PM|1|0|False
-55|2|proba5|True|True|6/1/2024 2:37:08 PM|1|0|False
-56|2|proba6|True|True|6/1/2024 2:38:14 PM|1|0|False
+17|4|Maxi is a great choice for tourists. It's centrally located and has a wide selection of groceries.|True|False|6/2/2024 7:32:31 PM|1|0|False
+18|4|I recommend Idea for its variety and convenient location near the city center.|True|False|6/2/2024 7:32:39 PM|1|0|False
+19|4|Univerexport is popular among locals and has everything you might need.|True|False|6/2/2024 7:32:46 PM|1|0|False
+20|4|Lidl is always a good option for quality products at reasonable prices.|True|False|6/2/2024 7:32:55 PM|1|0|False
+21|4|If you're looking for a large store with diverse offerings, try Roda Mega Market.|True|False|6/2/2024 7:33:06 PM|1|0|False
+22|4|Mercator is convenient because it's located in a shopping center, making it easy to find other necessities too.|True|False|6/2/2024 7:33:13 PM|1|0|False
+23|4|Aman is a smaller store but perfect for grabbing essential groceries quickly.|True|False|6/2/2024 7:33:19 PM|1|0|False
+24|4|Tempo is a hypermarket with extensive options and great for bulk shopping.|True|False|6/2/2024 7:33:28 PM|1|0|False
+25|4|DIS Market is known for its competitive prices and a good variety of products.|True|False|6/2/2024 7:33:33 PM|1|0|False
+26|4|Don't miss out on Mega Maxi, which has a fantastic selection and is quite tourist-friendly.|True|False|6/2/2024 7:34:01 PM|1|0|False
+27|4|Gomex stores are scattered around the city and offer great deals on everyday items.|True|False|6/2/2024 7:34:08 PM|1|0|False
+28|4|Aromatik is a cozy store with a nice selection of organic and local products.|True|False|6/2/2024 7:34:13 PM|1|0|False
+29|4|Zlatna Ranica is perfect for fresh produce and local delicacies.|True|False|6/2/2024 7:34:19 PM|1|0|False
+30|4|PerSu is a convenient option for quick shopping trips with everything you need.|True|False|6/2/2024 7:34:25 PM|1|0|False
+31|4|Check out Fresh Market for a modern shopping experience and fresh food.|True|False|6/2/2024 7:34:32 PM|1|0|False
+32|4|KTC Market has a good mix of local and international products.|True|False|6/2/2024 7:34:40 PM|1|0|False
+33|4|Delhaize Serbia stores are reliable and have a wide range of groceries.|True|False|6/2/2024 7:34:46 PM|1|0|False
+34|4|Euro Market is a smaller store, but you'll find all the essentials there.|True|False|6/2/2024 7:34:51 PM|1|0|False
+35|4|ABC Market offers good prices and a convenient location for tourists.|True|False|6/2/2024 7:34:56 PM|1|0|False
+36|2|I've found that Super Vero has a great selection of international foods and friendly staff.|True|True|6/2/2024 7:35:56 PM|1|0|False
+37|2|Trgopromet is a local favorite for fresh produce and everyday essentials.|True|True|6/2/2024 7:36:03 PM|1|0|False
+38|2|Metro Cash & Carry is excellent if you're looking for bulk purchases and a wide variety of items.|True|True|6/2/2024 7:36:09 PM|1|0|False
+39|2|Local Plus is perfect for quick stops, with a good variety of products for tourists.|True|True|6/2/2024 7:36:18 PM|1|0|False
+40|2|Paradiso Market has a nice selection of specialty foods and gourmet items.|True|True|6/2/2024 7:36:24 PM|1|0|False
+41|2|Shop & Go is convenient for tourists, with several locations around the city.|True|True|6/2/2024 7:36:34 PM|1|0|False
+42|2|Biomarket Sunce offers a great selection of organic and health-focused products.|True|True|6/2/2024 7:36:40 PM|1|0|False

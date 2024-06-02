@@ -12,12 +12,12 @@
 
 
     <Grid>
-        <Label Content="{ns:Loc Forums}" FontSize="70" Style="{DynamicResource HeaderStyleN}" Margin="310,153,1328,738"/>
-        <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc AllForumsDesc}" FontSize="40" TextWrapping="Wrap" Margin="192,252,1210,590" TextAlignment="Center">
-            
+        <TextBlock Text="{ns:Loc Forums}" FontSize="70" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="0,153,1057,738"/>
+        <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc AllForumsDesc}" FontSize="40" TextWrapping="Wrap" Margin="176,252,1234,590" TextAlignment="Center">
+
         </TextBlock>
 
-        <ListBox Name="ReservationListBox" Margin="868,153,42,37"  ScrollViewer.VerticalScrollBarVisibility="Auto" Width="1010"
+        <ListBox Name="ForumListBox" Margin="868,153,42,37"  ScrollViewer.VerticalScrollBarVisibility="Auto" Width="1010"
 ItemsSource="{Binding Forums}" Background="{DynamicResource BackgroundColorN}" SelectedItem="{Binding SelectedForum}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -31,9 +31,9 @@ ItemsSource="{Binding Forums}" Background="{DynamicResource BackgroundColorN}" S
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="200,405,1210,384">
+        <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="176,405,1234,384">
             <Grid x:Name="SearchSection">
-                <Label Content="{ns:Loc SearchForums}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="131,10,151,136"/>
+                <TextBlock Text="{ns:Loc SearchForums}" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" FontSize="30" Margin="10,10,10,136"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc City}" HorizontalAlignment="Left" Margin="142,97,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="-8.542,2.786" FontSize="16"/>
                 <!--<TextBox x:Name="txtSearchCity" HorizontalAlignment="Left" Margin="382,132,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>-->
                 <ComboBox Style="{DynamicResource ComboBoxStyleN}" x:Name="txtSearchCity"  HorizontalAlignment="Left" Margin="255,103,0,74" Width="118" Height="20" ItemsSource="{Binding CitiesSearch}"  SelectedItem="{Binding CitySearch, Mode=TwoWay}" RenderTransformOrigin="0.458,-0.9">
@@ -45,7 +45,7 @@ ItemsSource="{Binding Forums}" Background="{DynamicResource BackgroundColorN}" S
 
                     </ComboBox.ItemContainerStyle>
                 </ComboBox>
-                <Button Content="{ns:Loc Search}" HorizontalAlignment="Left" Margin="178,141,0,0" VerticalAlignment="Top" Width="142" Command="{Binding SearchCommand}" RenderTransformOrigin="-2.474,0.401" Style="{DynamicResource ButtonStyleN}" FontSize="20" Height="33"/>
+                <Button Content="{ns:Loc Search}" HorizontalAlignment="Center" Margin="0,144,0,0" VerticalAlignment="Top" Width="142" Command="{Binding SearchCommand}" RenderTransformOrigin="-2.474,0.401" Style="{DynamicResource ButtonStyleN}" FontSize="20" Height="33"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" FontSize="16" Content="{ns:Loc Country}" HorizontalAlignment="Left" Margin="141,66,0,0"  VerticalAlignment="Top" Width="74"/>
                 <!--<TextBox x:Name="txtSearchCountry" HorizontalAlignment="Left" Margin="382,172,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="118"/>-->
                 <ComboBox Style="{DynamicResource ComboBoxStyleN}" x:Name="txtSearchCountry"  HorizontalAlignment="Left" Margin="255,72,0,105" Width="118" Height="20" ItemsSource="{Binding CountriesSearch}"  SelectedItem="{Binding CountrySearch, Mode=TwoWay}">
@@ -61,7 +61,7 @@ ItemsSource="{Binding Forums}" Background="{DynamicResource BackgroundColorN}" S
 
             </Grid>
         </Border>
-        <Label FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="896,108,942,842">Filter</Label>
+        <Label FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="898,101,940,842" RenderTransformOrigin="0.505,0.279">Filter</Label>
         <ComboBox  Style="{DynamicResource ComboBoxStyleN}" x:Name="forumTypeBox" HorizontalAlignment="Left" Margin="980,112,0,0" VerticalAlignment="Top" Width="148" Height="28"  SelectionChanged="ForumBox_SelectionChanged">
             <ComboBoxItem Content="{ns:Loc AllForums}" Tag="0"></ComboBoxItem>
             <ComboBoxItem Content="{ns:Loc YourForums}" Tag="1"></ComboBoxItem>

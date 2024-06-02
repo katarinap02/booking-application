@@ -6,7 +6,7 @@
     <SolidColorBrush x:Key="AccentColorN2" Color="#ffab65dd"/>
     <SolidColorBrush x:Key="TextColorN" Color="#b6a2de"/>
     <SolidColorBrush x:Key="TextBlockColorN" Color="#F4F4ED"/>
-    <SolidColorBrush x:Key="BorderBackground" Color="#382c4f"/>
+    <SolidColorBrush x:Key="BorderBackground" Color="#382c4f" Opacity="0.9"/>
     <SolidColorBrush x:Key="HintColorN" Color="DeepSkyBlue"/>
     <SolidColorBrush x:Key="HintTextColor" Color="MediumAquamarine"/>
     <SolidColorBrush x:Key="BlackoutColorN" Color="White"/>
@@ -21,8 +21,7 @@
         <Setter Property="Foreground" Value="{DynamicResource ButtonTextN}"/>
         <Setter Property="Background" Value="{DynamicResource AccentColorN}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AccentColorN}"/>
-        <Setter Property="FontFamily" Value="Arial"/>
-
+        <Setter Property="FontFamily" Value="Segoe UI"/>
         <Setter Property="FontSize" Value="28"/>
         <Setter Property="Template">
             <Setter.Value>
@@ -44,12 +43,13 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="LightBlue"/>
+                <Setter Property="Foreground" Value="{DynamicResource BackgroundColorN}"/>
 
 
             </Trigger>
             <Trigger Property="IsFocused" Value="True">
             <Setter Property="Background" Value="LightBlue"/>
-
+                <Setter Property="Foreground" Value="{DynamicResource BackgroundColorN}"/>
 
             </Trigger>
 
@@ -62,7 +62,7 @@
         <Setter Property="Foreground" Value="{DynamicResource ButtonTextN}"/>
         <Setter Property="Background" Value="{DynamicResource AccentColorN}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AccentColorN}"/>
-        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
 
         <Setter Property="FontSize" Value="28"/>
         <Setter Property="Template">
@@ -85,11 +85,13 @@
             </Trigger>
             <Trigger Property="IsMouseOver" Value="True">
                 <Setter Property="Background" Value="LightBlue"/>
+                <Setter Property="Foreground" Value="{DynamicResource BackgroundColorN}"/>
 
 
             </Trigger>
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Background" Value="LightBlue"/>
+                <Setter Property="Foreground" Value="{DynamicResource BackgroundColorN}"/>
 
 
             </Trigger>
@@ -103,7 +105,7 @@
         <Setter Property="Foreground" Value="{DynamicResource ButtonTextN}"/>
         <Setter Property="Background" Value="{DynamicResource AccentColorN}"/>
         <Setter Property="BorderBrush" Value="{DynamicResource AccentColorN}"/>
-        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
 
         <Setter Property="FontSize" Value="28"/>
 
@@ -142,18 +144,18 @@
     <Style x:Key="HeaderStyleN" TargetType="Label">
         <Setter Property="Foreground" Value="{DynamicResource TextColorN}"/>
         <Setter Property="FontWeight" Value="Bold"/>
-        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
     </Style>
 
     <Style x:Key="TextBlockStyleN" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{DynamicResource TextBlockColorN}"/>
-        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
 
     </Style>
 
     <Style x:Key="TextBlockHeaderStyleN" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{DynamicResource TextColorN}"/>
-        <Setter Property="FontFamily" Value="Arial"/>
+        <Setter Property="FontFamily" Value="Segoe UI"/>
 
     </Style>
 

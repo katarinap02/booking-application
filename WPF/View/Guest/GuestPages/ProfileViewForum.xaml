@@ -48,7 +48,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <Image  VerticalAlignment="Top" HorizontalAlignment="Left" Height="45" Margin="250,10,0,0" Width="50">
+                <Image ToolTip="{ns:Loc VeryUseful}" VerticalAlignment="Top" HorizontalAlignment="Left" Height="45" Margin="250,10,0,0" Width="50">
                     <Image.Style>
                         <Style TargetType="Image">
                             <Setter Property="Source" Value="{x:Null}"/>
@@ -63,7 +63,7 @@
                         </Style>
                     </Image.Style>
                 </Image>
-                <TextBlock  FontSize="35" FontWeight="Bold" Foreground="{DynamicResource TextColorN}" Margin="302,10,262,730">
+                <TextBlock TextAlignment="Center"  FontSize="35" Foreground="{DynamicResource TextColorN}" Margin="0,10,0,730">
                      <Run Text="{ns:Loc Location}"/><Run Text=": "/><Run Text="{Binding SelectedForum.City}"/>
   <Run Text=", "/><Run Text="{Binding SelectedForum.Country}"/>
                 </TextBlock>
@@ -92,7 +92,7 @@
 
                 </Border>
 
-                <TextBlock x:Name="closedMessage" Text="{ns:Loc ClosedForum}" TextAlignment="Center" TextWrapping="Wrap" FontSize="22" Foreground="{DynamicResource TextColorN}" FontWeight="Bold" Margin="270,291,262,428"></TextBlock>
+                <TextBlock x:Name="closedMessage" Text="{ns:Loc ClosedForum}" TextAlignment="Center" TextWrapping="Wrap" FontSize="22" Foreground="{DynamicResource TextColorN}"  Margin="270,291,262,428"></TextBlock>
 
                 <ListBox Background="{DynamicResource BorderBackground}" ItemsSource="{Binding ForumComments}" ScrollViewer.VerticalScrollBarVisibility="Auto" Width="680" Margin="190,449,190,10">
                     <ListBox.ItemTemplate>

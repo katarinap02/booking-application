@@ -15,6 +15,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
@@ -88,12 +90,12 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ToggleCommentValidationMessage();
             if (string.IsNullOrEmpty(Comment))
             {
-                Page.commentValidator.Visibility = Visibility.Visible;
+                
                 return false;
             }
             else
             {
-                Page.commentValidator.Visibility = Visibility.Hidden;
+                
                 return true;
             }
         }
@@ -102,13 +104,22 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         {
             if (string.IsNullOrEmpty(Comment))
             {
+
                 Page.commentValidator.Visibility = Visibility.Visible;
-              
+                var showHint = (Storyboard)Page.FindResource("ShowTextBlock");
+                showHint.Begin(Page.commentValidator);
+
+                Page.txtComment.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Page.txtComment.BorderThickness = new Thickness(2);
             }
             else
             {
-                Page.commentValidator.Visibility = Visibility.Hidden;
-               
+
+                var hideHint = (Storyboard)Page.FindResource("HideTextBlock");
+                hideHint.Completed += (s, a) => Page.commentValidator.Visibility = Visibility.Hidden;
+                hideHint.Begin(Page.commentValidator);
+                Page.txtComment.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.txtComment.BorderThickness = new Thickness(1);
             }
         }
 

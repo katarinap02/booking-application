@@ -38,6 +38,25 @@
                 </DrawingGroup>
             </DrawingGroup>
             <DrawingImage Drawing="{DynamicResource exclamation_mark_svgrepo_com_xaml}" x:Key="Warning"/>
+            <Storyboard x:Key="ShowTextBlock">
+                <DoubleAnimation
+     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+     From="-30" To="0" Duration="0:0:0.3" />
+                <DoubleAnimation
+     Storyboard.TargetProperty="Opacity"
+     From="0" To="1" Duration="0:0:0.3" />
+            </Storyboard>
+
+
+            <Storyboard x:Key="HideTextBlock">
+                <DoubleAnimation
+     Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+     From="0" To="-30" Duration="0:0:0.3" />
+                <DoubleAnimation
+     Storyboard.TargetProperty="Opacity"
+     From="1" To="0" Duration="0:0:0.3" />
+            </Storyboard>
+
         </ResourceDictionary>
 
     </Page.Resources>
@@ -50,20 +69,23 @@
                 <Grid>
                     <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc PleaseChooseDelay}" TextWrapping="Wrap" FontSize="25" TextAlignment="Center" Margin="36,41,38,507"></TextBlock>
 
-                    <ToggleButton Height="50" Background="{DynamicResource BorderBackground}" BorderBrush="{DynamicResource BorderBackground}" Margin="129,232,131,507" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
+                    <ToggleButton Height="50"  Style="{DynamicResource HintButtonStyleN}" Margin="129,232,131,507" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="{DynamicResource HintIcon}" Height="25" Width="25"/>
                             <Label x:Name="HintLabel" Content="{ns:Loc DatesProblem}" FontSize="16" Foreground="{DynamicResource HintColorN}" FontStyle="Italic"/>
                         </StackPanel>
 
                     </ToggleButton>
-                    <TextBlock x:Name="Hint" FontSize="16" Foreground="{DynamicResource HintTextColor}" Height="150" TextAlignment="Center" TextWrapping="Wrap" Margin="129,287,105,352">
-                        </TextBlock>
+                    <TextBlock x:Name="Hint" Text="{ns:Loc PleaseChooseDelay}" FontSize="16" Foreground="{DynamicResource HintTextColor}" Height="150" TextAlignment="Center" TextWrapping="Wrap" Margin="117,287,117,352">
+                        <TextBlock.RenderTransform>
+                            <TranslateTransform Y="0"/>
+                        </TextBlock.RenderTransform>
+                    </TextBlock>
 
-                    <Label Content="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="136,434,-136,312"/>
-                    <Label Content="{ns:Loc Host}" FontSize="28" Style="{DynamicResource HeaderStyleN}" Margin="218,648,218,98"/>
+                    <TextBlock Text="{ns:Loc Accommodation}" FontSize="28" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="0,434,0,312"/>
+                    <TextBlock Text="{ns:Loc Host}" FontSize="28" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="0,648,0,98"/>
                     <Border Width="500" Height="80" Margin="10,691,12,18" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15">
-                        <Label Content="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{DynamicResource HeaderStyleN}" Margin="8,2,114,-2"/>
+                        <TextBlock Text="{Binding SelectedReservation.HostUsername}" FontSize="25" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="-2,2,-2,-2"/>
                     </Border>
 
                     <controls:AccommodationCardSmaller DataContext="{Binding SelectedAccommodation}" Width="500" Margin="11,168,11,-168"></controls:AccommodationCardSmaller>

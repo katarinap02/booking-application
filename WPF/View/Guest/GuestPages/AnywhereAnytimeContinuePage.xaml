@@ -36,9 +36,9 @@
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="269,85,980,161" Width="671" Background="{DynamicResource BorderBackground}">
             <Grid>
 
-                <Label Content="{ns:Loc AnywhereAnytime}" FontSize="55" Margin="52,42,83,288" Style="{DynamicResource ResourceKey=HeaderStyleN}"/>
+                <TextBlock Text="{ns:Loc AnywhereAnytime}" FontSize="55" Margin="0,42,0,288" Style="{DynamicResource ResourceKey=TextBlockHeaderStyleN}" TextAlignment="Center"/>
 
-                <TextBlock Style="{DynamicResource TextBlockStyleN}" TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Margin="52,184,80,430" Text="{ns:Loc YouCanChoose}"></TextBlock>
+                <TextBlock Style="{DynamicResource TextBlockStyleN}" TextWrapping="Wrap" FontSize="35" TextAlignment="Center" Margin="46,184,46,430" Text="{ns:Loc YouCanChoose}"></TextBlock>
                 <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2" CornerRadius="20" Margin="46,452,46,83"></Border>
                 <TextBlock Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="23" Margin="80,486,80,116" TextAlignment="Center" FontWeight="Bold">
              <Run Text="{ns:Loc DayNumber}"/><Run Text=": "/><Run Text="{Binding DayNumber}"/>
