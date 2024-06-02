@@ -103,7 +103,7 @@
                                 <!-- Delay before hiding -->
                                 <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" BeginTime="0:0:9.5" />
                                 <!-- Hide after fading out -->
-                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" BeginTime="0:0:10">
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" BeginTime="0:0:10.5">
                                     <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}" />
                                 </ObjectAnimationUsingKeyFrames>
                             </Storyboard>

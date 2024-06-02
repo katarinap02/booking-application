@@ -68,7 +68,21 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public HostViewModel HostViewModel { get; set; }
 
-        public bool IsDemoStarted { get; set; }
+       
+        private bool isDemoStarted;
+        public bool IsDemoStarted
+        {
+            get { return isDemoStarted; }
+            set
+            {
+                if (isDemoStarted != value)
+                {
+
+                    isDemoStarted = value;
+                    OnPropertyChanged("IsDemoStarted");
+                }
+            }
+        }
 
 
         private bool CanExecute_NavigateCommand(object obj)
@@ -219,11 +233,16 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public void StartDemoForPage()
         {
-            IsDemoStarted = true;
+            IsDemoStarted = !IsDemoStarted;
             if(NavService.Content is FirstPage)
             {
                 Update();
             }
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }

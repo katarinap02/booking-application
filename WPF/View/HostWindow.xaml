@@ -10,6 +10,41 @@
         WindowStartupLocation="CenterScreen"
         ResizeMode="NoResize">
 
+    <Window.Resources>
+        <Style x:Key="DemoIconAnimation" TargetType="fa:IconImage">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsDemoStarted}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <!-- Opacity animation -->
+                                <DoubleAnimation
+                    Storyboard.TargetProperty="Opacity"
+                    From="0"
+                    To="1"
+                    Duration="0:0:0.3" />
+                                <!-- Left position animation -->
+                                <DoubleAnimation
+                    Storyboard.TargetProperty="(Canvas.Left)"
+                    From="0"
+                    To="-70"
+                    Duration="0:0:0.6"
+                    BeginTime="0:0:0.3"/>
+                                <DoubleAnimation
+                                Storyboard.TargetProperty="Opacity"
+                                From="1"
+                                To="0"
+                                Duration="0:0:0.2" 
+                                BeginTime="0:0:0.9"/>
+                                
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
+
     <DockPanel>
         <Menu DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="1.4">
             <Menu.Background>
@@ -34,13 +69,15 @@
                     </Button>
                 </MenuItem.Header>
             </MenuItem>
-
-            <MenuItem Width="557">
+            <Canvas>
+                <fa:IconImage x:Name="DemoIcon" Style="{StaticResource DemoIconAnimation}"  Opacity="0" Icon="MousePointer" Foreground="#1A1A1A" Height="25" HorizontalAlignment="Left" />
+            </Canvas>
+            <MenuItem Width="546">
                 <MenuItem.Header>
-                    <TextBox x:Name="textboxSearch" Text="{Binding Path= menuViewModel.SearchHost, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" HorizontalAlignment="Right" Margin="255 0 0 0 " Width="294" Height="26"></TextBox>
+                    <TextBox x:Name="textboxSearch" Text="{Binding Path= menuViewModel.SearchHost, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" HorizontalAlignment="Right" Margin="240 0 0 0 " Width="294" Height="26"></TextBox>
                 </MenuItem.Header>
             </MenuItem>
-            <MenuItem Width="125" >
+            <MenuItem Width="118" >
                 <MenuItem.Header >
                     <Button x:Name="buttonSearch" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding SearchCommand}" FontSize="15" DockPanel.Dock="Right" Width="59" Content="Search" Height="26"/>
                 </MenuItem.Header>
@@ -76,6 +113,7 @@
             </MenuItem>
 
         </Menu>
+        
         <Menu x:Name="LeftDock" DockPanel.Dock="Left" BorderBrush="Black" BorderThickness="1.4" Background="#A0CCED" HorizontalAlignment="Left" >
             <Menu.Style>
                 <Style TargetType="Menu">
@@ -223,6 +261,7 @@
                 <Image Style="{StaticResource CustomLogoStyleHost}"  Width="200" Height="190" Margin="0 0 70 20"/>
             </StackPanel>
         </Menu>
+        
         <Grid>
             <Frame DockPanel.Dock="Right"
 x:Name="HostFrame"
