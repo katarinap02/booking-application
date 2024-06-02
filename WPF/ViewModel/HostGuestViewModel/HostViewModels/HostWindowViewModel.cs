@@ -20,6 +20,7 @@ using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Threading;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -185,7 +186,24 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             Update();
 
         }
-       
+
+        private void OnDemoStartedChanged(int seconds)
+        {
+            if (IsDemoStarted)
+            {
+                DispatcherTimer timer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromSeconds(seconds)
+                };
+                timer.Tick += (s, e) =>
+                {
+                    timer.Stop();
+                    OpenMenuCommand.Execute(null);
+                };
+                timer.Start();
+            }
+        }
+
         public void SearchClick(object obj)
         {
             hostService.SearchHost(host, menuViewModel.SearchHost);
@@ -237,6 +255,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             if(NavService.Content is FirstPage)
             {
                 Update();
+                if(IsDemoStarted == true)
+                {
+                    OnDemoStartedChanged(1);
+                    OnDemoStartedChanged(4);
+                }
+                IsDemoStarted = false;
+
             }
         }
 

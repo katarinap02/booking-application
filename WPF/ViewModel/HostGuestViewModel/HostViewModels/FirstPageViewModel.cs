@@ -22,6 +22,7 @@ using GalaSoft.MvvmLight.Command;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using System.Windows.Threading;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -163,9 +164,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                     }
 
                 }
-            CheckIfDemoStarted();
-                
-          }
+            
+
+        }
 
         private void doPopular(AccommodationViewModel acc)
         {
@@ -186,13 +187,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             menuViewModel.IsRenovationOpened = false;
         }
 
-        public void CheckIfDemoStarted()
-        {
-            if(IsDemo)
-            {
-                
-            }
-        }
+        
+
+
+
 
 
 

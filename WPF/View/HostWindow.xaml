@@ -28,22 +28,50 @@
                     Storyboard.TargetProperty="(Canvas.Left)"
                     From="0"
                     To="-70"
-                    Duration="0:0:0.6"
+                    Duration="0:0:0.7"
                     BeginTime="0:0:0.3"/>
                                 <DoubleAnimation
                                 Storyboard.TargetProperty="Opacity"
                                 From="1"
                                 To="0"
-                                Duration="0:0:0.2" 
-                                BeginTime="0:0:0.9"/>
-                                
+                                Duration="0:0:0.3" 
+                                BeginTime="0:0:1"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </DataTrigger.EnterActions>
                 </DataTrigger>
             </Style.Triggers>
         </Style>
+        <Style x:Key="AnimatedBorderStyle" TargetType="Border">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Setter Property="Opacity" Value="0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsDemoStarted}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <!-- Delay before showing -->
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:1.4" Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <!-- Fade in -->
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" BeginTime="0:0:1.4" />
+                                <!-- Delay before hiding -->
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" BeginTime="0:0:3" />
+                                <!-- Hide after fading out -->
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" BeginTime="0:0:3.5">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
     </Window.Resources>
+    
+    
 
     <DockPanel>
         <Menu DockPanel.Dock="Top" BorderBrush="Black" BorderThickness="1.4">
@@ -59,6 +87,7 @@
                     <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding OpenMenuCommand}">
                         <Image Source="../Resources/Images/menu_item1.png" Width="25" Height="23"/>
                     </Button>
+                    
                 </MenuItem.Header>
 
             </MenuItem>
@@ -69,9 +98,11 @@
                     </Button>
                 </MenuItem.Header>
             </MenuItem>
+            
             <Canvas>
                 <fa:IconImage x:Name="DemoIcon" Style="{StaticResource DemoIconAnimation}"  Opacity="0" Icon="MousePointer" Foreground="#1A1A1A" Height="25" HorizontalAlignment="Left" />
             </Canvas>
+            
             <MenuItem Width="546">
                 <MenuItem.Header>
                     <TextBox x:Name="textboxSearch" Text="{Binding Path= menuViewModel.SearchHost, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True}" HorizontalAlignment="Right" Margin="240 0 0 0 " Width="294" Height="26"></TextBox>
@@ -145,7 +176,9 @@
                     </Style.Triggers>
                 </Style>
             </Menu.Style>
+            
             <StackPanel Height="698" >
+                
                 <MenuItem Margin="10 15 10 0">
                     <MenuItem.Header>
                         <Button BorderThickness="0" Style="{StaticResource ButtonStyleWindowHost}" Content="Home" Command="{Binding NavigateToHomePageCommand}" FontSize="15" Width="180" Height="25">
@@ -258,7 +291,11 @@
                         </Button>
                     </MenuItem.Header>
                 </MenuItem>
+                
                 <Image Style="{StaticResource CustomLogoStyleHost}"  Width="200" Height="190" Margin="0 0 70 20"/>
+                <Border CornerRadius="15" Style="{StaticResource AnimatedBorderStyle}" BorderThickness="1" Background="#6665DD" Margin="0 0 20 0" Width="103" Height="45">
+                    <TextBlock Grid.Row="1" Background="Transparent" TextWrapping="Wrap" Foreground="White" Text="menu for navigation" TextAlignment="Center" Grid.RowSpan="3" Margin="5,5,4,1"/>
+                </Border>
             </StackPanel>
         </Menu>
         
@@ -267,8 +304,10 @@
 x:Name="HostFrame"
 NavigationUIVisibility="Hidden"
 Source="../View/HostPages/FirstPage.xaml" Height="705" VerticalAlignment="Center" >
+                
 
             </Frame>
+            
             <Rectangle  DockPanel.Dock="Right" Fill="#80000000">
                 <Rectangle.Style>
                     <Style TargetType="Rectangle">
@@ -281,6 +320,7 @@ Source="../View/HostPages/FirstPage.xaml" Height="705" VerticalAlignment="Center
                     </Style>
                 </Rectangle.Style>
             </Rectangle>
+            
         </Grid>
 
     </DockPanel>
