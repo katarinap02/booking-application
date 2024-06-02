@@ -26,6 +26,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public string Username => User.Username;
         public string UserType => User.Type.ToString();
 
+        
         public ForumComment ForumComment { get; set; }
 
         public ForumCommentService ForumCommentService { get; set; }
