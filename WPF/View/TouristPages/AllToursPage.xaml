@@ -238,7 +238,7 @@
                   AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="15"
                   FontWeight="DemiBold">
             <DataGrid.Columns>                
-                <DataGridTextColumn Header="Guide" Binding="{Binding IsGuideSuper}" Width="*"/>
+                <DataGridTextColumn Header="Guide" Binding="{Binding IsGuideSuper}" Width="auto"/>
                 <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
                 <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="*"/>
                 <DataGridTextColumn Header="City" Binding="{Binding City}" Width="*"/>

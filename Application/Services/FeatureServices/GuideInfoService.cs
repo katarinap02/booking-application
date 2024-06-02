@@ -40,6 +40,7 @@ namespace BookingApp.Application.Services.FeatureServices
         public void UpdateSuperGuide(int id)
         {
             GuideInformation guideInformation = informationRepository.GetByGuideId(id);
+            if(guideInformation.Status == GuideStatus.Super && DateTime.Now < guideInformation.EndSuperGuide) { return; }
 
             bool isSuperGuideExpired = guideInformation.Status == GuideStatus.Super && DateTime.Now >= guideInformation.EndSuperGuide;
 

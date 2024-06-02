@@ -98,7 +98,7 @@ namespace BookingApp.Domain.Model.Features
 
             HasQuit = bool.Parse(values[10]);
             string dateFormat = "M/d/yyyy h:mm:ss tt";
-            if (DateTime.TryParseExact(values[10], dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
+            if (DateTime.TryParseExact(values[11], dateFormat, CultureInfo.InvariantCulture, DateTimeStyles.None, out DateTime parsedDate))
             {
                 EndSuperGuide = parsedDate;
             }
