@@ -237,11 +237,12 @@
                   SelectionMode="Single"
                   AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="15"
                   FontWeight="DemiBold">
-            <DataGrid.Columns>
-                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="210"/>
-                <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="190"/>
-                <DataGridTextColumn Header="City" Binding="{Binding City}" Width="200"/>
-                <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="110"/>
+            <DataGrid.Columns>                
+                <DataGridTextColumn Header="Guide" Binding="{Binding IsGuideSuper}" Width="*"/>
+                <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="*"/>
+                <DataGridTextColumn Header="City" Binding="{Binding City}" Width="*"/>
+                <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="*"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

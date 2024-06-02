@@ -68,6 +68,29 @@ namespace BookingApp.Application.Services.FeatureServices
             return _tourRepository.SearchTours(searchCriteria);
         }
 
+        public List<TourViewModel> sortBySuperGuide(List<Tour> tours)
+        {
+            List<TourViewModel> isSuperGuide = new List<TourViewModel>();
+            List<TourViewModel> notSuperGuide = new List<TourViewModel>();
+            foreach (Tour tour in tours)
+            {
+                if (_guideInfoService.GetByGuideId(tour.GuideId).Status == GuideStatus.Super)
+                {
+                    TourViewModel tourViewModel = new TourViewModel(tour);
+                    tourViewModel.IsGuideSuper = "Super";
+                    isSuperGuide.Add(tourViewModel);
+                }
+                else
+                {
+                    TourViewModel tourViewModel = new TourViewModel(tour);
+                    tourViewModel.IsGuideSuper = "Regular";
+                    notSuperGuide.Add(tourViewModel);
+                }
+            }
+            isSuperGuide.AddRange(notSuperGuide);
+            return isSuperGuide;
+        }
+
         public int ToursCount()
         {
             return _tourRepository.ToursCount();
@@ -165,24 +188,7 @@ namespace BookingApp.Application.Services.FeatureServices
             }
         }
 
-        public List<Tour> sortBySuperGuide(List<Tour> tours)
-        {
-            List < Tour > isSuperGuide = new List<Tour> ();
-            List < Tour > notSuperGuide = new List<Tour> ();
-            foreach (Tour tour in tours)
-            {
-                if (_guideInfoService.GetByGuideId(tour.GuideId).Status == GuideStatus.Super)
-                {
-                    isSuperGuide.Add(tour);
-                }
-                else
-                {
-                    notSuperGuide.Add(tour);
-                }
-            }
-            isSuperGuide.AddRange(notSuperGuide);
-            return isSuperGuide;
-        }
+        
 
         public void cancelTour(int tour_id, int guide_id)
         {
