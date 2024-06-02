@@ -23,10 +23,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public ForumViewModel SelectedForum { get; set; }
 
-        public string Username => User.Username;
-        public string UserType => User.Type.ToString();
+        public string Username {  get; set; }
+        public string UserType { get; set; }
 
-        
+        public UserService UserService { get; set; }
         public ForumComment ForumComment { get; set; }
 
         public ForumCommentService ForumCommentService { get; set; }
@@ -74,6 +74,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ForumCommentService = new ForumCommentService(Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             ForumComments = new ObservableCollection<ForumCommentViewModel>();
+            UserService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
+            User userForum = UserService.GetById(SelectedForum.UserId);
+            Username = userForum.Username;
+            UserType = userForum.Type.ToString();
+
             Update();
             
         }
