@@ -11,6 +11,7 @@ using BookingApp.WPF.ViewModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using BookingApp.Application.Services.FeatureServices;
 
 namespace BookingApp.View
 {
@@ -45,6 +46,8 @@ namespace BookingApp.View
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+        public GuideInfoService GuideInformationS;
+
         public SignInForm()
         {
             InitializeComponent();
@@ -52,7 +55,7 @@ namespace BookingApp.View
             _repository = new UserRepository();
             _guidedTourRepository = new GuidedTourRepository();
             _tourRepository = new TourRepository();
-          
+            GuideInformationS = new GuideInfoService();        
 
         }
 
@@ -97,36 +100,37 @@ namespace BookingApp.View
                         txtPassword.Password = "";
 
                     }
-                    else if (user.Type.ToString().Equals("guide"))
+                    else if (user.Type.ToString().Equals("guide")) 
                     {
-                        if(_guidedTourRepository.HasTourCurrently(user.Id) && user.Username != "test") {
-                            Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
-                            GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourViewModel(tour), user);
-                            guideWithTourWindow.ShowDialog();
-                        }
-                        else
+                        if (GuideInformationS.CanLogIn(user.Id))
                         {
-                            if (user.Username == "test") // prostor za testiranje prozora
-                            {
-                                RandomTest randomTest = new RandomTest(user.Id);
-                                randomTest.Show();
-                                /*GridTest gridtest = new GridTest();
-                                gridtest.Show();
-                                AddingTourWindow addingTourWindow = new AddingTourWindow();
-                                addingTourWindow.Show();
-                                RequestTest requestTest = new RequestTest();
-                                requestTest.Show();*/                                
+                            if(_guidedTourRepository.HasTourCurrently(user.Id) && user.Username != "test") {
+                                Tour tour = _tourRepository.GetTourById(_guidedTourRepository.FindTourIdByGuide(user.Id));
+                                GuideWithTourWindow guideWithTourWindow = new GuideWithTourWindow(new TourViewModel(tour), user);
+                                guideWithTourWindow.ShowDialog();
                             }
                             else
                             {
-                                /*GuideMainWindow guideMainWindow = new GuideMainWindow(user);
-                                guideMainWindow.ShowDialog();*/
-                                RequestTest requestTest = new RequestTest(user.Id);
-                                requestTest.ShowDialog();
-                            }
+                                GuideInformationS.UpdateSuperGuide(user.Id);
+                                if (user.Username == "test") 
+                                {
+                                    RandomTest randomTest = new RandomTest(user.Id);
+                                    randomTest.Show();
+                                }
+                                else
+                                {
+                                    /*GuideMainWindow guideMainWindow = new GuideMainWindow(user);
+                                    guideMainWindow.ShowDialog();*/
+                                    RequestTest requestTest = new RequestTest(user.Id);
+                                    requestTest.ShowDialog();
+                                }
                             
                         }
-
+                        }
+                        else
+                        {
+                            MessageBox.Show("This user has been deleted", "Error while logging in", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                        }
                     }
 
                     else if (user.Type.ToString().Equals("guest"))

@@ -34,21 +34,23 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
                 OnPropertyChanged(nameof(TypedPassword));
             }
         }
-
+        private int GuideID;
         private readonly UserService _userService;
+        private readonly GuideInfoService _infoService;
         public MyICommand Quit {  get; set; }
         public GuideQuitWindowViewModel(int guide_id) { 
+            GuideID = guide_id;
             _userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
-
+            _infoService = new GuideInfoService();
             Password = _userService.GetById(guide_id).Password;
             Quit = new MyICommand(ExecuteQuitting);
         }
 
         public void ExecuteQuitting() {
-            //app shutdown
             if(_typedPassword == _password)
             {
-                MessageBox.Show("Thank you for using this application. The app will shut down immediately after closing this window.", "Quitting successfull");
+                _infoService.Quit(GuideID);
+                MessageBox.Show("Thank you for using this application. The app will shut down immediately after closing this window.", "Quitting successfull", MessageBoxButton.OK, MessageBoxImage.Information);
                 Environment.Exit(0);
             }
             else

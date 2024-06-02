@@ -271,6 +271,7 @@
   <ItemGroup>
     <Folder Include="Resources\PDFs\GuestPDFs\" />
     <Folder Include="WPF\View\Guest\GuestPDFs\" />
+    <Folder Include="Resources\TestData\" />
   </ItemGroup>
 
 </Project>

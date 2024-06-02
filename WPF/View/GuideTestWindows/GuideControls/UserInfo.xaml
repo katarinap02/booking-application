@@ -7,6 +7,7 @@
              xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls" 
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"></ColumnDefinition>
@@ -15,18 +16,18 @@
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="120"></RowDefinition>
+            <RowDefinition Height="135"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        
-        <Border Grid.ColumnSpan="3" Grid.Row="0" BorderBrush="AliceBlue" BorderThickness="1" CornerRadius="20" Margin="3">
-            <Border.Background>
+
+        <Border Grid.ColumnSpan="3" Grid.Row="0" Background="#8824105F" BorderThickness="2" CornerRadius="20" Margin="3">
+            <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#60E285DE" Offset="0"></GradientStop>
-                    <GradientStop Color="#60E285DE" Offset="0.5"></GradientStop>
-                    <GradientStop Color="#60784DFD" Offset="1"></GradientStop>
+                    <GradientStop Color="#E285DE" Offset="0"></GradientStop>
+                    <GradientStop Color="#E285DE" Offset="0.5"></GradientStop>
+                    <GradientStop Color="#784DFD" Offset="1"></GradientStop>
                 </LinearGradientBrush>
-            </Border.Background>
+            </Border.BorderBrush>
             <Grid Margin="10">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"></RowDefinition>
@@ -100,14 +101,14 @@
         </Border>
         
         <!-- Average grade -->
-        <Border Grid.Column="0" Grid.Row="1" BorderBrush="AliceBlue" BorderThickness="1" CornerRadius="20" Margin="3">
-            <Border.Background>
+        <Border Grid.Column="0" Grid.Row="1" BorderThickness="2" Background="#8824105F" CornerRadius="20" Margin="3">
+            <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#60784DFD" Offset="0"></GradientStop>
-                    <GradientStop Color="#60784DFD" Offset="0.5"></GradientStop>
-                    <GradientStop Color="#903d0148" Offset="1"></GradientStop>
+                    <GradientStop Color="#784DFD" Offset="0"></GradientStop>
+                    <GradientStop Color="#784DFD" Offset="0.5"></GradientStop>
+                    <GradientStop Color="#4ADAEC" Offset="1"></GradientStop>
                 </LinearGradientBrush>
-            </Border.Background>
+            </Border.BorderBrush>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -116,19 +117,19 @@
                 <fa:IconImage Grid.Column="0" Icon="RankingStar" Foreground="LightGray" Height="60" HorizontalAlignment="Left" Margin="15, 0, 10, 0"/>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <TextBlock Grid.Column="1" Style="{StaticResource GuideTextBlockStyle}" FontSize="16" Text="Average grade:"></TextBlock>
-                    <TextBlock Grid.Column="1" Style="{StaticResource GuideTextBlockStyle}" FontSize="35" Text="3,9"></TextBlock>
+                    <TextBlock Grid.Column="1" Style="{StaticResource GuideTextBlockStyle}" FontSize="35" Text="{Binding Average}"></TextBlock>
                 </StackPanel>
             </Grid>            
         </Border>
         <!-- Total tours -->
-        <Border Grid.Column="1" Grid.Row="1" BorderBrush="AliceBlue" BorderThickness="1" CornerRadius="20" Margin="3">
-            <Border.Background>
+        <Border Grid.Column="1" Grid.Row="1" Background="#8824105F" BorderThickness="2" CornerRadius="20" Margin="3">
+            <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#60784DFD" Offset="0"></GradientStop>
-                    <GradientStop Color="#60784DFD" Offset="0.5"></GradientStop>
-                    <GradientStop Color="#903d0148" Offset="1"></GradientStop>
+                    <GradientStop Color="#784DFD" Offset="0"></GradientStop>
+                    <GradientStop Color="#784DFD" Offset="0.5"></GradientStop>
+                    <GradientStop Color="#4ADAEC" Offset="1"></GradientStop>
                 </LinearGradientBrush>
-            </Border.Background>
+            </Border.BorderBrush>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
@@ -137,37 +138,37 @@
                 <fa:IconImage Grid.Column="0" Icon="SuitcaseRolling" Foreground="LightGray" Height="60" HorizontalAlignment="Left" Margin="15, 0, 10, 0"/>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
                     <TextBlock Grid.Column="1" Style="{StaticResource GuideTextBlockStyle}" FontSize="16" Text="Total tours:"></TextBlock>
-                    <TextBlock Grid.Column="1" Style="{StaticResource GuideTextBlockStyle}" FontSize="35" Text="15"></TextBlock>
+                    <TextBlock Grid.Column="1" Style="{StaticResource GuideTextBlockStyle}" FontSize="35" Text="{Binding TourNumber}"></TextBlock>
                 </StackPanel>
             </Grid>
         </Border>
         <!-- Most used language -->
-        <Border Grid.Column="2" Grid.Row="1" BorderBrush="AliceBlue" BorderThickness="1" CornerRadius="20" Margin="3">
-            <Border.Background>
+        <Border Grid.Column="2" Grid.Row="1" BorderThickness="2" Background="#8824105F" CornerRadius="20" Margin="3">
+            <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                    <GradientStop Color="#60784DFD" Offset="0"></GradientStop>
-                    <GradientStop Color="#60784DFD" Offset="0.5"></GradientStop>
-                    <GradientStop Color="#95490000" Offset="1"></GradientStop>
+                    <GradientStop Color="#784DFD" Offset="0"></GradientStop>
+                    <GradientStop Color="#784DFD" Offset="0.5"></GradientStop>
+                    <GradientStop Color="#85FF0000" Offset="1"></GradientStop>
                 </LinearGradientBrush>
-            </Border.Background>
+            </Border.BorderBrush>
             <Grid>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
                 </Grid.ColumnDefinitions>
-                <fa:IconImage Grid.Column="0" Icon="Comments" Foreground="LightGray" Height="60" HorizontalAlignment="Left" Margin="15, 0, 10, 0"/>
+                <fa:IconImage Grid.Column="0" Icon="MapMarkedAlt" Foreground="LightGray" Height="60" HorizontalAlignment="Left" Margin="15, 0, 10, 0"/>
                 <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                    <TextBlock Grid.Column="1" Style="{StaticResource GuideTextBlockStyle}" FontSize="16" Text="Most used language:"></TextBlock>
-                    <TextBlock Grid.Column="1" Style="{StaticResource GuideTextBlockStyle}" FontSize="33" Text="English"></TextBlock>
+                    <TextBlock Grid.Column="1" Style="{StaticResource GuideTextBlockStyle}" FontSize="16" Text="Most popular tour:"></TextBlock>
+                    <TextBlock Grid.Column="1" Style="{StaticResource GuideTextBlockStyle}" FontSize="27" Text="{Binding MostUsedLanguage}"></TextBlock>
                 </StackPanel>
             </Grid>
         </Border>
         
         <!-- Super guide -->
-        <Border Grid.ColumnSpan="2" Grid.Row="2" BorderBrush="AliceBlue" BorderThickness="1" CornerRadius="20" Margin="3">
-            <Border.Background>
-                <SolidColorBrush Color="#903d0148"></SolidColorBrush>
-            </Border.Background>
+        <Border Grid.ColumnSpan="2" Grid.Row="2"  BorderThickness="2" Background="#8824105F" CornerRadius="20" Margin="3">
+            <Border.BorderBrush>
+                <SolidColorBrush Color="#4ADAEC"></SolidColorBrush>
+            </Border.BorderBrush>
             <StackPanel Orientation="Vertical" HorizontalAlignment="Left" Margin="15">
                 <StackPanel Orientation="Horizontal" Margin="0,0,0,5">
                     <fa:IconImage Icon="Crown" Foreground="PaleGoldenrod"></fa:IconImage>
@@ -175,11 +176,11 @@
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="8">
                     <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="Super guide status:"></TextBlock>
-                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Margin="10,0,0,0" Text="Regular guide" FontSize="15" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Margin="10,0,0,0" Text="{Binding GuideStatus}" FontSize="15" VerticalAlignment="Bottom"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="8">
                     <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="Biggest number of tours for a single language:"></TextBlock>
-                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Margin="10,0,0,0" Text="12" FontSize="15" VerticalAlignment="Bottom"></TextBlock>
+                    <TextBlock Style="{StaticResource GuideTextBlockStyle}" Margin="10,0,0,0" Text="{Binding LanguageTour}" FontSize="15" VerticalAlignment="Bottom"></TextBlock>
                 </StackPanel>
                 <StackPanel Orientation="Horizontal" Margin="8">
                     <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="Past super guide badges: "></TextBlock>
@@ -189,7 +190,7 @@
         </Border>
         
         <!-- Quitting -->
-        <Border Grid.Column="2" Grid.Row="2" CornerRadius="20" Margin="3" BorderThickness="1" BorderBrush="AliceBlue" Background="#95490000">
+        <Border Grid.Column="2" Grid.Row="2" CornerRadius="20" Margin="3" BorderThickness="2" Background="#8824105F" BorderBrush="#85FF0000">
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"></RowDefinition>

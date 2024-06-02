@@ -38,10 +38,14 @@
                     </Grid.RowDefinitions>
                     <fa:IconImage Grid.Column="0" Icon="MapLocation" Foreground="LightGray" Height="60" HorizontalAlignment="Left" Margin="10"/>
                     <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource GuideTextBlockStyle}" FontSize="17" TextAlignment="Center" Text="Most requested location:" VerticalAlignment="Center"></TextBlock>
-                    <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Vertical">
+                    <Grid Grid.Row="1" Grid.ColumnSpan="3">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
                         <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding Location}" FontSize="25" Margin="10" TextAlignment="Center"></TextBlock>
-                        <Button Style="{StaticResource TransparentBorderButton}" Content="Make tour" Margin="20 10" VerticalAlignment="Bottom"></Button>
-                    </StackPanel>
+                        <Button Grid.Row="1" Style="{StaticResource TransparentBorderButton}" Content="Make tour" Margin="20 5" VerticalAlignment="Bottom"></Button>
+                    </Grid>
                 </Grid>
             </Border>
             
@@ -58,10 +62,14 @@
                     </Grid.RowDefinitions>
                     <fa:IconImage Grid.Column="0" Icon="Comments" Foreground="LightGray" Height="60" HorizontalAlignment="Left" Margin="10"/>
                     <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource GuideTextBlockStyle}" FontSize="17" TextAlignment="Center" Text="Most requested language:" VerticalAlignment="Center"></TextBlock>
-                    <StackPanel Grid.Row="1" Grid.ColumnSpan="3" Orientation="Vertical">
+                    <Grid Grid.Row="1" Grid.ColumnSpan="3" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"></RowDefinition>
+                            <RowDefinition Height="auto"></RowDefinition>
+                        </Grid.RowDefinitions>
                         <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding Language}" FontSize="25" Margin="10" TextAlignment="Center"></TextBlock>
-                        <Button Style="{StaticResource TransparentBorderButton}" Content="Make tour" Margin="20 10" VerticalAlignment="Bottom"></Button>
-                    </StackPanel>
+                        <Button Grid.Row="1" Style="{StaticResource TransparentBorderButton}" Content="Make tour" Margin="20 5" VerticalAlignment="Bottom"></Button>
+                    </Grid>
                 </Grid>
             </Border>
             
@@ -84,7 +92,7 @@
                         </ComboBox>
                     </UniformGrid>
                     <!-- prostor za grafik -->
-                    <lvc:CartesianChart Grid.Row="2" Series="{Binding TourStatistics}" Margin="15" LegendLocation="Bottom" Foreground="Gray"/>                     
+                    <lvc:CartesianChart Grid.Row="2" Series="{Binding TourStatistics}" Margin="15" LegendLocation="Bottom" Foreground="DodgerBlue"/>                     
                 </Grid>
             </Border>
             

@@ -21,6 +21,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
     public class TourViewModel : INotifyPropertyChanged
     {
+        #region Polja
         public TourService _tourService { get; set; }
         public GuideRateService _guideRateService { get; set; }
         public UserService _userService { get; set; }
@@ -420,6 +421,24 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
+        private string _isGuideSuper;
+        public string IsGuideSuper
+        {
+            get
+            {
+                return _isGuideSuper;
+            }
+            set
+            {
+                if (_isGuideSuper != value)
+                {
+                    _isGuideSuper = value;
+                    OnPropertyChanged(nameof(IsGuideSuper));
+                }
+            }
+        }
+        #endregion
+
         public event PropertyChangedEventHandler? PropertyChanged;
 
         protected virtual void OnPropertyChanged(string propertyName)
@@ -541,8 +560,10 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
             Tour tour = new Tour("", CitySearch, CountrySearch, "", LanguageSearch, int.Parse(PeopleSearch),
                                 new List<string>(), new DateTime(), float.Parse(DurationSearch), new List<string>());
-            List<TourViewModel>? foundTours = ToTourViewModel(_tourService.SearchTours(tour));
-            return foundTours;
+
+            List<Tour>? foundTours = _tourService.SearchTours(tour);
+            List<TourViewModel>? list = _tourService.sortBySuperGuide(foundTours);
+            return list;
         }
 
         public void SearchButton()
@@ -596,7 +617,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
             else
             {
-                List<TourViewModel> allTours = ToTourViewModel(_tourService.GetAllTours());
+                List<Tour> tours = _tourService.GetAllTours();
+                List<TourViewModel> allTours = _tourService.sortBySuperGuide(tours);
                 foreach (TourViewModel tour in allTours)
                     Tours.Add(tour);
             }
