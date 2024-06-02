@@ -66,13 +66,18 @@ namespace BookingApp.Application.Services.FeatureServices
             {
                 if(complexTourRequest.Status == ComplexTourRequestStatus.Pending)
                 {
-                    requests.AddRange(GetAllPendingRequests(complexTourRequest.TourRequests, id)); // provera za null!
+                    List < TourRequest > list = GetAllPendingRequests(complexTourRequest.TourRequests, id);
+                    if(list != null)
+                    {
+                        requests.AddRange(GetAllPendingRequests(complexTourRequest.TourRequests, id));
+                    }                    
                 }
             }
-            return null;
+            return requests;
         }
 
         public List<TourRequest> GetAllPendingRequests(List<int> ints, int guideID) // clean codovati
+                                                                                    // Za jednu kompleksnu turu radi ovo
         {
             List < TourRequest > requests = new List <TourRequest >();
             foreach (int id in ints)
@@ -81,6 +86,7 @@ namespace BookingApp.Application.Services.FeatureServices
                 TourRequest tourRequest = _tourRequestService.GetById(id);
                 requests.Add(tourRequest);
             }
+
             List<TourRequest> requests1 = requests.FindAll(x => x.GuideId == guideID);
             if (requests1.Count > 0)
             {
