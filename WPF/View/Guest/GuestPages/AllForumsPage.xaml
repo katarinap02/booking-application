@@ -12,8 +12,8 @@
 
 
     <Grid>
-        <Label Content="{ns:Loc Forums}" FontSize="70" Style="{DynamicResource HeaderStyleN}" Margin="331,153,1349,738"/>
-        <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc AllForumsDesc}" FontSize="40" TextWrapping="Wrap" Margin="192,252,1210,590" TextAlignment="Center">
+        <TextBlock Text="{ns:Loc Forums}" FontSize="70" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="0,153,1057,738"/>
+        <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc AllForumsDesc}" FontSize="40" TextWrapping="Wrap" Margin="176,252,1234,590" TextAlignment="Center">
 
         </TextBlock>
 
@@ -31,7 +31,7 @@ ItemsSource="{Binding Forums}" Background="{DynamicResource BackgroundColorN}" S
             </ListBox.ItemTemplate>
         </ListBox>
 
-        <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="200,405,1210,384">
+        <Border BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="176,405,1234,384">
             <Grid x:Name="SearchSection">
                 <TextBlock Text="{ns:Loc SearchForums}" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" FontSize="30" Margin="10,10,10,136"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc City}" HorizontalAlignment="Left" Margin="142,97,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="-8.542,2.786" FontSize="16"/>

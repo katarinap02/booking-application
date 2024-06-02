@@ -1,4 +1,5 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Application.Services.RateServices;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.Model.Reservations;
@@ -36,6 +37,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
 
         public GuestService GuestService { get; set; }
+
+        public GuestRateService GuestRateService { get; set; }
         public AccommodationService AccommodationService { get; set; }
         public AccommodationReservationViewModel SelectedReservation { get; set; }
         public Frame Frame { get; set; }
@@ -43,6 +46,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         public int TotalReservations { get; set; }
         public int TotalYearReservations { get; set; }
 
+        public string AverageGrade { get; set; }
         // KOMANDE
         public GuestICommand<object> DelayCommand { get; set; }
         public GuestICommand<object> CancelCommand { get; set; }
@@ -58,6 +62,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
            // Status = "guest";
             GuestService = new GuestService(Injector.Injector.CreateInstance<IGuestRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
+            GuestRateService = new GuestRateService();
             Guest = GuestService.GetById(User.Id);
             GuestService.CalculateGuestStats(Guest);
             TotalReservations = GetTotalReservations(AccommodationReservationService);
@@ -67,6 +72,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             CreateReportCommand = new GuestICommand(OnCreateReport);
             CancelCommand.RaiseCanExecuteChanged();
             DelayCommand.RaiseCanExecuteChanged();
+            AverageGrade = GuestRateService.CalculateAverageGrade(User.Id).ToString(); 
           
 
         }

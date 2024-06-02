@@ -8,7 +8,9 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -77,15 +79,69 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         private bool CanContinue()
         {
-           
-            
-            if (ValidateGuestNumber(GuestNumber) && ValidateDayNumber(DayNumber))
+            DateTime start;
+            DateTime end;
+            start = SetUpStartValid();
+            end = SetUpEndValid();
+            ToggleDateValidationMessage();
+
+            if (ValidateGuestNumber(GuestNumber) && ValidateDayNumber(DayNumber) && ValidateDateInputs(start, end))
                 return true;
             else
                 return false;
         }
+        private bool ValidateDateInputs(DateTime start, DateTime end)
+        {
+            if (start >= end && !string.IsNullOrEmpty(Page.txtEndDate.Text) && !string.IsNullOrEmpty(Page.txtStartDate.Text))   
+                return false;
 
-       
+            else
+                return true;
+
+
+
+        }
+        private void ToggleDateValidationMessage()
+        {
+            DateTime start;
+            DateTime end;
+            start = SetUpStart();
+            end = SetUpEnd();
+            if (!ValidateDateInputs(start, end))
+            {
+                Page.dateValidator.Visibility = Visibility.Visible;
+                Page.txtStartDate.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Page.txtStartDate.BorderThickness = new Thickness(2);
+                Page.txtEndDate.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Page.txtEndDate.BorderThickness = new Thickness(2);
+            }
+            else
+            {
+                Page.dateValidator.Visibility = Visibility.Hidden;
+
+                Page.txtStartDate.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.txtStartDate.BorderThickness = new Thickness(1);
+                Page.txtEndDate.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.txtEndDate.BorderThickness = new Thickness(1);
+            }
+
+        }
+
+        private DateTime SetUpEndValid()
+        {
+            if (string.IsNullOrEmpty(Page.txtEndDate.Text))
+                return DateTime.MinValue;
+            else
+                return Convert.ToDateTime(Page.txtEndDate.Text);
+        }
+
+        private DateTime SetUpStartValid()
+        {
+            if (string.IsNullOrEmpty(Page.txtStartDate.Text))
+                return DateTime.MinValue;
+            else
+                return Convert.ToDateTime(Page.txtStartDate.Text);
+        }
 
         private bool ValidateDayNumber(int dayNumber)
         {

@@ -244,7 +244,7 @@
     <value>Polje za korektnost ne može biti prazno.</value>
   </data>
   <data name="Country" xml:space="preserve">
-    <value>Drzava</value>
+    <value>Država</value>
   </data>
   <data name="CountryValid" xml:space="preserve">
     <value>Polje za državu ne može biti prazno.</value>

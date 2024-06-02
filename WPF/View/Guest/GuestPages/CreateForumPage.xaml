@@ -52,7 +52,7 @@
 
         <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="11,3,10,2">
             <Grid>
-                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc City}" FontSize="30" Margin="136,82,856,650"/>
+                <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc City}" FontSize="30" Margin="136,82,824,650"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Country}" FontSize="30" Margin="730,82,176,650"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Comment}" FontSize="30" Margin="136,230,742,502"/>
                 <TextBox x:Name="txtCity" Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}"  FontSize="20" Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" Height="40" Width="200" Margin="136,139,724,610"/>

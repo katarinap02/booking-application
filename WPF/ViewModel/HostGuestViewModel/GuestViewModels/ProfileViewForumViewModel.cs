@@ -101,6 +101,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                 ForumService.Update(SelectedForum.ToForum());
 
                 Update();
+                ForumService.CalculateGuestHostComments(SelectedForum.ToForum());
                 Comment = "";
             }
            

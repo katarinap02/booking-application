@@ -128,8 +128,9 @@ ItemsSource="{Binding Reservations}" Background="{DynamicResource BackgroundColo
                     </Label.Style>
                 </Label>
                 <!--<Label x:Name="statusLabel" Content="{Binding Status}" FontSize="23" Margin="105,75,739,670"/>-->
-                <Label Foreground="{DynamicResource TextBlockColorN}" x:Name="totalReservationsLabel" Content="{Binding TotalReservations}" FontSize="23" Margin="295,98,547,653"></Label>
-                <Label Foreground="{DynamicResource TextBlockColorN}" x:Name="totalReservationsYearLabel" Content="{Binding Guest.YearlyReservations}" FontSize="23" Margin="410,125,528,620"></Label>
+                <Label Foreground="{DynamicResource TextBlockColorN}" x:Name="totalReservationsLabel" Content="{Binding TotalReservations}" FontSize="23" Margin="285,107,547,640"></Label>
+                <Label Foreground="{DynamicResource TextBlockColorN}" x:Name="totalReservationsYearLabel" Content="{Binding Guest.YearlyReservations}" FontSize="23" Margin="400,139,528,606"></Label>
+                <Label Foreground="{DynamicResource TextBlockColorN}" x:Name="averageRateLabel" Content="{Binding AverageGrade}" FontSize="23" Margin="100,169,823,575"></Label>
 
                 <Image VerticalAlignment="Top" HorizontalAlignment="Left" Margin="995,10,0,0" Width="50" Height="50">
                     <Image.Style>
