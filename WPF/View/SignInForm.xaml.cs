@@ -108,18 +108,10 @@ namespace BookingApp.View
                             else
                             {
                                 GuideInformationS.UpdateSuperGuide(user.Id);
-                                GuideInformation i = GuideInformationS.GetByGuideId(user.Id);
-                                MessageBox.Show(i.Status.ToString(), "Provera za super-a");
-                                if (user.Username == "test") // prostor za testiranje prozora
+                                if (user.Username == "test") 
                                 {
                                     RandomTest randomTest = new RandomTest(user.Id);
                                     randomTest.Show();
-                                    /*GridTest gridtest = new GridTest();
-                                    gridtest.Show();
-                                    AddingTourWindow addingTourWindow = new AddingTourWindow();
-                                    addingTourWindow.Show();
-                                    RequestTest requestTest = new RequestTest();
-                                    requestTest.Show();*/                                
                                 }
                                 else
                                 {

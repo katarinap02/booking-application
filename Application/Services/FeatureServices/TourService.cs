@@ -329,6 +329,28 @@ namespace BookingApp.Application.Services.FeatureServices
             return languageCounts;
         }
 
+        public string MostUsedLanguageForGuide(int guide_id)
+        {
+            List<Tour> tours = _tourRepository.GetAll().FindAll(t => t.GuideId == guide_id && t.Status == TourStatus.Finnished);
+
+            if (tours == null || !tours.Any())
+            {
+                return "No tours available";
+            }
+
+            var mostUsedLanguage = tours
+                .GroupBy(t => t.Language)
+                .OrderByDescending(g => g.Count())
+                .FirstOrDefault();
+
+            if (mostUsedLanguage == null)
+            {
+                return "No languages found";
+            }
+
+            return $"{mostUsedLanguage.Key} - {mostUsedLanguage.Count()}";
+        }
+
         public List<Tour> getPendingToursByGuide(int guide_id)
         {
             List<Tour> tours = getToursByGuide(guide_id);

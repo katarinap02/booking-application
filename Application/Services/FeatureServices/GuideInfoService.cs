@@ -31,7 +31,8 @@ namespace BookingApp.Application.Services.FeatureServices
             GuideInformation guideInformation =  informationRepository.GetByGuideId(id);
             guideInformation.AverageGrade = getAverageGrade(id);
             guideInformation.TourNumber = tourService.GetNonCanceledToursGyGuide(id);
-            guideInformation.MostUsedLanguage = tourService.FindMostUsedLanguageForGuide(id);
+            guideInformation.MostUsedLanguage = tourService.GetMostPopularTourForGuide(id).Name;
+            guideInformation.LanguageByTour = tourService.MostUsedLanguageForGuide(id);
             return guideInformation;
         }
 

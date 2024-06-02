@@ -26,7 +26,7 @@ namespace BookingApp.Domain.Model.Features
         public double AverageGrade { get; set; }
         public int TourNumber {  get; set; }
         public string MostUsedLanguage { get; set; }
-
+        public string LanguageByTour { get; set; }
         public bool HasQuit { get; set; }
         public DateTime EndSuperGuide { get; set; }
 
