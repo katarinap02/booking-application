@@ -40,7 +40,7 @@ namespace BookingApp.WPF.View.Guest.GuestTools
 
             if (IsDateRangeAvailable(ReservationCalendar) == false && !isHost)
             {
-                MessageBox.Show("All dates in the chosen date range are unavailable. All available dates will be shown now.");
+              //  MessageBox.Show("All dates in the chosen date range are unavailable. All available dates are shown.");
                 
                     ShowReccommendedDates(selectedAccommodation, dayNumber);
                

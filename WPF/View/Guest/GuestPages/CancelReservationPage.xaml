@@ -11,12 +11,17 @@
       Title="ProfileInfo">
 
     <Grid Background="{DynamicResource BorderBackground}">
-        <Label Content="{ns:Loc CancelSure}" FontSize="30" Style="{DynamicResource HeaderStyleN}" Margin="170,63,143,675"/>
-        <controls:ReservationDetailsCard Margin="0,143,0,247"></controls:ReservationDetailsCard>
+        <Border Width="1064" Height="793" BorderThickness="2" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" CornerRadius="15" Margin="10,0,11,2">
+            <Grid Margin="0,0,0,-2">
+                  <TextBlock Text="{ns:Loc CancelSure}" FontSize="30" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" Margin="0,63,0,675"/>
+  <controls:ReservationDetailsCard Margin="0,140,0,243"></controls:ReservationDetailsCard>
 
-        <Button Content="{ns:Loc CancelReservation}" HorizontalAlignment="Left" Margin="221,602,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Width="287" Height="47" Command="{Binding ViewModel.CancelReservationCommand}"/>
-        <Button Content="{ns:Loc GiveUp}" HorizontalAlignment="Left" Margin="572,602,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Width="287" Height="47" Command="{Binding ViewModel.GiveUpCommand}"/>
+  <Button Content="{ns:Loc CancelReservation}" HorizontalAlignment="Left" Margin="221,602,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Width="287" Height="47" Command="{Binding ViewModel.CancelReservationCommand}"/>
+  <Button Content="{ns:Loc GiveUp}" HorizontalAlignment="Left" Margin="572,602,0,0" VerticalAlignment="Top" Style="{DynamicResource ButtonStyleN}" Width="287" Height="47" Command="{Binding ViewModel.GiveUpCommand}"/>
 
+            </Grid>
+        </Border>
+      
 
     </Grid>
 </Page>

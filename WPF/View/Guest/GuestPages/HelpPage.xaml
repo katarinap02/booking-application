@@ -12,7 +12,7 @@
     <Grid>
         <Label Content="FAQ" Style="{DynamicResource HeaderStyleN}" FontSize="60" Margin="884,28,884,881"/>
         <Label Content="{ns:Loc HowReservation}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="145,142,1166,784"/>
-        <TextBlock  Background="{DynamicResource BackgroundColorN}" Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc ReservationHelp}" TextWrapping="Wrap" FontSize="20" Margin="150,178,1269,613" TextAlignment="Justify">
+        <TextBlock  Background="{DynamicResource BackgroundColorN}" Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc ReservationHelp}" TextWrapping="Wrap" FontSize="20" Margin="150,184,1269,594" TextAlignment="Justify">
              </TextBlock>
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="197,406,1323,479">
             <Grid>
@@ -20,7 +20,7 @@
             </Grid>
         </Border>
         <Label Content="{ns:Loc HowCancel}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="145,557,1166,344"/>
-        <TextBlock Background="{DynamicResource BackgroundColorN}" Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc CancelHelp}" TextWrapping="Wrap" FontSize="20" Margin="150,602,1269,284" TextAlignment="Justify">
+        <TextBlock Background="{DynamicResource BackgroundColorN}" Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc CancelHelp}" TextWrapping="Wrap" FontSize="20" Margin="150,602,1269,270" TextAlignment="Justify">
               </TextBlock>
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="200,748,1320,80">
             <Grid>
@@ -28,7 +28,7 @@
             </Grid>
         </Border>
         <Label Content="{ns:Loc HowRate}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="700,146,611,781"/>
-        <TextBlock Background="{DynamicResource BackgroundColorN}" Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc RateHelp}" TextWrapping="Wrap" FontSize="20" Margin="705,185,704,651" TextAlignment="Justify"></TextBlock>
+        <TextBlock Background="{DynamicResource BackgroundColorN}" Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc RateHelp}" TextWrapping="Wrap" FontSize="20" Margin="705,191,704,636" TextAlignment="Justify"></TextBlock>
 
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="758,365,758,465">
             <Grid>
@@ -39,7 +39,7 @@
         <Label Content="{ns:Loc HowForum}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="700,557,611,370"/>
         <TextBlock Background="{DynamicResource BackgroundColorN}" Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc ForumHelp}" TextWrapping="Wrap" FontSize="20" Margin="702,602,702,224" TextAlignment="Justify" />
         <Label Content="{ns:Loc HowSuperGuest}" Style="{DynamicResource HeaderStyleN}" FontSize="25" Margin="1276,146,35,781"/>
-        <TextBlock Background="{DynamicResource BackgroundColorN}" Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc SuperGuestHelp}" TextWrapping="Wrap" FontSize="20" Margin="1276,185,148,628" TextAlignment="Justify"></TextBlock>
+        <TextBlock Background="{DynamicResource BackgroundColorN}" Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc SuperGuestHelp}" TextWrapping="Wrap" FontSize="20" Margin="1276,191,148,602" TextAlignment="Justify"></TextBlock>
         <Border BorderBrush="{DynamicResource AccentColorN}" BorderThickness="2"  Margin="1308,406,212,479">
             <Grid>
                 <Image HorizontalAlignment="Center" VerticalAlignment="Top" Width="400" Height="200" Source="../../../Resources/Images/superGuestHelp.png"/>

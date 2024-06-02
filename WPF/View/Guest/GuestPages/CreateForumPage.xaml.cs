@@ -32,7 +32,7 @@ namespace BookingApp.WPF.View.Guest.GuestPages
             InitializeComponent();
             User = user;
             Frame = frame;
-            ViewModel = new CreateForumViewModel(User, Frame);
+            ViewModel = new CreateForumViewModel(User, Frame, this);
             DataContext = ViewModel;
             Loaded += Page_Loaded;
 

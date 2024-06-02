@@ -93,6 +93,30 @@ namespace BookingApp.Properties
             }
         }
 
+        internal static string CityValid
+        {
+            get
+            {
+                return ResourceManager.GetString("CityValid", resourceCulture);
+            }
+        }
+
+        internal static string DateValid
+        {
+            get
+            {
+                return ResourceManager.GetString("DateValid", resourceCulture);
+            }
+        }
+
+        internal static string CountryValid
+        {
+            get
+            {
+                return ResourceManager.GetString("CountryValid", resourceCulture);
+            }
+        }
+
         internal static string Accommodations
         {
             get
@@ -109,6 +133,43 @@ namespace BookingApp.Properties
             }
         }
 
+        internal static string NoReservations
+        {
+            get
+            {
+                return ResourceManager.GetString("NoReservations", resourceCulture);
+            }
+        }
+        internal static string NoForums
+        {
+            get
+            {
+                return ResourceManager.GetString("NoForums", resourceCulture);
+            }
+        }
+
+        internal static string NoAccommodations
+        {
+            get
+            {
+                return ResourceManager.GetString("NoAccommodations", resourceCulture);
+            }
+        }
+        internal static string NoAccommodationsRate
+        {
+            get
+            {
+                return ResourceManager.GetString("NoAccommodationsRate", resourceCulture);
+            }
+        }
+
+        internal static string NoRates
+        {
+            get
+            {
+                return ResourceManager.GetString("NoRates", resourceCulture);
+            }
+        }
         internal static string AddPicture
         {
             get
@@ -122,6 +183,29 @@ namespace BookingApp.Properties
             get
             {
                 return ResourceManager.GetString("Back", resourceCulture);
+            }
+        }
+
+        internal static string AllDates
+        {
+            get
+            {
+                return ResourceManager.GetString("AllDates", resourceCulture);
+            }
+        }
+
+        internal static string HostHas
+        {
+            get
+            {
+                return ResourceManager.GetString("HostHas", resourceCulture);
+            }
+        }
+        internal static string GuestHas
+        {
+            get
+            {
+                return ResourceManager.GetString("GuestHas", resourceCulture);
             }
         }
 
@@ -145,6 +229,22 @@ namespace BookingApp.Properties
             get
             {
                 return ResourceManager.GetString("Path", resourceCulture);
+            }
+        }
+
+        internal static string SettingsSuccess
+        {
+            get
+            {
+                return ResourceManager.GetString("SettingsSuccess", resourceCulture);
+            }
+        }
+
+        internal static string SettingsError
+        {
+            get
+            {
+                return ResourceManager.GetString("SettingsError", resourceCulture);
             }
         }
 

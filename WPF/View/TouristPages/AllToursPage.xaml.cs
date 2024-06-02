@@ -40,7 +40,11 @@ namespace BookingApp.View.TouristWindows
             Tour.RefreshAllToursDataGrid(false);
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
-                MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (Focus())
+                {
+                    MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+
             });
         }
         private void CanExecute(CanExecuteRoutedEventArgs e)

@@ -129,8 +129,8 @@
 
         <Image Source="{DynamicResource Star}" Height="20" Width="20" Margin="1111,125,789,845"/>
         <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{ns:Loc Rate}" Margin="1141,122,712,831" Foreground="{DynamicResource TextColorN}"/>
-        <Image Source="{DynamicResource Calendar}" Height="20" Width="20" Margin="1245,125,655,845"/>
-        <TextBlock x:Name="AccommodationDays" FontSize="20" Text="{ns:Loc MinDayNumber}" Margin="1276,123,411,831" Foreground="{DynamicResource TextColorN}"/>
+        <Image Source="{DynamicResource Calendar}" Height="20" Width="20" Margin="1257,125,643,845"/>
+        <TextBlock x:Name="AccommodationDays" FontSize="20" Text="{ns:Loc MinDayNumber}" Margin="1288,123,399,831" Foreground="{DynamicResource TextColorN}"/>
         <Image Source="{DynamicResource Person}" Height="20" Width="20" Margin="1537,125,363,845"/>
         <TextBlock x:Name="AccommodationGuests" FontSize="20" Text="{ns:Loc MaxGuestNumber}" Margin="1570,123,118,834" Foreground="{DynamicResource TextColorN}"/>
 
@@ -138,7 +138,7 @@
 
         <Border x:Name="searchBorder" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,162,1082,393">
             <Grid x:Name="SearchSection">
-                <Label Foreground="{DynamicResource TextColorN}" Content="{ns:Loc SearchAccommodations}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="122,10,-122,-10"/>
+                <TextBlock Foreground="{DynamicResource TextColorN}" Text="{ns:Loc SearchAccommodations}" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" FontSize="30" Margin="0,10,0,369"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Name}" HorizontalAlignment="Left" Margin="66,89,0,0" VerticalAlignment="Top" Width="74" FontSize="16" RenderTransformOrigin="0.439,1.63"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc City}" HorizontalAlignment="Left" Margin="66,169,0,0" VerticalAlignment="Top" Width="56" RenderTransformOrigin="-8.542,2.786" FontSize="16"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Type}" HorizontalAlignment="Left" Margin="66,208,0,0" VerticalAlignment="Top" Width="74" FontSize="16"/>
@@ -177,7 +177,7 @@
 
         <Border x:Name="anywhereAnytimeBorder" BorderBrush="{DynamicResource AccentColorN}" Background="{DynamicResource BorderBackground}" BorderThickness="2" CornerRadius="40, 40, 40, 40" Margin="230,618,1082,92">
             <Grid Margin="0,-2,0,-26">
-                <Label Content="{ns:Loc AnywhereAnytime}" Style="{DynamicResource HeaderStyleN}" FontSize="30" Margin="130,10,130,235"/>
+                <TextBlock Text="{ns:Loc AnywhereAnytime}" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" FontSize="30" Margin="0,10,10,235"/>
                 <TextBlock Style="{DynamicResource TextBlockStyleN}" Text="{ns:Loc AnywhereAnytimeDesc}" TextWrapping="Wrap" FontSize="20" Margin="81,85,93,-51" TextAlignment="Center">
                     
                 </TextBlock>

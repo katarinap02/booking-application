@@ -34,7 +34,12 @@ namespace BookingApp.WPF.View.Guest.GuestPages
             Frame = frame;
             ViewModel = new AnywhereAnytimeViewModel(User, Frame, this);
             DataContext = ViewModel;
+            
+            txtStartDate.DisplayDateStart = DateTime.Now;
+            txtEndDate.DisplayDateStart = DateTime.Now;
+
             Loaded += Page_Loaded;
+
 
         }
 
@@ -47,6 +52,11 @@ namespace BookingApp.WPF.View.Guest.GuestPages
             Frame.BeginAnimation(Frame.OpacityProperty, fadeInAnimation);
 
             await Task.Delay(500);
+        }
+
+        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            ViewModel.ContinueCommand.RaiseCanExecuteChanged();
         }
     }
 }

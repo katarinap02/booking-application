@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media.Animation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -69,7 +70,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             GuestService.CalculateGuestStats(Guest);
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
-
+            page.reserveButton.IsEnabled = false;
 
             SelectDatesCommand = new GuestICommand(OnSelectDates);
         }
@@ -113,13 +114,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             if (selectedDatesCount != DayNumber)
             {
                 Page.reserveButton.IsEnabled = false;
-                //  Page.dayNumberValidator.Visibility = Visibility.Visible;
+
+                Page.dayNumberValidator.Visibility = Visibility.Visible;
+                var showHint = (Storyboard)Page.FindResource("ShowTextBlock");
+                showHint.Begin(Page.dayNumberValidator);
 
             }
             else
             {
                 Page.reserveButton.IsEnabled = true;
-                // Page.dayNumberValidator.Visibility = Visibility.Hidden;
+
+                var hideHint = (Storyboard)Page.FindResource("HideTextBlock");
+                hideHint.Completed += (s, a) => Page.dayNumberValidator.Visibility = Visibility.Hidden;
+                hideHint.Begin(Page.dayNumberValidator);
+
 
             }
 
