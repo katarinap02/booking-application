@@ -8,9 +8,7 @@ using System.Windows;
 
 namespace BookingApp
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
+    // Version of the App : BookingApp 4.0
     public partial class App : System.Windows.Application
     {
        
