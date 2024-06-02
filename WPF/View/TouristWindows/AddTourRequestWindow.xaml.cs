@@ -33,7 +33,7 @@ namespace BookingApp.WPF.View.TouristWindows
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
                 if (IsActive) { 
-                MessageBox.Show(message.Notification, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBox.Show(message.Notification, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             });
             foreach (var date in TourRequest.SelectedDates)

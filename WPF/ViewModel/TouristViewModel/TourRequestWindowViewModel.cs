@@ -27,6 +27,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         private readonly TourParticipantService _tourParticipantService;
         private readonly TourReservationService _tourReservationService;
         private readonly RequestedTourParticipantService _requestedTourParticipantService;
+
+        public List<TourRequestWindowViewModel> tourRequestWindowViewModels { get; set; }
         public List<TourParticipantViewModel> TourParticipantDTOs { get; set; }
         public List<TourParticipantViewModel> TourParticipantsListBox { get; set; }
         public List<DateTime> SelectedDates { get; set; }
@@ -70,7 +72,25 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 return;
             }
 
-            TourRequests.Add(this);
+            var newTourRequest = new TourRequestWindowViewModel
+            {
+                SelectedStartDate = this.SelectedStartDate,
+                SelectedEndDate = this.SelectedEndDate,
+                TourParticipantDTOs = new List<TourParticipantViewModel>(this.TourParticipantDTOs),
+                TourParticipantsListBox = new List<TourParticipantViewModel>(this.TourParticipantsListBox),
+                SelectedDates = new List<DateTime>(this.SelectedDates),
+                City = this.City,
+                Country = this.Country,
+                Description = this.Description,
+                Language = this.Language,
+                UserId = this.UserId,
+                Status = this.Status,
+                TourRequests = new ObservableCollection<TourRequestWindowViewModel>(this.TourRequests),
+                ParticipantsListBox = new ObservableCollection<TourParticipantViewModel>(this.ParticipantsListBox),
+            };
+
+
+            TourRequests.Add(newTourRequest);
             for (var date = SelectedStartDate; date <= SelectedEndDate; date = date.AddDays(1))
             {
                 if (!SelectedDates.Contains(date))
@@ -202,8 +222,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
             set
             {
-                _tourRequests = value;
-                OnPropertyChanged(nameof(TourRequests));
+                if(_tourRequests != value)
+                {
+                    _tourRequests = value;
+                    OnPropertyChanged(nameof(TourRequests));
+                }
             }
         }
         private TourParticipantViewModel _selectedParticipant;
@@ -698,11 +721,17 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         }
         private bool CanAddParticipant(object obj)
         {
-            return Validator.TryValidateObject(this, new ValidationContext(this), null);
+            if(this.Name.Equals("") || this.LastName.Equals(""))
+            {
+                return false;
+            }
+            return true;
+            //return Validator.TryValidateObject(this, new ValidationContext(this), null);
         }
 
         private void ExecuteAddParticipant(object obj)
         {
+
             TourParticipantViewModel tourParticipantViewModel = _tourParticipantService.saveParticipantToDTO(Name, LastName, Age);
             TourParticipantDTOs.Add(tourParticipantViewModel);
             TourParticipantsListBox.Add(tourParticipantViewModel);
@@ -953,6 +982,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             TourParticipantDTOs = new List<TourParticipantViewModel>();
             TourParticipantsListBox = new List<TourParticipantViewModel>();
             ParticipantsListBox = new ObservableCollection<TourParticipantViewModel>();
+            tourRequestWindowViewModels = new List<TourRequestWindowViewModel>();
         }
     }
 }
