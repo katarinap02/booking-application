@@ -93,6 +93,30 @@ namespace BookingApp.Properties
             }
         }
 
+        internal static string CityValid
+        {
+            get
+            {
+                return ResourceManager.GetString("CityValid", resourceCulture);
+            }
+        }
+
+        internal static string DateValid
+        {
+            get
+            {
+                return ResourceManager.GetString("DateValid", resourceCulture);
+            }
+        }
+
+        internal static string CountryValid
+        {
+            get
+            {
+                return ResourceManager.GetString("CountryValid", resourceCulture);
+            }
+        }
+
         internal static string Accommodations
         {
             get

@@ -79,11 +79,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             ReservationInfoPage = reservationInfoPage;
             User = user;
             Frame = frame;
+           
             AccommodationReservationService = new AccommodationReservationService(Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
             ContinueCommand = new GuestICommand(OnContinue, CanContinue);
             BackCommand = new GuestICommand(OnBack);
             NavigationService = Frame.NavigationService;
-            
+            DayNumber = 0;
+
 
         }
 
@@ -99,6 +101,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             start = SetUpStart();
             end = SetUpEnd();
             ToggleDayNumberValidationMessage();
+            ToggleDateValidationMessage();
             if (ValidateDayNumber(DayNumber) && ValidateDateInputs(start, end))
                 return true;
             else
@@ -106,14 +109,38 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             
         }
 
+        private void ToggleDateValidationMessage()
+        {
+            DateTime start;
+            DateTime end;
+            start = SetUpStart();
+            end = SetUpEnd();
+            if(!ValidateDateInputs(start, end))
+            {
+                ReservationInfoPage.dateValidator.Visibility = Visibility.Visible;
+                ReservationInfoPage.txtStartDate.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                ReservationInfoPage.txtStartDate.BorderThickness = new Thickness(2);
+                ReservationInfoPage.txtEndDate.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                ReservationInfoPage.txtEndDate.BorderThickness = new Thickness(2);
+            }
+            else
+            {
+                ReservationInfoPage.dateValidator.Visibility = Visibility.Hidden;
+
+                ReservationInfoPage.txtStartDate.BorderBrush = SystemColors.ControlDarkBrush;
+                ReservationInfoPage.txtStartDate.BorderThickness = new Thickness(1);
+                ReservationInfoPage.txtEndDate.BorderBrush = SystemColors.ControlDarkBrush;
+                ReservationInfoPage.txtEndDate.BorderThickness = new Thickness(1);
+            }
+
+        }
+
         private void ToggleDayNumberValidationMessage()
         {
             if (ValidateDayNumber(DayNumber))
             {
-               
-                var hideHint = (Storyboard)ReservationInfoPage.FindResource("HideTextBlock");
-                hideHint.Completed += (s, a) => ReservationInfoPage.dayNumberValidator.Visibility = Visibility.Hidden;
-                hideHint.Begin(ReservationInfoPage.dayNumberValidator);
+                ReservationInfoPage.dayNumberValidator.Visibility = Visibility.Hidden;
+
                 ReservationInfoPage.txtDayNumber.BorderBrush = SystemColors.ControlDarkBrush;
                 ReservationInfoPage.txtDayNumber.BorderThickness = new Thickness(1);
 
@@ -126,8 +153,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
                 ReservationInfoPage.dayNumberValidator.Visibility = Visibility.Visible;
                 ReservationInfoPage.txtDayNumber.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                 ReservationInfoPage.txtDayNumber.BorderThickness = new Thickness(2);
-                var showHint = (Storyboard)ReservationInfoPage.FindResource("ShowTextBlock");
-                showHint.Begin(ReservationInfoPage.dayNumberValidator);
+               
                 
 
             }

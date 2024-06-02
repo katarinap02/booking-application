@@ -221,7 +221,7 @@ Click="Settings_Click"
 Margin="0,119,0,-119">
                     <StackPanel Orientation="Horizontal">
                         <TextBlock Text="   "/>
-                        <Image Source="{DynamicResource Settings}" Height="40" Width="40"/>
+                        <Image Source="{DynamicResource Settings}" Height="40" Width="33"/>
                         <TextBlock Text="{ns:Loc Settings}"
 VerticalAlignment="Center"
 Margin="20,0,0,0"/>

@@ -12,19 +12,38 @@
     <Page.Resources>
 
         <ResourceDictionary xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
-            <DrawingGroup x:Key="question_mark_in_a_circle_svgrepo_com_xaml">
+            <DrawingGroup x:Key="exclamation_mark_svgrepo_com_xaml">
                 <DrawingGroup.ClipGeometry>
-                    <RectangleGeometry Rect="0.0,0.0,93.936,93.936"/>
+                    <RectangleGeometry Rect="0.0,0.0,45.311,45.311"/>
                 </DrawingGroup.ClipGeometry>
                 <DrawingGroup>
-                    <GeometryDrawing Brush="{DynamicResource AccentColorN}">
+                    <GeometryDrawing Brush="red">
                         <GeometryDrawing.Geometry>
-                            <PathGeometry Figures="M 80.179 13.758 c -18.342 -18.342 -48.08 -18.342 -66.422 0 c -18.342 18.341 -18.342 48.08 0 66.421 c 18.342 18.342 48.08 18.342 66.422 0 C 98.521 61.837 98.521 32.099 80.179 13.758 z M 44.144 83.117 c -4.057 0 -7.001 -3.071 -7.001 -7.305 c 0 -4.291 2.987 -7.404 7.102 -7.404 c 4.123 0 7.001 3.044 7.001 7.404 C 51.246 80.113 48.326 83.117 44.144 83.117 z M 54.73 44.921 c -4.15 4.905 -5.796 9.117 -5.503 14.088 l 0.097 2.495 c 0.011 0.062 0.017 0.125 0.017 0.188 c 0 0.58 -0.47 1.051 -1.05 1.051 c -0.004 -0.001 -0.008 -0.001 -0.012 0 h -7.867 c -0.549 0 -1.005 -0.423 -1.047 -0.97 l -0.202 -2.623 c -0.676 -6.082 1.508 -12.218 6.494 -18.202 c 4.319 -5.087 6.816 -8.865 6.816 -13.145 c 0 -4.829 -3.036 -7.536 -8.548 -7.624 c -3.403 0 -7.242 1.171 -9.534 2.913 c -0.264 0.201 -0.607 0.264 -0.925 0.173 s -0.575 -0.327 -0.693 -0.636 l -2.42 -6.354 c -0.169 -0.442 -0.02 -0.943 0.364 -1.224 c 3.538 -2.573 9.441 -4.235 15.041 -4.235 c 12.36 0 17.894 7.975 17.894 15.877 C 63.652 33.765 59.785 38.919 54.73 44.921 z" FillRule="Nonzero"/>
+                            <PathGeometry Figures="M 22.675 0.02 c -0.006 0 -0.014 0.001 -0.02 0.001 c -0.007 0 -0.013 -0.001 -0.02 -0.001 C 10.135 0.02 0 10.154 0 22.656 c 0 12.5 10.135 22.635 22.635 22.635 c 0.007 0 0.013 0 0.02 0 c 0.006 0 0.014 0 0.02 0 c 12.5 0 22.635 -10.135 22.635 -22.635 C 45.311 10.154 35.176 0.02 22.675 0.02 z M 22.675 38.811 c -0.006 0 -0.014 -0.001 -0.02 -0.001 c -0.007 0 -0.013 0.001 -0.02 0.001 c -2.046 0 -3.705 -1.658 -3.705 -3.705 c 0 -2.045 1.659 -3.703 3.705 -3.703 c 0.007 0 0.013 0 0.02 0 c 0.006 0 0.014 0 0.02 0 c 2.045 0 3.706 1.658 3.706 3.703 C 26.381 37.152 24.723 38.811 22.675 38.811 z M 27.988 10.578 c -0.242 3.697 -1.932 14.692 -1.932 14.692 c 0 1.854 -1.519 3.356 -3.373 3.356 c -0.01 0 -0.02 0 -0.029 0 c -0.009 0 -0.02 0 -0.029 0 c -1.853 0 -3.372 -1.504 -3.372 -3.356 c 0 0 -1.689 -10.995 -1.931 -14.692 C 17.202 8.727 18.62 5.29 22.626 5.29 c 0.01 0 0.02 0.001 0.029 0.001 c 0.009 0 0.019 -0.001 0.029 -0.001 C 26.689 5.29 28.109 8.727 27.988 10.578 z" FillRule="Nonzero"/>
                         </GeometryDrawing.Geometry>
                     </GeometryDrawing>
                 </DrawingGroup>
             </DrawingGroup>
-            <DrawingImage Drawing="{DynamicResource question_mark_in_a_circle_svgrepo_com_xaml}" x:Key="HintIcon"/>
+            <DrawingImage Drawing="{DynamicResource exclamation_mark_svgrepo_com_xaml}" x:Key="Warning"/>
+            <Storyboard x:Key="ShowTextBlock">
+                <DoubleAnimation
+      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+      From="-30" To="0" Duration="0:0:0.3" />
+                <DoubleAnimation
+      Storyboard.TargetProperty="Opacity"
+      From="0" To="1" Duration="0:0:0.3" />
+            </Storyboard>
+
+
+            <Storyboard x:Key="HideTextBlock">
+                <DoubleAnimation
+      Storyboard.TargetProperty="(UIElement.RenderTransform).(TranslateTransform.Y)"
+      From="0" To="-30" Duration="0:0:0.3" />
+                <DoubleAnimation
+      Storyboard.TargetProperty="Opacity"
+      From="1" To="0" Duration="0:0:0.3" />
+            </Storyboard>
+
         </ResourceDictionary>
 
     </Page.Resources>
@@ -36,9 +55,9 @@
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc City}" FontSize="30" Margin="136,82,856,650"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Country}" FontSize="30" Margin="730,82,176,650"/>
                 <Label Foreground="{DynamicResource TextBlockColorN}" Content="{ns:Loc Comment}" FontSize="30" Margin="136,230,742,502"/>
-                <TextBox Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}"  FontSize="20" Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" Height="40" Width="200" Margin="136,139,724,610"/>
-                <TextBox Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}" FontSize="20" Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}" Height="40" Width="200" Margin="730,139,130,610"/>
-                <TextBox Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}" FontSize="20" Text="{Binding FirstComment, UpdateSourceTrigger=PropertyChanged}" Height="250" Width="800" Margin="130,312,130,227" TextWrapping="Wrap"/>
+                <TextBox x:Name="txtCity" Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}"  FontSize="20" Text="{Binding City, UpdateSourceTrigger=PropertyChanged}" Height="40" Width="200" Margin="136,139,724,610"/>
+                <TextBox x:Name="txtCountry" Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}" FontSize="20" Text="{Binding Country, UpdateSourceTrigger=PropertyChanged}" Height="40" Width="200" Margin="730,139,130,610"/>
+                <TextBox x:Name="txtComment" Foreground="{DynamicResource TextBlockColorN}" Background="{DynamicResource BackgroundColorN}" FontSize="20" Text="{Binding FirstComment, UpdateSourceTrigger=PropertyChanged}" Height="250" Width="800" Margin="130,312,130,227" TextWrapping="Wrap"/>
                 <Button Style="{DynamicResource ButtonStyleN}" Content="{ns:Loc Save}" Height="50" Margin="442,660,442,79" Command="{Binding SaveCommand}"/>
                 <!--<ToggleButton Height="50" Background="White" BorderBrush="White" Margin="20,545,726,194" Checked="ToggleButton_Checked" Unchecked="ToggleButton_Unchecked">
                     <StackPanel Orientation="Horizontal">
@@ -51,6 +70,42 @@
                 Please select one of the accommodations above.
                 You can only rate accommodation and host five days at most after the end of the reservation.
                 </TextBlock>-->
+
+                <TextBlock x:Name="commentValidator" FontSize="23" Foreground="red" Margin="136,567,-26,171">
+
+                    <TextBlock.Inlines>
+                        <InlineUIContainer>
+                            <Image Source="{DynamicResource Warning}" Width="20" Height="20" Margin="2,0,0,0"/>
+                        </InlineUIContainer>
+                        <Run Text="{ns:Loc CommentValid}"/>
+
+                    </TextBlock.Inlines>
+
+                </TextBlock>
+
+                <TextBlock x:Name="cityValidator" FontSize="20" Foreground="red" Margin="130,179,-20,559">
+
+                    <TextBlock.Inlines>
+                        <InlineUIContainer>
+                            <Image Source="{DynamicResource Warning}" Width="20" Height="20" Margin="2,0,0,0"/>
+                        </InlineUIContainer>
+                        <Run Text="{ns:Loc CityValid}"/>
+
+                    </TextBlock.Inlines>
+
+                </TextBlock>
+
+                <TextBlock x:Name="countryValidator" FontSize="20" Foreground="red" Margin="730,184,-620,554">
+
+                    <TextBlock.Inlines>
+                        <InlineUIContainer>
+                            <Image Source="{DynamicResource Warning}" Width="20" Height="20" Margin="2,0,0,0"/>
+                        </InlineUIContainer>
+                        <Run Text="{ns:Loc CountryValid}"/>
+
+                    </TextBlock.Inlines>
+
+                </TextBlock>
 
             </Grid>
 

@@ -104,7 +104,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             page.reserveButton.IsEnabled = false;
             page.PeopleNumberSection.IsEnabled = false;
             Reservation = new AccommodationReservation();
-
+          
             SelectDatesCommand = new GuestICommand(OnSelectDates);
             FinishReservationCommand = new GuestICommand(OnFinishReservation, CanFinishReservation);
             BackCommand = new GuestICommand(OnBack);

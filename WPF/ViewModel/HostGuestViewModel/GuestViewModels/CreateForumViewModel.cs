@@ -1,4 +1,5 @@
 ﻿using BookingApp.Application.Services.FeatureServices;
+using BookingApp.Domain.Model;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
@@ -12,6 +13,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media.Animation;
+using System.Windows.Media;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 {
@@ -31,9 +34,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
                     city = value;
                     OnPropertyChanged("City");
-                    SaveCommand.RaiseCanExecuteChanged();
+
                 }
+                SaveCommand.RaiseCanExecuteChanged();
             }
+               
         }
 
         private string country;
@@ -47,8 +52,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
                     country = value;
                     OnPropertyChanged("Country");
-                    SaveCommand.RaiseCanExecuteChanged();
+                   
                 }
+                SaveCommand.RaiseCanExecuteChanged();
+               
             }
         }
 
@@ -63,8 +70,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
                     firstComment = value;
                     OnPropertyChanged("FirstComment");
-                    SaveCommand.RaiseCanExecuteChanged();
+                   
                 }
+                SaveCommand.RaiseCanExecuteChanged();
+               
             }
         }
 
@@ -79,28 +88,95 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         }
 
         public ForumViewModel NewForum { get; set; }
+        public CreateForumPage Page { get; set; }
 
         // KOMANDE
         public GuestICommand SaveCommand { get; set; }
-        public CreateForumViewModel(User user, Frame frame) { 
+        public CreateForumViewModel(User user, Frame frame, CreateForumPage page) { 
             
             User = user;
             Frame = frame;
             SaveCommand = new GuestICommand(OnSave, CanSave);
             ForumService = new ForumService(Injector.Injector.CreateInstance<IForumRepository>(), Injector.Injector.CreateInstance<IForumCommentRepository>(), Injector.Injector.CreateInstance<IUserRepository>(), Injector.Injector.CreateInstance<IAccommodationReservationRepository>(), Injector.Injector.CreateInstance<IDelayRequestRepository>());
-            
+            Page = page;
         
         }
 
         private bool CanSave()
         {
-            if(string.IsNullOrEmpty(FirstComment) || string.IsNullOrEmpty(City) || string.IsNullOrEmpty(Country))
+            
+           ToggleCountryValidationMessages();
+            ToggleCityValidationMessages();
+            ToggleCommentValidationMessages();
+           
+
+            if (string.IsNullOrEmpty(FirstComment) || string.IsNullOrEmpty(City) || string.IsNullOrEmpty(Country))
             {
                 return false;
             }
             else
             {
                 return true;
+            }
+        }
+
+        private void ToggleCountryValidationMessages()
+        {
+            if (string.IsNullOrEmpty(Country))
+            {
+
+                Page.countryValidator.Visibility = Visibility.Visible;
+              
+                Page.txtCountry.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Page.txtCountry.BorderThickness = new Thickness(2);
+            }
+            else
+            {
+                Page.countryValidator.Visibility = Visibility.Hidden;
+              
+                Page.txtCountry.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.txtCountry.BorderThickness = new Thickness(1);
+
+            }
+        }
+
+        private void ToggleCityValidationMessages()
+        {
+            if (string.IsNullOrEmpty(City))
+            {
+
+                Page.cityValidator.Visibility = Visibility.Visible;
+              
+                Page.txtCity.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Page.txtCity.BorderThickness = new Thickness(2);
+            }
+            else
+            {
+                Page.cityValidator.Visibility = Visibility.Hidden;
+               
+                Page.txtCity.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.txtCity.BorderThickness = new Thickness(1);
+
+            }
+        }
+
+            private void ToggleCommentValidationMessages()
+        {
+            if (string.IsNullOrEmpty(FirstComment))
+            {
+
+                Page.commentValidator.Visibility = Visibility.Visible;
+               
+
+                Page.txtComment.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
+                Page.txtComment.BorderThickness = new Thickness(2);
+            }
+            else
+            {
+                Page.commentValidator.Visibility = Visibility.Hidden;
+               
+                Page.txtComment.BorderBrush = SystemColors.ControlDarkBrush;
+                Page.txtComment.BorderThickness = new Thickness(1);
             }
         }
 

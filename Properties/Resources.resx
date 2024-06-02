@@ -200,6 +200,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   <data name="City" xml:space="preserve">
     <value>City</value>
   </data>
+  <data name="CityValid" xml:space="preserve">
+    <value>City field can't be empty.</value>
+  </data>
   <data name="Cleanliness" xml:space="preserve">
     <value>Cleanliness</value>
   </data>
@@ -242,6 +245,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   <data name="Country" xml:space="preserve">
     <value>Country</value>
   </data>
+  <data name="CountryValid" xml:space="preserve">
+    <value>Country field can't be empty.</value>
+  </data>
   <data name="CreatedRes" xml:space="preserve">
     <value>Created reservations report</value>
   </data>
@@ -262,6 +268,9 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
   </data>
   <data name="DatesProblem" xml:space="preserve">
     <value>Problem with choosing dates</value>
+  </data>
+  <data name="DateValid" xml:space="preserve">
+    <value>Enter valid dates.</value>
   </data>
   <data name="DayNum" xml:space="preserve">
     <value>Number of days</value>

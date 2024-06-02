@@ -201,21 +201,18 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
         private void ToggleCommentValidationMessages()
         {
             if (string.IsNullOrEmpty(Comment))
-            { 
-                
+            {
+
                 Page.commentValidator.Visibility = Visibility.Visible;
-                var showHint = (Storyboard)Page.FindResource("ShowTextBlock");
-                showHint.Begin(Page.commentValidator);
+
 
                 Page.txtComment.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                 Page.txtComment.BorderThickness = new Thickness(2);
             }
             else
-            { 
-               
-                var hideHint = (Storyboard)Page.FindResource("HideTextBlock");
-                hideHint.Completed += (s, a) => Page.commentValidator.Visibility = Visibility.Hidden;
-                hideHint.Begin(Page.commentValidator);
+            {
+                Page.commentValidator.Visibility = Visibility.Hidden;
+
                 Page.txtComment.BorderBrush = SystemColors.ControlDarkBrush;
                 Page.txtComment.BorderThickness = new Thickness(1);
             }
@@ -227,16 +224,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             { 
                
                 Page.correctnessValidator.Visibility = Visibility.Visible;
-                var showHint = (Storyboard)Page.FindResource("ShowTextBlock");
-                showHint.Begin(Page.correctnessValidator);
+              
                 Page.cbCorrectness.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                 Page.cbCorrectness.BorderThickness = new Thickness(2);
             }
             else
             {
-                var hideHint = (Storyboard)Page.FindResource("HideTextBlock");
-                hideHint.Completed += (s, a) => Page.correctnessValidator.Visibility = Visibility.Hidden;
-                hideHint.Begin(Page.correctnessValidator);
+                Page.correctnessValidator.Visibility = Visibility.Hidden;
+               
                 Page.cbCorrectness.BorderBrush = SystemColors.ControlDarkBrush;
                 Page.cbCorrectness.BorderThickness = new Thickness(1);
 
@@ -249,16 +244,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
             {
 
                 Page.cleanlinessValidator.Visibility = Visibility.Visible;
-                var showHint = (Storyboard)Page.FindResource("ShowTextBlock");
-                showHint.Begin(Page.cleanlinessValidator);
+               
                 Page.cbCleanliness.BorderBrush = new SolidColorBrush(Color.FromRgb(255, 0, 0));
                 Page.cbCleanliness.BorderThickness = new Thickness(2);
             }
             else
             {
-                var hideHint = (Storyboard)Page.FindResource("HideTextBlock");
-                hideHint.Completed += (s, a) => Page.cleanlinessValidator.Visibility = Visibility.Hidden;
-                hideHint.Begin(Page.cleanlinessValidator);
+                Page.cleanlinessValidator.Visibility = Visibility.Hidden;
+               
                 Page.cbCleanliness.BorderBrush = SystemColors.ControlDarkBrush;
                 Page.cbCleanliness.BorderThickness = new Thickness(1);
             }

@@ -114,12 +114,12 @@
                     </DatePicker.RenderTransform>
                 </DatePicker>
                 <Button x:Name="ContinueButton" Content="{ns:Loc Continue}" HorizontalAlignment="Center" Margin="0,545,0,0" VerticalAlignment="Top" Command="{Binding ViewModel.ContinueCommand}" Width="200" Height="50" Style="{StaticResource ButtonStyleN}"/>
-                <TextBlock x:Name="dayNumberValidator" FontSize="12" Foreground="red" Margin="352,282,160,440">
+                <TextBlock x:Name="dayNumberValidator" FontSize="16" Foreground="red" Margin="352,282,127,429">
 
 
                     <TextBlock.Inlines>
                         <InlineUIContainer>
-                            <Image Source="{StaticResource Warning}" Width="16" Height="12" Margin="2,0,0,0"/>
+                            <Image Source="{StaticResource Warning}" Width="16" Height="16" Margin="2,0,0,0"/>
                         </InlineUIContainer>
                         <Run Text="{ns:Loc EnterAt}"/>
                         <Run Text="{Binding SelectedAccommodation.MinReservationDays}" />
@@ -129,6 +129,18 @@
                   
 
 
+
+                </TextBlock>
+
+                <TextBlock x:Name="dateValidator" FontSize="16" Foreground="red" Margin="350,463,95,243">
+
+                    <TextBlock.Inlines>
+                        <InlineUIContainer>
+                            <Image Source="{DynamicResource Warning}" Width="16" Height="16" Margin="2,0,0,0"/>
+                        </InlineUIContainer>
+                        <Run Text="{ns:Loc DateValid}"/>
+
+                    </TextBlock.Inlines>
 
                 </TextBlock>
             </Grid>

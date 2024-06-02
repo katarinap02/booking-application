@@ -198,6 +198,9 @@
   <data name="City" xml:space="preserve">
     <value>Grad</value>
   </data>
+  <data name="CityValid" xml:space="preserve">
+    <value>Polje za grad ne može biti prazno.</value>
+  </data>
   <data name="Cleanliness" xml:space="preserve">
     <value>Čistoća</value>
   </data>
@@ -240,6 +243,9 @@
   <data name="Country" xml:space="preserve">
     <value>Drzava</value>
   </data>
+  <data name="CountryValid" xml:space="preserve">
+    <value>Polje za državu ne može biti prazno.</value>
+  </data>
   <data name="CreatedRes" xml:space="preserve">
     <value>Izveštaj o napravljenim rezervacijama</value>
   </data>
@@ -260,6 +266,9 @@
   </data>
   <data name="DatesProblem" xml:space="preserve">
     <value>Problem sa biranjem dana.</value>
+  </data>
+  <data name="DateValid" xml:space="preserve">
+    <value>Unesite ispravne datume.</value>
   </data>
   <data name="DayNum" xml:space="preserve">
     <value>Broj dana:</value>
