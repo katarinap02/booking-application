@@ -95,32 +95,8 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 
         private void Accepting()
         {
-            /*
-            if (SelectedRequest != null && AcceptingDate != DateTime.MinValue && AcceptingDate != DateTime.MaxValue)
-            {
-                if (AcceptingDate <= SelectedRequest.EndDate)
-                {
-                    if (AcceptingDate >= SelectedRequest.StartDate)
-                    {
-                        _tourRequestService.AcceptRequest(SelectedRequest.ToTourRequest(), GuideId, AcceptingDate);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Please select a Date that is after the start date.", "Error while accepting a request");
-                    }
-
-                }
-                else
-                {
-                    MessageBox.Show("Please select a Date that is before the end date.", "Error while accepting a request");
-                }
-
-            }
-            else
-            {
-                MessageBox.Show("Please select a request before proceeding, and select a date.", "Error while accepting a request");
-            }*/
-            CalendarGuideWindow calendarGuideWindow = new CalendarGuideWindow();
+            if(SelectedRequest == null) { return; } // izmeniti
+            CalendarGuideWindow calendarGuideWindow = new CalendarGuideWindow(GuideId, SelectedRequest);
             calendarGuideWindow.Show();
         }
     }

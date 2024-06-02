@@ -112,20 +112,9 @@ namespace BookingApp.View
                             else
                             {
                                 GuideInformationS.UpdateSuperGuide(user.Id);
-                                if (user.Username == "test") 
-                                {
-                                    RandomTest randomTest = new RandomTest(user.Id);
-                                    randomTest.Show();
-                                }
-                                else
-                                {
-                                    /*GuideMainWindow guideMainWindow = new GuideMainWindow(user);
-                                    guideMainWindow.ShowDialog();*/
-                                    RequestTest requestTest = new RequestTest(user.Id);
-                                    requestTest.ShowDialog();
-                                }
-                            
-                        }
+                                RandomTest randomTest = new RandomTest(user.Id);
+                                randomTest.Show();
+                            }
                         }
                         else
                         {
