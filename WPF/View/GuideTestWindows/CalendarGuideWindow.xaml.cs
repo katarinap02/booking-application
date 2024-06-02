@@ -33,7 +33,7 @@ namespace BookingApp.WPF.View.GuideTestWindows
             ViewModel = new CalendarViewModel(guide_id, tourRequest);
             DataContext = ViewModel;
             InitializeComponent();
-            if(ViewModel.BlackoutDates != null)
+            if(ViewModel.blackoutDates != null)
             {
                 AddBlackOutDates();
             }
@@ -41,7 +41,7 @@ namespace BookingApp.WPF.View.GuideTestWindows
 
         public void AddBlackOutDates()
         {
-            foreach (var date in ViewModel.BlackoutDates)
+            foreach (var date in ViewModel.blackoutDates)
             {
                 MyCalendar.BlackoutDates.Add(new CalendarDateRange(date));
             }
@@ -70,6 +70,11 @@ namespace BookingApp.WPF.View.GuideTestWindows
                 // If input is not in the correct format, clear the textbox
                 textBox.Text = "";
             }
+        }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            Close();
         }
     }
 

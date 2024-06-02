@@ -63,7 +63,7 @@
                     <RowDefinition Height="auto"></RowDefinition>
                 </Grid.RowDefinitions>
 
-                <DataGrid Style="{StaticResource GuideDataGridStyle}" ItemsSource="{Binding tourRequestViewModels}" Margin="8">
+                <DataGrid Style="{StaticResource GuideDataGridStyle}" ItemsSource="{Binding tourRequestViewModels}" SelectedItem="{Binding SelectedRequest}" Margin="8">
                     <DataGrid.Columns>
                         <DataGridTextColumn Width="*" Header="City" Binding="{Binding City}" />
                         <DataGridTextColumn Width="*" Header="Country" Binding="{Binding Country}" />
