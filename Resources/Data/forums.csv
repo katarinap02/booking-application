@@ -3,7 +3,7 @@
 3|4|aaaa|aaaa|aaaaaaaaaaaa||True|False|5/22/2024 11:36:04 AM
 4|4|dddd|ddd|ddd||False|False|5/22/2024 11:38:54 AM
 5|4|ffff|fff|ffff||False|False|5/22/2024 11:45:28 AM
-6|4|ooo|ooo|ooooo||False|False|5/22/2024 11:55:07 AM
+6|4|ooo|ooo|ooooo|52|False|False|5/22/2024 11:55:07 AM
 7|4|rrrrrrr|rrrr|rrrrr|9|False|False|5/22/2024 11:56:36 AM
 8|8|Rome|Italy|Forum|11,12|False|False|5/22/2024 12:02:06 PM
 9|8|Novi Sad|Serbia|aaaa||True|False|5/22/2024 12:02:20 PM
@@ -14,3 +14,4 @@
 14|4|aa|aaaa|aaaa|15|True|False|5/30/2024 12:30:43 PM
 15|4|aaa|aaa|aaaa|16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35|True|False|6/1/2024 12:10:19 PM
 16|4|Novi Sad|Serbia|aa|17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50|True|True|6/1/2024 12:23:53 PM
+17|4|Novi Sad|Serbia|aa|53|False|False|6/2/2024 10:28:48 AM
