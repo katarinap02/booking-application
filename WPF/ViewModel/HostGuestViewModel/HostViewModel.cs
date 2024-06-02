@@ -115,7 +115,24 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
-        public HostViewModel() { }
+        private bool demoClicked;
+        public bool DemoClicked
+        {
+            get { return demoClicked; }
+            set
+            {
+                if (demoClicked != value)
+                {
+
+                    demoClicked = value;
+                    OnPropertyChanged("DemoClicked");
+                }
+            }
+        }
+
+        public HostViewModel() {
+            demoClicked = false;
+        }
 
         public HostViewModel(Host host)
         {
@@ -125,6 +142,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             rateAverage = host.RateAverage;
             rateCount = host.RateCount;
             formattedNumber = host.RateAverage.ToString("0.00"); // Rounds to 2 decimal places
+            demoClicked = false;
            
         }
 

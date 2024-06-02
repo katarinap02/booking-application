@@ -65,6 +65,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public MenuViewModel menuViewModel { get; set; }
 
+        public bool IsDemo {  get; set; }
+
 
         private void Execute_NavigateToGuestRatePageCommand(object obj)
         {
@@ -111,7 +113,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             return true;
         }
 
-        public FirstPageViewModel(User user, NavigationService navService)
+        public FirstPageViewModel(User user, NavigationService navService, bool demo)
 
          {
                 hostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
@@ -133,6 +135,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 MostPopular = new AccommodationViewModel(accommodationReservationService.GetMostPopularLocation(host.Id));
                 LeastPopular = new AccommodationViewModel(accommodationReservationService.GetLeastPopularLocation(host.Id));
                 CloseAccommodation = new MyICommand<AccommodationViewModel>(CloseFunction);
+            IsDemo = demo;
             Update();
 
          }
@@ -160,6 +163,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                     }
 
                 }
+            CheckIfDemoStarted();
                 
           }
 
@@ -180,6 +184,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             menuViewModel.IsMenuOpened = false;
             menuViewModel.IsRatingOpened = false;
             menuViewModel.IsRenovationOpened = false;
+        }
+
+        public void CheckIfDemoStarted()
+        {
+            if(IsDemo)
+            {
+                
+            }
         }
 
 

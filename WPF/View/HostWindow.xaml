@@ -54,7 +54,7 @@
             </MenuItem>
             <MenuItem Width="88">
                 <MenuItem.Header >
-                    <Button Style="{StaticResource ButtonStyleWindowHost}">
+                    <Button Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding StartDemo}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../Resources/Images/video-camera.png" Width="20" Margin="2 0 0 0" Height="25"/>
                             <TextBlock  Text="Demo" FontSize="15" VerticalAlignment="Center" Margin="10,0,2,0" />

@@ -64,13 +64,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public RelayCommand GoBackCommand {  get; set; }
         public NavigationService NavService { get; set; }
 
-        FirstPage FirstPage {  get; set; }
+        public MyICommand StartDemo {  get; set; }
 
-        PreviousRenovationDisplayPageViewModel PreviousPage {  get; set; }
+        public HostViewModel HostViewModel { get; set; }
 
-        RenovationDisplayPageViewModel RenovationPage { get; set; }
-
-        RateDisplayPageViewModel RatePage { get; set; }
+        public bool IsDemoStarted { get; set; }
 
 
         private bool CanExecute_NavigateCommand(object obj)
@@ -88,7 +86,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToHomePageCommand(object obj)
         {
             CloseMenu();
-            FirstPage page = new FirstPage(User, NavService);
+            FirstPage page = new FirstPage(User, NavService, IsDemoStarted);
             this.NavService.Navigate(page);
         }
 
@@ -168,6 +166,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                                        execute => this.menuViewModel.IsRenovationOpened = !this.menuViewModel.IsRenovationOpened, CanExecute_NavigateCommand);
             User = user;
             NavService = navService;
+            IsDemoStarted = false;
+            StartDemo = new MyICommand(StartDemoForPage);
             Update();
 
         }
@@ -206,7 +206,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
        
         public void Update()
         {
-            FirstPage page = new FirstPage(User, NavService);
+            FirstPage page = new FirstPage(User, NavService, IsDemoStarted);
             this.NavService.Navigate(page);
         }
 
@@ -215,6 +215,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             menuViewModel.IsMenuOpened = false;
             menuViewModel.IsRatingOpened = false;
             menuViewModel.IsRenovationOpened = false;
+        }
+
+        public void StartDemoForPage()
+        {
+            IsDemoStarted = true;
+            if(NavService.Content is FirstPage)
+            {
+                Update();
+            }
         }
 
     }
