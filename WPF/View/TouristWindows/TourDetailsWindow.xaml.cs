@@ -36,7 +36,10 @@ namespace BookingApp.View.TouristWindows
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
-                MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                if (IsActive)
+                {
+                    MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
             });
         }
         private void CloseWindow(CloseWindowMessage messsage)
