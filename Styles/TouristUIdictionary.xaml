@@ -254,7 +254,10 @@
                     CornerRadius="5"
                     Padding="{TemplateBinding Padding}"
                     SnapsToDevicePixels="True">
-                            <Image Source="/WPF/Resources/Images/searchtourist.png" Stretch="Uniform" Margin="0"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/WPF/Resources/Images/searchtourist.png" Stretch="Uniform" Margin="0"/>
+                                <Label Content="Search" FontSize="20" Foreground="White"></Label>
+                            </StackPanel>
                         </Border>
                     </Grid>
                     <ControlTemplate.Triggers>

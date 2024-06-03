@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.WPF.View.TouristWindows" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local1="clr-namespace:BookingApp.WPF.View.TouristWindows"
         mc:Ignorable="d"
-        Title="AddTourRequestWindow" Height="745" Width="900" WindowStartupLocation="CenterScreen">
+        Title="Tour Request" Height="745" Width="900" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <local1:ValidationErrorsConverter x:Key="ValidationErrorsConverter"/>
         <Style x:Key="BasicLabels" TargetType="Label">

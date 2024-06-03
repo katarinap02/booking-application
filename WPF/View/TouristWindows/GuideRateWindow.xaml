@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
-        Title="GuideRateWindow" Height="640" Width="830" WindowStartupLocation="CenterScreen">
+        Title="Rate" Height="640" Width="830" WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
         <CommandBinding Command="commands:RoutedCommands.AddImage" CanExecute="AddImage_CanExecute" Executed="AddImage_Executed"/>

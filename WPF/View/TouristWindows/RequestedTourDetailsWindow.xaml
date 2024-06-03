@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.WPF.View.TouristWindows"
         mc:Ignorable="d"
-        Title="RequestedTourDetailsWindow" Height="680" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Requested Tour Details" Height="680" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="BasicLabels" TargetType="Label">
             <Setter Property="FontSize" Value="20"/>

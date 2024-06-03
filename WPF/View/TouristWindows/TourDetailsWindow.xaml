@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
-        Title="TourDetailsWindow" Height="680" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Tour Details" Height="680" Width="800" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="BasicLabels" TargetType="Label">
             <Setter Property="FontSize" Value="20"/>

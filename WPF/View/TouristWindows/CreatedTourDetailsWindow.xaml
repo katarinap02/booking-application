@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.WPF.View.TouristWindows"
         xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
-        Title="CreatedTourDetailsWindow" Height="364" Width="600" WindowStartupLocation="CenterScreen">
+        Title="Tour Details" Height="364" Width="600" WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
     </Window.CommandBindings>

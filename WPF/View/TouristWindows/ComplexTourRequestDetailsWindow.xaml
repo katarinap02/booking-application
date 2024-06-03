@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.WPF.View.TouristWindows"
         mc:Ignorable="d"
-        Title="ComplexTourRequestDetailsWindow" Height="450" Width="950" WindowStartupLocation="CenterScreen">
+        Title="Complex Tour Request Details" Height="450" Width="950" WindowStartupLocation="CenterScreen">
     <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"/>
