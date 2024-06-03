@@ -65,6 +65,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             SelectedAccommodation.UnavailableDates.Add(SelectedDateRange);
             AccommodationService.Update(SelectedAccommodation.ToAccommodationWithoutSearch());
             RenovationService.Add(Renovation.ToRenovation());
+            MessageBox.Show("Renovation scheduled");
             
         }
 
