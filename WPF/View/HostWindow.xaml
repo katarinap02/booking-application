@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
+        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"  xmlns:BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands="clr-namespace:BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands"
         xmlns:local="clr-namespace:BookingApp.View"
         mc:Ignorable="d"
         Title="HostWindow" Height="768" Width="1024"
@@ -11,6 +11,7 @@
         ResizeMode="NoResize">
 
     <Window.Resources>
+        <BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands:BooleanButtonConverter x:Key="BooleanButtonConverter"/>
         <Style x:Key="DemoIconAnimation" TargetType="fa:IconImage">
             <Style.Triggers>
                 <DataTrigger Binding="{Binding IsDemoStarted}" Value="True">
@@ -122,11 +123,22 @@
             </MenuItem>
             <MenuItem Width="88">
                 <MenuItem.Header >
-                    <Button Style="{StaticResource ButtonStyleWindowHost}" Command="{Binding StartDemo}">
+                    <Button Command="{Binding StartDemo}" IsEnabled="{Binding UnableDemo}">
                         <StackPanel Orientation="Horizontal">
                             <Image Source="../Resources/Images/video-camera.png" Width="20" Margin="2 0 0 0" Height="25"/>
                             <TextBlock  Text="Demo" FontSize="15" VerticalAlignment="Center" Margin="10,0,2,0" />
                         </StackPanel>
+                        <Button.Style>
+                            <Style TargetType="Button" BasedOn="{StaticResource ButtonStyleWindowHost}">
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsDemoStarted}" Value="True">
+                                        <Setter Property="Foreground" Value="#DC1414"/>
+                                        <Setter Property="BorderBrush" Value="#DC1414"/>
+                                        <Setter Property="BorderThickness" Value="2"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </Button.Style>
                     </Button>
                 </MenuItem.Header>
             </MenuItem>

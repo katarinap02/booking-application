@@ -93,7 +93,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToRegisterPageCommand(AccommodationViewModel acc)
         {
             CloseMenu();
-            RegisterAccommodationPage page = new RegisterAccommodationPage(User, acc, NavService);
+            RegisterAccommodationPage page = new RegisterAccommodationPage(User, IsDemo, acc, NavService);
             this.NavService.Navigate(page);
         }
 
