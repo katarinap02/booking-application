@@ -7,7 +7,7 @@
 21|4|If you're looking for a large store with diverse offerings, try Roda Mega Market.|True|False|6/2/2024 7:33:06 PM|1|0|False
 22|4|Mercator is convenient because it's located in a shopping center, making it easy to find other necessities too.|True|False|6/2/2024 7:33:13 PM|1|0|False
 23|4|Aman is a smaller store but perfect for grabbing essential groceries quickly.|True|False|6/2/2024 7:33:19 PM|1|0|False
-24|4|Tempo is a hypermarket with extensive options and great for bulk shopping.|False|False|6/2/2024 7:33:28 PM|1|0|False
+24|4|Tempo is a hypermarket with extensive options and great for bulk shopping.|False|False|6/2/2024 7:33:28 PM|1|1|True
 25|4|DIS Market is known for its competitive prices and a good variety of products.|True|False|6/2/2024 7:33:33 PM|1|0|False
 26|4|Don't miss out on Mega Maxi, which has a fantastic selection and is quite tourist-friendly.|True|False|6/2/2024 7:34:01 PM|1|0|False
 27|4|Gomex stores are scattered around the city and offer great deals on everyday items.|True|False|6/2/2024 7:34:08 PM|1|0|False
@@ -27,3 +27,6 @@
 41|2|Shop & Go is convenient for tourists, with several locations around the city.|True|True|6/2/2024 7:36:34 PM|1|0|False
 42|2|Biomarket Sunce offers a great selection of organic and health-focused products.|True|True|6/2/2024 7:36:40 PM|1|0|False
 43|2|The largest store is located on the edge of town.|True|True|6/3/2024 12:39:01 AM|1|0|False
+44|4|test|True|False|6/3/2024 9:08:42 AM|1|0|False
+45|4|test2|False|False|6/3/2024 9:09:13 AM|11|0|False
+46|2|komentar|True|True|6/3/2024 9:11:47 AM|1|0|False

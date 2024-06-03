@@ -1,2 +1,2 @@
-1|1|Regular|Teo|SurnameExample|123456789|teo@example.com|22|teo||False|1/1/0001 12:00:00 AM
-2|7|Regular|Teodora|Becejac|064/1234567|teo@example.com|22|test||False|1/1/0001 12:00:00 AM
+1|1|Regular|Teo|SurnameExample|123456789|teo@example.com|22|teo||True|1/1/0001 12:00:00 AM
+2|7|Super|Teodora|Becejac|064/1234567|teo@example.com|22|test|,SuperGuide for English 2024|False|6/3/2025 9:14:46 AM
