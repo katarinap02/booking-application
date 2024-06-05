@@ -28,7 +28,7 @@
 
         <UniformGrid Columns="3"  HorizontalAlignment="Center" Grid.Row="1">
             <Button Content="{Binding ButtonString, UpdateSourceTrigger=PropertyChanged}" Command="{Binding SwitchTours}" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/>
-            <!-- Button Content="  Add a new date for tour  " Command="{Binding AddTourDate}" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/ -->
+            <Button Content="  Add a new date for tour  " Command="{Binding AddTourDate}" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B" Click="Open"/>
             <Button Content="Cancel Tour" Command="{Binding Cancel}" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/>
             <Button Grid.Row="1" Grid.ColumnSpan="3" Command="{Binding AddTour}" Content="Add new Tour" Margin="10" Style="{StaticResource generalButton}" Height="30" Foreground="#060531" BorderBrush="#FB539B" />
         </UniformGrid>

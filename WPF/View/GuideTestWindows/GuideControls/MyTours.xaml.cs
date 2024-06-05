@@ -26,5 +26,11 @@ namespace BookingApp.WPF.View.GuideTestWindows.GuideControls
         {            
             InitializeComponent();
         }
+
+        private void Open(object sender, RoutedEventArgs e)
+        {
+            ReviewsWindow reviewsWindow = new ReviewsWindow();
+            reviewsWindow.Show();   
+        }
     }
 }

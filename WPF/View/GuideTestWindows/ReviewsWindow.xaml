@@ -1,0 +1,86 @@
+﻿<Window x:Class="BookingApp.WPF.View.GuideTestWindows.ReviewsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows"
+        mc:Ignorable="d"
+        Title="ReviewsWindow" Height="450" Width="1200">
+    <Window.Resources>
+        <Style x:Key="StarRatingStyle" TargetType="StackPanel">
+            <Setter Property="Orientation" Value="Horizontal"/>
+            <Setter Property="Margin" Value="0,0,0,5"/>
+        </Style>
+    </Window.Resources>
+
+    <Grid Background="#0A003A">
+        <ListView Name="TouristListView" Background="Transparent" Width="700" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" d:ItemsSource="{d:SampleData ItemCount=5}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <Border CornerRadius="15" Background="#8824105F" Padding="10" Margin="10">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="auto"></RowDefinition>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="auto"></RowDefinition>
+                            </Grid.RowDefinitions>
+
+                            <Border Grid.Column="0" Grid.Row="0">
+                                <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
+                                    <Image Source="{Binding ImagePath}" Width="80" Height="80"/>
+                                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                                        <Button Content="←" Background="#FB539B" Foreground="White" Width="30" Height="30" Margin="2"/>
+                                        <Button Content="→" Background="#FB539B" Foreground="White" Width="30" Height="30" Margin="2"/>
+                                    </StackPanel>
+                                </StackPanel>                                
+                            </Border>
+
+                            <Grid Grid.Row="0" Grid.Column="1">
+                                <StackPanel>
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Tourist name: " FontWeight="Bold" Foreground="White" FontSize="16"/>
+                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="White" FontSize="16"/>
+                                    </StackPanel>
+                                    <StackPanel Style="{StaticResource StarRatingStyle}">
+                                        <TextBlock Text="Guide general knowledge:" Foreground="White"/>
+                                        <TextBlock Text="{Binding GuideGeneralKnowledge}" Foreground="White" FontWeight="Bold" Margin="5,0,0,0"/>
+                                        <TextBlock Text="★" Foreground="Gold" Margin="2,0,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel Style="{StaticResource StarRatingStyle}">
+                                        <TextBlock Text="Guide language knowledge:" Foreground="White"/>
+                                        <TextBlock Text="{Binding GuideLanguageKnowledge}" Foreground="White" FontWeight="Bold" Margin="5,0,0,0"/>
+                                        <TextBlock Text="★" Foreground="Gold" Margin="2,0,0,0"/>
+                                    </StackPanel>
+                                    <StackPanel Style="{StaticResource StarRatingStyle}">
+                                        <TextBlock Text="Tour interest level:" Foreground="White"/>
+                                        <TextBlock Text="{Binding TourInterestLevel}" Foreground="White" FontWeight="Bold" Margin="5,0,0,0"/>
+                                        <TextBlock Text="★" Foreground="Gold" Margin="2,0,0,0"/>
+                                    </StackPanel>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                                <StackPanel>
+                                    <TextBlock Text="Long description:" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
+                                    <TextBlock Text="{Binding LongDescription}" Foreground="White" TextWrapping="Wrap" Width="400" Margin="0,5,0,0"/>
+                                </StackPanel>
+                            </Grid>
+
+                            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                                    <TextBlock Text="Checkpoint of joining:" Foreground="White"/>
+                                    <TextBlock Text="{Binding Checkpoint}" FontWeight="Bold" Foreground="White" Margin="5,0,0,0"/>
+                                    <Button Content="Button" Background="#FB539B" Foreground="White" Margin="10,0,0,0" Padding="5,2"/>
+                                </StackPanel>
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </Grid>
+</Window>
