@@ -49,6 +49,7 @@
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
         <StackPanel Grid.Column="5"
+                    Style="{StaticResource HoverEffectForTutorial}"
             Grid.Row="1" Orientation="Horizontal"
             HorizontalAlignment="Right"
                     Height="50"
@@ -323,7 +324,7 @@
                               Source="../../../WPF/Resources/TutorialVideos/TourReservationTutorial.mp4"
                               LoadedBehavior="Manual"
                               Margin="10"/>
-                        <Button Content="X" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseTutorialButton_Click" Background="Transparent" BorderBrush="Transparent" Style="{StaticResource EnlargeButtonStyle1}" FontSize="18"/>
+                        <Button Content="X" Margin="0, 0, 5, 0" Width="35" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseTutorialButton_Click" Style="{StaticResource EnlargeButtonStyle1}" FontSize="25"/>
                     </Grid>
                     <StackPanel Orientation="Horizontal"
                         HorizontalAlignment="Center" Visibility="Visible">
