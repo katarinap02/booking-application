@@ -316,7 +316,7 @@
                 Width="85"
                 Margin="120, 0, 0, 0"/>
 
-        <Popup x:Name="TutorialPopup" AllowsTransparency="True" Width="650" IsOpen="False" Placement="Center" HorizontalOffset="160" VerticalOffset="0">
+        <Popup x:Name="TutorialPopup" AllowsTransparency="True" Width="650" Height="490" IsOpen="False" Placement="Center" HorizontalOffset="160" VerticalOffset="0">
             <Border x:Name="TutorialBorder" BorderBrush="Black" Background="Black" BorderThickness="5" CornerRadius="5">
                 <StackPanel x:Name="TutorialStackPanel" Visibility="Visible">
                     <Grid>
