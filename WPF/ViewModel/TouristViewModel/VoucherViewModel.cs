@@ -2,6 +2,7 @@
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.View.TouristWindows;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -183,7 +184,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 MessageBox.Show("Something wrong happened");
                 return;
             }
-            MessageBox.Show("You just used a voucher!");
+            Messenger.Default.Send(new NotificationMessage("You just used a voucher!"));
         }
 
         public void NotificationButton()

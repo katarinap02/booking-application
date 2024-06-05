@@ -59,6 +59,8 @@
     <None Remove="WPF\Resources\LoginImages\icon.png" />
     <None Remove="WPF\Resources\LoginImages\key.png" />
     <None Remove="WPF\Resources\LoginImages\login_background.jpg" />
+    <None Remove="WPF\Resources\TutorialVideos\2024-06-05 10-57-27.mkv" />
+    <None Remove="WPF\Resources\TutorialVideos\2024-06-05 10-57-27.mp4" />
 
 
   </ItemGroup>
@@ -265,6 +267,9 @@
     <None Update="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="WPF\Resources\TutorialVideos\TourReservationTutorial.mp4">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

@@ -35,13 +35,15 @@ namespace BookingApp.View.TouristWindows
         public TourReservationWindow(TourViewModel selectedTour, int insertedNumberOfParticipants, int userId)
         {
             InitializeComponent();
-            TourReservation = new TourReservationViewModel();
+            TourReservation = new TourReservationViewModel(selectedTour, insertedNumberOfParticipants, userId);
             DataContext = TourReservation;
-  
-            TourReservation.InitializeTourReservationWindow(selectedTour, insertedNumberOfParticipants, userId);
+
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
-                MessageBox.Show(message.Notification, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (IsActive)
+                {
+                    MessageBox.Show(message.Notification, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
             });
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
         }
@@ -49,16 +51,21 @@ namespace BookingApp.View.TouristWindows
         {
             Close();
         }
-
-        private void BookButton_Click(object sender, RoutedEventArgs e)
-        {
-            if(TourReservation.Book())
-                Close();
-        }
         protected override void OnClosed(EventArgs e)
         {
             base.OnClosed(e);
             Messenger.Default.Unregister(this);
+        }
+        private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if(TutorialPopup.IsOpen == false)
+            {
+                TutorialPopup.IsOpen = true;
+                mediaElement.Play();
+                return;
+            }
+            TutorialPopup.IsOpen = false;
+            mediaElement.Stop();
         }
         private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
@@ -77,6 +84,25 @@ namespace BookingApp.View.TouristWindows
         private void AddParticipant_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = true;
+        }
+
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Play();
+        }
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Stop();
+            mediaElement.Play();
+        }
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Pause();
+        }
+        private void CloseTutorialButton_Click(object sender, RoutedEventArgs e)
+        {
+            TutorialPopup.IsOpen = false;
+            mediaElement.Stop();
         }
     }
 }

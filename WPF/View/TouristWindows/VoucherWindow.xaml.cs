@@ -32,6 +32,13 @@ namespace BookingApp.View.TouristWindows
             Voucher.UserId = userId;
             if (!Voucher.RefreshVoucherDataGrid())
                 CloseWindow(null);
+            Messenger.Default.Register<NotificationMessage>(this, message =>
+            {
+                if (IsActive)
+                {
+                    MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            });
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
         }
         private void CloseWindow(CloseWindowMessage message)

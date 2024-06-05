@@ -45,8 +45,8 @@
                   AutoGenerateColumns="False"
                   FontSize="16">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" Width="300"/>
-                <DataGridTextColumn Header="Expire Date" Binding="{Binding ExpireDate}" Width="*"/>
+                <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" Width="*"/>
+                <DataGridTextColumn Header="Expire Date" Binding="{Binding ExpireDate}" Width="120"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
