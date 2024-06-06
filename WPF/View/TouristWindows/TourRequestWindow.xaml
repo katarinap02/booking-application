@@ -135,7 +135,7 @@
                FontWeight="DemiBold"
                VerticalContentAlignment="Center"/>
         </StackPanel>
-        <Popup x:Name="TutorialPopup" AllowsTransparency="True" Width="650" Height="490" IsOpen="False" Placement="Center" HorizontalOffset="160" VerticalOffset="35">
+        <Popup x:Name="TutorialPopup" AllowsTransparency="True" Width="650" Height="615" IsOpen="False" Placement="Center" HorizontalOffset="160" VerticalOffset="95">
             <Border x:Name="TutorialBorder" BorderBrush="Black" Background="Black" BorderThickness="5" CornerRadius="5">
                 <StackPanel x:Name="TutorialStackPanel" Visibility="Visible">
                     <Grid>
