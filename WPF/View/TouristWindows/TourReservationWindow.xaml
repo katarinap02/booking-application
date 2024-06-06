@@ -8,7 +8,7 @@
         xmlns:touristWindows="clr-namespace:BookingApp.WPF.View.TouristWindows"
         xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
-        Title="TourReservationWindow" Height="557" Width="1000" WindowStartupLocation="CenterScreen">
+        Title="Tour Reservation" Height="687" Width="1000" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="BasicLabels" TargetType="Label">
             <Setter Property="FontSize" Value="20"/>
@@ -48,10 +48,11 @@
         </Grid.RowDefinitions>
 
         <Label Content="Tour Booking"
-               Grid.Row="0"
                Grid.Column="0"
                Grid.ColumnSpan="7"
-               FontSize="30"
+               Grid.Row="1"
+               FontSize="40"
+               FontWeight="DemiBold"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
                />

@@ -56,7 +56,7 @@
 56|3|Pending|Dublin|Ireland|Guinness Storehouse Visit|English|6/25/2024 1:00:00 PM|6/26/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|4,5,6|10/13/2023 10:45:00 AM
 57|3|Pending|Lisbon|Portugal|Alfama District Tour|Portuguese|7/5/2024 11:00:00 AM|7/6/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|7,8,9|6/2/2023 4:05:00 PM
 58|3|Invalid|Paris|France|Notre Dame Visit|French|5/12/2024 10:00:00 AM|5/13/2024 5:00:00 PM|1/1/0001 12:00:00 AM|-1|10,11,12|4/5/2024 1:25:00 PM
-59|3|Pending|Tokyo|Japan|Asakusa Temple Tour|Japanese|6/7/2024 9:30:00 AM|6/8/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|7,8,9|2/14/2023 11:50:00 AM
+59|3|Invalid|Tokyo|Japan|Asakusa Temple Tour|Japanese|6/7/2024 9:30:00 AM|6/8/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|7,8,9|2/14/2023 11:50:00 AM
 60|3|Pending|New York|USA|Statue of Liberty Tour|English|7/1/2024 1:00:00 PM|7/2/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|16,17,18|1/19/2024 3:25:00 PM
 61|3|Pending|Berlin|Germany|Brandenburg Gate Visit|German|8/21/2024 11:00:00 AM|8/22/2024 4:30:00 PM|1/1/0001 12:00:00 AM|-1|13,14,15|8/13/2023 9:05:00 AM
 62|3|Pending|Dubai|UAE|Desert Safari|Arabic|9/3/2024 8:00:00 AM|9/4/2024 12:00:00 PM|1/1/0001 12:00:00 AM|-1|19,20,21|12/5/2023 2:35:00 PM
@@ -69,7 +69,7 @@
 69|3|Pending|Stockholm|Sweden|Gamla Stan Walk|Swedish|6/25/2024 1:00:00 PM|6/26/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|19,20,21|1/15/2024 2:50:00 PM
 70|3|Pending|Beijing|China|Forbidden City Tour|Mandarin|9/5/2024 11:00:00 AM|9/6/2024 4:30:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|2/17/2024 3:15:00 PM
 71|3|Pending|Istanbul|Turkey|Blue Mosque Visit|Turkish|8/10/2024 8:00:00 AM|8/11/2024 12:00:00 PM|1/1/0001 12:00:00 AM|-1|4,5,6|3/19/2023 5:45:00 PM
-72|3|Pending|Rio de Janeiro|Brazil|Ipanema Beach Day|Portuguese|6/5/2024 10:00:00 AM|6/6/2024 2:00:00 PM|1/1/0001 12:00:00 AM|-1|7,8,9|12/1/2023 6:10:00 PM
+72|3|Invalid|Rio de Janeiro|Brazil|Ipanema Beach Day|Portuguese|6/5/2024 10:00:00 AM|6/6/2024 2:00:00 PM|1/1/0001 12:00:00 AM|-1|7,8,9|12/1/2023 6:10:00 PM
 73|3|Pending|Vienna|Austria|Vienna Opera House Tour|German|7/28/2024 9:00:00 AM|7/29/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|10,11,12|4/11/2023 8:40:00 AM
 74|3|Pending|Venice|Italy|St. Mark's Basilica Visit|Italian|9/22/2024 11:00:00 AM|9/23/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|13,14,15|6/25/2024 1:25:00 PM
 75|3|Pending|Seoul|South Korea|Bukchon Hanok Village Tour|Korean|8/23/2024 10:00:00 AM|8/24/2024 5:00:00 PM|1/1/0001 12:00:00 AM|-1|16,17,18|1/22/2024 11:55:00 AM
@@ -95,5 +95,5 @@
 95|3|Pending|Abano Terme|Italy|I want to see everything that is worth to see in this city2.|Abkhaz|6/28/2024 12:00:00 AM|7/6/2024 12:00:00 AM|1/1/0001 12:00:00 AM|-1|39,40,41,42|6/2/2024 9:36:04 PM
 96|3|Accepted|Ada|Serbia|Index sandvich tasting|English|6/10/2024 12:00:00 AM|6/14/2024 12:00:00 AM|6/12/2024 8:00:00 AM|7|46|6/3/2024 1:07:37 AM
 97|3|Pending|Ada|Serbia|Cvarci tasting|Hungarian|6/15/2024 12:00:00 AM|6/22/2024 12:00:00 AM|1/1/0001 12:00:00 AM|-1|47|6/3/2024 1:07:37 AM
-98|3|Pending|Andreas|Isle of Man||Abkhaz|6/7/2024 12:00:00 AM|6/11/2024 12:00:00 AM|1/1/0001 12:00:00 AM|-1|48,49|6/3/2024 9:17:41 AM
+98|3|Invalid|Andreas|Isle of Man||Abkhaz|6/7/2024 12:00:00 AM|6/11/2024 12:00:00 AM|1/1/0001 12:00:00 AM|-1|48,49|6/3/2024 9:17:41 AM
 99|3|Pending|Castel|Guernsey||Abkhaz|6/13/2024 12:00:00 AM|6/19/2024 12:00:00 AM|1/1/0001 12:00:00 AM|-1|50|6/3/2024 9:17:41 AM

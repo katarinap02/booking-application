@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.WPF.View.TouristWindows" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local1="clr-namespace:BookingApp.WPF.View.TouristWindows"
         mc:Ignorable="d"
-        Title="AddTourRequestWindow" Height="745" Width="900" WindowStartupLocation="CenterScreen">
+        Title="Tour Request" Height="895" Width="1000" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <local1:ValidationErrorsConverter x:Key="ValidationErrorsConverter"/>
         <Style x:Key="BasicLabels" TargetType="Label">
@@ -17,15 +17,15 @@
     <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"></ColumnDefinition>
-            <ColumnDefinition Width="160"></ColumnDefinition>
-            <ColumnDefinition Width="160"></ColumnDefinition>
+            <ColumnDefinition Width="130"></ColumnDefinition>
+            <ColumnDefinition Width="280"></ColumnDefinition>
             <ColumnDefinition Width="150"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="20"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="10"></RowDefinition>
-            <RowDefinition Height="70"></RowDefinition>
+            <RowDefinition Height="90"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
@@ -35,10 +35,11 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="165"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="40"></RowDefinition>
+            <RowDefinition Height="235"></RowDefinition>
+            <RowDefinition Height="46"></RowDefinition>
             <RowDefinition Height="35"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="10"></RowDefinition>
         </Grid.RowDefinitions>
         <Label Content="Tour Request"
                Grid.Column="1"
@@ -117,7 +118,7 @@
    Grid.Column="1"
    Grid.Row="7"
    Style="{StaticResource BasicLabels}"
-   FontSize="17"
+   FontSize="18"
    VerticalAlignment="Center"></Label>
         <xctk:IntegerUpDown x:Name="Participants"
                 Text="{Binding ParticipantCount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
@@ -160,88 +161,121 @@
         PreviewTextInput="DatePicker_PreviewTextInput"
         PreviewKeyDown="DatePicker_PreviewKeyDown"
         Height="25"></DatePicker>
+        <Label Grid.Column="1"
+               Grid.ColumnSpan="4"
+               Grid.Row="10"
+               FontSize="20"
+               Margin="8, 0, 0, 0">
+            Note: Number of participants includes you
+        </Label>
         <GroupBox x:Name="ParticipantInformationGroupBox"
-          Grid.Row="10" 
+          Grid.Row="11" 
           Grid.Column="1" 
           Grid.ColumnSpan="2"
           Grid.RowSpan="2"
           FontSize="18"
+          BorderThickness="2"
+          BorderBrush="Black"
           Header="Participant Information"
-          FontWeight="DemiBold">
+          FontWeight="Medium">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="100"/>
+                    <ColumnDefinition Width="110"/>
                     <ColumnDefinition Width="118"/>
                     <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
                 <Label Content="Name:"
-   Grid.Column="1"
-   Grid.Row="1"
-   FontWeight="SemiBold"
-   HorizontalContentAlignment="Left"
-   VerticalContentAlignment="Center"/>
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       Style="{StaticResource BasicLabels}"
+                       HorizontalContentAlignment="Left"
+                       VerticalContentAlignment="Center"/>
                 <Label Content="Last name:"
-   Grid.Column="1"
-   Grid.Row="2"
-   FontWeight="SemiBold"
-   HorizontalContentAlignment="Left"
-   VerticalContentAlignment="Center"/>
+                       Grid.Column="0"
+                       Grid.Row="2"
+                       Style="{StaticResource BasicLabels}"
+                       HorizontalContentAlignment="Left"
+                       VerticalContentAlignment="Center"/>
                 <Label Content="Age:"
-   Grid.Column="1"
-   Grid.Row="3"
-   FontWeight="SemiBold"
-   HorizontalContentAlignment="Left"
-   VerticalContentAlignment="Center"/>
+                       Grid.Column="0"
+                       Grid.Row="3"
+                       Style="{StaticResource BasicLabels}"
+                       FontWeight="SemiBold"
+                       HorizontalContentAlignment="Left"
+                       VerticalContentAlignment="Center"/>
 
                 <TextBox x:Name="NameTextBox"
-     Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-     Grid.Column="2"
-     Grid.Row="1"
-     Grid.ColumnSpan="2"
-     HorizontalAlignment="Left"
-     Width="120"
-     Height="25"/>
+                         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+                         Grid.Column="1"
+                         Grid.Row="1"
+                         Grid.ColumnSpan="2"
+                         FontSize="18"
+                         MaxLength="20"
+                         VerticalAlignment="Center"
+                         Height="30" Margin="0,0,-12,0"/>
 
                 <Label Content="{Binding ElementName=NameTextBox, Path=(Validation.Errors).Count, Converter={StaticResource ValidationErrorsConverter}, ConverterParameter={x:Reference NameTextBox} }"
-   Foreground="Red"
-   FontWeight="DemiBold"
-   Grid.Row="1"
-   Grid.RowSpan="2"
-   VerticalAlignment="Center"
-   HorizontalAlignment="Left"
-   FontSize="12" Grid.ColumnSpan="3" Margin="114,0,0,0"/>
+                       Foreground="white"
+                       Background="#C23050"
+                       FontWeight="DemiBold"
+                       Grid.Row="1"
+                       Grid.RowSpan="2"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       FontSize="12" Grid.ColumnSpan="3" Margin="110,0,0,0">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
 
                 <TextBox x:Name="LastNameTextBox"
-     Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
-     Grid.Column="2"
-     Grid.Row="2"
-     Grid.ColumnSpan="2"
-     HorizontalAlignment="Left"
-     Width="120"
-     Height="25"/>
+                         Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
+                         Grid.Column="1"
+                         Grid.Row="2"
+                         Grid.ColumnSpan="2"
+                         FontSize="18"
+                         MaxLength="20"
+                         Height="30" Margin="0,12,-12,12"/>
 
                 <Label Content="{Binding ElementName=LastNameTextBox, Path=(Validation.Errors).Count, Converter={StaticResource ValidationErrorsConverter}, ConverterParameter={x:Reference LastNameTextBox} }"
-   Foreground="Red"
-   Grid.Column="1"
-   Grid.Row="2"
-   Grid.RowSpan="2"
-   FontWeight="DemiBold"
-   VerticalAlignment="Center"
-   HorizontalAlignment="Left"
-   Width="140"
-   FontSize="11.5" Grid.ColumnSpan="2" Margin="93,0,0,0"/>
+                       Foreground="white"
+                       Background="#C23050"
+                       Grid.Column="0"
+                       Grid.Row="2"
+                       Grid.RowSpan="2"
+                       FontWeight="DemiBold"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Width="140"
+                       FontSize="11.5" Grid.ColumnSpan="2" Margin="110,0,0,0">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+
                 <xctk:IntegerUpDown x:Name="years"
                 Text="{Binding Age}"
                 DefaultValue="1"
-                Grid.Column="2"
+                Grid.Column="1"
                 Grid.Row="3"
                 Width="60"
                 HorizontalAlignment="Left"
@@ -252,37 +286,34 @@
                 Maximum="100"
                 PreviewTextInput="Integer_PreviewTextInput"/>
 
-                <Button x:Name="AddButton" Style="{StaticResource EnlargeButtonStyle}"
-    Grid.Row="3"
-    HorizontalAlignment="Left"
-    Grid.Column="3"
-    Width="60"
-    Height="35"
-    Content="Add"
-    Command="{Binding AddParticipantCommand}"/>
+                <Button x:Name="AddButton" Style="{StaticResource EnlargeButtonStyle1}"
+                        Grid.Row="3"
+                        Grid.Column="2"
+                        Height="50"
+                        Content="Add"
+                        Command="{Binding AddParticipantCommand}" Margin="62,0,-12,0"/>
 
             </Grid>
         </GroupBox>
         <Image Source="/WPF/Resources/Images/arrow-to-line-right.png"
    Grid.Column="3"
-   Grid.Row="11"
+   Grid.Row="12"
    VerticalAlignment="Center"
    Width="65"></Image>
 
-        <Label Content="Participants"
-   FontWeight="Bold"
-   Grid.Row="3"
-   Grid.Column="4"
-   FontSize="20"
-   VerticalAlignment="Bottom"/>
+        <Label Content="Added Participants:"
+               FontWeight="SemiBold"
+               Grid.Row="3"
+               Grid.Column="4"
+               FontSize="20"
+               VerticalAlignment="Bottom"/>
         <ListBox x:Name="ParticipantsListBox"
      ItemsSource="{Binding ParticipantsListBox}"
      SelectedItem="{Binding SelectedParticipant}"
      Grid.Row="4"
      Grid.Column="4"
-     Grid.RowSpan="8"
-     FontSize="20"
-     Margin="0,0,0,10">
+     Grid.RowSpan="9"
+     FontSize="20">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -304,20 +335,19 @@
             </ListBox.ItemTemplate>
         </ListBox>
         <Button Style="{StaticResource EnlargeButtonStyle}"
-                Grid.Column="4"
-                Grid.Row="13"
-                FontSize="19"
-                HorizontalAlignment="Right"
-                Width="70"
-                Content="Cancel" Command="{Binding CloseWindowCommand}"
-                Margin="0, 0, 100, 0"></Button>
+                Grid.Column="2"
+                Grid.Row="14"
+                FontSize="20"
+                Width="84"
+                HorizontalAlignment="Left"
+                Content="Cancel" Command="{Binding CloseWindowCommand}" Grid.ColumnSpan="2" Margin="250,0,0,0"></Button>
         <Button Style="{StaticResource EnlargeButtonStyle}"
-                Grid.Column="4"
-                Grid.Row="13"
-                HorizontalAlignment="Right"
-                FontSize="19"
-                Width="75"
-                Content="Confirm"
-                Command="{Binding AddToToursCommand}"></Button>
+                Grid.Column="3"
+                Grid.Row="14"
+                HorizontalAlignment="Left"
+                FontSize="20"
+                Width="86"
+                Content="Add"
+                Command="{Binding AddToToursCommand}" Grid.ColumnSpan="2" Margin="102,0,0,0"></Button>
     </Grid>
 </Window>

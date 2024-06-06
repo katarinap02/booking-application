@@ -157,11 +157,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         }
         private void RemoveTour(object tourRequest)
         {
-            for (var date = SelectedTourRequest.SelectedStartDate; date <= SelectedTourRequest.SelectedEndDate; date = date.AddDays(1))
+            for (var date = _selectedTourRequest.SelectedStartDate; date <= _selectedTourRequest.SelectedEndDate; date = date.AddDays(1))
             {
-                SelectedTourRequest.SelectedDates.Remove(date);
+                _selectedTourRequest.SelectedDates.Remove(date);
             }
-            TourRequests.Remove(SelectedTourRequest);
+            TourRequests.Remove(_selectedTourRequest);
 
         }
         private bool CanRemoveTour()

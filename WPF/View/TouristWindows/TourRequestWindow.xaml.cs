@@ -64,6 +64,17 @@ namespace BookingApp.WPF.View.TouristWindows
             base.OnClosed(e);
             Messenger.Default.Unregister(this);
         }
+        private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (TutorialPopup.IsOpen == false)
+            {
+                TutorialPopup.IsOpen = true;
+                mediaElement.Play();
+                return;
+            }
+            TutorialPopup.IsOpen = false;
+            mediaElement.Stop();
+        }
         private void Confirm_CanExecute(object sender, CanExecuteRoutedEventArgs e)
         {
             e.CanExecute = TourRequest.SaveToCsvCommand.CanExecute(null);
@@ -72,6 +83,24 @@ namespace BookingApp.WPF.View.TouristWindows
         private void Confirm_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             TourRequest.SaveToCsvCommand.Execute(null);
+        }
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Play();
+        }
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Stop();
+            mediaElement.Play();
+        }
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Pause();
+        }
+        private void CloseTutorialButton_Click(object sender, RoutedEventArgs e)
+        {
+            TutorialPopup.IsOpen = false;
+            mediaElement.Stop();
         }
     }
 }
