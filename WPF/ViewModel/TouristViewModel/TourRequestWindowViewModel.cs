@@ -969,6 +969,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             LastName = string.Empty;
             ComplexTourName = string.Empty;
             NumberOfTours = 1;
+            Description = string.Empty;
 
             SelectedDates = new List<DateTime>();
             TourRequests = new ObservableCollection<TourRequestWindowViewModel>();

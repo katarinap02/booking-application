@@ -26,7 +26,7 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="40"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="60"/>
+            <RowDefinition Height="70"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="50"/>
             <RowDefinition Height="20"/>
@@ -70,14 +70,26 @@
                  MaxLength="50"/>
 
         <Label Content="{Binding ElementName=NameTextBox, Path=(Validation.Errors).Count, Converter={StaticResource ValidationErrorsConverter}, ConverterParameter={x:Reference NameTextBox} }"
-                Foreground="Red"
+                Foreground="White"
+                Background="#C23050"
                 FontWeight="DemiBold"
                 Grid.Row="1"
                 Grid.RowSpan="2"
                 Grid.Column="2"
                 VerticalAlignment="Center"
                 HorizontalAlignment="Left"
-                FontSize="12" Grid.ColumnSpan="3"/>
+                FontSize="12" Grid.ColumnSpan="3"
+               Margin="0, 6, 0, 0">
+            <Label.Style>
+                <Style TargetType="Label">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="">
+                            <Setter Property="Visibility" Value="Collapsed" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Label.Style>
+        </Label>
 
         <Button Style="{StaticResource EnlargeButtonStyle1}"
                 Grid.Row="4"
@@ -94,7 +106,6 @@
                VerticalAlignment="Top"/>
 
         <DataGrid ItemsSource="{Binding TourRequests}"
-                  SelectedItem="{Binding SelectedTourRequest}"
                   Style="{StaticResource CoolDataGridStyle}"
                   FontWeight="DemiBold"
                   Grid.Column="1"
@@ -104,11 +115,11 @@
                   IsReadOnly="True"
                   HeadersVisibility="Column" FontSize="16">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="270"/>
-                <DataGridTextColumn Header="City" Binding="{Binding City}" Width="270"/>
+                <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="*"/>
+                <DataGridTextColumn Header="City" Binding="{Binding City}" Width="*"/>
                 <DataGridTextColumn Header="Language" Binding="{Binding Language}" Width="100"/>
                 <DataGridTextColumn Header="Status" Binding="{Binding Status}" Width="120"/>
-                <DataGridTemplateColumn>
+                <!--<DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Remove" Height="30" Width="80" Style="{StaticResource EnlargeButtonStyle}"
@@ -116,19 +127,9 @@
                                     Command="{Binding RemoveTourCommand}"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
             </DataGrid.Columns>
         </DataGrid>
 
-
-        <StackPanel Grid.Column="3"
-                    Grid.Row="0" Orientation="Horizontal"
-                    HorizontalAlignment="Right">
-            <Image Source="/WPF/Resources/Images/play_button.png"/>
-            <Label Content="Tutorial"
-                   FontSize="18"
-                   FontWeight="DemiBold"
-                   VerticalContentAlignment="Center"/>
-        </StackPanel>
     </Grid>
 </Page>

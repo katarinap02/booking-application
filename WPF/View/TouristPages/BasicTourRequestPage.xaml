@@ -7,7 +7,7 @@
       xmlns:local="clr-namespace:BookingApp.WPF.View.TouristPages" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
       xmlns:local1="clr-namespace:BookingApp.WPF.View.TouristWindows"
       mc:Ignorable="d" 
-      d:DesignHeight="580" d:DesignWidth="900"
+      d:DesignHeight="625" d:DesignWidth="900"
       Title="BasicTourRequestPage">
     <Page.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.AddParticipant" CanExecute="AddParticipant_CanExecute" Executed="AddParticipant_Executed"/>
@@ -24,14 +24,14 @@
     <Grid Background="Transparent">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20"></ColumnDefinition>
-            <ColumnDefinition Width="160"></ColumnDefinition>
-            <ColumnDefinition Width="160"></ColumnDefinition>
+            <ColumnDefinition Width="130"></ColumnDefinition>
+            <ColumnDefinition Width="275"></ColumnDefinition>
             <ColumnDefinition Width="150"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="20"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="0"></RowDefinition>
+
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="50"></RowDefinition>
@@ -41,245 +41,267 @@
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
             <RowDefinition Height="40"></RowDefinition>
-            <RowDefinition Height="165"></RowDefinition>
-            <RowDefinition Height="30"></RowDefinition>
-            <RowDefinition Height="35"></RowDefinition>
-            <RowDefinition Height="20"></RowDefinition>
+            <RowDefinition Height="225"></RowDefinition>
         </Grid.RowDefinitions>
-        <StackPanel Grid.Column="4"
-                    Grid.Row="1" Orientation="Horizontal"
-                    HorizontalAlignment="Right">
-            <Image Source="/WPF/Resources/Images/play_button.png"/>
-            <Label Content="Tutorial"
-                   FontSize="18"
-                   FontWeight="DemiBold"
-                   VerticalContentAlignment="Center"/>
-        </StackPanel>
+
         <Label Content="Country:"
-       Grid.Column="1"
-       Grid.Row="1"
-       Style="{StaticResource BasicLabels}"
-       VerticalAlignment="Center"></Label>
+Grid.Column="1"
+Grid.Row="0"
+Style="{StaticResource BasicLabels}"
+VerticalAlignment="Center"></Label>
         <ComboBox x:Name="CountryComboBox"
-          Grid.Column="2"
-          Grid.Row="1"
-          VerticalAlignment="Center"
-          Height="30"
-          SelectedIndex="0"
-          SelectedItem="{Binding Country, Mode=TwoWay}"
-          ItemsSource="{Binding Countries}">
+   Grid.Column="2"
+   Grid.Row="0"
+   VerticalAlignment="Center"
+   Height="30"
+   SelectedIndex="0"
+               FontSize="18"
+   SelectedItem="{Binding Country, Mode=TwoWay}"
+   ItemsSource="{Binding Countries}">
         </ComboBox>
         <Label Content="City:"
-       Grid.Column="1"
-       Grid.Row="2"
-       Style="{StaticResource BasicLabels}"
-       VerticalAlignment="Center"></Label>
+Grid.Column="1"
+Grid.Row="1"
+Style="{StaticResource BasicLabels}"
+VerticalAlignment="Center"></Label>
         <ComboBox Grid.Column="2"
-         Grid.Row="2"
-         SelectedIndex="0"
-         SelectedItem="{Binding City, Mode=TwoWay}"
-         ItemsSource="{Binding Cities}"
-         VerticalAlignment="Center"
-         Height="30"
-         VirtualizingPanel.IsVirtualizing="True"
-         VirtualizingPanel.VirtualizationMode="Recycling"></ComboBox>
+  Grid.Row="1"
+  SelectedIndex="0"
+                                 FontSize="18"
+  SelectedItem="{Binding City, Mode=TwoWay}"
+  ItemsSource="{Binding Cities}"
+  VerticalAlignment="Center"
+  Height="30"
+  VirtualizingPanel.IsVirtualizing="True"
+  VirtualizingPanel.VirtualizationMode="Recycling"></ComboBox>
         <Label Content="Description:"
-       Grid.Column="1"
-       Grid.Row="3"
-       Style="{StaticResource BasicLabels}"
-       VerticalAlignment="Center"></Label>
+Grid.Column="1"
+Grid.Row="2"
+Style="{StaticResource BasicLabels}"
+VerticalAlignment="Center"></Label>
         <TextBox Grid.Column="2"
-         Grid.RowSpan="2"
-         Grid.Row="3"
-         Height="78"
-         TextWrapping="Wrap"
-         MaxLength="200"
-         Text="{Binding Description, Mode=TwoWay}"
-         VerticalAlignment="Top"
-         Margin="0, 6, 0, 0"></TextBox>
+  Grid.RowSpan="2"
+  Grid.Row="2"
+  Height="78"
+  TextWrapping="Wrap"
+  FontSize="18"
+  MaxLength="200"
+  Text="{Binding Description, Mode=TwoWay}"
+  VerticalAlignment="Top"
+  Margin="0, 6, 0, 0"></TextBox>
         <Label Content="Language:"
-       Grid.Column="1"
-       Grid.Row="5"
-       Style="{StaticResource BasicLabels}"
-       VerticalAlignment="Center"></Label>
+Grid.Column="1"
+Grid.Row="4"
+Style="{StaticResource BasicLabels}"
+VerticalAlignment="Center"></Label>
         <ComboBox x:Name="LanguageComboBox"
-         Grid.Column="2"
-         Grid.Row="5"
-         VerticalAlignment="Center"
-         Height="30"
-         SelectedIndex="0"
-         SelectedItem="{Binding Language, Mode=TwoWay}"
-         ItemsSource="{Binding Languages}"
-         VirtualizingPanel.IsVirtualizing="True"></ComboBox>
+  Grid.Column="2"
+  Grid.Row="4"
+  VerticalAlignment="Center"
+  Height="30"
+                                 FontSize="18"
+  SelectedIndex="0"
+  SelectedItem="{Binding Language, Mode=TwoWay}"
+  ItemsSource="{Binding Languages}"
+  VirtualizingPanel.IsVirtualizing="True"></ComboBox>
         <Label Content="Number Of&#x0a;Participants:"
-       Grid.Column="1"
-       Grid.Row="6"
-       Style="{StaticResource BasicLabels}"
-       FontSize="17"
-       VerticalAlignment="Center"></Label>
+Grid.Column="1"
+Grid.Row="5"
+Style="{StaticResource BasicLabels}"
+FontSize="17"
+VerticalAlignment="Center"></Label>
+        <Label Content="Note: Number of participants&#x0a;includes you"
+Grid.Column="2"
+Grid.Row="5"
+Style="{StaticResource BasicLabels}"
+               FontWeight="Normal"
+FontSize="14"
+               Margin="85,0,0,0"
+VerticalAlignment="Center" HorizontalAlignment="Left" Width="190"></Label>
         <xctk:IntegerUpDown x:Name="Participants"
-                    Text="{Binding ParticipantCount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-                    Grid.Row="6"
-                    Grid.Column="2"
-                    Increment="1"
-                    Minimum="1"
-                    Maximum="200"
-                    DefaultValue="1"
-                    TextAlignment="Justify"
-                    HorizontalAlignment="Left"
-                    Width="80"
-                    Height="30"
-                    FontSize="18"
-                    PreviewTextInput="Integer_PreviewTextInput"/>
+             Text="{Binding ParticipantCount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+             Grid.Row="5"
+             Grid.Column="2"
+             Increment="1"
+             Minimum="1"
+             Maximum="100"
+             DefaultValue="1"
+             TextAlignment="Justify"
+             HorizontalAlignment="Left"
+             Width="80"
+             Height="30"
+             FontSize="18"
+             PreviewTextInput="Integer_PreviewTextInput"/>
         <Label Content="Date range:"
-       Grid.Column="1"
-       Grid.Row="7"
-       FontSize="19"
-       Style="{StaticResource BasicLabels}"
-       VerticalAlignment="Center"></Label>
+Grid.Column="1"
+Grid.Row="6"
+FontSize="19"
+Style="{StaticResource BasicLabels}"
+VerticalAlignment="Center"></Label>
         <DatePicker Grid.Column="2"
-            x:Name="StartDatePicker"
-            SelectedDate="{Binding SelectedStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-            DisplayDateStart="{Binding MinDateStart, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-            Grid.Row="7"
-            FontWeight="DemiBold"
-            FontSize="14"
-            PreviewTextInput="DatePicker_PreviewTextInput"
-            PreviewKeyDown="DatePicker_PreviewKeyDown"
-            Height="25"></DatePicker>
+     x:Name="StartDatePicker"
+     SelectedDate="{Binding SelectedStartDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+     DisplayDateStart="{Binding MinDateStart, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+     Grid.Row="6"
+     FontWeight="DemiBold"
+     FontSize="14"
+     PreviewTextInput="DatePicker_PreviewTextInput"
+     PreviewKeyDown="DatePicker_PreviewKeyDown"
+     Height="25"></DatePicker>
         <DatePicker Grid.Column="2"
-            IsEnabled="{Binding IsEndDateEnabled, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-            SelectedDate="{Binding SelectedEndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-            DisplayDateStart="{Binding MinDateEnd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
-            Grid.Row="8"
-            FontWeight="DemiBold"
-            FontSize="14"
-            PreviewTextInput="DatePicker_PreviewTextInput"
-            PreviewKeyDown="DatePicker_PreviewKeyDown"
-            Height="25"></DatePicker>
+                 x:Name="EndDatePicker"
+     IsEnabled="{Binding IsEndDateEnabled, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+     SelectedDate="{Binding SelectedEndDate, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+     DisplayDateStart="{Binding MinDateEnd, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
+     Grid.Row="7"
+     FontWeight="DemiBold"
+     FontSize="14"
+     PreviewTextInput="DatePicker_PreviewTextInput"
+     PreviewKeyDown="DatePicker_PreviewKeyDown"
+     Height="25"></DatePicker>
         <GroupBox x:Name="ParticipantInformationGroupBox"
-              Grid.Row="9" 
-              Grid.Column="1" 
-              Grid.ColumnSpan="2"
-              Grid.RowSpan="2"
-              FontSize="18"
-              Header="Participant Information"
-              FontWeight="DemiBold">
+       Grid.Row="8" 
+       Grid.Column="1" 
+       Grid.ColumnSpan="2"
+       Grid.RowSpan="2"
+       FontSize="18"
+       FontWeight="Medium"
+       BorderThickness="2"
+       BorderBrush="Black"
+       Header="Participant Information">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="20"/>
-                    <ColumnDefinition Width="100"/>
-                    <ColumnDefinition Width="118"/>
-                    <ColumnDefinition Width="120"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="138"/>
+                    <ColumnDefinition Width="112"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="15"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
                 <Label Content="Name:"
-       Grid.Column="1"
-       Grid.Row="1"
-       FontWeight="SemiBold"
-       HorizontalContentAlignment="Left"
-       VerticalContentAlignment="Center"/>
+Grid.Column="0"
+Grid.Row="1"
+FontWeight="SemiBold"
+HorizontalContentAlignment="Left"
+VerticalContentAlignment="Center"/>
                 <Label Content="Last name:"
-       Grid.Column="1"
-       Grid.Row="2"
-       FontWeight="SemiBold"
-       HorizontalContentAlignment="Left"
-       VerticalContentAlignment="Center"/>
+Grid.Column="0"
+Grid.Row="2"
+FontWeight="SemiBold"
+HorizontalContentAlignment="Left"
+VerticalContentAlignment="Center"/>
                 <Label Content="Age:"
-       Grid.Column="1"
-       Grid.Row="3"
-       FontWeight="SemiBold"
-       HorizontalContentAlignment="Left"
-       VerticalContentAlignment="Center"/>
+Grid.Column="0"
+Grid.Row="3"
+FontWeight="SemiBold"
+HorizontalContentAlignment="Left"
+VerticalContentAlignment="Center"/>
 
                 <TextBox x:Name="NameTextBox"
-         Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
-         Grid.Column="2"
-         Grid.Row="1"
-         Grid.ColumnSpan="2"
-         HorizontalAlignment="Left"
-         Width="120"
-         Height="25"/>
+  Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
+  Grid.Column="1"
+  Grid.Row="1"
+                      MaxLength="20"
+  Grid.ColumnSpan="2"
+  Height="30" Margin="0,10,-12,10"/>
 
                 <Label Content="{Binding ElementName=NameTextBox, Path=(Validation.Errors).Count, Converter={StaticResource ValidationErrorsConverter}, ConverterParameter={x:Reference NameTextBox} }"
-       Foreground="Red"
-       FontWeight="DemiBold"
-       Grid.Row="1"
-       Grid.RowSpan="2"
-       VerticalAlignment="Center"
-       HorizontalAlignment="Left"
-       FontSize="12" Grid.ColumnSpan="3" Margin="114,0,0,0"/>
+ Foreground="White"
+    Background="#C23050"
+FontWeight="DemiBold"
+Grid.Row="1"
+Grid.Column="1"
+Grid.RowSpan="2"
+VerticalAlignment="Center"
+HorizontalAlignment="Left"
+FontSize="12" Grid.ColumnSpan="2">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
 
                 <TextBox x:Name="LastNameTextBox"
-         Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
-         Grid.Column="2"
-         Grid.Row="2"
-         Grid.ColumnSpan="2"
-         HorizontalAlignment="Left"
-         Width="120"
-         Height="25"/>
+  Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
+  Grid.Column="1"
+  Grid.Row="2"
+  Grid.ColumnSpan="2"
+  Height="30" Margin="0,10,-12,10"/>
 
                 <Label Content="{Binding ElementName=LastNameTextBox, Path=(Validation.Errors).Count, Converter={StaticResource ValidationErrorsConverter}, ConverterParameter={x:Reference LastNameTextBox} }"
-       Foreground="Red"
-       Grid.Column="1"
-       Grid.Row="2"
-       Grid.RowSpan="2"
-       FontWeight="DemiBold"
-       VerticalAlignment="Center"
-       HorizontalAlignment="Left"
-       Width="140"
-       FontSize="11.5" Grid.ColumnSpan="2" Margin="93,0,0,0"/>
-       <xctk:IntegerUpDown x:Name="years"
-                    Text="{Binding Age}"
-                    DefaultValue="1"
-                    Grid.Column="2"
-                    Grid.Row="3"
-                    Width="60"
-                    HorizontalAlignment="Left"
-                    TextAlignment="Justify"
-                    Height="30"
-                    Increment="1"
-                    Minimum="1"
-                    Maximum="100"
-                    PreviewTextInput="Integer_PreviewTextInput"/>
+ Foreground="White"
+ Background="#C23050"
+Grid.Column="1"
+Grid.Row="2"
+Grid.RowSpan="2"
+FontWeight="DemiBold"
+VerticalAlignment="Center"
+HorizontalAlignment="Left"
+Width="124"
+FontSize="11.5" Grid.ColumnSpan="2">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
+                <xctk:IntegerUpDown x:Name="years"
+             Text="{Binding Age}"
+             DefaultValue="1"
+             Grid.Column="1"
+             Grid.Row="3"
+             Width="60"
+             HorizontalAlignment="Left"
+             TextAlignment="Justify"
+             Height="30"
+             Increment="1"
+             Minimum="1"
+             Maximum="100"
+             PreviewTextInput="Integer_PreviewTextInput"/>
 
-                <Button x:Name="AddButton" Style="{StaticResource EnlargeButtonStyle}"
-        Grid.Row="3"
-        HorizontalAlignment="Left"
-        Grid.Column="3"
-        Width="60"
-        Height="35"
-        Content="Add"
-        Command="{Binding AddParticipantCommand}"/>
+                <Button x:Name="AddButton" Style="{StaticResource EnlargeButtonStyle1}"
+ Grid.Row="3"
+ Grid.Column="2"
+ Height="50"
+                     Width="70"
+ Content="Add"
+ Command="{Binding AddParticipantCommand}" Margin="54,10,-12,10"/>
 
             </Grid>
         </GroupBox>
         <Image Source="/WPF/Resources/Images/arrow-to-line-right.png"
-       Grid.Column="3"
-       Grid.Row="10"
-       VerticalAlignment="Center"
-       Width="65"></Image>
+Grid.Column="3"
+Grid.Row="9"
+VerticalAlignment="Center"
+Width="65"></Image>
 
-        <Label Content="Participants"
-       FontWeight="Bold"
-       Grid.Row="2"
-       Grid.Column="4"
-       FontSize="20"
-       VerticalAlignment="Bottom"/>
+        <Label Content="Added Participants:"
+FontWeight="SemiBold"
+Grid.Row="1"
+Grid.Column="4"
+FontSize="20"
+VerticalAlignment="Bottom"/>
         <ListBox x:Name="ParticipantsListBox"
-         ItemsSource="{Binding ParticipantsListBox}"
-         SelectedItem="{Binding SelectedParticipant}"
-         Grid.Row="3"
-         Grid.Column="4"
-         Grid.RowSpan="8"
-         FontSize="20"
-         Margin="0,0,0,10">
+  ItemsSource="{Binding ParticipantsListBox}"
+  SelectedItem="{Binding SelectedParticipant}"
+  Grid.Row="2"
+  Grid.Column="4"
+  Grid.RowSpan="8"
+  FontSize="20"
+  Margin="0,0,0,10">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -289,13 +311,13 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock Text="{Binding}" Grid.Column="0" Height="80"/>
                         <Button Content="Remove" 
-                        Command="{Binding DataContext.RemoveParticipantCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
-                        CommandParameter="{Binding}"
-                        Style="{StaticResource EnlargeButtonStyle1}"
-                        Height="35"
-                        Width="85"
-                        Margin="25, 0, 0 , -5"
-                        Grid.Column="1"/>
+                 Command="{Binding DataContext.RemoveParticipantCommand, RelativeSource={RelativeSource AncestorType=ListBox}}" 
+                 CommandParameter="{Binding}"
+                 Style="{StaticResource EnlargeButtonStyle1}"
+                 Height="35"
+                 Width="85"
+                 Margin="25, 0, 0 , -5"
+                 Grid.Column="1"/>
                     </Grid>
                 </DataTemplate>
             </ListBox.ItemTemplate>

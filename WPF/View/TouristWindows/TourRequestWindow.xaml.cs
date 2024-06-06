@@ -73,5 +73,41 @@ namespace BookingApp.WPF.View.TouristWindows
         {
             TourRequest.SaveToCsvCommand.Execute(null);
         }
+        private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (TutorialPopup.IsOpen == false)
+            {
+                TutorialPopup.IsOpen = true;
+                mediaElement.Play();
+                return;
+            }
+            TutorialPopup.IsOpen = false;
+            mediaElement.Stop();
+        }
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Play();
+        }
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Stop();
+            mediaElement.Play();
+        }
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Pause();
+        }
+        private void CloseTutorialButton_Click(object sender, RoutedEventArgs e)
+        {
+            TutorialPopup.IsOpen = false;
+            mediaElement.Stop();
+        }
+        private void MediaElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            // Media failed to open
+            // Show error message in a message box
+            MessageBox.Show("Media failed to open: " + e.ErrorException.Message, "Media Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
     }
 }
