@@ -370,7 +370,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             if (!AllFieldsFilled(Age, Name, LastName))
             {
-                System.Windows.MessageBox.Show("All fields must be filled");
+                MessageBoxWindow mb = new MessageBoxWindow("All fields must be filled");
+                mb.ShowDialog();
             }
             else
             {
@@ -453,7 +454,10 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 VoucherWindow voucherWindom = new VoucherWindow(UserId);
                 voucherWindom.ShowDialog();
             }
-            System.Windows.MessageBox.Show("Tour " + "\"" + SelectedTour.Name + "\"" + " booked!", "Tour booked", MessageBoxButton.OK, MessageBoxImage.Information);
+            //
+            InformationMessageBoxWindow mb = new InformationMessageBoxWindow("Tour " + "\"" + SelectedTour.Name + "\"" + " booked!");
+            mb.ShowDialog();
+            //System.Windows.MessageBox.Show("Tour " + "\"" + SelectedTour.Name + "\"" + " booked!", "Tour booked", MessageBoxButton.OK, MessageBoxImage.Information);
             Messenger.Default.Send(new CloseWindowMessage());
             return;
         }
@@ -480,7 +484,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
             catch (ArgumentNullException)
             {
-                System.Windows.MessageBox.Show("something wrong happened");
+                MessageBoxWindow mb = new MessageBoxWindow("something wrong happened");
+                mb.ShowDialog();
             }
             TourParticipantDTOs.Clear();
         }

@@ -38,7 +38,8 @@ namespace BookingApp.View.TouristWindows
             {
                 if (IsActive)
                 {
-                    MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    InformationMessageBoxWindow mb = new InformationMessageBoxWindow(message.Notification);
+                    mb.ShowDialog();
                 }
             });
         }

@@ -239,7 +239,18 @@
                   AutoGenerateColumns="False" HeadersVisibility="Column" FontSize="15"
                   FontWeight="DemiBold">
                 <DataGrid.Columns>
-                    <DataGridTextColumn Header="Guide" Binding="{Binding IsGuideSuper}" Width="auto"/>
+                    <DataGridTemplateColumn Header="" Width="auto">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Image x:Name="StarImage" Source="/WPF/Resources/Images/star.png" Width="23" Height="23" Visibility="Collapsed" />
+                                <DataTemplate.Triggers>
+                                    <DataTrigger Binding="{Binding IsGuideSuper}" Value="Super">
+                                        <Setter TargetName="StarImage" Property="Visibility" Value="Visible" />
+                                    </DataTrigger>
+                                </DataTemplate.Triggers>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
                     <DataGridTextColumn Header="Name" Binding="{Binding Name}" Width="*"/>
                     <DataGridTextColumn Header="Country" Binding="{Binding Country}" Width="*"/>
                     <DataGridTextColumn Header="City" Binding="{Binding City}" Width="*"/>
@@ -247,7 +258,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Details" Click="DetailsButton_Click" Width="75" Height="28"
+                                <Button Content="Details" Click="DetailsButton_Click" Width="80" Height="30"
                                     Style="{StaticResource EnlargeButtonStyle1}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -255,7 +266,7 @@
                     <DataGridTemplateColumn>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <Button Content="Book" Click="BookButton_Click" Width="75" Margin="1, 5, 1, 5" Height="30"
+                                <Button Content="Book" Click="BookButton_Click" Width="80" Margin="1, 5, 1, 5" Height="30"
                                     Style="{StaticResource EnlargeButtonStyle}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>

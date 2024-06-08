@@ -2,6 +2,7 @@
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.View.TouristWindows;
+using BookingApp.WPF.View.TouristWindows;
 using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
@@ -181,7 +182,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             if (_voucherService.SetVoucherToUsed(SelectedVoucher.Id) == null)
             {
-                MessageBox.Show("Something wrong happened");
+                MessageBoxWindow mb = new MessageBoxWindow("Something wrong happened");
+                mb.ShowDialog();
                 return;
             }
             Messenger.Default.Send(new NotificationMessage("You just used a voucher!"));

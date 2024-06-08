@@ -205,8 +205,10 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             if(_tourService.GetTourCountForLastYear(UserId) >= 5 && !_voucherService.isTouristConqueredVoucher(UserId))
             {
                 _voucherService.AwardVoucher(UserId);
-                MessageBox.Show("Congratulations on earning a voucher for attending 5 tours in the past year, \nvalid for any tour over the next 6 months as a thank you for your loyalty!", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
-                Messenger.Default.Send(new NotificationMessage("Congratulations on earning a voucher for attending 5 tours in the past year, valid for any tour over the next 6 months as a thank you for your loyalty!"));
+                InformationMessageBoxWindow mb = new InformationMessageBoxWindow("Congratulations on earning a voucher for attending 5 tours in the past year, valid for any tour over the next 6 months as a thank you for your loyalty!");
+                mb.ShowDialog();
+                //MessageBox.Show("Congratulations on earning a voucher for attending 5 tours in the past year, \nvalid for any tour over the next 6 months as a thank you for your loyalty!", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
+                //Messenger.Default.Send(new NotificationMessage("Congratulations on earning a voucher for attending 5 tours in the past year, valid for any tour over the next 6 months as a thank you for your loyalty!"));
             }
         }
 

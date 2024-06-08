@@ -37,7 +37,9 @@ namespace BookingApp.WPF.View.TouristWindows
             {
                 if (this.IsActive)
                 {
-                    MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    InformationMessageBoxWindow mb = new InformationMessageBoxWindow(message.Notification);
+                    mb.ShowDialog();
+                    //MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             });
             TourRequest.InitFrame("Basic");

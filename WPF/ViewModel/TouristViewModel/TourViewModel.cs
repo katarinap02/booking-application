@@ -523,6 +523,12 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
             else
             {
+                
+                if (_tourService.GetTourByCityWithAvailablePlaces(SelectedTour.City) == null)
+                {
+                    MessageBoxWindow mb = new MessageBoxWindow("There is no available places on this tour, neither on similar tours");
+                    return;
+                }
                 TourNoAvailablePlacesWindow tourNoAvailablePlacesWindow = new TourNoAvailablePlacesWindow(selectedTour, UserId);
                 tourNoAvailablePlacesWindow.ShowDialog();
             }
@@ -671,7 +677,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             if (IsRated())
             {
-                MessageBox.Show("This tour is already rated");
+                InformationMessageBoxWindow mb = new InformationMessageBoxWindow("This tour is already rated");
+                mb.ShowDialog();
                 return false;
             }
             return true;

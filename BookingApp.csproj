@@ -36,6 +36,7 @@
     <None Remove="WPF\Resources\Images\colorful-watercolor-abstract-background.jpg" />
     <None Remove="WPF\Resources\Images\empty.png" />
     <None Remove="WPF\Resources\Images\forumHelp.png" />
+    <None Remove="WPF\Resources\Images\information.png" />
     <None Remove="WPF\Resources\Images\left_arrow.png" />
     <None Remove="WPF\Resources\Images\lock.png" />
     <None Remove="WPF\Resources\Images\minus.png" />
@@ -221,6 +222,10 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
 
+    <Resource Include="WPF\Resources\Images\information.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
     <Resource Include="WPF\Resources\Images\planeComputer.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
@@ -243,7 +248,9 @@
 
     <Resource Include="WPF\Resources\Images\user_white.png" />
 
-    <Resource Include="WPF\Resources\Images\warning.png" />
+    <Resource Include="WPF\Resources\Images\warning.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
 
     <Resource Include="WPF\View\Guest\GuestThemes\DarkTheme.xaml" />
     <Resource Include="WPF\View\Guest\GuestThemes\LightTheme.xaml">

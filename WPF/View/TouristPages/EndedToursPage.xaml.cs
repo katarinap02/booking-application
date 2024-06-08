@@ -18,6 +18,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.View.TouristWindows;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -49,7 +50,8 @@ namespace BookingApp.View.TouristWindows
         {
             if (Tour.IsRated())
             {
-                MessageBox.Show("This tour is already rated");
+                InformationMessageBoxWindow mb = new InformationMessageBoxWindow("This tour is already rated");
+                mb.ShowDialog();
                 return;
             }
             GuideRateWindow guideRateWindow = new GuideRateWindow(Tour.SelectedTour, Tour.UserId);

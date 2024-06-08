@@ -42,7 +42,9 @@ namespace BookingApp.View.TouristWindows
             {
                 if (IsActive)
                 {
-                    MessageBox.Show(message.Notification, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    MessageBoxWindow mb = new MessageBoxWindow(message.Notification);
+                    mb.ShowDialog();
+                    //MessageBox.Show(message.Notification, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             });
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);

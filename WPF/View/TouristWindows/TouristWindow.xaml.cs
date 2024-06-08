@@ -41,14 +41,16 @@ namespace BookingApp.View.TouristWindows
             Tour.UserName = username;
             Tour.UserId = userId;
             Tour.Initialize();
-            Messenger.Default.Register<LogoutMessage>(this, LogoutWindow);
 
+            Messenger.Default.Register<LogoutMessage>(this, LogoutWindow);
             MainFrame.Content = new AllToursPage(Tour.getUserId(Tour.UserName));
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
                 if (IsActive)
                 {
-                    MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    InformationMessageBoxWindow mb = new InformationMessageBoxWindow(message.Notification);
+                    mb.ShowDialog();
+                    //MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             });
 
