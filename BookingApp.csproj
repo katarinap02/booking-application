@@ -43,6 +43,7 @@
     <None Remove="WPF\Resources\Images\madrid.jpg" />
     <None Remove="WPF\Resources\Images\minus.png" />
     <None Remove="WPF\Resources\Images\monaco.jpeg" />
+    <None Remove="WPF\Resources\Images\ns.jpg" />
     <None Remove="WPF\Resources\Images\person.jpg" />
     <None Remove="WPF\Resources\Images\person_no_white.psd" />
     <None Remove="WPF\Resources\Images\planeComputer.jpg" />
@@ -127,6 +128,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="WPF\Resources\Images\no_image.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WPF\Resources\Images\ns.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="WPF\Resources\Images\paris1.jpg">

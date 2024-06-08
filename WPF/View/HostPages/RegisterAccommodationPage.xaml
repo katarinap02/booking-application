@@ -255,7 +255,7 @@
         </StackPanel>
 
         <StackPanel Grid.Row ="3" Grid.Column="1" Orientation="Horizontal" Margin="0 0 100 0" HorizontalAlignment="Left" >
-            <RadioButton x:Name="radioButtonApartment" GroupName="TypeButton" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="True"></RadioButton>
+            <RadioButton x:Name="radioButtonApartment" GroupName="TypeButton" VerticalAlignment="Center" HorizontalAlignment="Center" IsChecked="{Binding accommodationDTO.IsCheckedApartment}"></RadioButton>
             <Label
                 x:Name="ApartmentLabel"
                 Style="{StaticResource LableTextStyleMSHost}"

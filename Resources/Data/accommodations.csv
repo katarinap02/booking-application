@@ -16,13 +16,13 @@
 18|Hotel Sheraton|Novi Sad|Serbia|COTTAGE|2|4|1||5/12/2024 12:00:00 AM-5/15/2024 12:00:00 AM|6|False
 19|Hotel Beograd|Beograd|Serbia|COTTAGE|2|4|1||5/8/2024 12:00:00 AM-5/11/2024 12:00:00 AM|6|False
 20|Hotel Romulus|Rome|Italy|COTTAGE|2|4|1||5/8/2024 12:00:00 AM-5/11/2024 12:00:00 AM,5/19/2024 12:00:00 AM-5/23/2024 12:00:00 AM,6/10/2024 12:00:00 AM-6/20/2024 12:00:00 AM,5/28/2024 12:00:00 AM-5/31/2024 12:00:00 AM,7/2/2024 12:00:00 AM-7/5/2024 12:00:00 AM|6|False
-21|Vila Andjelic|Novi Sad|Srbija|COTTAGE|9|3|2|Resources\Images\cottage.jpg,Resources\Images\example.jpg||2|False
+21|Vila Andjelic|Novi Sad|Serbia|COTTAGE|9|3|2|Resources\Images\example.jpg,Resources\Images\cottage.jpg||2|False
 22|New Hotel|Bredsten|Denmark|COTTAGE|20|3|10|Resources\Images\Tokyo1.jpg||2|False
 21|Vila Andjelic|Novi Sad|Serbia|COTTAGE|9|3|2|Resources\Images\cottage.jpg,Resources\Images\example.jpg||2|False
 22|New Hotel|Bredsten|Denmark|COTTAGE|20|3|10|Resources\Images\Tokyo1.jpg||2|False
 23|Hotel Star|Zlatibor|Serbia|COTTAGE|20|4|4|Resources\Images\Istanbul1.jpg,Resources\Images\house.jpg||2|False
 24|My Home|Lažani|"Macedonia|COTTAGE|5|2|3|Resources\Images\cottage.jpg||2|False
-25|Hotel Sun|Zlatibor|Serbia|COTTAGE|100|3|5||1/3/2024 12:00:00 AM-1/6/2024 12:00:00 AM|2|False
+25|Hotel Sun|Zlatibor|Serbia|APARTMENT|100|3|5||1/3/2024 12:00:00 AM-1/6/2024 12:00:00 AM|2|False
 26|Hotel de Paris|Paris|France|COTTAGE|50|3|8||6/5/2024 12:00:00 AM-6/7/2024 12:00:00 AM|6|False
 27|Villa Roma|Rome|Italy|COTTAGE|30|4|6|Resources\Images\rome.jpg||6|False
 28|Casa Blanca|Madrid|Spain|COTTAGE|25|3|5|Resources\Images\madrid.jpg||6|False
@@ -33,3 +33,4 @@
 33|Hotel Vienna|Vienna|Austria|COTTAGE|38|4|5||9/18/2024 12:00:00 AM-9/21/2024 12:00:00 AM|6|False
 34|Villa Athens|Athens|Greece|COTTAGE|25|3|5|Resources\Images\athens.jpg||6|False
 35|Hotel Prague|Prague|Czech Republic|COTTAGE|33|3|6|||6|False
+36|Novosadski raj|Novi Sad|Serbia|APARTMENT|10|1|1|Resources\Images\ns.jpg||2|False

@@ -151,7 +151,7 @@ namespace BookingApp.Domain.Model.Features
             AccommodationType type = AccommodationType.APARTMENT;
             if (value == "HOUSE")
                 type = AccommodationType.HOUSE;
-            else
+            else if(value == "COTTAGE")
                 type = AccommodationType.COTTAGE;
 
             return type;
