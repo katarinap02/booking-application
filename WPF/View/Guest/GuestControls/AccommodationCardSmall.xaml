@@ -134,8 +134,8 @@
                 <Image ToolTip="{ns:Loc Location}" Source="{DynamicResource Location}" Height="20" Width="20" Margin="142,65,416,-51" Grid.Row="1"/>
                 <TextBlock x:Name="Location" FontSize="20" Text="{Binding Location}" Margin="166,58,67,-56" Grid.Row="1" Foreground="{DynamicResource TextColorN}"/>
 
-                <Image ToolTip="{ns:Loc Rate}" Source="{DynamicResource Star}" Height="20" Width="20" Margin="186,103,367,-94" Grid.Row="1"/>
-                <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{Binding Rate}" Margin="211,99,336,-98" Grid.Row="1"/>
+                <Image ToolTip="{ns:Loc Rate}" Source="{DynamicResource Star}" Height="20" Width="20" Margin="141,106,412,-92" Grid.Row="1"/>
+                <TextBlock x:Name="AccommodationRate" FontSize="20" Text="{Binding Rate}" Margin="171,99,349,-98" Grid.Row="1"/>
                 <Image ToolTip="{ns:Loc MinDayNumber}" Source="{DynamicResource Calendar}" Height="20" Width="20" RenderTransformOrigin="0.948,2.773" Margin="292,102,261,-93" Grid.Row="1"/>
                 <TextBlock x:Name="AccommodationDays" FontSize="20" Text="{Binding MinReservationDays}" Margin="316,98,229,-98" Grid.Row="1" Foreground="{DynamicResource TextColorN}"/>
                 <Image ToolTip="{ns:Loc MAxGuestNumber}" Source="{DynamicResource Person}" Height="20" Width="20" Margin="382,102,171,-93" Grid.Row="1"/>
