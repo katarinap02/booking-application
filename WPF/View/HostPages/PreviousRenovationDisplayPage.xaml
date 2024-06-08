@@ -52,8 +52,8 @@ BorderThickness="0"
 ItemsSource="{Binding Renovations}"
 ScrollViewer.VerticalScrollBarVisibility="Auto"
 SelectionMode="Single">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
+            <ListView.ItemContainerStyle >
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSelectedStyle}">
                     <Setter Property="Width" Value="460"/>
                     <Setter Property="Padding" Value="0" />
                     <Setter Property="Margin" Value="15,15,15,15" />

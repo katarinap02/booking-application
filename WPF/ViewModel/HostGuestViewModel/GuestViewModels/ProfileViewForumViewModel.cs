@@ -29,8 +29,6 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.GuestViewModels
 
         public UserService UserService { get; set; }
 
-
-        public UserService UserService { get; set; }
         public ForumComment ForumComment { get; set; }
 
         public ForumCommentService ForumCommentService { get; set; }

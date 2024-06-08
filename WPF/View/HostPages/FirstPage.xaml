@@ -295,8 +295,8 @@
     ScrollViewer.VerticalScrollBarVisibility="Auto"
     SelectedItem="{Binding SelectedAccommodation}"
     SelectionMode="Single">
-            <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
+            <ListView.ItemContainerStyle >
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSelectedStyle}">
                     <Setter Property="Padding" Value="0" />
                     <Setter Property="Margin" Value="0,5,5,5" />
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />

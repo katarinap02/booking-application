@@ -79,7 +79,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToDelayPageCommand(object obj)
         {
             CloseMenu();
-            DelayPage page = new DelayPage(User, NavService);
+            DelayPage page = new DelayPage(User, NavService, IsDemo);
             this.NavService.Navigate(page);
         }
 
