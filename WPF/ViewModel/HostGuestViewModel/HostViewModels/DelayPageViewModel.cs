@@ -223,6 +223,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             AddOnTextBox(17.7, "n", 1);
             AddOnTextBox(17.9, "t", 1);
             AddOnTextBox(18.1, "s", 1);
+            AddOnTextBox(18.1, ".", 1);
         }
 
         private void AddOnTextBox(double seconds, string letter, int num)
@@ -243,8 +244,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                     else if (IsDemo && num == 2 && Delays.Count > 0)
                     {
                         SelectedDelay = Delays[0];
-
                     }
+                    
                     
 
 

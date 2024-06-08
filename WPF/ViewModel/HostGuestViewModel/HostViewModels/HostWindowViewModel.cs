@@ -137,7 +137,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToGuestRatePageCommand(object obj)
         {
             CloseMenu();
-            GuestRatePage page = new GuestRatePage(User, NavService);
+            GuestRatePage page = new GuestRatePage(User, NavService, IsDemoStarted);
             this.NavService.Navigate(page);
         }
 
@@ -259,9 +259,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                         DelayPage page = new DelayPage(User, NavService, IsDemoStarted);
                         this.NavService.Navigate(page);
                     }
+                    else if (NavService.Content is GuestRatePage)
+                    {
+                        GuestRatePage page = new GuestRatePage(User, NavService, IsDemoStarted);
+                        this.NavService.Navigate(page);
+                    }
 
 
-                    
+
                 };
                 timer.Start();
             }
@@ -358,6 +363,18 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                     OnDemoStartedMessage(23.5);
                 }
                 }
+            else if(NavService.Content is GuestRatePage)
+            {
+                GuestRatePage page = new GuestRatePage(User, NavService, IsDemoStarted);
+                this.NavService.Navigate(page);
+                if (IsDemoStarted == true)
+                {
+                    OnDemoStartedChanged(1);
+                    OnDemoStartedChanged(4);
+                    OnDemoStartedMessage(24.3);
+
+                }
+            }
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

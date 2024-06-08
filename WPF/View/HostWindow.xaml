@@ -37,6 +37,12 @@
                                 To="0"
                                 Duration="0:0:0.3" 
                                 BeginTime="0:0:1"/>
+                                <DoubleAnimation
+                                Storyboard.TargetProperty="(Canvas.Left)"
+                                From="-70"
+                                To="0"
+                                Duration="0:0:0.1"
+                                BeginTime="0:0:1.5"/>
                             </Storyboard>
                         </BeginStoryboard>
                     </DataTrigger.EnterActions>
@@ -306,7 +312,7 @@
                 
                 <Image Style="{StaticResource CustomLogoStyleHost}"  Width="200" Height="190" Margin="0 0 70 20"/>
                 <Border CornerRadius="15" Style="{StaticResource AnimatedBorderStyle}" BorderThickness="1" Background="#6665DD" Margin="0 0 20 0" Width="103" Height="45">
-                    <TextBlock Grid.Row="1" Background="Transparent" TextWrapping="Wrap" Foreground="White" Text="menu for navigation" TextAlignment="Center" Grid.RowSpan="3" Margin="5,5,4,1"/>
+                    <TextBlock Grid.Row="1" Background="Transparent" TextWrapping="Wrap" Foreground="White" Text="Menu for navigation" TextAlignment="Center" Grid.RowSpan="3" Margin="5,5,4,1"/>
                 </Border>
             </StackPanel>
         </Menu>
