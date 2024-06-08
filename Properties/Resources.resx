@@ -276,7 +276,7 @@ Cancel or delay a reservation in your list, by clicking on the corresponding but
     <value>Enter valid dates.</value>
   </data>
   <data name="DayNum" xml:space="preserve">
-    <value>Number of days</value>
+    <value>Number of days:</value>
   </data>
   <data name="DayNumber" xml:space="preserve">
     <value>Number of days</value>
