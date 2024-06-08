@@ -124,9 +124,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 Accommodation accommodation = AccommodationService.GetById(AccommodationReservationService.GetById(Delay.ReservationId).AccommodationId);
                 ReplaceDates(accommodation, Delay);
                 AccommodationService.Update(accommodation);
+                MessageBox.Show("Delay approved.");
                 Update();
                 DelayPage page = new DelayPage(User, NavService);
                 this.NavService.Navigate(page);
+            }
+            else
+            {
+                MessageBox.Show("Please select request.");
             }
         }
 
@@ -159,9 +164,14 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 Delay.StartLastDate = SelectedDelay.StartLastDate;
                 Delay.EndLastDate = SelectedDelay.EndLastDate;
                 DelayRequestService.Update(Delay.ToDelayRequest());
+                MessageBox.Show("Delay rejected.");
                 Update();
                 DelayPage page = new DelayPage(User, NavService);
                 this.NavService.Navigate(page);
+            }
+            else
+            {
+                MessageBox.Show("Please select request.");
             }
 
         }

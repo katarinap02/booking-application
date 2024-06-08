@@ -20,6 +20,7 @@ using BookingApp.Application.Services.FeatureServices;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement;
+using System.Windows.Threading;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -64,13 +65,40 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public RelayCommand GoBackCommand {  get; set; }
         public NavigationService NavService { get; set; }
 
-        FirstPage FirstPage {  get; set; }
+        public MyICommand StartDemo {  get; set; }
 
-        PreviousRenovationDisplayPageViewModel PreviousPage {  get; set; }
+        public HostViewModel HostViewModel { get; set; }
 
-        RenovationDisplayPageViewModel RenovationPage { get; set; }
+        private bool unableDemo;
+        public bool UnableDemo
+        {
+            get { return unableDemo; }
+            set
+            {
+                if (unableDemo != value)
+                {
 
-        RateDisplayPageViewModel RatePage { get; set; }
+                    unableDemo = value;
+                    OnPropertyChanged("UnableDemo");
+                }
+            }
+        }
+
+
+        private bool isDemoStarted;
+        public bool IsDemoStarted
+        {
+            get { return isDemoStarted; }
+            set
+            {
+                if (isDemoStarted != value)
+                {
+
+                    isDemoStarted = value;
+                    OnPropertyChanged("IsDemoStarted");
+                }
+            }
+        }
 
 
         private bool CanExecute_NavigateCommand(object obj)
@@ -80,15 +108,15 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         private void Execute_NavigateToRegisterPageCommand(object obj)
         {
-            RegisterAccommodationPage page = new RegisterAccommodationPage(User, null, NavService);
             CloseMenu();
+            RegisterAccommodationPage page = new RegisterAccommodationPage(User, IsDemoStarted, null, NavService);
             this.NavService.Navigate(page);
         }
 
         private void Execute_NavigateToHomePageCommand(object obj)
         {
             CloseMenu();
-            FirstPage page = new FirstPage(User, NavService);
+            FirstPage page = new FirstPage(User, NavService, IsDemoStarted);
             this.NavService.Navigate(page);
         }
 
@@ -168,10 +196,74 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                                        execute => this.menuViewModel.IsRenovationOpened = !this.menuViewModel.IsRenovationOpened, CanExecute_NavigateCommand);
             User = user;
             NavService = navService;
+            IsDemoStarted = false;
+            UnableDemo = true;
+            StartDemo = new MyICommand(StartDemoForPage);
             Update();
 
         }
-       
+
+        private void OnDemoStartedChanged(int seconds)
+        {
+            if (IsDemoStarted)
+            {
+                DispatcherTimer timer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromSeconds(seconds)
+                };
+                timer.Tick += (s, e) =>
+                {
+                    timer.Stop();
+                    OpenMenuCommand.Execute(null);
+                };
+                timer.Start();
+            }
+        }
+
+        private void ResetDemoButton(int seconds)
+        {
+                DispatcherTimer timer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromSeconds(seconds)
+                };
+                timer.Tick += (s, e) =>
+                {
+                    timer.Stop();
+                    UnableDemo = true;
+                };
+                timer.Start();   
+        }
+
+        private void OnDemoStartedMessage(double seconds)
+        {
+            if (IsDemoStarted)
+            {
+                DispatcherTimer timer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromSeconds(seconds)
+                };
+                timer.Tick += (s, e) =>
+                {
+                    timer.Stop();
+                    if (IsDemoStarted)
+                        MessageBox.Show("Demo has ended.");
+
+                    IsDemoStarted = false;
+                    if (NavService.Content is RegisterAccommodationPage)
+                    {
+                        RegisterAccommodationPage page = new RegisterAccommodationPage(User, IsDemoStarted, null, NavService);
+                        this.NavService.Navigate(page);
+                    }
+
+
+                    
+                };
+                timer.Start();
+            }
+        }
+
+
+
         public void SearchClick(object obj)
         {
             hostService.SearchHost(host, menuViewModel.SearchHost);
@@ -206,7 +298,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
        
         public void Update()
         {
-            FirstPage page = new FirstPage(User, NavService);
+            FirstPage page = new FirstPage(User, NavService, IsDemoStarted);
             this.NavService.Navigate(page);
         }
 
@@ -215,6 +307,47 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             menuViewModel.IsMenuOpened = false;
             menuViewModel.IsRatingOpened = false;
             menuViewModel.IsRenovationOpened = false;
+        }
+
+        public void StartDemoForPage()
+        {
+            IsDemoStarted = !IsDemoStarted;
+            if(!IsDemoStarted)
+            {
+                MessageBox.Show("Demo has been stoped.");
+                UnableDemo = false;
+                ResetDemoButton(25);
+            }
+                
+
+            if (NavService.Content is FirstPage)
+            {
+                Update();
+                if(IsDemoStarted == true)
+                {
+                    OnDemoStartedChanged(1);
+                    OnDemoStartedChanged(4);
+                    OnDemoStartedMessage(15.5);
+                }
+            }
+            else if(NavService.Content is RegisterAccommodationPage)
+            {
+                RegisterAccommodationPage page = new RegisterAccommodationPage(User, IsDemoStarted, null, NavService);
+                this.NavService.Navigate(page);
+                if (IsDemoStarted == true)
+                {
+                    OnDemoStartedChanged(1);
+                    OnDemoStartedChanged(4);
+                    OnDemoStartedMessage(26);
+                    
+                }
+                
+            }
+        }
+
+        protected virtual void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }

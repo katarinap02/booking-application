@@ -127,6 +127,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             forumService.CalculateGuestHostComments(ForumViewModel.ToForum());
             ForumViewModel.Comments.Add(f.Id);
             forumService.Update(ForumViewModel.ToForum());
+                MessageBox.Show("Comment added");
             Update();
 
             ForumCommentPage page = new ForumCommentPage(User, NavService, ForumViewModel);

@@ -77,6 +77,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 guestRateRepository.Add(guestRateViewModel.toGuestRate());
                 MessageBox.Show("Guest rate added.");
             }
+            else
+            {
+                MessageBox.Show("Please select guest.");
+            }
             Update();
             GuestRatePage page = new GuestRatePage(User, NavService);
             this.NavService.Navigate(page);

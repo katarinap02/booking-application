@@ -18,6 +18,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
+using System.Windows.Threading;
 using Wpf.Ui.Controls;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
@@ -40,7 +41,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public NavigationService NavigationService { get; set; }
 
-        public RegisterAccommodationPageViewModel(User us, AccommodationViewModel acc, NavigationService navigationService)
+        public bool IsDemo { get; set; }
+
+        public RegisterAccommodationPageViewModel(User us, AccommodationViewModel acc, NavigationService navigationService, bool demo)
         {
             this.user = us;
             accommodationDTO = new AccommodationViewModel();
@@ -50,6 +53,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             Pictures = new ObservableCollection<string>();
             NavigationService = navigationService;
             XCommand = new MyICommand<string>(DeletePicture);
+            IsDemo = demo;
+            if(IsDemo)
+            {
+                HandleTextBoxDemo();
+            }
             if(acc != null)
             {
                 accommodationDTO.CountrySearch = acc.Country;
@@ -65,7 +73,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             accommodationRepository.Add(accommodation);
             System.Windows.MessageBox.Show("Accommodation added.");
             if(NavigationService != null) { 
-            RegisterAccommodationPage page = new RegisterAccommodationPage(user, null, NavigationService);
+            RegisterAccommodationPage page = new RegisterAccommodationPage(user, IsDemo, null, NavigationService);
             this.NavigationService.Navigate(page);
             }
 
@@ -119,9 +127,6 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
                 accommodationDTO.Picture.Add(pictureUrl);
                 Update();
-              //  txtPictureUrlTextBox.Text = "";
-              //  txtPictureUrls.ItemsSource = null;
-              //  txtPictureUrls.ItemsSource = accommodationDTO.Picture;
             }
         }
 
@@ -195,6 +200,82 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             }
                     
             Update();
+        }
+
+        private void HandleTextBoxDemo()
+        {
+            AddOnTextBox(9.5, "G", 1);
+            AddOnTextBox(9.7, "a", 1);
+            AddOnTextBox(9.9, "r", 1);
+            AddOnTextBox(10.1, "d",1);
+            AddOnTextBox(10.3, "e", 1);
+            AddOnTextBox(10.5, "n", 1);
+            AddOnTextBox(10.7, " ", 1);
+            AddOnTextBox(10.9, "H", 1);
+            AddOnTextBox(11.1, "o",1);
+            AddOnTextBox(11.3, "u",1);
+            AddOnTextBox(11.5, "s",1);
+            AddOnTextBox(11.7, "e",1);
+            AddOnTextBox(12.3, "", 2);
+            AddOnTextBox(12.9, "", 3);
+            AddOnTextBox(13.5, "", 4);
+            AddOnTextBox(14.1, "", 5);
+            AddOnTextBox(14.7, "", 6);
+            AddOnTextBox(15.3, "", 7);
+            AddOnTextBox(21.2, "", 8);
+        }
+
+        private void AddOnTextBox(double seconds, string letter, int num)
+        {
+            if (IsDemo)
+            {
+                DispatcherTimer timer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromSeconds(seconds)
+                };
+                timer.Tick += (s, e) =>
+                {
+                    timer.Stop();
+                    if (IsDemo && num == 1)
+                    {
+                        accommodationDTO.Name = accommodationDTO.Name + letter;
+                    }
+                    else if(IsDemo && num == 2)
+                    {
+                        accommodationDTO.CountrySearch = "Serbia";
+                        
+                    }
+                    else if (IsDemo && num == 3)
+                    {
+                        accommodationDTO.CitySearch = "Novi Sad";
+                        accommodationDTO.InitializeAllLocations();
+                    }
+                    else if (IsDemo && num == 4)
+                    {
+                        accommodationDTO.IsCheckedHouse = true;
+                    }
+                    else if (IsDemo && num == 5)
+                    {
+                        accommodationDTO.MaxGuestNumber = 15;
+                    }
+                    else if (IsDemo && num == 6)
+                    {
+                        accommodationDTO.MinReservationDays = 3;
+                    }
+                    else if (IsDemo && num == 7)
+                    {
+                        accommodationDTO.ReservationDaysLimit = 5;
+                    }
+                    else if(IsDemo && num == 8)
+                    {
+                        AddPicture("../../Resources/Images/house.jpg");
+                        Update();
+                    }
+
+
+                };
+                timer.Start();
+            }
         }
     }
 }

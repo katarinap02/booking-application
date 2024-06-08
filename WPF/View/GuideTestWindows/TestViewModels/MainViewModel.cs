@@ -182,7 +182,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 
         private void ExecuteShowTakePartInViewCommand(object obj)
         {
-            CurrentChildView = new TakePartInViewModel();
+            CurrentChildView = new TakePartInViewModel(GuideId);
             Caption = "Take Part in a Tour";
             Icon = IconChar.Signature;
         }

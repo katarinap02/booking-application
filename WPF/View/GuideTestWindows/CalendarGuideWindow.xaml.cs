@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BookingApp.WPF.View.GuideTestWindows.TestViewModels;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,29 @@ namespace BookingApp.WPF.View.GuideTestWindows
     /// </summary>
     public partial class CalendarGuideWindow : Window
     {
+        public CalendarViewModel ViewModel { get; set; }
         public CalendarGuideWindow()
         {
             InitializeComponent();
+        }
+
+        public CalendarGuideWindow(int guide_id, TourRequestDTOViewModel tourRequest)
+        {
+            ViewModel = new CalendarViewModel(guide_id, tourRequest);
+            DataContext = ViewModel;
+            InitializeComponent();
+            if(ViewModel.blackoutDates != null)
+            {
+                AddBlackOutDates();
+            }
+        }
+
+        public void AddBlackOutDates()
+        {
+            foreach (var date in ViewModel.blackoutDates)
+            {
+                MyCalendar.BlackoutDates.Add(new CalendarDateRange(date));
+            }
         }
 
         private void TimeTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
@@ -49,5 +71,11 @@ namespace BookingApp.WPF.View.GuideTestWindows
                 textBox.Text = "";
             }
         }
+
+        private void Exit(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
     }
+
 }

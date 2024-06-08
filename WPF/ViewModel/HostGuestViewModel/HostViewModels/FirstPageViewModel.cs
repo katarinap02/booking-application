@@ -22,6 +22,7 @@ using GalaSoft.MvvmLight.Command;
 using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using System.Windows.Threading;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -65,6 +66,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public MenuViewModel menuViewModel { get; set; }
 
+        public bool IsDemo {  get; set; }
+
 
         private void Execute_NavigateToGuestRatePageCommand(object obj)
         {
@@ -90,7 +93,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToRegisterPageCommand(AccommodationViewModel acc)
         {
             CloseMenu();
-            RegisterAccommodationPage page = new RegisterAccommodationPage(User, acc, NavService);
+            RegisterAccommodationPage page = new RegisterAccommodationPage(User, IsDemo, acc, NavService);
             this.NavService.Navigate(page);
         }
 
@@ -111,7 +114,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             return true;
         }
 
-        public FirstPageViewModel(User user, NavigationService navService)
+        public FirstPageViewModel(User user, NavigationService navService, bool demo)
 
          {
                 hostService = new HostService(Injector.Injector.CreateInstance<IHostRepository>(), Injector.Injector.CreateInstance<IAccommodationRateRepository>());
@@ -133,6 +136,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 MostPopular = new AccommodationViewModel(accommodationReservationService.GetMostPopularLocation(host.Id));
                 LeastPopular = new AccommodationViewModel(accommodationReservationService.GetLeastPopularLocation(host.Id));
                 CloseAccommodation = new MyICommand<AccommodationViewModel>(CloseFunction);
+            IsDemo = demo;
             Update();
 
          }
@@ -160,8 +164,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                     }
 
                 }
-                
-          }
+            
+
+        }
 
         private void doPopular(AccommodationViewModel acc)
         {
@@ -181,6 +186,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             menuViewModel.IsRatingOpened = false;
             menuViewModel.IsRenovationOpened = false;
         }
+
+        
+
+
+
 
 
 

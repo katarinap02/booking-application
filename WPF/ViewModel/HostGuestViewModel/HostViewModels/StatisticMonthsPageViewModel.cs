@@ -21,6 +21,7 @@ using iTextSharp.text;
 using System.IO;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
+using System.Diagnostics;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -202,7 +203,13 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                     pdfDoc.Open();
                     GeneratePdfContent(pdfDoc);
                     pdfDoc.Close();
-                    
+
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = filePath,
+                        UseShellExecute = true
+                    });
+
                 }
                 else
                 {

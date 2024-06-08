@@ -219,7 +219,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
                 {
 
                     minReservationDays = value;
-                    OnPropertyChanged("MinReservationNumber");
+                    OnPropertyChanged("MinReservationDays");
                 }
             }
         }
