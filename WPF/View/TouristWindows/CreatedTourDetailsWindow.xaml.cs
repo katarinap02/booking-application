@@ -27,11 +27,9 @@ namespace BookingApp.WPF.View.TouristWindows
         public CreatedTourDetailsWindow(TouristNotificationViewModel selectedNotification)
         {
             InitializeComponent();
-            CreatedTourDetailsWindowViewModel = new CreatedTourDetailsWindowViewModel();
+            CreatedTourDetailsWindowViewModel = new CreatedTourDetailsWindowViewModel(selectedNotification);
             DataContext = CreatedTourDetailsWindowViewModel;
-            CreatedTourDetailsWindowViewModel.SelectedNotification = selectedNotification;
 
-            CreatedTourDetailsWindowViewModel.InitializeCreatedTourDetailsWindow();
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
         }
         private void CloseWindow(CloseWindowMessage messsage)

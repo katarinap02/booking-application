@@ -35,12 +35,8 @@ namespace BookingApp.View.TouristWindows
         public TouristWindow(string username, int userId)
         {
             InitializeComponent();
-            Tour = new TouristMenuViewModel();
+            Tour = new TouristMenuViewModel(username, userId);
             DataContext = Tour;
-
-            Tour.UserName = username;
-            Tour.UserId = userId;
-            Tour.Initialize();
 
             Messenger.Default.Register<LogoutMessage>(this, LogoutWindow);
             MainFrame.Content = new AllToursPage(Tour.getUserId(Tour.UserName));

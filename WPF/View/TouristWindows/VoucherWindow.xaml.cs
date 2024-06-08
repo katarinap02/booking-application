@@ -26,10 +26,9 @@ namespace BookingApp.View.TouristWindows
         public VoucherWindow(int userId)
         {
             InitializeComponent();
-            Voucher = new VoucherViewModel();
+            Voucher = new VoucherViewModel(userId);
             DataContext = Voucher;
 
-            Voucher.UserId = userId;
             if (!Voucher.RefreshVoucherDataGrid())
                 CloseWindow(null);
             Messenger.Default.Register<NotificationMessage>(this, message =>

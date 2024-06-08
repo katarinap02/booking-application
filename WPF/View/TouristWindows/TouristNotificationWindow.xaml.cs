@@ -29,12 +29,8 @@ namespace BookingApp.View.TouristWindows
         public TouristNotificationWindow(int userId)
         {
             InitializeComponent();
-            TouristNotification = new TouristNotificationViewModel();
+            TouristNotification = new TouristNotificationViewModel(userId);
             DataContext = TouristNotification;
-
-            TouristNotification.UserId = userId;
-
-            TouristNotification.InitializeTouristNotificationWindow();
 
         }
 

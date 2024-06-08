@@ -29,10 +29,9 @@ namespace BookingApp.View.TouristWindows
         public TourDetailsWindow(TourViewModel selectedTour, bool isMyTour, string username)
         {
             InitializeComponent();
-            Tour = new TourDetailsViewModel();
-            Tour.SelectedTour = selectedTour;
+            Tour = new TourDetailsViewModel(selectedTour, isMyTour, username);
             DataContext = Tour;
-            Tour.TourDetailsWindowInitialization(isMyTour, username);
+
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {

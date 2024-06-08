@@ -33,11 +33,9 @@ namespace BookingApp.View.TouristWindows
         public AllToursPage(int userId)
         {
             InitializeComponent();
-            Tour = new TourViewModel();
+            Tour = new TourViewModel(userId);
             DataContext = Tour;
-            Tour.UserId = userId;
             Tour.initializeAllTours();
-
             Tour.RefreshAllToursDataGrid(false);
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {

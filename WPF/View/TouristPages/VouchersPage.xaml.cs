@@ -30,10 +30,8 @@ namespace BookingApp.View.TouristWindows
         public VouchersPage(int userId)
         {
             InitializeComponent();
-            Voucher = new VoucherViewModel();
+            Voucher = new VoucherViewModel(userId);
             DataContext = Voucher;
-
-            Voucher.UserId = userId;
 
             Voucher.RefreshVoucherDataGrid();
         }

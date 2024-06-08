@@ -104,10 +104,15 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             return ToursViewModel;
         }
 
-        public TourNoAvailablePlacesViewModel()
+        public TourNoAvailablePlacesViewModel(TourViewModel selectedTour, int userId)
         {
             _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
             Tours = new ObservableCollection<TourViewModel>();
+
+            SelectedTour = selectedTour;
+            UserId = userId;
+
+            RefreshToursByCity();
         }
     }
 }

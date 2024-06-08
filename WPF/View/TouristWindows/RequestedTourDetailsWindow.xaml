@@ -181,9 +181,10 @@
                          Grid.Row="7"
                          TextWrapping="Wrap"
                          Text="{Binding Description}"
+                         Background="#E3E0AF"
                          IsReadOnly="True"
                          Margin="3, 8, 0, 0"
-                         FontSize="16"/>
+                         FontSize="18"/>
             </Grid>
         </StackPanel>
         <Button Content="Close"

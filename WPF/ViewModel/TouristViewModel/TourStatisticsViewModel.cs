@@ -255,6 +255,8 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
             Languages = RequestCountByLanguage.Keys.ToArray();
             Cities = RequestCountByCity.Keys.ToArray();
+
+            InitializeTourStatistics();
         }
     }
 }

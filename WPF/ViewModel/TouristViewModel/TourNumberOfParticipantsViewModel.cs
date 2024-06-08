@@ -112,10 +112,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void InitializeNumberOfParticipantsWindow()
-        {
-            AvailablePlacesColor = Brushes.Green;
-        }
         public void ConfirmNumberOfParticipants()
         {
             if (InsertedNumberOfParticipants > SelectedTour.AvailablePlaces)
@@ -129,10 +125,15 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             tourReservationWindow.ShowDialog();
         }
 
-        public TourNumberOfParticipantsViewModel()
+        public TourNumberOfParticipantsViewModel(TourViewModel selectedTour, int userId)
         {
             _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
             Tours = new ObservableCollection<TourViewModel>();
+
+            SelectedTour = selectedTour;
+            AvailablePlaces = selectedTour.AvailablePlaces;
+            UserId = userId;
+            AvailablePlacesColor = Brushes.Green;
         }
     }
 }

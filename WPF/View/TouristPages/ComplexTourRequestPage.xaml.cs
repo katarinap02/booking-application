@@ -28,8 +28,6 @@ namespace BookingApp.WPF.View.TouristPages
             TourRequest = tourRequest;
             DataContext = TourRequest;
 
-            // ova inicijalizacija ce trebati
-            //TourRequest.InitializeWindow();
         }
         private void Integer_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {

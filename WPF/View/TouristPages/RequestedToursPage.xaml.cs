@@ -28,9 +28,8 @@ namespace BookingApp.WPF.View.TouristPages
         public RequestedToursPage(int userId)
         {
             InitializeComponent();
-            TourRequest = new TourRequestViewModel();
+            TourRequest = new TourRequestViewModel(userId);
             DataContext = TourRequest;
-            TourRequest.UserId = userId;
 
             TourRequest.InitializeRequestedToursPage();
         }

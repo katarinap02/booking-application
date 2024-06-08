@@ -696,6 +696,41 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             CitiesSearch = new ObservableCollection<string>();
             Languages = new ObservableCollection<string>();
             RateCommand = new RelayCommand(ExecuteRateCommand, CanExecuteRateCommand);
+
+
+
+        }
+        public TourViewModel(int userId)
+        {
+            _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
+
+            _guideRateService = new GuideRateService(Injector.Injector.CreateInstance<IGuideRateRepository>());
+            _userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
+            Tours = new ObservableCollection<TourViewModel>();
+
+            CountriesSearch = new ObservableCollection<string>();
+            CitiesSearch = new ObservableCollection<string>();
+            Languages = new ObservableCollection<string>();
+            RateCommand = new RelayCommand(ExecuteRateCommand, CanExecuteRateCommand);
+
+            UserId = userId;
+
+        }
+        public TourViewModel(int userId, TourViewModel selectedTour)
+        {
+            _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
+
+            _guideRateService = new GuideRateService(Injector.Injector.CreateInstance<IGuideRateRepository>());
+            _userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
+            Tours = new ObservableCollection<TourViewModel>();
+
+            CountriesSearch = new ObservableCollection<string>();
+            CitiesSearch = new ObservableCollection<string>();
+            Languages = new ObservableCollection<string>();
+            RateCommand = new RelayCommand(ExecuteRateCommand, CanExecuteRateCommand);
+
+            UserId = userId;
+            SelectedTour = selectedTour;
         }
 
         public TourViewModel(Tour tour)

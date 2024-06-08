@@ -29,11 +29,8 @@ namespace BookingApp.View.TouristWindows
         public AddedTouristsNotificationWindow(TouristNotificationViewModel selectedNotification)
         {
             InitializeComponent();
-            TouristNotification = new TouristNotificationViewModel();
+            TouristNotification = new TouristNotificationViewModel(selectedNotification);
             DataContext = TouristNotification;
-            TouristNotification.SelectedNotification = selectedNotification;
-            TouristNotification.CurrentCheckpoint = selectedNotification.CurrentCheckpoint;
-            TouristNotification.InitializeAddedTouristsWindow();
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
         }
         private void CloseWindow(CloseWindowMessage messsage)

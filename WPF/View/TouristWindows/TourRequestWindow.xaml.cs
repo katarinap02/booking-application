@@ -29,9 +29,11 @@ namespace BookingApp.WPF.View.TouristWindows
         public TourRequestWindow(int userId)
         {
             InitializeComponent();
-            TourRequest = new TourRequestWindowViewModel();
+            TourRequest = new TourRequestWindowViewModel(userId);
             DataContext = TourRequest;
-            TourRequest.UserId = userId;
+
+            TourRequest.InitFrame("Basic");
+
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
@@ -42,7 +44,6 @@ namespace BookingApp.WPF.View.TouristWindows
                     //MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             });
-            TourRequest.InitFrame("Basic");
         }
 
         private void CloseWindow(CloseWindowMessage message)

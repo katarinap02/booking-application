@@ -210,6 +210,14 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
             Vouchers = new ObservableCollection<VoucherViewModel>();
         }
+
+        public VoucherViewModel(int userId)
+        {
+            _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
+            Vouchers = new ObservableCollection<VoucherViewModel>();
+            UserId = userId;
+
+        }
         public VoucherViewModel(Voucher voucher)
         {
             _id = voucher.Id;

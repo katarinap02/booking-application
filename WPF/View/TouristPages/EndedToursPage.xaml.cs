@@ -32,11 +32,8 @@ namespace BookingApp.View.TouristWindows
         public EndedToursPage(int userId)
         {
             InitializeComponent();
-            Tour = new TourViewModel();
+            Tour = new TourViewModel(userId);
             DataContext = Tour;
-
-            Tour.UserId = userId;
-
 
             Tour.RefreshEndedTours();
         }

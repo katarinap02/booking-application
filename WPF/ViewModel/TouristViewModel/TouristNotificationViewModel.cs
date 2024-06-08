@@ -258,13 +258,27 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
 
         }
-        public TouristNotificationViewModel()
+        public TouristNotificationViewModel(int userId)
         {
             _touristNotificationService = new TouristNotificationService(Injector.Injector.CreateInstance<ITouristNotificationRepository>());
             _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
 
             touristNotificationViewModels = new ObservableCollection<TouristNotificationViewModel>();
             tourists = new ObservableCollection<string>();
+            UserId = userId;
+            InitializeTouristNotificationWindow();
+        }
+        public TouristNotificationViewModel(TouristNotificationViewModel selectedNotification)
+        {
+            _touristNotificationService = new TouristNotificationService(Injector.Injector.CreateInstance<ITouristNotificationRepository>());
+            _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
+
+            touristNotificationViewModels = new ObservableCollection<TouristNotificationViewModel>();
+            tourists = new ObservableCollection<string>();
+
+            SelectedNotification = selectedNotification;
+            CurrentCheckpoint = selectedNotification.CurrentCheckpoint;
+            InitializeAddedTouristsWindow();
         }
         public TouristNotificationViewModel(TouristNotification touristNotification)
         {

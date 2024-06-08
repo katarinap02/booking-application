@@ -25,12 +25,9 @@ namespace BookingApp.WPF.View.TouristWindows
         public TourNoAvailablePlacesWindow(TourViewModel selectedTour, int userId)
         {
             InitializeComponent();
-            Tour = new TourNoAvailablePlacesViewModel();
+            Tour = new TourNoAvailablePlacesViewModel(selectedTour, userId);
             DataContext = Tour;
-            Tour.SelectedTour = selectedTour;
-            Tour.UserId = userId;
 
-            Tour.RefreshToursByCity();
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
         }
         private void CloseWindow(CloseWindowMessage messsage)

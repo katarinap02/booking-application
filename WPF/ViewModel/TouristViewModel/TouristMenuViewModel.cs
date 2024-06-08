@@ -212,7 +212,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
-        public TouristMenuViewModel()
+        public TouristMenuViewModel(string username, int userId)
         {
             _userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
             _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
@@ -220,6 +220,9 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
             LogoutCommand = new RelayCommand(ExecuteLogoutCommand);
 
+            UserName = username;
+            UserId = userId;
+            Initialize();
         }
     }
 }

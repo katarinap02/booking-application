@@ -30,13 +30,8 @@ namespace BookingApp.View.TouristWindows
         public TourNumberOfParticipantsWindow(TourViewModel selectedTour, int userId)
         {
             InitializeComponent();
-            Tour = new TourNumberOfParticipantsViewModel();
+            Tour = new TourNumberOfParticipantsViewModel(selectedTour, userId);
             DataContext = Tour;
-            Tour.SelectedTour = selectedTour;
-            Tour.AvailablePlaces = selectedTour.AvailablePlaces;
-            Tour.UserId = userId;
-
-            Tour.InitializeNumberOfParticipantsWindow();
 
         }
 

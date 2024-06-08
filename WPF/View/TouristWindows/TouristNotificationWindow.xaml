@@ -37,7 +37,7 @@
                   CanUserAddRows="False"
                   Style="{StaticResource CoolDataGridStyle1}">
             <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding}" />
+                <DataGridTextColumn Binding="{Binding}" Width="*"/>
                 <DataGridTemplateColumn Width="95" Header="Details">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

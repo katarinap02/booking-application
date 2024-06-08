@@ -16,6 +16,7 @@ using Microsoft.Win32;
 using System.Globalization;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using GalaSoft.MvvmLight.Messaging;
+using BookingApp.WPF.View.TouristWindows;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -29,16 +30,20 @@ namespace BookingApp.View.TouristWindows
         public GuideRateWindow(TourViewModel selectedTour, int userId)
         {
             InitializeComponent();
-            GuideRate = new GuideRateViewModel();
+            GuideRate = new GuideRateViewModel(selectedTour, userId);
             DataContext = GuideRate;
 
-            GuideRate.UserId = userId;
-            if (GuideRate.initializeGuideRate(selectedTour.Id, selectedTour.GuideId))
-                Close();
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
-                MessageBox.Show(message.Notification, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                InformationMessageBoxWindow mb = new InformationMessageBoxWindow(message.Notification);
+                mb.ShowDialog();
+                //MessageBox.Show(message.Notification, "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             });
+            Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
+        }
+        private void CloseWindow(CloseWindowMessage message)
+        {
+            Close();
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -51,16 +56,6 @@ namespace BookingApp.View.TouristWindows
             GuideRate.AddImage();
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
-        private void SubmitButton_Click(object sender, RoutedEventArgs e)
-        {
-            GuideRate.Submit(GuideRate);
-            Close();
-        }
 
         private void CommentTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {

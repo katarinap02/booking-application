@@ -154,9 +154,11 @@ namespace BookingApp.WPF.ViewModel.TouristViewModel
             Date = tour.Date;
         }
 
-        public CreatedTourDetailsWindowViewModel()
+        public CreatedTourDetailsWindowViewModel(TouristNotificationViewModel selectedNotification)
         {
             notificationService = new TouristNotificationService(Injector.Injector.CreateInstance<ITouristNotificationRepository>());
+            SelectedNotification = selectedNotification;
+            InitializeCreatedTourDetailsWindow();
         }
 
     }
