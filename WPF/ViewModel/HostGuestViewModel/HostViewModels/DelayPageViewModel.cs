@@ -19,6 +19,7 @@ using BookingApp.Domain.Model.Reservations;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
 using System.Windows.Navigation;
+using System.Windows.Threading;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 {
@@ -38,7 +39,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public AccommodationReservationService AccommodationReservationService { get; set; }
         public AccommodationService AccommodationService { get; set; }
 
-        public DelayRequestViewModel SelectedDelay { get; set; }
+        private DelayRequestViewModel selectedDelay;
+        public DelayRequestViewModel SelectedDelay
+        {
+            get => selectedDelay;
+            set
+            {
+                if (selectedDelay != value)
+                {
+                    selectedDelay = value;
+                    OnPropertyChanged(nameof(SelectedDelay));
+                }
+            }
+        }
 
         public DelayRequestViewModel Delay { get; set; }
 
@@ -50,7 +63,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public NavigationService NavService { get; set; }
 
-        public DelayPageViewModel(User user, NavigationService navigationService)
+        public bool IsDemo {  get; set; }
+
+        public DelayPageViewModel(User user, NavigationService navigationService,bool isDemo)
         {
             Delays = new ObservableCollection<DelayRequestViewModel>();
             NavService = navigationService;
@@ -64,6 +79,11 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             User = user;
             ApproveCommand = new MyICommand(Approve);
             RejectCommand = new MyICommand(Reject);
+            IsDemo = isDemo;
+            if (IsDemo)
+            {
+                HandleTextBoxDemo();
+            }
             Update();
             UpdateNotifications();
 
@@ -126,7 +146,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 AccommodationService.Update(accommodation);
                 MessageBox.Show("Delay approved.");
                 Update();
-                DelayPage page = new DelayPage(User, NavService);
+                DelayPage page = new DelayPage(User, NavService, IsDemo);
                 this.NavService.Navigate(page);
             }
             else
@@ -166,7 +186,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 DelayRequestService.Update(Delay.ToDelayRequest());
                 MessageBox.Show("Delay rejected.");
                 Update();
-                DelayPage page = new DelayPage(User, NavService);
+                DelayPage page = new DelayPage(User, NavService, IsDemo);
                 this.NavService.Navigate(page);
             }
             else
@@ -174,6 +194,68 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 MessageBox.Show("Please select request.");
             }
 
+        }
+
+        private void HandleTextBoxDemo()
+        {
+            AddOnTextBox(8.5, "", 2);
+            AddOnTextBox(13.5, "E", 1);
+            AddOnTextBox(13.7, "n", 1);
+            AddOnTextBox(13.9, "o", 1);
+            AddOnTextBox(14.1, "u", 1);
+            AddOnTextBox(14.3, "g", 1);
+            AddOnTextBox(14.5, "h", 1);
+            AddOnTextBox(14.7, " ", 1);
+            AddOnTextBox(14.9, "f", 1);
+            AddOnTextBox(15.1, "r", 1);
+            AddOnTextBox(15.3, "e", 1);
+            AddOnTextBox(15.5, "e", 1);
+            AddOnTextBox(15.7, " ", 1);
+            AddOnTextBox(15.9, "a", 1);
+            AddOnTextBox(16.1, "p", 1);
+            AddOnTextBox(16.3, "p", 1);
+            AddOnTextBox(16.5, "o", 1);
+            AddOnTextBox(16.7, "i", 1);
+            AddOnTextBox(16.9, "n", 1);
+            AddOnTextBox(17.1, "t", 1);
+            AddOnTextBox(17.3, "m", 1);
+            AddOnTextBox(17.5, "e", 1);
+            AddOnTextBox(17.7, "n", 1);
+            AddOnTextBox(17.9, "t", 1);
+            AddOnTextBox(18.1, "s", 1);
+            AddOnTextBox(18.1, ".", 1);
+        }
+
+        private void AddOnTextBox(double seconds, string letter, int num)
+        {
+            if (IsDemo)
+            {
+                DispatcherTimer timer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromSeconds(seconds)
+                };
+                timer.Tick += (s, e) =>
+                {
+                    timer.Stop();
+                    if (IsDemo && num == 1)
+                    {
+                        Delay.Comment = Delay.Comment + letter;
+                    }
+                    else if (IsDemo && num == 2 && Delays.Count > 0)
+                    {
+                        SelectedDelay = Delays[0];
+                    }
+                    
+                    
+
+
+                };
+                timer.Start();
+            }
+        }
+        protected void OnPropertyChanged(string propertyName)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
     }

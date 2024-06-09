@@ -49,7 +49,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         private void Execute_NavigateToGuestRatePageCommand(object obj)
         {
-            GuestRatePage page = new GuestRatePage(User, NavService);
+            GuestRatePage page = new GuestRatePage(User, NavService, false);
             this.NavService.Navigate(page);
             Update();
         }

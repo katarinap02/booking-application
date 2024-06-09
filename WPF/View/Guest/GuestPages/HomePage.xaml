@@ -58,9 +58,9 @@
         <TextBlock x:Name="welcomeTB" Style="{DynamicResource TextBlockHeaderStyleN}" FontSize="50" Height="90" TextAlignment="Center" Margin="10,363,10,537" Grid.ColumnSpan="2">
                 <Run Text="{ns:Loc WelcomeHome}"/><Run Text=", "/><Run Text="{Binding User.Username}"/>
         </TextBlock>
-        <TextBlock x:Name="findPerfectTB" Style="{DynamicResource TextBlockStyleN}" FontStyle="Italic" TextWrapping="Wrap" FontSize="23" TextAlignment="Center" Margin="589,480,574,369" Text="{ns:Loc FindPerfect}" Grid.Column="1"></TextBlock>
-        <Label x:Name="adventureLabel" Content="{ns:Loc Adventure}" FontStyle="Italic" Style="{DynamicResource HeaderStyleN}" FontWeight="Bold" FontSize="20" Margin="822,605,806,344" Grid.Column="1"/>
-        <Label x:Name="loggedLabel" Content="{ns:Loc LoggedIn}" Style="{DynamicResource HeaderStyleN}" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Oblique" Height="80" Margin="754,426,0,0" Width="437" FontSize="30" Grid.Column="1"/>
+        <TextBlock x:Name="findPerfectTB" Style="{DynamicResource TextBlockStyleN}" FontStyle="Italic" TextWrapping="Wrap" FontSize="23" TextAlignment="Center" Margin="557,480,574,369" Text="{ns:Loc FindPerfect}" Grid.Column="1"></TextBlock>
+        <TextBlock x:Name="adventureLabel" Text="{ns:Loc Adventure}" FontStyle="Italic" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" FontWeight="Bold" FontSize="20" Margin="6,605,0,344" Grid.ColumnSpan="2"/>
+        <TextBlock x:Name="loggedLabel" Text="{ns:Loc LoggedIn}" Style="{DynamicResource TextBlockHeaderStyleN}" TextAlignment="Center" HorizontalAlignment="Left" VerticalAlignment="Top" FontStyle="Oblique" Height="80" Margin="6,426,0,0" Width="1914" FontSize="30" Grid.ColumnSpan="2"/>
         <Button x:Name="reserveBtn" Content="{ns:Loc Reserve}" HorizontalAlignment="Left" Margin="636,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{DynamicResource ButtonStyleN}" Command="{Binding ReserveCommand}" Grid.Column="1"/>
         <Button x:Name="aboutBtn" Content="{ns:Loc About}" HorizontalAlignment="Left" Margin="872,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{DynamicResource ButtonStyleN}" Command="{Binding AboutCommand}" RenderTransformOrigin="0.659,2.62" Grid.Column="1"/>
         <Button x:Name="helpBtn" Content="{ns:Loc Help}" HorizontalAlignment="Left" Margin="1115,700,0,0" VerticalAlignment="Top" Width="152" Height="66" Style="{DynamicResource ButtonStyleN}" Command="{Binding HelpCommand}" Grid.Column="1"/>

@@ -3,10 +3,159 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
       xmlns:local="clr-namespace:BookingApp.View.HostPages"
       mc:Ignorable="d" 
       d:DesignHeight="705" d:DesignWidth="1024"
       Title="GuestRatePage">
+    <Page.Resources>
+        <Style x:Key="DemoIconAnimation" TargetType="fa:IconImage">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsDemo}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <!-- Opacity animation -->
+                                <DoubleAnimation
+             Storyboard.TargetProperty="Opacity"
+             From="0"
+             To="1"
+             Duration="0:0:0.5" 
+             BeginTime="0:0:4"/>
+                               
+                                <DoubleAnimation
+             Storyboard.TargetProperty="(Canvas.Left)"
+             From="0"
+             To="300"
+             Duration="0:0:1.5" 
+              BeginTime="0:0:4"/>
+                               
+                                <DoubleAnimation
+             Storyboard.TargetProperty="(Canvas.Top)"
+             From="0"
+             To="80"
+             Duration="0:0:1.5"
+              BeginTime="0:0:4"/>
+                                <DoubleAnimation
+                        Storyboard.TargetProperty="(Canvas.Left)"
+                        From="300"
+                        To="950"
+                        Duration="0:0:2.3" 
+                         BeginTime="0:0:8.7"/>
+
+                                <DoubleAnimation
+                            Storyboard.TargetProperty="(Canvas.Top)"
+                            From="80"
+                            To="170"
+                            Duration="0:0:2.3"
+                             BeginTime="0:0:8.7"/>
+                                <DoubleAnimation
+                            Storyboard.TargetProperty="(Canvas.Left)"
+                            From="950"
+                            To="820"
+                            Duration="0:0:2.1" 
+                             BeginTime="0:0:18.5"/>
+
+                                <DoubleAnimation
+                                Storyboard.TargetProperty="(Canvas.Top)"
+                                From="170"
+                                To="580"
+                                Duration="0:0:2.1"
+                                 BeginTime="0:0:18.5"/>
+                                <DoubleAnimation
+                            Storyboard.TargetProperty="Opacity"
+                            From="1"
+                            To="0"
+                            Duration="0:0:0.8" 
+                            BeginTime="0:0:23.5"/>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="AnimatedBorderStyle" TargetType="Border">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Setter Property="Opacity" Value="0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsDemo}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <!-- Delay before showing -->
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:5.5" Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <!-- Fade in -->
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" BeginTime="0:0:5.5" />
+                                <!-- Delay before hiding -->
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" BeginTime="0:0:7.5" />
+                                <!-- Hide after fading out -->
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" BeginTime="0:0:8.0">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="AnimatedBorderStyle1" TargetType="Border">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Setter Property="Opacity" Value="0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsDemo}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <!-- Delay before showing -->
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:11.0" Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <!-- Fade in -->
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" BeginTime="0:0:11.0" />
+                                <!-- Delay before hiding -->
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" BeginTime="0:0:13.0" />
+                                <!-- Hide after fading out -->
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" BeginTime="0:0:13.5">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <Style x:Key="AnimatedBorderStyle2" TargetType="Border">
+            <Setter Property="Visibility" Value="Collapsed" />
+            <Setter Property="Opacity" Value="0" />
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsDemo}" Value="True">
+                    <DataTrigger.EnterActions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <!-- Delay before showing -->
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:20.6" Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                                <!-- Fade in -->
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="0" To="1" Duration="0:0:0.5" BeginTime="0:0:20.6" />
+                                <!-- Delay before hiding -->
+                                <DoubleAnimation Storyboard.TargetProperty="Opacity" From="1" To="0" Duration="0:0:0.5" BeginTime="0:0:22.5" />
+                                <!-- Hide after fading out -->
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="Visibility" BeginTime="0:0:23.0">
+                                    <DiscreteObjectKeyFrame KeyTime="0:0:0" Value="{x:Static Visibility.Collapsed}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </DataTrigger.EnterActions>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Page.Resources>
     <Grid>
         <Grid.Background>
             <LinearGradientBrush StartPoint="0,2" EndPoint="1,1">
@@ -22,6 +171,19 @@
             <ColumnDefinition Width="*"></ColumnDefinition>
             <ColumnDefinition Width="*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
+
+        <Canvas>
+            <fa:IconImage x:Name="DemoIcon" Opacity="0" Style="{StaticResource DemoIconAnimation}" Icon="MousePointer" Foreground="#1A1A1A" Height="25" HorizontalAlignment="Left" Margin="5, 0, 0, 0"/>
+        </Canvas>
+        <Border CornerRadius="15" Style="{StaticResource AnimatedBorderStyle}" Grid.ColumnSpan="3" Grid.RowSpan="2" BorderThickness="1" Background="#6665DD" Grid.Row="0" Margin="0 0 500 550" Width="90" Height="50">
+            <TextBlock Grid.Row="1" Background="Transparent" TextWrapping="Wrap" Foreground="White" Text="Select guest to rate" TextAlignment="Center" Grid.RowSpan="3" Margin="9,6,9,6"/>
+        </Border>
+        <Border CornerRadius="15" Style="{StaticResource AnimatedBorderStyle1}" Grid.ColumnSpan="3" Grid.RowSpan="2" BorderThickness="1" Background="#6665DD" Grid.Row="0" Margin="850 0 0 420" Width="90" Height="50">
+            <TextBlock Grid.Row="1" Background="Transparent" TextWrapping="Wrap" Foreground="White" Text="Enter rating data" TextAlignment="Center" Grid.RowSpan="3" Margin="9,6,9,6"/>
+        </Border>
+        <Border CornerRadius="15" Style="{StaticResource AnimatedBorderStyle2}" Grid.ColumnSpan="3" Grid.RowSpan="2" BorderThickness="1" Background="#6665DD" Grid.Row="0" Margin="770 400 0 0" Width="100" Height="50">
+            <TextBlock Grid.Row="1" Background="Transparent" TextWrapping="Wrap" Foreground="White" Text="Finish rating guest" TextAlignment="Center" Grid.RowSpan="3" Margin="9,6,9,6"/>
+        </Border>
 
         <Label
     x:Name="TitleLabel"
@@ -171,7 +333,7 @@
                 SelectedItem="{Binding SelectedAccommodation}"
                 SelectionMode="Single">
             <ListView.ItemContainerStyle>
-                <Style TargetType="ListViewItem">
+                <Style TargetType="ListViewItem" BasedOn="{StaticResource ListViewItemSelectedStyle}">
                     <Setter Property="Padding" Value="0" />
                     <Setter Property="Margin" Value="0,5,5,5" />
                     <Setter Property="HorizontalContentAlignment" Value="Stretch" />

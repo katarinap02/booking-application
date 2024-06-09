@@ -32,13 +32,18 @@
     <None Remove="Resources\Images\video-camera.png" />
     <None Remove="Resources\Images\view.png" />
     <None Remove="WPF\Resources\Images\arrow-to-line-right.png" />
+    <None Remove="WPF\Resources\Images\athens.jpg" />
+    <None Remove="WPF\Resources\Images\berlin.jpg" />
     <None Remove="WPF\Resources\Images\cancelHelp.png" />
     <None Remove="WPF\Resources\Images\colorful-watercolor-abstract-background.jpg" />
     <None Remove="WPF\Resources\Images\empty.png" />
     <None Remove="WPF\Resources\Images\forumHelp.png" />
     <None Remove="WPF\Resources\Images\left_arrow.png" />
     <None Remove="WPF\Resources\Images\lock.png" />
+    <None Remove="WPF\Resources\Images\madrid.jpg" />
     <None Remove="WPF\Resources\Images\minus.png" />
+    <None Remove="WPF\Resources\Images\monaco.jpeg" />
+    <None Remove="WPF\Resources\Images\ns.jpg" />
     <None Remove="WPF\Resources\Images\person.jpg" />
     <None Remove="WPF\Resources\Images\person_no_white.psd" />
     <None Remove="WPF\Resources\Images\planeComputer.jpg" />
@@ -47,6 +52,7 @@
     <None Remove="WPF\Resources\Images\rateHelp.png" />
     <None Remove="WPF\Resources\Images\reserveHelp.png" />
     <None Remove="WPF\Resources\Images\right_arrow.png" />
+    <None Remove="WPF\Resources\Images\rome.jpg" />
     <None Remove="WPF\Resources\Images\rome1.jpg" />
     <None Remove="WPF\Resources\Images\search.png" />
     <None Remove="WPF\Resources\Images\superGuestHelp.png" />
@@ -54,6 +60,7 @@
     <None Remove="WPF\Resources\Images\tokyo_temple.jpg" />
     <None Remove="WPF\Resources\Images\user_white.png" />
     <None Remove="WPF\Resources\Images\Unknown_person.jpg" />
+    <None Remove="WPF\Resources\Images\vienna.jpg" />
     <None Remove="WPF\Resources\Images\warning.png" />
 
     <None Remove="WPF\Resources\LoginImages\icon.png" />
@@ -121,6 +128,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="WPF\Resources\Images\no_image.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="WPF\Resources\Images\ns.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="WPF\Resources\Images\paris1.jpg">
@@ -211,11 +221,27 @@
 
     <Resource Include="WPF\Resources\Images\arrow-to-line-right.png" />
 
+    <Resource Include="WPF\Resources\Images\athens.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
+    <Resource Include="WPF\Resources\Images\berlin.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
     <Resource Include="WPF\Resources\Images\cancelHelp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
 
     <Resource Include="WPF\Resources\Images\forumHelp.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
+    <Resource Include="WPF\Resources\Images\madrid.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
+    <Resource Include="WPF\Resources\Images\monaco.jpeg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
 
@@ -235,11 +261,19 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
 
+    <Resource Include="WPF\Resources\Images\rome.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+
     <Resource Include="WPF\Resources\Images\superGuestHelp.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
 
     <Resource Include="WPF\Resources\Images\user_white.png" />
+
+    <Resource Include="WPF\Resources\Images\vienna.jpg">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
 
     <Resource Include="WPF\Resources\Images\warning.png" />
 

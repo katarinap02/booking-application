@@ -123,7 +123,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToDelayPageCommand(object obj)
         {
             CloseMenu();
-            DelayPage page = new DelayPage(User, NavService);
+            DelayPage page = new DelayPage(User, NavService, IsDemoStarted);
             this.NavService.Navigate(page);
         }
 
@@ -137,7 +137,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToGuestRatePageCommand(object obj)
         {
             CloseMenu();
-            GuestRatePage page = new GuestRatePage(User, NavService);
+            GuestRatePage page = new GuestRatePage(User, NavService, IsDemoStarted);
             this.NavService.Navigate(page);
         }
 
@@ -254,9 +254,19 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                         RegisterAccommodationPage page = new RegisterAccommodationPage(User, IsDemoStarted, null, NavService);
                         this.NavService.Navigate(page);
                     }
+                    else if(NavService.Content is DelayPage)
+                    {
+                        DelayPage page = new DelayPage(User, NavService, IsDemoStarted);
+                        this.NavService.Navigate(page);
+                    }
+                    else if (NavService.Content is GuestRatePage)
+                    {
+                        GuestRatePage page = new GuestRatePage(User, NavService, IsDemoStarted);
+                        this.NavService.Navigate(page);
+                    }
 
 
-                    
+
                 };
                 timer.Start();
             }
@@ -340,8 +350,30 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                     OnDemoStartedChanged(4);
                     OnDemoStartedMessage(26);
                     
+                } 
+            }
+            else if(NavService.Content is DelayPage)
+            {
+                DelayPage page = new DelayPage(User, NavService, IsDemoStarted);
+                this.NavService.Navigate(page);
+                if (IsDemoStarted == true)
+                {
+                    OnDemoStartedChanged(1);
+                    OnDemoStartedChanged(4);
+                    OnDemoStartedMessage(23.5);
                 }
-                
+                }
+            else if(NavService.Content is GuestRatePage)
+            {
+                GuestRatePage page = new GuestRatePage(User, NavService, IsDemoStarted);
+                this.NavService.Navigate(page);
+                if (IsDemoStarted == true)
+                {
+                    OnDemoStartedChanged(1);
+                    OnDemoStartedChanged(4);
+                    OnDemoStartedMessage(24.3);
+
+                }
             }
         }
 

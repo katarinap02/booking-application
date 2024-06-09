@@ -56,8 +56,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             RenovationService = new RenovationService(Injector.Injector.CreateInstance<IRenovationRepository>());
             AccommodationService = new AccommodationService(Injector.Injector.CreateInstance<IAccommodationRepository>());
             CalendarConfigurator = new CalendarConfigurator(calendar);
-
             CalendarConfigurator.ConfigureCalendar(SelectedAccommodation, Renovation.StartDateRange, Renovation.EndDateRange, Renovation.Duration, isHost);
+            
         }
 
         private void AddRenovation()
