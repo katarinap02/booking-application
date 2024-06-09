@@ -73,7 +73,7 @@
 73|3|Pending|Vienna|Austria|Vienna Opera House Tour|German|7/28/2024 9:00:00 AM|7/29/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|10,11,12|4/11/2023 8:40:00 AM
 74|3|Pending|Venice|Italy|St. Mark's Basilica Visit|Italian|9/22/2024 11:00:00 AM|9/23/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|13,14,15|6/25/2024 1:25:00 PM
 75|3|Pending|Seoul|South Korea|Bukchon Hanok Village Tour|Korean|8/23/2024 10:00:00 AM|8/24/2024 5:00:00 PM|1/1/0001 12:00:00 AM|-1|16,17,18|1/22/2024 11:55:00 AM
-76|3|Pending|Cape Town|South Africa|Robben Island Tour|Afrikaans|6/11/2024 9:30:00 AM|6/12/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|19,20,21|10/1/2023 4:40:00 PM
+76|3|Invalid|Cape Town|South Africa|Robben Island Tour|Afrikaans|6/11/2024 9:30:00 AM|6/12/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|19,20,21|10/1/2023 4:40:00 PM
 77|3|Invalid|Lisbon|Portugal|Sintra Day Trip|Portuguese|5/25/2024 11:00:00 AM|5/26/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|5/15/2023 10:35:00 AM
 78|3|Pending|Paris|France|Montmartre Tour|French|6/30/2024 9:00:00 AM|7/1/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|4,5,6|3/27/2023 11:30:00 AM
 79|3|Pending|Tokyo|Japan|Shibuya Crossing Visit|Japanese|9/8/2024 11:00:00 AM|9/9/2024 4:30:00 PM|1/1/0001 12:00:00 AM|-1|7,8,9|11/2/2023 12:45:00 PM
@@ -97,3 +97,6 @@
 97|3|Pending|Ada|Serbia|Cvarci tasting|Hungarian|6/15/2024 12:00:00 AM|6/22/2024 12:00:00 AM|1/1/0001 12:00:00 AM|-1|47|6/3/2024 1:07:37 AM
 98|3|Invalid|Andreas|Isle of Man||Abkhaz|6/7/2024 12:00:00 AM|6/11/2024 12:00:00 AM|1/1/0001 12:00:00 AM|-1|48,49|6/3/2024 9:17:41 AM
 99|3|Pending|Castel|Guernsey||Abkhaz|6/13/2024 12:00:00 AM|6/19/2024 12:00:00 AM|1/1/0001 12:00:00 AM|-1|50|6/3/2024 9:17:41 AM
+100|3|Pending|Višegrad|Bosnia and Herzegovina||Bosnian|6/15/2024 12:00:00 AM|6/19/2024 12:00:00 AM|1/1/0001 12:00:00 AM|-1|51|6/9/2024 8:54:46 PM
+101|3|Pending|Balatun|Bosnia and Herzegovina||Bosnian|6/14/2024 12:00:00 AM|6/15/2024 12:00:00 AM|1/1/0001 12:00:00 AM|-1|52|6/9/2024 9:18:50 PM
+102|3|Pending|Balatun|Bosnia and Herzegovina||Bosnian|6/18/2024 12:00:00 AM|6/19/2024 12:00:00 AM|1/1/0001 12:00:00 AM|-1|53|6/9/2024 9:18:50 PM

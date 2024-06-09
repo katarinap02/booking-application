@@ -119,6 +119,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             SelectedDates = updatedDates;
 
             Messenger.Default.Send(new CloseWindowMessage());
+            Messenger.Default.Send(new NotificationMessage("Tour added"));
         }
         private ICommand _addTourCommand;
         public ICommand AddTourCommand
@@ -136,6 +137,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         }
         private void AddTour(object tourRequest)
         {
+            TourRequestType = "Complex";
             AddTourRequestWindow addTourRequestWindow = new AddTourRequestWindow(this);
             addTourRequestWindow.ShowDialog();
         }
@@ -858,7 +860,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         public void InitializeTourRequestWindow()
         {
-            TourRequestType = "Basic";
             LoadCountriesFromCSV();
             LoadLanguagesFromCSV();
 
