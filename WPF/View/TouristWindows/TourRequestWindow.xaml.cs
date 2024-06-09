@@ -107,9 +107,24 @@ namespace BookingApp.WPF.View.TouristWindows
         }
         private void MediaElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
         {
-            // Media failed to open
-            // Show error message in a message box
-            MessageBox.Show("Media failed to open: " + e.ErrorException.Message, "Media Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBoxWindow mb = new MessageBoxWindow("Media failed to open: " + e.ErrorException.Message);
+            mb.ShowDialog();
+        }
+        private void Tutorial_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Tutorial_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (TutorialPopup.IsOpen == false)
+            {
+                TutorialPopup.IsOpen = true;
+                mediaElement.Play();
+                return;
+            }
+            TutorialPopup.IsOpen = false;
+            mediaElement.Stop();
         }
 
     }

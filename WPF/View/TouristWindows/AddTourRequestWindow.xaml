@@ -3,10 +3,19 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         xmlns:local="clr-namespace:BookingApp.WPF.View.TouristWindows" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local1="clr-namespace:BookingApp.WPF.View.TouristWindows"
         mc:Ignorable="d"
         Title="Tour Request" Height="839" Width="1000" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="commands:RoutedCommands.AddParticipant" CanExecute="AddParticipant_CanExecute" Executed="AddParticipant_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.ParticipantName" CanExecute="ParticipantName_CanExecute" Executed="ParticipantName_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.CountryFocus" CanExecute="CountryFocus_CanExecute" Executed="CountryFocus_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.Confirm" CanExecute="Confirm_CanExecute" Executed="Confirm_Executed"/>
+        
+    </Window.CommandBindings>
     <Window.Resources>
         <local1:ValidationErrorsConverter x:Key="ValidationErrorsConverter"/>
         <Style x:Key="BasicLabels" TargetType="Label">

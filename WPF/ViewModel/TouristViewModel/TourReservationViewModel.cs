@@ -459,7 +459,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             mb.ShowDialog();
             //System.Windows.MessageBox.Show("Tour " + "\"" + SelectedTour.Name + "\"" + " booked!", "Tour booked", MessageBoxButton.OK, MessageBoxImage.Information);
             Messenger.Default.Send(new CloseWindowMessage());
-            return;
         }
         private void Save(TourReservationViewModel reservation)
         {

@@ -3,11 +3,16 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
       xmlns:local="clr-namespace:BookingApp.WPF.View.TouristPages" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
               xmlns:local1="clr-namespace:BookingApp.WPF.View.TouristWindows"
       mc:Ignorable="d" 
       d:DesignHeight="580" d:DesignWidth="900"
       Title="ComplexTourRequestPage">
+    <Page.CommandBindings>
+        <CommandBinding Command="commands:RoutedCommands.AddTour" CanExecute="AddTour_CanExecute" Executed="AddTour_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.NameFocus" CanExecute="NameFocus_CanExecute" Executed="NameFocus_Executed"/>
+    </Page.CommandBindings>
     <Page.Resources>
         <local1:ValidationErrorsConverter x:Key="ValidationErrorsConverter"/>
         <Style x:Key="BasicLabels" TargetType="Label">

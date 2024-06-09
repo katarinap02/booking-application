@@ -19,6 +19,9 @@
     <Window.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
         <CommandBinding Command="commands:RoutedCommands.AddParticipant" CanExecute="AddParticipant_CanExecute" Executed="AddParticipant_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.Tutorial" CanExecute="Tutorial_CanExecute" Executed="Tutorial_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.NameFocus" CanExecute="NameFocus_CanExecute" Executed="NameFocus_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.Confirm" CanExecute="Confirm_CanExecute" Executed="Confirm_Executed"/>
     </Window.CommandBindings>
     <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.ColumnDefinitions>

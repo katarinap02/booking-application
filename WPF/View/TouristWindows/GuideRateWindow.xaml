@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
-        Title="Rate" Height="640" Width="830" WindowStartupLocation="CenterScreen">
+        Title="Rate" Height="720" Width="830" WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
         <CommandBinding Command="commands:RoutedCommands.AddImage" CanExecute="AddImage_CanExecute" Executed="AddImage_Executed"/>
@@ -15,7 +15,7 @@
     <Window.Resources>
         <Style x:Key="CoolRadioButtonStyle" TargetType="RadioButton">
             <Setter Property="Foreground" Value="White" />
-            <Setter Property="FontSize" Value="20" />
+            <Setter Property="FontSize" Value="22" />
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
             <Setter Property="Margin" Value="5,0" />
@@ -23,7 +23,7 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="RadioButton">
                         <Grid>
-                            <Ellipse x:Name="RadioEllipse" Width="45" Height="45" Stroke="White" StrokeThickness="7">
+                            <Ellipse x:Name="RadioEllipse" Width="50" Height="50" Stroke="White" StrokeThickness="7">
                                 <Ellipse.Fill>
                                     <RadialGradientBrush>
                                         <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0" />
@@ -48,12 +48,8 @@
             <RowDefinition Height="20"/>
             <RowDefinition Height="80"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="55"/>
-            <RowDefinition Height="33"/>
-            <RowDefinition Height="35"/>
-            <RowDefinition Height="25"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="135"/>
+            <RowDefinition Height="135"/>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="20"/>
@@ -83,7 +79,7 @@
                    StrokeThickness="3"
                    Grid.Column="1"
                    Grid.Row="3"
-                   Grid.RowSpan="5"/>
+                   Grid.RowSpan="2"/>
         <Label Content="knowledge"
                Grid.Column="1"
                Grid.Row="3"
@@ -91,7 +87,8 @@
                FontSize="18"
                FontWeight="SemiBold"/>
         <StackPanel Grid.Column="1"
-                    Grid.Row="4"
+                    Grid.Row="3"
+                    Margin="0, 25, 0, 0"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
 >
@@ -117,20 +114,18 @@
         <Rectangle Stroke="#303030"
                    StrokeThickness="3"
                    Grid.Column="1"
-                   Grid.Row="5"
-                   Grid.RowSpan="3"/>
+                   Grid.Row="4"/>
         <Label Content="language"
                Grid.Column="1"
-               Grid.Row="5"
+               Grid.Row="4"
                HorizontalContentAlignment="Center"
-               VerticalContentAlignment="Center"
                FontSize="18"
                FontWeight="SemiBold"/>
         <StackPanel Grid.Column="1"
-                    Grid.Row="6"
-                    Grid.RowSpan="2"
+                    Grid.Row="4"
                     Orientation="Horizontal"
                     HorizontalAlignment="Center"
+                    Margin="0, 25, 0, 0"
                     VerticalAlignment="Center">
             <RadioButton Content="1" GroupName="Language" Command="{Binding SelectLanguageRatingCommand}" CommandParameter="0"
                          IsChecked="True"
@@ -154,8 +149,7 @@
         <Rectangle Stroke="#303030"
                    StrokeThickness="3"
                    Grid.Column="3"
-                   Grid.Row="3"
-                   Grid.RowSpan="2"/>
+                   Grid.Row="3"/>
         <Label Content="interestingness"
                Grid.Column="3"
                Grid.Row="3"
@@ -163,8 +157,9 @@
                FontSize="18"
                FontWeight="SemiBold"/>
         <StackPanel Grid.Column="3"
-                    Grid.Row="4"
+                    Grid.Row="3"
                     Orientation="Horizontal"
+                    Margin="0, 25, 0, 0"
                     HorizontalAlignment="Center">
             <RadioButton Content="1" GroupName="Interestingness" Command="{Binding SelectInterestRatingCommand}" CommandParameter="0"
                          IsChecked="True"
@@ -180,24 +175,28 @@
         </StackPanel>
         <Label Content="Comment:"
                Grid.Column="3"
-               Grid.Row="5"
+               Grid.Row="4"
                FontSize="18"
                FontWeight="SemiBold"/>
         <TextBox x:Name="CommentTextBox"
                  Grid.Column="3"
-                 Grid.Row="6"
-                 Grid.RowSpan="2"
+                 Grid.Row="4"
+                 FontSize="17"
                  TextChanged="CommentTextBox_TextChanged"
+                 Margin="0, 30, 0, 0"
                  Text="{Binding AdditionalComment}"
                  Foreground="Black"
                  TextWrapping="Wrap"/>
         <TextBlock x:Name="PlaceholderTextBlock" Text="Leave a comment here..."
                    Grid.Column="3"
-                   Grid.Row="6"
+                   Grid.Row="4"
                    Cursor="IBeam"
+                   FontSize="17"
+                   Width="190"
                    MouseDown="PlaceholderTextBlock_MouseDown"
-                   Foreground="Gray" Margin="5,0,236,19"/>
-        <GroupBox Grid.Row="9"
+                   HorizontalAlignment="Left"
+                   Foreground="Gray" Margin="2,30, 0,19"/>
+        <GroupBox Grid.Row="5"
                   Grid.RowSpan="2"
                   Grid.Column="1"
                   Grid.ColumnSpan="3"
@@ -267,7 +266,7 @@
                 Width="85"
                 VerticalAlignment="Bottom"
                 Grid.Column="1"
-                Grid.Row="12"
+                Grid.Row="8"
                 HorizontalAlignment="Right"
                 Command="{Binding CloseCommand}"/>
         <Button Style="{StaticResource EnlargeButtonStyle}"
@@ -276,7 +275,7 @@
                 Width="85"
                 VerticalAlignment="Bottom"
                 Grid.Column="3"
-                Grid.Row="12"
+                Grid.Row="8"
                 HorizontalAlignment="Left"
                 Height="35"
                 Command="{Binding SubmitCommand}"/>

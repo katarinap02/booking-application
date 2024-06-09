@@ -163,6 +163,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
         public bool RefreshVoucherDataGrid()
         {
             _voucherService.RefreshVouchers();

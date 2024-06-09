@@ -17,6 +17,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.WPF.View.TouristWindows;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -33,13 +35,18 @@ namespace BookingApp.View.TouristWindows
             Tour = new TourNumberOfParticipantsViewModel(selectedTour, userId);
             DataContext = Tour;
 
+            Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        private void CloseWindow(CloseWindowMessage message)
         {
             Close();
         }
-
+        protected override void OnClosed(EventArgs e)
+        {
+            base.OnClosed(e);
+            Messenger.Default.Unregister(this);
+        }
         private void ConfirmButton_Click(object sender, RoutedEventArgs e)
         {
             Tour.ConfirmNumberOfParticipants();

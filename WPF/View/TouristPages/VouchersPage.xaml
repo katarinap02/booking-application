@@ -3,11 +3,14 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
       xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
       mc:Ignorable="d" 
       d:DesignHeight="720" d:DesignWidth="945"
       Title="VouchersPage">
-
+    <Page.CommandBindings>
+        <CommandBinding Command="commands:RoutedCommands.Notifications" CanExecute="Notification_CanExecute" Executed="Notification_Executed"/>
+    </Page.CommandBindings>
     <Grid Background="{StaticResource FrameBackgroundColor1}">
         <Grid.RowDefinitions>
             <RowDefinition Height="80"/>

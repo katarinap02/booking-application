@@ -42,6 +42,29 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             MainFrameContent = new AllToursPage(getUserId(UserName));
         }
 
+        private ICommand _shortcutsCommand;
+        public ICommand ShortcutsCommand
+        {
+            get
+            {
+                if (_shortcutsCommand == null)
+                {
+                    _shortcutsCommand = new RelayCommand(param => Shortcuts());
+                }
+                return _shortcutsCommand;
+            }
+        }
+
+        private void Shortcuts()
+        {
+            if (IsShortcutsOpen)
+            {
+                IsShortcutsOpen = false;
+                return;
+            }
+            IsShortcutsOpen = true;
+        }
+
         private ICommand _myToursCommand;
         public ICommand MyToursCommand
         {
@@ -109,6 +132,24 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             MainFrameContent = new VouchersPage(getUserId(UserName));
         }
+
+        private bool _isShortcutsOpen;
+        public bool IsShortcutsOpen
+        {
+            get
+            {
+                return _isShortcutsOpen;
+            }
+            set
+            {
+                if(_isShortcutsOpen != value)
+                {
+                    _isShortcutsOpen = value;
+                    OnPropertyChanged(nameof(IsShortcutsOpen));
+                }
+            }
+        }
+
         private string _username;
         public string UserName
         {
@@ -220,6 +261,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
             LogoutCommand = new RelayCommand(ExecuteLogoutCommand);
 
+            IsShortcutsOpen = false;
             UserName = username;
             UserId = userId;
             Initialize();

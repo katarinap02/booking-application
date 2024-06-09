@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace BookingApp.WPF.View.TouristWindows
 {
@@ -27,10 +28,19 @@ namespace BookingApp.WPF.View.TouristWindows
         }
         private void CloseWindow(CloseWindowMessage message)
         {
-            if (this.IsActive == true)
+            if (IsActive)
             {
                 Close();
             }
+        }
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CloseWindow(null);
+        }
+
+        private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
         }
     }
 }

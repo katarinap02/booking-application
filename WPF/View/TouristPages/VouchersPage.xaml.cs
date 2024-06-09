@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.Domain.Model.Features;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -37,6 +38,15 @@ namespace BookingApp.View.TouristWindows
         }
 
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
+        {
+            Voucher.NotificationButton();
+        }
+        private void Notification_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Notification_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Voucher.NotificationButton();
         }

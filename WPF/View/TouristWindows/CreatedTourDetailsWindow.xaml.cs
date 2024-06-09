@@ -34,7 +34,10 @@ namespace BookingApp.WPF.View.TouristWindows
         }
         private void CloseWindow(CloseWindowMessage messsage)
         {
-            Close();
+            if (IsActive)
+            {
+                Close();
+            } 
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -48,7 +51,7 @@ namespace BookingApp.WPF.View.TouristWindows
 
         private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            Close();
+            CloseWindow(null);
         }
     }
 }

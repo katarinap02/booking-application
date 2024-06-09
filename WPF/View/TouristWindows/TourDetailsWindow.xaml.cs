@@ -69,7 +69,7 @@ namespace BookingApp.View.TouristWindows
 
         private void ExportPdf_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            // ovo jos treba implementirat
+            Tour.ExportToPDFCommand.Execute(null);
         }
     }
 }

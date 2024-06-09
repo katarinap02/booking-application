@@ -106,5 +106,39 @@ namespace BookingApp.View.TouristWindows
             TutorialPopup.IsOpen = false;
             mediaElement.Stop();
         }
+        private void Tutorial_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Tutorial_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (TutorialPopup.IsOpen == false)
+            {
+                TutorialPopup.IsOpen = true;
+                mediaElement.Play();
+                return;
+            }
+            TutorialPopup.IsOpen = false;
+            mediaElement.Stop();
+        }
+        private void NameFocus_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void NameFocus_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            NameTextBox.Focus();
+        }
+        private void Confirm_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Confirm_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TourReservation.BookCommand.Execute(null);
+        }
     }
 }

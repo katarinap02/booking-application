@@ -11,6 +11,7 @@
     <Window.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
         <CommandBinding Command="commands:RoutedCommands.Confirm" CanExecute="Confirm_CanExecute" Executed="Confirm_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.Tutorial" CanExecute="Tutorial_CanExecute" Executed="Tutorial_Executed"/>
     </Window.CommandBindings>
     <Window.Resources>
         <Style x:Key="RadioButtonStyle" TargetType="RadioButton">

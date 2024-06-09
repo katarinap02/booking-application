@@ -136,5 +136,16 @@ namespace BookingApp.View.TouristWindows
             TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow(Tour.UserId);
             touristNotificationWindow.ShowDialog();
         }
+        private void CloseShortcutsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Tour.IsShortcutsOpen = false;
+        }
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (Tour.IsShortcutsOpen)
+            {
+                e.Handled = true;
+            }
+        }
     }
 }
