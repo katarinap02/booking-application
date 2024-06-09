@@ -35,20 +35,18 @@ namespace BookingApp.View.TouristWindows
         public TouristWindow(string username, int userId)
         {
             InitializeComponent();
-            Tour = new TouristMenuViewModel();
+            Tour = new TouristMenuViewModel(username, userId);
             DataContext = Tour;
 
-            Tour.UserName = username;
-            Tour.UserId = userId;
-            Tour.Initialize();
             Messenger.Default.Register<LogoutMessage>(this, LogoutWindow);
-
             MainFrame.Content = new AllToursPage(Tour.getUserId(Tour.UserName));
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
                 if (IsActive)
                 {
-                    MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    InformationMessageBoxWindow mb = new InformationMessageBoxWindow(message.Notification);
+                    mb.ShowDialog();
+                    //MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             });
 
@@ -137,6 +135,17 @@ namespace BookingApp.View.TouristWindows
         {
             TouristNotificationWindow touristNotificationWindow = new TouristNotificationWindow(Tour.UserId);
             touristNotificationWindow.ShowDialog();
+        }
+        private void CloseShortcutsButton_Click(object sender, RoutedEventArgs e)
+        {
+            Tour.IsShortcutsOpen = false;
+        }
+        private void Window_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (Tour.IsShortcutsOpen)
+            {
+                e.Handled = true;
+            }
         }
     }
 }

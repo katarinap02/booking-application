@@ -25,7 +25,7 @@
 25|3|Pending|Vienna|Austria|Schönbrunn Palace Visit|German|10/1/2024 11:00:00 AM|10/2/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|6/11/2023 1:20:00 PM
 26|3|Pending|Beijing|China|Great Wall Hike|Mandarin|8/15/2024 8:00:00 AM|8/16/2024 12:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|2/22/2024 5:55:00 PM
 27|3|Pending|Edinburgh|UK|Edinburgh Castle Tour|English|9/18/2024 7:00:00 PM|9/19/2024 9:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|1/15/2024 8:10:00 AM
-28|3|Pending|Helsinki|Finland|Suomenlinna Island Visit|Finnish|6/10/2024 10:00:00 AM|6/11/2024 5:00:00 PM|1/1/0001 12:00:00 AM|-1|4,5,6|3/25/2024 9:10:00 AM
+28|3|Invalid|Helsinki|Finland|Suomenlinna Island Visit|Finnish|6/10/2024 10:00:00 AM|6/11/2024 5:00:00 PM|1/1/0001 12:00:00 AM|-1|4,5,6|3/25/2024 9:10:00 AM
 29|3|Pending|Oslo|Norway|Vigeland Park Tour|Norwegian|7/1/2024 9:30:00 AM|7/2/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|7,8,9|1/18/2024 11:50:00 AM
 30|3|Invalid|Dubai|UAE|Burj Khalifa Visit|Arabic|5/15/2024 1:00:00 PM|5/16/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|10,11,12|12/21/2023 3:25:00 PM
 31|3|Pending|Athens|Greece|Acropolis Tour|Greek|9/10/2024 11:00:00 AM|9/11/2024 4:30:00 PM|1/1/0001 12:00:00 AM|-1|13,14,15|8/10/2023 9:05:00 AM

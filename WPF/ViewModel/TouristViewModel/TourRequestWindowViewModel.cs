@@ -72,7 +72,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 return;
             }
 
-            var newTourRequest = new TourRequestWindowViewModel
+            var newTourRequest = new TourRequestWindowViewModel(UserId)
             {
                 SelectedStartDate = this.SelectedStartDate,
                 SelectedEndDate = this.SelectedEndDate,
@@ -83,7 +83,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 Country = this.Country,
                 Description = this.Description,
                 Language = this.Language,
-                UserId = this.UserId,
                 Status = this.Status,
                 TourRequests = new ObservableCollection<TourRequestWindowViewModel>(this.TourRequests),
                 ParticipantsListBox = new ObservableCollection<TourParticipantViewModel>(this.ParticipantsListBox),
@@ -859,6 +858,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
         public void InitializeTourRequestWindow()
         {
+            TourRequestType = "Basic";
             LoadCountriesFromCSV();
             LoadLanguagesFromCSV();
 
@@ -956,7 +956,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             Messenger.Default.Send(new CloseWindowMessage());
         }
 
-        public TourRequestWindowViewModel()
+        public TourRequestWindowViewModel(int userId)
         {
             _tourRequestService = new TourRequestService(Injector.Injector.CreateInstance<ITourRequestRepository>());
             _tourParticipantService = new TourParticipantService(Injector.Injector.CreateInstance<ITourParticipantRepository>());
@@ -969,6 +969,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             LastName = string.Empty;
             ComplexTourName = string.Empty;
             NumberOfTours = 1;
+            Description = string.Empty;
 
             SelectedDates = new List<DateTime>();
             TourRequests = new ObservableCollection<TourRequestWindowViewModel>();
@@ -983,6 +984,9 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             TourParticipantsListBox = new List<TourParticipantViewModel>();
             ParticipantsListBox = new ObservableCollection<TourParticipantViewModel>();
             tourRequestWindowViewModels = new List<TourRequestWindowViewModel>();
+
+            UserId = userId;
         }
+
     }
 }

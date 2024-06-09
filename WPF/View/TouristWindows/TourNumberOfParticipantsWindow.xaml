@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
-        Title="TourNumberOfParticipantsWindow" Height="300" Width="600" WindowStartupLocation="CenterScreen">
+        Title="Tour Reservation" Height="300" Width="600" WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
         <CommandBinding Command="commands:RoutedCommands.Confirm" CanExecute="Confirm_CanExecute" Executed="Confirm_Executed"/>
@@ -69,7 +69,7 @@
                Grid.Row="4"
                Grid.Column="1" Grid.ColumnSpan="2" Margin="310,0,0,0"/>
         <Button Content="Confirm"
-                Click="ConfirmButton_Click"
+                Command="{Binding ConfirmCommand}"
                 x:Name="ConfirmButton"
                 Grid.Column="2"
                 Grid.Row="7" Width="85"
@@ -77,7 +77,7 @@
                 FontSize="20"
                 Style="{StaticResource EnlargeButtonStyle}"/>
         <Button Content="Close"
-                Click="CloseButton_Click"
+                Command="{Binding CloseCommand}"
                 x:Name="CloseButton"
                 Grid.Column="2"
                 Grid.Row="7" Width="85"

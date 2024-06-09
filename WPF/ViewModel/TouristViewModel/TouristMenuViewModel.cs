@@ -42,6 +42,29 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             MainFrameContent = new AllToursPage(getUserId(UserName));
         }
 
+        private ICommand _shortcutsCommand;
+        public ICommand ShortcutsCommand
+        {
+            get
+            {
+                if (_shortcutsCommand == null)
+                {
+                    _shortcutsCommand = new RelayCommand(param => Shortcuts());
+                }
+                return _shortcutsCommand;
+            }
+        }
+
+        private void Shortcuts()
+        {
+            if (IsShortcutsOpen)
+            {
+                IsShortcutsOpen = false;
+                return;
+            }
+            IsShortcutsOpen = true;
+        }
+
         private ICommand _myToursCommand;
         public ICommand MyToursCommand
         {
@@ -109,6 +132,24 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             MainFrameContent = new VouchersPage(getUserId(UserName));
         }
+
+        private bool _isShortcutsOpen;
+        public bool IsShortcutsOpen
+        {
+            get
+            {
+                return _isShortcutsOpen;
+            }
+            set
+            {
+                if(_isShortcutsOpen != value)
+                {
+                    _isShortcutsOpen = value;
+                    OnPropertyChanged(nameof(IsShortcutsOpen));
+                }
+            }
+        }
+
         private string _username;
         public string UserName
         {
@@ -205,12 +246,14 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             if(_tourService.GetTourCountForLastYear(UserId) >= 5 && !_voucherService.isTouristConqueredVoucher(UserId))
             {
                 _voucherService.AwardVoucher(UserId);
-                MessageBox.Show("Congratulations on earning a voucher for attending 5 tours in the past year, \nvalid for any tour over the next 6 months as a thank you for your loyalty!", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
-                Messenger.Default.Send(new NotificationMessage("Congratulations on earning a voucher for attending 5 tours in the past year, valid for any tour over the next 6 months as a thank you for your loyalty!"));
+                InformationMessageBoxWindow mb = new InformationMessageBoxWindow("Congratulations on earning a voucher for attending 5 tours in the past year, valid for any tour over the next 6 months as a thank you for your loyalty!");
+                mb.ShowDialog();
+                //MessageBox.Show("Congratulations on earning a voucher for attending 5 tours in the past year, \nvalid for any tour over the next 6 months as a thank you for your loyalty!", "Congratulations!", MessageBoxButton.OK, MessageBoxImage.Information);
+                //Messenger.Default.Send(new NotificationMessage("Congratulations on earning a voucher for attending 5 tours in the past year, valid for any tour over the next 6 months as a thank you for your loyalty!"));
             }
         }
 
-        public TouristMenuViewModel()
+        public TouristMenuViewModel(string username, int userId)
         {
             _userService = new UserService(Injector.Injector.CreateInstance<IUserRepository>());
             _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
@@ -218,6 +261,10 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
             LogoutCommand = new RelayCommand(ExecuteLogoutCommand);
 
+            IsShortcutsOpen = false;
+            UserName = username;
+            UserId = userId;
+            Initialize();
         }
     }
 }

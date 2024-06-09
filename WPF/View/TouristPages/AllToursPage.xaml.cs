@@ -19,6 +19,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using GalaSoft.MvvmLight.Messaging;
+using BookingApp.WPF.View.TouristWindows;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -32,17 +33,17 @@ namespace BookingApp.View.TouristWindows
         public AllToursPage(int userId)
         {
             InitializeComponent();
-            Tour = new TourViewModel();
+            Tour = new TourViewModel(userId);
             DataContext = Tour;
-            Tour.UserId = userId;
             Tour.initializeAllTours();
-
             Tour.RefreshAllToursDataGrid(false);
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
                 if (Focus())
                 {
-                    MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    InformationMessageBoxWindow mb = new InformationMessageBoxWindow(message.Notification);
+                    mb.ShowDialog();
+                    //MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
 
             });

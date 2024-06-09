@@ -185,5 +185,29 @@ namespace BookingApp.WPF.ViewModel.Commands
             {
                 new KeyGesture(Key.E, ModifierKeys.Control)
             });
+        public static readonly RoutedUICommand AddTour = new RoutedUICommand(
+            "Add Tour",
+            "AddTour",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.A, ModifierKeys.Alt)
+            });
+        public static readonly RoutedUICommand NameFocus = new RoutedUICommand(
+            "Name focus",
+            "Name",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.N, ModifierKeys.Alt)
+            });
+        public static readonly RoutedUICommand Tutorial = new RoutedUICommand(
+            "Tutorial",
+            "Tutorial",
+            typeof(RoutedCommands),
+            new InputGestureCollection()
+            {
+                new KeyGesture(Key.T, ModifierKeys.Alt)
+            });
     }
 }

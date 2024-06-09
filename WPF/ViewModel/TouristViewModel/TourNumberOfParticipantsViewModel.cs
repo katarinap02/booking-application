@@ -2,6 +2,7 @@
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.View.TouristWindows;
+using BookingApp.WPF.View.TouristWindows;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +13,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
+using GalaSoft.MvvmLight.Messaging;
 
 namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 {
@@ -20,6 +22,40 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         public TourService _tourService { get; set; }
 
         public ObservableCollection<TourViewModel> Tours { get; set; }
+        private ICommand _closeCommand;
+        public ICommand CloseCommand
+        {
+            get
+            {
+                if (_closeCommand == null)
+                {
+                    _closeCommand = new RelayCommand(param => CloseWindow());
+                }
+                return _closeCommand;
+            }
+        }
+
+        private void CloseWindow()
+        {
+            Messenger.Default.Send(new CloseWindowMessage());
+        }
+        private ICommand _confirmCommand;
+        public ICommand ConfirmCommand
+        {
+            get
+            {
+                if (_confirmCommand == null)
+                {
+                    _confirmCommand = new RelayCommand(param => Confirm());
+                }
+                return _confirmCommand;
+            }
+        }
+
+        private void Confirm()
+        {
+            ConfirmNumberOfParticipants();
+        }
 
         private TourViewModel _selectedTour;
         public TourViewModel SelectedTour
@@ -112,27 +148,30 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void InitializeNumberOfParticipantsWindow()
-        {
-            AvailablePlacesColor = Brushes.Green;
-        }
         public void ConfirmNumberOfParticipants()
         {
             if (InsertedNumberOfParticipants > SelectedTour.AvailablePlaces)
             {
-                MessageBox.Show("Not enough places for the reservation");
+                MessageBoxWindow mb = new MessageBoxWindow("Not enough places for the reservation");
+                mb.ShowDialog();
                 return;
             }
             if (InsertedNumberOfParticipants == 0)
                 InsertedNumberOfParticipants = 1;
             TourReservationWindow tourReservationWindow = new TourReservationWindow(SelectedTour, InsertedNumberOfParticipants, UserId);
             tourReservationWindow.ShowDialog();
+            Messenger.Default.Send(new CloseWindowMessage());
         }
 
-        public TourNumberOfParticipantsViewModel()
+        public TourNumberOfParticipantsViewModel(TourViewModel selectedTour, int userId)
         {
             _tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
             Tours = new ObservableCollection<TourViewModel>();
+
+            SelectedTour = selectedTour;
+            AvailablePlaces = selectedTour.AvailablePlaces;
+            UserId = userId;
+            AvailablePlacesColor = Brushes.Green;
         }
     }
 }

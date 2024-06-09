@@ -2,6 +2,8 @@
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.View.TouristWindows;
+using BookingApp.WPF.View.TouristWindows;
+using GalaSoft.MvvmLight.Messaging;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -161,6 +163,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
+
         public bool RefreshVoucherDataGrid()
         {
             _voucherService.RefreshVouchers();
@@ -180,10 +183,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             if (_voucherService.SetVoucherToUsed(SelectedVoucher.Id) == null)
             {
-                MessageBox.Show("Something wrong happened");
+                MessageBoxWindow mb = new MessageBoxWindow("Something wrong happened");
+                mb.ShowDialog();
                 return;
             }
-            MessageBox.Show("You just used a voucher!");
+            Messenger.Default.Send(new NotificationMessage("You just used a voucher!"));
         }
 
         public void NotificationButton()
@@ -206,6 +210,14 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         {
             _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
             Vouchers = new ObservableCollection<VoucherViewModel>();
+        }
+
+        public VoucherViewModel(int userId)
+        {
+            _voucherService = new VoucherService(Injector.Injector.CreateInstance<IVoucherRepository>());
+            Vouchers = new ObservableCollection<VoucherViewModel>();
+            UserId = userId;
+
         }
         public VoucherViewModel(Voucher voucher)
         {

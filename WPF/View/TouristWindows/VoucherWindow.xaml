@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows"
         xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
-        Title="VoucherWindow" Height="450" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Voucher" Height="450" Width="800" WindowStartupLocation="CenterScreen">
     <Window.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
     </Window.CommandBindings>
@@ -30,7 +30,7 @@
                Grid.Column="1"
                Grid.Row="1"
                HorizontalContentAlignment="Center"/>
-        <Label Content="Select a voucher:"
+        <Label Content="Select a voucher"
                Grid.Column="1"
                Grid.Row="2"
                FontSize="18"
@@ -45,8 +45,8 @@
                   AutoGenerateColumns="False"
                   FontSize="16">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" Width="300"/>
-                <DataGridTextColumn Header="Expire Date" Binding="{Binding ExpireDate}" Width="*"/>
+                <DataGridTextColumn Header="Reason" Binding="{Binding Reason}" Width="*"/>
+                <DataGridTextColumn Header="Expire Date" Binding="{Binding ExpireDate}" Width="120"/>
                 <DataGridTemplateColumn>
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

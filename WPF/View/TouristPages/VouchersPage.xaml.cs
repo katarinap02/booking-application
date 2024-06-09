@@ -17,6 +17,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.Domain.Model.Features;
 
 namespace BookingApp.View.TouristWindows
 {
@@ -30,15 +31,22 @@ namespace BookingApp.View.TouristWindows
         public VouchersPage(int userId)
         {
             InitializeComponent();
-            Voucher = new VoucherViewModel();
+            Voucher = new VoucherViewModel(userId);
             DataContext = Voucher;
-
-            Voucher.UserId = userId;
 
             Voucher.RefreshVoucherDataGrid();
         }
 
         private void NotificationButton_Click(object sender, RoutedEventArgs e)
+        {
+            Voucher.NotificationButton();
+        }
+        private void Notification_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Notification_Executed(object sender, ExecutedRoutedEventArgs e)
         {
             Voucher.NotificationButton();
         }

@@ -300,9 +300,11 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
-        public TourDetailsViewModel()
+        public TourDetailsViewModel(TourViewModel selectedTour, bool isMyTour, string username)
         {
             CheckpointWithColors = new ObservableCollection<Checkpoint>();
+            SelectedTour = selectedTour;
+            TourDetailsWindowInitialization(isMyTour, username);
         }
 
         public class Checkpoint : INotifyPropertyChanged

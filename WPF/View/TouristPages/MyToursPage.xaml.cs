@@ -29,12 +29,8 @@ namespace BookingApp.View.TouristWindows
         public MyToursPage(TourViewModel selectedTour, int userId)
         {
             InitializeComponent();
-            Tour = new TourViewModel();
+            Tour = new TourViewModel(userId, selectedTour);
             DataContext = Tour;
-
-            Tour.UserId = userId;
-
-            Tour.SelectedTour = selectedTour;
 
             Tour.RefreshMyTours();
         }
