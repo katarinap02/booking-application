@@ -69,7 +69,22 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         public HostViewModel HostViewModel { get; set; }
 
-       
+        private bool unableDemo;
+        public bool UnableDemo
+        {
+            get { return unableDemo; }
+            set
+            {
+                if (unableDemo != value)
+                {
+
+                    unableDemo = value;
+                    OnPropertyChanged("UnableDemo");
+                }
+            }
+        }
+
+
         private bool isDemoStarted;
         public bool IsDemoStarted
         {
@@ -93,8 +108,8 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
 
         private void Execute_NavigateToRegisterPageCommand(object obj)
         {
-            RegisterAccommodationPage page = new RegisterAccommodationPage(User, null, NavService);
             CloseMenu();
+            RegisterAccommodationPage page = new RegisterAccommodationPage(User, IsDemoStarted, null, NavService);
             this.NavService.Navigate(page);
         }
 
@@ -108,7 +123,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToDelayPageCommand(object obj)
         {
             CloseMenu();
-            DelayPage page = new DelayPage(User, NavService);
+            DelayPage page = new DelayPage(User, NavService, IsDemoStarted);
             this.NavService.Navigate(page);
         }
 
@@ -122,7 +137,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void Execute_NavigateToGuestRatePageCommand(object obj)
         {
             CloseMenu();
-            GuestRatePage page = new GuestRatePage(User, NavService);
+            GuestRatePage page = new GuestRatePage(User, NavService, IsDemoStarted);
             this.NavService.Navigate(page);
         }
 
@@ -182,6 +197,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             User = user;
             NavService = navService;
             IsDemoStarted = false;
+            UnableDemo = true;
             StartDemo = new MyICommand(StartDemoForPage);
             Update();
 
@@ -203,6 +219,60 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 timer.Start();
             }
         }
+
+        private void ResetDemoButton(int seconds)
+        {
+                DispatcherTimer timer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromSeconds(seconds)
+                };
+                timer.Tick += (s, e) =>
+                {
+                    timer.Stop();
+                    UnableDemo = true;
+                };
+                timer.Start();   
+        }
+
+        private void OnDemoStartedMessage(double seconds)
+        {
+            if (IsDemoStarted)
+            {
+                DispatcherTimer timer = new DispatcherTimer
+                {
+                    Interval = TimeSpan.FromSeconds(seconds)
+                };
+                timer.Tick += (s, e) =>
+                {
+                    timer.Stop();
+                    if (IsDemoStarted)
+                        MessageBox.Show("Demo has ended.");
+
+                    IsDemoStarted = false;
+                    if (NavService.Content is RegisterAccommodationPage)
+                    {
+                        RegisterAccommodationPage page = new RegisterAccommodationPage(User, IsDemoStarted, null, NavService);
+                        this.NavService.Navigate(page);
+                    }
+                    else if(NavService.Content is DelayPage)
+                    {
+                        DelayPage page = new DelayPage(User, NavService, IsDemoStarted);
+                        this.NavService.Navigate(page);
+                    }
+                    else if (NavService.Content is GuestRatePage)
+                    {
+                        GuestRatePage page = new GuestRatePage(User, NavService, IsDemoStarted);
+                        this.NavService.Navigate(page);
+                    }
+
+
+
+                };
+                timer.Start();
+            }
+        }
+
+
 
         public void SearchClick(object obj)
         {
@@ -252,16 +322,58 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         public void StartDemoForPage()
         {
             IsDemoStarted = !IsDemoStarted;
-            if(NavService.Content is FirstPage)
+            if(!IsDemoStarted)
+            {
+                MessageBox.Show("Demo has been stoped.");
+                UnableDemo = false;
+                ResetDemoButton(25);
+            }
+                
+
+            if (NavService.Content is FirstPage)
             {
                 Update();
                 if(IsDemoStarted == true)
                 {
                     OnDemoStartedChanged(1);
                     OnDemoStartedChanged(4);
+                    OnDemoStartedMessage(15.5);
                 }
-                IsDemoStarted = false;
+            }
+            else if(NavService.Content is RegisterAccommodationPage)
+            {
+                RegisterAccommodationPage page = new RegisterAccommodationPage(User, IsDemoStarted, null, NavService);
+                this.NavService.Navigate(page);
+                if (IsDemoStarted == true)
+                {
+                    OnDemoStartedChanged(1);
+                    OnDemoStartedChanged(4);
+                    OnDemoStartedMessage(26);
+                    
+                } 
+            }
+            else if(NavService.Content is DelayPage)
+            {
+                DelayPage page = new DelayPage(User, NavService, IsDemoStarted);
+                this.NavService.Navigate(page);
+                if (IsDemoStarted == true)
+                {
+                    OnDemoStartedChanged(1);
+                    OnDemoStartedChanged(4);
+                    OnDemoStartedMessage(23.5);
+                }
+                }
+            else if(NavService.Content is GuestRatePage)
+            {
+                GuestRatePage page = new GuestRatePage(User, NavService, IsDemoStarted);
+                this.NavService.Navigate(page);
+                if (IsDemoStarted == true)
+                {
+                    OnDemoStartedChanged(1);
+                    OnDemoStartedChanged(4);
+                    OnDemoStartedMessage(24.3);
 
+                }
             }
         }
 

@@ -193,6 +193,20 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
             }
         }
 
+        private bool isCheckedApartment;
+        public bool IsCheckedApartment
+        {
+            get { return isCheckedApartment; }
+            set
+            {
+                if (isCheckedApartment != value)
+                {
+                    isCheckedApartment = value;
+                    OnPropertyChanged("IsCheckedApartment");
+                }
+            }
+        }
+
 
         private int maxGuestNumber;
         public int MaxGuestNumber
@@ -219,7 +233,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
                 {
 
                     minReservationDays = value;
-                    OnPropertyChanged("MinReservationNumber");
+                    OnPropertyChanged("MinReservationDays");
                 }
             }
         }
@@ -350,6 +364,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
         public AccommodationViewModel()
         {
             reservationDaysLimit = 1;
+            isCheckedCottage = false;
+            isCheckedCottage = false;
+            isCheckedApartment = true;
             isLeastPopular = false;
             isMostPopular = false;
             CountriesSearch = new ObservableCollection<string>();
@@ -426,7 +443,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel
 
         public Accommodation ToAccommodation()
         {
-            if(type == AccommodationType.APARTMENT && (isCheckedCottage || isCheckedHouse)) {
+            if(type == AccommodationType.APARTMENT && (isCheckedCottage || isCheckedHouse || isCheckedApartment)) {
                 type = ConvertToType();
             }
 

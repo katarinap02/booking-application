@@ -13,6 +13,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Navigation;
 
 namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
@@ -46,6 +47,10 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
             if(Condition()) { 
             ScheduleRenovationWindow window = new ScheduleRenovationWindow(SelectedAccommodation, User, Renovation);
             window.ShowDialog();
+            }
+            else
+            {
+                MessageBox.Show("Please select accommodation");
             }
         }
 

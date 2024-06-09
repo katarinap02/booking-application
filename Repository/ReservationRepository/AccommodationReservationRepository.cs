@@ -51,7 +51,7 @@ namespace BookingApp.Repository
                     if(!Rated(ar))
                         returnGuest.Add(ar);
                 }
-                
+                    
             }
             return returnGuest;
 

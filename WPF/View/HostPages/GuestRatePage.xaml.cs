@@ -32,10 +32,10 @@ namespace BookingApp.View.HostPages
     public partial class GuestRatePage : Page
     {
         public GuestRatePageViewModel GuestRatePageViewModel { get; set; }
-        public GuestRatePage(User user, NavigationService NavigationService)
+        public GuestRatePage(User user, NavigationService NavigationService, bool demo)
         {
             InitializeComponent();
-            GuestRatePageViewModel = new GuestRatePageViewModel(user, NavigationService);
+            GuestRatePageViewModel = new GuestRatePageViewModel(user, NavigationService, demo);
             DataContext = GuestRatePageViewModel;
             
         }
