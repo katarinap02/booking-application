@@ -12,148 +12,48 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 {
     public class MyToursViewModel : ViewModelBase
     {
-        private string _buttonString;
-        public string ButtonString
+        private int GuideId;
+
+        private ViewModelBase _currentChildView;
+        public ViewModelBase CurrentChildView
         {
-            get { return _buttonString; }
+            get
+            {
+                return _currentChildView;
+            }
+
             set
             {
-                _buttonString = value;
-                OnPropertyChanged(nameof(ButtonString));
+                _currentChildView = value;
+                OnPropertyChanged(nameof(CurrentChildView));
             }
         }
 
-        private ObservableCollection<TourViewModel> tourViewModels; // moje ture ili ture za cancel-ovanje
-        public ObservableCollection<TourViewModel> TourViewModels
-        {
-            get { return tourViewModels; }
-            set
-            {
-                tourViewModels = value;
-                OnPropertyChanged(nameof(TourViewModels));
-            }
-        }     
-        public TourViewModel SelectedTour { get; set; }
-        private readonly TourService tourService;
-        public bool IsCurrentlyShowCancelledTours;
-        private int GuideId;
-
-        public MyICommand SwitchTours {  get; set; }
-        public MyICommand Cancel { get; set; }
-        public MyICommand AddTour { get; set; }
-        public MyICommand AddTourDate { get; set; }
+        public ICommand ShowUpcoming { get; }
+        public ICommand ShowPast { get; }
 
         public MyToursViewModel(int id) {
             GuideId = id;
-            tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
-            IsCurrentlyShowCancelledTours = false;
-            TourViewModels = new ObservableCollection<TourViewModel>();
-            getToursByGuide(id);
-            ButtonString = "  Show tours that can be cancelled  ";
-            SwitchTours = new MyICommand(switchTours);
-            Cancel = new MyICommand(CancelTour);
-            AddTour = new MyICommand(AddNewTour);
-            AddTourDate = new MyICommand(AddNewTourDate);
+            ShowUpcoming = new ViewModelCommand(ExecuteShowUpcoming);
+            ShowPast = new ViewModelCommand(ExecuteShowPast);
+            ExecuteShowUpcoming(null);
         }
 
-        public void AddNewTour() {
-            AddingTourWindow addingTourWindow = new AddingTourWindow(GuideId);
-            addingTourWindow.ShowDialog();
-        }
-
-        public void AddNewTourDate()
+        public void ExecuteShowUpcoming(object obj)
         {
-            MessageBox.Show("Not implemented yet");
+            CurrentChildView = new UpcomingTourViewModel(GuideId);
         }
 
-        public void switchTours()
+        public void ExecuteShowPast(object obj)
         {
-            if(IsCurrentlyShowCancelledTours) 
-            {                
-                getToursByGuide(GuideId);
-                ButtonString = "  Show tours that can be cancelled  ";
-            }
-            else if(!IsCurrentlyShowCancelledTours) 
-            {                
-                getToursToCancel(GuideId);
-                ButtonString = "  Show all of your tours  ";
-            }
+            CurrentChildView = new PastToursViewModel(GuideId);
         }
-
-        private void getToursToCancel(int guideId)
-        {
-            IsCurrentlyShowCancelledTours = true;
-            TourViewModels.Clear();
-            List<Tour> tours = tourService.findToursToCancel(guideId);
-            ObservableCollection<TourViewModel> newViewModels = new ObservableCollection<TourViewModel>();
-            foreach (Tour tour in tours)
-            {
-                newViewModels.Add(new TourViewModel(tour));
-            }
-            TourViewModels = newViewModels;
-        }
-
-        private void getToursByGuide(int guideId)
-        {
-            IsCurrentlyShowCancelledTours = false;
-            TourViewModels.Clear();
-            List<Tour> tours = tourService.getToursByGuide(guideId);
-            ObservableCollection<TourViewModel> newViewModels = new ObservableCollection<TourViewModel>();
-            foreach (Tour tour in tours)
-            {
-                newViewModels.Add(new TourViewModel(tour));
-            }
-            TourViewModels = newViewModels;
-        }
-
-        private void CancelTour() {
-            if (SelectedTour != null)
-            {
-                if (CanCancel())
-                {
-                    tourService.cancelTour(SelectedTour.Id, GuideId);
-                    UpdateData();
-                }
-                else
-                {
-                    MessageBox.Show("Selected Tour can't be  cancelled, as its beggining is in less than 48 hours from now.");
-                }
-                
-            }
-            else
-            {
-                MessageBox.Show("Please select a tour to cancel!");
-            }
-        }
-
-        private void UpdateData() {
-            if (IsCurrentlyShowCancelledTours) // ako trenutno prikazujem cancelovane prikaxi sve
-            {
-                getToursToCancel(GuideId);
-            }
-            else if (!IsCurrentlyShowCancelledTours) // ako trenutno prikazujem sve prikaxi cancelovane
-            {
-
-                getToursByGuide(GuideId);                
-            }
-        }
-
-        private bool CanCancel() {
-            
-            TimeSpan difference = SelectedTour.Date - DateTime.Now;
-            if (difference.TotalHours <= 48 || SelectedTour.Status != TourStatus.inPreparation || SelectedTour.Date < DateTime.Now)
-            {
-                return false;
-            }
-            return true;
-        }
-
-
 
     }
 }

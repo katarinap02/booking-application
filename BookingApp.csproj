@@ -247,7 +247,7 @@
     <Resource Include="WPF\View\Guest\GuestThemes\LightTheme.xaml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="WPF\Resources\Images\notificationtourist.png" />
+    <Content Include="WPF\Resources\Images\notificationtourist.png" />
     <Resource Include="WPF\Resources\Images\pdf.png" />
     <Resource Include="WPF\Resources\Images\searchtourist.png" />
     <Resource Include="WPF\Resources\Images\user.png" />

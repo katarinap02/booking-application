@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows"
         mc:Ignorable="d"
-        Title="ReviewsWindow" Height="450" Width="1200">
+        Title="ReviewsWindow" Height="450" Width="500">
     <Window.Resources>
         <Style x:Key="StarRatingStyle" TargetType="StackPanel">
             <Setter Property="Orientation" Value="Horizontal"/>
@@ -14,13 +14,14 @@
     </Window.Resources>
 
     <Grid Background="#0A003A">
-        <ListView Name="TouristListView" Background="Transparent" Width="700" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" d:ItemsSource="{d:SampleData ItemCount=5}">
+        <ListView Name="TouristListView" Background="Transparent" BorderBrush="Transparent" HorizontalAlignment="Left" VerticalAlignment="Top" Margin="10" 
+                  d:ItemsSource="{d:SampleData ItemCount=5}" >
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <Border CornerRadius="15" Background="#8824105F" Padding="10" Margin="10">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="auto"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
                             <Grid.RowDefinitions>
@@ -28,54 +29,68 @@
                                 <RowDefinition Height="*"></RowDefinition>
                                 <RowDefinition Height="auto"></RowDefinition>
                             </Grid.RowDefinitions>
-
+                            
+                            <!-- Deo sa slikom -->
                             <Border Grid.Column="0" Grid.Row="0">
                                 <StackPanel Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">
-                                    <Image Source="{Binding ImagePath}" Width="80" Height="80"/>
+                                    <Image Source="{Binding ImagePath}" Width="60" Height="60" Margin="0 5 0 0"/>
                                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
-                                        <Button Content="←" Background="#FB539B" Foreground="White" Width="30" Height="30" Margin="2"/>
-                                        <Button Content="→" Background="#FB539B" Foreground="White" Width="30" Height="30" Margin="2"/>
+                                        <Button Content="←" Background="Transparent" FontSize="20" Foreground="#FB539B" BorderBrush="Transparent" Margin="2 0 10 0"/>
+                                        <Button Content="→" Background="Transparent" FontSize="20" Foreground="#FB539B" BorderBrush="Transparent" Margin="15 0 0 0"/>
                                     </StackPanel>
                                 </StackPanel>                                
                             </Border>
-
+                            <!-- Deo sa imenom i ocenama -->
                             <Grid Grid.Row="0" Grid.Column="1">
-                                <StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Tourist name: " FontWeight="Bold" Foreground="White" FontSize="16"/>
-                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="White" FontSize="16"/>
-                                    </StackPanel>
-                                    <StackPanel Style="{StaticResource StarRatingStyle}">
-                                        <TextBlock Text="Guide general knowledge:" Foreground="White"/>
-                                        <TextBlock Text="{Binding GuideGeneralKnowledge}" Foreground="White" FontWeight="Bold" Margin="5,0,0,0"/>
-                                        <TextBlock Text="★" Foreground="Gold" Margin="2,0,0,0"/>
-                                    </StackPanel>
-                                    <StackPanel Style="{StaticResource StarRatingStyle}">
-                                        <TextBlock Text="Guide language knowledge:" Foreground="White"/>
-                                        <TextBlock Text="{Binding GuideLanguageKnowledge}" Foreground="White" FontWeight="Bold" Margin="5,0,0,0"/>
-                                        <TextBlock Text="★" Foreground="Gold" Margin="2,0,0,0"/>
-                                    </StackPanel>
-                                    <StackPanel Style="{StaticResource StarRatingStyle}">
-                                        <TextBlock Text="Tour interest level:" Foreground="White"/>
-                                        <TextBlock Text="{Binding TourInterestLevel}" Foreground="White" FontWeight="Bold" Margin="5,0,0,0"/>
-                                        <TextBlock Text="★" Foreground="Gold" Margin="2,0,0,0"/>
-                                    </StackPanel>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="Tourist name: " FontWeight="Bold" Style="{StaticResource GuideTextBlockStyle}" FontSize="16"/>
+                                    <TextBlock Text="{Binding Name}" FontWeight="Bold" Style="{StaticResource GuideTextBlockStyle}" FontSize="16"/>
                                 </StackPanel>
-                            </Grid>
 
+                                <TextBlock Grid.Row="1" Grid.Column="0" Text="Guide general knowledge:" Style="{StaticResource GuideTextBlockStyle}" FontSize="12"/>
+                                <TextBlock Grid.Row="2" Grid.Column="0" Text="Guide language knowledge:" Style="{StaticResource GuideTextBlockStyle}" FontSize="12"/>
+                                <TextBlock Grid.Row="3" Grid.Column="0" Text="Tour interest level:" Style="{StaticResource GuideTextBlockStyle}" FontSize="12"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="1" Text="{Binding GuideGeneralKnowledge}" Style="{StaticResource GuideTextBlockStyle}" FontSize="12" FontWeight="Bold"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" Text="{Binding GuideLanguageKnowledge}" Style="{StaticResource GuideTextBlockStyle}" FontSize="12" FontWeight="Bold"/>
+                                <TextBlock Grid.Row="3" Grid.Column="1" Text="{Binding TourInterestLevel}" Style="{StaticResource GuideTextBlockStyle}" FontSize="12" FontWeight="Bold"/>
+
+                                <TextBlock Grid.Row="1" Grid.Column="2" Text="★" Foreground="Gold" Style="{StaticResource GuideTextBlockStyle}" FontSize="14" Margin="2,0,20,0"/>
+                                <TextBlock Grid.Row="2" Grid.Column="2" Text="★" Foreground="Gold" Style="{StaticResource GuideTextBlockStyle}" FontSize="14" Margin="2,0,0,0"/>
+                                <TextBlock Grid.Row="3" Grid.Column="2" Text="★" Foreground="Gold" Style="{StaticResource GuideTextBlockStyle}" FontSize="14" Margin="2,0,0,0"/>
+
+
+                            </Grid>
+                            <!-- Deo sa opisom -->
                             <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
                                 <StackPanel>
-                                    <TextBlock Text="Long description:" FontWeight="Bold" Foreground="White" Margin="0,5,0,0"/>
-                                    <TextBlock Text="{Binding LongDescription}" Foreground="White" TextWrapping="Wrap" Width="400" Margin="0,5,0,0"/>
+                                    <TextBlock Text="Comment about the tour:" FontWeight="Bold" Style="{StaticResource GuideTextBlockStyle}" FontSize="12" Margin="0,5,0,0"/>
+                                    <TextBlock Text="{Binding LongDescription}" Style="{StaticResource GuideTextBlockStyle}" FontSize="12" FontWeight="Regular" TextWrapping="WrapWithOverflow" Width="400" Margin="0,5,0,0"/>
                                 </StackPanel>
                             </Grid>
-
-                            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2">
-                                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-                                    <TextBlock Text="Checkpoint of joining:" Foreground="White"/>
-                                    <TextBlock Text="{Binding Checkpoint}" FontWeight="Bold" Foreground="White" Margin="5,0,0,0"/>
-                                    <Button Content="Button" Background="#FB539B" Foreground="White" Margin="10,0,0,0" Padding="5,2"/>
+                            <!-- Deo sa checkpointom i button-om -->
+                            <Grid Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Margin="0 5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="auto"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                                    <TextBlock  Text="Checkpoint of joining:" Style="{StaticResource GuideTextBlockStyle}" FontSize="12"/>
+                                    <TextBlock Text="{Binding Checkpoint}" FontWeight="Bold" Style="{StaticResource GuideTextBlockStyle}" FontSize="12" Margin="5,0,0,0"/>
                                 </StackPanel>
+                                <Button Grid.Column="1" Content="  Set as invalid  " Style="{StaticResource generalButton}" Foreground="#0A003A"
+                                        FontSize="12" Height="20" Margin="10 0"/>
                             </Grid>
                         </Grid>
                     </Border>

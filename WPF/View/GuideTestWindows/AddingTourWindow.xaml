@@ -162,12 +162,12 @@
 
                 <!-- Second ListBox -->
                 <ListBox Grid.Row="4"
-         Style="{StaticResource CustomListBoxStyle}"
-         x:Name="pictures"
-         Height="70"
-         SelectionMode="Single" 
-         ItemsSource="{Binding Pictures, UpdateSourceTrigger=PropertyChanged}"
-         Margin="5 10 5 15" av:ItemsSource="{av:SampleData ItemCount=5}">
+                 Style="{StaticResource CustomListBoxStyle}"
+                 x:Name="pictures"
+                 Height="70"
+                 SelectionMode="Single" 
+                 ItemsSource="{Binding Pictures, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="5 10 5 15" av:ItemsSource="{av:SampleData ItemCount=5}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal"/>
@@ -175,8 +175,7 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
-                            <Setter Property="Height" Value="75"/>
-                            <!-- Set the height as per your requirement -->
+                            <Setter Property="Height" Value="75"/>                            
                         </Style>
                     </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>

@@ -30,11 +30,13 @@ namespace BookingApp.WPF.View.GuideTestWindows
         {
             var tourists = new List<Tourist1>
             {
-                new Tourist1 { Name = "John Doe", GuideGeneralKnowledge = "4/5", GuideLanguageKnowledge = "5/5", TourInterestLevel = "4/5", LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", Checkpoint = "Checkpoint 1" },
+                new Tourist1 { Name = "John Doe", GuideGeneralKnowledge = "4/5", GuideLanguageKnowledge = "5/5", TourInterestLevel = "4/5", LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+                , Checkpoint = "Checkpoint 1" }, // promeniti sve
                 new Tourist1 { Name = "Jane Smith", GuideGeneralKnowledge = "3/5", GuideLanguageKnowledge = "4/5", TourInterestLevel = "5/5", LongDescription = "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.", Checkpoint = "Checkpoint 2" }
             };
             TouristListView.ItemsSource = tourists;
         }
+
     }
 
     public class Tourist1
@@ -45,5 +47,6 @@ namespace BookingApp.WPF.View.GuideTestWindows
         public string TourInterestLevel { get; set; }
         public string LongDescription { get; set; }
         public string Checkpoint { get; set; }
+        public string ImagePath { get; set; }  
     }
 }

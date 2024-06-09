@@ -1,0 +1,37 @@
+﻿<UserControl x:Class="BookingApp.WPF.View.GuideTestWindows.GuideControls.TourControls.PastTours"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls.TourControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+                <RowDefinition Height="Auto"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <DataGrid Grid.Row="0" Margin="10" Style="{StaticResource GuideDataGridStyle}"
+          ItemsSource="{Binding TourViewModels, UpdateSourceTrigger=PropertyChanged}"
+          SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" SelectionMode="Single">
+                <DataGrid.Columns>
+                    <DataGridTextColumn  Width="*" Binding="{Binding Name}" Header="Tour Name" />
+                    <DataGridTextColumn  Width="*" Binding="{Binding City}"  Header="City"/>
+                    <DataGridTextColumn  Width="*" Binding="{Binding Country}" Header="Country"/>
+                    <DataGridTextColumn  Width="*" Binding="{Binding Language}" Header="Language"/>
+                    <DataGridTextColumn  Width="*" Binding="{Binding Date}" Header="Date and Time"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+            <UniformGrid Columns="3"  HorizontalAlignment="Center" Grid.Row="1">
+                <Button Content="  Show Reviews  " Margin="10" Style="{StaticResource TransparentBorderButton}" Command="{Binding Reviews}" Height="30"/>
+                <Button Content="  Add a new date for tour  " Command="{Binding AddTourDate}" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" />
+                <Button Grid.Row="1" Grid.ColumnSpan="3" Command="{Binding AddTour}" Content="Add new Tour" Margin="10" Style="{StaticResource generalButton}" Height="30" Foreground="#060531" BorderBrush="#FB539B" />
+            </UniformGrid>
+
+        </Grid>
+    </Grid>
+</UserControl>

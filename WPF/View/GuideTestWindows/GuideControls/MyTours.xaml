@@ -4,34 +4,47 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls"
+             xmlns:viewModel ="clr-namespace:BookingApp.WPF.View.GuideTestWindows.TestViewModels"
+             xmlns:cont ="clr-namespace:BookingApp.WPF.View.GuideTestWindows.GuideControls.TourControls"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    
+
+    <UserControl.Resources>
+        <DataTemplate DataType="{x:Type viewModel:UpcomingTourViewModel}">
+            <cont:UpcomingTours></cont:UpcomingTours>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:PastToursViewModel}">
+            <cont:PastTours></cont:PastTours>
+        </DataTemplate>
+    </UserControl.Resources>
+
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
-            <RowDefinition Height="Auto"></RowDefinition>
         </Grid.RowDefinitions>
 
-        <DataGrid Grid.Row="0" Margin="10" Style="{StaticResource GuideDataGridStyle}"
-                  ItemsSource="{Binding TourViewModels, UpdateSourceTrigger=PropertyChanged}"
-                  SelectedItem="{Binding SelectedTour, UpdateSourceTrigger=PropertyChanged}" CanUserAddRows="False" SelectionMode="Single">
-            <DataGrid.Columns>
-                <DataGridTextColumn  Width="*" Binding="{Binding Name}" Header="Tour Name" />
-                <DataGridTextColumn  Width="*" Binding="{Binding City}"  Header="City"/>
-                <DataGridTextColumn  Width="*" Binding="{Binding Country}" Header="Country"/>
-                <DataGridTextColumn  Width="*" Binding="{Binding Language}" Header="Language"/>
-                <DataGridTextColumn  Width="*" Binding="{Binding Date}" Header="Date and Time"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+            <RadioButton Style="{StaticResource StylishRadioButton}" Content="Upcoming Tours" Width="200" IsChecked="True" Command="{Binding ShowUpcoming}">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Width="Auto" Height="Auto" CornerRadius="15,0,0,15" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+            <RadioButton Style="{StaticResource StylishRadioButton}" Content="Past Tours" Width="200" Command="{Binding ShowPast}">
+                <RadioButton.Template>
+                    <ControlTemplate TargetType="RadioButton">
+                        <Border Width="Auto" Height="Auto" CornerRadius="0,15,15,0" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ContentPresenter VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </Border>
+                    </ControlTemplate>
+                </RadioButton.Template>
+            </RadioButton>
+        </StackPanel>
 
-        <UniformGrid Columns="3"  HorizontalAlignment="Center" Grid.Row="1">
-            <Button Content="{Binding ButtonString, UpdateSourceTrigger=PropertyChanged}" Command="{Binding SwitchTours}" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/>
-            <Button Content="  Add a new date for tour  " Command="{Binding AddTourDate}" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B" Click="Open"/>
-            <Button Content="Cancel Tour" Command="{Binding Cancel}" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/>
-            <Button Grid.Row="1" Grid.ColumnSpan="3" Command="{Binding AddTour}" Content="Add new Tour" Margin="10" Style="{StaticResource generalButton}" Height="30" Foreground="#060531" BorderBrush="#FB539B" />
-        </UniformGrid>
-
+        <ContentControl Grid.Row="1" Margin="5" Content="{Binding CurrentChildView}"></ContentControl>
     </Grid>
 </UserControl>
