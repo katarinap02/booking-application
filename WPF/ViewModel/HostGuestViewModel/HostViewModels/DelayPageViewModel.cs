@@ -188,6 +188,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                 Update();
                 DelayPage page = new DelayPage(User, NavService, IsDemo);
                 this.NavService.Navigate(page);
+                
             }
             else
             {

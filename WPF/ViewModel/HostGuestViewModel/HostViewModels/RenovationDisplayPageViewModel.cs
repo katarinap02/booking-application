@@ -15,6 +15,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 
@@ -107,7 +108,9 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
                     DeleteUnabledDates(SelectedAccommodation);
                 }
                 RenovationService.CancelRenovation(SelectedRenovation.ToRenovation());
+                MessageBox.Show("Reservation is cancelled");
             }
+            
             Update();
         }
 

@@ -77,6 +77,7 @@ namespace BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels
         private void ReportComment(ForumCommentViewModel model)
         {
             forumCommentService.ReportCommentById(model.Id);
+            MessageBox.Show("Comment reported.");
             Update();
         }
 
