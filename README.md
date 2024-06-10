@@ -71,7 +71,6 @@ Aplikacija takođe sadrži četiri vrste dijagrama za vizualizaciju i bolji uvid
 ## Korišćeni alati
 
 - **Microsoft Visual Studio**
-- **PowerDesigner 16.5**
 - **Balsamiq Wireframes**
 
 ## Korišćeni NuGet Paketi
