@@ -68,13 +68,13 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                 Directory.CreateDirectory(directoryPath);
             }
 
-            var pdfFiles = Directory.GetFiles(directoryPath, "TourDetails_*.pdf");
+            var pdfFiles = Directory.GetFiles(directoryPath, "TourReservationDetails_*.pdf");
             int maxNumber = 0;
             if (pdfFiles.Any())
             {
                 maxNumber = pdfFiles
                     .Select(Path.GetFileNameWithoutExtension)
-                    .Select(name => int.TryParse(name.Substring("TourDetails_".Length), out var number) ? number : 0)
+                    .Select(name => int.TryParse(name.Substring("TourReservationDetails_".Length), out var number) ? number : 0)
                     .Max();
             }
 
@@ -94,7 +94,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
                             stack.Item().Row(row =>
                             {
                                 row.ConstantColumn(150).AlignLeft().Container().Height(80).Image("../../../WPF/Resources/Images/logo.png", ImageScaling.FitArea);
-                                row.RelativeColumn().AlignLeft().Text("Tour Details")
+                                row.RelativeColumn().AlignLeft().Text("Tour Reservation")
                                     .SemiBold().FontSize(36).FontColor(QuestPDF.Helpers.Colors.Blue.Medium);
                             });
                             stack.Item().Row(row =>
@@ -179,9 +179,9 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
 
                     });
                 })
-                .GeneratePdf($"{directoryPath}\\TourDetails_{maxNumber + 1}.pdf");
-            string pdfPath = $"{directoryPath}\\TourDetails_{maxNumber + 1}.pdf";
-            Messenger.Default.Send(new NotificationMessage($"A PDF is created on path: Resources/PDFs/TourDetails_{maxNumber + 1}.pdf"));
+                .GeneratePdf($"{directoryPath}\\TourReservationDetails_{maxNumber + 1}.pdf");
+            string pdfPath = $"{directoryPath}\\TourReservationDetails_{maxNumber + 1}.pdf";
+            Messenger.Default.Send(new NotificationMessage($"A PDF is created on path: Resources/PDFs/TourReservationDetails_{maxNumber + 1}.pdf"));
             OpenPdf(pdfPath);
         }
         private void OpenPdf(string pdfPath)

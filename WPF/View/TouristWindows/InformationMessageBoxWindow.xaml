@@ -13,12 +13,13 @@
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="120" />
         </Grid.ColumnDefinitions>
-        <Image Source="/WPF/Resources/Images/information.png" Width="54" Height="54" Margin="20" />
+        <Image Source="/WPF/Resources/Images/information.png" Width="65" Height="65" Margin="20" />
         <TextBlock x:Name="MessageTextBlock" HorizontalAlignment="Center" VerticalAlignment="Center" 
                    FontSize="16" Foreground="Black" TextWrapping="Wrap" Margin="20" Grid.Column="1" />
         <Button Content="OK" HorizontalAlignment="Right" VerticalAlignment="Bottom"
                 FontSize="15"
                 Margin="20" Width="80" Height="30" Click="OkButton_Click" Grid.Column="2"
                 Style="{StaticResource EnlargeButtonStyle}"/>
+        <Label FontSize="20" Margin="10, 0, 0, 0" Grid.Column="0" Grid.ColumnSpan="2">Information</Label>
     </Grid>
 </Window>

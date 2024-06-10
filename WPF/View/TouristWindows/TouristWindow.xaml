@@ -127,7 +127,7 @@
         <Grid x:Name="InteractionBlocker" Style="{StaticResource BlockerStyle}" Background="Black" Opacity="0.5" Grid.ColumnSpan="2"/>
 
         <Button Grid.Column="1" Height="35" Width="85" HorizontalAlignment="Left" VerticalAlignment="top"
-                Margin="20, 20, 0, 0" Command="{Binding ShortcutsCommand}"
+                Margin="20, 20, 0, 0" Command="{Binding ShortcutsCommand}" FontWeight="SemiBold" FontSize="15"
                 Content="Shortcuts" Style="{StaticResource EnlargeButtonStyle1}"/>
         <Popup x:Name="ShortcutsPopup" AllowsTransparency="True" IsOpen="{Binding IsShortcutsOpen}" Width="860" Height="390" Placement="Center" HorizontalOffset="150" VerticalOffset="-85">
             <Border x:Name="ShortuctsBorder" BorderBrush="White" Background="WhiteSmoke" BorderThickness="5" CornerRadius="5">
