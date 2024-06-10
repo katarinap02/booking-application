@@ -83,7 +83,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             }
             else
             {
-                MessageBox.Show("error", "StartTour", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Warning);
+                MessageBox.Show("Please select a tour!", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
         }
 

@@ -13,7 +13,7 @@
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="1">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="*"></ColumnDefinition>
@@ -24,7 +24,7 @@
                 <RowDefinition Height="*"></RowDefinition>
                 <RowDefinition Height="*"></RowDefinition>
             </Grid.RowDefinitions>
-            
+
             <Border Background="#8824105F" CornerRadius="20" Margin="10">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
@@ -36,7 +36,7 @@
                         <RowDefinition Height="*"></RowDefinition>
                         <RowDefinition Height="*"></RowDefinition>
                     </Grid.RowDefinitions>
-                    <fa:IconImage Grid.Column="0" Icon="MapLocation" Foreground="LightGray" Height="60" HorizontalAlignment="Left" Margin="10"/>
+                    <fa:IconImage Grid.Column="0" Icon="MapLocationDot" Foreground="LightGray" Height="60" HorizontalAlignment="Left" Margin="10"/>
                     <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="2" Style="{StaticResource GuideTextBlockStyle}" FontSize="17" TextAlignment="Center" Text="Most requested location:" VerticalAlignment="Center"></TextBlock>
                     <Grid Grid.Row="1" Grid.ColumnSpan="3">
                         <Grid.RowDefinitions>
@@ -44,11 +44,11 @@
                             <RowDefinition Height="auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding Location}" FontSize="25" Margin="10" TextAlignment="Center"></TextBlock>
-                        <Button Grid.Row="1" Style="{StaticResource TransparentBorderButton}" Content="Make tour" Margin="20 5" VerticalAlignment="Bottom"></Button>
+                        <Button Grid.Row="1" Style="{StaticResource TransparentBorderButton}" Content="Make tour" Command="{Binding location}" Margin="20,5,20,0" VerticalAlignment="Top"></Button>
                     </Grid>
                 </Grid>
             </Border>
-            
+
             <Border Grid.Column="0" Grid.Row="1" Background="#8824105F" CornerRadius="20" Margin="10">
                 <Grid Margin="10">
                     <Grid.ColumnDefinitions>
@@ -68,11 +68,11 @@
                             <RowDefinition Height="auto"></RowDefinition>
                         </Grid.RowDefinitions>
                         <TextBlock Style="{StaticResource GuideTextBlockStyle}" Text="{Binding Language}" FontSize="25" Margin="10" TextAlignment="Center"></TextBlock>
-                        <Button Grid.Row="1" Style="{StaticResource TransparentBorderButton}" Content="Make tour" Margin="20 5" VerticalAlignment="Bottom"></Button>
+                        <Button Grid.Row="1" Style="{StaticResource TransparentBorderButton}" Content="Make tour" Command="{Binding language}" Margin="20 5" VerticalAlignment="Bottom"></Button>
                     </Grid>
                 </Grid>
             </Border>
-            
+
             <Border Grid.ColumnSpan="2" Grid.Column="1" Grid.RowSpan="2" Grid.Row="0" Background="#8824105F" CornerRadius="20" Margin="10">
                 <Grid>
                     <Grid.RowDefinitions>
@@ -82,20 +82,20 @@
                     </Grid.RowDefinitions>
                     <TextBlock Style="{StaticResource GuideTextBlockStyle}" Margin="20 10 10 0 " Text="See when the most tour requests were made and alter the graph using combo boxes."></TextBlock>
                     <UniformGrid Grid.Row="1" Rows="1" Margin="10">
-                        
+
                         <ComboBox Style="{StaticResource ModernComboBoxStyle}" SelectedItem="{Binding LocationLanguageCombo}" ItemsSource="{Binding Items}" Margin="10">
                         </ComboBox>
 
                         <ComboBox Style="{StaticResource ModernComboBoxStyle}" Margin="10" ItemsSource="{Binding Options}" SelectedItem="{Binding SelectedOption}"></ComboBox>
-                        
+
                         <ComboBox Style="{StaticResource ModernComboBoxStyle}" ItemsSource="{Binding timeOptions}" SelectedItem="{Binding Time}" Margin="10">
                         </ComboBox>
                     </UniformGrid>
                     <!-- prostor za grafik -->
-                    <lvc:CartesianChart Grid.Row="2" Series="{Binding TourStatistics}" Margin="15" LegendLocation="Bottom" Foreground="DodgerBlue"/>                     
+                    <lvc:CartesianChart Grid.Row="2" Series="{Binding TourStatistics}" Margin="15" LegendLocation="Bottom" Foreground="DodgerBlue"/>
                 </Grid>
             </Border>
-            
+
         </Grid>
     </Grid>
 </UserControl>
