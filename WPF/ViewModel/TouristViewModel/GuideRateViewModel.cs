@@ -353,7 +353,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             return absolutePath;
         }
 
-        public void initializeGuideRate(int tourId, int guideId)
         public string Language1 { get; set; }
         public string Knowledge1 { get; set; }
         public string Interest1 { get; set; }
@@ -366,7 +365,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
-        public bool initializeGuideRate(int tourId, int guideId)
+        public void initializeGuideRate(int tourId, int guideId)
         {
             if (!_guideRateService.CanBeRated(tourId, UserId))
             {
