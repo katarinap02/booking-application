@@ -2,6 +2,7 @@
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.WPF.View.GuideTestWindows.GuideControls;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
@@ -93,11 +94,15 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             }
         }
 
+        public MyICommand location {  get; set; }
+        public MyICommand language {  get; set; }
+
         private readonly TourRequestService tourRequestService = new TourRequestService(Injector.Injector.CreateInstance<ITourRequestRepository>());
         public RequestStatsViewModel(int guide_id)
         {
             GuideId = guide_id;
-
+            location = new MyICommand(AddLocation);
+            language = new MyICommand(AddLanguage);
             // Directly setting the fields to avoid triggering OnPropertyChanged prematurely
             _time = "Yearly";
             _locationLanguageCombo = "Language";
@@ -120,6 +125,41 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             {
                 UpdateGraph();
             }
+        }
+
+        public void AddLocation()
+        {
+            (string city, string country) = SplitStringByComma(Location);
+            AddingLocation addingLocation = new AddingLocation(GuideId, city, country);
+            addingLocation.Show();
+        }
+
+        public void AddLanguage() {
+            AddingLanguage addingLanguage = new AddingLanguage(GuideId, Language);
+            addingLanguage.Show();
+        }
+
+        public (string, string) SplitStringByComma(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+            {
+                throw new ArgumentException("Input string cannot be null or empty");
+            }
+
+            // Find the index of the first comma
+            int commaIndex = input.IndexOf(',');
+
+            // If no comma is found, return the input string as the first part and an empty string as the second part
+            if (commaIndex == -1)
+            {
+                return (input, string.Empty);
+            }
+
+            // Split the string into two parts
+            string part1 = input.Substring(0, commaIndex).Trim();
+            string part2 = input.Substring(commaIndex + 1).Trim();
+
+            return (part1, part2);
         }
 
 

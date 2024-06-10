@@ -1,7 +1,5 @@
-﻿using BookingApp.WPF.View.GuideTestWindows.TestViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,17 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookingApp.WPF.View.GuideTestWindows.GuideControls
+namespace BookingApp.WPF.View.GuideTestWindows.GuideControls.TourControls
 {
     /// <summary>
-    /// Interaction logic for MyTours.xaml
+    /// Interaction logic for UpcomingTours.xaml
     /// </summary>
-    public partial class MyTours : UserControl
+    public partial class UpcomingTours : UserControl
     {
-        public MyTours()
-        {            
+        public UpcomingTours()
+        {
             InitializeComponent();
         }
-
     }
 }

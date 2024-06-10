@@ -1,7 +1,7 @@
-﻿using BookingApp.WPF.View.GuideTestWindows.TestViewModels;
+﻿using BookingApp.Domain.Model.Features;
+using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,20 +12,21 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace BookingApp.WPF.View.GuideTestWindows.GuideControls
+namespace BookingApp.WPF.View.GuideTestWindows
 {
     /// <summary>
-    /// Interaction logic for MyTours.xaml
+    /// Interaction logic for TourInfoWindow.xaml
     /// </summary>
-    public partial class MyTours : UserControl
+    public partial class TourInfoWindow : Window
     {
-        public MyTours()
-        {            
+        public TourViewModel tourViewModel { get; set; }
+        public TourInfoWindow(Tour tour)
+        {
+            tourViewModel = new TourViewModel(tour);
+            DataContext = this;
             InitializeComponent();
         }
-
     }
 }

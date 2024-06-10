@@ -11,25 +11,32 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Shapes;
 
 namespace BookingApp.WPF.View.GuideTestWindows
 {
-    public partial class AddingTourWindow: Window
+    /// <summary>
+    /// Interaction logic for AddingLanguage.xaml
+    /// </summary>
+    public partial class AddingLanguage : Window
     {
         private readonly TourRepository _tourRepository;
         public TourViewModel Tour { get; set; }
         private List<DateTime> selectedDates = new List<DateTime>();
         private int GuideId;
         public StringToNumberViewModel StringDuration { get; set; }
-
-        public DateTime time = DateTime.Now;
         public StringToNumberViewModel StringTouristsNumber { get; set; }
-        public StringViewModel typedCheckpoint {  get; set; }
-        public ObservableCollection<string> Pictures {  get; set; }
-        public AddingTourWindow(int guide_id)
-        {            
+        public StringViewModel typedCheckpoint { get; set; }
+        public ObservableCollection<string> Pictures { get; set; }
+        public AddingLanguage(int guide_id, string language)
+        {
+            Tour = new TourViewModel();
+            Tour.Language = language;
             Pictures = new ObservableCollection<string>();
             typedCheckpoint = new StringViewModel();
             StringDuration = new StringToNumberViewModel();
@@ -37,7 +44,6 @@ namespace BookingApp.WPF.View.GuideTestWindows
             GuideId = guide_id;
             DataContext = this;
             _tourRepository = new TourRepository();
-            Tour = new TourViewModel();
             InitializeComponent();
             HideAllLabels();
         }
@@ -56,7 +62,7 @@ namespace BookingApp.WPF.View.GuideTestWindows
             else
             {
 
-                if(selectedDates.Count == 0)
+                if (selectedDates.Count == 0)
                 {
                     lblDatesError.Visibility = Visibility.Visible;
                     return;
@@ -84,13 +90,8 @@ namespace BookingApp.WPF.View.GuideTestWindows
         }
 
         private void AddDate_Click(object sender, RoutedEventArgs e)
-        {            
+        {
             DateTime newDate = dateTimePicker.Value ?? DateTime.MinValue;
-            if(newDate <= DateTime.Now)
-            {
-                lblDatesError1.Visibility = Visibility.Visible;
-                return;
-            }
             selectedDates.Add(newDate);
             dates.ItemsSource = null;
             dates.ItemsSource = selectedDates;
@@ -99,7 +100,7 @@ namespace BookingApp.WPF.View.GuideTestWindows
 
         private void AddCheckpoint_Click(object sender, RoutedEventArgs e)
         {
-            
+
             if (!string.IsNullOrEmpty(typedCheckpoint.SString))
             {
                 Tour.Checkpoints.Add(typedCheckpoint.SString);
@@ -124,7 +125,7 @@ namespace BookingApp.WPF.View.GuideTestWindows
 
                     imageUrl = convertToRelativePath(imageUrl);
                     AddPicture(imageUrl);
-                    
+
                 }
                 catch (Exception ex)
                 {
@@ -167,7 +168,7 @@ namespace BookingApp.WPF.View.GuideTestWindows
                 Pictures.Add(pictureNew);
             }
         }
-        public string ConvertToRelativePath(string inputPath) 
+        public string ConvertToRelativePath(string inputPath)
         {
 
             string pattern = @"\\";
@@ -178,7 +179,7 @@ namespace BookingApp.WPF.View.GuideTestWindows
 
             if (replacedPath.StartsWith("Resources/Images/"))
             {
-                replacedPath = "../../" + replacedPath; 
+                replacedPath = "../../" + replacedPath;
             }
 
             return replacedPath;
@@ -188,13 +189,13 @@ namespace BookingApp.WPF.View.GuideTestWindows
         {
             Close();
         }
-        
+
         private void NumericTextBox_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
-            
+
             if (!IsNumeric(e.Text))
             {
-                e.Handled = true; 
+                e.Handled = true;
             }
         }
 
@@ -217,7 +218,7 @@ namespace BookingApp.WPF.View.GuideTestWindows
                     picturesList.Remove(item as string);
                     string path = convertToRelativePath(item as string);
                     Tour.Pictures.Remove(path);
-                    
+
                 }
             }
         }
@@ -233,7 +234,6 @@ namespace BookingApp.WPF.View.GuideTestWindows
             lblDescriptionError.Visibility = Visibility.Collapsed;
             lblCheckpointsError.Visibility = Visibility.Collapsed;
             lblDatesError.Visibility = Visibility.Collapsed;
-            lblDatesError1.Visibility = Visibility.Collapsed;
         }
 
 
@@ -321,7 +321,6 @@ namespace BookingApp.WPF.View.GuideTestWindows
             // If all validations pass, proceed with adding the tour
             return isValid;
         }
-
 
     }
 }

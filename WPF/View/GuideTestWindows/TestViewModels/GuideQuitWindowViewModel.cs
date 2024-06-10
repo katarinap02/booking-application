@@ -55,7 +55,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             }
             else
             {
-                MessageBox.Show("Wrong password");
+                MessageBox.Show("Wrong password", "Nofitication", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             
         }

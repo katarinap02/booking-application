@@ -17,7 +17,7 @@
             <cont:TourStatisticsControl></cont:TourStatisticsControl>
         </DataTemplate>
     </UserControl.Resources>
-    
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>

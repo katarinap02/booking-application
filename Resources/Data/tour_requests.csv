@@ -19,7 +19,7 @@
 19|3|Pending|Moscow|Russia|Red Square Visit|Russian|8/2/2024 9:30:00 AM|8/3/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|1/6/2024 11:45:00 AM
 20|3|Pending|Cape Town|South Africa|Table Mountain Hike|Afrikaans|9/5/2024 1:00:00 PM|9/6/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|12/30/2023 3:20:00 PM
 21|3|Invalid|Vancouver|Canada|Stanley Park Bike Tour|English|5/10/2024 11:00:00 AM|5/11/2024 4:30:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|10/17/2023 9:00:00 AM
-22|3|Pending|Mumbai|India|Gateway of India Visit|Hindi|6/15/2024 8:00:00 AM|6/16/2024 12:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|11/25/2023 2:15:00 PM
+22|3|Accepted|Mumbai|India|Gateway of India Visit|Hindi|6/15/2024 8:00:00 AM|6/16/2024 12:00:00 PM|6/15/2024 10:15:00 AM|7|1,2,3|11/25/2023 2:15:00 PM
 23|3|Pending|Lisbon|Portugal|Belém Tower Exploration|Portuguese|7/10/2024 10:00:00 AM|7/11/2024 2:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|3/7/2024 4:30:00 PM
 24|3|Pending|Istanbul|Turkey|Hagia Sophia Tour|Turkish|9/3/2024 9:00:00 AM|9/4/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|4/18/2023 10:45:00 AM
 25|3|Pending|Vienna|Austria|Schönbrunn Palace Visit|German|10/1/2024 11:00:00 AM|10/2/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|6/11/2023 1:20:00 PM

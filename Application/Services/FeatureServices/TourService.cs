@@ -307,6 +307,18 @@ namespace BookingApp.Application.Services.FeatureServices
             return tours.FindAll(x => x.GuideId == guide_ID ); 
         }
 
+        public List<Tour> getUpcomingToursByGuide(int guide_ID)
+        {
+            List<Tour> tours = _tourRepository.GetAll();
+            return tours.FindAll(x => x.GuideId == guide_ID && x.Date > DateTime.Now);
+        }
+
+        public List<Tour> getPastToursByGuide(int guide_ID)
+        {
+            List<Tour> tours = _tourRepository.GetAll();
+            return tours.FindAll(x => x.GuideId == guide_ID && x.Date <= DateTime.Now);
+        }
+
         public string FindMostUsedLanguageForGuide(int guide_id)            
         {
             List<Tour> tours = _tourRepository.GetAll().FindAll(x => x.GuideId == guide_id && x.Status != TourStatus.Canceled);
