@@ -83,13 +83,40 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         }
         #endregion 
 
+        private bool _isDateErrorVisible;
+        public bool IsDateErrorVisible
+        {
+            get { return _isDateErrorVisible; }
+            set
+            {
+                _isDateErrorVisible = value;
+                OnPropertyChanged(nameof(IsDateErrorVisible));
+            }
+        }
+
+        private bool _isTimeErrorVisible;
+        public bool IsTimeErrorVisible
+        {
+            get { return _isTimeErrorVisible; }
+            set
+            {
+                _isTimeErrorVisible = value;
+                OnPropertyChanged(nameof(IsTimeErrorVisible));
+            }
+        }
+
         public ObservableCollection<string> options {  get; set; }
         public ObservableCollection<DateTime> blackoutDates {  get; set; }
         private readonly TourRequestService _tourRequestService;
         private TourRequest tourRequest { get; set; }
         public MyICommand Accept { get; set; }
+
+        public bool Successfull { get; set; }
         public CalendarViewModel(int GuideId, TourRequestDTOViewModel tourRequest)
         {
+            Successfull = false;
+            IsDateErrorVisible = false;
+            IsTimeErrorVisible = false;
             this.tourRequest = tourRequest.ToTourRequest(); 
             Accept = new MyICommand(Accepting);
             this.GuideId = GuideId;
@@ -113,11 +140,21 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         {
             DateTime selectedDate = (DateTime)SelectedDate;
 
-            if (string.IsNullOrEmpty(Time))
+            IsDateErrorVisible = false;
+            IsTimeErrorVisible = false;
+
+            if (SelectedDate == null)
             {
-                MessageBox.Show("Please type in the time in this format: HH:MM", "Time Input Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                IsDateErrorVisible = true;
                 return;
             }
+
+            if (string.IsNullOrEmpty(Time))
+            {
+                IsTimeErrorVisible = true;
+                return;
+            }
+
             string timeString = Time.Trim();
             string[] timeParts = timeString.Split(':');
             
@@ -136,11 +173,12 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
                 DateTime selectedDateTime = new DateTime(selectedDate.Year, selectedDate.Month, selectedDate.Day, hour, minute, 0);
 
                 _tourRequestService.AcceptRequest(tourRequest, GuideId, selectedDateTime);
+                Successfull = true;
                 MessageBox.Show("Tour Request successfully accepted.", "System Notification", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             else
             {
-                MessageBox.Show("Invalid time format. Please enter time in hh:mm format.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                IsTimeErrorVisible = true;
             }
         }
 

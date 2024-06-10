@@ -19,13 +19,13 @@
 19|3|Pending|Moscow|Russia|Red Square Visit|Russian|8/2/2024 9:30:00 AM|8/3/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|1/6/2024 11:45:00 AM
 20|3|Pending|Cape Town|South Africa|Table Mountain Hike|Afrikaans|9/5/2024 1:00:00 PM|9/6/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|12/30/2023 3:20:00 PM
 21|3|Invalid|Vancouver|Canada|Stanley Park Bike Tour|English|5/10/2024 11:00:00 AM|5/11/2024 4:30:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|10/17/2023 9:00:00 AM
-22|3|Pending|Mumbai|India|Gateway of India Visit|Hindi|6/15/2024 8:00:00 AM|6/16/2024 12:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|11/25/2023 2:15:00 PM
+22|3|Accepted|Mumbai|India|Gateway of India Visit|Hindi|6/15/2024 8:00:00 AM|6/16/2024 12:00:00 PM|6/15/2024 10:15:00 AM|7|1,2,3|11/25/2023 2:15:00 PM
 23|3|Pending|Lisbon|Portugal|Belém Tower Exploration|Portuguese|7/10/2024 10:00:00 AM|7/11/2024 2:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|3/7/2024 4:30:00 PM
 24|3|Pending|Istanbul|Turkey|Hagia Sophia Tour|Turkish|9/3/2024 9:00:00 AM|9/4/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|4/18/2023 10:45:00 AM
 25|3|Pending|Vienna|Austria|Schönbrunn Palace Visit|German|10/1/2024 11:00:00 AM|10/2/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|6/11/2023 1:20:00 PM
 26|3|Pending|Beijing|China|Great Wall Hike|Mandarin|8/15/2024 8:00:00 AM|8/16/2024 12:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|2/22/2024 5:55:00 PM
 27|3|Pending|Edinburgh|UK|Edinburgh Castle Tour|English|9/18/2024 7:00:00 PM|9/19/2024 9:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|1/15/2024 8:10:00 AM
-28|3|Pending|Helsinki|Finland|Suomenlinna Island Visit|Finnish|6/10/2024 10:00:00 AM|6/11/2024 5:00:00 PM|1/1/0001 12:00:00 AM|-1|4,5,6|3/25/2024 9:10:00 AM
+28|3|Invalid|Helsinki|Finland|Suomenlinna Island Visit|Finnish|6/10/2024 10:00:00 AM|6/11/2024 5:00:00 PM|1/1/0001 12:00:00 AM|-1|4,5,6|3/25/2024 9:10:00 AM
 29|3|Pending|Oslo|Norway|Vigeland Park Tour|Norwegian|7/1/2024 9:30:00 AM|7/2/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|7,8,9|1/18/2024 11:50:00 AM
 30|3|Invalid|Dubai|UAE|Burj Khalifa Visit|Arabic|5/15/2024 1:00:00 PM|5/16/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|10,11,12|12/21/2023 3:25:00 PM
 31|3|Pending|Athens|Greece|Acropolis Tour|Greek|9/10/2024 11:00:00 AM|9/11/2024 4:30:00 PM|1/1/0001 12:00:00 AM|-1|13,14,15|8/10/2023 9:05:00 AM
@@ -73,7 +73,7 @@
 73|3|Pending|Vienna|Austria|Vienna Opera House Tour|German|7/28/2024 9:00:00 AM|7/29/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|10,11,12|4/11/2023 8:40:00 AM
 74|3|Pending|Venice|Italy|St. Mark's Basilica Visit|Italian|9/22/2024 11:00:00 AM|9/23/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|13,14,15|6/25/2024 1:25:00 PM
 75|3|Pending|Seoul|South Korea|Bukchon Hanok Village Tour|Korean|8/23/2024 10:00:00 AM|8/24/2024 5:00:00 PM|1/1/0001 12:00:00 AM|-1|16,17,18|1/22/2024 11:55:00 AM
-76|3|Pending|Cape Town|South Africa|Robben Island Tour|Afrikaans|6/11/2024 9:30:00 AM|6/12/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|19,20,21|10/1/2023 4:40:00 PM
+76|3|Invalid|Cape Town|South Africa|Robben Island Tour|Afrikaans|6/11/2024 9:30:00 AM|6/12/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|19,20,21|10/1/2023 4:40:00 PM
 77|3|Invalid|Lisbon|Portugal|Sintra Day Trip|Portuguese|5/25/2024 11:00:00 AM|5/26/2024 4:00:00 PM|1/1/0001 12:00:00 AM|-1|1,2,3|5/15/2023 10:35:00 AM
 78|3|Pending|Paris|France|Montmartre Tour|French|6/30/2024 9:00:00 AM|7/1/2024 3:00:00 PM|1/1/0001 12:00:00 AM|-1|4,5,6|3/27/2023 11:30:00 AM
 79|3|Pending|Tokyo|Japan|Shibuya Crossing Visit|Japanese|9/8/2024 11:00:00 AM|9/9/2024 4:30:00 PM|1/1/0001 12:00:00 AM|-1|7,8,9|11/2/2023 12:45:00 PM

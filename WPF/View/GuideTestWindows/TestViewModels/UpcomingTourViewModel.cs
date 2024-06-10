@@ -70,7 +70,16 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
 
         public void AddNewTourDate()
         {
-            MessageBox.Show("Not implemented yet");
+            if (SelectedTour == null)
+            {
+                MessageBox.Show("Please select a tour.", "Warning", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+            TourRequestDTOViewModel tourRequestDTOViewModel = new TourRequestDTOViewModel();
+            tourRequestDTOViewModel.StartDate = DateTime.Now;
+            tourRequestDTOViewModel.EndDate = DateTime.MaxValue;
+            CalendarGuideWindow calendarGuideWindow = new CalendarGuideWindow(GuideId, tourRequestDTOViewModel);
+            calendarGuideWindow.Show();
         }
 
         public void switchTours()

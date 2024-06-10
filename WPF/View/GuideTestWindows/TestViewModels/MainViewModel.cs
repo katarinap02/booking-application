@@ -85,6 +85,125 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         public ICommand ReportCommand { get; }
         public ICommand AppInfoCommand { get; }
 
+        public ICommand CtrlUCommand { get; }
+        public ICommand CtrlTCommand { get; }
+        public ICommand CtrlMCommand { get; }
+        public ICommand CtrlSCommand { get; }
+        public ICommand CtrlPCommand { get; }
+        public ICommand CtrlRCommand { get; }
+        public ICommand CtrlICommand { get; }
+        public ICommand CtrlNCommand { get; }
+
+        public ICommand Shortcuts { get; }
+
+        #region Klikovi
+        private bool _isUserInfoClicked;
+        private bool _isShowTodaysToursClicked;
+        private bool _isMyToursClicked;
+        private bool _isRequestsClicked;
+        private bool _isTakePartClicked;
+        private bool _isStatsClicked;
+        private bool _isAppInfoClicked;
+
+        public bool IsUserInfoClicked
+        {
+            get { return _isUserInfoClicked; }
+            set
+            {
+                if (_isUserInfoClicked != value)
+                {
+                    _isUserInfoClicked = value;
+                    OnPropertyChanged(nameof(IsUserInfoClicked));
+                    ExecuteShowUserInfoCommand(null);
+                }
+            }
+        }
+
+        public bool IsShowTodaysToursClicked
+        {
+            get { return _isShowTodaysToursClicked; }
+            set
+            {
+                if (_isShowTodaysToursClicked != value)
+                {
+                    _isShowTodaysToursClicked = value;
+                    OnPropertyChanged(nameof(IsShowTodaysToursClicked));
+                    ExecuteShowTodaysToursViewCommand(null);
+                }
+            }
+        }
+
+        public bool IsMyToursClicked
+        {
+            get { return _isMyToursClicked; }
+            set
+            {
+                if (_isMyToursClicked != value)
+                {
+                    _isMyToursClicked = value;
+                    OnPropertyChanged(nameof(IsMyToursClicked));
+                    ExecuteShowMyToursViewCommand(null);
+                }
+            }
+        }
+
+        public bool IsRequestsClicked
+        {
+            get { return _isRequestsClicked; }
+            set
+            {
+                if (_isRequestsClicked != value)
+                {
+                    _isRequestsClicked = value;
+                    OnPropertyChanged(nameof(IsRequestsClicked));
+                    ExecuteShowTourRequestsViewCommand(null);
+                }
+            }
+        }
+
+        public bool IsTakePartClicked
+        {
+            get { return _isTakePartClicked; }
+            set
+            {
+                if (_isTakePartClicked != value)
+                {
+                    _isTakePartClicked = value;
+                    OnPropertyChanged(nameof(IsTakePartClicked));
+                    ExecuteShowTakePartInViewCommand(null);
+                }
+            }
+        }
+
+        public bool IsStatsClicked
+        {
+            get { return _isStatsClicked; }
+            set
+            {
+                if (_isStatsClicked != value)
+                {
+                    _isStatsClicked = value;
+                    OnPropertyChanged(nameof(IsStatsClicked));
+                    ExecuteShowStatisticsViewCommand(null);
+                }
+            }
+        }
+
+        public bool IsAppInfoClicked
+        {
+            get { return _isAppInfoClicked; }
+            set
+            {
+                if (_isAppInfoClicked != value)
+                {
+                    _isAppInfoClicked = value;
+                    OnPropertyChanged(nameof(IsAppInfoClicked));
+                    ExecuteShowAppInfoCommand(null);
+                }
+            }
+        }
+        #endregion
+
         public MainViewModel(int id)
         {
             GuideId = id;
@@ -99,9 +218,85 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             ReportCommand = new ViewModelCommand(ExecuteShowReportCommand);
             AppInfoCommand = new ViewModelCommand(ExecuteShowAppInfoCommand);
 
+            CtrlUCommand = new ViewModelCommand(ExecuteCtrlUCommand);
+            CtrlTCommand = new ViewModelCommand(ExecuteCtrlTCommand);
+            CtrlMCommand = new ViewModelCommand(ExecuteCtrlMCommand);
+            CtrlSCommand = new ViewModelCommand(ExecuteCtrlSCommand);
+            CtrlPCommand = new ViewModelCommand(ExecuteCtrlPCommand);
+            CtrlRCommand = new ViewModelCommand(ExecuteCtrlRCommand);
+            CtrlICommand = new ViewModelCommand(ExecuteCtrlICommand);
+            CtrlNCommand = new ViewModelCommand(ExecuteCtrlNCommand);
+            Shortcuts = new ViewModelCommand(Shortcuts1);
+
+
             ExecuteShowTodaysToursViewCommand(null);
+            IsShowTodaysToursClicked = true;
 
         }
+
+        #region Precice
+        public void ResetRadioButtonStates()
+        {
+            IsUserInfoClicked = false;
+            IsShowTodaysToursClicked = false;
+            IsMyToursClicked = false;
+            IsRequestsClicked = false;
+            IsTakePartClicked = false;
+            IsStatsClicked = false;
+            IsAppInfoClicked = false;
+        }
+
+        private void Shortcuts1(object o)
+        {
+            ShortcutsWindpw shortcutsWindpw = new ShortcutsWindpw();
+            shortcutsWindpw.Show();
+        }
+        private void ExecuteCtrlUCommand(object obj)
+        {
+            ResetRadioButtonStates();
+            IsUserInfoClicked = true;
+        }
+
+        private void ExecuteCtrlTCommand(object o)
+        {
+            ResetRadioButtonStates();
+            IsShowTodaysToursClicked = true;
+        }
+
+        private void ExecuteCtrlMCommand(object o)
+        {
+            ResetRadioButtonStates();
+            IsMyToursClicked = true;
+        }
+
+        private void ExecuteCtrlSCommand(object o)
+        {
+            ResetRadioButtonStates();
+            IsStatsClicked = true;
+        }
+
+        private void ExecuteCtrlPCommand(object o)
+        {
+            ResetRadioButtonStates();
+            IsTakePartClicked = true;
+        }
+        private void ExecuteCtrlRCommand(object o)
+        {
+            ResetRadioButtonStates();
+            IsRequestsClicked = true;
+        }
+        private void ExecuteCtrlICommand(object o)
+        {
+            ResetRadioButtonStates();
+            IsAppInfoClicked = true;
+        }
+
+        private void ExecuteCtrlNCommand(object o)
+        {
+            AddingTourWindow addingTourWindow = new AddingTourWindow(GuideId);
+            addingTourWindow.Show();
+        }
+        #endregion
 
         private void HandleStartTourRequested(object sender, TourViewModel tour)
         {

@@ -162,6 +162,40 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
+        private string _TouristName;
+        public string TouristName
+        {
+            get
+            {
+                return _TouristName;
+            }
+            set
+            {
+                if (_TouristName != value)
+                {
+                    _TouristName = value;
+                    OnPropertyChanged(nameof(TouristName));
+                }
+            }
+        }
+
+        private string _checkpoint;
+        public string Checkpoint
+        {
+            get
+            {
+                return _checkpoint;
+            }
+            set
+            {
+                if (_checkpoint != value)
+                {
+                    _checkpoint = value;
+                    OnPropertyChanged(nameof(Checkpoint));
+                }
+            }
+        }
+
         private List<string> _pictures;
         public List<string> Pictures
         {
@@ -281,6 +315,18 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
 
             return absolutePath;
+        }
+
+        public string Language1 { get; set; }
+        public string Knowledge1 { get; set; }
+        public string Interest1 { get; set; }
+
+        public string ImagePath
+        {
+            get
+            {
+                return Pictures.FirstOrDefault();
+            }
         }
 
         public bool initializeGuideRate(int tourId, int guideId)

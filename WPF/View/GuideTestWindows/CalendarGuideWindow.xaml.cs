@@ -2,6 +2,7 @@
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
@@ -17,9 +18,6 @@ using System.Windows.Shapes;
 
 namespace BookingApp.WPF.View.GuideTestWindows
 {
-    /// <summary>
-    /// Interaction logic for CalendarGuideWindow.xaml
-    /// </summary>
     public partial class CalendarGuideWindow : Window
     {
         public CalendarViewModel ViewModel { get; set; }
@@ -74,7 +72,26 @@ namespace BookingApp.WPF.View.GuideTestWindows
 
         private void Exit(object sender, RoutedEventArgs e)
         {
-            Close();
+            if (ViewModel.Successfull)
+            {
+                Close();
+            }            
+        }
+    }
+
+    public class BooleanToVisibilityConverter : IValueConverter
+    {
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            if (value is bool && (bool)value)
+                return Visibility.Visible;
+            else
+                return Visibility.Collapsed;
+        }
+
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
+            throw new NotImplementedException();
         }
     }
 

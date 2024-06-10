@@ -56,7 +56,7 @@
 56|23|Masa|Mujic|17|True|1
 57|24|Akos|Kiss|21|False|0
 58|24|Lana|Pavlovic|30|False|0
-59|25|Akos|Kiss|21|True|0
+59|25|Akos|Kiss|21|True|1
 60|26|Ak|Kis|25|True|0
 61|26|PO|li|2|False|0
 62|27|Ak|Kis|25|True|0
@@ -68,3 +68,7 @@
 68|30|Akos|Kiss|21|False|0
 69|30|Ak|Kis|25|True|0
 70|31|Ak|Kis|25|False|0
+71|32|Ak|Kis|25|True|2
+72|33|Akos|Kiss|21|False|0
+73|33|Uros|Becejac|16|False|0
+74|33|Teodora|Becejac|22|False|0

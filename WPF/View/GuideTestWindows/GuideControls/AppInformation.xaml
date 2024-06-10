@@ -45,7 +45,6 @@
             </TextBlock>
         </Grid>
 
-        <!-- Content in Column 1 (if any) -->
         <Border Grid.Column="1" BorderThickness="2" CornerRadius="20">
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -54,13 +53,49 @@
                     <GradientStop Color="Magenta" Offset="1"></GradientStop>
                 </LinearGradientBrush>
             </Border.BorderBrush>
-            <StackPanel Orientation="Vertical">
-                <Label FontSize="17" Style="{StaticResource HeaderStyleN}" Content="List of shortcuts" Foreground="{StaticResource color7}" Margin="15"/>
-                <TextBlock Grid.Row="5" TextWrapping="Wrap" FontSize="14" TextAlignment="Justify" Foreground="{StaticResource titleColor1}" Margin="20,0,20,10">
-                <Run Text="Currently, none of the shortcuts are implemented. They will be also acessible by clicking CTRL + / (as in most Integrated Development Environments)."/>
+            <StackPanel Orientation="Vertical" Margin="15">
+                <Label FontSize="17" Style="{StaticResource HeaderStyleN}" Content="List of shortcuts" Foreground="{StaticResource color7}" Margin="0 0 0 10"/>
+                <TextBlock Grid.Row="5" TextWrapping="Wrap" FontSize="14" TextAlignment="Justify" Foreground="{StaticResource titleColor1}" Margin="10,0,10,10">
+                    <Run Text="You can access the shortcut list anytime anywhere by clicking CTRL + /"/>
                 </TextBlock>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Ctrl + N" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="Adding New Tour" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + U" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="User info" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <!-- Add other shortcut labels here -->
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + T" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="Today's tours" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + M" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="My tours" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + R" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="Tour requests" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + P" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="Take part in a tour" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + S" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content=" Statistics" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + I" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="  Application info" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                </StackPanel>
             </StackPanel>
         </Border>
+
 
     </Grid>
 </UserControl>

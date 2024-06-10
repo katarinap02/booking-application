@@ -9,7 +9,6 @@
         >
     
     <Window.Resources>
-        <!-- Dodati ostatak -->
         <DataTemplate DataType="{x:Type viewModel:MyToursViewModel}">
             <cont:MyTours></cont:MyTours>
         </DataTemplate>
@@ -38,7 +37,19 @@
             <cont:StartedTour/>
         </DataTemplate>
     </Window.Resources>
-    
+
+    <Window.InputBindings>
+        <KeyBinding Key="U" Modifiers="Control" Command="{Binding CtrlUCommand}" />
+        <KeyBinding Key="T" Modifiers="Control" Command="{Binding CtrlTCommand}" />
+        <KeyBinding Key="M" Modifiers="Control" Command="{Binding CtrlMCommand}" />
+        <KeyBinding Key="S" Modifiers="Control" Command="{Binding CtrlSCommand}" />
+        <KeyBinding Key="R" Modifiers="Control" Command="{Binding CtrlRCommand}" />
+        <KeyBinding Key="P" Modifiers="Control" Command="{Binding CtrlPCommand}" />
+        <KeyBinding Key="I" Modifiers="Control" Command="{Binding CtrlICommand}" />
+        <KeyBinding Key="N" Modifiers="Control" Command="{Binding CtrlNCommand}" />
+        <KeyBinding Key="OemQuestion" Modifiers="Control" Command="{Binding Shortcuts}" />
+    </Window.InputBindings>
+
     <Border CornerRadius="10"   
             BorderThickness="1">
         <Border.BorderBrush>
@@ -90,82 +101,95 @@
                     </StackPanel>
 
                     <!--Menu Buttons-->
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color1}"
-                                 Command="{Binding UserInfoCommand}"
-                                 >
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="UserAlt" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="User info" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
-                    
-                    <RadioButton Style="{StaticResource menuButton}"
-                                 Tag="{StaticResource color2}"
-                                 IsChecked="True"
-                                 Command="{Binding ShowTodaysToursCommand}"
-                                 >
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="CalendarDay" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Today's tours" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
-                    
-                    <RadioButton Style="{StaticResource menuButton}"
-                            Tag="{StaticResource color3}"
-                                 Command="{Binding MyToursCommand}"
-                            >
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Route" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="My tours" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
-                    
-                    <RadioButton Style="{StaticResource menuButton}"
-                             Tag="{StaticResource color4}"
-                                 Command="{Binding RequestsCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="EnvelopeOpenText" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Tour requests" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
-                    
-                    <RadioButton Style="{StaticResource menuButton}"
-                            Tag="{StaticResource color10}"
-                                 Command="{Binding TakePartCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <fa:IconImage Icon="Signature" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Take part in a tour" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
-                    
-                    <RadioButton Style="{StaticResource menuButton}"
-                            Tag="{StaticResource color6}"
-                                 Command="{Binding StatsCommand}">
-                        <StackPanel Orientation="Horizontal"
-                                    >
-                            <fa:IconImage Icon="ChartPie" Style="{StaticResource menuButtonIcon}"/>
-                            <TextBlock Text="Statistics" Style="{StaticResource menuButtonText}"/>
-                        </StackPanel>
-                    </RadioButton>
-
-                        
-                    <RadioButton Style="{StaticResource menuButton}"
-                                     Tag="{StaticResource color8}"
-                                     Command="{Binding ReportCommand}">
+                        <RadioButton Style="{StaticResource menuButton}"
+                         Tag="{StaticResource color1}"
+                         Command="{Binding UserInfoCommand}"
+                         IsChecked="{Binding IsUserInfoClicked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <StackPanel Orientation="Horizontal">
-                                <fa:IconImage Icon="FilePdf" Style="{StaticResource menuButtonIcon}"/>
-                                <TextBlock Text="PDF report" Style="{StaticResource menuButtonText}"/>
+                                <fa:IconImage Icon="UserAlt" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="User info" Style="{StaticResource menuButtonText}"/>
                             </StackPanel>
-                    </RadioButton>
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Quitting and super guide progress    Ctrl+U"/>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
 
                         <RadioButton Style="{StaticResource menuButton}"
-                             Tag="{StaticResource color9}"
-                             Command="{Binding AppInfoCommand}">
+                         Tag="{StaticResource color2}"
+                         Command="{Binding ShowTodaysToursCommand}"
+                         IsChecked="{Binding IsShowTodaysToursClicked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="CalendarDay" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="Today's tours" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Start tours    Ctrl+T"/>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                         Tag="{StaticResource color3}"
+                         Command="{Binding MyToursCommand}"
+                         IsChecked="{Binding IsMyToursClicked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="Route" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="My tours" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Past and Upcoming tours    Ctrl+M"/>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                         Tag="{StaticResource color4}"
+                         Command="{Binding RequestsCommand}"
+                         IsChecked="{Binding IsRequestsClicked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="EnvelopeOpenText" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="Tour requests" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Accept requests for private tours    Ctrl+R"/>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                         Tag="{StaticResource color10}"
+                         Command="{Binding TakePartCommand}"
+                         IsChecked="{Binding IsTakePartClicked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="Signature" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="Take part in a tour" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Take part in a complex request    Ctrl+P"/>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                         Tag="{StaticResource color6}"
+                         Command="{Binding StatsCommand}"
+                         IsChecked="{Binding IsStatsClicked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                            <StackPanel Orientation="Horizontal">
+                                <fa:IconImage Icon="ChartPie" Style="{StaticResource menuButtonIcon}"/>
+                                <TextBlock Text="Statistics" Style="{StaticResource menuButtonText}"/>
+                            </StackPanel>
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="Statistics about requests and tours    Ctrl+S"/>
+                            </RadioButton.ToolTip>
+                        </RadioButton>
+
+                        <RadioButton Style="{StaticResource menuButton}"
+                         Tag="{StaticResource color9}"
+                         Command="{Binding AppInfoCommand}"
+                         IsChecked="{Binding IsAppInfoClicked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                             <StackPanel Orientation="Horizontal">
                                 <fa:IconImage Icon="InfoCircle" Style="{StaticResource menuButtonIcon}"/>
                                 <TextBlock Text="Application info" Style="{StaticResource menuButtonText}"/>
                             </StackPanel>
+                            <RadioButton.ToolTip>
+                                <ToolTip Content="General Information and shortcuts    Ctrl+I"/>
+                            </RadioButton.ToolTip>
                         </RadioButton>
 
 

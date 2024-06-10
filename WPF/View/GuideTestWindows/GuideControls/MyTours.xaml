@@ -18,6 +18,11 @@
         </DataTemplate>
     </UserControl.Resources>
 
+    <UserControl.InputBindings>
+        <KeyBinding Key="Q" Modifiers="Control" Command="{Binding Qcommand}" />
+        <KeyBinding Key="W" Modifiers="Control" Command="{Binding Wcommand}" />
+    </UserControl.InputBindings>
+
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -25,7 +30,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-            <RadioButton Style="{StaticResource StylishRadioButton}" Content="Upcoming Tours" Width="200" IsChecked="True" Command="{Binding ShowUpcoming}">
+            <RadioButton Style="{StaticResource StylishRadioButton}" Content="Upcoming Tours" Width="200" IsChecked="{Binding IsUpcomingChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding ShowUpcoming}">
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Width="Auto" Height="Auto" CornerRadius="15,0,0,15" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
@@ -34,7 +39,7 @@
                     </ControlTemplate>
                 </RadioButton.Template>
             </RadioButton>
-            <RadioButton Style="{StaticResource StylishRadioButton}" Content="Past Tours" Width="200" Command="{Binding ShowPast}">
+            <RadioButton Style="{StaticResource StylishRadioButton}" Content="Past Tours" Width="200" IsChecked="{Binding IsPastChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Command="{Binding ShowPast}">
                 <RadioButton.Template>
                     <ControlTemplate TargetType="RadioButton">
                         <Border Width="Auto" Height="Auto" CornerRadius="0,15,15,0" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
@@ -44,6 +49,7 @@
                 </RadioButton.Template>
             </RadioButton>
         </StackPanel>
+
 
         <ContentControl Grid.Row="1" Margin="5" Content="{Binding CurrentChildView}"></ContentControl>
     </Grid>
