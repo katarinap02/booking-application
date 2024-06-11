@@ -115,3 +115,5 @@ Deo aplikacije za gosta je prilagođen osobi koja se tek navikava na rad sa rač
   
 ## Galerija screenshotova aplikacije
 Ovde možete videti izgled glavnih delova aplikacije podeljene po ulogama.
+
+####Vodič
