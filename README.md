@@ -120,7 +120,7 @@ Ovde možete videti izgled glavnih delova aplikacije podeljene po ulogama.
 <img src="Screenshots/login.png" alt="Prozor za prijavu" width="800">
 
 ### Vodič
-<img src="Screenshots/guidemain.png" alt="Glavni prozor vodiča" width="800">
+<img src="Screenshots/guidemain.png" alt="Glavni prozor vodiča" width="670">
 <img src="Screenshots/guidestats.png" alt="Stranica statistike tura vodiča" width="400">
 
 ### Vlasnik smeštaja
