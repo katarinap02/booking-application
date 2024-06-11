@@ -115,6 +115,21 @@ Deo aplikacije za gosta je prilagođen osobi koja se tek navikava na rad sa rač
   
 ## Galerija screenshotova aplikacije
 Ovde možete videti izgled glavnih delova aplikacije podeljene po ulogama.
-<img src="Screenshots/login.png" alt="Login Window" width="400" />
+![Login Window](Screenshots/login.png)
 
-###Vodič
+#### Vodič
+![Guide Main Window](Screenshots/guidemain.png)
+![Guide Tour Statistics Page](Screenshots/guidestats.png)
+
+#### Vlasnik smestaja
+![Host Home Page](Screenshots/hostmain.png)
+![Host Accomodation Statistics Page](Screenshots/hoststats.png)
+
+#### Gost
+![Guest Home Page Light Theme](Screenshots/guestmain.png)
+![Guest Home Page Dark Theme](Screenshots/guestmaindark.png)
+![Guest Delay Request Page Dark Theme](Screenshots/guestdelay.png)
+
+#### Turista
+![Tourist Home Page](Screenshots/touristmain.png)
+![Tourist Request Page](Screenshots/touristrequest.png)
