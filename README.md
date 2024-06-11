@@ -112,3 +112,6 @@ Deo aplikacije za gosta je prilagođen osobi koja se tek navikava na rad sa rač
 - **Katarina Petrović, RA 17/2021**
 - **Nataša Radmilović, RA 20/2021**
 - **Akoš Kiš, RA 11/2021**
+  
+## Galerija screenshotova aplikacije
+Ovde možete videti izgled glavnih delova aplikacije podeljene po ulogama.
