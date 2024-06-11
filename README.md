@@ -18,6 +18,7 @@ Za potrebe logovanja, informacije o korisnicima mogu se pronaći u fajlu `Resour
 
 Projekat implementira ključne softverske principe i tehnike, uključujući:
 - **Principi čistog koda (Clean Code)**
+- **SOLID principi**
 - **Dizajn paterne**
 - **MVVM arhitektura**
 
