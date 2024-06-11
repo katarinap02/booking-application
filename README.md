@@ -135,4 +135,4 @@ Ovde možete videti izgled glavnih delova aplikacije podeljene po ulogama.
 <img src="Screenshots/touristrequests.png" alt="Stranica zahteva turista" width="670">
 
 ### Login prozor
-<img src="Screenshots/login.png" alt="Prozor za prijavu" width="400">
+<img src="Screenshots/login.png" alt="Prozor za prijavu" width="670">
