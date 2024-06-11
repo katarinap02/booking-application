@@ -321,6 +321,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Resources\PDFs\GuidePDFs\" />
+    <Folder Include="Screenshots\" />
     <Folder Include="Resources\PDFs\GuestPDFs\" />
     <Folder Include="WPF\View\Guest\GuestPDFs\" />
     <Folder Include="Resources\TestData\" />
