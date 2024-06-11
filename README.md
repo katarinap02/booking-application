@@ -115,6 +115,6 @@ Deo aplikacije za gosta je prilagođen osobi koja se tek navikava na rad sa rač
   
 ## Galerija screenshotova aplikacije
 Ovde možete videti izgled glavnih delova aplikacije podeljene po ulogama.
-![Login Window](Screenshots/login.png)
+<img src="Screenshots/login.png" alt="Login Window" width="400" />
 
 ###Vodič
