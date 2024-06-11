@@ -112,24 +112,26 @@ Deo aplikacije za gosta je prilagođen osobi koja se tek navikava na rad sa rač
 - **Katarina Petrović, RA 17/2021**
 - **Nataša Radmilović, RA 20/2021**
 - **Akoš Kiš, RA 11/2021**
-  
-## Galerija screenshotova aplikacije
+
+## Galerija Screenshotova Aplikacije
+
 Ovde možete videti izgled glavnih delova aplikacije podeljene po ulogama.
-![Login Window](Screenshots/login.png)
 
-#### Vodič
-![Guide Main Window](Screenshots/guidemain.png)
-![Guide Tour Statistics Page](Screenshots/guidestats.png)
+<img src="Screenshots/login.png" alt="Prozor za prijavu" width="400">
 
-#### Vlasnik smestaja
-![Host Home Page](Screenshots/hostmain.png)
-![Host Accomodation Statistics Page](Screenshots/hoststats.png)
+### Vodič
+<img src="Screenshots/guidemain.png" alt="Glavni prozor vodiča" width="400">
+<img src="Screenshots/guidestats.png" alt="Stranica statistike tura vodiča" width="400">
 
-#### Gost
-![Guest Home Page Light Theme](Screenshots/guestmain.png)
-![Guest Home Page Dark Theme](Screenshots/guestmaindark.png)
-![Guest Delay Request Page Dark Theme](Screenshots/guestdelay.png)
+### Vlasnik smeštaja
+<img src="Screenshots/hostmain.png" alt="Početna stranica vlasnika smeštaja" width="400">
+<img src="Screenshots/hoststats.png" alt="Stranica statistike smeštaja vlasnika" width="400">
 
-#### Turista
-![Tourist Home Page](Screenshots/touristmain.png)
-![Tourist Request Page](Screenshots/touristrequest.png)
+### Gost
+<img src="Screenshots/guestmain.png" alt="Početna stranica gosta - svetla tema" width="400">
+<img src="Screenshots/guestmaindark.png" alt="Početna stranica gosta - tamna tema" width="400">
+<img src="Screenshots/guestdelay.png" alt="Stranica zahteva za odlaganje gosta - tamna tema" width="400">
+
+### Turista
+<img src="Screenshots/touristmain.png" alt="Početna stranica turista" width="400">
+<img src="Screenshots/touristrequests.png" alt="Stranica zahteva turista" width="400">
