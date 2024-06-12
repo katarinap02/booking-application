@@ -3,9 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         xmlns:local="clr-namespace:BookingApp.WPF.View.TouristWindows"
         mc:Ignorable="d"
-        Title="RequestedTourDetailsWindow" Height="680" Width="800" WindowStartupLocation="CenterScreen">
+        Title="Requested Tour Details" Height="680" Width="800" WindowStartupLocation="CenterScreen">
+    <Window.CommandBindings>
+        <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
+    </Window.CommandBindings>
     <Window.Resources>
         <Style x:Key="BasicLabels" TargetType="Label">
             <Setter Property="FontSize" Value="20"/>
@@ -181,9 +185,10 @@
                          Grid.Row="7"
                          TextWrapping="Wrap"
                          Text="{Binding Description}"
+                         Background="#E3E0AF"
                          IsReadOnly="True"
                          Margin="3, 8, 0, 0"
-                         FontSize="16"/>
+                         FontSize="18"/>
             </Grid>
         </StackPanel>
         <Button Content="Close"

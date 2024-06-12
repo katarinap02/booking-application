@@ -23,11 +23,13 @@ namespace BookingApp.WPF.View.GuideTestWindows
         private List<DateTime> selectedDates = new List<DateTime>();
         private int GuideId;
         public StringToNumberViewModel StringDuration { get; set; }
+
+        public DateTime time = DateTime.Now;
         public StringToNumberViewModel StringTouristsNumber { get; set; }
         public StringViewModel typedCheckpoint {  get; set; }
         public ObservableCollection<string> Pictures {  get; set; }
         public AddingTourWindow(int guide_id)
-        {
+        {            
             Pictures = new ObservableCollection<string>();
             typedCheckpoint = new StringViewModel();
             StringDuration = new StringToNumberViewModel();
@@ -37,16 +39,28 @@ namespace BookingApp.WPF.View.GuideTestWindows
             _tourRepository = new TourRepository();
             Tour = new TourViewModel();
             InitializeComponent();
+            HideAllLabels();
         }
 
         private void AddTour_Click(object sender, RoutedEventArgs e)
         {
+            if (!Check())
+            {
+                return;
+            }
             if (Tour.Checkpoints.Count < 2)
             {
-                MessageBox.Show("At least 2 checkpoints are needed in order to make a new tour.");
+                lblCheckpointsError.Visibility = Visibility.Visible;
+                return;
             }
             else
             {
+
+                if(selectedDates.Count == 0)
+                {
+                    lblDatesError.Visibility = Visibility.Visible;
+                    return;
+                }
                 int groupId = _tourRepository.NextId();
                 foreach (DateTime date in selectedDates)
                 {
@@ -59,15 +73,24 @@ namespace BookingApp.WPF.View.GuideTestWindows
                     Tour.AvailablePlaces = Tour.MaxTourists;
                     _tourRepository.Add(Tour.ToTour());
                 }
-
+                MessageBox.Show("Tour added sucessfully. It is now visible in my tours segment. Shortcut for accessing that is Ctrl+M", "Notification", MessageBoxButton.OK, MessageBoxImage.Information);
+                Close();
             }
-            MessageBox.Show("Tour added");            
-            Close();
+            if (selectedDates.Count == 0)
+            {
+                lblDatesError.Visibility = Visibility.Visible;
+                return;
+            }
         }
 
         private void AddDate_Click(object sender, RoutedEventArgs e)
         {            
             DateTime newDate = dateTimePicker.Value ?? DateTime.MinValue;
+            if(newDate <= DateTime.Now)
+            {
+                lblDatesError1.Visibility = Visibility.Visible;
+                return;
+            }
             selectedDates.Add(newDate);
             dates.ItemsSource = null;
             dates.ItemsSource = selectedDates;
@@ -198,6 +221,107 @@ namespace BookingApp.WPF.View.GuideTestWindows
                 }
             }
         }
-        
+
+        public void HideAllLabels()
+        {
+            lblTourNameError.Visibility = Visibility.Collapsed;
+            lblCityError.Visibility = Visibility.Collapsed;
+            lblCountryError.Visibility = Visibility.Collapsed;
+            lblLanguageError.Visibility = Visibility.Collapsed;
+            lblTouristsNumberError.Visibility = Visibility.Collapsed;
+            lblDurationError.Visibility = Visibility.Collapsed;
+            lblDescriptionError.Visibility = Visibility.Collapsed;
+            lblCheckpointsError.Visibility = Visibility.Collapsed;
+            lblDatesError.Visibility = Visibility.Collapsed;
+            lblDatesError1.Visibility = Visibility.Collapsed;
+        }
+
+
+        private bool Check()
+        {
+            bool isValid = true;
+
+            // Check if tour name is provided
+            if (string.IsNullOrWhiteSpace(txtTourName.Text))
+            {
+                lblTourNameError.Visibility = Visibility.Visible;
+                isValid = false;
+            }
+            else
+            {
+                lblTourNameError.Visibility = Visibility.Collapsed;
+            }
+
+            // Check if city is provided
+            if (string.IsNullOrWhiteSpace(txtCity.Text))
+            {
+                lblCityError.Visibility = Visibility.Visible;
+                isValid = false;
+            }
+            else
+            {
+                lblCityError.Visibility = Visibility.Collapsed;
+            }
+
+            // Check if country is provided
+            if (string.IsNullOrWhiteSpace(txtCountry.Text))
+            {
+                lblCountryError.Visibility = Visibility.Visible;
+                isValid = false;
+            }
+            else
+            {
+                lblCountryError.Visibility = Visibility.Collapsed;
+            }
+
+            // Check if language is provided
+            if (string.IsNullOrWhiteSpace(txtLanguage.Text))
+            {
+                lblLanguageError.Visibility = Visibility.Visible;
+                isValid = false;
+            }
+            else
+            {
+                lblLanguageError.Visibility = Visibility.Collapsed;
+            }
+
+            // Check if number of tourists is provided
+            if (string.IsNullOrWhiteSpace(txtTouristsNumber.Text))
+            {
+                lblTouristsNumberError.Visibility = Visibility.Visible;
+                isValid = false;
+            }
+            else
+            {
+                lblTouristsNumberError.Visibility = Visibility.Collapsed;
+            }
+
+            // Check if duration is provided
+            if (string.IsNullOrWhiteSpace(txtDuration.Text))
+            {
+                lblDurationError.Visibility = Visibility.Visible;
+                isValid = false;
+            }
+            else
+            {
+                lblDurationError.Visibility = Visibility.Collapsed;
+            }
+
+            // Check if description is provided
+            if (string.IsNullOrWhiteSpace(txtDescription.Text))
+            {
+                lblDescriptionError.Visibility = Visibility.Visible;
+                isValid = false;
+            }
+            else
+            {
+                lblDescriptionError.Visibility = Visibility.Collapsed;
+            }
+
+            // If all validations pass, proceed with adding the tour
+            return isValid;
+        }
+
+
     }
 }

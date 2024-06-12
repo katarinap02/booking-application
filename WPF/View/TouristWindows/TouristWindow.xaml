@@ -7,9 +7,10 @@
         xmlns:cmd="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         xmlns:local="clr-namespace:BookingApp.View.TouristWindows" xmlns:dto="clr-namespace:BookingApp.WPF.ViewModel" xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="TouristWindow" Height="720" Width="1280"
+        Title="Main" Height="720" Width="1280"
         WindowStartupLocation="CenterScreen"
-        Background="Transparent">
+        Background="Transparent"
+        PreviewKeyDown="Window_PreviewKeyDown">
     <Window.CommandBindings>
         <CommandBinding Command="cmd:RoutedCommands.AllToursTab" CanExecute="AllTours_CanExecute" Executed="AllTours_Executed"/>
         <CommandBinding Command="cmd:RoutedCommands.MyToursTab" CanExecute="MyTours_CanExecute" Executed="MyTours_Executed"/>
@@ -19,6 +20,16 @@
         <CommandBinding Command="cmd:RoutedCommands.Logout" CanExecute="Logout_CanExecute" Executed="Logout_Executed"/>
         <CommandBinding Command="cmd:RoutedCommands.Notifications" CanExecute="Notifications_CanExecute" Executed="Notifications_Executed"/>
     </Window.CommandBindings>
+    <Window.Resources>
+        <Style x:Key="BlockerStyle" TargetType="Grid">
+            <Setter Property="Visibility" Value="Collapsed"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding IsShortcutsOpen}" Value="True">
+                    <Setter Property="Visibility" Value="Visible"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="335"/>
@@ -26,25 +37,25 @@
         </Grid.ColumnDefinitions>
         <StackPanel Grid.Column="0" Background="{StaticResource MenuBackgroundColor1}">
             <Grid Height="80">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="*"/>
-                        <ColumnDefinition Width="75"/>
-                    </Grid.ColumnDefinitions>
-                    <StackPanel Grid.Column="0"
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="75"/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Grid.Column="0"
                                 Orientation="Horizontal">
-                        <Image
+                    <Image
                                 Width="75"
                                 Source="/WPF/Resources/Images/user_white.png"
                                 HorizontalAlignment="Left"/>
-                        <Label Content="{Binding UserName}"
+                    <Label Content="{Binding UserName}"
                                 VerticalAlignment="Center"
                                 FontWeight="Bold"
                                 Foreground="WhiteSmoke"
                                 FontSize="24"/>
 
-                    </StackPanel>
-                </Grid>
-                <Grid Height="615">
+                </StackPanel>
+            </Grid>
+            <Grid Height="615">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="460"/>
                     <RowDefinition Height="*"/>
@@ -112,5 +123,73 @@
             </Grid>
         </StackPanel>
         <Frame x:Name="MainFrame" Content="{Binding MainFrameContent, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Grid.Column="1" NavigationUIVisibility="Hidden"/>
+
+        <Grid x:Name="InteractionBlocker" Style="{StaticResource BlockerStyle}" Background="Black" Opacity="0.5" Grid.ColumnSpan="2"/>
+
+        <Button Grid.Column="1" Height="35" Width="85" HorizontalAlignment="Left" VerticalAlignment="top"
+                Margin="20, 20, 0, 0" Command="{Binding ShortcutsCommand}" FontWeight="SemiBold" FontSize="15"
+                Content="Shortcuts" Style="{StaticResource EnlargeButtonStyle1}"/>
+        <Popup x:Name="ShortcutsPopup" AllowsTransparency="True" IsOpen="{Binding IsShortcutsOpen}" Width="860" Height="390" Placement="Center" HorizontalOffset="150" VerticalOffset="-85">
+            <Border x:Name="ShortuctsBorder" BorderBrush="White" Background="WhiteSmoke" BorderThickness="5" CornerRadius="5">
+                <StackPanel x:Name="ShortcutsStackPanel" Visibility="Visible">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="370"/>
+                            <ColumnDefinition Width="485"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock TextWrapping="Wrap" Margin="10" Foreground="Black" FontSize="16">
+                            <Run Text="Ctrl + A - Opening All Tours Tab"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Ctrl + M - Opening My Tours Tab"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Ctrl + E - Opening Ended Tours Tab / Export PDF"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Ctrl + R - Opening Requested Tours Tab"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Ctrl + V - Opening Vouchers Tab"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Ctrl + L - Logout"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Ctrl + N - Opening Notifications"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Ctrl + S - Opening Statistics / Confirm / Submit"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Ctrl + C - Close"/>
+                        </TextBlock>
+                        <TextBlock TextWrapping="Wrap" Margin="10" Foreground="Black" FontSize="16" Grid.Column="1">
+
+                            <Run Text="Alt + C - Focusing on country / Switching to complex tours"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Alt + S - Search"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Alt + R - Reset"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Alt + B - Switching to basic tours"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Alt + A - Add participant / image / tour"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Alt + N - Participant name focus / Complex Tour Name focus"/>
+                            <LineBreak/>
+                            <LineBreak/>
+                            <Run Text="Alt + T - Tutorial"/>
+                        </TextBlock>
+                        <Button Content="X" Margin="0, 0, 5, 0" Width="35" Grid.ColumnSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseShortcutsButton_Click" Style="{StaticResource EnlargeButtonStyle1}" FontSize="25"/>
+                    </Grid>
+                </StackPanel>
+            </Border>
+        </Popup>
     </Grid>
 </Window>

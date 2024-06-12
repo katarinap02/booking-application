@@ -1,0 +1,158 @@
+﻿<Window x:Class="BookingApp.WPF.View.GuideTestWindows.ShortcutsWindpw"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BookingApp.WPF.View.GuideTestWindows"
+        mc:Ignorable="d"
+        Title="ShortcutsWindpw" Height="450" Width="250"
+        WindowStartupLocation="CenterScreen" ResizeMode="NoResize" WindowStyle="None" 
+        MouseDown="Window_MouseDown"
+        Background="Transparent"
+        BorderBrush="Transparent"
+        AllowsTransparency="True">
+    <Border BorderThickness="2" CornerRadius="25">
+        <Border.BorderBrush>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="HotPink" Offset="0"></GradientStop>
+                <GradientStop Color="LightCoral" Offset="0.5"></GradientStop>
+                <GradientStop Color="Magenta" Offset="1"></GradientStop>
+            </LinearGradientBrush>
+        </Border.BorderBrush>
+        <Border.Background>
+            <LinearGradientBrush StartPoint="1,0" EndPoint="0,1">
+                <GradientStop Color="#060531" Offset="0"></GradientStop>
+                <GradientStop Color="#1b1448" Offset="1"></GradientStop>
+            </LinearGradientBrush>
+        </Border.Background>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="27"></RowDefinition>
+                <RowDefinition Height="*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition Width="25"></ColumnDefinition>
+                    <ColumnDefinition Width="25"></ColumnDefinition>
+                    <ColumnDefinition Width="10"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+
+                <!-- Ovde pisemo text koji zelimo da je u gornjem gridu -->
+
+                <TextBlock
+                    Grid.Column="0"
+                    Text=""
+                    Foreground="LightGray"
+                    FontSize="13"
+                    FontFamily="Montserrat"
+                    VerticalAlignment="Center"
+                    Margin="10,0,0,0"
+                ></TextBlock>
+
+                <Button 
+                    x:Name="Minimise_Buton"
+                    Grid.Column="1"
+                    BorderThickness="0"
+                    Content="-"
+                    FontSize="16"
+                    Cursor="Hand"
+                    Click="Minimise_Buton_Click"
+                    Foreground="White">
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="DodgerBlue"></Setter>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="18" Height="18"
+                    CornerRadius="9"
+                    Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+                                  HorizontalAlignment="Center"></ContentPresenter>
+                            </Border>
+
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+
+                <Button 
+                            x:Name="Close_Buton"
+                            Grid.Column="2"
+                            BorderThickness="0"
+                            Content="x"
+                            FontSize="16"
+                            Cursor="Hand"
+                            FontFamily="Monospace"
+                            Foreground="White"
+                        Click="Close_Buton_Click"
+>
+
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="HotPink"></Setter>
+                        </Style>
+                    </Button.Style>
+
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border Width="18" Height="18"
+                CornerRadius="9"
+                Background="{TemplateBinding Background}">
+                                <ContentPresenter VerticalAlignment="Center"
+              HorizontalAlignment="Center"></ContentPresenter>
+                            </Border>
+                        </ControlTemplate>
+                    </Button.Template>
+
+                </Button>
+            </Grid>
+
+            <StackPanel Orientation="Vertical" Margin="10" Grid.Row="1">
+                <Label FontSize="17" Style="{StaticResource HeaderStyleN}" Content="List of shortcuts" Foreground="{StaticResource color7}" Margin="0 0 0 05"/>
+                <StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Ctrl + N" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="Adding New Tour" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + U" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="User info" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <!-- Add other shortcut labels here -->
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + T" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="Today's tours" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + M" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="My tours" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + R" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="Tour requests" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + P" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="Take part in a tour" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + S" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content=" Statistics" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal" Margin="0 5 0 0">
+                        <Label Content="Ctrl + I" Foreground="{StaticResource titleColor1}" FontWeight="Bold" Margin="0 0 10 0"/>
+                        <Label Content="  Application info" Foreground="{StaticResource titleColor1}"/>
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+
+        </Grid>
+
+    </Border>
+</Window>

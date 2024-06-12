@@ -7,7 +7,7 @@
         xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
-        Title="TourStatisticsWindow" Height="840" Width="1300" WindowStartupLocation="CenterScreen">
+        Title="Tour Statistics" Height="840" Width="1500" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="MyChartStyle" TargetType="lvc:CartesianChart">
             <Setter Property="Background" Value="{StaticResource MenuBackgroundColor1}"/>
@@ -16,9 +16,6 @@
         <Style x:Key="MyAxisStyle" TargetType="lvc:Axis">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="Foreground" Value="WhiteSmoke"/>
-        </Style>
-        <Style x:Key="MySeparatorStyle" TargetType="lvc:Separator">
-            <Setter Property="Stroke" Value="Gray"/>
         </Style>
         <local:YearConverter x:Key="YearConverter" />
     </Window.Resources>
@@ -189,7 +186,7 @@
                 Grid.ColumnSpan="3"
                 HorizontalAlignment="Right"
                 FontSize="19"
-                Width="80"
+                Width="85"
                 Content="Close"
                 Command="{Binding Close}"></Button>
 

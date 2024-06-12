@@ -12,6 +12,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using BookingApp.Application.Services.FeatureServices;
+using BookingApp.WPF.View.TouristWindows;
 
 namespace BookingApp.View
 {

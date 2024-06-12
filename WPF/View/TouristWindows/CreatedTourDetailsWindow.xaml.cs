@@ -27,16 +27,17 @@ namespace BookingApp.WPF.View.TouristWindows
         public CreatedTourDetailsWindow(TouristNotificationViewModel selectedNotification)
         {
             InitializeComponent();
-            CreatedTourDetailsWindowViewModel = new CreatedTourDetailsWindowViewModel();
+            CreatedTourDetailsWindowViewModel = new CreatedTourDetailsWindowViewModel(selectedNotification);
             DataContext = CreatedTourDetailsWindowViewModel;
-            CreatedTourDetailsWindowViewModel.SelectedNotification = selectedNotification;
 
-            CreatedTourDetailsWindowViewModel.InitializeCreatedTourDetailsWindow();
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
         }
         private void CloseWindow(CloseWindowMessage messsage)
         {
-            Close();
+            if (IsActive)
+            {
+                Close();
+            } 
         }
         protected override void OnClosed(EventArgs e)
         {
@@ -50,7 +51,7 @@ namespace BookingApp.WPF.View.TouristWindows
 
         private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            Close();
+            CloseWindow(null);
         }
     }
 }

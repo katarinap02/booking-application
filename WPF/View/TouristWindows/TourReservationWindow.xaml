@@ -8,7 +8,7 @@
         xmlns:touristWindows="clr-namespace:BookingApp.WPF.View.TouristWindows"
         xmlns:commands="clr-namespace:BookingApp.WPF.ViewModel.Commands"
         mc:Ignorable="d"
-        Title="TourReservationWindow" Height="557" Width="1000" WindowStartupLocation="CenterScreen">
+        Title="Tour Reservation" Height="710" Width="1000" WindowStartupLocation="CenterScreen">
     <Window.Resources>
         <Style x:Key="BasicLabels" TargetType="Label">
             <Setter Property="FontSize" Value="20"/>
@@ -19,6 +19,9 @@
     <Window.CommandBindings>
         <CommandBinding Command="commands:RoutedCommands.Close" CanExecute="Close_CanExecute" Executed="Close_Executed"/>
         <CommandBinding Command="commands:RoutedCommands.AddParticipant" CanExecute="AddParticipant_CanExecute" Executed="AddParticipant_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.Tutorial" CanExecute="Tutorial_CanExecute" Executed="Tutorial_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.NameFocus" CanExecute="NameFocus_CanExecute" Executed="NameFocus_Executed"/>
+        <CommandBinding Command="commands:RoutedCommands.Confirm" CanExecute="Confirm_CanExecute" Executed="Confirm_Executed"/>
     </Window.CommandBindings>
     <Grid Background="{StaticResource WindowBackgroundColor1}">
         <Grid.ColumnDefinitions>
@@ -28,57 +31,70 @@
             <ColumnDefinition Width="90"/>
             <ColumnDefinition Width="250"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="20"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="90"/>
             <RowDefinition Height="40"/>
             <RowDefinition Height="70"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="40"/>
             <RowDefinition Height="20"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="90"/>
             <RowDefinition Height="23"/>
             <RowDefinition Height="23"/>
             <RowDefinition Height="35"/>
             <RowDefinition Height="10"/>
         </Grid.RowDefinitions>
+        <StackPanel Grid.Column="5"
+                    Style="{StaticResource HoverEffectForTutorial}"
+            Grid.Row="1" Orientation="Horizontal"
+            HorizontalAlignment="Right"
+                    Height="50"
+                    MouseLeftButtonDown="StackPanel_MouseLeftButtonDown">
+            <Image Source="/WPF/Resources/Images/play_button.png"/>
+            <Label Content="Tutorial"
+           FontSize="18"
+           FontWeight="DemiBold"
+           VerticalContentAlignment="Center"/>
+        </StackPanel>
 
         <Label Content="Tour Booking"
-               Grid.Row="0"
-               Grid.Column="0"
                Grid.ColumnSpan="7"
-               FontSize="30"
+               Grid.Row="1"
+               FontSize="35"
+               FontWeight="DemiBold"
                VerticalAlignment="Center"
                HorizontalAlignment="Center"
                />
         <Label Content="Tour name:"
-               Grid.Column="2"
-               Grid.Row="1"
+               Grid.Column="1"
+               Grid.Row="2"
                Grid.ColumnSpan="2"
                Style="{StaticResource BasicLabels}"
-               VerticalAlignment="Center"
-               Margin="-115, 0, 0 ,0"/>
+               VerticalAlignment="Center"/>
         <Label x:Name="tourName"
                Content="{Binding SelectedTour.Name}"
                VerticalAlignment="Center"
                Grid.Column="3"
-               Grid.Row="1" Grid.ColumnSpan="2" Margin="-90,0,0,0"
+               Grid.Row="2" Grid.ColumnSpan="2" Margin="-90,0,0,0"
                FontWeight="Bold"
                FontSize="22"/>
         <Label Content="Change number of participants:"
                Style="{StaticResource BasicLabels}"
-               Grid.Row="2"
+               Grid.Row="3"
                Grid.Column="1"
                Grid.ColumnSpan="3"
-               HorizontalAlignment="Right"
+               HorizontalAlignment="Left"
                VerticalAlignment="Center"/>
         <xctk:IntegerUpDown x:Name="Participants"
                             Text="{Binding ParticipantCount}"
-                            Grid.Row="2"
+                            Grid.Row="3"
                             Grid.Column="4"
                             Increment="1"
                             Minimum="1"
@@ -86,48 +102,56 @@
                             DefaultValue="1"
                             TextAlignment="Justify"
                             HorizontalAlignment="Left"
-                            Width="120"
+                            Width="85"
                             Height="50"
-                            FontSize="20"
+                            FontSize="25"
                             AllowTextInput="False"/>
 
         <Label Content="available places:"
                Grid.Column="2"
-               Grid.Row="3"
-               FontSize="14"
+               Grid.Row="4"
+               FontSize="20"
                Grid.ColumnSpan="2"
                HorizontalAlignment="Right"/>
         <Label x:Name="availablePlaces"
                Grid.Column="4"
-               Grid.Row="3"
-               FontSize="15"
+               Grid.Row="4"
+               FontSize="20"
+               Height="35"
                Content="{Binding SelectedTour.AvailablePlaces}"
                Foreground="WhiteSmoke"
                Background="DarkGreen"
-               Width="30"
                HorizontalAlignment="Left">
             
         </Label>
-
+        <Label Grid.Column="1"
+               Grid.ColumnSpan="4"
+               Grid.Row="6"
+               FontSize="20"
+               Margin="8, 0, 0, 0">
+            Note: Number of participants includes you
+        </Label>
         <GroupBox x:Name="ParticipantInformationGroupBox"
-                  Grid.Row="5" 
+                  Grid.Row="7" 
                   Grid.Column="1" 
                   Grid.RowSpan="5"
                   Grid.ColumnSpan="4"
                   FontSize="13"
                   FontWeight="Medium"
+                  BorderThickness="2"
+                  BorderBrush="Black"
                   Header="Participant Information" Margin="10,0,125,0">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="120"/>
-                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition Width="158"/>
                     <ColumnDefinition Width="112"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="20"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
-                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
                     <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
                 <Label Content="Name:"
@@ -153,36 +177,65 @@
                          Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Column="1"
                          Grid.Row="1"
+                         Grid.ColumnSpan="2"
                          HorizontalAlignment="Left"
-                         Width="120"
+                         VerticalAlignment="Center"
+                         Width="250"
+                         MaxLength="20"
+                         FontSize="18"
                          Height="30" Margin="0,10,0,10"/>
 
-                <Label Content="{Binding ElementName=NameTextBox, Path=(Validation.Errors).Count, Converter={StaticResource ValidationErrorsConverter}, ConverterParameter={x:Reference NameTextBox} }"
-                       Foreground="Red"
-                       Grid.Row="1"
-                       Grid.RowSpan="2"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Left"
-                       FontSize="12" Grid.ColumnSpan="2" Margin="114,0,0,0"/>
+                <Label Foreground="White"
+       Background="#C23050"
+       Grid.Row="1"
+       Grid.RowSpan="2"
+       VerticalAlignment="Center"
+       HorizontalAlignment="Left"
+       FontSize="12" Grid.ColumnSpan="2" Margin="110,0,0,0"
+       Content="{Binding ElementName=NameTextBox, Path=(Validation.Errors).Count, Converter={StaticResource ValidationErrorsConverter}, ConverterParameter={x:Reference NameTextBox} }">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
 
                 <TextBox x:Name="LastNameTextBox"
                          Text="{Binding LastName, UpdateSourceTrigger=PropertyChanged}"
                          Grid.Column="1"
                          Grid.Row="2"
+                         Grid.ColumnSpan="2"
                          HorizontalAlignment="Left"
-                         Width="120"
-                         Height="25" Margin="0,12,0,12"/>
+                         Width="250"
+                         FontSize="18"
+                         MaxLength="20"
+                         Height="30" Margin="0,12,0,12"/>
 
                 <Label Content="{Binding ElementName=LastNameTextBox, Path=(Validation.Errors).Count, Converter={StaticResource ValidationErrorsConverter}, ConverterParameter={x:Reference LastNameTextBox} }"
-                       Foreground="Red"
+                       Foreground="White"
+                       Background="#C23050"
                        Grid.Row="2"
                        Grid.RowSpan="2"
                        VerticalAlignment="Center"
                        HorizontalAlignment="Left"
-                       FontSize="11.5" Grid.ColumnSpan="2" Margin="114,0,0,0"/>
+                       FontSize="11.5" Grid.ColumnSpan="2" Margin="110,0,0,0">
+                    <Label.Style>
+                        <Style TargetType="Label">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Content, RelativeSource={RelativeSource Self}}" Value="">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                </Label>
 
                 <xctk:IntegerUpDown x:Name="years"
-                                    Text="{Binding Age}"
+                                    Text="{Binding Age, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}"
                                     Grid.Column="1"
                                     Grid.Row="3"
                                     TextAlignment="Justify"
@@ -192,6 +245,7 @@
                                     HorizontalAlignment="Left"
                                     Increment="1"
                                     Minimum="1"
+                                    Maximum="100"
                                     DefaultValue="1"/>
 
                 <Button x:Name="AddButton"
@@ -200,32 +254,40 @@
                         Grid.Column="2"
                         FontSize="20"
                         Content="Add"
-                        Command="{Binding AddParticipantCommand}" Margin="10,0,21,0"/>
+                        Width="70"
+                        Height="50"
+                        Command="{Binding AddParticipantCommand}"/>
             </Grid>
         </GroupBox>
-
+        <Image Source="/WPF/Resources/Images/arrow-to-line-right.png"
+                Grid.Column="4"
+                Grid.Row="9"
+                Grid.RowSpan="2"
+                VerticalAlignment="Center"
+                Width="65"
+               Margin="110, 0, 0, 0"></Image>
         <Button Content="Close"
                 Command="{Binding CloseCommand}"
                 Style="{StaticResource EnlargeButtonStyle}"
                 FontSize="20"
-                Grid.Row="12"
+                Grid.Row="14"
                 Grid.Column="0"
                 Grid.ColumnSpan="7"
                 Width="85"
                 Margin="0, 0, 120, 0"/>
 
         <Label Content="Added Participants:"
-               FontWeight="Bold"
-               Grid.Row="1"
-               Grid.Column="5"/>
+               FontWeight="SemiBold"
+               Grid.Row="2"
+               Grid.Column="5"
+               FontSize="20"/>
         <ListBox x:Name="ParticipantsListBox"
                  ItemsSource="{Binding ParticipantsListBox}"
                  SelectedItem="{Binding SelectedParticipant}"
-               Grid.Row="2"
+               Grid.Row="3"
                Grid.Column="5"
-               Grid.RowSpan="8"
-               FontSize="20"
-               Margin="0,0,0,10">
+               Grid.RowSpan="9"
+               FontSize="20">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Grid>
@@ -248,14 +310,37 @@
         </ListBox>
 
         <Button Content="Book"
-                Click="BookButton_Click"
+                Command="{Binding BookCommand}"
                 Style="{StaticResource EnlargeButtonStyle}"
                 FontSize="20"
-                Grid.Row="12"
+                Grid.Row="14"
                 Grid.Column="0"
                 Grid.ColumnSpan="7"
                 Width="85"
                 Margin="120, 0, 0, 0"/>
+
+        <Popup x:Name="TutorialPopup" AllowsTransparency="True" Width="650" Height="490" IsOpen="False" Placement="Center" HorizontalOffset="160" VerticalOffset="0">
+            <Border x:Name="TutorialBorder" BorderBrush="Black" Background="Black" BorderThickness="5" CornerRadius="5">
+                <StackPanel x:Name="TutorialStackPanel" Visibility="Visible">
+                    <Grid>
+                        <MediaElement x:Name="mediaElement" 
+                              Source="../../../WPF/Resources/TutorialVideos/TourReservationTutorial.mp4"
+                              LoadedBehavior="Manual"
+                              Margin="10"/>
+                        <Button Content="X" Margin="0, 0, 5, 0" Width="35" HorizontalAlignment="Right" VerticalAlignment="Top" Click="CloseTutorialButton_Click" Style="{StaticResource EnlargeButtonStyle1}" FontSize="25"/>
+                    </Grid>
+                    <StackPanel Orientation="Horizontal"
+                        HorizontalAlignment="Center" Visibility="Visible">
+                        <Button Content="Reset" Width="60" Click="ResetButton_Click" Margin="0, 0, 20, 0" Style="{StaticResource EnlargeButtonStyle}"
+                        Height="35" FontSize="18"/>
+                        <Button Content="Play" Width="60" Click="PlayButton_Click" Margin="0, 0, 20, 0" Style="{StaticResource EnlargeButtonStyle}"
+                        Height="35" FontSize="18"/>
+                        <Button Content="Pause" Width="60" Click="PauseButton_Click" Style="{StaticResource EnlargeButtonStyle}"
+                        Height="35" FontSize="18"/>
+                    </StackPanel>
+                </StackPanel>
+            </Border>
+        </Popup>
 
     </Grid>
 </Window>

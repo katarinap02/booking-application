@@ -26,12 +26,20 @@ namespace BookingApp.View.TouristWindows
         public VoucherWindow(int userId)
         {
             InitializeComponent();
-            Voucher = new VoucherViewModel();
+            Voucher = new VoucherViewModel(userId);
             DataContext = Voucher;
 
-            Voucher.UserId = userId;
             if (!Voucher.RefreshVoucherDataGrid())
                 CloseWindow(null);
+            Messenger.Default.Register<NotificationMessage>(this, message =>
+            {
+                if (IsActive)
+                {
+                    InformationMessageBoxWindow mb = new InformationMessageBoxWindow(message.Notification);
+                    mb.ShowDialog();
+                    //MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            });
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
         }
         private void CloseWindow(CloseWindowMessage message)

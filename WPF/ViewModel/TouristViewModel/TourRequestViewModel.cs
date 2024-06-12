@@ -329,6 +329,19 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             TourRequestsForComplex = new ObservableCollection<TourRequestViewModel>();
             ComplexTourRequests = new ObservableCollection<TourRequestViewModel>();
         }
+        public TourRequestViewModel(int userId)
+        {
+            UserId = userId;
+            _tourRequestService = new TourRequestService(Injector.Injector.CreateInstance<ITourRequestRepository>());
+
+            StatisticsCommand = new RelayCommand(ExecuteStatisticsCommand);
+            RequestedTourDetailsCommand = new RelayCommand(ExecuteRequestedTourDetailsCommand);
+            RequestedComplexTourDetailsCommand = new RelayCommand(ExecuteRequestedComplexTourDetailsCommand);
+            TourRequests = new ObservableCollection<TourRequestViewModel>();
+            TourRequestsForComplex = new ObservableCollection<TourRequestViewModel>();
+            ComplexTourRequests = new ObservableCollection<TourRequestViewModel>();
+
+        }
 
         public TourRequestViewModel ToTourRequestViewModel(ComplexTourRequest complexTourRequest)
         {

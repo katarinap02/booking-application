@@ -29,16 +29,16 @@ namespace BookingApp.View.TouristWindows
         public TourDetailsWindow(TourViewModel selectedTour, bool isMyTour, string username)
         {
             InitializeComponent();
-            Tour = new TourDetailsViewModel();
-            Tour.SelectedTour = selectedTour;
+            Tour = new TourDetailsViewModel(selectedTour, isMyTour, username);
             DataContext = Tour;
-            Tour.TourDetailsWindowInitialization(isMyTour, username);
+
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
                 if (IsActive)
                 {
-                    MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    InformationMessageBoxWindow mb = new InformationMessageBoxWindow(message.Notification);
+                    mb.ShowDialog();
                 }
             });
         }
@@ -69,7 +69,7 @@ namespace BookingApp.View.TouristWindows
 
         private void ExportPdf_Executed(object sender, ExecutedRoutedEventArgs e)
         {
-            // ovo jos treba implementirat
+            Tour.ExportToPDFCommand.Execute(null);
         }
     }
 }

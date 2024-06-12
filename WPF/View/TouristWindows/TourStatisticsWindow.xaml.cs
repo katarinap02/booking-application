@@ -29,10 +29,8 @@ namespace BookingApp.WPF.View.TouristWindows
             InitializeComponent();
             TourStatisticsViewModel = new TourStatisticsViewModel(userId);
             DataContext = TourStatisticsViewModel;
-            TourStatisticsViewModel.InitializeTourStatistics();
 
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
-
         }
 
         private void CloseWindow(CloseWindowMessage messsage)

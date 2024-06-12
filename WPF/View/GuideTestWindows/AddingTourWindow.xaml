@@ -43,31 +43,38 @@
                 <!-- Tour Name -->
                 <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Tour Name" Margin="0 10 0 10" Grid.Row="1"
                          Name="txtTourName" Text="{Binding Path = Tour.Name, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Provide the tour name" x:Name="lblTourNameError" Foreground="red" Grid.Row="1" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="13"></Label>
 
                 <!-- City -->
                 <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="City" Margin="0 15 0 10" Grid.Row="2"
                          Name="txtCity" Text="{Binding Path = Tour.City, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Provide the city" x:Name="lblCityError" Foreground="red" Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="13"></Label>
 
                 <!-- Country -->
                 <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Country" Margin="0 15 0 10" Grid.Row="3"
                          Name="txtCountry" Text="{Binding Path = Tour.Country, UpdateSourceTrigger=PropertyChanged}"/>
+                <Label Content="Provide the country" x:Name="lblCountryError" Foreground="red" Grid.Row="3" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="13"></Label>
                 
                 <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Language" Grid.Row="4" Margin="0 15 0 10"
 				Name="txtLanguage" Text="{Binding Path = Tour.Language, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <Label Content="Provide the language" x:Name="lblLanguageError" Foreground="red" Grid.Row="4" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="13"></Label>
 
                 <!-- Number of Tourists -->
-                <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Number of Tourists" Margin="0 15 0 10" Grid.Row="5"
+                <TextBox Style="{StaticResource CustomTextBoxStyle}" x:Name="txtTouristsNumber" Tag="Number of Tourists" Margin="0 15 0 10" Grid.Row="5"
                          Text="{Binding Path = StringTouristsNumber.Number, UpdateSourceTrigger=PropertyChanged}"
                          PreviewTextInput="NumericTextBox_PreviewTextInput"/>
+                <Label Content="Provide number of tourists" x:Name="lblTouristsNumberError" Foreground="red" Grid.Row="5" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="13"></Label>
 
                 <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Duration (in hours)" Margin="0 15 0 10" Grid.Row="6"
                      Name="txtDuration" Text="{Binding Path=StringDuration.Number, UpdateSourceTrigger=PropertyChanged}"
                      PreviewTextInput="NumericTextBox_PreviewTextInput"/>
+                <Label Content="Provide the duration"  x:Name="lblDurationError" Foreground="red" Grid.Row="6" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="13"></Label>
 
 
 
                 <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Description" Grid.Row="7" Margin="0 15 0 10"
 					Name="txtDescription" Text="{Binding Path = Tour.Description, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                <Label Content="Provide the description" x:Name="lblDescriptionError" Foreground="red" Grid.Row="7" HorizontalAlignment="Right" VerticalAlignment="Bottom" Padding="13"></Label>
                          
 
                 <Button Grid.Row="9" VerticalAlignment="Bottom" Content="Cancel Adding Tour" Click="Exit_Click" Margin="10" Style="{StaticResource TransparentBorderButton}" Height="30" Foreground="#FB539B" BorderBrush="#FB539B"/>
@@ -103,6 +110,7 @@
                     <StackPanel  Orientation="Horizontal" Margin="0 40 0 15">
                         <TextBox Style="{StaticResource CustomTextBoxStyle}" Tag="Checkpoint" Width="380" Margin="0 0 0 5"
                                  Text="{Binding Path = typedCheckpoint.SString, UpdateSourceTrigger=PropertyChanged}"/>
+                        <Label Content="At least 2 are needed" Foreground="red" x:Name="lblCheckpointsError" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="-128 0 0 0" Padding="13"></Label>
                         <Button Content="Add" Margin="10 0 0 0" Style="{StaticResource TransparentBorderButton}" Click="AddCheckpoint_Click" Width="100" Foreground="#FB539B" BorderBrush="#FB539B"/>
                     </StackPanel>
                     <ListBox 
@@ -136,7 +144,7 @@
 
                     </TextBlock>
                     <StackPanel Orientation="Horizontal">
-                        <xctk:DateTimePicker Name="dateTimePicker" Margin="5 0  0 0" Height="30" Width="270" Style="{StaticResource CustomDateTimePickerStyleSimple}"/>
+                        <xctk:DateTimePicker Name="dateTimePicker" Margin="5 0  0 0"  Height="30" Width="270" Style="{StaticResource CustomDateTimePickerStyleSimple}"/>
                         <Button Content="Add Date" Margin="10 0  0 0" Click="AddDate_Click" Style="{StaticResource TransparentBorderButton}" Width="100" Height="35" Foreground="#FB539B" BorderBrush="#FB539B"/>
                     </StackPanel>
 
@@ -155,6 +163,8 @@
                     </ListBox.ItemContainerStyle>
                     
                 </ListBox>
+                <Label Content="At least 1 date is needed" x:Name="lblDatesError" Foreground="red" Grid.Row="2" HorizontalAlignment="Right" Margin="0 0 20 0" VerticalAlignment="Bottom" Padding="13"></Label>
+                <Label Content="Date can't be in the past" x:Name="lblDatesError1" Foreground="red" Grid.Row="2" HorizontalAlignment="Right" Margin="0 0 20 0" VerticalAlignment="Bottom" Padding="13"></Label>
 
                 <!-- Add Picture Button -->
                 <Button Grid.Row="3" Content="Add Picture" Style="{StaticResource TransparentBorderButton}" Margin="15 10 15 0"
@@ -162,12 +172,12 @@
 
                 <!-- Second ListBox -->
                 <ListBox Grid.Row="4"
-         Style="{StaticResource CustomListBoxStyle}"
-         x:Name="pictures"
-         Height="70"
-         SelectionMode="Single" 
-         ItemsSource="{Binding Pictures, UpdateSourceTrigger=PropertyChanged}"
-         Margin="5 10 5 15" av:ItemsSource="{av:SampleData ItemCount=5}">
+                 Style="{StaticResource CustomListBoxStyle}"
+                 x:Name="pictures"
+                 Height="70"
+                 SelectionMode="Single" 
+                 ItemsSource="{Binding Pictures, UpdateSourceTrigger=PropertyChanged}"
+                 Margin="5 10 5 15" av:ItemsSource="{av:SampleData ItemCount=5}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel Orientation="Horizontal"/>
@@ -175,8 +185,7 @@
                     </ListBox.ItemsPanel>
                     <ListBox.ItemContainerStyle>
                         <Style TargetType="ListBoxItem">
-                            <Setter Property="Height" Value="75"/>
-                            <!-- Set the height as per your requirement -->
+                            <Setter Property="Height" Value="75"/>                            
                         </Style>
                     </ListBox.ItemContainerStyle>
                     <ListBox.ItemTemplate>

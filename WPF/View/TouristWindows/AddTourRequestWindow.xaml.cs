@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using BookingApp.Domain.Model.Features;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
 using GalaSoft.MvvmLight.Messaging;
 
@@ -32,8 +33,10 @@ namespace BookingApp.WPF.View.TouristWindows
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
-                if (IsActive) { 
-                    MessageBox.Show(message.Notification, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                if (IsActive) {
+                    MessageBoxWindow mb = new MessageBoxWindow(message.Notification);
+                    mb.ShowDialog();
+                    //MessageBox.Show(message.Notification, "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 }
             });
             foreach (var date in TourRequest.SelectedDates)
@@ -66,6 +69,53 @@ namespace BookingApp.WPF.View.TouristWindows
         private void DatePicker_PreviewKeyDown(object sender, KeyEventArgs e)
         {
             e.Handled = true;
+        }
+        private void AddParticipant_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = TourRequest.AddParticipantCommand.CanExecute(null);
+        }
+
+        private void AddParticipant_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TourRequest.AddParticipantCommand.Execute(null);
+        }
+
+        private void ParticipantName_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void ParticipantName_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            NameTextBox.Focus();
+        }
+
+        private void CountryFocus_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void CountryFocus_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            CountryComboBox.Focus();
+        }
+        private void Close_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Close_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            Close();
+        }
+        private void Confirm_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = TourRequest.AddToToursCommand.CanExecute(null);
+        }
+
+        private void Confirm_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TourRequest.AddToToursCommand.Execute(null);
         }
     }
 }

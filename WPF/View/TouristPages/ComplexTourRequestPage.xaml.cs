@@ -28,8 +28,6 @@ namespace BookingApp.WPF.View.TouristPages
             TourRequest = tourRequest;
             DataContext = TourRequest;
 
-            // ova inicijalizacija ce trebati
-            //TourRequest.InitializeWindow();
         }
         private void Integer_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
@@ -37,6 +35,24 @@ namespace BookingApp.WPF.View.TouristPages
             {
                 e.Handled = true;
             }
+        }
+        private void AddTour_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = TourRequest.AddTourCommand.CanExecute(null);
+        }
+
+        private void AddTour_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            TourRequest.AddTourCommand.Execute(null);
+        }
+        private void NameFocus_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void NameFocus_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            NameTextBox.Focus();
         }
     }
 }

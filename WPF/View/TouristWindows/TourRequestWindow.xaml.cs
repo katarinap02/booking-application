@@ -29,18 +29,21 @@ namespace BookingApp.WPF.View.TouristWindows
         public TourRequestWindow(int userId)
         {
             InitializeComponent();
-            TourRequest = new TourRequestWindowViewModel();
+            TourRequest = new TourRequestWindowViewModel(userId);
             DataContext = TourRequest;
-            TourRequest.UserId = userId;
+
+            TourRequest.InitFrame("Basic");
+
             Messenger.Default.Register<CloseWindowMessage>(this, CloseWindow);
             Messenger.Default.Register<NotificationMessage>(this, message =>
             {
                 if (this.IsActive)
                 {
-                    MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                    InformationMessageBoxWindow mb = new InformationMessageBoxWindow(message.Notification);
+                    mb.ShowDialog();
+                    //MessageBox.Show(message.Notification, "Information", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             });
-            TourRequest.InitFrame("Basic");
         }
 
         private void CloseWindow(CloseWindowMessage message)
@@ -73,5 +76,56 @@ namespace BookingApp.WPF.View.TouristWindows
         {
             TourRequest.SaveToCsvCommand.Execute(null);
         }
+        private void StackPanel_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (TutorialPopup.IsOpen == false)
+            {
+                TutorialPopup.IsOpen = true;
+                mediaElement.Play();
+                return;
+            }
+            TutorialPopup.IsOpen = false;
+            mediaElement.Stop();
+        }
+        private void PlayButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Play();
+        }
+        private void ResetButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Stop();
+            mediaElement.Play();
+        }
+        private void PauseButton_Click(object sender, RoutedEventArgs e)
+        {
+            mediaElement.Pause();
+        }
+        private void CloseTutorialButton_Click(object sender, RoutedEventArgs e)
+        {
+            TutorialPopup.IsOpen = false;
+            mediaElement.Stop();
+        }
+        private void MediaElement_MediaFailed(object sender, ExceptionRoutedEventArgs e)
+        {
+            MessageBoxWindow mb = new MessageBoxWindow("Media failed to open: " + e.ErrorException.Message);
+            mb.ShowDialog();
+        }
+        private void Tutorial_CanExecute(object sender, CanExecuteRoutedEventArgs e)
+        {
+            e.CanExecute = true;
+        }
+
+        private void Tutorial_Executed(object sender, ExecutedRoutedEventArgs e)
+        {
+            if (TutorialPopup.IsOpen == false)
+            {
+                TutorialPopup.IsOpen = true;
+                mediaElement.Play();
+                return;
+            }
+            TutorialPopup.IsOpen = false;
+            mediaElement.Stop();
+        }
+
     }
 }

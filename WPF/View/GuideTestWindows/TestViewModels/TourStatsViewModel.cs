@@ -3,18 +3,22 @@ using BookingApp.Application.Services.ReservationServices;
 using BookingApp.Domain.Model.Features;
 using BookingApp.Domain.RepositoryInterfaces.Features;
 using BookingApp.Domain.RepositoryInterfaces.Reservations;
+using BookingApp.Utilities.PDF_generator;
 using BookingApp.WPF.ViewModel.GuideTouristViewModel;
+using BookingApp.WPF.ViewModel.HostGuestViewModel.HostViewModels.Commands;
 using LiveCharts;
 using LiveCharts.Defaults;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Forms;
 using System.Windows.Media;
 
 namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
@@ -76,10 +80,16 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             }
         }
         private readonly TourService tourService = new TourService(Injector.Injector.CreateInstance<ITourRepository>());
+        private readonly GuideInfoService guideInfoService = new GuideInfoService();
         private readonly TourReservationService reservationService = new TourReservationService(Injector.Injector.CreateInstance<ITourReservationRepository>()); 
         private int GuideId;
+        public List<int> age { get; set; }
+        public MyICommand PDF {  get; set; }
+
         public TourStatsViewModel(int guide_id)
-        { 
+        {
+            PDF = new MyICommand(GeneratePDF);
+            age = new List<int>();
             GuideId = guide_id;
             series = new SeriesCollection();
             Combo = "System.Windows.Controls.ComboBoxItem: All time";
@@ -97,7 +107,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             Tours = newViewModels;
             if(tours.Count > 0)
             {
-                UpdateAgeStatistics(tours[0].Id);
+                SelectedTour = new TourViewModel(tours[0]);
             }            
         }
 
@@ -105,6 +115,7 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
         {
             Caption = tourService.GetTourById(tourId).Name;
             List<int> ages = tourService.GetAgeStatistic(tourId);
+            age = ages;
             series = new SeriesCollection
             {
                 new PieSeries
@@ -184,5 +195,56 @@ namespace BookingApp.WPF.View.GuideTestWindows.TestViewModels
             }
 
         }
+
+        public void GeneratePDF()
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.Filter = "PDF files (*.pdf)|*.pdf";
+                saveFileDialog.Title = "Save PDF File";
+                saveFileDialog.FileName = "TourStatistics.pdf";
+                Tour mostVisitedTourAllTime = tourService.GetMostPopularTourForGuide(GuideId);
+                Tour mostVisitedTour2023 = tourService.GetMostPopularTourForGuideInYear(GuideId, 2023);
+                Tour mostVisitedTour2024 = tourService.GetMostPopularTourForGuideInYear(GuideId, 2024);
+                GuideInformation information = guideInfoService.GetByGuideId(GuideId);
+                string fullname = information.Name + " " + information.Surname;
+
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    string filePath = saveFileDialog.FileName;
+
+                    var documentData = new DocumentData
+                    {
+                        ApplicationLogoPath = "../../../WPF/Resources/Images/logo.png",
+                        ApplicationName = "Booking Application",
+                        GuideName = fullname,
+                        ContactEmail = information.Email,
+                        ContactPhone = information.PhoneNumber,
+                        GeneratedTime = DateTime.Now,
+                        PieChart = ChartGenerator.GeneratePieChart(below18: age[0], between18And50: age[1], above50: age[2]),
+                        Below18 = age[0],
+                        Between18And50 = age[1],
+                        Above50 = age[2],
+                        TourName = SelectedTour.Name,
+                        MostVisitedTours = new MostVisitedTours
+                        {
+                            AllTime = mostVisitedTourAllTime.Name,
+                            Year2024 = mostVisitedTour2024.Name,
+                            Year2023 = mostVisitedTour2023.Name
+                        }
+                    };
+
+                    PDFGenerator.Generate(documentData, filePath);
+
+                    Process.Start(new ProcessStartInfo
+                    {
+                        FileName = filePath,
+                        UseShellExecute = true
+                    });
+                }
+            }
+        }
+
+
     }
 }

@@ -143,6 +143,10 @@ namespace BookingApp.WPF.ViewModel.TouristViewModel
         public void InitializeCreatedTourDetailsWindow()
         {
             Tour tour = notificationService.GetTourById(SelectedNotification.TourId);
+            if(tour == null)
+            {
+                return;
+            }
             TourName = SelectedNotification.TourName;
             City = tour.City;
             Country = tour.Country;
@@ -150,9 +154,11 @@ namespace BookingApp.WPF.ViewModel.TouristViewModel
             Date = tour.Date;
         }
 
-        public CreatedTourDetailsWindowViewModel()
+        public CreatedTourDetailsWindowViewModel(TouristNotificationViewModel selectedNotification)
         {
             notificationService = new TouristNotificationService(Injector.Injector.CreateInstance<ITouristNotificationRepository>());
+            SelectedNotification = selectedNotification;
+            InitializeCreatedTourDetailsWindow();
         }
 
     }

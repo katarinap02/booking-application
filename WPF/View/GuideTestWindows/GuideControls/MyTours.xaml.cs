@@ -26,5 +26,6 @@ namespace BookingApp.WPF.View.GuideTestWindows.GuideControls
         {            
             InitializeComponent();
         }
+
     }
 }

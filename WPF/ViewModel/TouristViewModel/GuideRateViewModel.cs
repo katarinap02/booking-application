@@ -1,6 +1,7 @@
 ﻿using BookingApp.Application.Services.RateServices;
 using BookingApp.Domain.Model.Rates;
 using BookingApp.Domain.RepositoryInterfaces.Rates;
+using BookingApp.WPF.View.TouristWindows;
 using GalaSoft.MvvmLight.Command;
 using GalaSoft.MvvmLight.Messaging;
 using Microsoft.Win32;
@@ -28,6 +29,41 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
         public ICommand SelectLanguageRatingCommand { get; set; }
         public ICommand SelectInterestRatingCommand { get; set; }
         public ICommand DeletePreviewImageCommand { get; set; }
+
+        private ICommand _closeCommand;
+        public ICommand CloseCommand
+        {
+            get
+            {
+                if (_closeCommand == null)
+                {
+                    _closeCommand = new RelayCommand(param => CloseWindow());
+                }
+                return _closeCommand;
+            }
+        }
+        private void CloseWindow()
+        {
+            Messenger.Default.Send(new CloseWindowMessage());
+        }
+
+        private ICommand _submitCommand;
+        public ICommand SubmitCommand
+        {
+            get
+            {
+                if (_submitCommand == null)
+                {
+                    _submitCommand = new RelayCommand(param => Submit());
+                }
+                return _submitCommand;
+            }
+        }
+        private void Submit()
+        {
+            Submit(this);
+            Messenger.Default.Send(new CloseWindowMessage());
+        }
 
         private int _id;
         public int Id
@@ -162,6 +198,40 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             }
         }
 
+        private string _TouristName;
+        public string TouristName
+        {
+            get
+            {
+                return _TouristName;
+            }
+            set
+            {
+                if (_TouristName != value)
+                {
+                    _TouristName = value;
+                    OnPropertyChanged(nameof(TouristName));
+                }
+            }
+        }
+
+        private string _checkpoint;
+        public string Checkpoint
+        {
+            get
+            {
+                return _checkpoint;
+            }
+            set
+            {
+                if (_checkpoint != value)
+                {
+                    _checkpoint = value;
+                    OnPropertyChanged(nameof(Checkpoint));
+                }
+            }
+        }
+
         private List<string> _pictures;
         public List<string> Pictures
         {
@@ -283,11 +353,24 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             return absolutePath;
         }
 
-        public bool initializeGuideRate(int tourId, int guideId)
+        public string Language1 { get; set; }
+        public string Knowledge1 { get; set; }
+        public string Interest1 { get; set; }
+
+        public string ImagePath
+        {
+            get
+            {
+                return Pictures.FirstOrDefault();
+            }
+        }
+
+        public void initializeGuideRate(int tourId, int guideId)
         {
             if (!_guideRateService.CanBeRated(tourId, UserId))
             {
-                return true;
+
+                Messenger.Default.Send(new CloseWindowMessage());
             }
             IsAddImageButtonEnabled = true;
             TouristId = UserId;
@@ -296,7 +379,6 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             Knowledge = 1;
             Language = 1;
             TourInterest = 1;
-            return false;
         }
 
         private void ExecuteSelectKnowledgeRating(object parameter)
@@ -325,7 +407,7 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             IsAddImageButtonEnabled = true;
         }
 
-        public GuideRateViewModel()
+        public GuideRateViewModel(TourViewModel selectedTour, int userId)
         {
             _guideRateService = new GuideRateService(Injector.Injector.CreateInstance<IGuideRateRepository>());
 
@@ -334,6 +416,9 @@ namespace BookingApp.WPF.ViewModel.GuideTouristViewModel
             SelectLanguageRatingCommand = new RelayCommand(ExecuteSelectLanguageRating);
             SelectInterestRatingCommand = new RelayCommand(ExecuteSelectInterestRating);
             DeletePreviewImageCommand = new RelayCommand<BitmapImage>(DeleteImagePreview);
+
+            UserId = userId;
+            initializeGuideRate(selectedTour.Id, selectedTour.GuideId);
         }
         public GuideRateViewModel(GuideRate guideRate)
         {
